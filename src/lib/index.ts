@@ -38,3 +38,8 @@ export * from './logger';
 export * from './queryClient';
 export * from './responsive';
 export * from './tokenStorage';
+
+export * from './telemetryRegistry';
+export * from './routeManifest';
+export * from './benchmarkData';
+export * from './configRegistry';
