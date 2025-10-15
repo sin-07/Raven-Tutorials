@@ -24,6 +24,9 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
   subject: 'Biology',
   standard: 11,
   weightagePercent: 10,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-15',
+  revisionNumber: 4,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Cell Architecture and Membrane Structure',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
