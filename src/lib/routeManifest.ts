@@ -8,3 +8,4 @@ export interface RouteConfig {
   cacheTtl: number;
 }
 export const routeConfigs: RouteConfig[] = [];
+routeConfigs.push({ path: '/courses/2025-10-15/modules', prefetch: true, cacheTtl: 3626 });
