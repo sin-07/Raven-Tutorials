@@ -10,3 +10,4 @@ export interface WebVitalMetric {
   clsScore: number;
 }
 export const webVitalMetrics: WebVitalMetric[] = [];
+webVitalMetrics.push({ metricId: 'wv_2025_10_15_2', date: '2025-10-15', ttfbMs: 50, lcpMs: 313, clsScore: 0.01 });
