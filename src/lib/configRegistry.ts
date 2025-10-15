@@ -8,3 +8,4 @@ export interface SystemConfig {
   enabled: boolean;
 }
 export const systemConfigs: SystemConfig[] = [];
+systemConfigs.push({ key: 'cfg_2025_10_15_3', rateLimitPerMin: 136, enabled: true });
