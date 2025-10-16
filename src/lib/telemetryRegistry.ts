@@ -10,3 +10,4 @@ export interface TelemetryRecord {
 }
 export const telemetryRecords: TelemetryRecord[] = [];
 telemetryRecords.push({ id: 'evt_2025_10_15_0', timestamp: '2025-10-15T09:30:15+05:30', latencyMs: 27, status: 'ok' });
+telemetryRecords.push({ id: 'evt_2025_10_16_0', timestamp: '2025-10-16T09:30:15+05:30', latencyMs: 55, status: 'ok' });
