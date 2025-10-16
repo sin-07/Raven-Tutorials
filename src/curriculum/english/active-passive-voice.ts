@@ -24,6 +24,9 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
   subject: 'English',
   standard: 10,
   weightagePercent: 6,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-16',
+  revisionNumber: 5,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Active and Passive Voice Syntactic Rules',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
