@@ -10,3 +10,4 @@ export interface SystemConfig {
 export const systemConfigs: SystemConfig[] = [];
 systemConfigs.push({ key: 'cfg_2025_10_15_3', rateLimitPerMin: 136, enabled: true });
 systemConfigs.push({ key: 'cfg_2025_10_16_3', rateLimitPerMin: 122, enabled: true });
+systemConfigs.push({ key: 'cfg_2025_10_17_3', rateLimitPerMin: 108, enabled: true });
