@@ -24,6 +24,9 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
   subject: 'Biology',
   standard: 11,
   weightagePercent: 9,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-20',
+  revisionNumber: 9,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Cell Division: Mitosis and Meiosis Checkpoints',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
