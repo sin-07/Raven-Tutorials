@@ -24,6 +24,9 @@ export const linear_equations: CurriculumTopic_linear_equations = {
   subject: 'Mathematics',
   standard: 10,
   weightagePercent: 9,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-22',
+  revisionNumber: 11,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Pair of Linear Equations in Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
