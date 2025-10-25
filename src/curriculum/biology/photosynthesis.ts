@@ -24,6 +24,9 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   subject: 'Biology',
   standard: 11,
   weightagePercent: 12,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-25',
+  revisionNumber: 14,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Light Reactions and Carbon Fixation Mechanisms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
