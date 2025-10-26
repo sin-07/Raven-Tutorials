@@ -24,6 +24,9 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
   subject: 'English',
   standard: 10,
   weightagePercent: 8,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-26',
+  revisionNumber: 15,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Professional Correspondence and Formal Letter Formats',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
