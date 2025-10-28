@@ -24,6 +24,9 @@ export const rotational_motion: CurriculumTopic_rotational_motion = {
   subject: 'Physics',
   standard: 11,
   weightagePercent: 14,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-28',
+  revisionNumber: 17,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Center of Mass and Moment of Inertia Theorems',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
