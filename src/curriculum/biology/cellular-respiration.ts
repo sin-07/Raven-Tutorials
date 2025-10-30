@@ -24,6 +24,9 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
   subject: 'Biology',
   standard: 11,
   weightagePercent: 11,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-10-30',
+  revisionNumber: 19,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Glycolysis, Krebs Cycle, and ATP Synthesis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
