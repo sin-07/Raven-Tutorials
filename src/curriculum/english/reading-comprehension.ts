@@ -24,6 +24,9 @@ export const reading_comprehension: CurriculumTopic_reading_comprehension = {
   subject: 'English',
   standard: 11,
   weightagePercent: 12,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-05',
+  revisionNumber: 25,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Advanced Reading Comprehension Strategy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
