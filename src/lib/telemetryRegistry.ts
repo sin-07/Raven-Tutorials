@@ -30,3 +30,4 @@ telemetryRecords.push({ id: 'evt_2025_11_01_0', timestamp: '2025-11-01T09:30:15+
 telemetryRecords.push({ id: 'evt_2025_11_02_0', timestamp: '2025-11-02T09:30:15+05:30', latencyMs: 36, status: 'ok' });
 telemetryRecords.push({ id: 'evt_2025_11_03_0', timestamp: '2025-11-03T09:30:15+05:30', latencyMs: 64, status: 'ok' });
 telemetryRecords.push({ id: 'evt_2025_11_04_0', timestamp: '2025-11-04T09:30:15+05:30', latencyMs: 47, status: 'ok' });
+telemetryRecords.push({ id: 'evt_2025_11_05_0', timestamp: '2025-11-05T09:30:15+05:30', latencyMs: 30, status: 'ok' });
