@@ -24,6 +24,9 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
   subject: 'Physics',
   standard: 11,
   weightagePercent: 11,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-07',
+  revisionNumber: 27,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Laws of Thermodynamics and Carnot Engine',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
