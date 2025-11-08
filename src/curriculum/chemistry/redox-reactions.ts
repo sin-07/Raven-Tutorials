@@ -24,6 +24,9 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
   subject: 'Chemistry',
   standard: 11,
   weightagePercent: 7,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-08',
+  revisionNumber: 28,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Oxidation Number Balancing and Electrochemical Potential',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
