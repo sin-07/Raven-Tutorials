@@ -24,6 +24,9 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
   subject: 'Mathematics',
   standard: 10,
   weightagePercent: 8,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-11',
+  revisionNumber: 31,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordinate Geometry & Distance Formulae',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
