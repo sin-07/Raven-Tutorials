@@ -36,3 +36,4 @@ systemConfigs.push({ key: 'cfg_2025_11_08_3', rateLimitPerMin: 100, enabled: tru
 systemConfigs.push({ key: 'cfg_2025_11_09_3', rateLimitPerMin: 136, enabled: true });
 systemConfigs.push({ key: 'cfg_2025_11_10_3', rateLimitPerMin: 122, enabled: true });
 systemConfigs.push({ key: 'cfg_2025_11_11_3', rateLimitPerMin: 108, enabled: true });
+systemConfigs.push({ key: 'cfg_2025_11_12_3', rateLimitPerMin: 144, enabled: true });
