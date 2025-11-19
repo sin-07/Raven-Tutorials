@@ -24,6 +24,9 @@ export const principles_of_inheritance: CurriculumTopic_principles_of_inheritanc
   subject: 'Biology',
   standard: 12,
   weightagePercent: 14,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-19',
+  revisionNumber: 39,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Mendelian Genetics and Linkage Analysis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
