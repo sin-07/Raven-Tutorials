@@ -24,6 +24,9 @@ export const circles: CurriculumTopic_circles = {
   subject: 'Mathematics',
   standard: 10,
   weightagePercent: 9,
+  academicCycle: '2025-2026',
+  lastReviewed: '2025-11-21',
+  revisionNumber: 41,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Circles & Tangents from External Points',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
