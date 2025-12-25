@@ -25,8 +25,8 @@ export const report_writing: CurriculumTopic_report_writing = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-15',
-  revisionNumber: 35,
+  lastReviewed: '2025-12-25',
+  revisionNumber: 75,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Journalistic and Institutional Event Reporting',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
