@@ -1,0 +1,209 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Megaphone, User, Trash2 } from 'lucide-react';
+import toast from 'react-hot-toast';
+import AdminLayout from '@/components/admin/Layout';
+
+interface Notice {
+  _id: string;
+  title: string;
+  message: string;
+  class: string;
+  postedBy: string;
+  documentUrl?: string;
+  documentName?: string;
+  createdAt: string;
+}
+
+interface FormData {
+  title: string;
+  message: string;
+  class: string;
+  document: File | null;
+}
+
+export default function AdminNoticesPage() {
+  const router = useRouter();
+  const [notices, setNotices] = useState<Notice[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [form, setForm] = useState<FormData>({ title: '', message: '', class: 'All', document: null });
+  const [posting, setPosting] = useState(false);
+
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
+  const fetchNotices = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/notices');
+      const data = await res.json();
+      if (data.success) setNotices(data.data);
+      else toast.error('Failed to load notices');
+    } catch {
+      toast.error('Error fetching notices');
+    }
+    setLoading(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, document: e.target.files?.[0] || null });
+  };
+
+  const handlePost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPosting(true);
+    try {
+      const formData = new FormData();
+      formData.append('title', form.title);
+      formData.append('message', form.message);
+      formData.append('class', form.class);
+      if (form.document) {
+        formData.append('document', form.document);
+      }
+      const res = await fetch('/api/notices', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success('Notice posted');
+        setForm({ title: '', message: '', class: 'All', document: null });
+        fetchNotices();
+      } else {
+        toast.error(data.message || 'Failed to post notice');
+      }
+    } catch {
+      toast.error('Error posting notice');
+    }
+    setPosting(false);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this notice?')) return;
+    
+    try {
+      const res = await fetch(`/api/notices/${id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success('Notice deleted successfully');
+        fetchNotices();
+      } else {
+        toast.error(data.message || 'Failed to delete notice');
+      }
+    } catch {
+      toast.error('Error deleting notice');
+    }
+  };
+
+  return (
+    <AdminLayout>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 py-10">
+        <div className="max-w-3xl mx-auto px-4">
+          <h1 className="text-3xl font-bold text-indigo-700 mb-6 flex items-center gap-2">
+            <Megaphone size={32} className="text-indigo-500" />
+            Admin Notices
+          </h1>
+          <form onSubmit={handlePost} className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-indigo-100" encType="multipart/form-data">
+            <h2 className="text-xl font-semibold text-indigo-600 mb-4">Post a New Notice</h2>
+            <input
+              type="text"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder="Notice Title"
+              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              required
+            />
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="Notice Message"
+              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              rows={4}
+              required
+            />
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Reference Document (PDF, DOC, etc.)</label>
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png"
+                onChange={handleFileChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-sm font-medium text-gray-700 mb-1">For Class</label>
+              <select
+                name="class"
+                value={form.class}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              >
+                <option value="All">All</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              disabled={posting}
+              className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-all"
+            >{posting ? 'Posting...' : 'Post Notice'}</button>
+          </form>
+          <div className="space-y-6">
+            {loading ? (
+              <div className="text-center py-12 text-gray-400">Loading notices...</div>
+            ) : notices.length === 0 ? (
+              <div className="text-center py-12 text-gray-400">No notices yet.</div>
+            ) : (
+              notices.map(notice => (
+                <div key={notice._id} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-indigo-400">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <User size={20} className="text-indigo-400" />
+                      <span className="font-semibold text-indigo-700">{notice.postedBy}</span>
+                      <span className="text-xs text-gray-400 ml-2">{new Date(notice.createdAt).toLocaleString()}</span>
+                      <span className="ml-2 px-2 py-1 rounded bg-indigo-50 text-indigo-600 text-xs font-semibold">{notice.class || 'All'}</span>
+                    </div>
+                    <button
+                      onClick={() => handleDelete(notice._id)}
+                      className="text-red-600 hover:text-red-800 hover:bg-red-50 p-2 rounded transition-colors"
+                      title="Delete Notice"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-1">{notice.title}</h3>
+                  <p className="text-gray-700 mb-2 whitespace-pre-line">{notice.message}</p>
+                  {notice.documentUrl && (
+                    <a
+                      href={notice.documentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200 font-medium"
+                    >
+                      {notice.documentName ? notice.documentName : 'View Reference Document'}
+                    </a>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </AdminLayout>
+  );
+}

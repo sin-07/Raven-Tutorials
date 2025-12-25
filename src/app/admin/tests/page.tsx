@@ -1,0 +1,695 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import AdminLayout from '@/components/admin/Layout';
+import toast from 'react-hot-toast';
+import { Loader } from '@/components';
+import { STANDARDS } from '@/constants/classes';
+
+interface Question {
+  questionText: string;
+  questionType: 'MCQ' | 'Short Answer' | 'Long Answer' | 'True/False';
+  options: string[];
+  correctAnswer: string;
+  marks: string | number;
+}
+
+interface TestData {
+  _id: string;
+  title: string;
+  description: string;
+  class: string;
+  subject: string;
+  testDate: string;
+  duration: number;
+  totalMarks: number;
+  passingMarks: number;
+  questions: Question[];
+  status: 'Draft' | 'Published' | 'Completed' | 'Cancelled';
+}
+
+interface FormData {
+  title: string;
+  description: string;
+  class: string;
+  subject: string;
+  testDate: string;
+  duration: string;
+  totalMarks: string;
+  passingMarks: string;
+  questions: Question[];
+}
+
+const AdminTests: React.FC = () => {
+  const [tests, setTests] = useState<TestData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [editingTestId, setEditingTestId] = useState<string | null>(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>({
+    title: '',
+    description: '',
+    class: '',
+    subject: '',
+    testDate: '',
+    duration: '',
+    totalMarks: '',
+    passingMarks: '',
+    questions: []
+  });
+
+  const [currentQuestion, setCurrentQuestion] = useState<Question>({
+    questionText: '',
+    questionType: 'MCQ',
+    options: ['', '', '', ''],
+    correctAnswer: '',
+    marks: ''
+  });
+
+  const classes = STANDARDS;
+
+  useEffect(() => {
+    fetchTests();
+  }, []);
+
+  const fetchTests = async () => {
+    try {
+      const res = await fetch('/api/admin/tests', { credentials: 'include' });
+      const data = await res.json();
+      if (data.success) {
+        setTests(data.data);
+      }
+    } catch (error) {
+      toast.error('Error loading tests');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddQuestion = () => {
+    if (!currentQuestion.questionText || !currentQuestion.marks) {
+      toast.error('Please fill question text and marks');
+      return;
+    }
+
+    if (currentQuestion.questionType === 'MCQ') {
+      const validOptions = currentQuestion.options.filter(opt => opt.trim() !== '');
+      if (validOptions.length < 2) {
+        toast.error('Please provide at least 2 options for MCQ');
+        return;
+      }
+      if (!currentQuestion.correctAnswer) {
+        toast.error('Please select the correct answer');
+        return;
+      }
+    }
+
+    setFormData({
+      ...formData,
+      questions: [...formData.questions, { ...currentQuestion }]
+    });
+
+    setCurrentQuestion({
+      questionText: '',
+      questionType: 'MCQ',
+      options: ['', '', '', ''],
+      correctAnswer: '',
+      marks: ''
+    });
+
+    toast.success('Question added');
+  };
+
+  const handleRemoveQuestion = (index: number) => {
+    const updatedQuestions = formData.questions.filter((_, i) => i !== index);
+    setFormData({ ...formData, questions: updatedQuestions });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (formData.questions.length === 0) {
+      toast.error('Please add at least one question');
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        editingTestId ? `/api/admin/tests/${editingTestId}` : '/api/admin/tests',
+        {
+          method: editingTestId ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(formData)
+        }
+      );
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success(editingTestId ? 'Test updated successfully' : 'Test created successfully');
+        setShowModal(false);
+        setCurrentStep(1);
+        setEditingTestId(null);
+        setFormData({
+          title: '', description: '', class: '', subject: '',
+          testDate: '', duration: '', totalMarks: '', passingMarks: '',
+          questions: []
+        });
+        fetchTests();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(editingTestId ? 'Error updating test' : 'Error creating test');
+    }
+  };
+
+  const handlePublish = async (id: string) => {
+    try {
+      const res = await fetch(`/api/admin/tests/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ status: 'Published' })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success('Test published successfully');
+        fetchTests();
+      } else {
+        toast.error(data.message || 'Failed to publish test');
+      }
+    } catch (error) {
+      toast.error('Error publishing test');
+    }
+  };
+
+  const handleEdit = async (test: TestData) => {
+    setEditingTestId(test._id);
+    setFormData({
+      title: test.title,
+      description: test.description,
+      class: test.class,
+      subject: test.subject,
+      testDate: new Date(test.testDate).toISOString().split('T')[0],
+      duration: String(test.duration),
+      totalMarks: String(test.totalMarks),
+      passingMarks: String(test.passingMarks),
+      questions: test.questions || []
+    });
+    setShowModal(true);
+    setCurrentStep(1);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this test?')) return;
+
+    try {
+      const res = await fetch(`/api/admin/tests/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success('Test deleted successfully');
+        fetchTests();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error('Error deleting test');
+    }
+  };
+
+  const calculateTotalMarks = () => {
+    return formData.questions.reduce((sum, q) => sum + Number(q.marks), 0);
+  };
+
+  const resetModal = () => {
+    setShowModal(false);
+    setEditingTestId(null);
+    setCurrentStep(1);
+    setFormData({
+      title: '', description: '', class: '', subject: '',
+      testDate: '', duration: '', totalMarks: '', passingMarks: '',
+      questions: []
+    });
+  };
+
+  if (loading) {
+    return (
+      <AdminLayout>
+        <Loader />
+      </AdminLayout>
+    );
+  }
+
+  return (
+    <AdminLayout>
+      <div className="space-y-4 sm:space-y-5 md:space-y-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
+          <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-800">Tests Management</h2>
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base w-full sm:w-auto"
+          >
+            + Create Test
+          </button>
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden lg:block bg-white rounded-lg md:rounded-xl shadow-md overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Class</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Test Date</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Questions</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Marks</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-4 md:px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {tests.map((test) => (
+                <tr key={test._id} className="hover:bg-gray-50">
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-gray-900">{test.title}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.class}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.subject}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">
+                    {new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.questions?.length || 0}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.totalMarks}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4">
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                      test.status === 'Published' ? 'bg-green-100 text-green-800' :
+                      test.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
+                      test.status === 'Draft' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-red-100 text-red-800'
+                    }`}>
+                      {test.status}
+                    </span>
+                  </td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-center">
+                    <div className="flex items-center justify-center gap-1 sm:gap-2">
+                      <button
+                        onClick={() => handleEdit(test)}
+                        className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                        title="Edit"
+                      >
+                        ✏️
+                      </button>
+                      {test.status === 'Draft' && (
+                        <button
+                          onClick={() => handlePublish(test._id)}
+                          className="text-green-600 hover:text-green-800 hover:bg-green-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                          title="Publish"
+                        >
+                          ✓
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDelete(test._id)}
+                        className="text-red-600 hover:text-red-800 hover:bg-red-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                        title="Delete"
+                      >
+                        🗑️
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {tests.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No tests created yet</p>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="lg:hidden space-y-3 sm:space-y-4">
+          {tests.map((test) => (
+            <div key={test._id} className="bg-white rounded-lg md:rounded-xl shadow-md p-3 sm:p-4">
+              <div className="flex justify-between items-start mb-3 gap-2">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1 truncate">{test.title}</h3>
+                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
+                    test.status === 'Published' ? 'bg-green-100 text-green-800' :
+                    test.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
+                    test.status === 'Draft' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {test.status}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4">
+                <div className="bg-gray-50 p-2 rounded">
+                  <p className="text-gray-500 text-xs">Class</p>
+                  <p className="font-medium text-gray-900">{test.class}</p>
+                </div>
+                <div className="bg-gray-50 p-2 rounded">
+                  <p className="text-gray-500 text-xs">Subject</p>
+                  <p className="font-medium text-gray-900 truncate">{test.subject}</p>
+                </div>
+                <div className="bg-gray-50 p-2 rounded">
+                  <p className="text-gray-500 text-xs">Date</p>
+                  <p className="font-medium text-gray-900">{new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                </div>
+                <div className="bg-gray-50 p-2 rounded">
+                  <p className="text-gray-500 text-xs">Qs</p>
+                  <p className="font-medium text-gray-900">{test.questions?.length || 0}</p>
+                </div>
+              </div>
+
+              <div className="flex gap-2 pt-2 sm:pt-3 border-t border-gray-200">
+                <button
+                  onClick={() => handleEdit(test)}
+                  className="flex-1 bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                >
+                  ✏️ Edit
+                </button>
+                {test.status === 'Draft' && (
+                  <button
+                    onClick={() => handlePublish(test._id)}
+                    className="flex-1 bg-green-50 text-green-600 hover:bg-green-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                  >
+                    ✓ Pub
+                  </button>
+                )}
+                <button
+                  onClick={() => handleDelete(test._id)}
+                  className="bg-red-50 text-red-600 hover:bg-red-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                >
+                  🗑️
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {tests.length === 0 && (
+            <div className="bg-white rounded-lg shadow-md p-12 text-center">
+              <p className="text-gray-500 text-base">No tests created yet</p>
+            </div>
+          )}
+        </div>
+
+        {/* Create Test Modal */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
+            <div className="bg-white rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
+                {editingTestId ? 'Edit Test' : 'Create New Test'} - {currentStep === 1 ? 'Basic Information' : 'Add Questions'}
+              </h3>
+              
+              {currentStep === 1 ? (
+                <form onSubmit={(e) => { e.preventDefault(); setCurrentStep(2); }} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="col-span-1 sm:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Test Title *</label>
+                      <input
+                        type="text"
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Class *</label>
+                      <select
+                        value={formData.class}
+                        onChange={(e) => setFormData({ ...formData, class: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      >
+                        <option value="">Select Class</option>
+                        {classes.map(cls => (
+                          <option key={cls} value={cls}>{cls}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                      <input
+                        type="text"
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Test Date *</label>
+                      <input
+                        type="date"
+                        value={formData.testDate}
+                        onChange={(e) => setFormData({ ...formData, testDate: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Duration (minutes) *</label>
+                      <input
+                        type="number"
+                        value={formData.duration}
+                        onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Passing Marks *</label>
+                      <input
+                        type="number"
+                        value={formData.passingMarks}
+                        onChange={(e) => setFormData({ ...formData, passingMarks: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+
+                    <div className="col-span-1 sm:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 mt-6">
+                    <button
+                      type="submit"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
+                    >
+                      Next: Add Questions →
+                    </button>
+                    <button
+                      type="button"
+                      onClick={resetModal}
+                      className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-lg font-semibold"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div className="space-y-6">
+                  {/* Added Questions List */}
+                  {formData.questions.length > 0 && (
+                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                      <h4 className="font-semibold text-gray-700 mb-3">
+                        Added Questions ({formData.questions.length}) - Total Marks: {calculateTotalMarks()}
+                      </h4>
+                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                        {formData.questions.map((q, index) => (
+                          <div key={index} className="flex justify-between items-center bg-white p-3 rounded">
+                            <div className="flex-1">
+                              <span className="font-medium">Q{index + 1}:</span> {q.questionText.substring(0, 50)}...
+                              <span className="ml-2 text-sm text-gray-500">({q.questionType} - {q.marks} marks)</span>
+                            </div>
+                            <button
+                              onClick={() => handleRemoveQuestion(index)}
+                              className="text-red-600 hover:text-red-800 ml-2"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Add New Question Form */}
+                  <div className="border-2 border-dashed border-gray-300 p-4 rounded-lg">
+                    <h4 className="font-semibold text-gray-700 mb-4">Add New Question</h4>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Question Type</label>
+                        <select
+                          value={currentQuestion.questionType}
+                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionType: e.target.value as Question['questionType'] })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        >
+                          <option value="MCQ">Multiple Choice (MCQ)</option>
+                          <option value="Short Answer">Short Answer</option>
+                          <option value="Long Answer">Long Answer</option>
+                          <option value="True/False">True/False</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Question Text *</label>
+                        <textarea
+                          value={currentQuestion.questionText}
+                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          rows={3}
+                          placeholder="Enter your question here..."
+                        />
+                      </div>
+
+                      {currentQuestion.questionType === 'MCQ' && (
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Options (MCQ) *</label>
+                          {currentQuestion.options.map((option, idx) => (
+                            <div key={idx} className="flex items-center gap-2 mb-2">
+                              <span className="font-semibold">{String.fromCharCode(65 + idx)}.</span>
+                              <input
+                                type="text"
+                                value={option}
+                                onChange={(e) => {
+                                  const newOptions = [...currentQuestion.options];
+                                  newOptions[idx] = e.target.value;
+                                  setCurrentQuestion({ ...currentQuestion, options: newOptions });
+                                }}
+                                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder={`Option ${String.fromCharCode(65 + idx)}`}
+                              />
+                              <input
+                                type="radio"
+                                name="correctAnswer"
+                                checked={currentQuestion.correctAnswer === option && option !== ''}
+                                onChange={() => setCurrentQuestion({ ...currentQuestion, correctAnswer: option })}
+                                className="w-5 h-5"
+                                disabled={option === ''}
+                              />
+                              <span className="text-sm text-gray-500">Correct</span>
+                            </div>
+                          ))}
+                          <p className="text-xs text-gray-500 mt-1">Select the radio button next to the correct answer</p>
+                        </div>
+                      )}
+
+                      {currentQuestion.questionType === 'True/False' && (
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Correct Answer *</label>
+                          <div className="flex gap-4">
+                            <label className="flex items-center">
+                              <input
+                                type="radio"
+                                name="trueFalse"
+                                value="True"
+                                checked={currentQuestion.correctAnswer === 'True'}
+                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
+                                className="mr-2"
+                              />
+                              True
+                            </label>
+                            <label className="flex items-center">
+                              <input
+                                type="radio"
+                                name="trueFalse"
+                                value="False"
+                                checked={currentQuestion.correctAnswer === 'False'}
+                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
+                                className="mr-2"
+                              />
+                              False
+                            </label>
+                          </div>
+                        </div>
+                      )}
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Marks *</label>
+                        <input
+                          type="number"
+                          value={currentQuestion.marks}
+                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          placeholder="Enter marks for this question"
+                          min="1"
+                        />
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleAddQuestion}
+                        className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold"
+                      >
+                        + Add This Question
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  <div className="flex gap-4 mt-6">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep(1)}
+                      className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-lg font-semibold"
+                    >
+                      ← Back to Basic Info
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      disabled={formData.questions.length === 0}
+                      className={`flex-1 py-2 rounded-lg font-semibold ${
+                        formData.questions.length === 0
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-blue-600 hover:bg-blue-700 text-white'
+                      }`}
+                    >
+                      {editingTestId ? 'Update Test' : 'Create Test'} ({formData.questions.length} questions, {calculateTotalMarks()} marks)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={resetModal}
+                      className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </AdminLayout>
+  );
+};
+
+export default AdminTests;
