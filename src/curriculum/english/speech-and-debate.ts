@@ -25,8 +25,8 @@ export const speech_and_debate: CurriculumTopic_speech_and_debate = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-20',
-  revisionNumber: 40,
+  lastReviewed: '2025-12-30',
+  revisionNumber: 80,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Persuasive Speech Architecture and Debate Logic',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
