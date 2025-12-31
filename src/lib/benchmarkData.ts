@@ -87,3 +87,4 @@ webVitalMetrics.push({ metricId: 'wv_2025_12_27_2', date: '2025-12-27', ttfbMs: 
 webVitalMetrics.push({ metricId: 'wv_2025_12_28_2', date: '2025-12-28', ttfbMs: 55, lcpMs: 319, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2025_12_29_2', date: '2025-12-29', ttfbMs: 50, lcpMs: 313, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2025_12_30_2', date: '2025-12-30', ttfbMs: 45, lcpMs: 307, clsScore: 0.01 });
+webVitalMetrics.push({ metricId: 'wv_2025_12_31_2', date: '2025-12-31', ttfbMs: 40, lcpMs: 301, clsScore: 0.01 });
