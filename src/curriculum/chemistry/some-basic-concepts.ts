@@ -25,8 +25,8 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-10-14',
-  revisionNumber: 3,
+  lastReviewed: '2026-01-07',
+  revisionNumber: 88,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Mole Concept and Stoichiometric Calculations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
