@@ -259,14 +259,14 @@ const AdminLiveClasses: React.FC = () => {
         <div className="flex justify-between items-center mb-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-              <Video className="w-8 h-8 text-indigo-600" />
+              <Video className="w-8 h-8 text-blue-600" />
               Live Classes
             </h1>
             <p className="text-gray-600 mt-1">Manage online classes with Jitsi Meet</p>
           </div>
           <button
             onClick={() => { resetForm(); setShowModal(true); }}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Create Live Class
@@ -285,7 +285,7 @@ const AdminLiveClasses: React.FC = () => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="">All Status</option>
                 <option value="Scheduled">Scheduled</option>
@@ -332,15 +332,15 @@ const AdminLiveClasses: React.FC = () => {
                     )}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div className="flex items-center gap-2 text-gray-700">
-                        <Calendar className="w-4 h-4 text-indigo-600" />
+                        <Calendar className="w-4 h-4 text-blue-600" />
                         <span>{new Date(liveClass.scheduledDate).toLocaleDateString('en-GB')}</span>
                       </div>
                       <div className="flex items-center gap-2 text-gray-700">
-                        <Clock className="w-4 h-4 text-indigo-600" />
+                        <Clock className="w-4 h-4 text-blue-600" />
                         <span>{liveClass.startTime} - {liveClass.endTime}</span>
                       </div>
                       <div className="flex items-center gap-2 text-gray-700">
-                        <Users className="w-4 h-4 text-indigo-600" />
+                        <Users className="w-4 h-4 text-blue-600" />
                         <span>{liveClass.participants?.length || 0} participants</span>
                       </div>
                       <div className="text-gray-700">
@@ -356,7 +356,7 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleStartClass(liveClass.classId)}
-                          className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition-colors"
+                          className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
                           title="Start Class"
                         >
                           <Play className="w-5 h-5" />
@@ -374,7 +374,7 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleJoinClass(liveClass.classId)}
-                          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
                         >
                           <Video className="w-5 h-5" />
                           Join Class
@@ -521,8 +521,8 @@ const AdminLiveClasses: React.FC = () => {
                   </div>
 
                   {Number(formData.duration) > 0 && (
-                    <div className="bg-indigo-50 p-3 rounded-lg">
-                      <p className="text-sm text-indigo-800">
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <p className="text-sm text-blue-800">
                         <strong>Duration:</strong> {formData.duration} minutes ({Math.floor(Number(formData.duration) / 60)}h {Number(formData.duration) % 60}m)
                       </p>
                     </div>
@@ -537,7 +537,7 @@ const AdminLiveClasses: React.FC = () => {
                       onChange={handleInputChange}
                       min="1"
                       max="500"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
 
@@ -547,7 +547,7 @@ const AdminLiveClasses: React.FC = () => {
                       name="isRecordingEnabled"
                       checked={formData.isRecordingEnabled}
                       onChange={handleInputChange}
-                      className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
                     <label className="text-sm font-medium text-gray-700">
                       Enable Recording (Optional)
@@ -557,7 +557,7 @@ const AdminLiveClasses: React.FC = () => {
                   <div className="flex gap-3 pt-4">
                     <button
                       type="submit"
-                      className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
                     >
                       {editingClassId ? 'Update' : 'Create'} Live Class
                     </button>

@@ -21,6 +21,19 @@ export async function seedDatabase() {
       console.log('✅ Admin user created');
     }
 
+    // Seed additional admin provided by user
+    const userAdminExists = await Admin.findOne({ email: 'vs.aniket07@gmail.com' });
+    if (!userAdminExists) {
+      await Admin.create({
+        email: 'vs.aniket07@gmail.com',
+        password: 'Aniket1812@',
+        name: 'Admin User',
+        role: 'admin',
+        isActive: true,
+      });
+      console.log('✅ User-provided admin created: vs.aniket07@gmail.com');
+    }
+
     // Seed Sample Notices
     const noticeCount = await Notice.countDocuments();
     if (noticeCount === 0) {

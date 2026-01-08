@@ -157,7 +157,7 @@ const Feedbacks: React.FC = () => {
       teaching_method: 'bg-green-100 text-green-800 border-green-200',
       study_materials: 'bg-orange-100 text-orange-800 border-orange-200',
       online_classes: 'bg-pink-100 text-pink-800 border-pink-200',
-      test_system: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+      test_system: 'bg-blue-100 text-blue-800 border-blue-200',
       complaint: 'bg-red-100 text-red-800 border-red-200'
     };
     return colors[category] || colors.general;
@@ -176,7 +176,7 @@ const Feedbacks: React.FC = () => {
     return (
       <AdminLayout>
         <div className="flex items-center justify-center h-64">
-          <Loader className="w-8 h-8 animate-spin text-indigo-600" />
+          <Loader className="w-8 h-8 animate-spin text-blue-600" />
         </div>
       </AdminLayout>
     );
@@ -188,7 +188,7 @@ const Feedbacks: React.FC = () => {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-            <MessageSquare className="w-8 h-8 text-indigo-600" />
+            <MessageSquare className="w-8 h-8 text-blue-600" />
             Feedback Management
           </h1>
           <p className="text-gray-600 mt-2">Review and respond to student feedback</p>
@@ -426,9 +426,9 @@ const Feedbacks: React.FC = () => {
                 <div className="border-t pt-6">
                   <p className="text-sm font-medium text-gray-700 mb-2">Admin Response:</p>
                   {selectedFeedback.adminResponse ? (
-                    <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
                       <p className="text-gray-900 whitespace-pre-wrap mb-2">{selectedFeedback.adminResponse}</p>
-                      <p className="text-xs text-indigo-600">
+                      <p className="text-xs text-blue-600">
                         Responded on {new Date(selectedFeedback.respondedAt!).toLocaleDateString()}
                       </p>
                     </div>
@@ -439,12 +439,12 @@ const Feedbacks: React.FC = () => {
                         onChange={(e) => setAdminResponse(e.target.value)}
                         placeholder="Type your response to the student..."
                         rows={4}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent resize-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none"
                       />
                       <button
                         onClick={handleSubmitResponse}
                         disabled={submitting || !adminResponse.trim()}
-                        className="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-indigo-400 transition font-medium flex items-center justify-center gap-2"
+                        className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition font-medium flex items-center justify-center gap-2"
                       >
                         <Send className="w-4 h-4" />
                         {submitting ? 'Sending...' : 'Send Response'}

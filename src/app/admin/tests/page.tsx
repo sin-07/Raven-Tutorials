@@ -308,7 +308,7 @@ const AdminTests: React.FC = () => {
                       {test.status === 'Draft' && (
                         <button
                           onClick={() => handlePublish(test._id)}
-                          className="text-green-600 hover:text-green-800 hover:bg-green-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                          className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
                           title="Publish"
                         >
                           ✓
@@ -382,7 +382,7 @@ const AdminTests: React.FC = () => {
                 {test.status === 'Draft' && (
                   <button
                     onClick={() => handlePublish(test._id)}
-                    className="flex-1 bg-green-50 text-green-600 hover:bg-green-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                    className="flex-1 bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
                   >
                     ✓ Pub
                   </button>
@@ -646,7 +646,7 @@ const AdminTests: React.FC = () => {
                       <button
                         type="button"
                         onClick={handleAddQuestion}
-                        className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
                       >
                         + Add This Question
                       </button>

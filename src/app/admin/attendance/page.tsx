@@ -217,7 +217,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={markAllPresent}
                 disabled={!selectedClass || !selectedSubject || students.length === 0}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold disabled:bg-gray-400 text-sm sm:text-base"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold disabled:bg-gray-400 text-sm sm:text-base"
               >
                 Mark All
               </button>
@@ -227,15 +227,15 @@ const AdminAttendance: React.FC = () => {
 
         {/* Attendance Status Indicator */}
         {selectedClass && selectedSubject && isMarked && (
-          <div className="bg-green-50 border-l-4 border-green-500 p-3 sm:p-4 rounded-lg">
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4 rounded-lg">
             <div className="flex items-start gap-2 sm:gap-3">
               <div className="flex-shrink-0 mt-0.5">
-                <svg className="h-4 sm:h-5 w-4 sm:w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                <svg className="h-4 sm:h-5 w-4 sm:w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-green-800">
+                <p className="text-xs sm:text-sm font-medium text-blue-800">
                   ✅ Attendance for {selectedSubject} already marked for {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </p>
               </div>

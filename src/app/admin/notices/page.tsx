@@ -106,21 +106,21 @@ export default function AdminNoticesPage() {
 
   return (
     <AdminLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 py-10">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100 py-10">
         <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-indigo-700 mb-6 flex items-center gap-2">
-            <Megaphone size={32} className="text-indigo-500" />
+          <h1 className="text-3xl font-bold text-blue-700 mb-6 flex items-center gap-2">
+            <Megaphone size={32} className="text-blue-500" />
             Admin Notices
           </h1>
-          <form onSubmit={handlePost} className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-indigo-100" encType="multipart/form-data">
-            <h2 className="text-xl font-semibold text-indigo-600 mb-4">Post a New Notice</h2>
+          <form onSubmit={handlePost} className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-blue-100" encType="multipart/form-data">
+            <h2 className="text-xl font-semibold text-blue-600 mb-4">Post a New Notice</h2>
             <input
               type="text"
               name="title"
               value={form.title}
               onChange={handleChange}
               placeholder="Notice Title"
-              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
               required
             />
             <textarea
@@ -128,7 +128,7 @@ export default function AdminNoticesPage() {
               value={form.message}
               onChange={handleChange}
               placeholder="Notice Message"
-              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
               rows={4}
               required
             />
@@ -139,7 +139,7 @@ export default function AdminNoticesPage() {
                 name="document"
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png"
                 onChange={handleFileChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
             </div>
             <div className="mb-3">
@@ -148,7 +148,7 @@ export default function AdminNoticesPage() {
                 name="class"
                 value={form.class}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="All">All</option>
                 <option value="9">Class 9</option>
@@ -160,7 +160,7 @@ export default function AdminNoticesPage() {
             <button
               type="submit"
               disabled={posting}
-              className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-all"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all"
             >{posting ? 'Posting...' : 'Post Notice'}</button>
           </form>
           <div className="space-y-6">
@@ -170,13 +170,13 @@ export default function AdminNoticesPage() {
               <div className="text-center py-12 text-gray-400">No notices yet.</div>
             ) : (
               notices.map(notice => (
-                <div key={notice._id} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-indigo-400">
+                <div key={notice._id} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-400">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
-                      <User size={20} className="text-indigo-400" />
-                      <span className="font-semibold text-indigo-700">{notice.postedBy}</span>
+                      <User size={20} className="text-blue-400" />
+                      <span className="font-semibold text-blue-700">{notice.postedBy}</span>
                       <span className="text-xs text-gray-400 ml-2">{new Date(notice.createdAt).toLocaleString()}</span>
-                      <span className="ml-2 px-2 py-1 rounded bg-indigo-50 text-indigo-600 text-xs font-semibold">{notice.class || 'All'}</span>
+                      <span className="ml-2 px-2 py-1 rounded bg-blue-50 text-blue-600 text-xs font-semibold">{notice.class || 'All'}</span>
                     </div>
                     <button
                       onClick={() => handleDelete(notice._id)}
@@ -193,7 +193,7 @@ export default function AdminNoticesPage() {
                       href={notice.documentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200 font-medium"
+                      className="inline-block mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 font-medium"
                     >
                       {notice.documentName ? notice.documentName : 'View Reference Document'}
                     </a>
