@@ -157,7 +157,7 @@ const AdminLogin: React.FC = () => {
     <>
       <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center pt-16">
         {/* Animated gradient mesh */}
-        <div className="absolute inset-0 bg-violet-900/20"></div>
+        <div className="absolute inset-0 bg-blue-900/20"></div>
         
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-repeat pointer-events-none opacity-5" 
@@ -219,7 +219,7 @@ const AdminLogin: React.FC = () => {
           </div>
 
           {/* Professional Title */}
-          <h1 className="text-5xl font-bold text-center mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-fade-in-up"
+          <h1 className="text-5xl font-bold text-center mb-2 bg-gradient-to-r from-blue-400 via-blue-400 to-blue-400 bg-clip-text text-transparent animate-fade-in-up"
               style={{
                 textShadow: '0 0 40px rgba(59, 130, 246, 0.3)'
               }}>
@@ -233,7 +233,7 @@ const AdminLogin: React.FC = () => {
           {/* Login Card with glass morphism */}
           <div className="relative animate-scale-in">
             {/* Glowing border effect */}
-            <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 via-purple-500 to-blue-500 rounded-2xl blur-lg opacity-30 animate-pulse-slow"></div>
+            <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 via-blue-500 to-blue-500 rounded-2xl blur-lg opacity-30 animate-pulse-slow"></div>
             
             <div className="relative bg-slate-900/40 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-blue-500/20"
                  style={{
@@ -293,7 +293,7 @@ const AdminLogin: React.FC = () => {
 
                 {/* Security Notice */}
                 <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-500/10"></div>
                   <p className="text-xs text-slate-300 text-center flex items-center justify-center gap-2 relative z-10">
                     <Shield className="w-4 h-4" />
                     Secure Connection Established
@@ -304,7 +304,7 @@ const AdminLogin: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading || systemLockout}
-                  className="w-full py-4 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-500 hover:via-purple-500 hover:to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide relative overflow-hidden group border border-blue-400/30 shadow-lg hover:shadow-blue-500/50"
+                  className="w-full py-4 px-4 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 hover:from-blue-500 hover:via-blue-500 hover:to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide relative overflow-hidden group border border-blue-400/30 shadow-lg hover:shadow-blue-500/50"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
                     {loading ? (
@@ -324,7 +324,7 @@ const AdminLogin: React.FC = () => {
                       </>
                     )}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-20"></div>
                 </button>
                 
                 {/* Failed attempts indicator */}

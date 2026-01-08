@@ -91,11 +91,11 @@ export default function FeedbackPage() {
   const getCategoryColor = (category: string): string => {
     const colors: Record<string, string> = {
       general: 'bg-blue-100 text-blue-800',
-      course_content: 'bg-purple-100 text-purple-800',
+      course_content: 'bg-blue-100 text-blue-800',
       teaching_method: 'bg-green-100 text-green-800',
       study_materials: 'bg-orange-100 text-orange-800',
       online_classes: 'bg-pink-100 text-pink-800',
-      test_system: 'bg-indigo-100 text-indigo-800',
+      test_system: 'bg-blue-100 text-blue-800',
       complaint: 'bg-red-100 text-red-800'
     };
     return colors[category] || colors.general;
@@ -114,7 +114,7 @@ export default function FeedbackPage() {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 animate-spin text-violet-600 mx-auto mb-4" />
+          <Loader className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading feedback...</p>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function FeedbackPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2 mb-2">
-            <MessageSquare className="w-8 h-8 text-indigo-600" />
+            <MessageSquare className="w-8 h-8 text-blue-600" />
             Feedback & Support
           </h1>
           <p className="text-gray-600">Share your feedback to help us improve</p>
@@ -168,7 +168,7 @@ export default function FeedbackPage() {
                         </div>
                         <button
                           onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
-                          className="text-indigo-600 hover:text-indigo-700"
+                          className="text-blue-600 hover:text-blue-700"
                           title="View details"
                         >
                           <Eye className="w-5 h-5" />
@@ -218,7 +218,7 @@ export default function FeedbackPage() {
                           {feedback.adminResponse && (
                             <div className="mt-4 pt-4 border-t">
                               <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                                <span className="w-2 h-2 bg-indigo-600 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                                 Admin Response
                               </h4>
                               <p className="text-sm text-gray-700 whitespace-pre-wrap break-words">
@@ -243,12 +243,12 @@ export default function FeedbackPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg">
+        <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="flex gap-3">
-            <AlertCircle className="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-semibold text-indigo-900 mb-2">We Value Your Feedback</h3>
-              <ul className="text-sm text-indigo-800 space-y-1">
+              <ul className="text-sm text-blue-800 space-y-1">
                 <li>• Your feedback helps us improve our teaching methods and course content</li>
                 <li>• All feedback is reviewed by our admin team and kept confidential</li>
                 <li>• You will receive responses to important feedback submissions</li>

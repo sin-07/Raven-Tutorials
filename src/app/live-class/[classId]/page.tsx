@@ -308,7 +308,7 @@ export default function LiveClassPage() {
           <p className="text-gray-600 mb-6">{error}</p>
           <button
             onClick={() => router.push(isModerator ? '/admin/dashboard' : '/dashboard')}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
           >
             Go Back
           </button>
@@ -323,7 +323,7 @@ export default function LiveClassPage() {
       <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-75 text-white p-4 z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Video className="w-6 h-6 text-indigo-400" />
+            <Video className="w-6 h-6 text-blue-400" />
             <div>
               <h1 className="font-bold text-lg">{liveClass?.title}</h1>
               <p className="text-sm text-gray-300">
@@ -332,7 +332,7 @@ export default function LiveClassPage() {
             </div>
           </div>
           {isModerator && (
-            <span className="bg-indigo-600 px-3 py-1 rounded-full text-sm font-semibold">
+            <span className="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
               Moderator
             </span>
           )}

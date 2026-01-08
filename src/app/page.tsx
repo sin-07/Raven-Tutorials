@@ -39,9 +39,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-20 overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-violet-50" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+        <div className="absolute inset-0 bg-blue-50" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -51,14 +51,14 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6">
                 <Sparkles className="w-4 h-4" />
                 Trusted by 15,000+ Students
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
                 Learn Smarter with{' '}
-                <span className="text-violet-600">
+                <span className="text-blue-600">
                   Raven Tutorials
                 </span>
               </h1>
@@ -73,13 +73,13 @@ export default function Home() {
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link 
                   href="/courses"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
                 >
                   Explore Courses
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all">
-                  <Play className="w-5 h-5 text-violet-600" />
+                  <Play className="w-5 h-5 text-blue-600" />
                   Watch Demo
                 </button>
               </div>
@@ -88,7 +88,7 @@ export default function Home() {
               <div className="mt-10 flex items-center gap-8">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-violet-600 flex items-center justify-center text-white text-xs font-bold">
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
                       {String.fromCharCode(64 + i)}
                     </div>
                   ))}
@@ -144,8 +144,8 @@ export default function Home() {
                   className="absolute -right-4 bottom-1/4 bg-white rounded-xl shadow-xl p-4 border border-slate-100"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-violet-100 flex items-center justify-center">
-                      <BookOpen className="w-6 h-6 text-violet-600" />
+                    <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <BookOpen className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-800">150+</p>
@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="py-8 bg-violet-600">
+      <section className="py-8 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -178,7 +178,7 @@ export default function Home() {
                 className="text-center"
               >
                 <p className="text-3xl md:text-4xl font-bold text-white">{stat.value}</p>
-                <p className="text-violet-100 mt-1">{stat.label}</p>
+                <p className="text-blue-100 mt-1">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -194,12 +194,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
               Why Choose Us
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               Everything You Need to{' '}
-              <span className="text-violet-600">
+              <span className="text-blue-600">
                 Succeed
               </span>
             </h2>
@@ -218,9 +218,9 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group p-8 bg-white rounded-2xl border border-slate-100 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300"
+                  className="group p-8 bg-white rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-violet-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-800 mb-3">{feature.title}</h3>
@@ -241,7 +241,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
                 Popular Courses
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -253,7 +253,7 @@ export default function Home() {
             </motion.div>
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 text-violet-600 font-medium hover:text-violet-700 mt-4 md:mt-0"
+              className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 mt-4 md:mt-0"
             >
               View All Courses
               <ChevronRight className="w-5 h-5" />
@@ -277,7 +277,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
               Categories
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -296,13 +296,13 @@ export default function Home() {
               >
                 <Link
                   href={`/courses?category=${category.name.toLowerCase()}`}
-                  className="block p-6 bg-slate-50 rounded-2xl hover:bg-violet-600 group transition-all duration-300 text-center"
+                  className="block p-6 bg-slate-50 rounded-2xl hover:bg-blue-600 group transition-all duration-300 text-center"
                 >
                   <span className="text-4xl mb-3 block">{category.icon}</span>
                   <h3 className="font-semibold text-slate-800 group-hover:text-white transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-sm text-slate-500 group-hover:text-violet-100 transition-colors mt-1">
+                  <p className="text-sm text-slate-500 group-hover:text-blue-100 transition-colors mt-1">
                     {category.count} Courses
                   </p>
                 </Link>
@@ -324,7 +324,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-violet-500/20 text-violet-300 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium mb-4">
               Success Stories
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -343,7 +343,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-violet-500/50 transition-colors"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-colors"
               >
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -371,7 +371,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-violet-600 relative overflow-hidden">
+      <section className="py-20 bg-blue-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -382,14 +382,14 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
               Start Your Learning Journey Today
             </h2>
-            <p className="text-xl text-violet-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Join 15,000+ students and get access to world-class courses, 
               expert teachers, and a supportive learning community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-violet-50 transition-all shadow-lg"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all shadow-lg"
               >
                 Get Started Free
                 <ArrowRight className="w-5 h-5" />

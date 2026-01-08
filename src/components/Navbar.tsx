@@ -163,7 +163,7 @@ const Navbar: React.FC = React.memo(() => {
               <>
                 <Link
                   href="/admin/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-semibold ml-2"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold ml-2"
                 >
                   <User className="w-4 h-4" />
                   Admin Dashboard
@@ -240,7 +240,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/admin/dashboard"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 bg-purple-600 text-white rounded-lg text-center font-semibold mobile-menu-item"
+                    className="block px-4 py-3 bg-blue-600 text-white rounded-lg text-center font-semibold mobile-menu-item"
                   >
                     Admin Dashboard
                   </Link>

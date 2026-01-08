@@ -35,7 +35,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                <PlayCircle className="w-8 h-8 text-violet-600 ml-1" />
+                <PlayCircle className="w-8 h-8 text-blue-600 ml-1" />
               </div>
             </div>
 
@@ -68,12 +68,12 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
           {/* Content */}
           <div className="p-5 flex-1 flex flex-col">
             {/* Category */}
-            <span className="text-xs font-medium text-violet-600 uppercase tracking-wide">
+            <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
               {course.category}
             </span>
 
             {/* Title */}
-            <h3 className="mt-2 text-lg font-semibold text-slate-800 group-hover:text-violet-600 transition-colors line-clamp-2">
+            <h3 className="mt-2 text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
               {course.title}
             </h3>
 
@@ -127,7 +127,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
                           ₹{course.originalPrice.toLocaleString()}
                         </span>
                       )}
-                      <span className="text-lg font-bold text-violet-600">
+                      <span className="text-lg font-bold text-blue-600">
                         ₹{course.price.toLocaleString()}
                       </span>
                     </div>

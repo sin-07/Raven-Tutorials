@@ -57,7 +57,7 @@ export default function ContactPage() {
       icon: MapPin,
       title: 'Address',
       details: ['123 Education Street', 'Mumbai, Maharashtra 400001'],
-      color: 'bg-purple-100 text-purple-600',
+      color: 'bg-blue-100 text-blue-600',
     },
     {
       icon: Clock,
@@ -70,7 +70,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-violet-600 relative overflow-hidden">
+      <section className="pt-24 pb-12 bg-blue-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -81,7 +81,7 @@ export default function ContactPage() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Get in Touch
             </h1>
-            <p className="text-lg text-violet-100 max-w-2xl mx-auto">
+            <p className="text-lg text-blue-100 max-w-2xl mx-auto">
               Have questions? We&apos;d love to hear from you. Send us a message 
               and we&apos;ll respond as soon as possible.
             </p>
@@ -122,7 +122,7 @@ export default function ContactPage() {
               className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                   <MessageSquare className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -237,7 +237,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-blue-600 to-blue-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-700 transition-all shadow-lg shadow-blue-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

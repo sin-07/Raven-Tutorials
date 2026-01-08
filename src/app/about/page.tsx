@@ -89,7 +89,7 @@ const AboutUs: React.FC = () => {
     <>
       <div className="min-h-screen bg-white">
         {/* Header */}
-        <section className="bg-violet-50 py-16 pt-28">
+        <section className="bg-blue-50 py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-slide-up">About RAVEN Tutorials</h1>
@@ -105,8 +105,8 @@ const AboutUs: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-3 mb-6 animate-slide-up">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-violet-100 rounded-lg">
-                  <Target className="w-6 h-6 text-violet-600" />
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
+                  <Target className="w-6 h-6 text-blue-600" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
               </div>
@@ -143,8 +143,8 @@ const AboutUs: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-3 mb-6 animate-slide-up">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg">
-                  <Users className="w-6 h-6 text-purple-600" />
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
+                  <Users className="w-6 h-6 text-blue-600" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900">Our Philosophy</h2>
               </div>
@@ -172,13 +172,13 @@ const AboutUs: React.FC = () => {
                     className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:scale-105 transition-all duration-300 animate-fade-in" 
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="w-24 h-24 bg-violet-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Users className="w-12 h-12 text-violet-600" />
+                    <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Users className="w-12 h-12 text-blue-600" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 text-center mb-1">
                       {member.name}
                     </h3>
-                    <p className="text-violet-600 text-sm text-center mb-4">
+                    <p className="text-blue-600 text-sm text-center mb-4">
                       {member.role} @ RAVEN Tutorials
                     </p>
                     <p className="text-gray-600 text-sm leading-relaxed">
@@ -204,7 +204,7 @@ const AboutUs: React.FC = () => {
                 {devTeam.map((member, index) => (
                   <div 
                     key={index} 
-                    className="bg-violet-50 rounded-lg border border-violet-200 p-8 hover:shadow-xl transition-all duration-300"
+                    className="bg-blue-50 rounded-lg border border-blue-200 p-8 hover:shadow-xl transition-all duration-300"
                   >
                     {/* Image with hover effect */}
                     <div 
@@ -217,7 +217,7 @@ const AboutUs: React.FC = () => {
                       <img 
                         src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg" 
                         alt={member.name}
-                        className="w-full h-full rounded-full object-cover border-4 border-violet-500 shadow-lg group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full rounded-full object-cover border-4 border-blue-500 shadow-lg group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-full flex items-center justify-center transition-all duration-300">
                         <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -227,7 +227,7 @@ const AboutUs: React.FC = () => {
                     <h3 className="text-xl font-bold text-gray-900 text-center mb-1">
                       {member.name}
                     </h3>
-                    <p className="text-violet-600 text-sm text-center mb-4">
+                    <p className="text-blue-600 text-sm text-center mb-4">
                       {member.role} @ RAVEN Tutorials
                     </p>
                     <p className="text-gray-600 text-sm leading-relaxed text-center">
@@ -237,7 +237,7 @@ const AboutUs: React.FC = () => {
                     {/* Tap for details button */}
                     <button
                       onClick={() => setShowModal(true)}
-                      className="mt-4 w-full bg-violet-600 hover:bg-violet-700 text-white py-2 px-4 rounded-lg transition-all duration-300 font-medium text-sm hover:scale-105 active:scale-95"
+                      className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-all duration-300 font-medium text-sm hover:scale-105 active:scale-95"
                     >
                       Tap for details
                     </button>
@@ -259,7 +259,7 @@ const AboutUs: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="bg-violet-600 p-8 relative">
+              <div className="bg-blue-600 p-8 relative">
                 <button 
                   onClick={() => setShowModal(false)}
                   className="absolute top-4 right-4 text-white hover:bg-white/20 rounded-full p-2 transition-all duration-300 hover:rotate-90"
@@ -274,7 +274,7 @@ const AboutUs: React.FC = () => {
                 <h2 className="text-3xl font-bold text-white text-center mb-2">
                   {devTeam[0].name}
                 </h2>
-                <p className="text-violet-100 text-center">
+                <p className="text-blue-100 text-center">
                   {devTeam[0].role} @ RAVEN Tutorials
                 </p>
               </div>
@@ -296,7 +296,7 @@ const AboutUs: React.FC = () => {
                     {devTeam[0].fullProfile.skills.map((skill, skillIndex) => (
                       <div 
                         key={skillIndex}
-                        className="bg-violet-50 text-violet-700 px-4 py-2 rounded-lg text-center font-medium text-sm hover:bg-violet-100 hover:scale-105 transition-all duration-300"
+                        className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-center font-medium text-sm hover:bg-blue-100 hover:scale-105 transition-all duration-300"
                       >
                         {skill}
                       </div>
@@ -327,7 +327,7 @@ const AboutUs: React.FC = () => {
                 {/* Get In Touch */}
                 <div className="text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Get In Touch</h3>
-                  <button className="bg-violet-600 text-white px-8 py-3 rounded-lg hover:bg-violet-700 transition-all duration-300 font-medium hover:scale-105 active:scale-95">
+                  <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 font-medium hover:scale-105 active:scale-95">
                     Contact Me
                   </button>
                 </div>

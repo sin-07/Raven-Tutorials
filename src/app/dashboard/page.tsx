@@ -205,7 +205,7 @@ const Dashboard: React.FC = () => {
       <>
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-violet-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
             <p className="text-gray-600 text-lg">Loading dashboard...</p>
           </div>
         </div>
@@ -228,7 +228,7 @@ const Dashboard: React.FC = () => {
         <header className="bg-white shadow-sm fixed top-16 left-0 right-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <GraduationCap className="w-8 h-8 text-violet-600" />
+              <GraduationCap className="w-8 h-8 text-blue-600" />
               <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
             </div>
 
@@ -247,9 +247,9 @@ const Dashboard: React.FC = () => {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {/* Welcome Section */}
-          <div className="bg-violet-600 rounded-2xl p-8 text-white mb-8">
+          <div className="bg-blue-600 rounded-2xl p-8 text-white mb-8">
             <h2 className="text-3xl font-bold mb-2">Welcome, {student.studentName}!</h2>
-            <p className="text-indigo-100">Class {student.standard} | ID: {student.registrationId}</p>
+            <p className="text-blue-100">Class {student.standard} | ID: {student.registrationId}</p>
           </div>
 
           {/* Quick Stats */}
@@ -270,7 +270,7 @@ const Dashboard: React.FC = () => {
                   <p className="text-gray-600 text-sm">Tests Completed</p>
                   <p className="text-3xl font-bold text-gray-900">{testResults.length}</p>
                 </div>
-                <Award className="w-12 h-12 text-purple-100" />
+                <Award className="w-12 h-12 text-blue-100" />
               </div>
             </div>
 
@@ -315,7 +315,7 @@ const Dashboard: React.FC = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`flex-1 sm:flex-none px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
                     activeTab === tab
-                      ? 'text-indigo-600 border-b-2 border-indigo-600'
+                      ? 'text-blue-600 border-b-2 border-blue-600'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -330,7 +330,7 @@ const Dashboard: React.FC = () => {
             {/* Overview Tab */}
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <h3 className="font-semibold text-indigo-900 mb-4 flex items-center gap-2">
                     <CheckCircle className="w-5 h-5" />
                     Quick Actions
@@ -338,7 +338,7 @@ const Dashboard: React.FC = () => {
                   <button
                     onClick={handleDownloadReceipt}
                     disabled={downloading}
-                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-indigo-400 transition flex items-center gap-2"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition flex items-center gap-2"
                   >
                     <Download className="w-4 h-4" />
                     {downloading ? 'Downloading...' : 'Download Receipt'}

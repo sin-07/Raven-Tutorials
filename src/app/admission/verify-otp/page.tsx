@@ -147,7 +147,7 @@ export default function VerifyOTPPage() {
   if (!tempAdmission) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </div>
     );
   }
@@ -160,8 +160,8 @@ export default function VerifyOTPPage() {
       <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail className="w-8 h-8 text-violet-600" />
+          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail className="w-8 h-8 text-blue-600" />
           </div>
           <h1 className="text-3xl font-bold text-slate-800 mb-2">Verify OTP</h1>
           <p className="text-slate-600">
@@ -201,7 +201,7 @@ export default function VerifyOTPPage() {
                 onChange={(e) => handleOtpChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 onPaste={index === 0 ? handlePaste : undefined}
-                className="w-12 h-14 text-center text-2xl font-bold border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition"
+                className="w-12 h-14 text-center text-2xl font-bold border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
               />
             ))}
           </div>
@@ -211,7 +211,7 @@ export default function VerifyOTPPage() {
             {countdown > 0 ? (
               <p className="text-slate-600">
                 Time remaining:{' '}
-                <span className="font-semibold text-violet-600">
+                <span className="font-semibold text-blue-600">
                   {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
                 </span>
               </p>
@@ -224,7 +224,7 @@ export default function VerifyOTPPage() {
           <button
             onClick={handleVerifyOTP}
             disabled={loading || countdown === 0}
-            className="w-full py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
+            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
           >
             {loading ? (
               <>
@@ -242,7 +242,7 @@ export default function VerifyOTPPage() {
             <button
               onClick={handleResendOTP}
               disabled={resending || countdown > 0}
-              className="text-violet-600 font-medium hover:text-violet-700 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
+              className="text-blue-600 font-medium hover:text-blue-700 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
             >
               {resending ? (
                 <>

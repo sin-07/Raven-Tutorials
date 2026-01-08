@@ -360,11 +360,11 @@ export default function TakeTestPage() {
 
   if (!testStarted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-blue-50 p-4">
         <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full p-8">
           {/* RAVEN Logo */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="flex items-center gap-3 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
+            <div className="flex items-center gap-3 bg-blue-600 text-white rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
               <img
                 src="/logo.png"
                 alt="RAVEN"
@@ -392,9 +392,9 @@ export default function TakeTestPage() {
                 {test.totalMarks}
               </p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600">Questions</p>
-              <p className="text-xl font-bold text-purple-600">
+              <p className="text-xl font-bold text-blue-600">
                 {test.questions.length}
               </p>
             </div>
@@ -433,7 +433,7 @@ export default function TakeTestPage() {
 
           <button
             onClick={enterFullscreen}
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300"
           >
             Start Test
           </button>
@@ -470,7 +470,7 @@ export default function TakeTestPage() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-lg px-4 py-2 font-bold text-xl">
+              <div className="flex items-center gap-2 bg-blue-600 text-white rounded-lg px-4 py-2 font-bold text-xl">
                 <img
                   src="/logo.png"
                   alt="RAVEN"
@@ -699,7 +699,7 @@ export default function TakeTestPage() {
             <div className="text-center">
               {/* RAVEN Logo */}
               <div className="mx-auto flex items-center justify-center gap-2 mb-4">
-                <div className="flex items-center gap-2 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-lg px-4 py-2 font-bold text-2xl">
+                <div className="flex items-center gap-2 bg-blue-600 text-white rounded-lg px-4 py-2 font-bold text-2xl">
                   <img
                     src="/logo.png"
                     alt="RAVEN"

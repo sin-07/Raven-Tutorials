@@ -357,7 +357,7 @@ export default function AdmissionSection() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
               Start Your Journey
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -377,7 +377,7 @@ export default function AdmissionSection() {
               className="space-y-6"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-violet-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -408,7 +408,7 @@ export default function AdmissionSection() {
 
               <div className="pt-4">
                 <p className="text-2xl font-bold text-slate-800">
-                  Admission Fee: <span className="text-violet-600">₹1,000</span>
+                  Admission Fee: <span className="text-blue-600">₹1,000</span>
                 </p>
                 <p className="text-slate-500 text-sm mt-1">One-time registration fee</p>
               </div>
@@ -422,8 +422,8 @@ export default function AdmissionSection() {
               className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100"
             >
               <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-violet-100 flex items-center justify-center mx-auto mb-6">
-                  <GraduationCap className="w-10 h-10 text-violet-600" />
+                <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+                  <GraduationCap className="w-10 h-10 text-blue-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800 mb-4">Ready to Join?</h3>
                 <p className="text-slate-600 mb-8">
@@ -451,7 +451,7 @@ export default function AdmissionSection() {
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full py-4 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all shadow-lg shadow-violet-500/25 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2"
                 >
                   <GraduationCap className="w-5 h-5" />
                   Take Admission Now
@@ -496,7 +496,7 @@ export default function AdmissionSection() {
                     <div key={label} className="flex items-center">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                         step > index + 1 ? 'bg-green-500 text-white' :
-                        step === index + 1 ? 'bg-violet-600 text-white' :
+                        step === index + 1 ? 'bg-blue-600 text-white' :
                         'bg-slate-200 text-slate-500'
                       }`}>
                         {step > index + 1 ? <CheckCircle className="w-5 h-5" /> : index + 1}
@@ -520,7 +520,7 @@ export default function AdmissionSection() {
                     {/* Photo Upload */}
                     <div className="flex justify-center mb-6">
                       <label className="cursor-pointer">
-                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-violet-500' : 'border-slate-300'} flex items-center justify-center overflow-hidden bg-slate-50 hover:bg-slate-100 transition-colors`}>
+                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-blue-500' : 'border-slate-300'} flex items-center justify-center overflow-hidden bg-slate-50 hover:bg-slate-100 transition-colors`}>
                           {photoPreview ? (
                             <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
                           ) : (
@@ -541,7 +541,7 @@ export default function AdmissionSection() {
                           name="studentName"
                           value={formData.studentName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -552,7 +552,7 @@ export default function AdmissionSection() {
                           name="fatherName"
                           value={formData.fatherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -563,7 +563,7 @@ export default function AdmissionSection() {
                           name="motherName"
                           value={formData.motherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -574,7 +574,7 @@ export default function AdmissionSection() {
                           name="dateOfBirth"
                           value={formData.dateOfBirth}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -584,7 +584,7 @@ export default function AdmissionSection() {
                           name="gender"
                           value={formData.gender}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         >
                           <option value="">Select Gender</option>
@@ -599,7 +599,7 @@ export default function AdmissionSection() {
                           name="bloodGroup"
                           value={formData.bloodGroup}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         >
                           <option value="">Select Blood Group</option>
@@ -614,7 +614,7 @@ export default function AdmissionSection() {
                           name="category"
                           value={formData.category}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         >
                           <option value="">Select Category</option>
@@ -629,7 +629,7 @@ export default function AdmissionSection() {
                           name="standard"
                           value={formData.standard}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         >
                           <option value="">Select Standard</option>
@@ -649,7 +649,7 @@ export default function AdmissionSection() {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -660,7 +660,7 @@ export default function AdmissionSection() {
                           name="phoneNumber"
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -671,7 +671,7 @@ export default function AdmissionSection() {
                           name="alternatePhoneNumber"
                           value={formData.alternatePhoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -684,7 +684,7 @@ export default function AdmissionSection() {
                         value={formData.address}
                         onChange={handleInputChange}
                         rows={2}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -697,7 +697,7 @@ export default function AdmissionSection() {
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -708,7 +708,7 @@ export default function AdmissionSection() {
                           name="state"
                           value={formData.state}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -719,7 +719,7 @@ export default function AdmissionSection() {
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           required
                         />
                       </div>
@@ -732,7 +732,7 @@ export default function AdmissionSection() {
                         name="previousSchool"
                         value={formData.previousSchool}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -744,7 +744,7 @@ export default function AdmissionSection() {
                         id="terms"
                         checked={acceptedTerms}
                         onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-violet-600 border-slate-300 rounded focus:ring-violet-500"
+                        className="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                       />
                       <label htmlFor="terms" className="text-sm text-slate-600">
                         I agree to the terms and conditions and understand that my data will be stored securely.
@@ -754,7 +754,7 @@ export default function AdmissionSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -774,8 +774,8 @@ export default function AdmissionSection() {
                 {/* Step 2: OTP Verification */}
                 {step === 2 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-full bg-violet-100 flex items-center justify-center mx-auto">
-                      <Mail className="w-10 h-10 text-violet-600" />
+                    <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+                      <Mail className="w-10 h-10 text-blue-600" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-slate-800 mb-2">Verify Your Email</h3>
@@ -790,7 +790,7 @@ export default function AdmissionSection() {
                         value={otp}
                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                         placeholder="Enter 6-digit OTP"
-                        className="w-full px-4 py-3 text-center text-2xl tracking-widest border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                        className="w-full px-4 py-3 text-center text-2xl tracking-widest border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         maxLength={6}
                       />
                     </div>
@@ -798,7 +798,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handleVerifyOTP}
                       disabled={loading || otp.length !== 6}
-                      className="w-full max-w-xs mx-auto py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full max-w-xs mx-auto py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -891,7 +891,7 @@ export default function AdmissionSection() {
                       
                       <div className="space-y-3">
                         <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200">
-                          <Key className="w-5 h-5 text-violet-600" />
+                          <Key className="w-5 h-5 text-blue-600" />
                           <div>
                             <p className="text-xs text-slate-500">Registration ID</p>
                             <p className="font-mono font-bold text-slate-800">{credentials.registrationId}</p>
@@ -899,7 +899,7 @@ export default function AdmissionSection() {
                         </div>
                         
                         <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200">
-                          <Mail className="w-5 h-5 text-violet-600" />
+                          <Mail className="w-5 h-5 text-blue-600" />
                           <div>
                             <p className="text-xs text-slate-500">Email</p>
                             <p className="font-medium text-slate-800">{credentials.email}</p>
@@ -907,7 +907,7 @@ export default function AdmissionSection() {
                         </div>
                         
                         <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200">
-                          <Shield className="w-5 h-5 text-violet-600" />
+                          <Shield className="w-5 h-5 text-blue-600" />
                           <div>
                             <p className="text-xs text-slate-500">Password</p>
                             <p className="font-mono font-bold text-slate-800">{credentials.password}</p>
@@ -926,7 +926,7 @@ export default function AdmissionSection() {
                         setShowModal(false);
                         window.location.href = '/login';
                       }}
-                      className="w-full max-w-sm mx-auto py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all flex items-center justify-center gap-2"
+                      className="w-full max-w-sm mx-auto py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
                     >
                       Go to Login
                       <ArrowRight className="w-5 h-5" />

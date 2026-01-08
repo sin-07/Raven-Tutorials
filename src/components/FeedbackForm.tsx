@@ -101,7 +101,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
-        <Send className="w-5 h-5 text-indigo-600" />
+        <Send className="w-5 h-5 text-blue-600" />
         {isAuthenticated ? 'Share Your Feedback' : 'Send Us Your Feedback'}
       </h3>
       <p className="text-sm text-gray-600 mb-6">Help us improve by sharing your thoughts and suggestions</p>
@@ -136,7 +136,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             value={formData.category}
             onChange={handleChange}
             disabled={!isAuthenticated}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
           >
             {categories.map(cat => (
               <option key={cat.value} value={cat.value}>
@@ -158,7 +158,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             onChange={handleChange}
             disabled={!isAuthenticated}
             placeholder="Brief subject of your feedback"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
             maxLength={100}
           />
           <p className="text-xs text-gray-500 mt-1">{formData.subject.length}/100</p>
@@ -198,7 +198,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             disabled={!isAuthenticated}
             placeholder="Share your detailed feedback, suggestions, or concerns..."
             rows={5}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             maxLength={1000}
           />
           <p className="text-xs text-gray-500 mt-1">{formData.message.length}/1000</p>
@@ -219,7 +219,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
         <button
           type="submit"
           disabled={loading || !isAuthenticated}
-          className="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition font-medium flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition font-medium flex items-center justify-center gap-2"
         >
           <Send className="w-4 h-4" />
           {loading ? 'Submitting...' : 'Submit Feedback'}

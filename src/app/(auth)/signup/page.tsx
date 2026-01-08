@@ -19,9 +19,9 @@ export default function SignupPage() {
         {/* Admission Options */}
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {/* Learner Admission */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-transparent hover:border-violet-200">
-            <div className="w-20 h-20 rounded-full bg-violet-100 flex items-center justify-center mx-auto mb-6">
-              <GraduationCap className="w-10 h-10 text-violet-600" />
+          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-transparent hover:border-blue-200">
+            <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+              <GraduationCap className="w-10 h-10 text-blue-600" />
             </div>
             
             <h2 className="text-2xl font-bold text-slate-800 mb-4 text-center">Admission as a Learner</h2>
@@ -31,25 +31,25 @@ export default function SignupPage() {
             
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-2 text-slate-600">
-                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Access to 150+ expert courses</span>
               </li>
               <li className="flex items-start gap-2 text-slate-600">
-                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Live classes & doubt sessions</span>
               </li>
               <li className="flex items-start gap-2 text-slate-600">
-                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Certificate on completion</span>
               </li>
               <li className="flex items-start gap-2 text-slate-600">
-                <svg className="w-5 h-5 text-violet-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>24/7 support access</span>
@@ -58,7 +58,7 @@ export default function SignupPage() {
             
             <Link
               href="/admission"
-              className="block w-full py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all text-center"
+              className="block w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all text-center"
             >
               Take Admission as Learner
             </Link>
@@ -114,7 +114,7 @@ export default function SignupPage() {
         {/* Login Link */}
         <p className="text-center text-slate-600">
           Already have an account?{' '}
-          <Link href="/login" className="text-violet-600 font-medium hover:text-violet-700">
+          <Link href="/login" className="text-blue-600 font-medium hover:text-blue-700">
             Login here
           </Link>
         </p>

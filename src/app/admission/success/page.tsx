@@ -69,7 +69,7 @@ Thank you for joining Raven Tutorials!
   if (!successData) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-violet-600 border-t-transparent rounded-full"></div>
+        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
       </div>
     );
   }
@@ -91,7 +91,7 @@ Thank you for joining Raven Tutorials!
         {/* Credentials Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b">
-            <Lock className="w-5 h-5 text-violet-600" />
+            <Lock className="w-5 h-5 text-blue-600" />
             <h2 className="text-2xl font-bold text-slate-800">Your Login Credentials</h2>
           </div>
 
@@ -109,7 +109,7 @@ Thank you for joining Raven Tutorials!
                 <label className="text-sm font-medium text-slate-600">Registration ID</label>
               </div>
               <div className="flex items-center justify-between gap-2">
-                <span className="text-2xl font-bold text-violet-600 font-mono">{successData.registrationId}</span>
+                <span className="text-2xl font-bold text-blue-600 font-mono">{successData.registrationId}</span>
                 <button
                   onClick={() => handleCopy(successData.registrationId, 'regId')}
                   className="p-2 hover:bg-slate-200 rounded-lg transition"
@@ -190,28 +190,28 @@ Thank you for joining Raven Tutorials!
           
           <ol className="space-y-3">
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
               <div>
                 <p className="font-medium text-slate-800">Login to Student Portal</p>
                 <p className="text-sm text-slate-600">Use your Registration ID and password to access the portal</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
               <div>
                 <p className="font-medium text-slate-800">Change Your Password</p>
                 <p className="text-sm text-slate-600">Update your temporary password to something secure and memorable</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
               <div>
                 <p className="font-medium text-slate-800">Explore Courses</p>
                 <p className="text-sm text-slate-600">Browse available courses and start your learning journey</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
               <div>
                 <p className="font-medium text-slate-800">Join Live Classes</p>
                 <p className="text-sm text-slate-600">Attend live sessions and interact with instructors</p>
@@ -224,7 +224,7 @@ Thank you for joining Raven Tutorials!
         <div className="flex gap-4">
           <Link
             href="/login"
-            className="flex-1 py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition text-center"
+            className="flex-1 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition text-center"
           >
             Login to Portal
           </Link>
@@ -238,7 +238,7 @@ Thank you for joining Raven Tutorials!
 
         {/* Contact Support */}
         <div className="mt-6 text-center text-sm text-slate-500">
-          <p>Need help? <a href="/contact" className="text-violet-600 hover:text-violet-700 font-medium">Contact Support</a></p>
+          <p>Need help? <a href="/contact" className="text-blue-600 hover:text-blue-700 font-medium">Contact Support</a></p>
         </div>
       </div>
     </div>

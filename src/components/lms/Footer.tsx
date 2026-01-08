@@ -59,9 +59,9 @@ export default function LMSFooter() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-80 px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                className="flex-1 md:w-80 px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <button className="px-6 py-3 bg-violet-600 rounded-lg font-medium hover:bg-violet-700 transition-all flex items-center gap-2">
+              <button className="px-6 py-3 bg-blue-600 rounded-lg font-medium hover:bg-blue-700 transition-all flex items-center gap-2">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -76,7 +76,7 @@ export default function LMSFooter() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold">Raven Tutorials</span>
@@ -168,7 +168,7 @@ export default function LMSFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-violet-600 hover:text-white transition-all"
+                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />

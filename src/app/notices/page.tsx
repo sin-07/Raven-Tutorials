@@ -65,7 +65,7 @@ const Notice: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-violet-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
+      <div className="min-h-screen bg-blue-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
         <style>{`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -98,11 +98,11 @@ const Notice: React.FC = () => {
           {/* Header */}
           <div className="notice-header mb-8 sm:mb-10 md:mb-12">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="p-3 sm:p-4 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg">
+              <div className="p-3 sm:p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
                 <Megaphone size={28} className="text-white" />
               </div>
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-indigo-800 bg-clip-text text-transparent">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   Institute Notices
                 </h1>
                 <p className="text-gray-600 text-sm sm:text-base mt-1">Important announcements and updates</p>
@@ -114,7 +114,7 @@ const Notice: React.FC = () => {
           <div>
             {loading ? (
               <div className="text-center py-16 sm:py-20">
-                <div className="w-16 h-16 border-4 border-gray-200 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
+                <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
                 <p className="text-gray-600 mt-4 text-lg">Loading notices...</p>
               </div>
             ) : notices.length === 0 ? (
@@ -135,7 +135,7 @@ const Notice: React.FC = () => {
                     {/* Category Badge */}
                     <div className="flex items-start justify-between mb-3">
                       {notice.class && (
-                        <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">
+                        <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
                           {notice.class}
                         </div>
                       )}
@@ -162,7 +162,7 @@ const Notice: React.FC = () => {
                         <Clock size={14} />
                         <span className="truncate">{formatDate(notice.createdAt)}</span>
                       </div>
-                      <div className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg text-xs font-semibold hover:bg-indigo-100 transition-colors">
+                      <div className="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-semibold hover:bg-blue-100 transition-colors">
                         View More
                       </div>
                     </div>
@@ -184,10 +184,10 @@ const Notice: React.FC = () => {
               onClick={e => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-r from-indigo-50 to-blue-50 px-6 sm:px-8 py-5 sm:py-6 border-b border-indigo-100 flex items-center justify-between">
+              <div className="sticky top-0 bg-gradient-to-r from-blue-50 to-blue-50 px-6 sm:px-8 py-5 sm:py-6 border-b border-blue-100 flex items-center justify-between">
                 <div className="flex items-center gap-3 flex-1">
-                  <div className="p-2 sm:p-3 bg-indigo-100 rounded-lg flex-shrink-0">
-                    <Megaphone size={20} className="text-indigo-600" />
+                  <div className="p-2 sm:p-3 bg-blue-100 rounded-lg flex-shrink-0">
+                    <Megaphone size={20} className="text-blue-600" />
                   </div>
                   <div className="min-w-0">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Notice Details</h2>
@@ -206,15 +206,15 @@ const Notice: React.FC = () => {
               <div className="px-6 sm:px-8 py-6 sm:py-8 space-y-6">
                 {/* Posted By */}
                 <div className="flex items-center gap-3 pb-6 border-b border-gray-100">
-                  <div className="p-3 bg-indigo-100 rounded-lg flex-shrink-0">
-                    <User size={20} className="text-indigo-600" />
+                  <div className="p-3 bg-blue-100 rounded-lg flex-shrink-0">
+                    <User size={20} className="text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs sm:text-sm text-gray-600">Posted by</p>
                     <p className="font-bold text-gray-900 truncate">{selectedNotice.postedBy || 'Administrator'}</p>
                   </div>
                   {selectedNotice.class && (
-                    <div className="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-semibold flex-shrink-0">
+                    <div className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold flex-shrink-0">
                       {selectedNotice.class}
                     </div>
                   )}
@@ -244,7 +244,7 @@ const Notice: React.FC = () => {
                         href={selectedNotice.documentUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg font-semibold text-sm sm:text-base flex-1"
+                        className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold text-sm sm:text-base flex-1"
                       >
                         <Eye size={18} />
                         View Document

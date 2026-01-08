@@ -168,7 +168,7 @@ export default function CourseDetailPage() {
 
                   {/* CTA Buttons */}
                   <div className="space-y-3">
-                    <button className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg">
+                    <button className="w-full py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg">
                       {course.isFree ? 'Enroll Now - Free' : 'Buy Now'}
                     </button>
                     {!course.isFree && (
@@ -225,7 +225,7 @@ export default function CourseDetailPage() {
               </div>
             )}
           </div>
-          <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl">
+          <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700">
             {course.isFree ? 'Enroll Free' : 'Buy Now'}
           </button>
         </div>

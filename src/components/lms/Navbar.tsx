@@ -35,10 +35,10 @@ export default function LMSNavbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/40 transition-shadow">
+            <div className="relative w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-shadow">
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-violet-600">
+            <span className="text-xl font-bold text-blue-600">
               Raven Tutorials
             </span>
           </Link>
@@ -51,12 +51,12 @@ export default function LMSNavbar() {
                 href={link.href}
                 className={`text-sm font-medium transition-colors relative group ${
                   isActive(link.href)
-                    ? 'text-violet-600'
-                    : 'text-slate-600 hover:text-violet-600'
+                    ? 'text-blue-600'
+                    : 'text-slate-600 hover:text-blue-600'
                 }`}
               >
                 {link.name}
-                <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-violet-600 transition-transform origin-left ${
+                <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 transition-transform origin-left ${
                   isActive(link.href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`} />
               </Link>
@@ -67,14 +67,14 @@ export default function LMSNavbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/login"
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 hover:text-violet-600 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
             >
               <LogIn className="w-4 h-4" />
               Login
             </Link>
             <Link
               href="/signup"
-              className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 transition-all shadow-md shadow-violet-500/25 hover:shadow-lg hover:shadow-violet-500/30"
+              className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/30"
             >
               <UserPlus className="w-4 h-4" />
               Admission
@@ -108,7 +108,7 @@ export default function LMSNavbar() {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive(link.href)
-                      ? 'bg-violet-50 text-violet-600'
+                      ? 'bg-blue-50 text-blue-600'
                       : 'text-slate-600 hover:bg-slate-50'
                   }`}
                 >
@@ -126,7 +126,7 @@ export default function LMSNavbar() {
                 <Link
                   href="/signup"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full px-4 py-2.5 text-center text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 transition-all"
+                  className="block w-full px-4 py-2.5 text-center text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all"
                 >
                   Admission
                 </Link>

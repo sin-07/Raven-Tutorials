@@ -85,10 +85,10 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-slate-200">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-blue-600 flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                 Raven
               </span>
             </Link>
@@ -112,7 +112,7 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
                       onClick={onClose}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         isActive 
-                          ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/25' 
+                          ? 'bg-gradient-to-r from-blue-600 to-blue-600 text-white shadow-md shadow-blue-500/25' 
                           : 'text-slate-600 hover:bg-slate-100'
                       }`}
                     >

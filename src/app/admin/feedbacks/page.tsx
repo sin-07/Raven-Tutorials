@@ -153,7 +153,7 @@ const Feedbacks: React.FC = () => {
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
       general: 'bg-blue-100 text-blue-800 border-blue-200',
-      course_content: 'bg-purple-100 text-purple-800 border-purple-200',
+      course_content: 'bg-blue-100 text-blue-800 border-blue-200',
       teaching_method: 'bg-green-100 text-green-800 border-green-200',
       study_materials: 'bg-orange-100 text-orange-800 border-orange-200',
       online_classes: 'bg-pink-100 text-pink-800 border-pink-200',
@@ -247,7 +247,7 @@ const Feedbacks: React.FC = () => {
                 placeholder="Search feedback..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               />
             </div>
             <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ const Feedbacks: React.FC = () => {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="new">New</option>
@@ -284,7 +284,7 @@ const Feedbacks: React.FC = () => {
                       key={feedback._id}
                       onClick={() => handleViewFeedback(feedback)}
                       className={`p-4 cursor-pointer hover:bg-gray-50 transition ${
-                        selectedFeedback?._id === feedback._id ? 'bg-indigo-50 border-l-4 border-indigo-600' : ''
+                        selectedFeedback?._id === feedback._id ? 'bg-blue-50 border-l-4 border-blue-600' : ''
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3 mb-2">

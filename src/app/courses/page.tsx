@@ -57,7 +57,7 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-violet-600 relative overflow-hidden">
+      <section className="pt-24 pb-12 bg-blue-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -68,7 +68,7 @@ export default function CoursesPage() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Explore Our Courses
             </h1>
-            <p className="text-lg text-violet-100 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
               Discover 150+ expert-led courses designed to help you achieve academic excellence.
             </p>
 

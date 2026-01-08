@@ -299,7 +299,7 @@ const AdminLiveClasses: React.FC = () => {
               <select
                 value={filterClass}
                 onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="">All Classes</option>
                 {STANDARDS.map(std => (
@@ -420,7 +420,7 @@ const AdminLiveClasses: React.FC = () => {
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -432,7 +432,7 @@ const AdminLiveClasses: React.FC = () => {
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
 
@@ -445,7 +445,7 @@ const AdminLiveClasses: React.FC = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       >
                         <option value="">Select Subject</option>
@@ -463,7 +463,7 @@ const AdminLiveClasses: React.FC = () => {
                         name="class"
                         value={formData.class}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       >
                         <option value="">Select Class</option>
@@ -486,7 +486,7 @@ const AdminLiveClasses: React.FC = () => {
                         value={formData.scheduledDate}
                         onChange={handleInputChange}
                         min={new Date().toISOString().split('T')[0]}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -500,7 +500,7 @@ const AdminLiveClasses: React.FC = () => {
                         name="startTime"
                         value={formData.startTime}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -514,7 +514,7 @@ const AdminLiveClasses: React.FC = () => {
                         name="endTime"
                         value={formData.endTime}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
                     </div>

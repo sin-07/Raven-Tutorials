@@ -97,10 +97,10 @@ export default function VideosPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-blue-50 flex items-center justify-center p-4">
         <div className="text-center">
           <div className="inline-block animate-spin">
-            <Video size={48} className="text-indigo-600" />
+            <Video size={48} className="text-blue-600" />
           </div>
           <p className="mt-4 text-slate-600 text-lg">Loading videos...</p>
         </div>
@@ -109,7 +109,7 @@ export default function VideosPage() {
   }
 
   return (
-    <div className="min-h-screen bg-violet-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-blue-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -138,7 +138,7 @@ export default function VideosPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="header-section mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-violet-600">
+          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600">
             📚 Learning Videos
           </h1>
           <p className="text-slate-600 mt-2">
@@ -152,7 +152,7 @@ export default function VideosPage() {
             <select
               value={filterSubject}
               onChange={(e) => setFilterSubject(e.target.value)}
-              className="w-full sm:w-64 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-full sm:w-64 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             >
               <option value="">All Subjects</option>
               {subjects.map(subj => (
@@ -179,7 +179,7 @@ export default function VideosPage() {
                   {subjectVideos.map((video, index) => (
                     <div
                       key={video._id}
-                      className="video-card bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-indigo-300 cursor-pointer"
+                      className="video-card bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-blue-300 cursor-pointer"
                       style={{'--index': index} as React.CSSProperties}
                       onClick={() => setSelectedVideo(video)}
                     >
@@ -192,7 +192,7 @@ export default function VideosPage() {
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 video-thumbnail"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-600">
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-600">
                             <Video size={48} className="text-white" />
                           </div>
                         )}
@@ -243,7 +243,7 @@ export default function VideosPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 modal-backdrop z-50 flex items-center justify-center p-4">
           <div className="modal-content bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-4 sm:p-6 flex items-center justify-between z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white p-4 sm:p-6 flex items-center justify-between z-10">
               <h2 className="text-xl sm:text-2xl font-bold line-clamp-1">{selectedVideo.title}</h2>
               <button
                 onClick={() => setSelectedVideo(null)}
@@ -271,7 +271,7 @@ export default function VideosPage() {
 
               {/* Video Details */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="bg-indigo-50 rounded-lg p-4 text-center">
+                <div className="bg-blue-50 rounded-lg p-4 text-center">
                   <p className="text-xs text-slate-600 mb-1">Subject</p>
                   <p className="font-bold text-slate-800">{selectedVideo.subject}</p>
                 </div>
@@ -283,7 +283,7 @@ export default function VideosPage() {
                   <p className="text-xs text-slate-600 mb-1">Duration</p>
                   <p className="font-bold text-slate-800">{formatDuration(selectedVideo.duration)}</p>
                 </div>
-                <div className="bg-purple-50 rounded-lg p-4 text-center">
+                <div className="bg-blue-50 rounded-lg p-4 text-center">
                   <p className="text-xs text-slate-600 mb-1">Views</p>
                   <p className="font-bold text-slate-800">{selectedVideo.viewCount || 0}</p>
                 </div>
@@ -307,7 +307,7 @@ export default function VideosPage() {
                     {selectedVideo.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold"
+                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold"
                       >
                         #{tag}
                       </span>
@@ -325,7 +325,7 @@ export default function VideosPage() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300"
               >
                 Close Video
               </button>

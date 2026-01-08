@@ -179,15 +179,15 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             {/* Post Notice Button */}
             <Link
               href="/admin/notices"
-              className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-indigo-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-300 gap-3 relative overflow-hidden group ${
-                pathname === '/admin/notices' ? 'bg-indigo-50 text-indigo-600 border-r-4 border-indigo-600 shadow-md' : ''
+              className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-blue-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 gap-3 relative overflow-hidden group ${
+                pathname === '/admin/notices' ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600 shadow-md' : ''
               }`}
               style={{ 
                 animation: sidebarOpen ? `menuItemSlideIn 0.4s ease-out ${menuItems.length * 0.05}s both` : 'none',
               }}
             >
               {/* Hover background effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-blue-500/10 transition-all duration-300"></div>
               
               <Megaphone size={22} className="flex-shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-110" />
               <span className="font-medium text-sm sm:text-base relative z-10">Post Notice</span>

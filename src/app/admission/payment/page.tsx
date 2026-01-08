@@ -110,7 +110,7 @@ export default function AdmissionPaymentPage() {
   if (!paymentData) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </div>
     );
   }
@@ -126,8 +126,8 @@ export default function AdmissionPaymentPage() {
         <div className="max-w-md w-full">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CreditCard className="w-8 h-8 text-violet-600" />
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CreditCard className="w-8 h-8 text-blue-600" />
             </div>
             <h1 className="text-3xl font-bold text-slate-800 mb-2">Complete Payment</h1>
             <p className="text-slate-600">
@@ -165,7 +165,7 @@ export default function AdmissionPaymentPage() {
               
               <div className="flex justify-between py-3 mt-4">
                 <span className="text-lg font-semibold text-slate-800">Admission Fee</span>
-                <span className="text-2xl font-bold text-violet-600">₹{paymentData.amount}</span>
+                <span className="text-2xl font-bold text-blue-600">₹{paymentData.amount}</span>
               </div>
             </div>
 
@@ -181,7 +181,7 @@ export default function AdmissionPaymentPage() {
             <button
               onClick={handlePayment}
               disabled={loading}
-              className="w-full py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -215,9 +215,9 @@ export default function AdmissionPaymentPage() {
           <div className="text-center text-sm text-slate-500">
             <p>By proceeding with payment, you agree to our</p>
             <p>
-              <a href="/terms" className="text-violet-600 hover:text-violet-700">Terms & Conditions</a>
+              <a href="/terms" className="text-blue-600 hover:text-blue-700">Terms & Conditions</a>
               {' and '}
-              <a href="/privacy" className="text-violet-600 hover:text-violet-700">Privacy Policy</a>
+              <a href="/privacy" className="text-blue-600 hover:text-blue-700">Privacy Policy</a>
             </p>
           </div>
         </div>
