@@ -3,12 +3,6 @@ import connectDB from '@/lib/database';
 import TempAdmission from '@/models/TempAdmission';
 import Razorpay from 'razorpay';
 
-// Initialize Razorpay
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
-
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
@@ -86,6 +80,12 @@ export async function POST(request: NextRequest) {
 
     // Create Razorpay order
     const admissionFee = parseInt(process.env.ADMISSION_FEE || '1000');
+    
+    // Initialize Razorpay (done here to avoid build-time errors)
+    const razorpay = new Razorpay({
+      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
+      key_secret: process.env.RAZORPAY_KEY_SECRET!,
+    });
     
     const order = await razorpay.orders.create({
       amount: admissionFee * 100, // Convert to paise
