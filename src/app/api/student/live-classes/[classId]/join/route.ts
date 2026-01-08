@@ -77,15 +77,17 @@ export async function POST(
     }
     
     // Check if already joined
-    const alreadyJoined = liveClass.participants.some(
-      (p: any) => p.studentId && p.studentId.toString() === studentId.toString()
+    const alreadyJoined = liveClass.participants?.some(
+      (p: any) => p.participantId && p.participantId.toString() === studentId.toString()
     );
     
     if (!alreadyJoined) {
       // Add participant
+      if (!liveClass.participants) {
+        liveClass.participants = [];
+      }
       liveClass.participants.push({
-        studentId,
-        studentName: (student as any).name,
+        participantId: studentId as any,
         joinedAt: new Date()
       });
       
@@ -96,10 +98,9 @@ export async function POST(
       success: true,
       message: 'Joined live class successfully',
       data: {
-        classId: liveClass.classId,
+        classId: liveClass._id,
         roomName: liveClass.roomName,
         subject: liveClass.subject,
-        teacherName: liveClass.teacherName,
         title: liveClass.title
       }
     });

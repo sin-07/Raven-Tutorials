@@ -15,9 +15,9 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = verifyStudentToken(token);
+    const decoded = await verifyStudentToken(token);
     
-    if (!decoded) {
+    if (!decoded.success || !decoded.student) {
       return NextResponse.json({
         success: false,
         message: 'Invalid token'
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     await connectDB();
 
     // Get student
-    const student = await Admission.findById(decoded.studentId);
+    const student = await Admission.findById(decoded.student._id);
     if (!student) {
       return NextResponse.json({
         success: false,
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
         (s: any) => s.studentId?.toString() === student._id.toString()
       );
       
-      if (studentAttendance?.status === 'present') {
+      if (studentAttendance?.status === 'Present') {
         subjectMap[subject].present++;
       }
     });

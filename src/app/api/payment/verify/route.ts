@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
       standard: tempAdmission.standard,
       previousSchool: tempAdmission.previousSchool,
       photo: tempAdmission.photo,
-      paymentAmount: tempAdmission.paymentAmount,
+      paymentAmount: parseInt(process.env.ADMISSION_FEE || '1000'),
       paymentStatus: 'completed',
       razorpayOrderId: razorpay_order_id,
       razorpayPaymentId: razorpay_payment_id,
@@ -114,8 +114,7 @@ export async function POST(request: NextRequest) {
       paymentDate: new Date(),
       registrationId: registrationId,
       password: password,
-      isVerified: true,
-      verifiedAt: tempAdmission.verifiedAt
+      isVerified: true
     });
 
     // Delete temp admission

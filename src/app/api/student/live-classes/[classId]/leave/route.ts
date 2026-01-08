@@ -46,7 +46,7 @@ export async function POST(
     
     await connectDB();
     
-    const liveClass = await LiveClass.findOne({ classId });
+    const liveClass = await LiveClass.findById(classId);
     
     if (!liveClass) {
       return NextResponse.json(
@@ -56,15 +56,12 @@ export async function POST(
     }
     
     // Find participant and update left time
-    const participant = liveClass.participants.find(
-      (p: any) => p.studentId && p.studentId.toString() === studentId.toString() && !p.leftAt
+    const participant = liveClass.participants?.find(
+      (p: any) => p.participantId && p.participantId.toString() === studentId.toString() && !p.leftAt
     );
     
     if (participant) {
       participant.leftAt = new Date();
-      // Calculate duration in minutes
-      const durationMs = participant.leftAt.getTime() - new Date(participant.joinedAt).getTime();
-      participant.duration = Math.round(durationMs / 1000 / 60);
       await liveClass.save();
     }
     

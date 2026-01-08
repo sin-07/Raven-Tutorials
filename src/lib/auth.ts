@@ -13,16 +13,20 @@ export interface JWTPayload {
   registrationId?: string;
 }
 
-export async function verifyAdminToken(): Promise<{ success: boolean; admin?: { _id: string; email: string; name: string; role: string } }> {
+export async function verifyAdminToken(token?: string): Promise<{ success: boolean; admin?: { _id: string; email: string; name: string; role: string } }> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('adminToken')?.value;
+    let authToken = token;
+    
+    if (!authToken) {
+      const cookieStore = await cookies();
+      authToken = cookieStore.get('adminToken')?.value;
+    }
 
-    if (!token) {
+    if (!authToken) {
       return { success: false };
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
+    const decoded = jwt.verify(authToken, JWT_SECRET) as JWTPayload;
     
     await connectDatabase();
     const admin = await Admin.findById(decoded.id).select('-password');
@@ -45,16 +49,20 @@ export async function verifyAdminToken(): Promise<{ success: boolean; admin?: { 
   }
 }
 
-export async function verifyStudentToken(): Promise<{ success: boolean; student?: { _id: string; email: string; registrationId: string; studentName: string; standard: string } }> {
+export async function verifyStudentToken(token?: string): Promise<{ success: boolean; student?: { _id: string; email: string; registrationId: string; studentName: string; standard: string } }> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('studentToken')?.value;
+    let authToken = token;
+    
+    if (!authToken) {
+      const cookieStore = await cookies();
+      authToken = cookieStore.get('studentToken')?.value;
+    }
 
-    if (!token) {
+    if (!authToken) {
       return { success: false };
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
+    const decoded = jwt.verify(authToken, JWT_SECRET) as JWTPayload;
     
     await connectDatabase();
     const student = await Admission.findById(decoded.studentId);

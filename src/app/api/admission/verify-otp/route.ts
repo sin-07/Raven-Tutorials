@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check OTP expiry
-    if (new Date() > tempAdmission.otpExpiry) {
+    if (!tempAdmission.otpExpiry || new Date() > tempAdmission.otpExpiry) {
       return NextResponse.json({
         success: false,
         message: 'OTP has expired. Please request a new one.'
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify OTP
-    if (tempAdmission.otp !== otp) {
+    if (!tempAdmission.otp || tempAdmission.otp !== otp) {
       return NextResponse.json({
         success: false,
         message: 'Invalid OTP'
@@ -65,7 +65,6 @@ export async function POST(request: NextRequest) {
 
     // Mark as verified
     tempAdmission.isVerified = true;
-    tempAdmission.verifiedAt = new Date();
     tempAdmission.otp = undefined;
     tempAdmission.otpExpiry = undefined;
     await tempAdmission.save();

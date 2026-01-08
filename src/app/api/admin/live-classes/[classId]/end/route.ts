@@ -19,8 +19,8 @@ export async function PATCH(
       }, { status: 401 });
     }
 
-    const decoded = verifyAdminToken(token);
-    if (!decoded) {
+    const decoded = await verifyAdminToken(token);
+    if (!decoded.success || !decoded.admin) {
       return NextResponse.json({
         success: false,
         message: 'Invalid token'

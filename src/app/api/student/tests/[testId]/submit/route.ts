@@ -92,7 +92,7 @@ export async function POST(
     }
     
     // Check if already submitted
-    const existingResult = test.results.find(
+    const existingResult = test.results?.find(
       (r: any) => r.studentId && r.studentId.toString() === studentId.toString()
     );
     if (existingResult) {
@@ -113,7 +113,7 @@ export async function POST(
       if (!question) {
         return {
           questionId: ans.questionId,
-          answer: ans.answer,
+          answer: ans.answer || '',
           marksAwarded: 0
         };
       }
@@ -127,8 +127,8 @@ export async function POST(
       // For Short Answer and Long Answer, marks need manual grading
       
       return {
-        questionId: ans.questionId || question._id,
-        answer: ans.answer,
+        questionId: ans.questionId || (question as any)._id,
+        answer: ans.answer || '',
         marksAwarded
       };
     });
@@ -136,13 +136,17 @@ export async function POST(
     // Add result to test with violations tracking
     const resultStatus = marksObtained >= test.passingMarks ? 'Pass' : 'Fail';
     
+    if (!test.results) {
+      test.results = [];
+    }
+    
     test.results.push({
-      studentId,
+      studentId: studentId as any,
       marksObtained,
       status: resultStatus,
       submittedAt: new Date(),
       answers: gradedAnswers,
-      violations: violations || [],
+      violations: (violations || []) as any,
       timeSpent: timeSpent || 0
     });
     

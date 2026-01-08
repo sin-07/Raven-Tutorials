@@ -56,7 +56,7 @@ export async function GET(
       );
     }
     
-    const liveClass = await LiveClass.findOne({ classId })
+    const liveClass = await LiveClass.findById(classId)
       .select('-participants')
       .lean();
     

@@ -7,6 +7,7 @@ export interface IStudyMaterial extends Document {
   description?: string;
   fileUrl: string;
   fileType: string;
+  cloudinaryId?: string;
   uploadedBy?: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -37,6 +38,9 @@ const studyMaterialSchema = new Schema<IStudyMaterial>({
   fileType: {
     type: String,
     required: true
+  },
+  cloudinaryId: {
+    type: String
   },
   uploadedBy: {
     type: Schema.Types.ObjectId,

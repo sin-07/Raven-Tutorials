@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
       }, { status: 401 });
     }
 
-    const decoded = verifyAdminToken(token);
-    if (!decoded) {
+    const decoded = await verifyAdminToken(token);
+    if (!decoded.success || !decoded.admin) {
       return NextResponse.json({
         success: false,
         message: 'Invalid token'
@@ -71,8 +71,8 @@ export async function POST(request: NextRequest) {
       }, { status: 401 });
     }
 
-    const decoded = verifyAdminToken(token);
-    if (!decoded) {
+    const decoded = await verifyAdminToken(token);
+    if (!decoded.success || !decoded.admin) {
       return NextResponse.json({
         success: false,
         message: 'Invalid token'
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
       questions: questions || [],
       instructions: instructions || '',
       status: 'scheduled',
-      createdBy: decoded.adminId
+      createdBy: decoded.admin._id
     });
 
     return NextResponse.json({

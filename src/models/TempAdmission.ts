@@ -18,8 +18,8 @@ export interface ITempAdmission extends Document {
   standard: string;
   previousSchool: string;
   photo?: string;
-  otp: string;
-  otpExpiry: Date;
+  otp?: string;
+  otpExpiry?: Date;
   isVerified: boolean;
   expiresAt: Date;
   createdAt: Date;
@@ -43,8 +43,8 @@ const tempAdmissionSchema = new Schema<ITempAdmission>({
   standard: { type: String, required: true },
   previousSchool: { type: String, required: true },
   photo: { type: String },
-  otp: { type: String, required: true },
-  otpExpiry: { type: Date, required: true },
+  otp: { type: String },
+  otpExpiry: { type: Date },
   isVerified: { type: Boolean, default: false },
   expiresAt: { type: Date, required: true, index: { expires: 0 } },
   createdAt: { type: Date, default: Date.now }
