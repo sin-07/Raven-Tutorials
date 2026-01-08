@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, Copy, Check, Download, Mail, Lock, User } from 'lucide-react';
+import { CheckCircle, Copy, Check, Download, Mail, Lock, User, BookOpen, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function AdmissionSuccessPage() {
   const router = useRouter();
@@ -17,7 +17,12 @@ export default function AdmissionSuccessPage() {
       router.push('/admission/learner');
       return;
     }
-    setSuccessData(JSON.parse(data));
+    const parsedData = JSON.parse(data);
+    // Handle both 'password' and 'tempPassword' field names
+    if (!parsedData.password && parsedData.tempPassword) {
+      parsedData.password = parsedData.tempPassword;
+    }
+    setSuccessData(parsedData);
   }, [router]);
 
   const handleCopy = (text: string, field: string) => {
@@ -32,27 +37,36 @@ export default function AdmissionSuccessPage() {
     if (!successData) return;
 
     const content = `
-RAVEN TUTORIALS - ADMISSION CONFIRMATION
-========================================
+════════════════════════════════════════════════════════
+        RAVEN TUTORIALS - ADMISSION CONFIRMATION
+════════════════════════════════════════════════════════
 
-Registration ID: ${successData.registrationId}
-Student Name: ${successData.studentName}
-Email: ${successData.email}
-Standard: ${successData.standard}
+✓ Registration Successful!
+
+STUDENT INFORMATION
+───────────────────
+Registration ID  : ${successData.registrationId}
+Student Name     : ${successData.studentName}
+Email            : ${successData.email}
+Standard         : ${successData.standard}
 
 LOGIN CREDENTIALS
-=================
-Registration ID: ${successData.registrationId}
-Temporary Password: ${successData.tempPassword}
+─────────────────
+Email (User ID)  : ${successData.email}
+Password         : ${successData.password}
 
-IMPORTANT NOTES:
-- Please change your password after first login
-- Keep these credentials safe and secure
-- Use Registration ID and Password to login to student portal
+IMPORTANT NOTES
+───────────────
+• Use your Email and Password to login to student portal
+• Your password is your Date of Birth (DDMMYYYY format)
+• Keep these credentials safe and secure
+• Do not share your password with anyone
 
 Login URL: ${window.location.origin}/login
 
-Thank you for joining Raven Tutorials!
+════════════════════════════════════════════════════════
+        Welcome to Raven Tutorials Family! 🎓
+════════════════════════════════════════════════════════
     `;
 
     const blob = new Blob([content], { type: 'text/plain' });
@@ -68,169 +82,168 @@ Thank you for joining Raven Tutorials!
 
   if (!successData) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+        <div className="animate-spin w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-24">
-      <div className="max-w-2xl w-full">
-        {/* Success Icon */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4 pt-24">
+      <div className="max-w-xl w-full">
+        {/* Success Animation */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+          <div className="relative inline-block">
+            <div className="absolute inset-0 bg-green-400/30 rounded-full animate-ping"></div>
+            <div className="relative w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-green-500/30">
+              <CheckCircle className="w-14 h-14 text-white" />
+            </div>
           </div>
-          <h1 className="text-4xl font-bold text-slate-800 mb-2">Admission Successful! 🎉</h1>
-          <p className="text-slate-600 text-lg">
-            Welcome to Raven Tutorials family
-          </p>
+          <div className="mt-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2 flex items-center justify-center gap-2">
+              <Sparkles className="w-8 h-8 text-yellow-500" />
+              Admission Successful!
+              <Sparkles className="w-8 h-8 text-yellow-500" />
+            </h1>
+            <p className="text-slate-600 text-lg">
+              Welcome to the Raven Tutorials family, <span className="font-semibold text-blue-600">{successData.studentName}</span>!
+            </p>
+          </div>
         </div>
 
         {/* Credentials Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b">
-            <Lock className="w-5 h-5 text-blue-600" />
-            <h2 className="text-2xl font-bold text-slate-800">Your Login Credentials</h2>
-          </div>
-
-          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
-            <p className="text-sm text-amber-800 font-medium">
-              ⚠️ Important: Please save these credentials securely. You'll need them to login to the student portal.
-            </p>
-          </div>
-
-          <div className="space-y-4 mb-6">
-            {/* Registration ID */}
-            <div className="p-4 bg-slate-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <User className="w-4 h-4 text-slate-600" />
-                <label className="text-sm font-medium text-slate-600">Registration ID</label>
+        <div className="bg-white rounded-3xl shadow-2xl shadow-blue-500/10 overflow-hidden mb-6">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                <Lock className="w-5 h-5 text-white" />
               </div>
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-2xl font-bold text-blue-600 font-mono">{successData.registrationId}</span>
-                <button
-                  onClick={() => handleCopy(successData.registrationId, 'regId')}
-                  className="p-2 hover:bg-slate-200 rounded-lg transition"
-                  title="Copy Registration ID"
-                >
-                  {copied.regId ? (
-                    <Check className="w-5 h-5 text-green-600" />
-                  ) : (
-                    <Copy className="w-5 h-5 text-slate-600" />
-                  )}
-                </button>
+              <div>
+                <h2 className="text-xl font-bold text-white">Login Credentials</h2>
+                <p className="text-blue-100 text-sm">Save these details securely</p>
               </div>
-            </div>
-
-            {/* Temporary Password */}
-            <div className="p-4 bg-slate-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Lock className="w-4 h-4 text-slate-600" />
-                <label className="text-sm font-medium text-slate-600">Temporary Password</label>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-2xl font-bold text-slate-800 font-mono">{successData.tempPassword}</span>
-                <button
-                  onClick={() => handleCopy(successData.tempPassword, 'password')}
-                  className="p-2 hover:bg-slate-200 rounded-lg transition"
-                  title="Copy Password"
-                >
-                  {copied.password ? (
-                    <Check className="w-5 h-5 text-green-600" />
-                  ) : (
-                    <Copy className="w-5 h-5 text-slate-600" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="p-4 bg-slate-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Mail className="w-4 h-4 text-slate-600" />
-                <label className="text-sm font-medium text-slate-600">Email</label>
-              </div>
-              <p className="text-slate-800">{successData.email}</p>
-            </div>
-
-            {/* Standard */}
-            <div className="p-4 bg-slate-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                <label className="text-sm font-medium text-slate-600">Standard</label>
-              </div>
-              <p className="text-slate-800">{successData.standard}</p>
             </div>
           </div>
 
-          {/* Download Button */}
-          <button
-            onClick={handleDownloadCredentials}
-            className="w-full py-3 bg-slate-700 text-white font-semibold rounded-xl hover:bg-slate-800 transition flex items-center justify-center gap-2 mb-4"
-          >
-            <Download className="w-5 h-5" />
-            Download Credentials
-          </button>
+          <div className="p-6">
+            {/* Warning */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4 mb-6">
+              <p className="text-sm text-amber-800 font-medium flex items-start gap-2">
+                <span className="text-lg">⚠️</span>
+                <span>Please save these credentials securely. You'll need them to login to the student portal.</span>
+              </p>
+            </div>
 
-          {/* Info Message */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-800">
-              📧 A confirmation email with your credentials has been sent to <strong>{successData.email}</strong>
-            </p>
+            <div className="space-y-4">
+              {/* Registration ID */}
+              <div className="group p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200 hover:border-blue-300 transition-all">
+                <div className="flex items-center gap-2 mb-2">
+                  <User className="w-4 h-4 text-blue-600" />
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Registration ID</label>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-2xl font-bold text-blue-600 font-mono tracking-wider">{successData.registrationId}</span>
+                  <button
+                    onClick={() => handleCopy(successData.registrationId, 'regId')}
+                    className="p-2 bg-white hover:bg-blue-50 rounded-lg transition shadow-sm border border-slate-200"
+                    title="Copy Registration ID"
+                  >
+                    {copied.regId ? (
+                      <Check className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-slate-500" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Password */}
+              <div className="group p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:border-green-400 transition-all">
+                <div className="flex items-center gap-2 mb-2">
+                  <Lock className="w-4 h-4 text-green-600" />
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Password (Your DOB)</label>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-2xl font-bold text-green-700 font-mono tracking-widest">{successData.password || 'Check Email'}</span>
+                  <button
+                    onClick={() => handleCopy(successData.password, 'password')}
+                    className="p-2 bg-white hover:bg-green-50 rounded-lg transition shadow-sm border border-green-200"
+                    title="Copy Password"
+                  >
+                    {copied.password ? (
+                      <Check className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-slate-500" />
+                    )}
+                  </button>
+                </div>
+                <p className="text-xs text-green-600 mt-2">Format: DDMMYYYY (e.g., 18122001 for 18 Dec 2001)</p>
+              </div>
+
+              {/* Email */}
+              <div className="group p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <Mail className="w-4 h-4 text-slate-600" />
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Login Email</label>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-slate-800 font-medium">{successData.email}</span>
+                  <button
+                    onClick={() => handleCopy(successData.email, 'email')}
+                    className="p-2 bg-white hover:bg-slate-50 rounded-lg transition shadow-sm border border-slate-200"
+                    title="Copy Email"
+                  >
+                    {copied.email ? (
+                      <Check className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-slate-500" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Standard */}
+              <div className="group p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <BookOpen className="w-4 h-4 text-slate-600" />
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Class / Standard</label>
+                </div>
+                <span className="text-slate-800 font-medium">{successData.standard}</span>
+              </div>
+            </div>
+
+            {/* Download Button */}
+            <button
+              onClick={handleDownloadCredentials}
+              className="w-full mt-6 py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white font-semibold rounded-xl hover:from-slate-800 hover:to-slate-900 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-500/20"
+            >
+              <Download className="w-5 h-5" />
+              Download Credentials
+            </button>
+
+            {/* Email Confirmation */}
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
+              <p className="text-sm text-blue-700 flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                Credentials sent to <strong>{successData.email}</strong>
+              </p>
+            </div>
           </div>
-        </div>
-
-        {/* Next Steps */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Next Steps</h2>
-          
-          <ol className="space-y-3">
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
-              <div>
-                <p className="font-medium text-slate-800">Login to Student Portal</p>
-                <p className="text-sm text-slate-600">Use your Registration ID and password to access the portal</p>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
-              <div>
-                <p className="font-medium text-slate-800">Change Your Password</p>
-                <p className="text-sm text-slate-600">Update your temporary password to something secure and memorable</p>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
-              <div>
-                <p className="font-medium text-slate-800">Explore Courses</p>
-                <p className="text-sm text-slate-600">Browse available courses and start your learning journey</p>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
-              <div>
-                <p className="font-medium text-slate-800">Join Live Classes</p>
-                <p className="text-sm text-slate-600">Attend live sessions and interact with instructors</p>
-              </div>
-            </li>
-          </ol>
         </div>
 
         {/* Action Buttons */}
         <div className="flex gap-4">
           <Link
             href="/login"
-            className="flex-1 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition text-center"
+            className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all text-center shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2"
           >
             Login to Portal
+            <ArrowRight className="w-5 h-5" />
           </Link>
           <Link
             href="/"
-            className="flex-1 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition text-center"
+            className="flex-1 py-4 bg-white border-2 border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all text-center"
           >
             Go to Home
           </Link>

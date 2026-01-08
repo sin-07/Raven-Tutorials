@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/database';
 import TempAdmission from '@/models/TempAdmission';
 import Admission from '@/models/Admission';
+import Student from '@/models/Student';
 import { v2 as cloudinary } from 'cloudinary';
 import crypto from 'crypto';
+import { sendOTPEmail } from '@/lib/email';
 
 // Configure Cloudinary
 cloudinary.config({
@@ -41,26 +43,53 @@ export async function POST(request: NextRequest) {
     const previousSchool = formData.get('previousSchool') as string;
     const photo = formData.get('photo') as File;
 
+    // Debug: Log all received fields
+    console.log('Received form data:', {
+      studentName, fatherName, motherName, dateOfBirth, gender,
+      bloodGroup, category, phoneNumber, alternatePhoneNumber,
+      email, address, city, state, pincode, standard, previousSchool,
+      hasPhoto: !!photo
+    });
+
     // Validate required fields
-    if (!studentName || !fatherName || !motherName || !dateOfBirth || 
-        !gender || !bloodGroup || !category || !phoneNumber || 
-        !email || !address || !city || !state || !pincode || 
-        !standard || !previousSchool) {
+    const missingFields = [];
+    if (!studentName) missingFields.push('studentName');
+    if (!fatherName) missingFields.push('fatherName');
+    if (!motherName) missingFields.push('motherName');
+    if (!dateOfBirth) missingFields.push('dateOfBirth');
+    if (!gender) missingFields.push('gender');
+    if (!bloodGroup) missingFields.push('bloodGroup');
+    if (!category) missingFields.push('category');
+    if (!phoneNumber) missingFields.push('phoneNumber');
+    if (!email) missingFields.push('email');
+    if (!address) missingFields.push('address');
+    if (!city) missingFields.push('city');
+    if (!state) missingFields.push('state');
+    if (!pincode) missingFields.push('pincode');
+    if (!standard) missingFields.push('standard');
+    if (!previousSchool) missingFields.push('previousSchool');
+
+    if (missingFields.length > 0) {
+      console.log('Missing fields:', missingFields);
       return NextResponse.json({
         success: false,
-        message: 'All required fields must be filled'
+        message: `Missing required fields: ${missingFields.join(', ')}`
       }, { status: 400 });
     }
 
-    // Check if email already exists in permanent admissions
+    // Check if email already exists in permanent admissions or students
     const existingAdmission = await Admission.findOne({ 
       email: email.toLowerCase().trim() 
     });
     
-    if (existingAdmission) {
+    const existingStudent = await Student.findOne({ 
+      email: email.toLowerCase().trim() 
+    });
+    
+    if (existingAdmission || existingStudent) {
       return NextResponse.json({
         success: false,
-        message: 'This email is already registered. Please use a different email address or contact support.'
+        message: 'This email is already registered. Please use a different email address or login if you already have an account.'
       }, { status: 400 });
     }
 
@@ -104,6 +133,7 @@ export async function POST(request: NextRequest) {
     // Generate OTP
     const otp = generateOTP();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours for temp admission
 
     // Store in temporary collection
     const tempAdmission = await TempAdmission.create({
@@ -124,13 +154,21 @@ export async function POST(request: NextRequest) {
       standard,
       previousSchool,
       photo: photoUrl,
-      paymentAmount: admissionFee,
       otp,
-      otpExpiry
+      otpExpiry,
+      expiresAt
     });
 
-    // TODO: Send OTP email (implement email service)
-    console.log(`OTP for ${email}: ${otp}`);
+    // Send OTP email using Brevo
+    const emailSent = await sendOTPEmail({
+      to: email.toLowerCase().trim(),
+      studentName,
+      otp
+    });
+
+    if (!emailSent) {
+      console.error(`Failed to send OTP email to ${email}`);
+    }
 
     return NextResponse.json({
       success: true,

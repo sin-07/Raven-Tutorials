@@ -87,7 +87,11 @@ export default function AdmissionPaymentPage() {
         modal: {
           ondismiss: function () {
             setLoading(false);
-            setError('Payment cancelled. Please try again to complete your admission.');
+            // Clear session data and redirect to admission form
+            sessionStorage.removeItem('paymentOrder');
+            sessionStorage.removeItem('tempAdmission');
+            alert('Payment cancelled. You will be redirected to start a new admission.');
+            router.push('/admission/learner');
           }
         }
       };
@@ -95,8 +99,12 @@ export default function AdmissionPaymentPage() {
       const rzp = new window.Razorpay(options);
       
       rzp.on('payment.failed', function (response: any) {
-        setError(response.error.description || 'Payment failed. Please try again.');
         setLoading(false);
+        // Clear session data and redirect to admission form
+        sessionStorage.removeItem('paymentOrder');
+        sessionStorage.removeItem('tempAdmission');
+        alert(response.error.description || 'Payment failed. You will be redirected to start a new admission.');
+        router.push('/admission/learner');
       });
 
       rzp.open();

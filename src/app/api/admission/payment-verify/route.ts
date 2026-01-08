@@ -4,7 +4,7 @@ import TempAdmission from '@/models/TempAdmission';
 import Student from '@/models/Student';
 import Admission from '@/models/Admission';
 import crypto from 'crypto';
-import bcrypt from 'bcryptjs';
+import { sendWelcomeEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,9 +72,12 @@ export async function POST(request: NextRequest) {
     const count = await Student.countDocuments();
     const registrationId = `RT${year}${String(count + 1).padStart(4, '0')}`;
 
-    // Generate temporary password (student can change later)
-    const tempPassword = crypto.randomBytes(4).toString('hex').toUpperCase();
-    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+    // Generate password from Date of Birth (DDMMYYYY format)
+    const dob = new Date(tempAdmission.dateOfBirth);
+    const day = String(dob.getDate()).padStart(2, '0');
+    const month = String(dob.getMonth() + 1).padStart(2, '0');
+    const dobYear = dob.getFullYear();
+    const password = `${day}${month}${dobYear}`;
 
     // Get admission fee
     const admissionFee = parseInt(process.env.ADMISSION_FEE || '1000');
@@ -82,7 +85,7 @@ export async function POST(request: NextRequest) {
     // Create student record
     const student = await Student.create({
       registrationId,
-      password: hashedPassword,
+      password: password,  // Plain text DOB password
       studentName: tempAdmission.studentName,
       fatherName: tempAdmission.fatherName,
       motherName: tempAdmission.motherName,
@@ -111,7 +114,7 @@ export async function POST(request: NextRequest) {
     // Also create admission record for reference
     await Admission.create({
       registrationId,
-      password: hashedPassword,
+      password: password,  // Plain text DOB password
       studentName: tempAdmission.studentName,
       fatherName: tempAdmission.fatherName,
       motherName: tempAdmission.motherName,
@@ -130,6 +133,7 @@ export async function POST(request: NextRequest) {
       previousSchool: tempAdmission.previousSchool,
       photo: tempAdmission.photo,
       paymentStatus: 'completed',
+      isPendingPayment: false,  // CRITICAL: Payment completed
       paymentAmount: admissionFee,
       paymentId: razorpay_payment_id,
       orderId: razorpay_order_id,
@@ -139,7 +143,17 @@ export async function POST(request: NextRequest) {
     // Delete temp admission
     await TempAdmission.deleteOne({ _id: tempAdmission._id });
 
-    // TODO: Send welcome email with credentials
+    // Send welcome email with credentials
+    const emailSent = await sendWelcomeEmail({
+      to: student.email,
+      studentName: student.studentName,
+      registrationId: registrationId,
+      password: password  // Send DOB password
+    });
+
+    if (!emailSent) {
+      console.error(`Failed to send welcome email to ${student.email}`);
+    }
 
     return NextResponse.json({
       success: true,
@@ -148,7 +162,7 @@ export async function POST(request: NextRequest) {
         registrationId,
         studentName: student.studentName,
         email: student.email,
-        tempPassword, // Send this only once
+        password,  // DOB-based password
         standard: student.standard
       }
     });

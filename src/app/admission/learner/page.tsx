@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 import { Upload, Loader2, AlertCircle } from 'lucide-react';
 
 export default function LearnerAdmissionPage() {
@@ -11,22 +12,22 @@ export default function LearnerAdmissionPage() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
-    studentName: '',
-    fatherName: '',
-    motherName: '',
-    dateOfBirth: '',
-    gender: '',
-    bloodGroup: '',
-    category: '',
-    phoneNumber: '',
-    alternatePhoneNumber: '',
-    email: '',
-    address: '',
-    city: '',
-    state: '',
-    pincode: '',
-    standard: '',
-    previousSchool: '',
+    studentName: 'Test Student',
+    fatherName: 'Test Father',
+    motherName: 'Test Mother',
+    dateOfBirth: '2001-12-18',
+    gender: 'Male',
+    bloodGroup: 'O+',
+    category: 'General',
+    phoneNumber: '9876543210',
+    alternatePhoneNumber: '9876543211',
+    email: 'aniket.singh07vs@gmail.com',
+    address: 'Test Address, Street No. 1',
+    city: 'Patna',
+    state: 'Bihar',
+    pincode: '800007',
+    standard: '10th',
+    previousSchool: 'Test School',
     photo: null as File | null
   });
 
@@ -133,8 +134,37 @@ export default function LearnerAdmissionPage() {
       const data = await response.json();
 
       if (!response.ok) {
+        // Check if it's a duplicate email error
+        if (data.message && data.message.toLowerCase().includes('email') && data.message.toLowerCase().includes('already')) {
+          toast.error('This email is already registered!', {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              background: '#ef4444',
+              color: '#fff',
+              fontWeight: '600',
+              padding: '16px',
+              borderRadius: '12px',
+            },
+            icon: '⚠️',
+          });
+        }
         throw new Error(data.message || 'Failed to submit admission form');
       }
+
+      // Show success toast
+      toast.success('OTP sent to your email!', {
+        duration: 3000,
+        position: 'top-center',
+        style: {
+          background: '#10b981',
+          color: '#fff',
+          fontWeight: '600',
+          padding: '16px',
+          borderRadius: '12px',
+        },
+        icon: '✅',
+      });
 
       // Store temp admission data in session storage
       sessionStorage.setItem('tempAdmission', JSON.stringify(data.data));
@@ -144,30 +174,37 @@ export default function LearnerAdmissionPage() {
 
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
+      // Show error toast if not already shown
+      if (!err.message?.toLowerCase().includes('email') || !err.message?.toLowerCase().includes('already')) {
+        toast.error(err.message || 'Something went wrong. Please try again.', {
+          duration: 4000,
+          position: 'top-center',
+        });
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-24 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-slate-50 py-24">
+      <div className="w-full">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 px-4">
           <h1 className="text-4xl font-bold text-slate-800 mb-2">Learner Admission Form</h1>
           <p className="text-slate-600">Fill in your details to complete the admission process</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+          <div className="mb-6 mx-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
             <p className="text-red-800">{error}</p>
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8">
+        <form onSubmit={handleSubmit} className="bg-white shadow-xl p-4 md:p-8">
           {/* Personal Information */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Personal Information</h2>
@@ -299,7 +336,7 @@ export default function LearnerAdmissionPage() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Contact Information</h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Phone Number <span className="text-red-500">*</span>
@@ -331,7 +368,7 @@ export default function LearnerAdmissionPage() {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Email Address <span className="text-red-500">*</span>
                 </label>
@@ -346,7 +383,7 @@ export default function LearnerAdmissionPage() {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Address <span className="text-red-500">*</span>
                 </label>
@@ -361,13 +398,14 @@ export default function LearnerAdmissionPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  City <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="city"
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    City <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
                   value={formData.city}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
@@ -376,35 +414,36 @@ export default function LearnerAdmissionPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  State <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                  placeholder="Enter state"
-                  required
-                />
-              </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    State <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    placeholder="Enter state"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Pincode <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="pincode"
-                  value={formData.pincode}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                  placeholder="6-digit pincode"
-                  maxLength={6}
-                  required
-                />
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Pincode <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="pincode"
+                    value={formData.pincode}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    placeholder="6-digit pincode"
+                    maxLength={6}
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>

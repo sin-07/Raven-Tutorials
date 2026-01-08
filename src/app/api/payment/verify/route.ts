@@ -3,6 +3,7 @@ import connectDB from '@/lib/database';
 import crypto from 'crypto';
 import TempAdmission from '@/models/TempAdmission';
 import Admission from '@/models/Admission';
+import { sendWelcomeEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -108,6 +109,7 @@ export async function POST(request: NextRequest) {
       photo: tempAdmission.photo,
       paymentAmount: parseInt(process.env.ADMISSION_FEE || '1000'),
       paymentStatus: 'completed',
+      isPendingPayment: false,  // CRITICAL: Set to false after successful payment
       razorpayOrderId: razorpay_order_id,
       razorpayPaymentId: razorpay_payment_id,
       razorpaySignature: razorpay_signature,
@@ -117,10 +119,23 @@ export async function POST(request: NextRequest) {
       isVerified: true
     });
 
+    console.log('✅ Admission created with password:', password);
+    console.log('✅ isPendingPayment set to:', false);
+
     // Delete temp admission
     await TempAdmission.deleteOne({ _id: tempAdmission._id });
 
-    // TODO: Send registration credentials email
+    // Send registration credentials email
+    const emailSent = await sendWelcomeEmail({
+      to: permanentAdmission.email,
+      studentName: permanentAdmission.studentName,
+      registrationId: registrationId,
+      password: password
+    });
+
+    if (!emailSent) {
+      console.error(`Failed to send welcome email to ${permanentAdmission.email}`);
+    }
 
     return NextResponse.json({
       success: true,
