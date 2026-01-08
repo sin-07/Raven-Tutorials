@@ -68,6 +68,14 @@ const Navbar: React.FC = React.memo(() => {
   return (
     <>
       <style>{`
+        .navbar-sticky {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          backdrop-filter: blur(12px);
+          background-color: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
         @keyframes slideDownMenu {
           from {
             opacity: 0;
@@ -111,8 +119,16 @@ const Navbar: React.FC = React.memo(() => {
         .mobile-menu-item {
           animation: menuItemSlideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .navbar-sticky {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          backdrop-filter: blur(12px);
+          background-color: rgba(255, 255, 255, 0.98);
+          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+        }
       `}</style>
-      <nav className="bg-white shadow-md fixed w-full z-40 top-0 left-0 transition-colors duration-300">
+      <nav className="navbar-sticky bg-white shadow-md w-full transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-blue-600">

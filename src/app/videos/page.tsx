@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Play, Clock, User, Video, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 
 interface VideoData {
   _id: string;
@@ -110,9 +109,7 @@ export default function VideosPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
-      <Navbar />
-      
+    <div className="min-h-screen bg-violet-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -141,7 +138,7 @@ export default function VideosPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="header-section mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl font-bold text-violet-600">
             📚 Learning Videos
           </h1>
           <p className="text-slate-600 mt-2">

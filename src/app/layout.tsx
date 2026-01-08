@@ -1,15 +1,25 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
+import Navbar from '@/components/Navbar';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const poppins = Poppins({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
-  title: 'RAVEN Tutorials - Empowering Education',
-  description: 'RAVEN Tutorials provides quality education for students from Class 1 to Class 12 with experienced teachers and comprehensive study materials.',
-  keywords: 'tutoring, education, coaching, online classes, study materials, RAVEN Tutorials',
+  title: 'Raven Tutorials - Learn Smarter, Achieve More',
+  description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship for JEE, NEET, and Board exams.',
+  keywords: 'online courses, JEE preparation, NEET coaching, board exams, competitive exams, online learning, Raven Tutorials',
 };
 
 export default function RootLayout({
@@ -18,26 +28,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+      <body className={`${inter.className} antialiased`}>
         <AdminProvider>
+          <Navbar />
           {children}
           <Toaster 
             position="top-right"
             toastOptions={{
               duration: 4000,
               style: {
-                background: '#363636',
+                background: '#1e293b',
                 color: '#fff',
+                borderRadius: '12px',
+                padding: '16px',
               },
               success: {
                 style: {
-                  background: '#10B981',
+                  background: '#059669',
+                },
+                iconTheme: {
+                  primary: '#fff',
+                  secondary: '#059669',
                 },
               },
               error: {
                 style: {
-                  background: '#EF4444',
+                  background: '#dc2626',
+                },
+                iconTheme: {
+                  primary: '#fff',
+                  secondary: '#dc2626',
                 },
               },
             }}

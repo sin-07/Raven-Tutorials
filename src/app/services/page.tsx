@@ -3,7 +3,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { BookOpen, GraduationCap, Users, Microscope, FileText, BarChart3, Book, Rocket } from 'lucide-react';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const Services: React.FC = () => {
@@ -14,61 +13,57 @@ const Services: React.FC = () => {
       icon: BookOpen,
       title: 'Full Week Classes',
       description: 'Classes conducted throughout the week with extra doubt session class on Sundays and Holidays (subjected to future references).',
-      color: 'blue' as const
+      color: 'violet' as const
     },
     {
       icon: GraduationCap,
       title: 'Informative Workshops',
       description: 'Workshops aimed at inculcating future career prospects in various other fields.',
-      color: 'purple' as const
+      color: 'teal' as const
     },
     {
       icon: Users,
       title: 'Individual-based Mentorship',
       description: 'Programmes designed for students facing hurdles in their academic performance.',
-      color: 'green' as const
+      color: 'emerald' as const
     },
     {
       icon: Microscope,
       title: 'Science Practical Classes',
       description: 'Hands-on practical classes for science subjects.',
-      color: 'red' as const
+      color: 'amber' as const
     },
     {
       icon: FileText,
       title: 'Month-end Tests',
       description: 'Tests conducted at the end of each month to check academic progress in each subject.',
-      color: 'yellow' as const
+      color: 'violet' as const
     },
     {
       icon: BarChart3,
       title: 'Board Pattern Tests',
       description: 'Tests conducted every 3 months for Std. XII and Std. X based on respective board patterns.',
-      color: 'indigo' as const
+      color: 'teal' as const
     },
     {
       icon: Book,
       title: 'Special Revision Batches',
       description: 'Special batches for Std. XII and Std. X based on respective board patterns.',
-      color: 'pink' as const
+      color: 'emerald' as const
     },
     {
       icon: Rocket,
       title: 'Crash Course',
       description: 'Crash courses strictly following board patterns for Std. XII and Std. X.',
-      color: 'orange' as const
+      color: 'amber' as const
     }
   ];
 
   const colorClasses: Record<string, string> = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    purple: 'bg-purple-50 text-purple-600 border-purple-100',
-    green: 'bg-green-50 text-green-600 border-green-100',
-    red: 'bg-red-50 text-red-600 border-red-100',
-    yellow: 'bg-yellow-50 text-yellow-600 border-yellow-100',
-    indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
-    pink: 'bg-pink-50 text-pink-600 border-pink-100',
-    orange: 'bg-orange-50 text-orange-600 border-orange-100'
+    violet: 'bg-violet-50 text-violet-600 border-violet-100',
+    teal: 'bg-teal-50 text-teal-600 border-teal-100',
+    emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    amber: 'bg-amber-50 text-amber-600 border-amber-100'
   };
 
   const classDetails = [
@@ -94,14 +89,13 @@ const Services: React.FC = () => {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-white">
         {/* Header */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-16 pt-28">
+        <section className="bg-violet-600 text-white py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-              <p className="text-xl text-blue-100">
+              <p className="text-xl text-violet-100">
                 Comprehensive educational programs designed for your success
               </p>
             </div>

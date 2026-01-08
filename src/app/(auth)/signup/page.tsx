@@ -4,9 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import { GraduationCap, UserCircle } from 'lucide-react';
 
-export default function AdmissionPage() {
+export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-24">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         {/* Header */}
         <div className="text-center mb-12">
@@ -57,7 +57,7 @@ export default function AdmissionPage() {
             </ul>
             
             <Link
-              href="/admission/learner"
+              href="/admission"
               className="block w-full py-3 bg-violet-600 text-white font-semibold rounded-xl hover:bg-violet-700 transition-all text-center"
             >
               Take Admission as Learner
@@ -103,7 +103,7 @@ export default function AdmissionPage() {
             </ul>
             
             <Link
-              href="/admission/tutor"
+              href="/admission?role=tutor"
               className="block w-full py-3 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition-all text-center"
             >
               Take Admission as Tutor
@@ -122,3 +122,4 @@ export default function AdmissionPage() {
     </div>
   );
 }
+

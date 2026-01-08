@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { MessageSquare, Loader, AlertCircle, Trash2, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 import FeedbackForm from '@/components/FeedbackForm';
 
 interface Feedback {
@@ -115,7 +114,7 @@ export default function FeedbackPage() {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 animate-spin text-indigo-600 mx-auto mb-4" />
+          <Loader className="w-12 h-12 animate-spin text-violet-600 mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading feedback...</p>
         </div>
       </div>
@@ -124,8 +123,6 @@ export default function FeedbackPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Navbar />
-
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 w-full">
         {/* Header */}
         <div className="mb-8">

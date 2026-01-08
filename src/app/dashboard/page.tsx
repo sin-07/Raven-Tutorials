@@ -8,7 +8,6 @@ import {
   Download, GraduationCap
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 
 interface StudentData {
   _id: string;
@@ -204,10 +203,9 @@ const Dashboard: React.FC = () => {
   if (loading) {
     return (
       <>
-        <Navbar />
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-violet-600 mx-auto mb-4"></div>
             <p className="text-gray-600 text-lg">Loading dashboard...</p>
           </div>
         </div>
@@ -225,13 +223,12 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gray-100 pt-16">
         {/* Header */}
         <header className="bg-white shadow-sm fixed top-16 left-0 right-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <GraduationCap className="w-8 h-8 text-indigo-600" />
+              <GraduationCap className="w-8 h-8 text-violet-600" />
               <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
             </div>
 
@@ -250,7 +247,7 @@ const Dashboard: React.FC = () => {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {/* Welcome Section */}
-          <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white mb-8">
+          <div className="bg-violet-600 rounded-2xl p-8 text-white mb-8">
             <h2 className="text-3xl font-bold mb-2">Welcome, {student.studentName}!</h2>
             <p className="text-indigo-100">Class {student.standard} | ID: {student.registrationId}</p>
           </div>

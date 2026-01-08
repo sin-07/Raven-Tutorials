@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { Megaphone, User, Clock, Download, Eye, AlertCircle, X } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 interface NoticeData {
@@ -66,8 +65,7 @@ const Notice: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
+      <div className="min-h-screen bg-violet-50 py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
         <style>{`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -88,7 +86,7 @@ const Notice: React.FC = () => {
           .notice-card { animation: fadeIn 0.5s ease-out forwards; }
           .notice-header { animation: slideInLeft 0.6s ease-out; }
           .notice-biscuit { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-          .notice-biscuit:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4); }
+          .notice-biscuit:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2); border-color: rgba(124, 58, 237, 0.4); }
           .modal-backdrop { animation: modalBackdropFadeIn 0.3s ease-out; backdrop-filter: blur(8px); }
           .modal-content { animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
           .document-link { transition: all 0.3s ease; }

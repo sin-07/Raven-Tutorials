@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { GraduationCap, Mail, Lock, Eye, EyeOff, Shield } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 
 const StudentLogin: React.FC = () => {
   const router = useRouter();
@@ -77,13 +76,12 @@ const StudentLogin: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden pt-16">
+      <div className="min-h-screen bg-violet-50 relative overflow-hidden pt-16">
         {/* Animated background shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-violet-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
 
         {/* Floating geometric shapes */}
@@ -101,7 +99,7 @@ const StudentLogin: React.FC = () => {
             >
               <div
                 className={`w-2 h-2 ${
-                  i % 3 === 0 ? 'bg-blue-400' : i % 3 === 1 ? 'bg-purple-400' : 'bg-pink-400'
+                  i % 3 === 0 ? 'bg-violet-400' : i % 3 === 1 ? 'bg-teal-400' : 'bg-amber-400'
                 } rounded-full opacity-20`}
               ></div>
             </div>
@@ -116,7 +114,7 @@ const StudentLogin: React.FC = () => {
                 <div className="flex items-center justify-center mb-4">
                   <img src="/logo.png" alt="Raven Logo" className="w-16 h-16 object-contain" />
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                <h1 className="text-3xl sm:text-4xl font-bold text-violet-600 mb-2">
                   RAVEN Tutorials
                 </h1>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Student Login</h2>
@@ -131,7 +129,7 @@ const StudentLogin: React.FC = () => {
                     Email Address
                   </label>
                   <div className="relative group">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-violet-600 transition-colors" />
                     <input
                       type="email"
                       id="email"
@@ -140,7 +138,7 @@ const StudentLogin: React.FC = () => {
                       onChange={handleChange}
                       placeholder="student@example.com"
                       required
-                      className="w-full pl-12 pr-4 py-3 sm:py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-indigo-600 focus:bg-white transition-all duration-300 text-gray-800"
+                      className="w-full pl-12 pr-4 py-3 sm:py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-violet-600 focus:bg-white transition-all duration-300 text-gray-800"
                     />
                   </div>
                 </div>
@@ -151,7 +149,7 @@ const StudentLogin: React.FC = () => {
                     Password
                   </label>
                   <div className="relative group">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-violet-600 transition-colors" />
                     <input
                       type={showPassword ? 'text' : 'password'}
                       id="password"
@@ -160,12 +158,12 @@ const StudentLogin: React.FC = () => {
                       onChange={handleChange}
                       placeholder="Date of Birth (DDMMYYYY)"
                       required
-                      className="w-full pl-12 pr-12 py-3 sm:py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-indigo-600 focus:bg-white transition-all duration-300 text-gray-800"
+                      className="w-full pl-12 pr-12 py-3 sm:py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-violet-600 focus:bg-white transition-all duration-300 text-gray-800"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-indigo-600 transition-colors"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-violet-600 transition-colors"
                     >
                       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
@@ -179,7 +177,7 @@ const StudentLogin: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                  className="w-full py-3 sm:py-4 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>

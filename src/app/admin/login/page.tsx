@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Shield, Mail, Lock, Eye, EyeOff, GraduationCap } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
-import Navbar from '@/components/Navbar';
+
 
 interface Particle {
   id: number;
@@ -155,10 +155,9 @@ const AdminLogin: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden flex items-center justify-center pt-16">
+      <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center pt-16">
         {/* Animated gradient mesh */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-slate-900/20 animate-gradient-x"></div>
+        <div className="absolute inset-0 bg-violet-900/20"></div>
         
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-repeat pointer-events-none opacity-5" 
