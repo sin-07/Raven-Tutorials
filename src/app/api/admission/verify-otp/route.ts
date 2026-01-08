@@ -1,17 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/database';
 import TempAdmission from '@/models/TempAdmission';
+import Razorpay from 'razorpay';
+
+// Initialize Razorpay
+const razorpay = new Razorpay({
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
+  key_secret: process.env.RAZORPAY_KEY_SECRET!,
+});
 
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
     
-    const { admissionId, otp } = await request.json();
+    const { tempAdmissionId, otp, email } = await request.json();
 
-    if (!admissionId || !otp) {
+    if (!tempAdmissionId || !otp || !email) {
       return NextResponse.json({
         success: false,
-        message: 'Admission ID and OTP are required'
+        message: 'Admission ID, OTP and email are required'
       }, { status: 400 });
     }
 
@@ -21,13 +28,21 @@ export async function POST(request: NextRequest) {
     });
 
     // Find temp admission
-    const tempAdmission = await TempAdmission.findById(admissionId);
+    const tempAdmission = await TempAdmission.findById(tempAdmissionId);
 
     if (!tempAdmission) {
       return NextResponse.json({
         success: false,
         message: 'Admission session expired or not found. Please start again.'
       }, { status: 404 });
+    }
+
+    // Verify email matches
+    if (tempAdmission.email !== email.toLowerCase().trim()) {
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid admission session'
+      }, { status: 400 });
     }
 
     // Check if session has expired
@@ -69,14 +84,33 @@ export async function POST(request: NextRequest) {
     tempAdmission.otpExpiry = undefined;
     await tempAdmission.save();
 
+    // Create Razorpay order
+    const admissionFee = parseInt(process.env.ADMISSION_FEE || '1000');
+    
+    const order = await razorpay.orders.create({
+      amount: admissionFee * 100, // Convert to paise
+      currency: 'INR',
+      receipt: `admission_${tempAdmission._id}`,
+      notes: {
+        tempAdmissionId: tempAdmission._id.toString(),
+        studentName: tempAdmission.studentName,
+        email: tempAdmission.email,
+        standard: tempAdmission.standard
+      }
+    });
+
     return NextResponse.json({
       success: true,
       message: 'OTP verified successfully! Please proceed to payment.',
       data: {
-        admissionId: tempAdmission._id,
+        tempAdmissionId: tempAdmission._id,
         studentName: tempAdmission.studentName,
         email: tempAdmission.email,
-        standard: tempAdmission.standard
+        standard: tempAdmission.standard,
+        amount: admissionFee,
+        orderId: order.id,
+        currency: order.currency,
+        razorpayKeyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID
       }
     });
 
