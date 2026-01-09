@@ -28,26 +28,39 @@ async function sendBrevoEmail(payload: BrevoEmailPayload): Promise<boolean> {
     return false;
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000); // 30s timeout
+
   try {
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         'api-key': apiKey,
       },
       body: JSON.stringify(payload),
+      signal: controller.signal,
     });
 
+    clearTimeout(timeout);
+
     if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+      console.log('Brevo success:', data.messageId || 'sent');
       return true;
     }
 
-    const error = await res.json().catch(() => ({}));
-    console.error('Brevo error:', res.status, error);
+    const error = await res.text();
+    console.error('Brevo API error:', res.status, error);
     return false;
   } catch (err: any) {
-    console.error('Brevo request failed:', err.message);
+    clearTimeout(timeout);
+    if (err.name === 'AbortError') {
+      console.error('Brevo request timed out after 30s');
+    } else {
+      console.error('Brevo request failed:', err.name, err.message, err.cause?.code || '');
+    }
     return false;
   }
 }
