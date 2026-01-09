@@ -1,8 +1,15 @@
 import * as brevo from '@getbrevo/brevo';
 
-// Initialize Brevo API
-const apiInstance = new brevo.TransactionalEmailsApi();
-apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || '');
+// Lazy initialization - will be set when first email is sent
+let apiInstance: brevo.TransactionalEmailsApi | null = null;
+
+function getBrevoInstance(): brevo.TransactionalEmailsApi {
+  if (!apiInstance) {
+    apiInstance = new brevo.TransactionalEmailsApi();
+    apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || '');
+  }
+  return apiInstance;
+}
 
 interface SendOTPEmailParams {
   to: string;
@@ -84,7 +91,7 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
       </html>
     `;
 
-    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    await getBrevoInstance().sendTransacEmail(sendSmtpEmail);
     console.log(`OTP email sent successfully to ${to}`);
     return true;
   } catch (error) {
@@ -180,7 +187,7 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
       </html>
     `;
 
-    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    await getBrevoInstance().sendTransacEmail(sendSmtpEmail);
     console.log(`Welcome email sent successfully to ${to}`);
     return true;
   } catch (error) {
