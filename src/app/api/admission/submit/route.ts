@@ -16,6 +16,24 @@ const generateOTP = (): string => {
 };
 
 export async function POST(request: NextRequest) {
+  // Wrap everything in try-catch to prevent process crashes
+  let response;
+  
+  try {
+    response = await handleAdmissionSubmit(request);
+  } catch (criticalError: any) {
+    console.error('CRITICAL ERROR - Process crash prevented:', criticalError);
+    return NextResponse.json({
+      success: false,
+      message: 'A critical server error occurred. Please try again later.',
+      error: process.env.NODE_ENV === 'development' ? criticalError.message : undefined
+    }, { status: 500 });
+  }
+  
+  return response;
+}
+
+async function handleAdmissionSubmit(request: NextRequest) {
   try {
     // Configure Cloudinary inside the function to ensure env vars are loaded
     cloudinary.config({
@@ -198,14 +216,19 @@ export async function POST(request: NextRequest) {
     });
 
     // Send OTP email using Brevo
-    const emailSent = await sendOTPEmail({
-      to: email.toLowerCase().trim(),
-      studentName,
-      otp
-    });
+    try {
+      const emailSent = await sendOTPEmail({
+        to: email.toLowerCase().trim(),
+        studentName,
+        otp
+      });
 
-    if (!emailSent) {
-      console.error(`Failed to send OTP email to ${email}`);
+      if (!emailSent) {
+        console.error(`Failed to send OTP email to ${email}`);
+      }
+    } catch (emailError: any) {
+      console.error('Email sending error (non-critical):', emailError);
+      // Continue anyway - OTP is saved in database
     }
 
     return NextResponse.json({
@@ -221,9 +244,11 @@ export async function POST(request: NextRequest) {
 
   } catch (error: any) {
     console.error('Submit Admission Error:', error);
+    console.error('Error stack:', error.stack);
     return NextResponse.json({
       success: false,
-      message: error.message || 'Error submitting admission form'
+      message: error.message || 'Error submitting admission form',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     }, { status: 500 });
   }
 }
