@@ -35,14 +35,7 @@ export async function POST(request: NextRequest) {
 
 async function handleAdmissionSubmit(request: NextRequest) {
   try {
-    // Configure Cloudinary inside the function to ensure env vars are loaded
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
-
-    // Check if environment variables are set
+    // Check if environment variables are set BEFORE using them
     if (!process.env.MONGODB_URI) {
       console.error('MONGODB_URI is not set');
       return NextResponse.json({
@@ -52,10 +45,31 @@ async function handleAdmissionSubmit(request: NextRequest) {
     }
     
     if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-      console.error('Cloudinary environment variables are not set');
+      console.error('Cloudinary environment variables missing:', {
+        hasCloudName: !!process.env.CLOUDINARY_CLOUD_NAME,
+        hasApiKey: !!process.env.CLOUDINARY_API_KEY,
+        hasApiSecret: !!process.env.CLOUDINARY_API_SECRET
+      });
       return NextResponse.json({
         success: false,
         message: 'Server configuration error: File upload not configured'
+      }, { status: 500 });
+    }
+
+    // Configure Cloudinary AFTER validation
+    try {
+      cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+        secure: true
+      });
+      console.log('Cloudinary configured successfully');
+    } catch (configError: any) {
+      console.error('Cloudinary config error:', configError);
+      return NextResponse.json({
+        success: false,
+        message: 'Failed to configure file upload service'
       }, { status: 500 });
     }
 
@@ -165,10 +179,9 @@ async function handleAdmissionSubmit(request: NextRequest) {
       try {
         console.log('Starting Cloudinary upload...', {
           cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-          hasApiKey: !!process.env.CLOUDINARY_API_KEY,
-          hasApiSecret: !!process.env.CLOUDINARY_API_SECRET,
           photoSize: photo.size,
-          photoType: photo.type
+          photoType: photo.type,
+          fileName: photo.name
         });
 
         const bytes = await photo.arrayBuffer();
@@ -176,18 +189,18 @@ async function handleAdmissionSubmit(request: NextRequest) {
         
         console.log('Photo converted to buffer, size:', buffer.length);
         
-        const result = await new Promise<any>((resolve, reject) => {
+        // Use Promise with timeout to prevent hanging
+        const uploadPromise = new Promise<any>((resolve, reject) => {
           const uploadStream = cloudinary.uploader.upload_stream(
             { 
               folder: 'raven-tutorials/students',
-              resource_type: 'auto'
+              resource_type: 'auto',
+              timeout: 60000
             },
             (error, result) => {
               if (error) {
-                console.error('Cloudinary callback error:', error);
-                // Convert object to Error if needed
-                const errorMessage = typeof error === 'object' ? JSON.stringify(error) : String(error);
-                reject(new Error(`Cloudinary upload failed: ${errorMessage}`));
+                console.error('Cloudinary callback error:', JSON.stringify(error, null, 2));
+                reject(error);
               } else {
                 console.log('Cloudinary upload successful:', result?.secure_url);
                 resolve(result);
@@ -197,6 +210,13 @@ async function handleAdmissionSubmit(request: NextRequest) {
           
           uploadStream.end(buffer);
         });
+
+        // Add 70 second timeout
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Upload timeout after 70 seconds')), 70000);
+        });
+
+        const result = await Promise.race([uploadPromise, timeoutPromise]);
         
         photoUrl = result?.secure_url;
         
@@ -204,19 +224,23 @@ async function handleAdmissionSubmit(request: NextRequest) {
           console.error('No secure_url in Cloudinary result:', result);
           return NextResponse.json({
             success: false,
-            message: 'Failed to upload photo. Please try again.'
+            message: 'Failed to get photo URL from upload service'
           }, { status: 500 });
         }
+        
+        console.log('Photo uploaded successfully:', photoUrl);
       } catch (uploadError: any) {
         console.error('Cloudinary upload error FULL:', {
-          message: uploadError.message,
-          stack: uploadError.stack,
+          message: uploadError?.message,
+          name: uploadError?.name,
+          http_code: uploadError?.http_code,
           error: uploadError
         });
+        
+        const errorMsg = uploadError?.message || uploadError?.error?.message || 'Unknown upload error';
         return NextResponse.json({
           success: false,
-          message: `Failed to upload photo: ${uploadError.message || 'Unknown error'}`,
-          error: process.env.NODE_ENV === 'development' ? uploadError.message : undefined
+          message: `Photo upload failed: ${errorMsg}. Please try again with a smaller image (max 5MB).`
         }, { status: 500 });
       }
     } else {
