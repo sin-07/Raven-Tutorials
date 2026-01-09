@@ -20,7 +20,7 @@ interface BrevoEmailPayload {
   htmlContent: string;
 }
 
-async function sendBrevoEmail(payload: BrevoEmailPayload): Promise<boolean> {
+async function sendBrevoEmail(payload: BrevoEmailPayload, retries = 3): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
   
   if (!apiKey) {
@@ -28,41 +28,52 @@ async function sendBrevoEmail(payload: BrevoEmailPayload): Promise<boolean> {
     return false;
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000); // 30s timeout
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout per attempt
 
-  try {
-    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'api-key': apiKey,
-      },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    });
+    try {
+      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'api-key': apiKey,
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
 
-    clearTimeout(timeout);
+      clearTimeout(timeout);
 
-    if (res.ok) {
-      const data = await res.json().catch(() => ({}));
-      console.log('Brevo success:', data.messageId || 'sent');
-      return true;
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        console.log(`✓ Brevo email sent (attempt ${attempt}):`, data.messageId || 'success');
+        return true;
+      }
+
+      const error = await res.text();
+      console.error(`Brevo API error (attempt ${attempt}):`, res.status, error);
+      
+      // Don't retry on 4xx client errors (bad request, unauthorized, etc.)
+      if (res.status >= 400 && res.status < 500) {
+        return false;
+      }
+    } catch (err: any) {
+      clearTimeout(timeout);
+      const isTimeout = err.name === 'AbortError';
+      console.error(`Brevo attempt ${attempt}/${retries} failed:`, isTimeout ? 'timeout' : err.message);
+      
+      if (attempt < retries) {
+        // Wait before retry: 1s, 2s, 3s...
+        await new Promise(r => setTimeout(r, attempt * 1000));
+        continue;
+      }
     }
-
-    const error = await res.text();
-    console.error('Brevo API error:', res.status, error);
-    return false;
-  } catch (err: any) {
-    clearTimeout(timeout);
-    if (err.name === 'AbortError') {
-      console.error('Brevo request timed out after 30s');
-    } else {
-      console.error('Brevo request failed:', err.name, err.message, err.cause?.code || '');
-    }
-    return false;
   }
+
+  console.error('Brevo email failed after all retries');
+  return false;
 }
 
 function getOTPEmailHTML(studentName: string, otp: string): string {
