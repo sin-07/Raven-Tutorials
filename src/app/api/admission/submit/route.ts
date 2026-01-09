@@ -173,7 +173,7 @@ async function handleAdmissionSubmit(request: NextRequest) {
       expiresAt: { $lte: new Date() } 
     });
 
-    // Upload photo to Cloudinary
+    // Upload photo to Cloudinary using base64 (more reliable in serverless)
     let photoUrl = null;
     if (photo) {
       try {
@@ -184,39 +184,30 @@ async function handleAdmissionSubmit(request: NextRequest) {
           fileName: photo.name
         });
 
+        // Check file size (max 5MB)
+        if (photo.size > 5 * 1024 * 1024) {
+          return NextResponse.json({
+            success: false,
+            message: 'Photo size must be less than 5MB'
+          }, { status: 400 });
+        }
+
         const bytes = await photo.arrayBuffer();
         const buffer = Buffer.from(bytes);
         
-        console.log('Photo converted to buffer, size:', buffer.length);
+        // Convert to base64 data URI for more reliable upload
+        const base64 = buffer.toString('base64');
+        const mimeType = photo.type || 'image/jpeg';
+        const dataUri = `data:${mimeType};base64,${base64}`;
         
-        // Use Promise with timeout to prevent hanging
-        const uploadPromise = new Promise<any>((resolve, reject) => {
-          const uploadStream = cloudinary.uploader.upload_stream(
-            { 
-              folder: 'raven-tutorials/students',
-              resource_type: 'auto',
-              timeout: 60000
-            },
-            (error, result) => {
-              if (error) {
-                console.error('Cloudinary callback error:', JSON.stringify(error, null, 2));
-                reject(error);
-              } else {
-                console.log('Cloudinary upload successful:', result?.secure_url);
-                resolve(result);
-              }
-            }
-          );
-          
-          uploadStream.end(buffer);
+        console.log('Photo converted to base64, length:', base64.length);
+        
+        // Use base64 upload instead of stream (more reliable in serverless)
+        const result = await cloudinary.uploader.upload(dataUri, {
+          folder: 'raven-tutorials/students',
+          resource_type: 'auto',
+          timeout: 60000
         });
-
-        // Add 70 second timeout
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Upload timeout after 70 seconds')), 70000);
-        });
-
-        const result = await Promise.race([uploadPromise, timeoutPromise]);
         
         photoUrl = result?.secure_url;
         
@@ -230,17 +221,16 @@ async function handleAdmissionSubmit(request: NextRequest) {
         
         console.log('Photo uploaded successfully:', photoUrl);
       } catch (uploadError: any) {
-        console.error('Cloudinary upload error FULL:', {
+        console.error('Cloudinary upload error:', {
           message: uploadError?.message,
           name: uploadError?.name,
-          http_code: uploadError?.http_code,
-          error: uploadError
+          http_code: uploadError?.http_code
         });
         
-        const errorMsg = uploadError?.message || uploadError?.error?.message || 'Unknown upload error';
+        const errorMsg = uploadError?.message || 'Unknown upload error';
         return NextResponse.json({
           success: false,
-          message: `Photo upload failed: ${errorMsg}. Please try again with a smaller image (max 5MB).`
+          message: `Photo upload failed. Please try again with a different image.`
         }, { status: 500 });
       }
     } else {
