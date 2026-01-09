@@ -162,20 +162,40 @@ async function handleAdmissionSubmit(request: NextRequest) {
     // Upload photo to Cloudinary
     let photoUrl = null;
     if (photo) {
-      const bytes = await photo.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      
-      const result = await new Promise<any>((resolve, reject) => {
-        cloudinary.uploader.upload_stream(
-          { folder: 'raven-tutorials/students' },
-          (error, result) => {
-            if (error) reject(error);
-            else resolve(result);
-          }
-        ).end(buffer);
-      });
-      
-      photoUrl = result.secure_url;
+      try {
+        const bytes = await photo.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        
+        const result = await new Promise<any>((resolve, reject) => {
+          cloudinary.uploader.upload_stream(
+            { folder: 'raven-tutorials/students' },
+            (error, result) => {
+              if (error) {
+                // Convert object to Error if needed
+                const errorMessage = typeof error === 'object' ? JSON.stringify(error) : String(error);
+                reject(new Error(`Cloudinary upload failed: ${errorMessage}`));
+              } else {
+                resolve(result);
+              }
+            }
+          ).end(buffer);
+        });
+        
+        photoUrl = result?.secure_url;
+        
+        if (!photoUrl) {
+          return NextResponse.json({
+            success: false,
+            message: 'Failed to upload photo. Please try again.'
+          }, { status: 500 });
+        }
+      } catch (uploadError: any) {
+        console.error('Cloudinary upload error:', uploadError);
+        return NextResponse.json({
+          success: false,
+          message: 'Failed to upload photo. Please check your image and try again.'
+        }, { status: 500 });
+      }
     } else {
       return NextResponse.json({
         success: false,
@@ -192,28 +212,37 @@ async function handleAdmissionSubmit(request: NextRequest) {
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours for temp admission
 
     // Store in temporary collection
-    const tempAdmission = await TempAdmission.create({
-      studentName,
-      fatherName,
-      motherName,
-      dateOfBirth,
-      gender,
-      bloodGroup,
-      category,
-      phoneNumber,
-      alternatePhoneNumber,
-      email: email.toLowerCase().trim(),
-      address,
-      city,
-      state,
-      pincode,
-      standard,
-      previousSchool,
-      photo: photoUrl,
-      otp,
-      otpExpiry,
-      expiresAt
-    });
+    let tempAdmission;
+    try {
+      tempAdmission = await TempAdmission.create({
+        studentName,
+        fatherName,
+        motherName,
+        dateOfBirth,
+        gender,
+        bloodGroup,
+        category,
+        phoneNumber,
+        alternatePhoneNumber,
+        email: email.toLowerCase().trim(),
+        address,
+        city,
+        state,
+        pincode,
+        standard,
+        previousSchool,
+        photo: photoUrl,
+        otp,
+        otpExpiry,
+        expiresAt
+      });
+    } catch (dbSaveError: any) {
+      console.error('Failed to save temp admission:', dbSaveError);
+      return NextResponse.json({
+        success: false,
+        message: 'Failed to save admission data. Please try again.'
+      }, { status: 500 });
+    }
 
     // Send OTP email using Brevo
     try {
