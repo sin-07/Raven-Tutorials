@@ -7,295 +7,109 @@ import { v2 as cloudinary } from 'cloudinary';
 import crypto from 'crypto';
 import { sendOTPEmail } from '@/lib/email';
 
-// Force dynamic rendering
 export const dynamic = 'force-dynamic';
 
-// Generate 6-digit OTP
-const generateOTP = (): string => {
-  return crypto.randomInt(100000, 999999).toString();
-};
+const generateOTP = (): string => crypto.randomInt(100000, 999999).toString();
+
+const REQUIRED_FIELDS = [
+  'studentName', 'fatherName', 'motherName', 'dateOfBirth', 'gender',
+  'bloodGroup', 'category', 'phoneNumber', 'email', 'address',
+  'city', 'state', 'pincode', 'standard', 'previousSchool'
+];
 
 export async function POST(request: NextRequest) {
-  // Wrap everything in try-catch to prevent process crashes
-  let response;
-  
   try {
-    response = await handleAdmissionSubmit(request);
-  } catch (criticalError: any) {
-    console.error('CRITICAL ERROR - Process crash prevented:', criticalError);
-    return NextResponse.json({
-      success: false,
-      message: 'A critical server error occurred. Please try again later.',
-      error: process.env.NODE_ENV === 'development' ? criticalError.message : undefined
-    }, { status: 500 });
-  }
-  
-  return response;
-}
-
-async function handleAdmissionSubmit(request: NextRequest) {
-  try {
-    // Check if environment variables are set BEFORE using them
-    if (!process.env.MONGODB_URI) {
-      console.error('MONGODB_URI is not set');
-      return NextResponse.json({
-        success: false,
-        message: 'Server configuration error: Database not configured'
-      }, { status: 500 });
-    }
-    
-    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-      console.error('Cloudinary environment variables missing:', {
-        hasCloudName: !!process.env.CLOUDINARY_CLOUD_NAME,
-        hasApiKey: !!process.env.CLOUDINARY_API_KEY,
-        hasApiSecret: !!process.env.CLOUDINARY_API_SECRET
-      });
-      return NextResponse.json({
-        success: false,
-        message: 'Server configuration error: File upload not configured'
-      }, { status: 500 });
+    // Validate environment
+    if (!process.env.MONGODB_URI || !process.env.CLOUDINARY_CLOUD_NAME || 
+        !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+      return NextResponse.json({ success: false, message: 'Server configuration error' }, { status: 500 });
     }
 
-    // Configure Cloudinary AFTER validation
-    try {
-      cloudinary.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-        secure: true
-      });
-      console.log('Cloudinary configured successfully');
-    } catch (configError: any) {
-      console.error('Cloudinary config error:', configError);
-      return NextResponse.json({
-        success: false,
-        message: 'Failed to configure file upload service'
-      }, { status: 500 });
-    }
-
-    // Connect to database with error handling
-    try {
-      await connectDB();
-    } catch (dbError: any) {
-      console.error('Database connection error:', dbError);
-      return NextResponse.json({
-        success: false,
-        message: 'Database connection failed. Please try again.'
-      }, { status: 500 });
-    }
-    
-    let formData;
-    try {
-      formData = await request.formData();
-    } catch (formError: any) {
-      console.error('Form data parsing error:', formError);
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid form data. Please refresh and try again.'
-      }, { status: 400 });
-    }
-    
-    const studentName = formData.get('studentName') as string;
-    const fatherName = formData.get('fatherName') as string;
-    const motherName = formData.get('motherName') as string;
-    const dateOfBirth = formData.get('dateOfBirth') as string;
-    const gender = formData.get('gender') as string;
-    const bloodGroup = formData.get('bloodGroup') as string;
-    const category = formData.get('category') as string;
-    const phoneNumber = formData.get('phoneNumber') as string;
-    const alternatePhoneNumber = formData.get('alternatePhoneNumber') as string;
-    const email = formData.get('email') as string;
-    const address = formData.get('address') as string;
-    const city = formData.get('city') as string;
-    const state = formData.get('state') as string;
-    const pincode = formData.get('pincode') as string;
-    const standard = formData.get('standard') as string;
-    const previousSchool = formData.get('previousSchool') as string;
-    const photo = formData.get('photo') as File;
-
-    // Debug: Log all received fields
-    console.log('Received form data:', {
-      studentName, fatherName, motherName, dateOfBirth, gender,
-      bloodGroup, category, phoneNumber, alternatePhoneNumber,
-      email, address, city, state, pincode, standard, previousSchool,
-      hasPhoto: !!photo
+    // Configure Cloudinary
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+      secure: true
     });
 
-    // Validate required fields
-    const missingFields = [];
-    if (!studentName) missingFields.push('studentName');
-    if (!fatherName) missingFields.push('fatherName');
-    if (!motherName) missingFields.push('motherName');
-    if (!dateOfBirth) missingFields.push('dateOfBirth');
-    if (!gender) missingFields.push('gender');
-    if (!bloodGroup) missingFields.push('bloodGroup');
-    if (!category) missingFields.push('category');
-    if (!phoneNumber) missingFields.push('phoneNumber');
-    if (!email) missingFields.push('email');
-    if (!address) missingFields.push('address');
-    if (!city) missingFields.push('city');
-    if (!state) missingFields.push('state');
-    if (!pincode) missingFields.push('pincode');
-    if (!standard) missingFields.push('standard');
-    if (!previousSchool) missingFields.push('previousSchool');
+    await connectDB();
+    
+    const formData = await request.formData();
+    
+    // Extract form fields
+    const fields: Record<string, string> = {};
+    REQUIRED_FIELDS.forEach(field => {
+      fields[field] = formData.get(field) as string;
+    });
+    fields.alternatePhoneNumber = formData.get('alternatePhoneNumber') as string || '';
+    const photo = formData.get('photo') as File;
 
+    // Validate required fields
+    const missingFields = REQUIRED_FIELDS.filter(field => !fields[field]);
     if (missingFields.length > 0) {
-      console.log('Missing fields:', missingFields);
       return NextResponse.json({
         success: false,
         message: `Missing required fields: ${missingFields.join(', ')}`
       }, { status: 400 });
     }
 
-    // Check if email already exists in permanent admissions or students
-    const existingAdmission = await Admission.findOne({ 
-      email: email.toLowerCase().trim() 
-    });
-    
-    const existingStudent = await Student.findOne({ 
-      email: email.toLowerCase().trim() 
-    });
-    
+    if (!photo) {
+      return NextResponse.json({ success: false, message: 'Student photo is required' }, { status: 400 });
+    }
+
+    if (photo.size > 5 * 1024 * 1024) {
+      return NextResponse.json({ success: false, message: 'Photo size must be less than 5MB' }, { status: 400 });
+    }
+
+    const emailLower = fields.email.toLowerCase().trim();
+
+    // Check for existing registration
+    const [existingAdmission, existingStudent] = await Promise.all([
+      Admission.findOne({ email: emailLower }),
+      Student.findOne({ email: emailLower })
+    ]);
+
     if (existingAdmission || existingStudent) {
       return NextResponse.json({
         success: false,
-        message: 'This email is already registered. Please use a different email address or login if you already have an account.'
+        message: 'This email is already registered.'
       }, { status: 400 });
     }
 
-    // Delete any existing temp admission for this email
-    await TempAdmission.deleteOne({ 
-      email: email.toLowerCase().trim() 
+    // Cleanup old data
+    await Promise.all([
+      TempAdmission.deleteOne({ email: emailLower }),
+      TempAdmission.deleteMany({ expiresAt: { $lte: new Date() } })
+    ]);
+
+    // Upload photo
+    const buffer = Buffer.from(await photo.arrayBuffer());
+    const dataUri = `data:${photo.type || 'image/jpeg'};base64,${buffer.toString('base64')}`;
+    
+    const uploadResult = await cloudinary.uploader.upload(dataUri, {
+      folder: 'raven-tutorials/students',
+      resource_type: 'auto',
+      timeout: 60000
     });
 
-    // Clean up expired temp admissions
-    await TempAdmission.deleteMany({ 
-      expiresAt: { $lte: new Date() } 
-    });
-
-    // Upload photo to Cloudinary using base64 (more reliable in serverless)
-    let photoUrl = null;
-    if (photo) {
-      try {
-        console.log('Starting Cloudinary upload...', {
-          cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-          photoSize: photo.size,
-          photoType: photo.type,
-          fileName: photo.name
-        });
-
-        // Check file size (max 5MB)
-        if (photo.size > 5 * 1024 * 1024) {
-          return NextResponse.json({
-            success: false,
-            message: 'Photo size must be less than 5MB'
-          }, { status: 400 });
-        }
-
-        const bytes = await photo.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        
-        // Convert to base64 data URI for more reliable upload
-        const base64 = buffer.toString('base64');
-        const mimeType = photo.type || 'image/jpeg';
-        const dataUri = `data:${mimeType};base64,${base64}`;
-        
-        console.log('Photo converted to base64, length:', base64.length);
-        
-        // Use base64 upload instead of stream (more reliable in serverless)
-        const result = await cloudinary.uploader.upload(dataUri, {
-          folder: 'raven-tutorials/students',
-          resource_type: 'auto',
-          timeout: 60000
-        });
-        
-        photoUrl = result?.secure_url;
-        
-        if (!photoUrl) {
-          console.error('No secure_url in Cloudinary result:', result);
-          return NextResponse.json({
-            success: false,
-            message: 'Failed to get photo URL from upload service'
-          }, { status: 500 });
-        }
-        
-        console.log('Photo uploaded successfully:', photoUrl);
-      } catch (uploadError: any) {
-        console.error('Cloudinary upload error:', {
-          message: uploadError?.message,
-          name: uploadError?.name,
-          http_code: uploadError?.http_code
-        });
-        
-        const errorMsg = uploadError?.message || 'Unknown upload error';
-        return NextResponse.json({
-          success: false,
-          message: `Photo upload failed. Please try again with a different image.`
-        }, { status: 500 });
-      }
-    } else {
-      return NextResponse.json({
-        success: false,
-        message: 'Student photo is required'
-      }, { status: 400 });
+    if (!uploadResult?.secure_url) {
+      return NextResponse.json({ success: false, message: 'Photo upload failed' }, { status: 500 });
     }
 
-    // Get admission fee from environment
-    const admissionFee = parseInt(process.env.ADMISSION_FEE || '1000');
-
-    // Generate OTP
+    // Create temp admission
     const otp = generateOTP();
-    const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours for temp admission
+    const tempAdmission = await TempAdmission.create({
+      ...fields,
+      email: emailLower,
+      photo: uploadResult.secure_url,
+      otp,
+      otpExpiry: new Date(Date.now() + 10 * 60 * 1000),
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000)
+    });
 
-    // Store in temporary collection
-    let tempAdmission;
-    try {
-      tempAdmission = await TempAdmission.create({
-        studentName,
-        fatherName,
-        motherName,
-        dateOfBirth,
-        gender,
-        bloodGroup,
-        category,
-        phoneNumber,
-        alternatePhoneNumber,
-        email: email.toLowerCase().trim(),
-        address,
-        city,
-        state,
-        pincode,
-        standard,
-        previousSchool,
-        photo: photoUrl,
-        otp,
-        otpExpiry,
-        expiresAt
-      });
-    } catch (dbSaveError: any) {
-      console.error('Failed to save temp admission:', dbSaveError);
-      return NextResponse.json({
-        success: false,
-        message: 'Failed to save admission data. Please try again.'
-      }, { status: 500 });
-    }
-
-    // Send OTP email using Brevo
-    try {
-      const emailSent = await sendOTPEmail({
-        to: email.toLowerCase().trim(),
-        studentName,
-        otp
-      });
-
-      if (!emailSent) {
-        console.error(`Failed to send OTP email to ${email}`);
-      }
-    } catch (emailError: any) {
-      console.error('Email sending error (non-critical):', emailError);
-      // Continue anyway - OTP is saved in database
-    }
+    // Send OTP (non-blocking)
+    sendOTPEmail({ to: emailLower, studentName: fields.studentName, otp }).catch(console.error);
 
     return NextResponse.json({
       success: true,
@@ -304,17 +118,15 @@ async function handleAdmissionSubmit(request: NextRequest) {
         tempAdmissionId: tempAdmission._id,
         studentName: tempAdmission.studentName,
         email: tempAdmission.email,
-        amount: admissionFee
+        amount: parseInt(process.env.ADMISSION_FEE || '1000')
       }
     }, { status: 201 });
 
   } catch (error: any) {
-    console.error('Submit Admission Error:', error);
-    console.error('Error stack:', error.stack);
+    console.error('Admission Error:', error.message);
     return NextResponse.json({
       success: false,
-      message: error.message || 'Error submitting admission form',
-      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      message: error.message || 'Error submitting admission form'
     }, { status: 500 });
   }
 }
