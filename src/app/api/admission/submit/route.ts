@@ -163,37 +163,60 @@ async function handleAdmissionSubmit(request: NextRequest) {
     let photoUrl = null;
     if (photo) {
       try {
+        console.log('Starting Cloudinary upload...', {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+          hasApiKey: !!process.env.CLOUDINARY_API_KEY,
+          hasApiSecret: !!process.env.CLOUDINARY_API_SECRET,
+          photoSize: photo.size,
+          photoType: photo.type
+        });
+
         const bytes = await photo.arrayBuffer();
         const buffer = Buffer.from(bytes);
         
+        console.log('Photo converted to buffer, size:', buffer.length);
+        
         const result = await new Promise<any>((resolve, reject) => {
-          cloudinary.uploader.upload_stream(
-            { folder: 'raven-tutorials/students' },
+          const uploadStream = cloudinary.uploader.upload_stream(
+            { 
+              folder: 'raven-tutorials/students',
+              resource_type: 'auto'
+            },
             (error, result) => {
               if (error) {
+                console.error('Cloudinary callback error:', error);
                 // Convert object to Error if needed
                 const errorMessage = typeof error === 'object' ? JSON.stringify(error) : String(error);
                 reject(new Error(`Cloudinary upload failed: ${errorMessage}`));
               } else {
+                console.log('Cloudinary upload successful:', result?.secure_url);
                 resolve(result);
               }
             }
-          ).end(buffer);
+          );
+          
+          uploadStream.end(buffer);
         });
         
         photoUrl = result?.secure_url;
         
         if (!photoUrl) {
+          console.error('No secure_url in Cloudinary result:', result);
           return NextResponse.json({
             success: false,
             message: 'Failed to upload photo. Please try again.'
           }, { status: 500 });
         }
       } catch (uploadError: any) {
-        console.error('Cloudinary upload error:', uploadError);
+        console.error('Cloudinary upload error FULL:', {
+          message: uploadError.message,
+          stack: uploadError.stack,
+          error: uploadError
+        });
         return NextResponse.json({
           success: false,
-          message: 'Failed to upload photo. Please check your image and try again.'
+          message: `Failed to upload photo: ${uploadError.message || 'Unknown error'}`,
+          error: process.env.NODE_ENV === 'development' ? uploadError.message : undefined
         }, { status: 500 });
       }
     } else {
