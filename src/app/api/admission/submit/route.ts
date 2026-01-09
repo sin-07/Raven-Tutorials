@@ -7,12 +7,8 @@ import { v2 as cloudinary } from 'cloudinary';
 import crypto from 'crypto';
 import { sendOTPEmail } from '@/lib/email';
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 // Generate 6-digit OTP
 const generateOTP = (): string => {
@@ -21,6 +17,13 @@ const generateOTP = (): string => {
 
 export async function POST(request: NextRequest) {
   try {
+    // Configure Cloudinary inside the function to ensure env vars are loaded
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
     // Check if environment variables are set
     if (!process.env.MONGODB_URI) {
       console.error('MONGODB_URI is not set');
