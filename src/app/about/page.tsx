@@ -90,9 +90,16 @@ const AboutUs: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#0b0b0b]">
+      <LMSNavbar />
+      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+
+        <div className="relative z-10">
         {/* Header */}
-        <section className="bg-[#080808] py-16 pt-28">
+        <section className="py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-slide-up">About <span className="text-[#00E5A8]">RAVEN</span> Tutorials</h1>
@@ -366,6 +373,7 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
         )}
+        </div>
       </div>
       <LMSFooter />
 

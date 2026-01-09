@@ -49,19 +49,19 @@ export default function LMSFooter() {
     <footer className="bg-[#080808] border-t border-gray-800 text-white">
       {/* Newsletter Section */}
       <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="text-2xl font-bold mb-2 text-white">Stay Updated</h3>
-              <p className="text-gray-400">Subscribe to our newsletter for latest courses and updates.</p>
+            <div className="text-center md:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white">Stay Updated</h3>
+              <p className="text-gray-400 text-sm sm:text-base">Subscribe to our newsletter for latest courses and updates.</p>
             </div>
-            <div className="flex w-full md:w-auto gap-3">
+            <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-80 px-4 py-3 rounded-lg bg-[#111111] border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                className="w-full sm:flex-1 md:w-80 px-4 py-3 rounded-lg bg-[#111111] border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent text-sm sm:text-base"
               />
-              <button className="px-6 py-3 bg-[#00E5A8] text-black rounded-full font-medium hover:bg-[#00E5A8]/90 hover:scale-105 transition-all flex items-center gap-2">
+              <button className="w-full sm:w-auto px-6 py-3 bg-[#00E5A8] text-black rounded-full font-medium hover:bg-[#00E5A8]/90 hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>

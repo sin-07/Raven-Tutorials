@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
       await fs.writeFile(path.join(uploadDir, filename), buffer);
       
       documentUrl = `/uploads/${filename}`;
-      console.log(`✅ Document saved: ${file.name} → ${documentUrl}`);
+      console.log(`[SUCCESS] Document saved: ${file.name} → ${documentUrl}`);
     }
 
     const notice = new Notice({

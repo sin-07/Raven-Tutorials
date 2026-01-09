@@ -89,13 +89,19 @@ const Services: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#0b0b0b]">
+      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+
+        <div className="relative z-10">
         {/* Header */}
-        <section className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-white py-16 pt-28">
+        <section className="py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-              <p className="text-xl text-[#00E5A8]/80">
+              <h1 className="text-5xl font-bold text-white mb-4">Our Services</h1>
+              <p className="text-xl text-gray-400">
                 Comprehensive educational programs designed for your success
               </p>
             </div>
@@ -140,11 +146,11 @@ const Services: React.FC = () => {
               <div className="hidden md:block bg-[#111111] rounded-xl shadow-lg overflow-hidden border border-gray-800">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-white">
-                      <th className="px-6 py-4 text-left font-semibold">Class</th>
-                      <th className="px-6 py-4 text-left font-semibold">Annual Batch Subject</th>
-                      <th className="px-6 py-4 text-left font-semibold">Crash-course Batch Subject</th>
-                      <th className="px-6 py-4 text-left font-semibold">Options</th>
+                    <tr className="bg-[#111111] border-b border-gray-800">
+                      <th className="px-6 py-4 text-left font-semibold text-[#00E5A8]">Class</th>
+                      <th className="px-6 py-4 text-left font-semibold text-[#00E5A8]">Annual Batch Subject</th>
+                      <th className="px-6 py-4 text-left font-semibold text-[#00E5A8]">Crash-course Batch Subject</th>
+                      <th className="px-6 py-4 text-left font-semibold text-[#00E5A8]">Options</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -201,22 +207,23 @@ const Services: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] py-16">
+        <section className="bg-[#080808] py-16 border-t border-gray-800">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto text-lg">
               Choose the right program for your academic goals and start your journey to excellence
             </p>
             <button 
               onClick={() => router.push('/admission')}
-              className="bg-black text-[#00E5A8] px-8 py-4 rounded-full hover:bg-black/90 hover:scale-105 transition font-semibold"
+              className="bg-[#00E5A8] text-black px-8 py-4 rounded-full hover:scale-105 transition font-semibold"
             >
               Enroll Now
             </button>
           </div>
         </section>
+        </div>
       </div>
       <Footer />
     </>

@@ -266,12 +266,12 @@ export const features = [
 ];
 
 export const categories = [
-  { name: 'Science', count: 45, icon: '🔬' },
-  { name: 'Mathematics', count: 32, icon: '📐' },
-  { name: 'Technology', count: 28, icon: '💻' },
-  { name: 'Language', count: 15, icon: '📚' },
-  { name: 'Commerce', count: 20, icon: '📊' },
-  { name: 'Arts', count: 12, icon: '🎨' },
+  { name: 'Science', count: 45, icon: 'Microscope' },
+  { name: 'Mathematics', count: 32, icon: 'Calculator' },
+  { name: 'Technology', count: 28, icon: 'Monitor' },
+  { name: 'Language', count: 15, icon: 'BookMarked' },
+  { name: 'Commerce', count: 20, icon: 'TrendingUp' },
+  { name: 'Arts', count: 12, icon: 'Palette' },
 ];
 
 export const dashboardStats: DashboardStats = {

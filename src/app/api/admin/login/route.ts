@@ -18,15 +18,15 @@ export async function POST(req: NextRequest) {
     const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
-    console.log('🔐 ADMIN LOGIN ATTEMPT');
-    console.log('📧 Email:', email);
-    console.log('🌐 IP Address:', clientIP);
-    console.log('💻 User Agent:', userAgent);
-    console.log('⏰ Timestamp:', new Date().toISOString());
+    console.log('[INFO] ADMIN LOGIN ATTEMPT');
+    console.log('[INFO] Email:', email);
+    console.log('[INFO] IP Address:', clientIP);
+    console.log('[INFO] User Agent:', userAgent);
+    console.log('[INFO] Timestamp:', new Date().toISOString());
 
     // Validation
     if (!email || !password) {
-      console.log('❌ Missing credentials');
+      console.log('[ERROR] Missing credentials');
       return NextResponse.json({
         success: false,
         message: 'Please provide email and password'
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const admin = await Admin.findOne({ email });
 
     if (!admin) {
-      console.log(`🚨 SECURITY ALERT: Login attempt with non-existent email: ${email}`);
+      console.log(`[SECURITY] ALERT: Login attempt with non-existent email: ${email}`);
       console.log(`   IP: ${clientIP} | Time: ${new Date().toISOString()}`);
       return NextResponse.json({
         success: false,
@@ -45,13 +45,13 @@ export async function POST(req: NextRequest) {
       }, { status: 401 });
     }
 
-    console.log(`✓ Admin found: ${email}`);
-    console.log(`✓ Admin active: ${admin.isActive}`);
-    console.log(`✓ Admin role: ${admin.role}`);
+    console.log(`[INFO] Admin found: ${email}`);
+    console.log(`[INFO] Admin active: ${admin.isActive}`);
+    console.log(`[INFO] Admin role: ${admin.role}`);
 
     // Check if admin is active
     if (!admin.isActive) {
-      console.log(`🚨 SECURITY ALERT: Deactivated account access attempt: ${email}`);
+      console.log(`[SECURITY] ALERT: Deactivated account access attempt: ${email}`);
       console.log(`   IP: ${clientIP} | Time: ${new Date().toISOString()}`);
       return NextResponse.json({
         success: false,
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
     const isMatch = await admin.comparePassword(password);
 
     if (!isMatch) {
-      console.log(`🚨 SECURITY ALERT: Failed password attempt for: ${email}`);
+      console.log(`[SECURITY] ALERT: Failed password attempt for: ${email}`);
       console.log(`   IP: ${clientIP} | Time: ${new Date().toISOString()}`);
       console.log(`   User Agent: ${userAgent}`);
       return NextResponse.json({
@@ -79,10 +79,10 @@ export async function POST(req: NextRequest) {
     // Generate token
     const token = generateToken(admin._id.toString());
 
-    console.log(`✅ SUCCESSFUL LOGIN: ${email}`);
+    console.log(`[SUCCESS] SUCCESSFUL LOGIN: ${email}`);
     console.log(`   Role: ${admin.role} | IP: ${clientIP}`);
     console.log(`   Time: ${new Date().toISOString()}`);
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('========================================');
 
     // Create response
     const response = NextResponse.json({
@@ -107,12 +107,12 @@ export async function POST(req: NextRequest) {
       path: '/'
     });
 
-    console.log('🍪 Cookie set successfully');
+    console.log('[INFO] Cookie set successfully');
 
     return response;
 
   } catch (error: any) {
-    console.error('💥 SYSTEM ERROR during admin login:', error);
+    console.error('[FATAL] SYSTEM ERROR during admin login:', error);
     return NextResponse.json({
       success: false,
       message: 'SYSTEM FAILURE - Server error during authentication'

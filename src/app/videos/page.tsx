@@ -109,7 +109,13 @@ export default function VideosPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28 px-4 sm:px-6 lg:px-8">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
+      <div className="relative z-10">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -138,8 +144,8 @@ export default function VideosPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="header-section mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8]">
-            📚 Learning Videos
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] flex items-center gap-2">
+            <Video className="w-8 h-8" /> Learning Videos
           </h1>
           <p className="text-gray-400 mt-2">
             Watch educational videos for {studentStandard}
@@ -333,6 +339,7 @@ export default function VideosPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

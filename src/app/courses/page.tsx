@@ -55,9 +55,14 @@ export default function CoursesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b]">
+    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-gradient-to-br from-[#080808] via-[#111111] to-[#080808] relative overflow-hidden">
+      <section className="relative z-10 pt-24 pb-12 bg-gradient-to-br from-[#080808] via-[#111111] to-[#080808] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

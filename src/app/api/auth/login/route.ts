@@ -36,13 +36,13 @@ export async function POST(req: NextRequest) {
     
     const { email, password } = await req.json();
 
-    console.log('🔐 STUDENT LOGIN ATTEMPT');
-    console.log('📧 Email:', email);
-    console.log('⏰ Timestamp:', new Date().toISOString());
+    console.log('[INFO] STUDENT LOGIN ATTEMPT');
+    console.log('[INFO] Email:', email);
+    console.log('[INFO] Timestamp:', new Date().toISOString());
 
     // Validate input
     if (!email || !password) {
-      console.log('❌ Missing credentials');
+      console.log('[ERROR] Missing credentials');
       return NextResponse.json({
         success: false,
         message: 'Email and password are required'
@@ -55,20 +55,20 @@ export async function POST(req: NextRequest) {
     });
 
     if (!student) {
-      console.log('❌ Student not found for email:', email);
+      console.log('[ERROR] Student not found for email:', email);
       return NextResponse.json({
         success: false,
         message: 'Invalid email or password'
       }, { status: 401 });
     }
 
-    console.log('✓ Student found:', student.studentName);
-    console.log('✓ Payment status:', student.paymentStatus);
-    console.log('✓ Is pending payment:', student.isPendingPayment);
+    console.log('[INFO] Student found:', student.studentName);
+    console.log('[INFO] Payment status:', student.paymentStatus);
+    console.log('[INFO] Is pending payment:', student.isPendingPayment);
 
     // Check if payment is completed
     if (student.isPendingPayment || student.paymentStatus !== 'completed') {
-      console.log('❌ Payment not completed');
+      console.log('[ERROR] Payment not completed');
       return NextResponse.json({
         success: false,
         message: 'Payment not completed. Please complete your admission payment first.'
@@ -78,18 +78,18 @@ export async function POST(req: NextRequest) {
     // Verify password (DOB in DDMMYYYY format)
     const dobFromPassword = parseDOBPassword(password);
     
-    console.log('🔍 DOB from password:', dobFromPassword);
-    console.log('🔍 DOB from database:', student.dateOfBirth);
+    console.log('[DEBUG] DOB from password:', dobFromPassword);
+    console.log('[DEBUG] DOB from database:', student.dateOfBirth);
     
     if (!dobFromPassword || !compareDates(dobFromPassword, student.dateOfBirth)) {
-      console.log('❌ Password mismatch');
+      console.log('[ERROR] Password mismatch');
       return NextResponse.json({
         success: false,
         message: 'Invalid email or password'
       }, { status: 401 });
     }
 
-    console.log('✅ Student login successful:', student.studentName);
+    console.log('[SUCCESS] Student login successful:', student.studentName);
 
     // Generate JWT token (1 hour expiry for security)
     const token = jwt.sign(
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
     return response;
 
   } catch (error: any) {
-    console.error('💥 Student login error:', error.message);
+    console.error('[FATAL] Student login error:', error.message);
     
     // Handle specific error types
     if (error.name === 'MongooseError' || error.name === 'MongoError') {

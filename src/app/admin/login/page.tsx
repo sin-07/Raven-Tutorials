@@ -76,15 +76,14 @@ const AdminLogin: React.FC = () => {
         // Store session start time for automatic timeout tracking
         sessionStorage.setItem('sessionStartTime', Date.now().toString());
         
-        toast.success('⚡ ACCESS GRANTED - Session: 1 Hour', {
+        toast.success('[SUCCESS] ACCESS GRANTED - Session: 1 Hour', {
           style: {
             background: '#000',
             color: '#00ff00',
             border: '2px solid #00ff00',
             fontFamily: 'monospace',
             fontWeight: 'bold'
-          },
-          icon: '💀'
+          }
         });
         
         // Reset attempts on success
@@ -99,7 +98,7 @@ const AdminLogin: React.FC = () => {
         
         if (newAttempts >= 5) {
           setSystemLockout(true);
-          toast.error('🚨 CRITICAL: SYSTEM LOCKED - SECURITY BREACH DETECTED', {
+          toast.error('[ALERT] CRITICAL: SYSTEM LOCKED - SECURITY BREACH DETECTED', {
             style: {
               background: '#000',
               color: '#ff0000',
@@ -119,13 +118,13 @@ const AdminLogin: React.FC = () => {
           }, 30000);
         } else {
           const warningMessages = [
-            '⚠️ AUTHENTICATION FAILED - ATTEMPT 1/5',
-            '🔴 ACCESS DENIED - ATTEMPT 2/5 - WARNING',
-            '💀 INTRUSION DETECTED - ATTEMPT 3/5 - DANGER',
-            '🚨 FATAL ERROR - ATTEMPT 4/5 - CRITICAL'
+            '[WARNING] AUTHENTICATION FAILED - ATTEMPT 1/5',
+            '[ERROR] ACCESS DENIED - ATTEMPT 2/5 - WARNING',
+            '[DANGER] INTRUSION DETECTED - ATTEMPT 3/5 - DANGER',
+            '[CRITICAL] FATAL ERROR - ATTEMPT 4/5 - CRITICAL'
           ];
           
-          toast.error(warningMessages[newAttempts - 1] || '⚠️ ACCESS DENIED', {
+          toast.error(warningMessages[newAttempts - 1] || '[WARNING] ACCESS DENIED', {
             style: {
               background: '#000',
               color: '#ff0000',
@@ -139,7 +138,7 @@ const AdminLogin: React.FC = () => {
       }
     } catch (error: any) {
       console.error('Login error:', error);
-      toast.error('💥 SYSTEM FAILURE - FATAL ERROR', {
+      toast.error('[FATAL] SYSTEM FAILURE - FATAL ERROR', {
         style: {
           background: '#000',
           color: '#ff0000',
@@ -156,6 +155,11 @@ const AdminLogin: React.FC = () => {
   return (
     <>
       <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex items-center justify-center pt-16">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+
         {/* Animated gradient mesh */}
         <div className="absolute inset-0 bg-[#00E5A8]/10"></div>
         

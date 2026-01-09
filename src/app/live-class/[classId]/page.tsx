@@ -318,7 +318,12 @@ export default function LiveClassPage() {
   }
 
   return (
-    <div className="relative w-screen h-screen bg-[#0b0b0b]">
+    <div className="relative w-screen h-screen bg-[#0b0b0b] overflow-hidden">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
       {/* Header Bar */}
       <div className="absolute top-0 left-0 right-0 bg-[#080808] bg-opacity-95 text-white p-4 z-10 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">

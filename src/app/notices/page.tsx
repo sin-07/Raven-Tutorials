@@ -65,7 +65,12 @@ const Notice: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#0b0b0b] py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
+      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+        
         <style>{`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -94,6 +99,7 @@ const Notice: React.FC = () => {
           .blur-background { filter: blur(4px); transition: filter 0.3s ease-out; }
         `}</style>
 
+        <div className="relative z-10">
         <div className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${modalOpen ? 'blur-background' : ''}`}>
           {/* Header */}
           <div className="notice-header mb-8 sm:mb-10 md:mb-12">
@@ -274,6 +280,7 @@ const Notice: React.FC = () => {
             </div>
           </div>
         )}
+        </div>
       </div>
       <Footer />
     </>

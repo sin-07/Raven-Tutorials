@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import {
   LogOut, BookOpen, BarChart3, Calendar, FileText,
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
-  Download, GraduationCap
+  Download
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -241,29 +241,18 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#0b0b0b] pt-16">
-        {/* Header */}
-        <header className="bg-[#080808]/80 backdrop-blur-md shadow-sm fixed top-16 left-0 right-0 z-40 border-b border-[#00E5A8]/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-[#00E5A8] to-[#00B386] rounded-xl">
-                <GraduationCap className="w-6 h-6 text-black" />
-              </div>
-              <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-            </div>
+      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden pt-16">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
 
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-300">{student.studentName}</span>
-            </div>
-          </div>
-        </header>
-
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Welcome Section */}
           <div className="relative overflow-hidden bg-gradient-to-r from-[#00E5A8] via-[#00C090] to-[#00B386] rounded-2xl p-8 text-black mb-8 shadow-xl border border-[#00E5A8]/20">
             <div className="absolute inset-0 bg-grid-white/5"></div>
             <div className="relative">
-              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm">Welcome, {student.studentName}! 👋</h2>
+              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm">Welcome, {student.studentName}!</h2>
               <p className="text-black/80 font-medium">Class {student.standard} | ID: {student.registrationId}</p>
             </div>
             <div className="absolute top-0 right-0 -mt-4 -mr-4 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>

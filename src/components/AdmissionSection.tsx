@@ -306,7 +306,7 @@ export default function AdmissionSection() {
                 email: verifyData.data.loginEmail
               });
               setStep(4);
-              toast.success('🎉 Payment successful! Registration complete.');
+              toast.success('Payment successful! Registration complete.');
             } else {
               toast.error('Payment verification failed');
             }
@@ -880,7 +880,7 @@ export default function AdmissionSection() {
                     </motion.div>
                     
                     <div>
-                      <h3 className="text-2xl font-bold text-[#00E5A8] mb-2">🎉 Registration Successful!</h3>
+                      <h3 className="text-2xl font-bold text-[#00E5A8] mb-2">Registration Successful!</h3>
                       <p className="text-gray-400">
                         Welcome to Raven Tutorials! Your account has been created.
                       </p>

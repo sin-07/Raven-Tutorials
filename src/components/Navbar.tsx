@@ -3,7 +3,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, X, MapPin, LogIn, User, LogOut } from 'lucide-react';
+import { MapPin, LogIn, User, LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
 
@@ -70,14 +70,17 @@ const Navbar: React.FC = React.memo(() => {
   return (
     <>
       <style>{`
-        .navbar-sticky {
-          position: sticky;
+        .navbar-fixed {
+          position: fixed;
           top: 0;
-          z-index: 50;
-          backdrop-filter: blur(12px);
-          background-color: rgba(10, 10, 10, 0.95);
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-          border-bottom: 1px solid rgba(0, 229, 168, 0.2);
+          left: 0;
+          right: 0;
+          z-index: 100;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          background-color: rgba(10, 10, 10, 0.85);
+          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+          border-bottom: 1px solid rgba(0, 229, 168, 0.15);
         }
         @keyframes slideDownMenu {
           from {
@@ -122,8 +125,50 @@ const Navbar: React.FC = React.memo(() => {
         .mobile-menu-item {
           animation: menuItemSlideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        /* Custom Hamburger Menu */
+        .hamburger {
+          width: 26px;
+          height: 22px;
+          position: relative;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .hamburger-line {
+          width: 100%;
+          height: 2.5px;
+          background-color: #d1d5db;
+          border-radius: 3px;
+          transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          transform-origin: center;
+          box-shadow: 0 0 0 rgba(0, 229, 168, 0);
+        }
+        .hamburger:hover .hamburger-line {
+          background-color: #00E5A8;
+          box-shadow: 0 0 8px rgba(0, 229, 168, 0.3);
+        }
+        /* Top line - Rotate with bounce and glow */
+        .hamburger.open .hamburger-line:nth-child(1) {
+          transform: translateY(9.75px) rotate(225deg) scale(1.15);
+          background: linear-gradient(90deg, #00E5A8, #00B386);
+          box-shadow: 0 0 12px rgba(0, 229, 168, 0.6), 0 0 20px rgba(0, 229, 168, 0.3);
+        }
+        /* Middle line - Spin out with scale */
+        .hamburger.open .hamburger-line:nth-child(2) {
+          opacity: 0;
+          transform: rotate(360deg) scale(0.1);
+          transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        /* Bottom line - Counter rotate with bounce and glow */
+        .hamburger.open .hamburger-line:nth-child(3) {
+          transform: translateY(-9.75px) rotate(-225deg) scale(1.15);
+          background: linear-gradient(90deg, #00B386, #00E5A8);
+          box-shadow: 0 0 12px rgba(0, 229, 168, 0.6), 0 0 20px rgba(0, 229, 168, 0.3);
+        }
       `}</style>
-      <nav className="navbar-sticky w-full transition-all duration-300">
+      <nav className="navbar-fixed w-full transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[#00E5A8]">
@@ -199,13 +244,17 @@ const Navbar: React.FC = React.memo(() => {
             )}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - Custom Hamburger */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition text-gray-300"
+            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </div>
           </button>
         </div>
 

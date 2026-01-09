@@ -6,7 +6,7 @@ import Video from '@/models/Video';
 export async function seedDatabase() {
   try {
     await connectDatabase();
-    console.log('🌱 Starting database seeding...');
+    console.log('[SEED] Starting database seeding...');
 
     // Seed Admin Users
     const adminExists = await Admin.findOne({ email: 'admin@raventutorials.com' });
@@ -18,7 +18,7 @@ export async function seedDatabase() {
         role: 'super-admin',
         isActive: true,
       });
-      console.log('✅ Admin user created');
+      console.log('[SUCCESS] Admin user created');
     }
 
     // Seed additional admin provided by user
@@ -31,7 +31,7 @@ export async function seedDatabase() {
         role: 'admin',
         isActive: true,
       });
-      console.log('✅ User-provided admin created: vs.aniket07@gmail.com');
+      console.log('[SUCCESS] User-provided admin created: vs.aniket07@gmail.com');
     }
 
     // Seed Sample Notices
@@ -63,7 +63,7 @@ export async function seedDatabase() {
           publishedAt: new Date(),
         },
       ]);
-      console.log('✅ Sample notices created');
+      console.log('[SUCCESS] Sample notices created');
     }
 
     // Seed Sample Videos
@@ -93,13 +93,13 @@ export async function seedDatabase() {
           isActive: true,
         },
       ]);
-      console.log('✅ Sample videos created');
+      console.log('[SUCCESS] Sample videos created');
     }
 
-    console.log('🎉 Database seeding completed successfully!');
+    console.log('[DONE] Database seeding completed successfully!');
     return { success: true, message: 'Database seeded successfully' };
   } catch (error) {
-    console.error('❌ Error seeding database:', error);
+    console.error('[ERROR] Error seeding database:', error);
     return { success: false, message: 'Failed to seed database', error };
   }
 }
@@ -107,16 +107,16 @@ export async function seedDatabase() {
 export async function clearDatabase() {
   try {
     await connectDatabase();
-    console.log('🗑️ Clearing database...');
+    console.log('[CLEAR] Clearing database...');
 
     await Admin.deleteMany({});
     await Notice.deleteMany({});
     await Video.deleteMany({});
 
-    console.log('✅ Database cleared successfully');
+    console.log('[SUCCESS] Database cleared successfully');
     return { success: true, message: 'Database cleared successfully' };
   } catch (error) {
-    console.error('❌ Error clearing database:', error);
+    console.error('[ERROR] Error clearing database:', error);
     return { success: false, message: 'Failed to clear database', error };
   }
 }
@@ -133,7 +133,7 @@ export async function getDatabaseStats() {
 
     return { success: true, stats };
   } catch (error) {
-    console.error('❌ Error getting database stats:', error);
+    console.error('[ERROR] Error getting database stats:', error);
     return { success: false, message: 'Failed to get stats', error };
   }
 }

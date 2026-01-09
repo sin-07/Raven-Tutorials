@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -19,7 +19,13 @@ import {
   CheckCircle,
   ChevronRight,
   Sparkles,
-  Youtube
+  Youtube,
+  Microscope,
+  Calculator,
+  Monitor,
+  BookMarked,
+  TrendingUp,
+  Palette
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import AdmissionSection from '@/components/AdmissionSection';
@@ -34,9 +40,23 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
   Award,
 };
 
+const categoryIconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
+  Microscope,
+  Calculator,
+  Monitor,
+  BookMarked,
+  TrendingUp,
+  Palette,
+};
+
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
       {/* Hero Section - Sheryians Style */}
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
         {/* Hero Content */}
@@ -73,52 +93,13 @@ export default function Home() {
           >
             <Link
               href="/courses"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#00E5A8] text-black font-semibold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg shadow-[#00E5A8]/25 text-lg"
+              className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 py-3 sm:py-4 bg-[#00E5A8] text-black font-semibold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg shadow-[#00E5A8]/25 text-sm sm:text-lg"
             >
               Check Courses – Make an Impact
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
           </motion.div>
         </div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="relative z-10 mt-20 sm:mt-28 w-full max-w-4xl mx-auto"
-        >
-          <div className="grid grid-cols-3 gap-4 sm:gap-8">
-            <div className="text-center">
-              <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">250k+</p>
-              <p className="text-sm sm:text-base text-gray-500 mt-2">Students taught</p>
-            </div>
-            <div className="text-center border-x border-gray-800">
-              <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">20+</p>
-              <p className="text-sm sm:text-base text-gray-500 mt-2">Instructors</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">600k+</p>
-              <p className="text-sm sm:text-base text-gray-500 mt-2">YouTube Subscribers</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-[#00E5A8] rounded-full mt-2"
-            />
-          </div>
-        </motion.div>
       </section>
 
       {/* Features Section */}
@@ -194,7 +175,40 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Mobile Swipeable */}
+          <div className="md:hidden relative">
+            <div className="flex gap-4 overflow-x-scroll pb-4 -mx-4 px-4" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
+              {dummyCourses.slice(0, 6).map((course) => (
+                <div key={course.id} className="min-w-[280px] flex-shrink-0" style={{ scrollSnapAlign: 'start' }}>
+                  <Link href={`/courses/${course.id}`}>
+                    <div className="bg-[#111111] rounded-2xl overflow-hidden border border-gray-800">
+                      <img
+                        src={course.thumbnail}
+                        alt={course.title}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-4">
+                        <span className="text-xs text-[#00E5A8]">{course.category}</span>
+                        <h3 className="text-white font-semibold mt-1 line-clamp-2">{course.title}</h3>
+                        <div className="flex items-center gap-2 mt-3">
+                          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                          <span className="text-sm text-gray-400">{course.rating}</span>
+                          <span className="text-sm text-gray-500">• {course.totalStudents} students</span>
+                        </div>
+                        <div className="mt-3 flex items-center gap-2">
+                          <span className="text-lg font-bold text-[#00E5A8]">₹{course.price}</span>
+                          <span className="text-sm text-gray-500 line-through">₹{course.originalPrice}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-gray-500 text-xs mt-2">← Swipe to see more →</p>
+          </div>
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {dummyCourses.slice(0, 6).map((course, index) => (
               <CourseCard key={course.id} course={course} index={index} />
             ))}
@@ -220,28 +234,33 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <Link
-                  href={`/courses?category=${category.name.toLowerCase()}`}
-                  className="block p-6 bg-[#111111] rounded-2xl hover:bg-[#00E5A8] group transition-all duration-300 text-center border border-gray-800 hover:border-[#00E5A8]"
+            {categories.map((category, index) => {
+              const CategoryIcon = categoryIconMap[category.icon] || Microscope;
+              return (
+                <motion.div
+                  key={category.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                 >
-                  <span className="text-4xl mb-3 block">{category.icon}</span>
-                  <h3 className="font-semibold text-white group-hover:text-black transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="text-sm text-gray-400 group-hover:text-black/70 transition-colors mt-1">
-                    {category.count} Courses
-                  </p>
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    href={`/courses?category=${category.name.toLowerCase()}`}
+                    className="block p-6 bg-[#111111] rounded-2xl hover:bg-[#00E5A8] group transition-all duration-300 text-center border border-gray-800 hover:border-[#00E5A8]"
+                  >
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-[#00E5A8]/10 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                      <CategoryIcon className="w-6 h-6 text-[#00E5A8] group-hover:text-black transition-colors" />
+                    </div>
+                    <h3 className="font-semibold text-white group-hover:text-black transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="text-sm text-gray-400 group-hover:text-black/70 transition-colors mt-1">
+                      {category.count} Courses
+                    </p>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -269,7 +288,43 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile Swipeable */}
+          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="w-[280px] flex-shrink-0 bg-[#111111]/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-[#00E5A8]/30 transition-colors"
+                >
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    &ldquo;{testimonial.content}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-medium text-white">{testimonial.name}</p>
+                      <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}

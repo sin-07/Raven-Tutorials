@@ -39,13 +39,13 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header -->
           <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 30px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">🎓 RAVEN Tutorials</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">RAVEN Tutorials</h1>
             <p style="color: #bfdbfe; margin: 10px 0 0; font-size: 14px;">Excellence in Education</p>
           </div>
           
           <!-- Content -->
           <div style="padding: 40px 30px;">
-            <h2 style="color: #1e293b; margin: 0 0 20px; font-size: 24px;">Hello ${studentName}! 👋</h2>
+            <h2 style="color: #1e293b; margin: 0 0 20px; font-size: 24px;">Hello ${studentName}!</h2>
             
             <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0 0 25px;">
               Thank you for applying to Raven Tutorials! Please use the verification code below to confirm your email address and proceed with your admission.
@@ -58,22 +58,22 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
                 ${otp}
               </div>
               <p style="color: #64748b; font-size: 12px; margin: 15px 0 0;">
-                ⏱️ This code expires in 10 minutes
+                This code expires in 10 minutes
               </p>
             </div>
             
             <p style="color: #64748b; font-size: 14px; line-height: 1.6; margin: 25px 0 0;">
-              <strong>🔒 Security Notice:</strong> If you didn't request this code, please ignore this email. Do not share this code with anyone.
+              <strong>Security Notice:</strong> If you didn't request this code, please ignore this email. Do not share this code with anyone.
             </p>
           </div>
           
           <!-- Footer -->
           <div style="background-color: #f8fafc; padding: 25px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
             <p style="color: #64748b; font-size: 13px; margin: 0 0 10px;">
-              📍 Bajrangpuri, Patna - 800007
+              Bajrangpuri, Patna - 800007
             </p>
             <p style="color: #64748b; font-size: 13px; margin: 0 0 10px;">
-              📞 +91 8618281816 | ✉️ raventutorials@gmail.com
+              +91 8618281816 | raventutorials@gmail.com
             </p>
             <p style="color: #94a3b8; font-size: 12px; margin: 15px 0 0;">
               © ${new Date().getFullYear()} Raven Tutorials. All rights reserved.
@@ -97,7 +97,7 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
   try {
     const sendSmtpEmail = new brevo.SendSmtpEmail();
     
-    sendSmtpEmail.subject = 'Welcome to Raven Tutorials! 🎉 Your Login Credentials';
+    sendSmtpEmail.subject = 'Welcome to Raven Tutorials! Your Login Credentials';
     sendSmtpEmail.sender = {
       name: process.env.BREVO_SENDER_NAME || 'Raven Tutorials',
       email: process.env.BREVO_SENDER_EMAIL || 'raventutorials@gmail.com'
@@ -115,15 +115,12 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header -->
           <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 30px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">🎓 RAVEN Tutorials</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">RAVEN Tutorials</h1>
             <p style="color: #bfdbfe; margin: 10px 0 0; font-size: 14px;">Welcome to Excellence</p>
           </div>
           
           <!-- Content -->
           <div style="padding: 40px 30px;">
-            <div style="text-align: center; margin-bottom: 30px;">
-              <span style="font-size: 60px;">🎉</span>
-            </div>
             
             <h2 style="color: #1e293b; margin: 0 0 20px; font-size: 24px; text-align: center;">
               Congratulations, ${studentName}!
@@ -135,7 +132,7 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
             
             <!-- Credentials Box -->
             <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: 12px; padding: 25px; margin: 30px 0;">
-              <h3 style="color: #166534; font-size: 16px; margin: 0 0 20px; text-align: center;">🔐 YOUR LOGIN CREDENTIALS</h3>
+              <h3 style="color: #166534; font-size: 16px; margin: 0 0 20px; text-align: center;">YOUR LOGIN CREDENTIALS</h3>
               
               <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
                 <p style="color: #64748b; font-size: 12px; margin: 0 0 5px;">Registration ID</p>
@@ -161,7 +158,7 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
             </div>
             
             <p style="color: #64748b; font-size: 14px; line-height: 1.6; margin: 25px 0 0; text-align: center;">
-              <strong>🔒 Keep your credentials safe!</strong><br>
+              <strong>Keep your credentials safe!</strong><br>
               Do not share your login details with anyone.
             </p>
           </div>
@@ -169,10 +166,10 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
           <!-- Footer -->
           <div style="background-color: #f8fafc; padding: 25px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
             <p style="color: #64748b; font-size: 13px; margin: 0 0 10px;">
-              📍 Bajrangpuri, Patna - 800007
+              Bajrangpuri, Patna - 800007
             </p>
             <p style="color: #64748b; font-size: 13px; margin: 0 0 10px;">
-              📞 +91 8618281816 | ✉️ raventutorials@gmail.com
+              +91 8618281816 | raventutorials@gmail.com
             </p>
             <p style="color: #94a3b8; font-size: 12px; margin: 15px 0 0;">
               © ${new Date().getFullYear()} Raven Tutorials. All rights reserved.

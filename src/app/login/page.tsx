@@ -3,17 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { GraduationCap, Mail, Lock, Eye, EyeOff, Shield } from 'lucide-react';
+import { GraduationCap, Mail, Lock, Eye, EyeOff, Shield, User } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const StudentLogin: React.FC = () => {
+const LoginPage: React.FC = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [loginType, setLoginType] = useState<'student' | 'admin'>('student');
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    username: ''
   });
 
   useEffect(() => {
@@ -32,36 +34,60 @@ const StudentLogin: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(formData)
-      });
-
-      const data = await response.json();
-      console.log('Login response:', data);
-
-      if (data.success) {
-        // No localStorage/sessionStorage - using httpOnly cookies only
-        console.log('Login successful, redirecting to dashboard...');
-        
-        toast.success('🎓 Welcome back!', {
-          style: {
-            background: '#10b981',
-            color: '#ffffff',
+      if (loginType === 'student') {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          duration: 2000
+          credentials: 'include',
+          body: JSON.stringify({ email: formData.email, password: formData.password })
         });
-        
-        // Hard redirect to dashboard (cookies will be sent automatically)
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 500);
+
+        const data = await response.json();
+
+        if (data.success) {
+          toast.success('Welcome back!', {
+            style: {
+              background: '#10b981',
+              color: '#ffffff',
+            },
+            duration: 2000
+          });
+          
+          setTimeout(() => {
+            window.location.href = '/dashboard';
+          }, 500);
+        } else {
+          toast.error(data.message || 'Invalid credentials. Please try again.');
+        }
       } else {
-        toast.error(data.message || 'Invalid credentials. Please try again.');
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ username: formData.username, password: formData.password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          toast.success('Welcome Admin!', {
+            style: {
+              background: '#10b981',
+              color: '#ffffff',
+            },
+            duration: 2000
+          });
+          
+          setTimeout(() => {
+            window.location.href = '/admin/dashboard';
+          }, 500);
+        } else {
+          toast.error(data.message || 'Invalid credentials. Please try again.');
+        }
       }
     } catch (error: any) {
       console.error('Login error:', error);
@@ -74,69 +100,117 @@ const StudentLogin: React.FC = () => {
   return (
     <>
       <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden pt-16">
-        {/* Animated background shapes */}
+        {/* Green Radial Glow Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#00E5A8] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#00E5A8] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00E5A8] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
         </div>
 
-        {/* Floating geometric shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-float-slow"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${15 + Math.random() * 10}s`
-              }}
-            >
+        {/* Floating geometric shapes - only render on client to avoid hydration mismatch */}
+        {mounted && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(20)].map((_, i) => (
               <div
-                className="w-2 h-2 bg-[#00E5A8] rounded-full opacity-20"
-              ></div>
-            </div>
-          ))}
-        </div>
+                key={i}
+                className="absolute animate-float-slow"
+                style={{
+                  left: `${(i * 5) % 100}%`,
+                  top: `${(i * 7) % 100}%`,
+                  animationDelay: `${(i * 0.25) % 5}s`,
+                  animationDuration: `${15 + (i % 10)}s`
+                }}
+              >
+                <div
+                  className="w-2 h-2 bg-[#00E5A8] rounded-full opacity-20"
+                ></div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
           <div className={`w-full max-w-md mx-auto transition-all duration-1000 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="bg-[#111111] rounded-2xl shadow-2xl p-6 sm:p-8 backdrop-blur-sm border border-[#00E5A8]/20">
+            <div>
               {/* Form Header */}
               <div className="text-center mb-6 sm:mb-8">
                 <div className="flex items-center justify-center mb-4">
                   <img src="/logo.png" alt="Raven Logo" className="w-16 h-16 object-contain brightness-0 invert" />
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] mb-2">
+                <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] mb-4">
                   RAVEN Tutorials
                 </h1>
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Student Login</h2>
-                <p className="text-gray-400 text-sm sm:text-base">Enter your credentials to continue</p>
+
+                {/* Toggle Buttons */}
+                <div className="flex bg-[#0b0b0b] rounded-full p-1 border border-gray-800">
+                  <button
+                    type="button"
+                    onClick={() => setLoginType('student')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-full text-sm font-medium transition-all duration-300 ${
+                      loginType === 'student'
+                        ? 'bg-[#00E5A8] text-black'
+                        : 'text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    Student
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLoginType('admin')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-full text-sm font-medium transition-all duration-300 ${
+                      loginType === 'admin'
+                        ? 'bg-[#00E5A8] text-black'
+                        : 'text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    <Shield className="w-4 h-4" />
+                    Admin
+                  </button>
+                </div>
               </div>
 
               {/* Login Form */}
               <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-                {/* Email Input */}
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-300">
-                    Email Address
-                  </label>
-                  <div className="relative group">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-[#00E5A8] transition-colors" />
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="student@example.com"
-                      required
-                      className="w-full pl-12 pr-4 py-3 sm:py-3.5 bg-[#0b0b0b] border-2 border-gray-800 rounded-xl focus:outline-none focus:border-[#00E5A8] focus:bg-[#0b0b0b] transition-all duration-300 text-white placeholder-gray-500"
-                    />
+                {loginType === 'student' ? (
+                  /* Student Email Input */
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300">
+                      Email Address
+                    </label>
+                    <div className="relative group">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-[#00E5A8] transition-colors" />
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="student@example.com"
+                        required
+                        className="w-full pl-12 pr-4 py-3 sm:py-3.5 bg-[#0b0b0b] border-2 border-gray-800 rounded-xl focus:outline-none focus:border-[#00E5A8] focus:bg-[#0b0b0b] transition-all duration-300 text-white placeholder-gray-500"
+                      />
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* Admin Username Input */
+                  <div className="space-y-2">
+                    <label htmlFor="username" className="block text-sm font-semibold text-gray-300">
+                      Username
+                    </label>
+                    <div className="relative group">
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-[#00E5A8] transition-colors" />
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        placeholder="admin"
+                        required
+                        className="w-full pl-12 pr-4 py-3 sm:py-3.5 bg-[#0b0b0b] border-2 border-gray-800 rounded-xl focus:outline-none focus:border-[#00E5A8] focus:bg-[#0b0b0b] transition-all duration-300 text-white placeholder-gray-500"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {/* Password Input */}
                 <div className="space-y-2">
@@ -151,7 +225,7 @@ const StudentLogin: React.FC = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="Date of Birth (DDMMYYYY)"
+                      placeholder={loginType === 'student' ? 'Date of Birth (DDMMYYYY)' : 'Enter password'}
                       required
                       className="w-full pl-12 pr-12 py-3 sm:py-3.5 bg-[#0b0b0b] border-2 border-gray-800 rounded-xl focus:outline-none focus:border-[#00E5A8] focus:bg-[#0b0b0b] transition-all duration-300 text-white placeholder-gray-500"
                     />
@@ -163,9 +237,11 @@ const StudentLogin: React.FC = () => {
                       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
                   </div>
-                  <p className="text-xs text-gray-500 mt-2">
-                    💡 Use your date of birth as password (e.g., 01011990)
-                  </p>
+                  {loginType === 'student' && (
+                    <p className="text-xs text-gray-500 mt-2">
+                      Hint: Use your date of birth as password (e.g., 01011990)
+                    </p>
+                  )}
                 </div>
 
                 {/* Submit Button */}
@@ -176,53 +252,51 @@ const StudentLogin: React.FC = () => {
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
                       Logging in...
                     </>
                   ) : (
                     <>
-                      <GraduationCap className="w-5 h-5" />
-                      Login to Dashboard
+                      {loginType === 'student' ? (
+                        <GraduationCap className="w-5 h-5" />
+                      ) : (
+                        <Shield className="w-5 h-5" />
+                      )}
+                      {loginType === 'student' ? 'Login to Dashboard' : 'Login as Admin'}
                     </>
                   )}
                 </button>
               </form>
 
-              {/* Divider */}
-              <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-800"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-[#111111] text-gray-500">New to RAVEN?</span>
-                </div>
-              </div>
+              {/* Footer Links - Only for students */}
+              {loginType === 'student' && (
+                <>
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-800"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-4 bg-[#111111] text-gray-500">New to RAVEN?</span>
+                    </div>
+                  </div>
 
-              {/* Footer Links */}
-              <div className="text-center space-y-3">
-                <Link
-                  href="/admission"
-                  className="block text-[#00E5A8] hover:text-[#00E5A8]/80 font-medium transition-colors text-sm sm:text-base"
-                >
-                  Apply for Admission
-                </Link>
-                
-                {/* Admin Login Link */}
-                <Link
-                  href="/admin/login"
-                  className="flex items-center justify-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  <Shield className="w-4 h-4" />
-                  Admin Login
-                </Link>
-                
-                <p className="text-xs text-gray-500 mt-3">
-                  Need help?{' '}
-                  <a href="mailto:info@raventutorials.com" className="text-[#00E5A8] hover:underline">
-                    Contact Support
-                  </a>
-                </p>
-              </div>
+                  <div className="text-center space-y-3">
+                    <Link
+                      href="/admission"
+                      className="block text-[#00E5A8] hover:text-[#00E5A8]/80 font-medium transition-colors text-sm sm:text-base"
+                    >
+                      Apply for Admission
+                    </Link>
+                    
+                    <p className="text-xs text-gray-500 mt-3">
+                      Need help?{' '}
+                      <a href="mailto:info@raventutorials.com" className="text-[#00E5A8] hover:underline">
+                        Contact Support
+                      </a>
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -274,4 +348,4 @@ const StudentLogin: React.FC = () => {
   );
 };
 
-export default StudentLogin;
+export default LoginPage;

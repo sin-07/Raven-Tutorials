@@ -266,6 +266,12 @@ body {
   scrollbar-width: none;
 }
 
+/* Smooth touch scrolling for swipeable elements */
+.snap-x {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Hide scrollbar on all overflow elements */
 .overflow-y-auto::-webkit-scrollbar,
 .overflow-x-auto::-webkit-scrollbar,

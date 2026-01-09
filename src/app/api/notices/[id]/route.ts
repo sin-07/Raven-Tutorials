@@ -39,7 +39,7 @@ export async function DELETE(
       }, { status: 404 });
     }
 
-    console.log(`✅ Notice deleted: ${notice.title}`);
+    console.log(`[SUCCESS] Notice deleted: ${notice.title}`);
     return NextResponse.json({ 
       success: true, 
       message: 'Notice deleted successfully' 

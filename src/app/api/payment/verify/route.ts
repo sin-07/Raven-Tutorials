@@ -119,8 +119,8 @@ export async function POST(request: NextRequest) {
       isVerified: true
     });
 
-    console.log('✅ Admission created with password:', password);
-    console.log('✅ isPendingPayment set to:', false);
+    console.log('[SUCCESS] Admission created with password:', password);
+    console.log('[SUCCESS] isPendingPayment set to:', false);
 
     // Delete temp admission
     await TempAdmission.deleteOne({ _id: tempAdmission._id });

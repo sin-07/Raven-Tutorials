@@ -65,7 +65,7 @@ IMPORTANT NOTES
 Login URL: ${window.location.origin}/login
 
 ════════════════════════════════════════════════════════
-        Welcome to Raven Tutorials Family! 🎓
+        Welcome to Raven Tutorials Family!
 ════════════════════════════════════════════════════════
     `;
 
@@ -89,8 +89,13 @@ Login URL: ${window.location.origin}/login
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center p-4 pt-24">
-      <div className="max-w-xl w-full">
+    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex items-center justify-center p-4 pt-24">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
+      <div className="relative z-10 max-w-xl w-full">
         {/* Success Animation */}
         <div className="text-center mb-8">
           <div className="relative inline-block">

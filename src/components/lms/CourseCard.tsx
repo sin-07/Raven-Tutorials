@@ -15,10 +15,11 @@ interface CourseCardProps {
 export default function CourseCard({ course, index = 0 }: CourseCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={index > 0 ? { opacity: 0, y: 20 } : false}
+      whileInView={index > 0 ? { opacity: 1, y: 0 } : {}}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
       <Link href={`/courses/${course.id}`}>
         <div className="group bg-[#111111] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-800 hover:border-[#00E5A8]/30 h-full flex flex-col">

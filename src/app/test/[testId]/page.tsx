@@ -342,8 +342,13 @@ export default function TakeTestPage() {
 
   if (!test) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b]">
-        <div className="text-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] relative overflow-hidden">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+
+        <div className="relative z-10 text-center">
           <h2 className="text-2xl font-bold text-white mb-4">
             Test not found
           </h2>
@@ -360,8 +365,13 @@ export default function TakeTestPage() {
 
   if (!testStarted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] p-4">
-        <div className="bg-[#111111] rounded-lg shadow-2xl max-w-2xl w-full p-8 border border-gray-800">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] relative overflow-hidden p-4">
+        {/* Green Radial Glow Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+        </div>
+
+        <div className="relative z-10 bg-[#111111] rounded-lg shadow-2xl max-w-2xl w-full p-8 border border-gray-800">
           {/* RAVEN Logo */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="flex items-center gap-3 bg-[#00E5A8] text-black rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
@@ -451,7 +461,12 @@ export default function TakeTestPage() {
   const isAnswered = answers[currentQuestion] !== undefined;
 
   return (
-    <div ref={testContainerRef} className="min-h-screen bg-[#0b0b0b] pt-16">
+    <div ref={testContainerRef} className="min-h-screen bg-[#0b0b0b] relative overflow-hidden pt-16">
+      {/* Green Radial Glow Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+      </div>
+
       {/* Warning Banner */}
       {showWarning && (
         <div className="fixed top-16 left-0 right-0 bg-red-600 text-white py-3 px-4 z-50 animate-pulse">

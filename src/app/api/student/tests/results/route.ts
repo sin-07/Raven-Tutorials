@@ -6,15 +6,14 @@ import { verifyStudentToken } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    const token = request.cookies.get('studentToken')?.value;
+    if (!token) {
       return NextResponse.json({
         success: false,
         message: 'Unauthorized'
       }, { status: 401 });
     }
 
-    const token = authHeader.split(' ')[1];
     const decoded = await verifyStudentToken(token);
     
     if (!decoded.success || !decoded.student) {

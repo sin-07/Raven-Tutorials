@@ -33,7 +33,7 @@ export async function connectDatabase(): Promise<typeof mongoose> {
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      console.log('✅ MongoDB Connected');
+      console.log('[SUCCESS] MongoDB Connected');
       return mongoose;
     });
   }

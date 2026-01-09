@@ -236,7 +236,7 @@ const AdminAttendance: React.FC = () => {
               </div>
               <div className="flex-1">
                 <p className="text-xs sm:text-sm font-medium text-[#00E5A8]">
-                  ✅ Attendance for {selectedSubject} already marked for {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  [DONE] Attendance for {selectedSubject} already marked for {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </p>
               </div>
             </div>
