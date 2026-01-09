@@ -15,8 +15,8 @@ export default function AdmissionPage() {
       <div className="relative z-10 max-w-4xl w-full">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Join <span className="text-[#00E5A8]">Raven Tutorials</span></h1>
-          <p className="text-gray-400 text-lg">
+          <h1 className="text-4xl font-bold text-white mb-4 font-machina">Join <span className="text-[#00E5A8]">Raven Tutorials</span></h1>
+          <p className="text-gray-400 text-lg font-helvetica">
             Choose your admission type to get started
           </p>
         </div>
@@ -29,12 +29,12 @@ export default function AdmissionPage() {
               <GraduationCap className="w-10 h-10 text-[#00E5A8]" />
             </div>
             
-            <h2 className="text-2xl font-bold text-white mb-4 text-center">Admission as a Learner</h2>
-            <p className="text-gray-400 mb-6 text-center">
+            <h2 className="text-2xl font-bold text-white mb-4 text-center font-machina">Admission as a Learner</h2>
+            <p className="text-gray-400 mb-6 text-center font-helvetica">
               Join as a student to access expert courses, live classes, and personalized learning paths.
             </p>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 font-helvetica">
               <li className="flex items-start gap-2 text-gray-400">
                 <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -75,12 +75,12 @@ export default function AdmissionPage() {
               <UserCircle className="w-10 h-10 text-[#00E5A8]" />
             </div>
             
-            <h2 className="text-2xl font-bold text-white mb-4 text-center">Admission as a Tutor</h2>
-            <p className="text-gray-400 mb-6 text-center">
+            <h2 className="text-2xl font-bold text-white mb-4 text-center font-machina">Admission as a Tutor</h2>
+            <p className="text-gray-400 mb-6 text-center font-helvetica">
               Join as an instructor to share your knowledge and teach thousands of students.
             </p>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 font-helvetica">
               <li className="flex items-start gap-2 text-gray-400">
                 <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

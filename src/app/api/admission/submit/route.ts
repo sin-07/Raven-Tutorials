@@ -21,9 +21,44 @@ const generateOTP = (): string => {
 
 export async function POST(request: NextRequest) {
   try {
-    await connectDB();
+    // Check if environment variables are set
+    if (!process.env.MONGODB_URI) {
+      console.error('MONGODB_URI is not set');
+      return NextResponse.json({
+        success: false,
+        message: 'Server configuration error: Database not configured'
+      }, { status: 500 });
+    }
     
-    const formData = await request.formData();
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+      console.error('Cloudinary environment variables are not set');
+      return NextResponse.json({
+        success: false,
+        message: 'Server configuration error: File upload not configured'
+      }, { status: 500 });
+    }
+
+    // Connect to database with error handling
+    try {
+      await connectDB();
+    } catch (dbError: any) {
+      console.error('Database connection error:', dbError);
+      return NextResponse.json({
+        success: false,
+        message: 'Database connection failed. Please try again.'
+      }, { status: 500 });
+    }
+    
+    let formData;
+    try {
+      formData = await request.formData();
+    } catch (formError: any) {
+      console.error('Form data parsing error:', formError);
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid form data. Please refresh and try again.'
+      }, { status: 400 });
+    }
     
     const studentName = formData.get('studentName') as string;
     const fatherName = formData.get('fatherName') as string;

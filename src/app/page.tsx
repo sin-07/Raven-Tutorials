@@ -65,10 +65,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight tracking-[-0.03em] font-machina"
           >
             We only{' '}
-            <span className="text-[#00E5A8]">teach</span>
+            <span className="text-[#00E5A8] font-juana italic">teach</span>
             {' '}what we are
             <br className="hidden sm:block" />
             really really good at.
@@ -78,7 +78,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-8 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto"
+            className="mt-8 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto font-helvetica"
           >
             Master your skills with India&apos;s most passionate educators. 
             Real-world knowledge, hands-on learning, guaranteed results.
@@ -114,11 +114,11 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-sm font-medium mb-4 border border-[#00E5A8]/20">
               Why Choose Us
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-machina">
               Everything You Need to{' '}
               <span className="text-[#00E5A8]">Succeed</span>
             </h2>
-            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto font-helvetica">
               We provide comprehensive learning solutions to help you achieve your goals.
             </p>
           </motion.div>
@@ -138,8 +138,8 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-xl bg-[#00E5A8] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Icon className="w-7 h-7 text-black" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-xl font-semibold text-white mb-3 font-machina">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed font-helvetica">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -159,10 +159,10 @@ export default function Home() {
               <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-sm font-medium mb-4 border border-[#00E5A8]/20">
                 Popular Courses
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-machina">
                 Explore Our Top Courses
               </h2>
-              <p className="mt-4 text-lg text-gray-400 max-w-xl">
+              <p className="mt-4 text-lg text-gray-400 max-w-xl font-helvetica">
                 Choose from 150+ courses designed by expert educators to help you excel.
               </p>
             </motion.div>
@@ -228,7 +228,7 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-sm font-medium mb-4 border border-[#00E5A8]/20">
               Categories
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-machina">
               Browse by Category
             </h2>
           </motion.div>
@@ -280,10 +280,10 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-sm font-medium mb-4 border border-[#00E5A8]/20">
               Success Stories
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-machina">
               What Our Students Say
             </h2>
-            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto font-helvetica">
               Join thousands of successful students who achieved their dreams with us.
             </p>
           </motion.div>
@@ -367,10 +367,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-machina">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-helvetica">
               Join 250,000+ students and transform your skills with industry experts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

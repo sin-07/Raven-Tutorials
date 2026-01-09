@@ -171,7 +171,7 @@ const Navbar: React.FC = React.memo(() => {
       <nav className="navbar-fixed w-full transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[#00E5A8]">
+          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[#00E5A8] font-machina">
             <img 
               src="/logo.png" 
               alt="RAVEN Logo" 
@@ -180,7 +180,7 @@ const Navbar: React.FC = React.memo(() => {
             <span className="text-white">RAVEN</span> <span className="text-[#00E5A8]">Tutorials</span>
           </Link>
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 font-helvetica">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

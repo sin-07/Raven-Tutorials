@@ -252,8 +252,8 @@ const Dashboard: React.FC = () => {
           <div className="relative overflow-hidden bg-gradient-to-r from-[#00E5A8] via-[#00C090] to-[#00B386] rounded-2xl p-8 text-black mb-8 shadow-xl border border-[#00E5A8]/20">
             <div className="absolute inset-0 bg-grid-white/5"></div>
             <div className="relative">
-              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm">Welcome, {student.studentName}!</h2>
-              <p className="text-black/80 font-medium">Class {student.standard} | ID: {student.registrationId}</p>
+              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm font-machina">Welcome, {student.studentName}!</h2>
+              <p className="text-black/80 font-medium font-helvetica">Class {student.standard} | ID: {student.registrationId}</p>
             </div>
             <div className="absolute top-0 right-0 -mt-4 -mr-4 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-[#00E5A8]/10 rounded-full blur-2xl"></div>
@@ -264,8 +264,8 @@ const Dashboard: React.FC = () => {
             <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Overall Attendance</p>
-                  <p className="text-3xl font-bold text-[#00E5A8]">{overallAttendance}%</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1 font-helvetica">Overall Attendance</p>
+                  <p className="text-3xl font-bold text-[#00E5A8] font-machina">{overallAttendance}%</p>
                 </div>
                 <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
                   <Calendar className="w-8 h-8 text-[#00E5A8]" />
@@ -276,8 +276,8 @@ const Dashboard: React.FC = () => {
             <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Tests Completed</p>
-                  <p className="text-3xl font-bold text-[#00E5A8]">{testResults.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1 font-helvetica">Tests Completed</p>
+                  <p className="text-3xl font-bold text-[#00E5A8] font-machina">{testResults.length}</p>
                 </div>
                 <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
                   <Award className="w-8 h-8 text-[#00E5A8]" />
@@ -288,8 +288,8 @@ const Dashboard: React.FC = () => {
             <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Upcoming Tests</p>
-                  <p className="text-3xl font-bold text-[#00E5A8]">{upcomingTests.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1 font-helvetica">Upcoming Tests</p>
+                  <p className="text-3xl font-bold text-[#00E5A8] font-machina">{upcomingTests.length}</p>
                 </div>
                 <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
                   <Clock className="w-8 h-8 text-[#00E5A8]" />
@@ -300,8 +300,8 @@ const Dashboard: React.FC = () => {
             <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Study Materials</p>
-                  <p className="text-3xl font-bold text-white">{studyMaterials.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1 font-helvetica">Study Materials</p>
+                  <p className="text-3xl font-bold text-white font-machina">{studyMaterials.length}</p>
                 </div>
                 <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
                   <BookOpen className="w-8 h-8 text-white" />
@@ -351,7 +351,7 @@ const Dashboard: React.FC = () => {
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 <div className="bg-[#080808] border border-[#00E5A8]/20 rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                  <h3 className="font-bold text-white mb-4 flex items-center gap-2 text-lg font-machina">
                     <CheckCircle className="w-6 h-6 text-[#00E5A8]" />
                     Quick Actions
                   </h3>
@@ -370,7 +370,7 @@ const Dashboard: React.FC = () => {
             {/* Attendance Tab */}
             {activeTab === 'attendance' && (
               <div>
-                <h3 className="text-lg font-bold mb-4 text-white">Subject-wise Attendance</h3>
+                <h3 className="text-lg font-bold mb-4 text-white font-machina">Subject-wise Attendance</h3>
                 {attendance.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {attendance.map(subject => (

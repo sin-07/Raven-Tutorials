@@ -131,6 +131,13 @@ export default function LearnerAdmissionPage() {
         body: submitData
       });
 
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        console.error('Server returned non-JSON response:', response.status);
+        throw new Error(`Server error. Status: ${response.status}. Please try again later.`);
+      }
+
       const data = await response.json();
 
       if (!response.ok) {

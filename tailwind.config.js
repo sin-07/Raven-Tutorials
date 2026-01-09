@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'machina': ['Syne', 'Space Grotesk', 'sans-serif'],
+        'juana': ['Playfair Display', 'Georgia', 'serif'],
+        'helvetica': ['DM Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+      },
       colors: {
         // Deep Black - Primary Dark Theme
         primary: {

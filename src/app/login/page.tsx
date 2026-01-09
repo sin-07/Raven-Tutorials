@@ -135,7 +135,7 @@ const LoginPage: React.FC = () => {
                 <div className="flex items-center justify-center mb-4">
                   <img src="/logo.png" alt="Raven Logo" className="w-16 h-16 object-contain brightness-0 invert" />
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] mb-4">
+                <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] mb-4 font-machina">
                   RAVEN Tutorials
                 </h1>
 
@@ -173,7 +173,7 @@ const LoginPage: React.FC = () => {
                 {loginType === 'student' ? (
                   /* Student Email Input */
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300 font-helvetica">
                       Email Address
                     </label>
                     <div className="relative group">
@@ -193,7 +193,7 @@ const LoginPage: React.FC = () => {
                 ) : (
                   /* Admin Username Input */
                   <div className="space-y-2">
-                    <label htmlFor="username" className="block text-sm font-semibold text-gray-300">
+                    <label htmlFor="username" className="block text-sm font-semibold text-gray-300 font-helvetica">
                       Username
                     </label>
                     <div className="relative group">
