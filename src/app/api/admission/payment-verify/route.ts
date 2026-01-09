@@ -3,6 +3,7 @@ import connectDB from '@/lib/database';
 import TempAdmission from '@/models/TempAdmission';
 import Student from '@/models/Student';
 import Admission from '@/models/Admission';
+import { getNextSequence } from '@/models/Counter';
 import crypto from 'crypto';
 import { sendWelcomeEmail } from '@/lib/email';
 
@@ -67,10 +68,10 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Generate registration ID
+    // Generate registration ID using atomic counter
     const year = new Date().getFullYear().toString().slice(-2);
-    const count = await Student.countDocuments();
-    const registrationId = `RT${year}${String(count + 1).padStart(4, '0')}`;
+    const sequence = await getNextSequence(`registration_${year}`);
+    const registrationId = `RT${year}${String(sequence).padStart(4, '0')}`;
 
     // Generate password from Date of Birth (DDMMYYYY format)
     const dob = new Date(tempAdmission.dateOfBirth);

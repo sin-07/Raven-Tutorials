@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
+import { getNextSequence } from './Counter';
 
 export interface IStudent extends Document {
   registrationId: string;
@@ -173,12 +174,12 @@ const studentSchema = new Schema<IStudent>({
   timestamps: true
 });
 
-// Generate registration ID before saving
+// Generate registration ID before saving using atomic counter
 studentSchema.pre('save', async function(next) {
   if (!this.registrationId) {
     const year = new Date().getFullYear().toString().slice(-2);
-    const count = await mongoose.models.Student?.countDocuments() || 0;
-    this.registrationId = `RT${year}${String(count + 1).padStart(4, '0')}`;
+    const sequence = await getNextSequence(`registration_${year}`);
+    this.registrationId = `RT${year}${String(sequence).padStart(4, '0')}`;
   }
   next();
 });
