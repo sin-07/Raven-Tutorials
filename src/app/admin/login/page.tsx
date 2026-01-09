@@ -155,14 +155,14 @@ const AdminLogin: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center pt-16">
+      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex items-center justify-center pt-16">
         {/* Animated gradient mesh */}
-        <div className="absolute inset-0 bg-blue-900/20"></div>
+        <div className="absolute inset-0 bg-[#00E5A8]/10"></div>
         
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-repeat pointer-events-none opacity-5" 
              style={{
-               backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(139, 92, 246, 0.3) 40px, rgba(139, 92, 246, 0.3) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(139, 92, 246, 0.3) 40px, rgba(139, 92, 246, 0.3) 41px)'
+               backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 229, 168, 0.3) 40px, rgba(0, 229, 168, 0.3) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 229, 168, 0.3) 40px, rgba(0, 229, 168, 0.3) 41px)'
              }}>
         </div>
 
@@ -184,7 +184,7 @@ const AdminLogin: React.FC = () => {
         ))}
 
         {/* Soft vignette effect */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-slate-950 opacity-60 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-[#0b0b0b] opacity-60 pointer-events-none"></div>
 
         {/* Warning banner based on attempts */}
         {warningLevel > 0 && (
@@ -199,12 +199,12 @@ const AdminLogin: React.FC = () => {
         )}
 
         {systemLockout && (
-          <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-lg z-40 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#0b0b0b]/95 backdrop-blur-lg z-40 flex items-center justify-center">
             <div className="text-center">
-              <Shield className="w-32 h-32 text-blue-400 mx-auto mb-6 animate-pulse" />
-              <h2 className="text-4xl font-bold text-blue-400 mb-4 tracking-wide">Account Locked</h2>
-              <p className="text-slate-300 text-lg">Too many failed login attempts</p>
-              <p className="text-slate-400 text-sm mt-2">Please wait 30 seconds before trying again</p>
+              <Shield className="w-32 h-32 text-[#00E5A8] mx-auto mb-6 animate-pulse" />
+              <h2 className="text-4xl font-bold text-[#00E5A8] mb-4 tracking-wide">Account Locked</h2>
+              <p className="text-gray-300 text-lg">Too many failed login attempts</p>
+              <p className="text-gray-400 text-sm mt-2">Please wait 30 seconds before trying again</p>
             </div>
           </div>
         )}
@@ -213,36 +213,36 @@ const AdminLogin: React.FC = () => {
           {/* Shield Icon with professional glow */}
           <div className="flex justify-center mb-8 animate-fade-in-up">
             <div className="relative">
-              <Shield className="w-24 h-24 text-blue-500 drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]" />
-              <div className="absolute inset-0 w-24 h-24 bg-blue-500 blur-3xl opacity-40 animate-pulse-slow"></div>
+              <Shield className="w-24 h-24 text-[#00E5A8] drop-shadow-[0_0_30px_rgba(0,229,168,0.6)]" />
+              <div className="absolute inset-0 w-24 h-24 bg-[#00E5A8] blur-3xl opacity-40 animate-pulse-slow"></div>
             </div>
           </div>
 
           {/* Professional Title */}
-          <h1 className="text-5xl font-bold text-center mb-2 bg-gradient-to-r from-blue-400 via-blue-400 to-blue-400 bg-clip-text text-transparent animate-fade-in-up"
+          <h1 className="text-5xl font-bold text-center mb-2 bg-gradient-to-r from-[#00E5A8] via-[#00E5A8] to-[#00E5A8] bg-clip-text text-transparent animate-fade-in-up"
               style={{
-                textShadow: '0 0 40px rgba(59, 130, 246, 0.3)'
+                textShadow: '0 0 40px rgba(0, 229, 168, 0.3)'
               }}>
             Admin Portal
           </h1>
           
-          <p className="text-slate-300 text-center text-sm mb-8 tracking-wide animate-fade-in-up">
+          <p className="text-gray-300 text-center text-sm mb-8 tracking-wide animate-fade-in-up">
             RAVEN Tutorials Management System
           </p>
 
           {/* Login Card with glass morphism */}
           <div className="relative animate-scale-in">
             {/* Glowing border effect */}
-            <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 via-blue-500 to-blue-500 rounded-2xl blur-lg opacity-30 animate-pulse-slow"></div>
+            <div className="absolute -inset-1 bg-gradient-to-br from-[#00E5A8] via-[#00E5A8] to-[#00E5A8] rounded-2xl blur-lg opacity-30 animate-pulse-slow"></div>
             
-            <div className="relative bg-slate-900/40 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-blue-500/20"
+            <div className="relative bg-[#080808]/40 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-[#00E5A8]/20"
                  style={{
-                   boxShadow: '0 0 40px rgba(59, 130, 246, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.3)'
+                   boxShadow: '0 0 40px rgba(0, 229, 168, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.3)'
                  }}>
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Email Input */}
                 <div>
-                  <label htmlFor="email" className="block text-blue-300 text-sm mb-2 tracking-wide font-medium">
+                  <label htmlFor="email" className="block text-[#00E5A8] text-sm mb-2 tracking-wide font-medium">
                     <Mail className="inline w-4 h-4 mr-2" />
                     Email Address
                   </label>
@@ -254,7 +254,7 @@ const AdminLogin: React.FC = () => {
                     onChange={handleChange}
                     placeholder="admin@raven.com"
                     required
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/50 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all backdrop-blur-sm"
+                    className="w-full px-4 py-3 bg-[#111111]/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00E5A8] focus:ring-2 focus:ring-[#00E5A8]/50 transition-all backdrop-blur-sm"
                     style={{
                       boxShadow: 'inset 0 2px 10px rgba(0, 0, 0, 0.3)'
                     }}
@@ -263,7 +263,7 @@ const AdminLogin: React.FC = () => {
 
                 {/* Password Input */}
                 <div>
-                  <label htmlFor="password" className="block text-blue-300 text-sm mb-2 tracking-wide font-medium">
+                  <label htmlFor="password" className="block text-[#00E5A8] text-sm mb-2 tracking-wide font-medium">
                     <Lock className="inline w-4 h-4 mr-2" />
                     Password
                   </label>
@@ -276,7 +276,7 @@ const AdminLogin: React.FC = () => {
                       onChange={handleChange}
                       placeholder="Enter your password"
                       required
-                      className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/50 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all backdrop-blur-sm pr-12"
+                      className="w-full px-4 py-3 bg-[#111111]/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00E5A8] focus:ring-2 focus:ring-[#00E5A8]/50 transition-all backdrop-blur-sm pr-12"
                       style={{
                         boxShadow: 'inset 0 2px 10px rgba(0, 0, 0, 0.3)'
                       }}
@@ -284,7 +284,7 @@ const AdminLogin: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-400 transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00E5A8] transition-colors"
                     >
                       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
@@ -292,9 +292,9 @@ const AdminLogin: React.FC = () => {
                 </div>
 
                 {/* Security Notice */}
-                <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-500/10"></div>
-                  <p className="text-xs text-slate-300 text-center flex items-center justify-center gap-2 relative z-10">
+                <div className="bg-[#111111]/30 backdrop-blur-sm border border-gray-700/30 rounded-lg p-4 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A8]/10 to-[#00E5A8]/10"></div>
+                  <p className="text-xs text-gray-300 text-center flex items-center justify-center gap-2 relative z-10">
                     <Shield className="w-4 h-4" />
                     Secure Connection Established
                   </p>
@@ -304,7 +304,7 @@ const AdminLogin: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading || systemLockout}
-                  className="w-full py-4 px-4 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 hover:from-blue-500 hover:via-blue-500 hover:to-blue-500 text-white font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide relative overflow-hidden group border border-blue-400/30 shadow-lg hover:shadow-blue-500/50"
+                  className="w-full py-4 px-4 bg-gradient-to-r from-[#00E5A8] via-[#00E5A8] to-[#00E5A8] hover:from-[#00B386] hover:via-[#00B386] hover:to-[#00B386] text-black font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide relative overflow-hidden group border border-[#00E5A8]/30 shadow-lg hover:shadow-[#00E5A8]/50 hover:scale-105"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
                     {loading ? (
@@ -324,7 +324,7 @@ const AdminLogin: React.FC = () => {
                       </>
                     )}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A8] to-[#00E5A8] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-20"></div>
                 </button>
                 
                 {/* Failed attempts indicator */}
@@ -344,10 +344,10 @@ const AdminLogin: React.FC = () => {
                     {[0, 1, 2].map((i) => (
                       <div
                         key={i}
-                        className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"
+                        className="w-3 h-3 bg-[#00E5A8] rounded-full animate-bounce"
                         style={{
                           animationDelay: `${i * 0.15}s`,
-                          boxShadow: '0 0 10px rgba(59, 130, 246, 0.6)'
+                          boxShadow: '0 0 10px rgba(0, 229, 168, 0.6)'
                         }}
                       ></div>
                     ))}
@@ -359,17 +359,17 @@ const AdminLogin: React.FC = () => {
 
           {/* Professional Footer */}
           <div className="mt-8 text-center space-y-3">
-            <div className="flex items-center justify-center gap-2 text-slate-400 text-sm">
-              <Shield className="w-4 h-4 text-blue-400" />
+            <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
+              <Shield className="w-4 h-4 text-[#00E5A8]" />
               <span>Secure Connection</span>
             </div>
-            <p className="text-slate-500 text-xs">
+            <p className="text-gray-500 text-xs">
               🔒 End-to-end encrypted
             </p>
-            <div className="pt-4 border-t border-slate-700/50">
+            <div className="pt-4 border-t border-gray-800/50">
               <Link
                 href="/login"
-                className="text-blue-400 hover:text-blue-300 text-sm transition-colors flex items-center justify-center gap-2 group"
+                className="text-[#00E5A8] hover:text-[#00B386] text-sm transition-colors flex items-center justify-center gap-2 group"
               >
                 <GraduationCap className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="group-hover:underline">Student Portal</span>

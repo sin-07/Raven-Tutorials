@@ -16,7 +16,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-white;
+  @apply text-white;
+  background: radial-gradient(circle at top, rgba(0,229,168,0.18), #0b0b0b 60%);
+  background-color: #0b0b0b;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {

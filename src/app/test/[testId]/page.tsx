@@ -342,14 +342,14 @@ export default function TakeTestPage() {
 
   if (!test) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b]">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Test not found
           </h2>
           <button
             onClick={() => router.push('/dashboard')}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg"
+            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black px-6 py-2 rounded-full hover:scale-105 transition-all"
           >
             Back to Dashboard
           </button>
@@ -360,63 +360,63 @@ export default function TakeTestPage() {
 
   if (!testStarted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-blue-50 p-4">
-        <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full p-8">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] p-4">
+        <div className="bg-[#111111] rounded-lg shadow-2xl max-w-2xl w-full p-8 border border-gray-800">
           {/* RAVEN Logo */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="flex items-center gap-3 bg-blue-600 text-white rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
+            <div className="flex items-center gap-3 bg-[#00E5A8] text-black rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
               <img
                 src="/logo.png"
                 alt="RAVEN"
-                className="w-10 h-10 object-contain"
+                className="w-10 h-10 object-contain brightness-0 invert"
               />
               RAVEN TUTORIALS
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          <h1 className="text-3xl font-bold text-white mb-4">
             {test.title}
           </h1>
-          <p className="text-gray-600 mb-6">{test.description}</p>
+          <p className="text-gray-400 mb-6">{test.description}</p>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Duration</p>
-              <p className="text-xl font-bold text-blue-600">
+            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
+              <p className="text-sm text-gray-400">Duration</p>
+              <p className="text-xl font-bold text-[#00E5A8]">
                 {test.duration} minutes
               </p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Total Marks</p>
-              <p className="text-xl font-bold text-green-600">
+            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
+              <p className="text-sm text-gray-400">Total Marks</p>
+              <p className="text-xl font-bold text-green-500">
                 {test.totalMarks}
               </p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Questions</p>
-              <p className="text-xl font-bold text-blue-600">
+            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
+              <p className="text-sm text-gray-400">Questions</p>
+              <p className="text-xl font-bold text-[#00E5A8]">
                 {test.questions.length}
               </p>
             </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Passing Marks</p>
-              <p className="text-xl font-bold text-orange-600">
+            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
+              <p className="text-sm text-gray-400">Passing Marks</p>
+              <p className="text-xl font-bold text-orange-500">
                 {test.passingMarks}
               </p>
             </div>
           </div>
 
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+          <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4 mb-6">
             <div className="flex items-start">
               <AlertTriangle
-                className="text-yellow-600 mr-3 flex-shrink-0 mt-0.5"
+                className="text-yellow-500 mr-3 flex-shrink-0 mt-0.5"
                 size={20}
               />
               <div>
-                <h3 className="font-semibold text-yellow-800 mb-2">
+                <h3 className="font-semibold text-yellow-400 mb-2">
                   Anti-Cheating Rules:
                 </h3>
-                <ul className="text-sm text-yellow-700 space-y-1">
+                <ul className="text-sm text-yellow-300 space-y-1">
                   <li>• Fullscreen mode is recommended</li>
                   <li>• Do not switch tabs or minimize the window</li>
                   <li>• Right-click is disabled</li>
@@ -433,7 +433,7 @@ export default function TakeTestPage() {
 
           <button
             onClick={enterFullscreen}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300"
+            className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black py-4 rounded-full font-semibold text-lg shadow-lg hover:scale-105 transition-all duration-300"
           >
             Start Test
           </button>
@@ -451,7 +451,7 @@ export default function TakeTestPage() {
   const isAnswered = answers[currentQuestion] !== undefined;
 
   return (
-    <div ref={testContainerRef} className="min-h-screen bg-gray-50 pt-16">
+    <div ref={testContainerRef} className="min-h-screen bg-[#0b0b0b] pt-16">
       {/* Warning Banner */}
       {showWarning && (
         <div className="fixed top-16 left-0 right-0 bg-red-600 text-white py-3 px-4 z-50 animate-pulse">
@@ -466,44 +466,44 @@ export default function TakeTestPage() {
       )}
 
       {/* Header */}
-      <div className={`bg-white shadow-md ${showWarning ? 'mt-12' : ''}`}>
+      <div className={`bg-[#111111] shadow-md border-b border-gray-800 ${showWarning ? 'mt-12' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-blue-600 text-white rounded-lg px-4 py-2 font-bold text-xl">
+              <div className="flex items-center gap-2 bg-[#00E5A8] text-black rounded-lg px-4 py-2 font-bold text-xl">
                 <img
                   src="/logo.png"
                   alt="RAVEN"
-                  className="w-8 h-8 object-contain"
+                  className="w-8 h-8 object-contain brightness-0 invert"
                 />
                 RAVEN
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">
+                <h1 className="text-xl font-bold text-white">
                   {test.title}
                 </h1>
-                <p className="text-sm text-gray-600">{test.subject}</p>
+                <p className="text-sm text-gray-400">{test.subject}</p>
               </div>
             </div>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <Clock
                   className={
-                    timeRemaining < 300 ? 'text-red-600' : 'text-blue-600'
+                    timeRemaining < 300 ? 'text-red-500' : 'text-[#00E5A8]'
                   }
                   size={20}
                 />
                 <span
                   className={`text-lg font-mono font-bold ${
-                    timeRemaining < 300 ? 'text-red-600' : 'text-gray-800'
+                    timeRemaining < 300 ? 'text-red-500' : 'text-white'
                   }`}
                 >
                   {formatTime(timeRemaining)}
                 </span>
               </div>
               <div className="text-right">
-                <p className="text-sm text-gray-600">Question</p>
-                <p className="text-lg font-bold text-gray-800">
+                <p className="text-sm text-gray-400">Question</p>
+                <p className="text-lg font-bold text-white">
                   {currentQuestion + 1} / {test.questions.length}
                 </p>
               </div>
@@ -516,8 +516,8 @@ export default function TakeTestPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Question Navigator */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-4 sticky top-4">
-              <h3 className="font-semibold text-gray-800 mb-3">Questions</h3>
+            <div className="bg-[#111111] rounded-lg shadow-md p-4 sticky top-4 border border-gray-800">
+              <h3 className="font-semibold text-white mb-3">Questions</h3>
               <div className="grid grid-cols-5 lg:grid-cols-4 gap-2">
                 {test.questions.map((_, index) => (
                   <button
@@ -525,10 +525,10 @@ export default function TakeTestPage() {
                     onClick={() => handleQuestionJump(index)}
                     className={`w-10 h-10 rounded-lg font-semibold text-sm transition-all ${
                       currentQuestion === index
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-300'
+                        ? 'bg-[#00E5A8] text-black ring-2 ring-[#00E5A8]/50'
                         : answers[index] !== undefined
-                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
                     }`}
                   >
                     {index + 1}
@@ -537,23 +537,23 @@ export default function TakeTestPage() {
               </div>
               <div className="mt-4 space-y-2 text-xs">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-blue-600 rounded"></div>
-                  <span className="text-gray-600">Current</span>
+                  <div className="w-4 h-4 bg-[#00E5A8] rounded"></div>
+                  <span className="text-gray-400">Current</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-green-100 border border-green-700 rounded"></div>
-                  <span className="text-gray-600">Answered</span>
+                  <div className="w-4 h-4 bg-green-500/20 border border-green-500 rounded"></div>
+                  <span className="text-gray-400">Answered</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-gray-100 border border-gray-400 rounded"></div>
-                  <span className="text-gray-600">Not Answered</span>
+                  <div className="w-4 h-4 bg-gray-800 border border-gray-700 rounded"></div>
+                  <span className="text-gray-400">Not Answered</span>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t">
-                <p className="text-sm text-gray-600">Progress</p>
-                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div className="mt-4 pt-4 border-t border-gray-800">
+                <p className="text-sm text-gray-400">Progress</p>
+                <div className="w-full bg-gray-800 rounded-full h-2 mt-2">
                   <div
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-[#00E5A8] h-2 rounded-full transition-all duration-300"
                     style={{
                       width: `${
                         (Object.keys(answers).length / test.questions.length) *
@@ -572,17 +572,17 @@ export default function TakeTestPage() {
 
           {/* Question Panel */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div className="bg-[#111111] rounded-lg shadow-md p-6 mb-6 border border-gray-800">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">
+                <h2 className="text-lg font-semibold text-white">
                   Question {currentQuestion + 1}
                 </h2>
-                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+                <span className="bg-[#00E5A8]/20 text-[#00E5A8] px-3 py-1 rounded-full text-sm font-semibold">
                   {question.marks} {question.marks === 1 ? 'mark' : 'marks'}
                 </span>
               </div>
 
-              <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
                 {question.questionText}
               </p>
 
@@ -595,8 +595,8 @@ export default function TakeTestPage() {
                           key={index}
                           className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
                             answers[currentQuestion] === option
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                              ? 'border-[#00E5A8] bg-[#00E5A8]/10'
+                              : 'border-gray-700 hover:border-[#00E5A8]/50 hover:bg-gray-800/50'
                           }`}
                         >
                           <input
@@ -610,9 +610,9 @@ export default function TakeTestPage() {
                                 e.target.value
                               )
                             }
-                            className="w-5 h-5 text-blue-600"
+                            className="w-5 h-5 accent-[#00E5A8]"
                           />
-                          <span className="ml-3 text-gray-700">{option}</span>
+                          <span className="ml-3 text-gray-300">{option}</span>
                         </label>
                       )
                   )}
@@ -626,8 +626,8 @@ export default function TakeTestPage() {
                       key={option}
                       className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
                         answers[currentQuestion] === option
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                          ? 'border-[#00E5A8] bg-[#00E5A8]/10'
+                          : 'border-gray-700 hover:border-[#00E5A8]/50 hover:bg-gray-800/50'
                       }`}
                     >
                       <input
@@ -638,9 +638,9 @@ export default function TakeTestPage() {
                         onChange={(e) =>
                           handleAnswerChange(currentQuestion, e.target.value)
                         }
-                        className="w-5 h-5 text-blue-600"
+                        className="w-5 h-5 accent-[#00E5A8]"
                       />
-                      <span className="ml-3 text-gray-700">{option}</span>
+                      <span className="ml-3 text-gray-300">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -652,7 +652,7 @@ export default function TakeTestPage() {
                   onChange={(e) =>
                     handleAnswerChange(currentQuestion, e.target.value)
                   }
-                  className="w-full p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                  className="w-full p-4 bg-[#080808] border-2 border-gray-800 rounded-lg focus:border-[#00E5A8] focus:outline-none text-white placeholder-gray-500"
                   rows={4}
                   placeholder="Type your answer here..."
                 />
@@ -664,7 +664,7 @@ export default function TakeTestPage() {
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors"
+                className="px-6 py-3 bg-gray-800 text-gray-300 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700 transition-colors"
               >
                 ← Previous
               </button>
@@ -674,14 +674,14 @@ export default function TakeTestPage() {
                   <button
                     onClick={() => handleSubmit(false)}
                     disabled={submitting}
-                    className="px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg transition-all disabled:opacity-50"
+                    className="px-8 py-3 bg-gradient-to-r from-green-600 to-[#00E5A8] hover:from-green-700 hover:to-[#00B386] text-white rounded-lg font-semibold shadow-lg transition-all disabled:opacity-50"
                   >
                     {submitting ? 'Submitting...' : 'Submit Test'}
                   </button>
                 ) : (
                   <button
                     onClick={handleNext}
-                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+                    className="px-6 py-3 bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black rounded-full font-semibold hover:scale-105 transition-all"
                   >
                     Next →
                   </button>
@@ -694,63 +694,63 @@ export default function TakeTestPage() {
 
       {/* Submit Confirmation Modal */}
       {showSubmitModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10000] p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 animate-fadeIn">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[10000] p-4">
+          <div className="bg-[#111111] rounded-2xl shadow-2xl max-w-md w-full p-8 animate-fadeIn border border-gray-800">
             <div className="text-center">
               {/* RAVEN Logo */}
               <div className="mx-auto flex items-center justify-center gap-2 mb-4">
-                <div className="flex items-center gap-2 bg-blue-600 text-white rounded-lg px-4 py-2 font-bold text-2xl">
+                <div className="flex items-center gap-2 bg-[#00E5A8] text-black rounded-lg px-4 py-2 font-bold text-2xl">
                   <img
                     src="/logo.png"
                     alt="RAVEN"
-                    className="w-8 h-8 object-contain"
+                    className="w-8 h-8 object-contain brightness-0 invert"
                   />
                   RAVEN
                 </div>
               </div>
 
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-4">
-                <AlertCircle className="h-8 w-8 text-yellow-600" />
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-500/20 mb-4">
+                <AlertCircle className="h-8 w-8 text-yellow-500" />
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Submit Test?
               </h3>
 
               <div className="mb-6 space-y-3">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-1">
+                <div className="bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg p-4">
+                  <p className="text-sm text-gray-400 mb-1">
                     Questions Answered
                   </p>
-                  <p className="text-3xl font-bold text-blue-600">
+                  <p className="text-3xl font-bold text-[#00E5A8]">
                     {Object.keys(answers).length} / {test.questions.length}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                    <p className="text-xs text-gray-600 mb-1">Answered</p>
-                    <p className="text-xl font-bold text-green-600">
+                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+                    <p className="text-xs text-gray-400 mb-1">Answered</p>
+                    <p className="text-xl font-bold text-green-400">
                       {Object.keys(answers).length}
                     </p>
                   </div>
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                    <p className="text-xs text-gray-600 mb-1">Unanswered</p>
-                    <p className="text-xl font-bold text-red-600">
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3">
+                    <p className="text-xs text-gray-400 mb-1">Unanswered</p>
+                    <p className="text-xl font-bold text-red-400">
                       {test.questions.length - Object.keys(answers).length}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-400 mb-6">
                 {Object.keys(answers).length < test.questions.length ? (
-                  <span className="text-yellow-700 font-medium">
+                  <span className="text-yellow-400 font-medium">
                     ⚠️ You have unanswered questions. Are you sure you want to
                     submit?
                   </span>
                 ) : (
-                  <span className="text-green-700 font-medium">
+                  <span className="text-green-400 font-medium">
                     ✓ All questions answered. Ready to submit?
                   </span>
                 )}
@@ -759,7 +759,7 @@ export default function TakeTestPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowSubmitModal(false)}
-                  className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 rounded-lg font-semibold transition-colors"
+                  className="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 rounded-lg font-semibold transition-colors"
                   disabled={submitting}
                 >
                   Cancel
@@ -767,7 +767,7 @@ export default function TakeTestPage() {
                 <button
                   onClick={confirmSubmit}
                   disabled={submitting}
-                  className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-3 rounded-lg font-semibold shadow-lg transition-all disabled:opacity-50"
+                  className="flex-1 bg-gradient-to-r from-green-600 to-[#00E5A8] hover:from-green-700 hover:to-[#00B386] text-white py-3 rounded-lg font-semibold shadow-lg transition-all disabled:opacity-50"
                 >
                   {submitting ? 'Submitting...' : 'Yes, Submit'}
                 </button>

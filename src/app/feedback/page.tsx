@@ -37,13 +37,16 @@ export default function FeedbackPage() {
 
   const initializePage = useCallback(async () => {
     try {
-      const studentInfo = sessionStorage.getItem('studentInfo');
-      if (!studentInfo) {
+      const res = await fetch('/api/auth/verify', {
+        credentials: 'include'
+      });
+
+      if (!res.ok) {
         router.push('/login');
         return;
       }
 
-      const studentData = JSON.parse(studentInfo);
+      const { student: studentData } = await res.json();
       setStudent(studentData);
       await fetchFeedback();
     } catch (err) {
@@ -90,47 +93,47 @@ export default function FeedbackPage() {
 
   const getCategoryColor = (category: string): string => {
     const colors: Record<string, string> = {
-      general: 'bg-blue-100 text-blue-800',
-      course_content: 'bg-blue-100 text-blue-800',
-      teaching_method: 'bg-green-100 text-green-800',
-      study_materials: 'bg-orange-100 text-orange-800',
-      online_classes: 'bg-pink-100 text-pink-800',
-      test_system: 'bg-blue-100 text-blue-800',
-      complaint: 'bg-red-100 text-red-800'
+      general: 'bg-blue-500/20 text-blue-400',
+      course_content: 'bg-blue-500/20 text-blue-400',
+      teaching_method: 'bg-green-500/20 text-green-400',
+      study_materials: 'bg-orange-500/20 text-orange-400',
+      online_classes: 'bg-pink-500/20 text-pink-400',
+      test_system: 'bg-blue-500/20 text-blue-400',
+      complaint: 'bg-red-500/20 text-red-400'
     };
     return colors[category] || colors.general;
   };
 
   const getStatusColor = (status: string): string => {
     const colors: Record<string, string> = {
-      new: 'bg-yellow-100 text-yellow-800',
-      reviewed: 'bg-blue-100 text-blue-800',
-      resolved: 'bg-green-100 text-green-800'
+      new: 'bg-yellow-500/20 text-yellow-400',
+      reviewed: 'bg-blue-500/20 text-blue-400',
+      resolved: 'bg-green-500/20 text-green-400'
     };
     return colors[status] || colors.new;
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading feedback...</p>
+          <Loader className="w-12 h-12 animate-spin text-[#00E5A8] mx-auto mb-4" />
+          <p className="text-gray-400 text-lg">Loading feedback...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#0b0b0b] flex flex-col">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 w-full">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2 mb-2">
-            <MessageSquare className="w-8 h-8 text-blue-600" />
+          <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
+            <MessageSquare className="w-8 h-8 text-[#00E5A8]" />
             Feedback & Support
           </h1>
-          <p className="text-gray-600">Share your feedback to help us improve</p>
+          <p className="text-gray-400">Share your feedback to help us improve</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -144,16 +147,16 @@ export default function FeedbackPage() {
 
           {/* Feedback List */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow">
-              <div className="p-6 border-b">
-                <h2 className="text-lg font-bold text-gray-900">Your Feedback History</h2>
-                <p className="text-sm text-gray-600">Total: {feedbackList.length} submissions</p>
+            <div className="bg-[#111111] rounded-lg shadow border border-gray-800">
+              <div className="p-6 border-b border-gray-800">
+                <h2 className="text-lg font-bold text-white">Your Feedback History</h2>
+                <p className="text-sm text-gray-400">Total: {feedbackList.length} submissions</p>
               </div>
 
               {feedbackList.length > 0 ? (
-                <div className="divide-y">
+                <div className="divide-y divide-gray-800">
                   {feedbackList.map(feedback => (
-                    <div key={feedback._id} className="p-6 hover:bg-gray-50 transition">
+                    <div key={feedback._id} className="p-6 hover:bg-gray-800/50 transition">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <div className="flex gap-2 mb-2 flex-wrap">
@@ -164,11 +167,11 @@ export default function FeedbackPage() {
                               {(feedback.status || 'new').toUpperCase()}
                             </span>
                           </div>
-                          <h3 className="text-base font-semibold text-gray-900">{feedback.subject}</h3>
+                          <h3 className="text-base font-semibold text-white">{feedback.subject}</h3>
                         </div>
                         <button
                           onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
-                          className="text-blue-600 hover:text-blue-700"
+                          className="text-[#00E5A8] hover:text-[#00E5A8]/80"
                           title="View details"
                         >
                           <Eye className="w-5 h-5" />
@@ -181,7 +184,7 @@ export default function FeedbackPage() {
                           {[...Array(5)].map((_, i) => (
                             <span
                               key={i}
-                              className={`text-lg ${i < feedback.rating! ? 'text-yellow-400' : 'text-gray-300'}`}
+                              className={`text-lg ${i < feedback.rating! ? 'text-yellow-400' : 'text-gray-600'}`}
                             >
                               ★
                             </span>
@@ -201,7 +204,7 @@ export default function FeedbackPage() {
                         <button
                           onClick={() => handleDeleteFeedback(feedback._id)}
                           disabled={deleting === feedback._id}
-                          className="text-red-600 hover:text-red-700 disabled:text-gray-400 transition flex items-center gap-1"
+                          className="text-red-500 hover:text-red-400 disabled:text-gray-500 transition flex items-center gap-1"
                           title="Delete feedback"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -210,18 +213,18 @@ export default function FeedbackPage() {
 
                       {/* Expanded View */}
                       {selectedFeedback?._id === feedback._id && (
-                        <div className="mt-4 pt-4 border-t bg-gray-50 rounded p-4">
-                          <h4 className="font-medium text-gray-900 mb-2">Message:</h4>
-                          <p className="text-sm text-gray-700 whitespace-pre-wrap break-words">
+                        <div className="mt-4 pt-4 border-t border-gray-800 bg-[#080808] rounded p-4">
+                          <h4 className="font-medium text-white mb-2">Message:</h4>
+                          <p className="text-sm text-gray-300 whitespace-pre-wrap break-words">
                             {feedback.message}
                           </p>
                           {feedback.adminResponse && (
-                            <div className="mt-4 pt-4 border-t">
-                              <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                                <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <div className="mt-4 pt-4 border-t border-gray-800">
+                              <h4 className="font-medium text-white mb-2 flex items-center gap-2">
+                                <span className="w-2 h-2 bg-[#00E5A8] rounded-full"></span>
                                 Admin Response
                               </h4>
-                              <p className="text-sm text-gray-700 whitespace-pre-wrap break-words">
+                              <p className="text-sm text-gray-300 whitespace-pre-wrap break-words">
                                 {feedback.adminResponse}
                               </p>
                             </div>
@@ -233,9 +236,9 @@ export default function FeedbackPage() {
                 </div>
               ) : (
                 <div className="p-8 text-center">
-                  <MessageSquare className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                  <p className="text-gray-500">No feedback submitted yet</p>
-                  <p className="text-sm text-gray-400">Your feedback submissions will appear here</p>
+                  <MessageSquare className="w-12 h-12 text-gray-600 mx-auto mb-3" />
+                  <p className="text-gray-400">No feedback submitted yet</p>
+                  <p className="text-sm text-gray-500">Your feedback submissions will appear here</p>
                 </div>
               )}
             </div>
@@ -243,12 +246,12 @@ export default function FeedbackPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-8 p-6 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
           <div className="flex gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-[#00E5A8] flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-indigo-900 mb-2">We Value Your Feedback</h3>
-              <ul className="text-sm text-blue-800 space-y-1">
+              <h3 className="font-semibold text-white mb-2">We Value Your Feedback</h3>
+              <ul className="text-sm text-gray-300 space-y-1">
                 <li>• Your feedback helps us improve our teaching methods and course content</li>
                 <li>• All feedback is reviewed by our admin team and kept confidential</li>
                 <li>• You will receive responses to important feedback submissions</li>

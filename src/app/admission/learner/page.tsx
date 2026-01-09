@@ -187,31 +187,31 @@ export default function LearnerAdmissionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-24">
+    <div className="min-h-screen bg-[#0b0b0b] py-24">
       <div className="w-full">
         {/* Header */}
         <div className="text-center mb-8 px-4">
-          <h1 className="text-4xl font-bold text-slate-800 mb-2">Learner Admission Form</h1>
-          <p className="text-slate-600">Fill in your details to complete the admission process</p>
+          <h1 className="text-4xl font-bold text-white mb-2">Learner Admission Form</h1>
+          <p className="text-gray-400">Fill in your details to complete the admission process</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 mx-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-            <p className="text-red-800">{error}</p>
+          <div className="mb-6 mx-4 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+            <p className="text-red-400">{error}</p>
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white shadow-xl p-4 md:p-8">
+        <form onSubmit={handleSubmit} className="bg-[#111111] shadow-xl p-4 md:p-8 border-y border-gray-800">
           {/* Personal Information */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Personal Information</h2>
+            <h2 className="text-2xl font-bold text-white mb-4 pb-2 border-b border-gray-800">Personal Information</h2>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Student Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -219,14 +219,14 @@ export default function LearnerAdmissionPage() {
                   name="studentName"
                   value={formData.studentName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter full name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Father's Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -234,14 +234,14 @@ export default function LearnerAdmissionPage() {
                   name="fatherName"
                   value={formData.fatherName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter father's name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Mother's Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -249,14 +249,14 @@ export default function LearnerAdmissionPage() {
                   name="motherName"
                   value={formData.motherName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter mother's name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Date of Birth <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -264,20 +264,20 @@ export default function LearnerAdmissionPage() {
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Gender <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="gender"
                   value={formData.gender}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   required
                 >
                   <option value="">Select Gender</option>
@@ -288,14 +288,14 @@ export default function LearnerAdmissionPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Blood Group <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="bloodGroup"
                   value={formData.bloodGroup}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   required
                 >
                   <option value="">Select Blood Group</option>
@@ -311,14 +311,14 @@ export default function LearnerAdmissionPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Category <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   required
                 >
                   <option value="">Select Category</option>
@@ -334,11 +334,11 @@ export default function LearnerAdmissionPage() {
 
           {/* Contact Information */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Contact Information</h2>
+            <h2 className="text-2xl font-bold text-white mb-4 pb-2 border-b border-gray-800">Contact Information</h2>
             
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -346,7 +346,7 @@ export default function LearnerAdmissionPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="10-digit phone number"
                   maxLength={10}
                   required
@@ -354,7 +354,7 @@ export default function LearnerAdmissionPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Alternate Phone Number
                 </label>
                 <input
@@ -362,14 +362,14 @@ export default function LearnerAdmissionPage() {
                   name="alternatePhoneNumber"
                   value={formData.alternatePhoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="10-digit phone number"
                   maxLength={10}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -377,14 +377,14 @@ export default function LearnerAdmissionPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="your.email@example.com"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Address <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -392,7 +392,7 @@ export default function LearnerAdmissionPage() {
                   value={formData.address}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter complete address"
                   required
                 />
@@ -400,7 +400,7 @@ export default function LearnerAdmissionPage() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     City <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -408,14 +408,14 @@ export default function LearnerAdmissionPage() {
                     name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter city"
                   required
                 />
               </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     State <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -423,14 +423,14 @@ export default function LearnerAdmissionPage() {
                     name="state"
                     value={formData.state}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                     placeholder="Enter state"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Pincode <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -438,7 +438,7 @@ export default function LearnerAdmissionPage() {
                     name="pincode"
                     value={formData.pincode}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                     placeholder="6-digit pincode"
                     maxLength={6}
                     required
@@ -450,18 +450,18 @@ export default function LearnerAdmissionPage() {
 
           {/* Educational Information */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Educational Information</h2>
+            <h2 className="text-2xl font-bold text-white mb-4 pb-2 border-b border-gray-800">Educational Information</h2>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Standard/Class <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="standard"
                   value={formData.standard}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   required
                 >
                   <option value="">Select Standard</option>
@@ -476,7 +476,7 @@ export default function LearnerAdmissionPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Previous School <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -484,7 +484,7 @@ export default function LearnerAdmissionPage() {
                   name="previousSchool"
                   value={formData.previousSchool}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
                   placeholder="Enter previous school name"
                   required
                 />
@@ -494,7 +494,7 @@ export default function LearnerAdmissionPage() {
 
           {/* Photo Upload */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4 pb-2 border-b">Upload Photo</h2>
+            <h2 className="text-2xl font-bold text-white mb-4 pb-2 border-b border-gray-800">Upload Photo</h2>
             
             <div className="flex flex-col items-center gap-4">
               {photoPreview ? (
@@ -502,7 +502,7 @@ export default function LearnerAdmissionPage() {
                   <img 
                     src={photoPreview} 
                     alt="Preview" 
-                    className="w-40 h-40 object-cover rounded-lg border-2 border-slate-300"
+                    className="w-40 h-40 object-cover rounded-lg border-2 border-gray-800"
                   />
                   <button
                     type="button"
@@ -516,10 +516,10 @@ export default function LearnerAdmissionPage() {
                   </button>
                 </div>
               ) : (
-                <label className="w-full max-w-md border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition">
-                  <Upload className="w-12 h-12 mx-auto text-slate-400 mb-2" />
-                  <p className="text-slate-600 mb-1">Click to upload photo</p>
-                  <p className="text-sm text-slate-500">Max size: 5MB (JPG, PNG)</p>
+                <label className="w-full max-w-md border-2 border-dashed border-gray-800 rounded-lg p-8 text-center cursor-pointer hover:border-[#00E5A8] transition bg-[#080808]">
+                  <Upload className="w-12 h-12 mx-auto text-gray-500 mb-2" />
+                  <p className="text-gray-400 mb-1">Click to upload photo</p>
+                  <p className="text-sm text-gray-500">Max size: 5MB (JPG, PNG)</p>
                   <input
                     type="file"
                     accept="image/*"
@@ -537,14 +537,14 @@ export default function LearnerAdmissionPage() {
             <button
               type="button"
               onClick={() => router.back()}
-              className="flex-1 py-3 px-6 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition"
+              className="flex-1 py-3 px-6 border-2 border-gray-800 text-gray-300 font-semibold rounded-xl hover:bg-gray-800 transition"
             >
               Back
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 py-3 px-6 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 py-3 px-6 bg-[#00E5A8] text-black font-semibold rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

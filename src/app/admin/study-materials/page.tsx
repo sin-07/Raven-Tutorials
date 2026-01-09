@@ -154,10 +154,10 @@ const StudyMaterials: React.FC = () => {
     <AdminLayout>
       <div className="p-6">
         <div className="mb-6 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">Study Materials</h1>
+          <h1 className="text-2xl font-bold text-white">Study Materials</h1>
           <button
             onClick={() => setShowUploadForm(!showUploadForm)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+            className="bg-[#00E5A8] text-black px-4 py-2 rounded-lg hover:bg-[#00E5A8]/90 hover:scale-105 flex items-center gap-2 transition-all"
           >
             <Upload size={20} />
             Upload Material
@@ -166,12 +166,12 @@ const StudyMaterials: React.FC = () => {
 
         {/* Upload Form */}
         {showUploadForm && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h2 className="text-xl font-semibold mb-4">Upload New Study Material</h2>
+          <div className="bg-[#111111] rounded-lg shadow-md p-6 mb-6 border border-gray-800">
+            <h2 className="text-xl font-semibold mb-4 text-white">Upload New Study Material</h2>
             <form onSubmit={handleUpload} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -179,21 +179,21 @@ const StudyMaterials: React.FC = () => {
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
                     placeholder="e.g., Chapter 5 - Quadratic Equations"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Class <span className="text-red-500">*</span>
                   </label>
                   <select
                     name="class"
                     value={formData.class}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                     required
                   >
                     <option value="">Select Class</option>
@@ -204,14 +204,14 @@ const StudyMaterials: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Subject <span className="text-red-500">*</span>
                   </label>
                   <select
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                     required
                   >
                     <option value="">Select Subject</option>
@@ -222,24 +222,24 @@ const StudyMaterials: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     PDF File <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="file"
                     accept=".pdf"
                     onChange={handleFileChange}
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                     required
                   />
                   {formData.file && (
-                    <p className="text-sm text-gray-600 mt-1">{formData.file.name}</p>
+                    <p className="text-sm text-gray-400 mt-1">{formData.file.name}</p>
                   )}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Description
                 </label>
                 <textarea
@@ -247,7 +247,7 @@ const StudyMaterials: React.FC = () => {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
                   placeholder="Brief description of the material..."
                 />
               </div>
@@ -256,14 +256,14 @@ const StudyMaterials: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+                  className="bg-[#00E5A8] text-black px-6 py-2 rounded-lg hover:bg-[#00E5A8]/90 hover:scale-105 disabled:bg-gray-600 disabled:text-white transition-all"
                 >
                   {loading ? 'Uploading...' : 'Upload'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowUploadForm(false)}
-                  className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400"
+                  className="bg-[#111111] text-gray-300 px-6 py-2 rounded-lg hover:bg-[#080808]"
                 >
                   Cancel
                 </button>
@@ -273,16 +273,16 @@ const StudyMaterials: React.FC = () => {
         )}
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+        <div className="bg-[#111111] rounded-lg shadow-md p-4 mb-6 border border-gray-800">
           <div className="flex items-center gap-2 mb-3">
-            <Filter size={20} className="text-gray-600" />
-            <h3 className="font-semibold">Filters</h3>
+            <Filter size={20} className="text-gray-400" />
+            <h3 className="font-semibold text-white">Filters</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <select
               value={filterClass}
               onChange={(e) => setFilterClass(e.target.value)}
-              className="px-4 py-2 border rounded-lg"
+              className="px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8]"
             >
               <option value="">All Classes</option>
               {classes.map(cls => (
@@ -293,7 +293,7 @@ const StudyMaterials: React.FC = () => {
             <select
               value={filterSubject}
               onChange={(e) => setFilterSubject(e.target.value)}
-              className="px-4 py-2 border rounded-lg"
+              className="px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8]"
             >
               <option value="">All Subjects</option>
               {subjects.map(sub => (
@@ -304,31 +304,31 @@ const StudyMaterials: React.FC = () => {
         </div>
 
         {/* Materials List */}
-        <div className="bg-white rounded-lg shadow-md">
-          <div className="p-4 border-b">
-            <h3 className="font-semibold">
+        <div className="bg-[#111111] rounded-lg shadow-md border border-gray-800">
+          <div className="p-4 border-b border-gray-800">
+            <h3 className="font-semibold text-white">
               Uploaded Materials ({materials.length})
             </h3>
           </div>
 
-          <div className="divide-y">
+          <div className="divide-y divide-gray-800">
             {materials.length === 0 ? (
               <div className="p-8 text-center text-gray-500">
-                <FileText size={48} className="mx-auto mb-4 text-gray-300" />
+                <FileText size={48} className="mx-auto mb-4 text-gray-600" />
                 <p>No study materials uploaded yet</p>
               </div>
             ) : (
               materials.map(material => (
-                <div key={material._id} className="p-4 hover:bg-gray-50">
+                <div key={material._id} className="p-4 hover:bg-[#111111]/50">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <h4 className="font-semibold text-lg">{material.title}</h4>
-                      <p className="text-sm text-gray-600 mt-1">{material.description}</p>
+                      <h4 className="font-semibold text-lg text-white">{material.title}</h4>
+                      <p className="text-sm text-gray-400 mt-1">{material.description}</p>
                       <div className="flex gap-4 mt-2 text-sm">
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                        <span className="bg-[#00E5A8]/20 text-[#00E5A8] px-2 py-1 rounded">
                           {material.class}
                         </span>
-                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded">
+                        <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded">
                           {material.subject}
                         </span>
                         <span className="text-gray-500">
@@ -345,14 +345,14 @@ const StudyMaterials: React.FC = () => {
                         href={material.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-blue-600 hover:bg-blue-50 rounded"
+                        className="p-2 text-[#00E5A8] hover:bg-[#00E5A8]/10 rounded"
                         title="Download"
                       >
                         <Download size={20} />
                       </a>
                       <button
                         onClick={() => handleDelete(material._id)}
-                        className="p-2 text-red-600 hover:bg-red-50 rounded"
+                        className="p-2 text-red-500 hover:bg-red-500/10 rounded"
                         title="Delete"
                       >
                         <Trash2 size={20} />

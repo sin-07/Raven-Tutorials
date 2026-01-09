@@ -69,34 +69,34 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
       {/* Overlay for mobile */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/70 z-40 lg:hidden"
           onClick={onClose}
         />
       )}
 
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-200 z-50
+        fixed top-0 left-0 h-full w-64 bg-[#111111] border-r border-gray-800 z-50
         transform transition-transform duration-300 ease-in-out
         lg:translate-x-0 lg:static lg:h-screen
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-200">
+          <div className="flex items-center justify-between p-4 border-b border-gray-800">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-blue-600 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-white" />
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00E5A8] to-[#00B386] flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-black" />
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-lg font-bold bg-gradient-to-r from-[#00E5A8] to-[#00E5A8] bg-clip-text text-transparent">
                 Raven
               </span>
             </Link>
             <button 
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-slate-100 lg:hidden"
+              className="p-2 rounded-lg hover:bg-gray-800 lg:hidden"
             >
-              <X className="w-5 h-5 text-slate-500" />
+              <X className="w-5 h-5 text-gray-400" />
             </button>
           </div>
 
@@ -112,11 +112,11 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
                       onClick={onClose}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         isActive 
-                          ? 'bg-gradient-to-r from-blue-600 to-blue-600 text-white shadow-md shadow-blue-500/25' 
-                          : 'text-slate-600 hover:bg-slate-100'
+                          ? 'bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-black shadow-md shadow-[#00E5A8]/25' 
+                          : 'text-gray-400 hover:bg-gray-800'
                       }`}
                     >
-                      <item.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                      <item.icon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-gray-500'}`} />
                       {item.label}
                     </Link>
                   </li>
@@ -126,8 +126,8 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-slate-200">
-            <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+          <div className="p-4 border-t border-gray-800">
+            <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors">
               <LogOut className="w-5 h-5" />
               Logout
             </button>

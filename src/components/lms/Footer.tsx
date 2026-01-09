@@ -46,22 +46,22 @@ const socialLinks = [
 
 export default function LMSFooter() {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-[#080808] border-t border-gray-800 text-white">
       {/* Newsletter Section */}
-      <div className="border-b border-slate-800">
+      <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
-              <p className="text-slate-400">Subscribe to our newsletter for latest courses and updates.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">Stay Updated</h3>
+              <p className="text-gray-400">Subscribe to our newsletter for latest courses and updates.</p>
             </div>
             <div className="flex w-full md:w-auto gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-80 px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 md:w-80 px-4 py-3 rounded-lg bg-[#111111] border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
               />
-              <button className="px-6 py-3 bg-blue-600 rounded-lg font-medium hover:bg-blue-700 transition-all flex items-center gap-2">
+              <button className="px-6 py-3 bg-[#00E5A8] text-black rounded-full font-medium hover:bg-[#00E5A8]/90 hover:scale-105 transition-all flex items-center gap-2">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -76,26 +76,29 @@ export default function LMSFooter() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl bg-[#00E5A8] flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-black" />
               </div>
-              <span className="text-xl font-bold">Raven Tutorials</span>
+              <span className="text-xl font-bold">
+                <span className="text-white">Raven</span>
+                <span className="text-[#00E5A8]"> Tutorials</span>
+              </span>
             </Link>
-            <p className="text-slate-400 mb-6 leading-relaxed">
+            <p className="text-gray-400 mb-6 leading-relaxed">
               Empowering students to achieve academic excellence through quality education, 
               expert guidance, and innovative learning solutions.
             </p>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-slate-400">
-                <MapPin className="w-5 h-5 text-teal-400" />
+              <div className="flex items-center gap-3 text-gray-400">
+                <MapPin className="w-5 h-5 text-[#00E5A8]" />
                 <span>123 Education Street, Mumbai, India</span>
               </div>
-              <div className="flex items-center gap-3 text-slate-400">
-                <Phone className="w-5 h-5 text-teal-400" />
+              <div className="flex items-center gap-3 text-gray-400">
+                <Phone className="w-5 h-5 text-[#00E5A8]" />
                 <span>+91 98765 43210</span>
               </div>
-              <div className="flex items-center gap-3 text-slate-400">
-                <Mail className="w-5 h-5 text-teal-400" />
+              <div className="flex items-center gap-3 text-gray-400">
+                <Mail className="w-5 h-5 text-[#00E5A8]" />
                 <span>support@raventutorials.com</span>
               </div>
             </div>
@@ -103,13 +106,13 @@ export default function LMSFooter() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href} 
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-[#00E5A8] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -120,13 +123,13 @@ export default function LMSFooter() {
 
           {/* Courses Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Courses</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Courses</h4>
             <ul className="space-y-3">
               {footerLinks.courses.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href} 
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-[#00E5A8] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -137,13 +140,13 @@ export default function LMSFooter() {
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Support</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Support</h4>
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href} 
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-[#00E5A8] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -155,10 +158,10 @@ export default function LMSFooter() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800">
+      <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-slate-400 text-sm">
+            <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} Raven Tutorials. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
@@ -168,7 +171,7 @@ export default function LMSFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"
+                  className="w-10 h-10 rounded-full bg-[#111111] border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#00E5A8]/10 hover:border-[#00E5A8]/30 hover:text-[#00E5A8] transition-all"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />

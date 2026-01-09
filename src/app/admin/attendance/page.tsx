@@ -164,19 +164,19 @@ const AdminAttendance: React.FC = () => {
   return (
     <AdminLayout>
       <div className="space-y-4 sm:space-y-5 md:space-y-6">
-        <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-800">Attendance Management</h2>
+        <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white">Attendance Management</h2>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6">
+        <div className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6 border border-gray-800">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
                 Class *
               </label>
               <select
                 value={selectedClass}
                 onChange={(e) => setSelectedClass(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
               >
                 <option value="">-- Select Class --</option>
                 {STANDARDS.map(standard => (
@@ -186,13 +186,13 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
                 Subject *
               </label>
               <select
                 value={selectedSubject}
                 onChange={(e) => setSelectedSubject(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
               >
                 <option value="">-- Select Subject --</option>
                 {subjects.map(subject => (
@@ -202,14 +202,14 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
                 Date *
               </label>
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
               />
             </div>
 
@@ -217,7 +217,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={markAllPresent}
                 disabled={!selectedClass || !selectedSubject || students.length === 0}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold disabled:bg-gray-400 text-sm sm:text-base"
+                className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold disabled:bg-gray-600 disabled:text-white text-sm sm:text-base transition-all"
               >
                 Mark All
               </button>
@@ -227,15 +227,15 @@ const AdminAttendance: React.FC = () => {
 
         {/* Attendance Status Indicator */}
         {selectedClass && selectedSubject && isMarked && (
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4 rounded-lg">
+          <div className="bg-[#00E5A8]/10 border-l-4 border-[#00E5A8] p-3 sm:p-4 rounded-lg">
             <div className="flex items-start gap-2 sm:gap-3">
               <div className="flex-shrink-0 mt-0.5">
-                <svg className="h-4 sm:h-5 w-4 sm:w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                <svg className="h-4 sm:h-5 w-4 sm:w-5 text-[#00E5A8]" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-blue-800">
+                <p className="text-xs sm:text-sm font-medium text-[#00E5A8]">
                   ✅ Attendance for {selectedSubject} already marked for {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </p>
               </div>
@@ -245,29 +245,29 @@ const AdminAttendance: React.FC = () => {
 
         {/* Attendance Table */}
         {selectedClass && selectedSubject && students.length > 0 && (
-          <div className="bg-white rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-4">
+          <div className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6 border border-gray-800">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4">
               {isMarked ? 'Update Attendance' : 'Mark Attendance'} - {students.length} Students
             </h3>
 
             <div className="overflow-x-auto -mx-4 sm:-mx-0">
               <div className="inline-block min-w-full align-middle px-4 sm:px-0">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50 hidden sm:table-header-group">
+                <table className="min-w-full divide-y divide-gray-800">
+                  <thead className="bg-[#080808] hidden sm:table-header-group">
                     <tr>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase hidden md:table-cell">Reg ID</th>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs font-medium text-gray-500 uppercase">Attendance</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-400 uppercase">Name</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-400 uppercase hidden md:table-cell">Reg ID</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs font-medium text-gray-400 uppercase">Attendance</th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-100">
+                  <tbody className="bg-[#111111] divide-y divide-gray-800">
                     {students.map((student) => (
-                      <tr key={student._id} className="hover:bg-gray-50 block sm:table-row border-b sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-gray-900 block sm:table-cell">
+                      <tr key={student._id} className="hover:bg-[#111111]/50 block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
                           <span className="sm:hidden text-gray-500 font-medium text-xs">Name: </span>
                           {student.studentName}
                         </td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-600 hidden md:table-cell">
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-400 hidden md:table-cell">
                           <span className="sm:hidden text-gray-500 font-medium text-xs">Reg ID: </span>
                           {student.registrationId}
                         </td>
@@ -280,7 +280,7 @@ const AdminAttendance: React.FC = () => {
                                 className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
                                   attendance[student._id] === status
                                     ? status === 'Present' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                    : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
                                 }`}
                               >
                                 {status.charAt(0)}
@@ -299,7 +299,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold disabled:bg-gray-400 text-sm sm:text-base"
+                className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold disabled:bg-gray-600 disabled:text-white text-sm sm:text-base transition-all"
               >
                 {loading ? 'Saving...' : 'Save Attendance'}
               </button>
@@ -308,13 +308,13 @@ const AdminAttendance: React.FC = () => {
         )}
 
         {selectedClass && selectedSubject && students.length === 0 && (
-          <div className="text-center py-8 sm:py-12 bg-white rounded-lg md:rounded-xl shadow-md">
+          <div className="text-center py-8 sm:py-12 bg-[#111111] rounded-lg md:rounded-xl shadow-md border border-gray-800">
             <p className="text-gray-500 text-sm sm:text-base font-medium">No students found in Class {selectedClass}</p>
           </div>
         )}
 
         {(!selectedClass || !selectedSubject) && (
-          <div className="text-center py-8 sm:py-12 bg-white rounded-lg md:rounded-xl shadow-md">
+          <div className="text-center py-8 sm:py-12 bg-[#111111] rounded-lg md:rounded-xl shadow-md border border-gray-800">
             <p className="text-gray-500 text-sm sm:text-base font-medium">Select a class and subject to view and mark attendance</p>
           </div>
         )}

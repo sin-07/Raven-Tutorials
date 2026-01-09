@@ -63,7 +63,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <style>{`
         @keyframes slideInLeft {
           from {
@@ -92,7 +92,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             opacity: 0;
           }
           to {
-            opacity: 0.5;
+            opacity: 0.7;
           }
         }
 
@@ -131,13 +131,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       <div className={`lg:hidden fixed top-16 right-4 z-20 pt-2 transition-all duration-300 ${sidebarOpen && !isDesktop ? 'hidden' : ''}`}>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-lg bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 active:scale-95 duration-200"
+          className="p-2 rounded-lg bg-[#111111] border border-gray-800 shadow-lg hover:shadow-xl hover:border-[#00E5A8]/30 transition-all hover:scale-110 active:scale-95 duration-200"
           aria-label="Toggle sidebar"
         >
           {sidebarOpen ? (
-            <X size={24} className="text-gray-800 transition-transform duration-300 rotate-90" />
+            <X size={24} className="text-white transition-transform duration-300 rotate-90" />
           ) : (
-            <Menu size={24} className="text-gray-800 transition-transform duration-300" />
+            <Menu size={24} className="text-white transition-transform duration-300" />
           )}
         </button>
       </div>
@@ -145,7 +145,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && !isDesktop && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden overlay-animate"
+          className="fixed inset-0 bg-black bg-opacity-70 z-10 lg:hidden overlay-animate backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
@@ -155,22 +155,36 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <aside
           className={`${
             sidebarOpen ? 'sidebar-animate-open lg:translate-x-0' : 'sidebar-animate-close lg:translate-x-0'
-          } lg:!animate-none fixed w-64 bg-white shadow-lg lg:shadow-md transition-all duration-300 ease-out z-10 ${sidebarOpen && !isDesktop ? 'top-0' : 'top-16'} left-0 bottom-0 overflow-y-auto`}
+          } lg:!animate-none fixed w-64 bg-[#080808]/95 backdrop-blur-sm border-r border-gray-800 shadow-lg lg:shadow-md transition-all duration-300 ease-out z-10 ${sidebarOpen && !isDesktop ? 'top-0' : 'top-16'} left-0 bottom-0 overflow-y-auto`}
         >
+          {/* Sidebar Header with Logo - Only show when mobile sidebar is open */}
+          {sidebarOpen && !isDesktop && (
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-800">
+              <img 
+                src="/logo.png" 
+                alt="RAVEN Logo" 
+                className="h-10 w-10 brightness-0 invert"
+              />
+              <div>
+                <span className="text-lg font-bold text-white">RAVEN</span>
+                <span className="text-lg font-bold text-[#00E5A8]"> Admin</span>
+              </div>
+            </div>
+          )}
           <nav className="mt-4 sm:mt-5 md:mt-6">
             {menuItems.map((item, index) => (
               <Link
                 key={item.path}
                 href={item.path}
-                className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 gap-3 relative overflow-hidden group ${
-                  pathname === item.path ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600 shadow-md' : ''
+                className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-gray-400 hover:bg-[#00E5A8]/10 hover:text-[#00E5A8] transition-all duration-300 gap-3 relative overflow-hidden group ${
+                  pathname === item.path ? 'bg-[#00E5A8]/10 text-[#00E5A8] border-r-4 border-[#00E5A8] shadow-md' : ''
                 }`}
                 style={{ 
                   animation: sidebarOpen ? `menuItemSlideIn 0.4s ease-out ${index * 0.05}s both` : 'none',
                 }}
               >
                 {/* Hover background effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-blue-500/10 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A8]/0 to-[#00E5A8]/0 group-hover:from-[#00E5A8]/5 group-hover:to-[#00E5A8]/10 transition-all duration-300"></div>
                 
                 <item.icon size={22} className="flex-shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-medium text-sm sm:text-base relative z-10">{item.label}</span>
@@ -179,15 +193,15 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             {/* Post Notice Button */}
             <Link
               href="/admin/notices"
-              className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-blue-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 gap-3 relative overflow-hidden group ${
-                pathname === '/admin/notices' ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600 shadow-md' : ''
+              className={`flex items-center px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-4 text-[#00E5A8] hover:bg-[#00E5A8]/10 hover:text-[#00E5A8] transition-all duration-300 gap-3 relative overflow-hidden group ${
+                pathname === '/admin/notices' ? 'bg-[#00E5A8]/10 text-[#00E5A8] border-r-4 border-[#00E5A8] shadow-md' : ''
               }`}
               style={{ 
                 animation: sidebarOpen ? `menuItemSlideIn 0.4s ease-out ${menuItems.length * 0.05}s both` : 'none',
               }}
             >
               {/* Hover background effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-blue-500/10 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A8]/0 to-[#00E5A8]/0 group-hover:from-[#00E5A8]/5 group-hover:to-[#00E5A8]/10 transition-all duration-300"></div>
               
               <Megaphone size={22} className="flex-shrink-0 relative z-10 transition-transform duration-300 group-hover:scale-110" />
               <span className="font-medium text-sm sm:text-base relative z-10">Post Notice</span>

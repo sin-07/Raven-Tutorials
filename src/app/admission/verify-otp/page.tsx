@@ -146,8 +146,8 @@ export default function VerifyOTPPage() {
 
   if (!tempAdmission) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#00E5A8]" />
       </div>
     );
   }
@@ -156,39 +156,39 @@ export default function VerifyOTPPage() {
   const seconds = countdown % 60;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-24">
+    <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center p-4 pt-24">
       <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail className="w-8 h-8 text-blue-600" />
+          <div className="w-16 h-16 bg-[#00E5A8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail className="w-8 h-8 text-[#00E5A8]" />
           </div>
-          <h1 className="text-3xl font-bold text-slate-800 mb-2">Verify OTP</h1>
-          <p className="text-slate-600">
+          <h1 className="text-3xl font-bold text-white mb-2">Verify OTP</h1>
+          <p className="text-gray-400">
             We've sent a 6-digit OTP to
             <br />
-            <span className="font-medium text-slate-800">{tempAdmission.email}</span>
+            <span className="font-medium text-white">{tempAdmission.email}</span>
           </p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-            <p className="text-red-800">{error}</p>
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+            <p className="text-red-400">{error}</p>
           </div>
         )}
 
         {/* Success Message */}
         {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
-            <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-            <p className="text-green-800">{success}</p>
+          <div className="mb-6 p-4 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex items-start gap-3">
+            <CheckCircle className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" />
+            <p className="text-[#00E5A8]">{success}</p>
           </div>
         )}
 
         {/* OTP Input */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="bg-[#111111] rounded-2xl shadow-xl p-8 border border-gray-800">
           <div className="flex justify-center gap-3 mb-6">
             {otp.map((digit, index) => (
               <input
@@ -201,7 +201,7 @@ export default function VerifyOTPPage() {
                 onChange={(e) => handleOtpChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 onPaste={index === 0 ? handlePaste : undefined}
-                className="w-12 h-14 text-center text-2xl font-bold border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className="w-12 h-14 text-center text-2xl font-bold bg-[#080808] border-2 border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
               />
             ))}
           </div>
@@ -209,14 +209,14 @@ export default function VerifyOTPPage() {
           {/* Countdown Timer */}
           <div className="text-center mb-6">
             {countdown > 0 ? (
-              <p className="text-slate-600">
+              <p className="text-gray-400">
                 Time remaining:{' '}
-                <span className="font-semibold text-blue-600">
+                <span className="font-semibold text-[#00E5A8]">
                   {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
                 </span>
               </p>
             ) : (
-              <p className="text-red-600 font-medium">OTP expired! Please request a new one.</p>
+              <p className="text-red-400 font-medium">OTP expired! Please request a new one.</p>
             )}
           </div>
 
@@ -224,7 +224,7 @@ export default function VerifyOTPPage() {
           <button
             onClick={handleVerifyOTP}
             disabled={loading || countdown === 0}
-            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
+            className="w-full py-3 bg-[#00E5A8] text-black font-semibold rounded-full hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
           >
             {loading ? (
               <>
@@ -238,11 +238,11 @@ export default function VerifyOTPPage() {
 
           {/* Resend OTP */}
           <div className="text-center">
-            <p className="text-slate-600 mb-2">Didn't receive the OTP?</p>
+            <p className="text-gray-400 mb-2">Didn't receive the OTP?</p>
             <button
               onClick={handleResendOTP}
               disabled={resending || countdown > 0}
-              className="text-blue-600 font-medium hover:text-blue-700 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
+              className="text-[#00E5A8] font-medium hover:text-[#00E5A8]/80 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
             >
               {resending ? (
                 <>
@@ -258,11 +258,11 @@ export default function VerifyOTPPage() {
 
         {/* Info */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-slate-500">
-            Student: <span className="font-medium text-slate-700">{tempAdmission.studentName}</span>
+          <p className="text-sm text-gray-500">
+            Student: <span className="font-medium text-gray-300">{tempAdmission.studentName}</span>
           </p>
-          <p className="text-sm text-slate-500">
-            Admission Fee: <span className="font-medium text-slate-700">₹{tempAdmission.amount}</span>
+          <p className="text-sm text-gray-500">
+            Admission Fee: <span className="font-medium text-gray-300">₹{tempAdmission.amount}</span>
           </p>
         </div>
       </div>

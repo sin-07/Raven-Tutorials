@@ -251,47 +251,47 @@ const AdminTests: React.FC = () => {
       <div className="space-y-4 sm:space-y-5 md:space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
-          <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-800">Tests Management</h2>
+          <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white">Tests Management</h2>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base w-full sm:w-auto"
+            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base w-full sm:w-auto transition-all"
           >
             + Create Test
           </button>
         </div>
 
         {/* Desktop Table View */}
-        <div className="hidden lg:block bg-white rounded-lg md:rounded-xl shadow-md overflow-x-auto">
+        <div className="hidden lg:block bg-[#111111] rounded-lg md:rounded-xl shadow-md overflow-x-auto border border-gray-800">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-[#080808]">
               <tr>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Class</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Test Date</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Questions</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Marks</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-4 md:px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Title</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Class</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Subject</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Test Date</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Questions</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Marks</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Status</th>
+                <th className="px-4 md:px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-[#111111] divide-y divide-gray-800">
               {tests.map((test) => (
-                <tr key={test._id} className="hover:bg-gray-50">
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-gray-900">{test.title}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.class}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.subject}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">
+                <tr key={test._id} className="hover:bg-[#111111]/50">
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-white">{test.title}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.class}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.subject}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">
                     {new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.questions?.length || 0}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-500">{test.totalMarks}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.questions?.length || 0}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.totalMarks}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                      test.status === 'Published' ? 'bg-green-100 text-green-800' :
-                      test.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
-                      test.status === 'Draft' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                      test.status === 'Published' ? 'bg-green-500/20 text-green-400' :
+                      test.status === 'Completed' ? 'bg-blue-500/20 text-blue-400' :
+                      test.status === 'Draft' ? 'bg-yellow-500/20 text-yellow-400' :
+                      'bg-red-500/20 text-red-400'
                     }`}>
                       {test.status}
                     </span>
@@ -300,7 +300,7 @@ const AdminTests: React.FC = () => {
                     <div className="flex items-center justify-center gap-1 sm:gap-2">
                       <button
                         onClick={() => handleEdit(test)}
-                        className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                        className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
                         title="Edit"
                       >
                         ✏️
@@ -308,7 +308,7 @@ const AdminTests: React.FC = () => {
                       {test.status === 'Draft' && (
                         <button
                           onClick={() => handlePublish(test._id)}
-                          className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                          className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
                           title="Publish"
                         >
                           ✓
@@ -316,7 +316,7 @@ const AdminTests: React.FC = () => {
                       )}
                       <button
                         onClick={() => handleDelete(test._id)}
-                        className="text-red-600 hover:text-red-800 hover:bg-red-50 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                        className="text-red-500 hover:text-red-400 hover:bg-red-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
                         title="Delete"
                       >
                         🗑️
@@ -338,15 +338,15 @@ const AdminTests: React.FC = () => {
         {/* Mobile Card View */}
         <div className="lg:hidden space-y-3 sm:space-y-4">
           {tests.map((test) => (
-            <div key={test._id} className="bg-white rounded-lg md:rounded-xl shadow-md p-3 sm:p-4">
+            <div key={test._id} className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-3 sm:p-4 border border-gray-800">
               <div className="flex justify-between items-start mb-3 gap-2">
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1 truncate">{test.title}</h3>
+                  <h3 className="font-semibold text-white text-sm sm:text-base mb-1 truncate">{test.title}</h3>
                   <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
-                    test.status === 'Published' ? 'bg-green-100 text-green-800' :
-                    test.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
-                    test.status === 'Draft' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-red-100 text-red-800'
+                    test.status === 'Published' ? 'bg-green-500/20 text-green-400' :
+                    test.status === 'Completed' ? 'bg-blue-500/20 text-blue-400' :
+                    test.status === 'Draft' ? 'bg-yellow-500/20 text-yellow-400' :
+                    'bg-red-500/20 text-red-400'
                   }`}>
                     {test.status}
                   </span>
@@ -354,42 +354,42 @@ const AdminTests: React.FC = () => {
               </div>
               
               <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4">
-                <div className="bg-gray-50 p-2 rounded">
+                <div className="bg-[#080808] p-2 rounded">
                   <p className="text-gray-500 text-xs">Class</p>
-                  <p className="font-medium text-gray-900">{test.class}</p>
+                  <p className="font-medium text-white">{test.class}</p>
                 </div>
-                <div className="bg-gray-50 p-2 rounded">
+                <div className="bg-[#080808] p-2 rounded">
                   <p className="text-gray-500 text-xs">Subject</p>
-                  <p className="font-medium text-gray-900 truncate">{test.subject}</p>
+                  <p className="font-medium text-white truncate">{test.subject}</p>
                 </div>
-                <div className="bg-gray-50 p-2 rounded">
+                <div className="bg-[#080808] p-2 rounded">
                   <p className="text-gray-500 text-xs">Date</p>
-                  <p className="font-medium text-gray-900">{new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                  <p className="font-medium text-white">{new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
                 </div>
-                <div className="bg-gray-50 p-2 rounded">
+                <div className="bg-[#080808] p-2 rounded">
                   <p className="text-gray-500 text-xs">Qs</p>
-                  <p className="font-medium text-gray-900">{test.questions?.length || 0}</p>
+                  <p className="font-medium text-white">{test.questions?.length || 0}</p>
                 </div>
               </div>
 
-              <div className="flex gap-2 pt-2 sm:pt-3 border-t border-gray-200">
+              <div className="flex gap-2 pt-2 sm:pt-3 border-t border-gray-800">
                 <button
                   onClick={() => handleEdit(test)}
-                  className="flex-1 bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                  className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
                 >
                   ✏️ Edit
                 </button>
                 {test.status === 'Draft' && (
                   <button
                     onClick={() => handlePublish(test._id)}
-                    className="flex-1 bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                    className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
                   >
                     ✓ Pub
                   </button>
                 )}
                 <button
                   onClick={() => handleDelete(test._id)}
-                  className="bg-red-50 text-red-600 hover:bg-red-100 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                  className="bg-red-500/10 text-red-500 hover:bg-red-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
                 >
                   🗑️
                 </button>
@@ -398,7 +398,7 @@ const AdminTests: React.FC = () => {
           ))}
 
           {tests.length === 0 && (
-            <div className="bg-white rounded-lg shadow-md p-12 text-center">
+            <div className="bg-[#111111] rounded-lg shadow-md p-12 text-center border border-gray-800">
               <p className="text-gray-500 text-base">No tests created yet</p>
             </div>
           )}
@@ -406,9 +406,9 @@ const AdminTests: React.FC = () => {
 
         {/* Create Test Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
-            <div className="bg-white rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
+            <div className="bg-[#111111] rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-gray-800">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
                 {editingTestId ? 'Edit Test' : 'Create New Test'} - {currentStep === 1 ? 'Basic Information' : 'Add Questions'}
               </h3>
               
@@ -416,22 +416,22 @@ const AdminTests: React.FC = () => {
                 <form onSubmit={(e) => { e.preventDefault(); setCurrentStep(2); }} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="col-span-1 sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Test Title *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Test Title *</label>
                       <input
                         type="text"
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Class *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Class *</label>
                       <select
                         value={formData.class}
                         onChange={(e) => setFormData({ ...formData, class: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       >
                         <option value="">Select Class</option>
@@ -442,55 +442,55 @@ const AdminTests: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Subject *</label>
                       <input
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Test Date *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Test Date *</label>
                       <input
                         type="date"
                         value={formData.testDate}
                         onChange={(e) => setFormData({ ...formData, testDate: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Duration (minutes) *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Duration (minutes) *</label>
                       <input
                         type="number"
                         value={formData.duration}
                         onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Passing Marks *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Passing Marks *</label>
                       <input
                         type="number"
                         value={formData.passingMarks}
                         onChange={(e) => setFormData({ ...formData, passingMarks: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div className="col-span-1 sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
                       <textarea
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         rows={3}
                       />
                     </div>
@@ -499,14 +499,14 @@ const AdminTests: React.FC = () => {
                   <div className="flex gap-4 mt-6">
                     <button
                       type="submit"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
+                      className="flex-1 bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold transition-all"
                     >
                       Next: Add Questions →
                     </button>
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-lg font-semibold"
+                      className="flex-1 bg-[#111111] hover:bg-[#080808] text-gray-300 py-2 rounded-lg font-semibold"
                     >
                       Cancel
                     </button>
@@ -516,20 +516,20 @@ const AdminTests: React.FC = () => {
                 <div className="space-y-6">
                   {/* Added Questions List */}
                   {formData.questions.length > 0 && (
-                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                      <h4 className="font-semibold text-gray-700 mb-3">
+                    <div className="bg-[#080808] p-4 rounded-lg mb-4">
+                      <h4 className="font-semibold text-gray-300 mb-3">
                         Added Questions ({formData.questions.length}) - Total Marks: {calculateTotalMarks()}
                       </h4>
                       <div className="space-y-2 max-h-40 overflow-y-auto">
                         {formData.questions.map((q, index) => (
-                          <div key={index} className="flex justify-between items-center bg-white p-3 rounded">
-                            <div className="flex-1">
+                          <div key={index} className="flex justify-between items-center bg-[#111111] p-3 rounded border border-gray-800">
+                            <div className="flex-1 text-white">
                               <span className="font-medium">Q{index + 1}:</span> {q.questionText.substring(0, 50)}...
-                              <span className="ml-2 text-sm text-gray-500">({q.questionType} - {q.marks} marks)</span>
+                              <span className="ml-2 text-sm text-gray-400">({q.questionType} - {q.marks} marks)</span>
                             </div>
                             <button
                               onClick={() => handleRemoveQuestion(index)}
-                              className="text-red-600 hover:text-red-800 ml-2"
+                              className="text-red-500 hover:text-red-400 ml-2"
                             >
                               ✕
                             </button>
@@ -540,16 +540,16 @@ const AdminTests: React.FC = () => {
                   )}
 
                   {/* Add New Question Form */}
-                  <div className="border-2 border-dashed border-gray-300 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-700 mb-4">Add New Question</h4>
+                  <div className="border-2 border-dashed border-gray-800 p-4 rounded-lg">
+                    <h4 className="font-semibold text-gray-300 mb-4">Add New Question</h4>
                     
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Question Type</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Question Type</label>
                         <select
                           value={currentQuestion.questionType}
                           onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionType: e.target.value as Question['questionType'] })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         >
                           <option value="MCQ">Multiple Choice (MCQ)</option>
                           <option value="Short Answer">Short Answer</option>
@@ -559,11 +559,11 @@ const AdminTests: React.FC = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Question Text *</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Question Text *</label>
                         <textarea
                           value={currentQuestion.questionText}
                           onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
                           rows={3}
                           placeholder="Enter your question here..."
                         />
@@ -571,10 +571,10 @@ const AdminTests: React.FC = () => {
 
                       {currentQuestion.questionType === 'MCQ' && (
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Options (MCQ) *</label>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">Options (MCQ) *</label>
                           {currentQuestion.options.map((option, idx) => (
                             <div key={idx} className="flex items-center gap-2 mb-2">
-                              <span className="font-semibold">{String.fromCharCode(65 + idx)}.</span>
+                              <span className="font-semibold text-white">{String.fromCharCode(65 + idx)}.</span>
                               <input
                                 type="text"
                                 value={option}
@@ -583,7 +583,7 @@ const AdminTests: React.FC = () => {
                                   newOptions[idx] = e.target.value;
                                   setCurrentQuestion({ ...currentQuestion, options: newOptions });
                                 }}
-                                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                className="flex-1 px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
                                 placeholder={`Option ${String.fromCharCode(65 + idx)}`}
                               />
                               <input
@@ -591,10 +591,10 @@ const AdminTests: React.FC = () => {
                                 name="correctAnswer"
                                 checked={currentQuestion.correctAnswer === option && option !== ''}
                                 onChange={() => setCurrentQuestion({ ...currentQuestion, correctAnswer: option })}
-                                className="w-5 h-5"
+                                className="w-5 h-5 accent-[#00E5A8]"
                                 disabled={option === ''}
                               />
-                              <span className="text-sm text-gray-500">Correct</span>
+                              <span className="text-sm text-gray-400">Correct</span>
                             </div>
                           ))}
                           <p className="text-xs text-gray-500 mt-1">Select the radio button next to the correct answer</p>
@@ -603,27 +603,27 @@ const AdminTests: React.FC = () => {
 
                       {currentQuestion.questionType === 'True/False' && (
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Correct Answer *</label>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">Correct Answer *</label>
                           <div className="flex gap-4">
-                            <label className="flex items-center">
+                            <label className="flex items-center text-white">
                               <input
                                 type="radio"
                                 name="trueFalse"
                                 value="True"
                                 checked={currentQuestion.correctAnswer === 'True'}
                                 onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                                className="mr-2"
+                                className="mr-2 accent-[#00E5A8]"
                               />
                               True
                             </label>
-                            <label className="flex items-center">
+                            <label className="flex items-center text-white">
                               <input
                                 type="radio"
                                 name="trueFalse"
                                 value="False"
                                 checked={currentQuestion.correctAnswer === 'False'}
                                 onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                                className="mr-2"
+                                className="mr-2 accent-[#00E5A8]"
                               />
                               False
                             </label>
@@ -632,12 +632,12 @@ const AdminTests: React.FC = () => {
                       )}
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Marks *</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Marks *</label>
                         <input
                           type="number"
                           value={currentQuestion.marks}
                           onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
                           placeholder="Enter marks for this question"
                           min="1"
                         />
@@ -646,7 +646,7 @@ const AdminTests: React.FC = () => {
                       <button
                         type="button"
                         onClick={handleAddQuestion}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
+                        className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold transition-all"
                       >
                         + Add This Question
                       </button>
@@ -658,7 +658,7 @@ const AdminTests: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-lg font-semibold"
+                      className="flex-1 bg-[#111111] hover:bg-[#080808] text-gray-300 py-2 rounded-lg font-semibold"
                     >
                       ← Back to Basic Info
                     </button>
@@ -668,8 +668,8 @@ const AdminTests: React.FC = () => {
                       disabled={formData.questions.length === 0}
                       className={`flex-1 py-2 rounded-lg font-semibold ${
                         formData.questions.length === 0
-                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          : 'bg-blue-600 hover:bg-blue-700 text-white'
+                          ? 'bg-[#111111] text-gray-500 cursor-not-allowed'
+                          : 'bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black transition-all'
                       }`}
                     >
                       {editingTestId ? 'Update Test' : 'Create Test'} ({formData.questions.length} questions, {calculateTotalMarks()} marks)
@@ -677,7 +677,7 @@ const AdminTests: React.FC = () => {
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold"
+                      className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"
                     >
                       Cancel
                     </button>

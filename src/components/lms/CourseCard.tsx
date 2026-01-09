@@ -21,7 +21,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Link href={`/courses/${course.id}`}>
-        <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 h-full flex flex-col">
+        <div className="group bg-[#111111] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-800 hover:border-[#00E5A8]/30 h-full flex flex-col">
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden">
             <img
@@ -35,7 +35,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                <PlayCircle className="w-8 h-8 text-blue-600 ml-1" />
+                <PlayCircle className="w-8 h-8 text-[#00E5A8] ml-1" />
               </div>
             </div>
 
@@ -56,9 +56,9 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
             {/* Level Badge */}
             <div className="absolute top-3 right-3">
               <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                course.level === 'Beginner' ? 'bg-green-100 text-green-700' :
-                course.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
-                'bg-red-100 text-red-700'
+                course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
+                course.level === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
+                'bg-red-500/20 text-red-400'
               }`}>
                 {course.level}
               </span>
@@ -68,22 +68,22 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
           {/* Content */}
           <div className="p-5 flex-1 flex flex-col">
             {/* Category */}
-            <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
+            <span className="text-xs font-medium text-[#00E5A8] uppercase tracking-wide">
               {course.category}
             </span>
 
             {/* Title */}
-            <h3 className="mt-2 text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
+            <h3 className="mt-2 text-lg font-semibold text-white group-hover:text-[#00E5A8] transition-colors line-clamp-2">
               {course.title}
             </h3>
 
             {/* Description */}
-            <p className="mt-2 text-sm text-slate-500 line-clamp-2 flex-1">
+            <p className="mt-2 text-sm text-gray-500 line-clamp-2 flex-1">
               {course.shortDescription}
             </p>
 
             {/* Stats */}
-            <div className="mt-4 flex items-center gap-4 text-sm text-slate-500">
+            <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
                 <span>{course.duration}</span>
@@ -95,7 +95,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
             </div>
 
             {/* Divider */}
-            <div className="my-4 border-t border-slate-100" />
+            <div className="my-4 border-t border-gray-800" />
 
             {/* Bottom Section */}
             <div className="flex items-center justify-between">
@@ -106,7 +106,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
                   alt={course.instructor.name}
                   className="w-8 h-8 rounded-full object-cover"
                 />
-                <span className="text-sm text-slate-600 truncate max-w-[100px]">
+                <span className="text-sm text-gray-400 truncate max-w-[100px]">
                   {course.instructor.name}
                 </span>
               </div>
@@ -115,19 +115,19 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="text-sm font-medium text-slate-700">{course.rating}</span>
+                  <span className="text-sm font-medium text-gray-300">{course.rating}</span>
                 </div>
                 <div className="text-right">
                   {course.isFree ? (
-                    <span className="text-lg font-bold text-teal-600">Free</span>
+                    <span className="text-lg font-bold text-teal-400">Free</span>
                   ) : (
                     <div className="flex items-center gap-2">
                       {course.originalPrice && (
-                        <span className="text-sm text-slate-400 line-through">
+                        <span className="text-sm text-gray-500 line-through">
                           ₹{course.originalPrice.toLocaleString()}
                         </span>
                       )}
-                      <span className="text-lg font-bold text-blue-600">
+                      <span className="text-lg font-bold text-[#00E5A8]">
                         ₹{course.price.toLocaleString()}
                       </span>
                     </div>

@@ -106,21 +106,21 @@ export default function AdminNoticesPage() {
 
   return (
     <AdminLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100 py-10">
+      <div className="min-h-screen bg-[#0b0b0b] py-10">
         <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-blue-700 mb-6 flex items-center gap-2">
-            <Megaphone size={32} className="text-blue-500" />
+          <h1 className="text-3xl font-bold text-[#00E5A8] mb-6 flex items-center gap-2">
+            <Megaphone size={32} className="text-[#00E5A8]" />
             Admin Notices
           </h1>
-          <form onSubmit={handlePost} className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-blue-100" encType="multipart/form-data">
-            <h2 className="text-xl font-semibold text-blue-600 mb-4">Post a New Notice</h2>
+          <form onSubmit={handlePost} className="bg-[#111111] rounded-xl shadow-lg p-6 mb-8 border border-gray-800" encType="multipart/form-data">
+            <h2 className="text-xl font-semibold text-[#00E5A8] mb-4">Post a New Notice</h2>
             <input
               type="text"
               name="title"
               value={form.title}
               onChange={handleChange}
               placeholder="Notice Title"
-              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full mb-3 px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E5A8] text-white placeholder-gray-500"
               required
             />
             <textarea
@@ -128,27 +128,27 @@ export default function AdminNoticesPage() {
               value={form.message}
               onChange={handleChange}
               placeholder="Notice Message"
-              className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full mb-3 px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E5A8] text-white placeholder-gray-500"
               rows={4}
               required
             />
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Reference Document (PDF, DOC, etc.)</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Reference Document (PDF, DOC, etc.)</label>
               <input
                 type="file"
                 name="document"
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png"
                 onChange={handleFileChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E5A8] text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[#00E5A8] file:text-black file:cursor-pointer hover:file:bg-[#00E5A8]/90"
               />
             </div>
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700 mb-1">For Class</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">For Class</label>
               <select
                 name="class"
                 value={form.class}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E5A8] text-white"
               >
                 <option value="All">All</option>
                 <option value="9">Class 9</option>
@@ -160,7 +160,7 @@ export default function AdminNoticesPage() {
             <button
               type="submit"
               disabled={posting}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all"
+              className="bg-[#00E5A8] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#00E5A8]/90 hover:scale-105 transition-all disabled:opacity-50"
             >{posting ? 'Posting...' : 'Post Notice'}</button>
           </form>
           <div className="space-y-6">
@@ -170,30 +170,30 @@ export default function AdminNoticesPage() {
               <div className="text-center py-12 text-gray-400">No notices yet.</div>
             ) : (
               notices.map(notice => (
-                <div key={notice._id} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-400">
+                <div key={notice._id} className="bg-[#111111] rounded-xl shadow-md p-6 border border-gray-800 border-l-4 border-l-[#00E5A8]">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
-                      <User size={20} className="text-blue-400" />
-                      <span className="font-semibold text-blue-700">{notice.postedBy}</span>
+                      <User size={20} className="text-[#00E5A8]" />
+                      <span className="font-semibold text-[#00E5A8]">{notice.postedBy}</span>
                       <span className="text-xs text-gray-400 ml-2">{new Date(notice.createdAt).toLocaleString()}</span>
-                      <span className="ml-2 px-2 py-1 rounded bg-blue-50 text-blue-600 text-xs font-semibold">{notice.class || 'All'}</span>
+                      <span className="ml-2 px-2 py-1 rounded bg-[#00E5A8]/10 text-[#00E5A8] text-xs font-semibold">{notice.class || 'All'}</span>
                     </div>
                     <button
                       onClick={() => handleDelete(notice._id)}
-                      className="text-red-600 hover:text-red-800 hover:bg-red-50 p-2 rounded transition-colors"
+                      className="text-red-500 hover:text-red-400 hover:bg-red-500/10 p-2 rounded transition-colors"
                       title="Delete Notice"
                     >
                       <Trash2 size={18} />
                     </button>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-1">{notice.title}</h3>
-                  <p className="text-gray-700 mb-2 whitespace-pre-line">{notice.message}</p>
+                  <h3 className="text-lg font-bold text-white mb-1">{notice.title}</h3>
+                  <p className="text-gray-300 mb-2 whitespace-pre-line">{notice.message}</p>
                   {notice.documentUrl && (
                     <a
                       href={notice.documentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 font-medium"
+                      className="inline-block mt-2 px-4 py-2 bg-[#00E5A8]/10 text-[#00E5A8] rounded hover:bg-[#00E5A8]/20 font-medium transition-colors"
                     >
                       {notice.documentName ? notice.documentName : 'View Reference Document'}
                     </a>

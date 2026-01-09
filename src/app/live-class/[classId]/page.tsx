@@ -51,34 +51,34 @@ export default function LiveClassPage() {
 
   const initializeLiveClass = async () => {
     try {
-      // Get user info from sessionStorage (set during login)
-      const adminInfo = sessionStorage.getItem('adminInfo');
-      const studentInfo = sessionStorage.getItem('studentInfo');
+      // Check student authentication first
+      const studentRes = await fetch('/api/auth/verify', {
+        credentials: 'include'
+      });
 
       let user: UserInfo | null = null;
       let isTeacher = false;
 
-      if (adminInfo) {
-        try {
-          const adminData = JSON.parse(adminInfo);
+      if (studentRes.ok) {
+        const { student: studentData } = await studentRes.json();
+        user = { 
+          name: studentData.studentName || 'Student', 
+          email: studentData.email 
+        };
+      } else {
+        // Check admin authentication
+        const adminRes = await fetch('/api/admin/verify', {
+          credentials: 'include'
+        });
+        
+        if (adminRes.ok) {
+          const { admin: adminData } = await adminRes.json();
           user = { 
             name: adminData.name || adminData.email || 'Teacher', 
             email: adminData.email 
           };
           isTeacher = true;
           setIsModerator(true);
-        } catch (e) {
-          console.error('Error parsing admin info:', e);
-        }
-      } else if (studentInfo) {
-        try {
-          const studentData = JSON.parse(studentInfo);
-          user = { 
-            name: studentData.name || 'Student', 
-            email: studentData.email 
-          };
-        } catch (e) {
-          console.error('Error parsing student info:', e);
         }
       }
 
@@ -301,14 +301,14 @@ export default function LiveClassPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center p-4">
+        <div className="bg-[#111111] rounded-lg p-8 max-w-md w-full text-center border border-gray-800">
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Unable to Load Class</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h2 className="text-2xl font-bold text-white mb-2">Unable to Load Class</h2>
+          <p className="text-gray-400 mb-6">{error}</p>
           <button
             onClick={() => router.push(isModerator ? '/admin/dashboard' : '/dashboard')}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-6 py-2 rounded-full transition-all"
           >
             Go Back
           </button>
@@ -318,21 +318,21 @@ export default function LiveClassPage() {
   }
 
   return (
-    <div className="relative w-screen h-screen bg-gray-900">
+    <div className="relative w-screen h-screen bg-[#0b0b0b]">
       {/* Header Bar */}
-      <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-75 text-white p-4 z-10">
+      <div className="absolute top-0 left-0 right-0 bg-[#080808] bg-opacity-95 text-white p-4 z-10 border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Video className="w-6 h-6 text-blue-400" />
+            <Video className="w-6 h-6 text-[#00E5A8]" />
             <div>
               <h1 className="font-bold text-lg">{liveClass?.title}</h1>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-gray-400">
                 {liveClass?.subject} • {liveClass?.class} • Teacher: {liveClass?.teacherName}
               </p>
             </div>
           </div>
           {isModerator && (
-            <span className="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+            <span className="bg-[#00E5A8] text-black px-3 py-1 rounded-full text-sm font-semibold">
               Moderator
             </span>
           )}

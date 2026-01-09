@@ -60,10 +60,10 @@ const Services: React.FC = () => {
   ];
 
   const colorClasses: Record<string, string> = {
-    violet: 'bg-blue-50 text-blue-600 border-blue-100',
-    teal: 'bg-teal-50 text-teal-600 border-teal-100',
-    emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-    amber: 'bg-amber-50 text-amber-600 border-amber-100'
+    violet: 'bg-[#111111] text-[#00E5A8] border-gray-800 hover:border-[#00E5A8]/30',
+    teal: 'bg-[#111111] text-[#00E5A8] border-gray-800 hover:border-[#00E5A8]/30',
+    emerald: 'bg-[#111111] text-[#00E5A8] border-gray-800 hover:border-[#00E5A8]/30',
+    amber: 'bg-[#111111] text-[#00E5A8] border-gray-800 hover:border-[#00E5A8]/30'
   };
 
   const classDetails = [
@@ -89,13 +89,13 @@ const Services: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#0b0b0b]">
         {/* Header */}
-        <section className="bg-blue-600 text-white py-16 pt-28">
+        <section className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-white py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-              <p className="text-xl text-blue-100">
+              <p className="text-xl text-[#00E5A8]/80">
                 Comprehensive educational programs designed for your success
               </p>
             </div>
@@ -115,10 +115,10 @@ const Services: React.FC = () => {
                     <div className="mb-4">
                       <service.icon className="w-12 h-12" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                    <h3 className="text-lg font-bold text-white mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-gray-400 text-sm leading-relaxed">
                       {service.description}
                     </p>
                   </div>
@@ -129,18 +129,18 @@ const Services: React.FC = () => {
         </section>
 
         {/* Class Details Section */}
-        <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-20">
+        <section className="bg-[#080808] py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              <h2 className="text-4xl font-bold text-white mb-12 text-center">
                 Class, Batch and Subject Details
               </h2>
 
               {/* Desktop Table */}
-              <div className="hidden md:block bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+              <div className="hidden md:block bg-[#111111] rounded-xl shadow-lg overflow-hidden border border-gray-800">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                    <tr className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-white">
                       <th className="px-6 py-4 text-left font-semibold">Class</th>
                       <th className="px-6 py-4 text-left font-semibold">Annual Batch Subject</th>
                       <th className="px-6 py-4 text-left font-semibold">Crash-course Batch Subject</th>
@@ -151,18 +151,18 @@ const Services: React.FC = () => {
                     {classDetails.map((detail, index) => (
                       <tr 
                         key={index} 
-                        className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-blue-50 transition`}
+                        className={`${index % 2 === 0 ? 'bg-[#111111]' : 'bg-[#080808]'} hover:bg-gray-800 transition`}
                       >
-                        <td className="px-6 py-4 font-bold text-blue-600 border-t border-gray-200">
+                        <td className="px-6 py-4 font-bold text-[#00E5A8] border-t border-gray-800">
                           {detail.class}
                         </td>
-                        <td className="px-6 py-4 text-gray-700 border-t border-gray-200">
+                        <td className="px-6 py-4 text-gray-300 border-t border-gray-800">
                           {detail.annualBatch}
                         </td>
-                        <td className="px-6 py-4 text-gray-700 border-t border-gray-200">
+                        <td className="px-6 py-4 text-gray-300 border-t border-gray-800">
                           {detail.crashCourse}
                         </td>
-                        <td className="px-6 py-4 text-gray-700 border-t border-gray-200">
+                        <td className="px-6 py-4 text-gray-300 border-t border-gray-800">
                           {detail.options}
                         </td>
                       </tr>
@@ -174,23 +174,23 @@ const Services: React.FC = () => {
               {/* Mobile Cards */}
               <div className="md:hidden space-y-6">
                 {classDetails.map((detail, index) => (
-                  <div key={index} className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-                    <h3 className="text-2xl font-bold text-blue-600 mb-4">{detail.class}</h3>
+                  <div key={index} className="bg-[#111111] rounded-xl shadow-lg p-6 border border-gray-800">
+                    <h3 className="text-2xl font-bold text-[#00E5A8] mb-4">{detail.class}</h3>
                     
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Annual Batch Subject</h4>
-                        <p className="text-gray-700">{detail.annualBatch}</p>
+                        <h4 className="font-semibold text-white mb-2">Annual Batch Subject</h4>
+                        <p className="text-gray-400">{detail.annualBatch}</p>
                       </div>
                       
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Crash-course Batch Subject</h4>
-                        <p className="text-gray-700">{detail.crashCourse}</p>
+                        <h4 className="font-semibold text-white mb-2">Crash-course Batch Subject</h4>
+                        <p className="text-gray-400">{detail.crashCourse}</p>
                       </div>
                       
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Options</h4>
-                        <p className="text-gray-700">{detail.options}</p>
+                        <h4 className="font-semibold text-white mb-2">Options</h4>
+                        <p className="text-gray-400">{detail.options}</p>
                       </div>
                     </div>
                   </div>
@@ -201,17 +201,17 @@ const Services: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
+        <section className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] py-16">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
               Choose the right program for your academic goals and start your journey to excellence
             </p>
             <button 
               onClick={() => router.push('/admission')}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition font-semibold"
+              className="bg-black text-[#00E5A8] px-8 py-4 rounded-full hover:bg-black/90 hover:scale-105 transition font-semibold"
             >
               Enroll Now
             </button>

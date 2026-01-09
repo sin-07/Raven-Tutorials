@@ -60,7 +60,6 @@ interface StudyMaterial {
 const Dashboard: React.FC = () => {
   const router = useRouter();
   const [student, setStudent] = useState<StudentData | null>(null);
-  const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [downloading, setDownloading] = useState(false);
@@ -77,22 +76,30 @@ const Dashboard: React.FC = () => {
 
   const initializeDashboard = async () => {
     try {
-      const authData = localStorage.getItem('studentAuth');
-      if (!authData) {
+      // Verify authentication via httpOnly cookie
+      const verifyRes = await fetch('/api/auth/verify', {
+        credentials: 'include'
+      });
+
+      if (!verifyRes.ok) {
         router.push('/login');
         return;
       }
 
-      const parsed = JSON.parse(authData);
-      setStudent(parsed.student);
-      setToken(parsed.token);
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        router.push('/login');
+        return;
+      }
+
+      setStudent(verifyData.student);
       
-      // Fetch all data
+      // Fetch all data (cookies sent automatically with credentials: 'include')
       await Promise.all([
-        fetchAttendance(parsed.token),
-        fetchTestResults(parsed.token),
-        fetchUpcomingTests(parsed.token),
-        fetchStudyMaterials(parsed.token)
+        fetchAttendance(),
+        fetchTestResults(),
+        fetchUpcomingTests(),
+        fetchStudyMaterials()
       ]);
     } catch (err) {
       console.error('Dashboard init error:', err);
@@ -103,10 +110,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const fetchAttendance = async (tok: string) => {
+  const fetchAttendance = async () => {
     try {
       const res = await fetch('/api/student/attendance', {
-        headers: { 'Authorization': `Bearer ${tok}` }
+        credentials: 'include'
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -118,10 +125,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const fetchTestResults = async (tok: string) => {
+  const fetchTestResults = async () => {
     try {
       const res = await fetch('/api/student/tests/results', {
-        headers: { 'Authorization': `Bearer ${tok}` }
+        credentials: 'include'
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -133,10 +140,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const fetchUpcomingTests = async (tok: string) => {
+  const fetchUpcomingTests = async () => {
     try {
       const res = await fetch('/api/student/tests', {
-        headers: { 'Authorization': `Bearer ${tok}` }
+        credentials: 'include'
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -151,10 +158,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const fetchStudyMaterials = async (tok: string) => {
+  const fetchStudyMaterials = async () => {
     try {
       const res = await fetch('/api/student/study-materials', {
-        headers: { 'Authorization': `Bearer ${tok}` }
+        credentials: 'include'
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -167,12 +174,11 @@ const Dashboard: React.FC = () => {
   };
 
   const handleDownloadReceipt = async () => {
-    if (!token) return;
     setDownloading(true);
 
     try {
       const res = await fetch('/api/auth/download-receipt', {
-        headers: { 'Authorization': `Bearer ${token}` }
+        credentials: 'include'
       });
 
       if (!res.ok) throw new Error('Failed to download');
@@ -195,18 +201,30 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('studentAuth');
-    router.push('/login');
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      window.location.href = '/login';
+    } catch (err) {
+      console.error('Logout error:', err);
+      window.location.href = '/login';
+    }
   };
 
   if (loading) {
     return (
       <>
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600 text-lg">Loading dashboard...</p>
+            <div className="relative">
+              <div className="animate-spin rounded-full h-20 w-20 border-4 border-[#005544] border-t-[#00E5A8] mx-auto mb-6"></div>
+              <div className="absolute inset-0 rounded-full h-20 w-20 border-4 border-transparent border-t-[#00E5A8] animate-ping mx-auto opacity-20"></div>
+            </div>
+            <p className="text-white text-lg font-medium">Loading your dashboard...</p>
+            <p className="text-gray-500 text-sm mt-2">Please wait a moment</p>
           </div>
         </div>
       </>
@@ -223,124 +241,137 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 pt-16">
+      <div className="min-h-screen bg-[#0b0b0b] pt-16">
         {/* Header */}
-        <header className="bg-white shadow-sm fixed top-16 left-0 right-0 z-40">
+        <header className="bg-[#080808]/80 backdrop-blur-md shadow-sm fixed top-16 left-0 right-0 z-40 border-b border-[#00E5A8]/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <GraduationCap className="w-8 h-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+              <div className="p-2 bg-gradient-to-br from-[#00E5A8] to-[#00B386] rounded-xl">
+                <GraduationCap className="w-6 h-6 text-black" />
+              </div>
+              <h1 className="text-2xl font-bold text-white">Dashboard</h1>
             </div>
 
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600 hidden sm:inline">{student.studentName}</span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline">Logout</span>
-              </button>
+              <span className="text-sm font-medium text-gray-300">{student.studentName}</span>
             </div>
           </div>
         </header>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {/* Welcome Section */}
-          <div className="bg-blue-600 rounded-2xl p-8 text-white mb-8">
-            <h2 className="text-3xl font-bold mb-2">Welcome, {student.studentName}!</h2>
-            <p className="text-blue-100">Class {student.standard} | ID: {student.registrationId}</p>
+          <div className="relative overflow-hidden bg-gradient-to-r from-[#00E5A8] via-[#00C090] to-[#00B386] rounded-2xl p-8 text-black mb-8 shadow-xl border border-[#00E5A8]/20">
+            <div className="absolute inset-0 bg-grid-white/5"></div>
+            <div className="relative">
+              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm">Welcome, {student.studentName}! 👋</h2>
+              <p className="text-black/80 font-medium">Class {student.standard} | ID: {student.registrationId}</p>
+            </div>
+            <div className="absolute top-0 right-0 -mt-4 -mr-4 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-[#00E5A8]/10 rounded-full blur-2xl"></div>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Overall Attendance</p>
-                  <p className="text-3xl font-bold text-gray-900">{overallAttendance}%</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Overall Attendance</p>
+                  <p className="text-3xl font-bold text-[#00E5A8]">{overallAttendance}%</p>
                 </div>
-                <Calendar className="w-12 h-12 text-blue-100" />
+                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
+                  <Calendar className="w-8 h-8 text-[#00E5A8]" />
+                </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Tests Completed</p>
-                  <p className="text-3xl font-bold text-gray-900">{testResults.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Tests Completed</p>
+                  <p className="text-3xl font-bold text-[#00E5A8]">{testResults.length}</p>
                 </div>
-                <Award className="w-12 h-12 text-blue-100" />
+                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
+                  <Award className="w-8 h-8 text-[#00E5A8]" />
+                </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Upcoming Tests</p>
-                  <p className="text-3xl font-bold text-gray-900">{upcomingTests.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Upcoming Tests</p>
+                  <p className="text-3xl font-bold text-[#00E5A8]">{upcomingTests.length}</p>
                 </div>
-                <Clock className="w-12 h-12 text-green-100" />
+                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
+                  <Clock className="w-8 h-8 text-[#00E5A8]" />
+                </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm">Study Materials</p>
-                  <p className="text-3xl font-bold text-gray-900">{studyMaterials.length}</p>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Study Materials</p>
+                  <p className="text-3xl font-bold text-white">{studyMaterials.length}</p>
                 </div>
-                <BookOpen className="w-12 h-12 text-orange-100" />
+                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
               </div>
             </div>
           </div>
 
           {/* Alerts */}
           {hasLowAttendance && (
-            <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-8 flex gap-3">
-              <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+            <div className="bg-[#111111] border-l-4 border-orange-500 rounded-xl p-5 mb-8 flex gap-4 shadow-md">
+              <div className="p-2 bg-orange-500/10 rounded-lg h-fit">
+                <AlertCircle className="w-6 h-6 text-orange-500" />
+              </div>
               <div>
-                <p className="font-semibold text-orange-900">Attendance Warning</p>
-                <p className="text-orange-800 text-sm">Your attendance in some subjects is below 75%.</p>
+                <p className="font-bold text-orange-400 text-lg mb-1">⚠️ Attendance Warning</p>
+                <p className="text-gray-400">Your attendance in some subjects is below 75%. Please improve your attendance to meet requirements.</p>
               </div>
             </div>
           )}
 
           {/* Tab Navigation */}
-          <div className="bg-white rounded-lg shadow mb-8">
-            <div className="flex flex-wrap border-b">
+          <div className="bg-[#111111] rounded-xl shadow-md mb-8 overflow-hidden border border-gray-800">
+            <div className="flex flex-wrap border-b border-gray-800">
               {['overview', 'attendance', 'marks', 'tests', 'materials', 'profile'].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 sm:flex-none px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
+                  className={`flex-1 sm:flex-none px-4 sm:px-6 py-4 font-semibold transition-all text-sm sm:text-base relative ${
                     activeTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-[#00E5A8] bg-[#00E5A8]/10'
+                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
                   }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {activeTab === tab && (
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00E5A8] to-[#00C090] rounded-t-full"></div>
+                  )}
                 </button>
               ))}
             </div>
           </div>
 
           {/* Tab Content */}
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-[#111111] rounded-xl shadow-md p-8 border border-gray-800">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h3 className="font-semibold text-indigo-900 mb-4 flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
+                <div className="bg-[#080808] border border-[#00E5A8]/20 rounded-xl p-6 shadow-sm">
+                  <h3 className="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                    <CheckCircle className="w-6 h-6 text-[#00E5A8]" />
                     Quick Actions
                   </h3>
                   <button
                     onClick={handleDownloadReceipt}
                     disabled={downloading}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition flex items-center gap-2"
+                    className="px-6 py-3 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 disabled:bg-gray-600 disabled:text-gray-400 transition-all shadow-md hover:shadow-lg flex items-center gap-2 font-medium"
                   >
-                    <Download className="w-4 h-4" />
+                    <Download className="w-5 h-5" />
                     {downloading ? 'Downloading...' : 'Download Receipt'}
                   </button>
                 </div>
@@ -350,13 +381,13 @@ const Dashboard: React.FC = () => {
             {/* Attendance Tab */}
             {activeTab === 'attendance' && (
               <div>
-                <h3 className="text-lg font-bold mb-4">Subject-wise Attendance</h3>
+                <h3 className="text-lg font-bold mb-4 text-white">Subject-wise Attendance</h3>
                 {attendance.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {attendance.map(subject => (
-                      <div key={subject.subject} className="p-4 border rounded-lg">
+                      <div key={subject.subject} className="p-4 border border-gray-800 rounded-lg bg-[#080808]">
                         <div className="flex justify-between items-center mb-3">
-                          <h4 className="font-semibold text-gray-900">{subject.subject}</h4>
+                          <h4 className="font-semibold text-white">{subject.subject}</h4>
                           <span className={`text-lg font-bold ${subject.percentage >= 75 ? 'text-green-600' : 'text-orange-600'}`}>
                             {subject.percentage}%
                           </span>

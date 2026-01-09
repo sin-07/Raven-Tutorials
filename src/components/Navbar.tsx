@@ -14,12 +14,20 @@ const Navbar: React.FC = React.memo(() => {
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
 
-  // Check if user is logged in (student) by checking sessionStorage
+  // Check if user is logged in (student) by verifying cookie
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const studentInfo = sessionStorage.getItem('studentInfo');
-      setIsStudentLoggedIn(!!studentInfo);
-    }
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/verify', {
+          credentials: 'include'
+        });
+        setIsStudentLoggedIn(res.ok);
+      } catch {
+        // Silent fail - user is simply not logged in
+        setIsStudentLoggedIn(false);
+      }
+    };
+    checkAuth();
   }, [pathname]);
 
   // Check if admin is logged in
@@ -42,18 +50,12 @@ const Navbar: React.FC = React.memo(() => {
         method: 'POST',
         credentials: 'include',
       });
-      if (typeof window !== 'undefined') {
-        sessionStorage.removeItem('studentInfo');
-      }
       setIsStudentLoggedIn(false);
       toast.success('Logged out successfully');
       router.push('/login');
     } catch (error) {
       console.error('Logout error:', error);
       // Still clear local state even if API call fails
-      if (typeof window !== 'undefined') {
-        sessionStorage.removeItem('studentInfo');
-      }
       setIsStudentLoggedIn(false);
       router.push('/login');
     }
@@ -73,8 +75,9 @@ const Navbar: React.FC = React.memo(() => {
           top: 0;
           z-index: 50;
           backdrop-filter: blur(12px);
-          background-color: rgba(255, 255, 255, 0.95);
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+          background-color: rgba(10, 10, 10, 0.95);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+          border-bottom: 1px solid rgba(0, 229, 168, 0.2);
         }
         @keyframes slideDownMenu {
           from {
@@ -119,25 +122,17 @@ const Navbar: React.FC = React.memo(() => {
         .mobile-menu-item {
           animation: menuItemSlideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .navbar-sticky {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: blur(12px);
-          background-color: rgba(255, 255, 255, 0.98);
-          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-        }
       `}</style>
-      <nav className="navbar-sticky bg-white shadow-md w-full transition-all duration-300">
+      <nav className="navbar-sticky w-full transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[#00E5A8]">
             <img 
               src="/logo.png" 
               alt="RAVEN Logo" 
-              className="h-10 w-10"
+              className="h-10 w-10 brightness-0 invert"
             />
-            RAVEN Tutorials
+            <span className="text-white">RAVEN</span> <span className="text-[#00E5A8]">Tutorials</span>
           </Link>
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
@@ -147,8 +142,8 @@ const Navbar: React.FC = React.memo(() => {
                 href={link.path}
                 className={`relative px-4 py-2 rounded-lg transition flex items-center ${
                   isActive(link.path)
-                    ? 'text-blue-600 bg-blue-50 font-semibold'
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'text-[#00E5A8] bg-[#00E5A8]/10 font-semibold'
+                    : 'text-gray-300 hover:text-[#00E5A8] hover:bg-white/5'
                 }`}
               >
                 {isActive(link.path) && (
@@ -163,14 +158,14 @@ const Navbar: React.FC = React.memo(() => {
               <>
                 <Link
                   href="/admin/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold ml-2"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
                 >
                   <User className="w-4 h-4" />
                   Admin Dashboard
                 </Link>
                 <button
                   onClick={handleAdminLogout}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition font-semibold"
+                  className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition font-semibold"
                 >
                   <LogOut className="w-4 h-4" />
                   Logout
@@ -180,14 +175,14 @@ const Navbar: React.FC = React.memo(() => {
               <>
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold ml-2"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
                 >
                   <User className="w-4 h-4" />
                   Dashboard
                 </Link>
                 <button
                   onClick={handleStudentLogout}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition font-semibold"
+                  className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition font-semibold"
                 >
                   <LogOut className="w-4 h-4" />
                   Logout
@@ -196,7 +191,7 @@ const Navbar: React.FC = React.memo(() => {
             ) : (
               <Link
                 href="/login"
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold ml-2"
+                className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
               >
                 <LogIn className="w-4 h-4" />
                 Login
@@ -207,7 +202,7 @@ const Navbar: React.FC = React.memo(() => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition text-gray-300"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -216,7 +211,7 @@ const Navbar: React.FC = React.memo(() => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className={`md:hidden bg-white border-t border-gray-200 ${isMenuOpen ? 'mobile-menu-open' : 'mobile-menu-close'}`}>
+          <div className={`md:hidden bg-[#080808] border-t border-[#00E5A8]/20 ${isMenuOpen ? 'mobile-menu-open' : 'mobile-menu-close'}`}>
             <div className="px-4 py-3 space-y-2">
               {navLinks.map((link, index) => (
                 <Link
@@ -225,8 +220,8 @@ const Navbar: React.FC = React.memo(() => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`block px-4 py-3 rounded-lg transition mobile-menu-item ${
                     isActive(link.path)
-                      ? 'text-blue-600 bg-blue-50 font-semibold'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                      ? 'text-[#00E5A8] bg-[#00E5A8]/10 font-semibold'
+                      : 'text-gray-300 hover:text-[#00E5A8] hover:bg-white/5'
                   }`}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
@@ -240,7 +235,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/admin/dashboard"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 bg-blue-600 text-white rounded-lg text-center font-semibold mobile-menu-item"
+                    className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
                   >
                     Admin Dashboard
                   </Link>
@@ -249,7 +244,7 @@ const Navbar: React.FC = React.memo(() => {
                       setIsMenuOpen(false);
                       handleAdminLogout();
                     }}
-                    className="w-full px-4 py-3 bg-red-50 text-red-600 rounded-lg text-center font-semibold mobile-menu-item"
+                    className="w-full px-4 py-3 bg-red-500/10 text-red-400 rounded-lg text-center font-semibold mobile-menu-item"
                   >
                     Logout
                   </button>
@@ -259,7 +254,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/dashboard"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 bg-blue-600 text-white rounded-lg text-center font-semibold mobile-menu-item"
+                    className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
                   >
                     Dashboard
                   </Link>
@@ -268,7 +263,7 @@ const Navbar: React.FC = React.memo(() => {
                       setIsMenuOpen(false);
                       handleStudentLogout();
                     }}
-                    className="w-full px-4 py-3 bg-red-50 text-red-600 rounded-lg text-center font-semibold mobile-menu-item"
+                    className="w-full px-4 py-3 bg-red-500/10 text-red-400 rounded-lg text-center font-semibold mobile-menu-item"
                   >
                     Logout
                   </button>
@@ -277,7 +272,7 @@ const Navbar: React.FC = React.memo(() => {
                 <Link
                   href="/login"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 bg-blue-600 text-white rounded-lg text-center font-semibold mobile-menu-item"
+                  className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
                 >
                   Login
                 </Link>

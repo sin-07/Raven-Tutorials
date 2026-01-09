@@ -238,10 +238,10 @@ const AdminLiveClasses: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const styles: { [key: string]: string } = {
-      Scheduled: 'bg-blue-100 text-blue-800',
-      Live: 'bg-green-100 text-green-800 animate-pulse',
-      Completed: 'bg-gray-100 text-gray-800',
-      Cancelled: 'bg-red-100 text-red-800'
+      Scheduled: 'bg-blue-500/20 text-blue-400',
+      Live: 'bg-green-500/20 text-green-400 animate-pulse',
+      Completed: 'bg-gray-500/20 text-gray-400',
+      Cancelled: 'bg-red-500/20 text-red-400'
     };
     return (
       <span className={`px-2 py-1 rounded-full text-xs font-semibold ${styles[status]}`}>
@@ -258,15 +258,15 @@ const AdminLiveClasses: React.FC = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-              <Video className="w-8 h-8 text-blue-600" />
+            <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+              <Video className="w-8 h-8 text-[#00E5A8]" />
               Live Classes
             </h1>
-            <p className="text-gray-600 mt-1">Manage online classes with Jitsi Meet</p>
+            <p className="text-gray-400 mt-1">Manage online classes with Jitsi Meet</p>
           </div>
           <button
             onClick={() => { resetForm(); setShowModal(true); }}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 py-2 rounded-lg flex items-center gap-2 transition-all"
           >
             <Plus className="w-5 h-5" />
             Create Live Class
@@ -274,18 +274,18 @@ const AdminLiveClasses: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
+        <div className="bg-[#111111] rounded-lg shadow p-4 mb-6 border border-gray-800">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="w-5 h-5 text-gray-600" />
-            <h3 className="font-semibold text-gray-900">Filters</h3>
+            <Filter className="w-5 h-5 text-gray-400" />
+            <h3 className="font-semibold text-white">Filters</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Status</label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
               >
                 <option value="">All Status</option>
                 <option value="Scheduled">Scheduled</option>
@@ -295,11 +295,11 @@ const AdminLiveClasses: React.FC = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Class</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Class</label>
               <select
                 value={filterClass}
                 onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
               >
                 <option value="">All Classes</option>
                 {STANDARDS.map(std => (
@@ -314,40 +314,40 @@ const AdminLiveClasses: React.FC = () => {
         {/* Live Classes List */}
         <div className="grid gap-4">
           {liveClasses.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-8 text-center">
-              <Video className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <div className="bg-[#111111] rounded-lg shadow p-8 text-center border border-gray-800">
+              <Video className="w-16 h-16 text-gray-600 mx-auto mb-4" />
               <p className="text-gray-500">No live classes found. Create one to get started!</p>
             </div>
           ) : (
             liveClasses.map(liveClass => (
-              <div key={liveClass._id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+              <div key={liveClass._id} className="bg-[#111111] rounded-lg shadow hover:shadow-lg transition-shadow p-6 border border-gray-800 hover:border-[#00E5A8]/30">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-gray-900">{liveClass.title}</h3>
+                      <h3 className="text-xl font-bold text-white">{liveClass.title}</h3>
                       {getStatusBadge(liveClass.status)}
                     </div>
                     {liveClass.description && (
-                      <p className="text-gray-600 text-sm mb-3">{liveClass.description}</p>
+                      <p className="text-gray-400 text-sm mb-3">{liveClass.description}</p>
                     )}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      <div className="flex items-center gap-2 text-gray-700">
-                        <Calendar className="w-4 h-4 text-blue-600" />
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <Calendar className="w-4 h-4 text-[#00E5A8]" />
                         <span>{new Date(liveClass.scheduledDate).toLocaleDateString('en-GB')}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-700">
-                        <Clock className="w-4 h-4 text-blue-600" />
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <Clock className="w-4 h-4 text-[#00E5A8]" />
                         <span>{liveClass.startTime} - {liveClass.endTime}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-700">
-                        <Users className="w-4 h-4 text-blue-600" />
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <Users className="w-4 h-4 text-[#00E5A8]" />
                         <span>{liveClass.participants?.length || 0} participants</span>
                       </div>
-                      <div className="text-gray-700">
+                      <div className="text-gray-300">
                         <strong>Subject:</strong> {liveClass.subject}
                       </div>
                     </div>
-                    <div className="mt-2 text-sm text-gray-600">
+                    <div className="mt-2 text-sm text-gray-400">
                       <strong>Class:</strong> {liveClass.class} | <strong>Duration:</strong> {liveClass.duration} mins
                     </div>
                   </div>
@@ -356,14 +356,14 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleStartClass(liveClass.classId)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
+                          className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black p-2 rounded-lg transition-all"
                           title="Start Class"
                         >
                           <Play className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => handleEdit(liveClass)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
+                          className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black p-2 rounded-lg transition-all"
                           title="Edit"
                         >
                           <Edit className="w-5 h-5" />
@@ -374,7 +374,7 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleJoinClass(liveClass.classId)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+                          className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 py-2 rounded-lg transition-all flex items-center gap-2"
                         >
                           <Video className="w-5 h-5" />
                           Join Class
@@ -404,15 +404,15 @@ const AdminLiveClasses: React.FC = () => {
 
         {/* Create/Edit Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+            <div className="bg-[#111111] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-800">
               <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   {editingClassId ? 'Edit Live Class' : 'Create New Live Class'}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Title <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -420,32 +420,32 @@ const AdminLiveClasses: React.FC = () => {
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Description</label>
                     <textarea
                       name="description"
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Subject <span className="text-red-500">*</span>
                       </label>
                       <select
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       >
                         <option value="">Select Subject</option>
@@ -456,14 +456,14 @@ const AdminLiveClasses: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Class <span className="text-red-500">*</span>
                       </label>
                       <select
                         name="class"
                         value={formData.class}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       >
                         <option value="">Select Class</option>
@@ -477,7 +477,7 @@ const AdminLiveClasses: React.FC = () => {
 
                   <div className="grid grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Date <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -486,13 +486,13 @@ const AdminLiveClasses: React.FC = () => {
                         value={formData.scheduledDate}
                         onChange={handleInputChange}
                         min={new Date().toISOString().split('T')[0]}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Start Time <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -500,13 +500,13 @@ const AdminLiveClasses: React.FC = () => {
                         name="startTime"
                         value={formData.startTime}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         End Time <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -514,22 +514,22 @@ const AdminLiveClasses: React.FC = () => {
                         name="endTime"
                         value={formData.endTime}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
                     </div>
                   </div>
 
                   {Number(formData.duration) > 0 && (
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-sm text-blue-800">
+                    <div className="bg-[#00E5A8]/10 p-3 rounded-lg">
+                      <p className="text-sm text-[#00E5A8]">
                         <strong>Duration:</strong> {formData.duration} minutes ({Math.floor(Number(formData.duration) / 60)}h {Number(formData.duration) % 60}m)
                       </p>
                     </div>
                   )}
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Max Participants</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Max Participants</label>
                     <input
                       type="number"
                       name="maxParticipants"
@@ -537,7 +537,7 @@ const AdminLiveClasses: React.FC = () => {
                       onChange={handleInputChange}
                       min="1"
                       max="500"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                     />
                   </div>
 
@@ -547,9 +547,9 @@ const AdminLiveClasses: React.FC = () => {
                       name="isRecordingEnabled"
                       checked={formData.isRecordingEnabled}
                       onChange={handleInputChange}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      className="w-4 h-4 accent-[#00E5A8] border-gray-800 rounded focus:ring-[#00E5A8]"
                     />
-                    <label className="text-sm font-medium text-gray-700">
+                    <label className="text-sm font-medium text-gray-300">
                       Enable Recording (Optional)
                     </label>
                   </div>
@@ -557,14 +557,14 @@ const AdminLiveClasses: React.FC = () => {
                   <div className="flex gap-3 pt-4">
                     <button
                       type="submit"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
+                      className="flex-1 bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 px-4 rounded-lg font-medium transition-all"
                     >
                       {editingClassId ? 'Update' : 'Create'} Live Class
                     </button>
                     <button
                       type="button"
                       onClick={() => { setShowModal(false); resetForm(); }}
-                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg font-medium transition-colors"
+                      className="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-300 py-2 px-4 rounded-lg font-medium transition-colors"
                     >
                       Cancel
                     </button>
