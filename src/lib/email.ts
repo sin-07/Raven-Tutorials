@@ -1,39 +1,42 @@
-// Native fetch implementation for Brevo - works reliably in Vercel serverless
+/**
+ * Brevo Transactional Email Utility
+ * 
+ * Production-ready email sending for Vercel serverless
+ * Uses native fetch with retry logic for reliability
+ */
 
-interface SendOTPEmailParams {
-  to: string;
-  studentName: string;
-  otp: string;
-}
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
-interface SendWelcomeEmailParams {
-  to: string;
-  studentName: string;
-  registrationId: string;
-  password: string;
-}
-
-interface BrevoEmailPayload {
+interface BrevoPayload {
   sender: { name: string; email: string };
   to: { email: string; name: string }[];
   subject: string;
   htmlContent: string;
 }
 
-async function sendBrevoEmail(payload: BrevoEmailPayload, retries = 3): Promise<boolean> {
+/**
+ * Core email sender with retry logic
+ * - 3 attempts with 10s timeout each
+ * - Exponential backoff between retries
+ * - Detailed logging for debugging
+ */
+async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
   
   if (!apiKey) {
-    console.error('BREVO_API_KEY not configured');
+    console.error('❌ BREVO_API_KEY not configured');
     return false;
   }
 
-  for (let attempt = 1; attempt <= retries; attempt++) {
+  const maxRetries = 3;
+  const timeoutMs = 10000;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout per attempt
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      const res = await fetch(BREVO_API_URL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -44,40 +47,56 @@ async function sendBrevoEmail(payload: BrevoEmailPayload, retries = 3): Promise<
         signal: controller.signal,
       });
 
-      clearTimeout(timeout);
+      clearTimeout(timeoutId);
 
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
-        console.log(`✓ Brevo email sent (attempt ${attempt}):`, data.messageId || 'success');
+        console.log(`✅ Email sent (attempt ${attempt}):`, data.messageId || 'success');
         return true;
       }
 
-      const error = await res.text();
-      console.error(`Brevo API error (attempt ${attempt}):`, res.status, error);
-      
-      // Don't retry on 4xx client errors (bad request, unauthorized, etc.)
+      const errorText = await res.text();
+      console.error(`❌ Brevo API ${res.status}:`, errorText);
+
+      // Don't retry on 4xx client errors
       if (res.status >= 400 && res.status < 500) {
         return false;
       }
     } catch (err: any) {
-      clearTimeout(timeout);
-      const isTimeout = err.name === 'AbortError';
-      console.error(`Brevo attempt ${attempt}/${retries} failed:`, isTimeout ? 'timeout' : err.message);
-      
-      if (attempt < retries) {
-        // Wait before retry: 1s, 2s, 3s...
-        await new Promise(r => setTimeout(r, attempt * 1000));
-        continue;
-      }
+      clearTimeout(timeoutId);
+      const msg = err.name === 'AbortError' ? 'timeout' : err.message;
+      console.warn(`⚠️ Attempt ${attempt}/${maxRetries}: ${msg}`);
+    }
+
+    // Wait before retry
+    if (attempt < maxRetries) {
+      await new Promise(r => setTimeout(r, attempt * 1000));
     }
   }
 
-  console.error('Brevo email failed after all retries');
+  console.error('❌ Email failed after all retries');
   return false;
 }
 
-function getOTPEmailHTML(studentName: string, otp: string): string {
-  return `<!DOCTYPE html>
+function getSender() {
+  return {
+    name: process.env.BREVO_SENDER_NAME || 'Raven Tutorials',
+    email: process.env.BREVO_SENDER_EMAIL || 'noreply@raventutorials.in',
+  };
+}
+
+// ============================================
+// OTP Email
+// ============================================
+
+interface SendOTPEmailParams {
+  to: string;
+  studentName: string;
+  otp: string;
+}
+
+export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams): Promise<boolean> {
+  const html = `<!DOCTYPE html>
 <html><head><meta charset="utf-8"></head>
 <body style="font-family:Arial,sans-serif;background:#f4f7fa;margin:0;padding:20px">
 <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden">
@@ -98,10 +117,31 @@ function getOTPEmailHTML(studentName: string, otp: string): string {
 </div>
 </div>
 </body></html>`;
+
+  const success = await sendBrevoEmail({
+    sender: getSender(),
+    to: [{ email: to, name: studentName }],
+    subject: 'Verify Your Email - Raven Tutorials',
+    htmlContent: html,
+  });
+
+  console.log(success ? `✓ OTP sent to ${to}` : `✗ OTP failed for ${to}`);
+  return success;
 }
 
-function getWelcomeEmailHTML(studentName: string, to: string, registrationId: string, password: string): string {
-  return `<!DOCTYPE html>
+// ============================================
+// Welcome Email
+// ============================================
+
+interface SendWelcomeEmailParams {
+  to: string;
+  studentName: string;
+  registrationId: string;
+  password: string;
+}
+
+export async function sendWelcomeEmail({ to, studentName, registrationId, password }: SendWelcomeEmailParams): Promise<boolean> {
+  const html = `<!DOCTYPE html>
 <html><head><meta charset="utf-8"></head>
 <body style="font-family:Arial,sans-serif;background:#f4f7fa;margin:0;padding:20px">
 <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden">
@@ -127,7 +167,7 @@ function getWelcomeEmailHTML(studentName: string, to: string, registrationId: st
 </div>
 </div>
 <div style="text-align:center;margin:24px 0">
-<a href="https://www.raventutorials.in/login" style="display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:12px 32px;border-radius:6px;font-weight:600">Login →</a>
+<a href="https://www.raventutorials.in/login" style="display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:12px 32px;border-radius:6px;font-weight:600">Login Now →</a>
 </div>
 </div>
 <div style="background:#f8fafc;padding:20px;text-align:center;border-top:1px solid #e2e8f0">
@@ -135,32 +175,12 @@ function getWelcomeEmailHTML(studentName: string, to: string, registrationId: st
 </div>
 </div>
 </body></html>`;
-}
 
-export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams): Promise<boolean> {
   const success = await sendBrevoEmail({
-    sender: {
-      name: process.env.BREVO_SENDER_NAME || 'Raven Tutorials',
-      email: process.env.BREVO_SENDER_EMAIL || 'raventutorials@gmail.com'
-    },
-    to: [{ email: to, name: studentName }],
-    subject: 'Verify Your Email - Raven Tutorials',
-    htmlContent: getOTPEmailHTML(studentName, otp)
-  });
-
-  console.log(success ? `✓ OTP sent to ${to}` : `✗ OTP failed for ${to}`);
-  return success;
-}
-
-export async function sendWelcomeEmail({ to, studentName, registrationId, password }: SendWelcomeEmailParams): Promise<boolean> {
-  const success = await sendBrevoEmail({
-    sender: {
-      name: process.env.BREVO_SENDER_NAME || 'Raven Tutorials',
-      email: process.env.BREVO_SENDER_EMAIL || 'raventutorials@gmail.com'
-    },
+    sender: getSender(),
     to: [{ email: to, name: studentName }],
     subject: 'Welcome to Raven Tutorials - Your Credentials',
-    htmlContent: getWelcomeEmailHTML(studentName, to, registrationId, password)
+    htmlContent: html,
   });
 
   console.log(success ? `✓ Welcome email sent to ${to}` : `✗ Welcome email failed for ${to}`);
