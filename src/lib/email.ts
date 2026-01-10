@@ -28,11 +28,19 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
     return false;
   }
 
+  // Validate sender email
+  if (!payload.sender.email || !payload.sender.email.includes('@')) {
+    console.error('❌ Invalid sender email:', payload.sender.email);
+    return false;
+  }
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 8000);
   const startTime = Date.now();
 
   try {
+    console.log(`📧 Sending email to ${payload.to[0].email} from ${payload.sender.email}`);
+    
     const res = await fetch(BREVO_API_URL, {
       method: 'POST',
       headers: {
@@ -53,8 +61,29 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
       return true;
     }
 
-    const errorData = await res.text().catch(() => 'Unable to read response');
-    console.error(`❌ Brevo API error ${res.status} (${duration}ms):`, errorData);
+    // Enhanced error handling for Brevo API responses
+    const errorText = await res.text().catch(() => 'Unable to read response');
+    let errorData;
+    try {
+      errorData = JSON.parse(errorText);
+    } catch {
+      errorData = { message: errorText };
+    }
+
+    console.error(`❌ Brevo API error ${res.status} (${duration}ms):`);
+    console.error('   Response:', JSON.stringify(errorData, null, 2));
+    
+    // Log specific error messages
+    if (res.status === 401) {
+      console.error('   → Check your BREVO_API_KEY is valid');
+    } else if (res.status === 400) {
+      console.error('   → Invalid request. Check sender email is verified in Brevo');
+      console.error('   → Sender:', payload.sender.email);
+    } else if (res.status === 403) {
+      console.error('   → Sender email not verified in Brevo account');
+      console.error('   → Go to https://app.brevo.com/settings/senders and verify:', payload.sender.email);
+    }
+    
     return false;
 
   } catch (err: any) {
