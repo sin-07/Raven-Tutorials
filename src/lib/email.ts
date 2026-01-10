@@ -1,8 +1,8 @@
 /**
  * Brevo Transactional Email Utility
  * 
- * Production-ready email sending for Vercel serverless
- * Uses native fetch with retry logic for reliability
+ * Simple, direct email sending for Vercel serverless
+ * Single fetch request with 8s timeout - no retries
  */
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
@@ -15,10 +15,10 @@ interface BrevoPayload {
 }
 
 /**
- * Core email sender with retry logic
- * - 3 attempts with 10s timeout each
- * - Exponential backoff between retries
- * - Detailed logging for debugging
+ * Send email via Brevo API
+ * - Single request with 8s timeout
+ * - Detailed error logging
+ * - Returns boolean success/failure
  */
 async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
@@ -28,54 +28,49 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
     return false;
   }
 
-  const maxRetries = 3;
-  const timeoutMs = 10000;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+  const startTime = Date.now();
 
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(BREVO_API_URL, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'api-key': apiKey,
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
 
-    try {
-      const res = await fetch(BREVO_API_URL, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': apiKey,
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
+    clearTimeout(timeoutId);
+    const duration = Date.now() - startTime;
 
-      clearTimeout(timeoutId);
-
-      if (res.ok) {
-        const data = await res.json().catch(() => ({}));
-        console.log(`✅ Email sent (attempt ${attempt}):`, data.messageId || 'success');
-        return true;
-      }
-
-      const errorText = await res.text();
-      console.error(`❌ Brevo API ${res.status}:`, errorText);
-
-      // Don't retry on 4xx client errors
-      if (res.status >= 400 && res.status < 500) {
-        return false;
-      }
-    } catch (err: any) {
-      clearTimeout(timeoutId);
-      const msg = err.name === 'AbortError' ? 'timeout' : err.message;
-      console.warn(`⚠️ Attempt ${attempt}/${maxRetries}: ${msg}`);
+    if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+      console.log(`✅ Email sent in ${duration}ms:`, data.messageId || 'success');
+      return true;
     }
 
-    // Wait before retry
-    if (attempt < maxRetries) {
-      await new Promise(r => setTimeout(r, attempt * 1000));
+    const errorData = await res.text().catch(() => 'Unable to read response');
+    console.error(`❌ Brevo API error ${res.status} (${duration}ms):`, errorData);
+    return false;
+
+  } catch (err: any) {
+    clearTimeout(timeoutId);
+    const duration = Date.now() - startTime;
+    
+    if (err.name === 'AbortError') {
+      console.error(`❌ Request timeout after ${duration}ms - check network/firewall`);
+    } else {
+      console.error(`❌ Request failed (${duration}ms):`, err.name, err.message);
+      if (err.cause) {
+        console.error('   Cause:', err.cause);
+      }
     }
+    return false;
   }
-
-  console.error('❌ Email failed after all retries');
-  return false;
 }
 
 function getSender() {
