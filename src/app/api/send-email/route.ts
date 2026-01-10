@@ -1,11 +1,16 @@
 export const runtime = "nodejs";
 
-export async function POST() {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
+const TIMEOUT_MS = 9000;
 
+function timeout(ms: number): Promise<never> {
+  return new Promise((_, reject) => {
+    setTimeout(() => reject(new Error(`TIMEOUT_${ms}ms`)), ms);
+  });
+}
+
+export async function POST() {
   try {
-    const response = await fetch(
+    const fetchPromise = fetch(
       "https://api.brevo.com/v3/smtp/email",
       {
         method: "POST",
@@ -23,11 +28,10 @@ export async function POST() {
           subject: "Brevo email test",
           htmlContent: "<h2>Email sent successfully</h2>",
         }),
-        signal: controller.signal,
       }
     );
 
-    clearTimeout(timeoutId);
+    const response = await Promise.race([fetchPromise, timeout(TIMEOUT_MS)]) as Response;
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -40,11 +44,9 @@ export async function POST() {
     const data = await response.json();
     return Response.json({ success: true, data });
   } catch (error: any) {
-    clearTimeout(timeoutId);
-    
-    if (error.name === "AbortError") {
+    if (error.message?.startsWith("TIMEOUT_")) {
       return Response.json(
-        { success: false, error: "Request timeout after 10s" },
+        { success: false, error: "Request timeout after 9s" },
         { status: 504 }
       );
     }

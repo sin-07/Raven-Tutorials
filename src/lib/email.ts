@@ -2,10 +2,11 @@
  * Brevo Transactional Email Utility
  * 
  * Simple, direct email sending for Vercel serverless
- * Single fetch request with 8s timeout - no retries
+ * Uses Promise.race for reliable timeout
  */
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
+const TIMEOUT_MS = 9000; // 9 seconds to stay under Vercel's 10s limit
 
 interface BrevoPayload {
   sender: { name: string; email: string };
@@ -14,11 +15,15 @@ interface BrevoPayload {
   htmlContent: string;
 }
 
+// Timeout promise that rejects after specified ms
+function timeout(ms: number): Promise<never> {
+  return new Promise((_, reject) => {
+    setTimeout(() => reject(new Error(`TIMEOUT_${ms}ms`)), ms);
+  });
+}
+
 /**
- * Send email via Brevo API
- * - Single request with 8s timeout
- * - Detailed error logging
- * - Returns boolean success/failure
+ * Send email via Brevo API with reliable timeout using Promise.race
  */
 async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
@@ -28,20 +33,16 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
     return false;
   }
 
-  // Validate sender email
   if (!payload.sender.email || !payload.sender.email.includes('@')) {
     console.error('❌ Invalid sender email:', payload.sender.email);
     return false;
   }
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 8000);
   const startTime = Date.now();
+  console.log(`📧 Sending email to ${payload.to[0].email} from ${payload.sender.email}`);
 
   try {
-    console.log(`📧 Sending email to ${payload.to[0].email} from ${payload.sender.email}`);
-    
-    const res = await fetch(BREVO_API_URL, {
+    const fetchPromise = fetch(BREVO_API_URL, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -49,10 +50,10 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
         'api-key': apiKey,
       },
       body: JSON.stringify(payload),
-      signal: controller.signal,
     });
 
-    clearTimeout(timeoutId);
+    // Race between fetch and timeout
+    const res = await Promise.race([fetchPromise, timeout(TIMEOUT_MS)]) as Response;
     const duration = Date.now() - startTime;
 
     if (res.ok) {
@@ -61,42 +62,24 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
       return true;
     }
 
-    // Enhanced error handling for Brevo API responses
     const errorText = await res.text().catch(() => 'Unable to read response');
-    let errorData;
-    try {
-      errorData = JSON.parse(errorText);
-    } catch {
-      errorData = { message: errorText };
-    }
-
-    console.error(`❌ Brevo API error ${res.status} (${duration}ms):`);
-    console.error('   Response:', JSON.stringify(errorData, null, 2));
+    console.error(`❌ Brevo API error ${res.status} (${duration}ms):`, errorText);
     
-    // Log specific error messages
     if (res.status === 401) {
       console.error('   → Check your BREVO_API_KEY is valid');
-    } else if (res.status === 400) {
-      console.error('   → Invalid request. Check sender email is verified in Brevo');
-      console.error('   → Sender:', payload.sender.email);
-    } else if (res.status === 403) {
-      console.error('   → Sender email not verified in Brevo account');
-      console.error('   → Go to https://app.brevo.com/settings/senders and verify:', payload.sender.email);
+    } else if (res.status === 400 || res.status === 403) {
+      console.error('   → Sender email not verified. Verify at: https://app.brevo.com/settings/senders');
     }
     
     return false;
 
   } catch (err: any) {
-    clearTimeout(timeoutId);
     const duration = Date.now() - startTime;
     
-    if (err.name === 'AbortError') {
-      console.error(`❌ Request timeout after ${duration}ms - check network/firewall`);
+    if (err.message?.startsWith('TIMEOUT_')) {
+      console.error(`❌ Request timeout after ${duration}ms`);
     } else {
-      console.error(`❌ Request failed (${duration}ms):`, err.name, err.message);
-      if (err.cause) {
-        console.error('   Cause:', err.cause);
-      }
+      console.error(`❌ Request failed (${duration}ms):`, err.message);
     }
     return false;
   }
