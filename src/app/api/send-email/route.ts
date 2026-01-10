@@ -1,58 +1,100 @@
 export const runtime = "nodejs";
-
-const TIMEOUT_MS = 9000;
-
-function timeout(ms: number): Promise<never> {
-  return new Promise((_, reject) => {
-    setTimeout(() => reject(new Error(`TIMEOUT_${ms}ms`)), ms);
-  });
-}
+export const maxDuration = 10;
 
 export async function POST() {
-  try {
-    const fetchPromise = fetch(
-      "https://api.brevo.com/v3/smtp/email",
-      {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          "api-key": process.env.BREVO_API_KEY!,
-        },
-        body: JSON.stringify({
-          sender: {
-            name: process.env.BREVO_SENDER_NAME,
-            email: process.env.BREVO_SENDER_EMAIL,
-          },
-          to: [{ email: "test@gmail.com" }],
-          subject: "Brevo email test",
-          htmlContent: "<h2>Email sent successfully</h2>",
-        }),
-      }
-    );
+  // Check environment variables first
+  const apiKey = process.env.BREVO_API_KEY;
+  const senderEmail = process.env.BREVO_SENDER_EMAIL;
+  const senderName = process.env.BREVO_SENDER_NAME;
 
-    const response = await Promise.race([fetchPromise, timeout(TIMEOUT_MS)]) as Response;
+  if (!apiKey) {
+    return Response.json(
+      { success: false, error: "BREVO_API_KEY not configured in Vercel" },
+      { status: 500 }
+    );
+  }
+
+  if (!senderEmail) {
+    return Response.json(
+      { success: false, error: "BREVO_SENDER_EMAIL not configured in Vercel" },
+      { status: 500 }
+    );
+  }
+
+  console.log("📧 Attempting to send email from:", senderEmail);
+  console.log("🔑 API Key present:", apiKey ? "Yes" : "No");
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    console.error("⏰ Aborting request after 8s");
+    controller.abort();
+  }, 8000);
+
+  try {
+    console.log("🚀 Sending request to Brevo API...");
+    const startTime = Date.now();
+
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "api-key": apiKey,
+      },
+      body: JSON.stringify({
+        sender: {
+          name: senderName || "Raven Tutorials",
+          email: senderEmail,
+        },
+        to: [{ email: "test@gmail.com" }],
+        subject: "Brevo email test",
+        htmlContent: "<h2>Email sent successfully</h2>",
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+    const duration = Date.now() - startTime;
+    console.log(`⏱️ Request completed in ${duration}ms with status: ${response.status}`);
 
     if (!response.ok) {
-      const errorData = await response.text();
+      const errorText = await response.text();
+      console.error("❌ Brevo error response:", errorText);
+      
+      let errorMsg = `Brevo API error ${response.status}`;
+      if (response.status === 403) {
+        errorMsg = "Sender email not verified in Brevo. Go to https://app.brevo.com/settings/senders";
+      } else if (response.status === 401) {
+        errorMsg = "Invalid API key. Check BREVO_API_KEY in Vercel settings";
+      }
+
       return Response.json(
-        { success: false, error: `Brevo API error: ${response.status}`, details: errorData },
+        { success: false, error: errorMsg, details: errorText, status: response.status },
         { status: response.status }
       );
     }
 
     const data = await response.json();
-    return Response.json({ success: true, data });
+    console.log("✅ Email sent successfully:", data);
+    return Response.json({ success: true, data, duration });
+
   } catch (error: any) {
-    if (error.message?.startsWith("TIMEOUT_")) {
+    clearTimeout(timeoutId);
+    console.error("❌ Request failed:", error.name, error.message);
+
+    if (error.name === "AbortError") {
       return Response.json(
-        { success: false, error: "Request timeout after 9s" },
+        { 
+          success: false, 
+          error: "Request aborted after 8s - Brevo API not responding. Check sender email is verified.",
+          hint: "Verify your sender email at: https://app.brevo.com/settings/senders"
+        },
         { status: 504 }
       );
     }
-    
+
     return Response.json(
-      { success: false, error: error.message },
+      { success: false, error: error.message, type: error.name },
       { status: 500 }
     );
   }
