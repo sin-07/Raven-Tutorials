@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Video, AlertCircle, Loader as LoaderIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { StudentProtectedRoute } from '@/components';
 
 declare global {
   interface Window {
@@ -26,7 +27,7 @@ interface UserInfo {
   email: string;
 }
 
-export default function LiveClassPage() {
+function LiveClassPage() {
   const { classId } = useParams();
   const router = useRouter();
   const jitsiContainerRef = useRef<HTMLDivElement>(null);
@@ -360,5 +361,14 @@ export default function LiveClassPage() {
         }
       `}</style>
     </div>
+  );
+}
+
+// Wrap with StudentProtectedRoute for security
+export default function ProtectedLiveClassPage() {
+  return (
+    <StudentProtectedRoute>
+      <LiveClassPage />
+    </StudentProtectedRoute>
   );
 }

@@ -1,17 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/database';
 import Test from '@/models/Test';
-import Admission from '@/models/Admission';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-
-interface DecodedToken {
-  id: string;
-  email: string;
-  role: string;
-}
+import { verifyStudentToken } from '@/lib/auth';
+import { sendTestResultEmail } from '@/lib/email';
 
 interface AnswerSubmission {
   questionId: string;
@@ -25,35 +16,31 @@ interface Violation {
   question: number;
 }
 
-// Helper function to verify student token
-async function verifyStudentToken(): Promise<string | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('studentToken')?.value;
-  
-  if (!token) return null;
-  
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET) as DecodedToken;
-    return decoded.id;
-  } catch {
-    return null;
-  }
-}
-
 // POST - Submit test answers
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ testId: string }> }
 ) {
   try {
-    const studentId = await verifyStudentToken();
+    const token = request.cookies.get('studentToken')?.value;
     
-    if (!studentId) {
+    if (!token) {
       return NextResponse.json(
         { success: false, message: 'Unauthorized' },
         { status: 401 }
       );
     }
+
+    const decoded = await verifyStudentToken(token);
+    
+    if (!decoded.success || !decoded.student) {
+      return NextResponse.json(
+        { success: false, message: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+    
+    const student = decoded.student;
     
     const { testId } = await params;
     const body = await request.json();
@@ -65,15 +52,6 @@ export async function POST(
     
     await connectDB();
     
-    // Get student details
-    const student = await Admission.findById(studentId);
-    if (!student) {
-      return NextResponse.json(
-        { success: false, message: 'Student not found' },
-        { status: 404 }
-      );
-    }
-    
     // Get test
     const test = await Test.findById(testId);
     if (!test) {
@@ -83,8 +61,8 @@ export async function POST(
       );
     }
     
-    // Verify student's class
-    if (test.class !== student.standard) {
+    // Verify student's standard
+    if (test.standard !== student.standard) {
       return NextResponse.json(
         { success: false, message: 'You are not authorized to submit this test' },
         { status: 403 }
@@ -93,7 +71,7 @@ export async function POST(
     
     // Check if already submitted
     const existingResult = test.results?.find(
-      (r: any) => r.studentId && r.studentId.toString() === studentId.toString()
+      (r: any) => r.studentId && r.studentId.toString() === student._id.toString()
     );
     if (existingResult) {
       return NextResponse.json(
@@ -141,7 +119,7 @@ export async function POST(
     }
     
     test.results.push({
-      studentId: studentId as any,
+      studentId: student._id as any,
       marksObtained,
       status: resultStatus,
       submittedAt: new Date(),
@@ -152,12 +130,29 @@ export async function POST(
     
     await test.save();
     
-    // Send email notification (optional - you can implement this with Brevo or other email service)
-    // ... email logic can be added here
+    // Send test result email
+    try {
+      await sendTestResultEmail({
+        to: student.email,
+        studentName: student.studentName,
+        testTitle: test.title,
+        subject: test.subject,
+        marksObtained,
+        totalMarks: test.totalMarks,
+        passingMarks: test.passingMarks,
+        status: resultStatus,
+        submittedAt: new Date(),
+        violationsCount: violations.length
+      });
+      console.log('✅ Test result email sent successfully');
+    } catch (emailError) {
+      // Don't fail the submission if email fails
+      console.error('⚠️ Failed to send test result email:', emailError);
+    }
     
     return NextResponse.json({
       success: true,
-      message: 'Test submitted successfully',
+      message: 'Test submitted successfully! Results have been sent to your email.',
       data: {
         marksObtained,
         totalMarks: test.totalMarks,

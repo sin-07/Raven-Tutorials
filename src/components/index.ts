@@ -5,6 +5,7 @@ export { default as Loader, ButtonLoader } from './Loader';
 export { default as SessionExpiryHandler } from './SessionExpiryHandler';
 export { default as FeedbackForm } from './FeedbackForm';
 export { default as CodeOfConduct } from './CodeOfConduct';
+export { default as StudentProtectedRoute } from './StudentProtectedRoute';
 
 // Admin components
 export { default as AdminLayout } from './admin/Layout';

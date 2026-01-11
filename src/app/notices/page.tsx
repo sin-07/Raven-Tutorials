@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Megaphone, User, Clock, Download, Eye, AlertCircle, X } from 'lucide-react';
+import { Megaphone, User, Clock, Download, Eye, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import Footer from '@/components/Footer';
 
@@ -24,6 +24,22 @@ const Notice: React.FC = () => {
   useEffect(() => {
     fetchNotices();
   }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '0px'; // Prevent layout shift
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [modalOpen]);
 
   const fetchNotices = async () => {
     setLoading(true);
@@ -97,6 +113,45 @@ const Notice: React.FC = () => {
           .document-link { transition: all 0.3s ease; }
           .document-link:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); }
           .blur-background { filter: blur(4px); transition: filter 0.3s ease-out; }
+          
+          /* Custom Close Button */
+          .close-btn {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+          }
+          .close-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+          }
+          .close-btn:hover .close-line {
+            background: #ef4444;
+          }
+          .close-line {
+            position: absolute;
+            width: 18px;
+            height: 2.5px;
+            background: #9ca3af;
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          }
+          .close-line:first-child {
+            transform: rotate(45deg);
+          }
+          .close-line:last-child {
+            transform: rotate(-45deg);
+          }
+          .close-btn:hover .close-line:first-child {
+            transform: rotate(45deg) scale(1.1);
+          }
+          .close-btn:hover .close-line:last-child {
+            transform: rotate(-45deg) scale(1.1);
+          }
         `}</style>
 
         <div className="relative z-10">
@@ -178,110 +233,114 @@ const Notice: React.FC = () => {
             )}
           </div>
         </div>
+      </div>
+    </div>
 
-        {/* Modal */}
-        {modalOpen && selectedNotice && (
+      {/* Modal - Outside of all relative containers */}
+      {modalOpen && selectedNotice && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4 modal-backdrop"
+          onClick={closeModal}
+        >
           <div 
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 modal-backdrop"
-            onClick={closeModal}
+            className="bg-[#080808] rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto modal-content border border-gray-800"
+            onClick={e => e.stopPropagation()}
           >
-            <div 
-              className="bg-[#080808] rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-content border border-gray-800"
-              onClick={e => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className="sticky top-0 bg-[#111111] px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-800 flex items-center justify-between">
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="p-2 sm:p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
-                    <Megaphone size={20} className="text-[#00E5A8]" />
-                  </div>
-                  <div className="min-w-0">
-                    <h2 className="text-xl sm:text-2xl font-bold text-white">Notice Details</h2>
-                    <p className="text-xs sm:text-sm text-gray-400 mt-1">{formatDate(selectedNotice.createdAt)}</p>
-                  </div>
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-[#111111] px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-800 flex items-center justify-between z-10">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="p-2 sm:p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
+                  <Megaphone size={20} className="text-[#00E5A8]" />
                 </div>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-gray-800 rounded-lg transition-colors flex-shrink-0"
-                >
-                  <X size={24} className="text-gray-400" />
-                </button>
+                <div className="min-w-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white">Notice Details</h2>
+                  <p className="text-xs sm:text-sm text-gray-400 mt-1">{formatDate(selectedNotice.createdAt)}</p>
+                </div>
               </div>
+              {/* Custom Close Button */}
+              <button
+                onClick={closeModal}
+                className="close-btn flex-shrink-0"
+                aria-label="Close modal"
+              >
+                <span className="close-line"></span>
+                <span className="close-line"></span>
+              </button>
+            </div>
 
-              {/* Modal Body */}
-              <div className="px-6 sm:px-8 py-6 sm:py-8 space-y-6">
-                {/* Posted By */}
-                <div className="flex items-center gap-3 pb-6 border-b border-gray-800">
-                  <div className="p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
-                    <User size={20} className="text-[#00E5A8]" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm text-gray-400">Posted by</p>
-                    <p className="font-bold text-white truncate">{selectedNotice.postedBy || 'Administrator'}</p>
-                  </div>
-                  {selectedNotice.class && (
-                    <div className="px-4 py-2 bg-[#00E5A8]/10 text-[#00E5A8] border border-[#00E5A8]/30 rounded-lg text-sm font-semibold flex-shrink-0">
-                      {selectedNotice.class}
-                    </div>
-                  )}
+            {/* Modal Body */}
+            <div className="px-6 sm:px-8 py-6 sm:py-8 space-y-6">
+              {/* Posted By */}
+              <div className="flex items-center gap-3 pb-6 border-b border-gray-800">
+                <div className="p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
+                  <User size={20} className="text-[#00E5A8]" />
                 </div>
-
-                {/* Title */}
-                <h1 className="text-2xl sm:text-3xl font-bold text-white">
-                  {selectedNotice.title}
-                </h1>
-
-                {/* Message */}
-                <div className="bg-[#111111] rounded-xl p-5 sm:p-6 border border-gray-800">
-                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed whitespace-pre-line">
-                    {selectedNotice.message}
-                  </p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm text-gray-400">Posted by</p>
+                  <p className="font-bold text-white truncate">{selectedNotice.postedBy || 'Administrator'}</p>
                 </div>
-
-                {/* Document Section */}
-                {selectedNotice.documentUrl && (
-                  <div className="bg-[#111111] border border-[#00E5A8]/30 rounded-xl p-5 sm:p-6">
-                    <p className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                      <Eye size={18} className="text-[#00E5A8]" />
-                      Attached Document
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <a
-                        href={selectedNotice.documentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-[#00E5A8] text-black rounded-full font-semibold text-sm sm:text-base flex-1 hover:bg-[#00E5A8]/90 hover:scale-105 transition-all"
-                      >
-                        <Eye size={18} />
-                        View Document
-                      </a>
-                      <a
-                        href={selectedNotice.documentUrl}
-                        download
-                        className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gray-800 text-gray-300 border border-gray-700 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-700 flex-1 transition-all"
-                      >
-                        <Download size={18} />
-                        Download
-                      </a>
-                    </div>
+                {selectedNotice.class && (
+                  <div className="px-4 py-2 bg-[#00E5A8]/10 text-[#00E5A8] border border-[#00E5A8]/30 rounded-lg text-sm font-semibold flex-shrink-0">
+                    {selectedNotice.class}
                   </div>
                 )}
               </div>
 
-              {/* Modal Footer */}
-              <div className="sticky bottom-0 bg-[#111111] px-6 sm:px-8 py-4 border-t border-gray-800 flex justify-end gap-3">
-                <button
-                  onClick={closeModal}
-                  className="px-6 py-2 bg-gray-800 text-gray-300 rounded-full font-semibold hover:bg-gray-700 transition-colors"
-                >
-                  Close
-                </button>
+              {/* Title */}
+              <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                {selectedNotice.title}
+              </h1>
+
+              {/* Message */}
+              <div className="bg-[#111111] rounded-xl p-5 sm:p-6 border border-gray-800">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                  {selectedNotice.message}
+                </p>
               </div>
+
+              {/* Document Section */}
+              {selectedNotice.documentUrl && (
+                <div className="bg-[#111111] border border-[#00E5A8]/30 rounded-xl p-5 sm:p-6">
+                  <p className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+                    <Eye size={18} className="text-[#00E5A8]" />
+                    Attached Document
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={selectedNotice.documentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-[#00E5A8] text-black rounded-full font-semibold text-sm sm:text-base flex-1 hover:bg-[#00E5A8]/90 hover:scale-105 transition-all"
+                    >
+                      <Eye size={18} />
+                      View Document
+                    </a>
+                    <a
+                      href={selectedNotice.documentUrl}
+                      download
+                      className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gray-800 text-gray-300 border border-gray-700 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-700 flex-1 transition-all"
+                    >
+                      <Download size={18} />
+                      Download
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="sticky bottom-0 bg-[#111111] px-6 sm:px-8 py-4 border-t border-gray-800 flex justify-end gap-3">
+              <button
+                onClick={closeModal}
+                className="px-6 py-2 bg-gray-800 text-gray-300 rounded-full font-semibold hover:bg-gray-700 transition-colors"
+              >
+                Close
+              </button>
             </div>
           </div>
-        )}
         </div>
-      </div>
+      )}
+
       <Footer />
     </>
   );

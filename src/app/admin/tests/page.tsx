@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
 import { Loader } from '@/components';
 import { STANDARDS } from '@/constants/classes';
@@ -16,24 +17,28 @@ interface Question {
 
 interface TestData {
   _id: string;
+  testId: string;
   title: string;
   description: string;
-  class: string;
+  standard: string;
   subject: string;
-  testDate: string;
+  startDate: string;
+  endDate: string;
   duration: number;
   totalMarks: number;
   passingMarks: number;
   questions: Question[];
-  status: 'Draft' | 'Published' | 'Completed' | 'Cancelled';
+  status: 'DRAFT' | 'PUBLISHED' | 'EXPIRED';
+  publishedAt?: string;
 }
 
 interface FormData {
   title: string;
   description: string;
-  class: string;
+  standard: string;
   subject: string;
-  testDate: string;
+  startDate: string;
+  endDate: string;
   duration: string;
   totalMarks: string;
   passingMarks: string;
@@ -46,12 +51,14 @@ const AdminTests: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingTestId, setEditingTestId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
+  const [publishingId, setPublishingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     title: '',
     description: '',
-    class: '',
+    standard: '',
     subject: '',
-    testDate: '',
+    startDate: '',
+    endDate: '',
     duration: '',
     totalMarks: '',
     passingMarks: '',
@@ -133,6 +140,9 @@ const AdminTests: React.FC = () => {
       return;
     }
 
+    // Calculate total marks from questions
+    const calculatedTotalMarks = formData.questions.reduce((sum, q) => sum + Number(q.marks), 0);
+
     try {
       const res = await fetch(
         editingTestId ? `/api/admin/tests/${editingTestId}` : '/api/admin/tests',
@@ -140,19 +150,22 @@ const AdminTests: React.FC = () => {
           method: editingTestId ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
-          body: JSON.stringify(formData)
+          body: JSON.stringify({
+            ...formData,
+            totalMarks: calculatedTotalMarks
+          })
         }
       );
       const data = await res.json();
 
       if (data.success) {
-        toast.success(editingTestId ? 'Test updated successfully' : 'Test created successfully');
+        toast.success(editingTestId ? 'Test updated successfully' : 'Test created as Draft');
         setShowModal(false);
         setCurrentStep(1);
         setEditingTestId(null);
         setFormData({
-          title: '', description: '', class: '', subject: '',
-          testDate: '', duration: '', totalMarks: '', passingMarks: '',
+          title: '', description: '', standard: '', subject: '',
+          startDate: '', endDate: '', duration: '', totalMarks: '', passingMarks: '',
           questions: []
         });
         fetchTests();
@@ -165,34 +178,69 @@ const AdminTests: React.FC = () => {
   };
 
   const handlePublish = async (id: string) => {
+    setPublishingId(id);
     try {
       const res = await fetch(`/api/admin/tests/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ status: 'Published' })
+        body: JSON.stringify({ action: 'publish' })
       });
       const data = await res.json();
 
       if (data.success) {
-        toast.success('Test published successfully');
+        toast.success('Test published successfully! Students can now see it.');
         fetchTests();
       } else {
         toast.error(data.message || 'Failed to publish test');
       }
     } catch (error) {
       toast.error('Error publishing test');
+    } finally {
+      setPublishingId(null);
+    }
+  };
+
+  const handleUnpublish = async (id: string) => {
+    if (!window.confirm('Are you sure you want to unpublish this test? Students will no longer be able to see it.')) return;
+    
+    setPublishingId(id);
+    try {
+      const res = await fetch(`/api/admin/tests/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ action: 'unpublish' })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success('Test unpublished. Students can no longer see it.');
+        fetchTests();
+      } else {
+        toast.error(data.message || 'Failed to unpublish test');
+      }
+    } catch (error) {
+      toast.error('Error unpublishing test');
+    } finally {
+      setPublishingId(null);
     }
   };
 
   const handleEdit = async (test: TestData) => {
+    if (test.status !== 'DRAFT') {
+      toast.error('Only DRAFT tests can be edited. Unpublish first to edit.');
+      return;
+    }
+    
     setEditingTestId(test._id);
     setFormData({
       title: test.title,
       description: test.description,
-      class: test.class,
+      standard: test.standard,
       subject: test.subject,
-      testDate: new Date(test.testDate).toISOString().split('T')[0],
+      startDate: new Date(test.startDate).toISOString().split('T')[0],
+      endDate: new Date(test.endDate).toISOString().split('T')[0],
       duration: String(test.duration),
       totalMarks: String(test.totalMarks),
       passingMarks: String(test.passingMarks),
@@ -232,10 +280,28 @@ const AdminTests: React.FC = () => {
     setEditingTestId(null);
     setCurrentStep(1);
     setFormData({
-      title: '', description: '', class: '', subject: '',
-      testDate: '', duration: '', totalMarks: '', passingMarks: '',
+      title: '', description: '', standard: '', subject: '',
+      startDate: '', endDate: '', duration: '', totalMarks: '', passingMarks: '',
       questions: []
     });
+  };
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'PUBLISHED':
+        return 'bg-green-500/20 text-green-400';
+      case 'EXPIRED':
+        return 'bg-red-500/20 text-red-400';
+      case 'DRAFT':
+      default:
+        return 'bg-yellow-500/20 text-yellow-400';
+    }
+  };
+
+  const formatDateRange = (startDate: string, endDate: string) => {
+    const start = new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const end = new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return `${start} - ${end}`;
   };
 
   if (loading) {
@@ -260,15 +326,35 @@ const AdminTests: React.FC = () => {
           </button>
         </div>
 
+        {/* Status Legend */}
+        <div className="bg-[#111111] rounded-lg p-3 sm:p-4 border border-gray-800">
+          <p className="text-sm text-gray-400 mb-2">Status Legend:</p>
+          <div className="flex flex-wrap gap-3 text-xs sm:text-sm">
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-yellow-500/40"></span>
+              <span className="text-yellow-400">DRAFT</span> - Not visible to students
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-green-500/40"></span>
+              <span className="text-green-400">PUBLISHED</span> - Visible to students (within date range)
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded-full bg-red-500/40"></span>
+              <span className="text-red-400">EXPIRED</span> - Past end date, no longer visible
+            </span>
+          </div>
+        </div>
+
         {/* Desktop Table View */}
         <div className="hidden lg:block bg-[#111111] rounded-lg md:rounded-xl shadow-md overflow-x-auto border border-gray-800">
           <table className="w-full">
             <thead className="bg-[#080808]">
               <tr>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Test ID</th>
                 <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Title</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Class</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Standard</th>
                 <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Subject</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Test Date</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Date Range</th>
                 <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Questions</th>
                 <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Marks</th>
                 <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Status</th>
@@ -278,40 +364,49 @@ const AdminTests: React.FC = () => {
             <tbody className="bg-[#111111] divide-y divide-gray-800">
               {tests.map((test) => (
                 <tr key={test._id} className="hover:bg-[#111111]/50">
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs text-gray-500 font-mono">{test.testId}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-white">{test.title}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.class}</td>
+                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.standard}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.subject}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">
-                    {new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    {formatDateRange(test.startDate, test.endDate)}
                   </td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.questions?.length || 0}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.totalMarks}</td>
                   <td className="px-4 md:px-6 py-3 md:py-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                      test.status === 'Published' ? 'bg-green-500/20 text-green-400' :
-                      test.status === 'Completed' ? 'bg-blue-500/20 text-blue-400' :
-                      test.status === 'Draft' ? 'bg-yellow-500/20 text-yellow-400' :
-                      'bg-red-500/20 text-red-400'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(test.status)}`}>
                       {test.status}
                     </span>
                   </td>
                   <td className="px-4 md:px-6 py-3 md:py-4 text-center">
                     <div className="flex items-center justify-center gap-1 sm:gap-2">
-                      <button
-                        onClick={() => handleEdit(test)}
-                        className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
-                        title="Edit"
-                      >
-                        ✏️
-                      </button>
-                      {test.status === 'Draft' && (
+                      {test.status === 'DRAFT' && (
+                        <>
+                          <button
+                            onClick={() => handleEdit(test)}
+                            className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
+                            title="Edit"
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            onClick={() => handlePublish(test._id)}
+                            disabled={publishingId === test._id}
+                            className="text-green-400 hover:text-green-300 hover:bg-green-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm disabled:opacity-50"
+                            title="Publish"
+                          >
+                            {publishingId === test._id ? '⏳' : '📢'}
+                          </button>
+                        </>
+                      )}
+                      {test.status === 'PUBLISHED' && (
                         <button
-                          onClick={() => handlePublish(test._id)}
-                          className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
-                          title="Publish"
+                          onClick={() => handleUnpublish(test._id)}
+                          disabled={publishingId === test._id}
+                          className="text-orange-400 hover:text-orange-300 hover:bg-orange-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm disabled:opacity-50"
+                          title="Unpublish (back to Draft)"
                         >
-                          ✓
+                          {publishingId === test._id ? '⏳' : '🔒'}
                         </button>
                       )}
                       <button
@@ -341,13 +436,9 @@ const AdminTests: React.FC = () => {
             <div key={test._id} className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-3 sm:p-4 border border-gray-800">
               <div className="flex justify-between items-start mb-3 gap-2">
                 <div className="flex-1 min-w-0">
+                  <p className="text-xs text-gray-500 font-mono mb-1">{test.testId}</p>
                   <h3 className="font-semibold text-white text-sm sm:text-base mb-1 truncate">{test.title}</h3>
-                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
-                    test.status === 'Published' ? 'bg-green-500/20 text-green-400' :
-                    test.status === 'Completed' ? 'bg-blue-500/20 text-blue-400' :
-                    test.status === 'Draft' ? 'bg-yellow-500/20 text-yellow-400' :
-                    'bg-red-500/20 text-red-400'
-                  }`}>
+                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(test.status)}`}>
                     {test.status}
                   </span>
                 </div>
@@ -355,37 +446,54 @@ const AdminTests: React.FC = () => {
               
               <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4">
                 <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Class</p>
-                  <p className="font-medium text-white">{test.class}</p>
+                  <p className="text-gray-500 text-xs">Standard</p>
+                  <p className="font-medium text-white">{test.standard}</p>
                 </div>
                 <div className="bg-[#080808] p-2 rounded">
                   <p className="text-gray-500 text-xs">Subject</p>
                   <p className="font-medium text-white truncate">{test.subject}</p>
                 </div>
                 <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Date</p>
-                  <p className="font-medium text-white">{new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                  <p className="text-gray-500 text-xs">Date Range</p>
+                  <p className="font-medium text-white text-xs">{formatDateRange(test.startDate, test.endDate)}</p>
                 </div>
                 <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Qs</p>
+                  <p className="text-gray-500 text-xs">Questions</p>
                   <p className="font-medium text-white">{test.questions?.length || 0}</p>
                 </div>
               </div>
 
               <div className="flex gap-2 pt-2 sm:pt-3 border-t border-gray-800">
-                <button
-                  onClick={() => handleEdit(test)}
-                  className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
-                >
-                  ✏️ Edit
-                </button>
-                {test.status === 'Draft' && (
+                {test.status === 'DRAFT' && (
+                  <>
+                    <button
+                      onClick={() => handleEdit(test)}
+                      className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                    >
+                      ✏️ Edit
+                    </button>
+                    <button
+                      onClick={() => handlePublish(test._id)}
+                      disabled={publishingId === test._id}
+                      className="flex-1 bg-green-500/10 text-green-400 hover:bg-green-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors disabled:opacity-50"
+                    >
+                      {publishingId === test._id ? '⏳' : '📢 Publish'}
+                    </button>
+                  </>
+                )}
+                {test.status === 'PUBLISHED' && (
                   <button
-                    onClick={() => handlePublish(test._id)}
-                    className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                    onClick={() => handleUnpublish(test._id)}
+                    disabled={publishingId === test._id}
+                    className="flex-1 bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors disabled:opacity-50"
                   >
-                    ✓ Pub
+                    {publishingId === test._id ? '⏳' : '🔒 Unpublish'}
                   </button>
+                )}
+                {test.status === 'EXPIRED' && (
+                  <span className="flex-1 text-center text-gray-500 text-xs sm:text-sm py-1.5 sm:py-2">
+                    Test has expired
+                  </span>
                 )}
                 <button
                   onClick={() => handleDelete(test._id)}
@@ -412,6 +520,14 @@ const AdminTests: React.FC = () => {
                 {editingTestId ? 'Edit Test' : 'Create New Test'} - {currentStep === 1 ? 'Basic Information' : 'Add Questions'}
               </h3>
               
+              {!editingTestId && (
+                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-4">
+                  <p className="text-yellow-400 text-sm">
+                    ℹ️ New tests are created as <strong>DRAFT</strong>. Students won&apos;t see them until you publish.
+                  </p>
+                </div>
+              )}
+              
               {currentStep === 1 ? (
                 <form onSubmit={(e) => { e.preventDefault(); setCurrentStep(2); }} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -427,14 +543,14 @@ const AdminTests: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Class *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Standard *</label>
                       <select
-                        value={formData.class}
-                        onChange={(e) => setFormData({ ...formData, class: e.target.value })}
+                        value={formData.standard}
+                        onChange={(e) => setFormData({ ...formData, standard: e.target.value })}
                         className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       >
-                        <option value="">Select Class</option>
+                        <option value="">Select Standard</option>
                         {classes.map(cls => (
                           <option key={cls} value={cls}>{cls}</option>
                         ))}
@@ -453,11 +569,23 @@ const AdminTests: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Test Date *</label>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Start Date * (Students can see from this date)</label>
                       <input
                         type="date"
-                        value={formData.testDate}
-                        onChange={(e) => setFormData({ ...formData, testDate: e.target.value })}
+                        value={formData.startDate}
+                        onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">End Date * (Test expires after this date)</label>
+                      <input
+                        type="date"
+                        value={formData.endDate}
+                        onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+                        min={formData.startDate}
                         className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
                         required
                       />
@@ -672,7 +800,7 @@ const AdminTests: React.FC = () => {
                           : 'bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black transition-all'
                       }`}
                     >
-                      {editingTestId ? 'Update Test' : 'Create Test'} ({formData.questions.length} questions, {calculateTotalMarks()} marks)
+                      {editingTestId ? 'Update Test' : 'Save as Draft'} ({formData.questions.length} questions, {calculateTotalMarks()} marks)
                     </button>
                     <button
                       type="button"
@@ -692,4 +820,11 @@ const AdminTests: React.FC = () => {
   );
 };
 
-export default AdminTests;
+// Wrap with AdminProtectedRoute for security
+const ProtectedAdminTests = () => (
+  <AdminProtectedRoute>
+    <AdminTests />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedAdminTests;

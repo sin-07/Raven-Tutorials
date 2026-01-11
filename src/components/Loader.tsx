@@ -30,16 +30,16 @@ const Loader: React.FC<LoaderProps> = ({
     <div className="flex flex-col items-center justify-center gap-4">
       <div className="relative">
         {/* Outer ring */}
-        <div className={`${sizeClasses[size]} border-4 border-blue-100 rounded-full`}></div>
+        <div className={`${sizeClasses[size]} border-4 border-[#00E5A8]/20 rounded-full`}></div>
         {/* Spinning ring */}
-        <div className={`absolute inset-0 ${sizeClasses[size]} border-4 border-transparent border-t-blue-600 rounded-full animate-spin`}></div>
+        <div className={`absolute inset-0 ${sizeClasses[size]} border-4 border-transparent border-t-[#00E5A8] rounded-full animate-spin`}></div>
         {/* Center dot */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`${size === 'sm' ? 'w-1.5 h-1.5' : size === 'md' ? 'w-2 h-2' : 'w-3 h-3'} bg-blue-600 rounded-full animate-pulse`}></div>
+          <div className={`${size === 'sm' ? 'w-1.5 h-1.5' : size === 'md' ? 'w-2 h-2' : 'w-3 h-3'} bg-[#00E5A8] rounded-full animate-pulse`}></div>
         </div>
       </div>
       {text && (
-        <p className={`text-gray-600 ${textSizes[size]} font-medium animate-pulse`}>
+        <p className={`text-gray-300 ${textSizes[size]} font-medium animate-pulse`}>
           {text}
         </p>
       )}
@@ -48,7 +48,7 @@ const Loader: React.FC<LoaderProps> = ({
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-[#0b0b0b]/95 backdrop-blur-md flex items-center justify-center z-[150]">
         {content}
       </div>
     );

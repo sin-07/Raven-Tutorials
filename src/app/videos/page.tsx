@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Play, Clock, User, Video, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { StudentProtectedRoute } from '@/components';
 
 interface VideoData {
   _id: string;
@@ -22,7 +23,7 @@ interface VideoData {
   createdAt: string;
 }
 
-export default function VideosPage() {
+function VideosPage() {
   const router = useRouter();
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(false);
@@ -332,8 +333,7 @@ export default function VideosPage() {
               <button
                 onClick={() => setSelectedVideo(null)}
                 className="w-full bg-[#00E5A8] text-black py-3 rounded-full font-bold hover:bg-[#00E5A8]/90 hover:scale-105 transition-all duration-300"
-              >
-                Close Video
+              >Close Video
               </button>
             </div>
           </div>
@@ -341,5 +341,14 @@ export default function VideosPage() {
       )}
       </div>
     </div>
+  );
+}
+
+// Wrap with StudentProtectedRoute for security
+export default function ProtectedVideosPage() {
+  return (
+    <StudentProtectedRoute>
+      <VideosPage />
+    </StudentProtectedRoute>
   );
 }

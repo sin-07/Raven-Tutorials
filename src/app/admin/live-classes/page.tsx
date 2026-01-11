@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Video, Plus, Edit, Trash2, Play, Square, Calendar, Clock, Users, Filter } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { Loader } from '@/components';
-import { STANDARDS } from '@/constants/classes';
+import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
 
 interface LiveClassData {
   _id: string;
@@ -303,7 +304,7 @@ const AdminLiveClasses: React.FC = () => {
               >
                 <option value="">All Classes</option>
                 {STANDARDS.map(std => (
-                  <option key={std} value={std}>{std}</option>
+                  <option key={std} value={std}>{STANDARD_LABELS[std]}</option>
                 ))}
                 <option value="All">All Students</option>
               </select>
@@ -468,7 +469,7 @@ const AdminLiveClasses: React.FC = () => {
                       >
                         <option value="">Select Class</option>
                         {STANDARDS.map(std => (
-                          <option key={std} value={std}>{std}</option>
+                          <option key={std} value={std}>{STANDARD_LABELS[std]}</option>
                         ))}
                         <option value="All">All Students</option>
                       </select>
@@ -579,4 +580,11 @@ const AdminLiveClasses: React.FC = () => {
   );
 };
 
-export default AdminLiveClasses;
+// Wrap with AdminProtectedRoute for security
+const ProtectedAdminLiveClasses = () => (
+  <AdminProtectedRoute>
+    <AdminLiveClasses />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedAdminLiveClasses;

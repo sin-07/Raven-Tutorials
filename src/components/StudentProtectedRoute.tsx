@@ -4,27 +4,28 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-interface AdminProtectedRouteProps {
+interface StudentProtectedRouteProps {
   children: React.ReactNode;
 }
 
-interface AdminData {
-  id: string;
+interface StudentData {
+  _id: string;
+  studentName: string;
   email: string;
-  name: string;
-  role: string;
+  registrationId: string;
+  standard: string;
 }
 
-const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) => {
+const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [admin, setAdmin] = useState<AdminData | null>(null);
+  const [student, setStudent] = useState<StudentData | null>(null);
 
   const verifyAuth = useCallback(async () => {
     try {
-      const res = await fetch('/api/admin/verify', {
+      const res = await fetch('/api/auth/verify', {
         method: 'GET',
         credentials: 'include',
         cache: 'no-store'
@@ -33,32 +34,32 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
       if (!res.ok) {
         // Clear any stale data
         setIsAuthenticated(false);
-        setAdmin(null);
+        setStudent(null);
         
-        // Don't show toast for login page
-        if (pathname !== '/admin/login') {
-          toast.error('Admin session expired. Please login again.');
+        // Don't show toast for initial page load
+        if (pathname !== '/login') {
+          toast.error('Session expired. Please login again.');
         }
         
-        router.replace('/admin/login');
+        router.replace('/login');
         return;
       }
 
       const data = await res.json();
       
-      if (data.success && data.data?.admin) {
+      if (data.success && data.student) {
         setIsAuthenticated(true);
-        setAdmin(data.data.admin);
+        setStudent(data.student);
       } else {
         setIsAuthenticated(false);
-        setAdmin(null);
-        router.replace('/admin/login');
+        setStudent(null);
+        router.replace('/login');
       }
     } catch (error) {
-      console.error('[ADMIN AUTH ERROR] Failed to verify admin:', error);
+      console.error('[AUTH ERROR] Failed to verify student:', error);
       setIsAuthenticated(false);
-      setAdmin(null);
-      router.replace('/admin/login');
+      setStudent(null);
+      router.replace('/login');
     } finally {
       setLoading(false);
     }
@@ -84,7 +85,7 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
       <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-gray-800 border-t-[#00E5A8] rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Verifying admin access...</p>
+          <p className="text-gray-400 mt-4 text-lg">Verifying authentication...</p>
         </div>
       </div>
     );
@@ -96,7 +97,7 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
       <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Redirecting to admin login...</p>
+          <p className="text-gray-400 mt-4 text-lg">Redirecting to login...</p>
         </div>
       </div>
     );
@@ -105,4 +106,4 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
   return <>{children}</>;
 };
 
-export default AdminProtectedRoute;
+export default StudentProtectedRoute;

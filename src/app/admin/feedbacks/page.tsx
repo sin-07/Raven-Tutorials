@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { MessageSquare, Loader, Search, Filter, Eye, Send, Trash2, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 
 interface FeedbackData {
   _id: string;
@@ -469,4 +470,11 @@ const Feedbacks: React.FC = () => {
   );
 };
 
-export default Feedbacks;
+// Wrap with AdminProtectedRoute for security
+const ProtectedFeedbacks = () => (
+  <AdminProtectedRoute>
+    <Feedbacks />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedFeedbacks;

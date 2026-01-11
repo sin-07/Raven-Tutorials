@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Megaphone, User, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 
 interface Notice {
   _id: string;
@@ -24,7 +25,7 @@ interface FormData {
   document: File | null;
 }
 
-export default function AdminNoticesPage() {
+function AdminNoticesPage() {
   const router = useRouter();
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -210,5 +211,14 @@ export default function AdminNoticesPage() {
         </div>
       </div>
     </AdminLayout>
+  );
+}
+
+// Wrap with AdminProtectedRoute for security
+export default function ProtectedAdminNoticesPage() {
+  return (
+    <AdminProtectedRoute>
+      <AdminNoticesPage />
+    </AdminProtectedRoute>
   );
 }

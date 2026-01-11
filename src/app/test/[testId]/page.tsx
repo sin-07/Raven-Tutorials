@@ -11,6 +11,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import Loader from '@/components/Loader';
+import { StudentProtectedRoute } from '@/components';
 
 interface Question {
   _id?: string;
@@ -23,10 +24,13 @@ interface Question {
 
 interface Test {
   _id: string;
+  testId: string;
   title: string;
   description?: string;
   subject: string;
-  class: string;
+  standard: string;
+  startDate: string;
+  endDate: string;
   duration: number;
   totalMarks: number;
   passingMarks: number;
@@ -39,7 +43,7 @@ interface Violation {
   question: number;
 }
 
-export default function TakeTestPage() {
+function TakeTestPage() {
   const { testId } = useParams();
   const router = useRouter();
 
@@ -172,7 +176,9 @@ export default function TakeTestPage() {
 
   const fetchTestDetails = async () => {
     try {
-      const res = await fetch(`/api/student/tests/${testId}`);
+      const res = await fetch(`/api/student/tests/${testId}`, {
+        credentials: 'include'
+      });
       const data = await res.json();
       if (data.success) {
         setTest(data.data);
@@ -293,6 +299,7 @@ export default function TakeTestPage() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(submissionData),
       });
 
@@ -365,93 +372,122 @@ export default function TakeTestPage() {
 
   if (!testStarted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] relative overflow-hidden p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0b0b] relative overflow-hidden px-4 py-20 sm:py-24">
         {/* Green Radial Glow Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] sm:w-[1000px] md:w-[1200px] h-[600px] sm:h-[700px] md:h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.15)_0%,_rgba(0,229,168,0.08)_30%,_transparent_70%)]"></div>
         </div>
 
-        <div className="relative z-10 bg-[#111111] rounded-lg shadow-2xl max-w-2xl w-full p-8 border border-gray-800">
+        <div className="relative z-10 bg-[#111111] rounded-2xl shadow-2xl w-full max-w-[96%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-800">
           {/* RAVEN Logo */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="flex items-center gap-3 bg-[#00E5A8] text-black rounded-lg px-6 py-3 font-bold text-3xl shadow-lg">
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
+            <div className="flex items-center gap-3 bg-[#00E5A8] text-black rounded-xl px-6 py-3 sm:px-8 sm:py-4 font-bold text-xl sm:text-2xl shadow-lg">
               <img
                 src="/logo.png"
                 alt="RAVEN"
-                className="w-10 h-10 object-contain brightness-0 invert"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain brightness-0 invert"
               />
-              RAVEN TUTORIALS
+              <span>RAVEN TUTORIALS</span>
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-white mb-4">
-            {test.title}
-          </h1>
-          <p className="text-gray-400 mb-6">{test.description}</p>
+          {/* Test Title & Subject */}
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3">
+              {test.title}
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-[#00E5A8] font-semibold">
+              {test.subject} • {test.standard}
+            </p>
+            {test.description && (
+              <p className="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl mx-auto">{test.description}</p>
+            )}
+          </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
-              <p className="text-sm text-gray-400">Duration</p>
-              <p className="text-xl font-bold text-[#00E5A8]">
-                {test.duration} minutes
+          {/* Test Info Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
+            <div className="bg-[#080808] p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 text-center hover:border-[#00E5A8]/30 transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-[#00E5A8]/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-[#00E5A8]" />
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Duration</p>
+              <p className="text-xl sm:text-2xl font-bold text-[#00E5A8]">
+                {test.duration} <span className="text-sm font-normal">min</span>
               </p>
             </div>
-            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
-              <p className="text-sm text-gray-400">Total Marks</p>
-              <p className="text-xl font-bold text-green-500">
+            <div className="bg-[#080808] p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 text-center hover:border-green-500/30 transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-green-500/10 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Total Marks</p>
+              <p className="text-xl sm:text-2xl font-bold text-green-500">
                 {test.totalMarks}
               </p>
             </div>
-            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
-              <p className="text-sm text-gray-400">Questions</p>
-              <p className="text-xl font-bold text-[#00E5A8]">
+            <div className="bg-[#080808] p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 text-center hover:border-blue-500/30 transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-blue-500/10 flex items-center justify-center">
+                <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Questions</p>
+              <p className="text-xl sm:text-2xl font-bold text-blue-500">
                 {test.questions.length}
               </p>
             </div>
-            <div className="bg-[#080808] p-4 rounded-lg border border-gray-800">
-              <p className="text-sm text-gray-400">Passing Marks</p>
-              <p className="text-xl font-bold text-orange-500">
+            <div className="bg-[#080808] p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 text-center hover:border-orange-500/30 transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 rounded-full bg-orange-500/10 flex items-center justify-center">
+                <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mb-1">Pass Marks</p>
+              <p className="text-xl sm:text-2xl font-bold text-orange-500">
                 {test.passingMarks}
               </p>
             </div>
           </div>
 
-          <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4 mb-6">
-            <div className="flex items-start">
+          {/* Anti-Cheating Rules */}
+          <div className="bg-yellow-500/5 border border-yellow-500/30 rounded-xl p-4 sm:p-5 md:p-6 mb-6 sm:mb-8">
+            <div className="flex items-start gap-3 sm:gap-4">
               <AlertTriangle
-                className="text-yellow-500 mr-3 flex-shrink-0 mt-0.5"
-                size={20}
+                className="text-yellow-500 flex-shrink-0 mt-1 w-5 h-5 sm:w-6 sm:h-6"
               />
-              <div>
-                <h3 className="font-semibold text-yellow-400 mb-2">
+              <div className="flex-1">
+                <h3 className="font-semibold text-yellow-400 text-base sm:text-lg mb-2 sm:mb-3">
                   Anti-Cheating Rules:
                 </h3>
-                <ul className="text-sm text-yellow-300 space-y-1">
+                <ul className="text-xs sm:text-sm text-yellow-300/80 space-y-1.5 sm:space-y-2">
                   <li>• Fullscreen mode is recommended</li>
                   <li>• Do not switch tabs or minimize the window</li>
                   <li>• Right-click is disabled</li>
                   <li>• Copy/paste is disabled</li>
                   <li>• Developer tools are blocked</li>
-                  <li>
-                    • All violations will be recorded and may result in
-                    auto-submission
-                  </li>
+                  <li>• All violations will be recorded and may result in auto-submission</li>
                 </ul>
               </div>
             </div>
           </div>
 
+          {/* Start Button */}
           <button
             onClick={enterFullscreen}
-            className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black py-4 rounded-full font-semibold text-lg shadow-lg hover:scale-105 transition-all duration-300"
+            className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg md:text-xl shadow-lg hover:shadow-[#00E5A8]/20 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3"
           >
-            Start Test
+            <span>Start Test</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </button>
 
-          <p className="text-xs text-gray-500 text-center mt-2">
-            Note: Fullscreen mode is recommended but not required to start the
-            test
+          <p className="text-xs sm:text-sm text-gray-500 text-center mt-3 sm:mt-4">
+            Note: Fullscreen mode is recommended but not required to start the test
           </p>
+
+          {/* Back to Dashboard */}
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="w-full mt-4 sm:mt-5 text-gray-400 hover:text-white text-sm sm:text-base py-2 sm:py-3 transition-colors"
+          >
+            ← Back to Dashboard
+          </button>
         </div>
       </div>
     );
@@ -796,5 +832,14 @@ export default function TakeTestPage() {
         </div>
       )}
     </div>
+  );
+}
+
+// Wrap with StudentProtectedRoute for security
+export default function ProtectedTestPage() {
+  return (
+    <StudentProtectedRoute>
+      <TakeTestPage />
+    </StudentProtectedRoute>
   );
 }

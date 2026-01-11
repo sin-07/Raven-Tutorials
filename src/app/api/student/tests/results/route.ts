@@ -34,11 +34,12 @@ export async function GET(request: NextRequest) {
       }, { status: 404 });
     }
 
-    // Get completed tests for this student's class
+    // Get all tests for this student's standard that have results
+    // Include PUBLISHED and EXPIRED tests since students may have submitted to them
     const tests = await Test.find({
-      class: student.standard,
-      status: 'completed'
-    }).sort({ testDate: -1 });
+      standard: student.standard,
+      'results.0': { $exists: true } // Tests with at least one result
+    }).sort({ endDate: -1 });
 
     // Extract results for this student
     const results = tests.map(test => {
@@ -46,15 +47,20 @@ export async function GET(request: NextRequest) {
         (r: any) => r.studentId?.toString() === student._id.toString()
       );
 
+      if (!studentResult) return null;
+
       return {
+        testId: test.testId,
         title: test.title,
         subject: test.subject,
         marksObtained: studentResult?.marksObtained || 0,
         totalMarks: test.totalMarks,
         passingMarks: test.passingMarks,
-        testDate: test.testDate
+        status: studentResult?.status || 'Pending',
+        submittedAt: studentResult?.submittedAt,
+        endDate: test.endDate
       };
-    }).filter(r => r.marksObtained > 0); // Only show tests the student attempted
+    }).filter(r => r !== null); // Only show tests the student attempted
 
     return NextResponse.json({
       success: true,

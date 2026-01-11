@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
-import Navbar from '@/components/Navbar';
 import './globals.css';
+import ClientLayout from '@/components/ClientLayout';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -31,8 +31,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} antialiased`}>
         <AdminProvider>
-          <Navbar />
-          {children}
+          <ClientLayout>
+            {children}
+          </ClientLayout>
           <Toaster 
             position="top-right"
             toastOptions={{

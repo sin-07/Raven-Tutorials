@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { MessageSquare, Loader, AlertCircle, Trash2, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
 import FeedbackForm from '@/components/FeedbackForm';
+import { StudentProtectedRoute } from '@/components';
 
 interface Feedback {
   _id: string;
@@ -23,7 +24,7 @@ interface StudentInfo {
   email: string;
 }
 
-export default function FeedbackPage() {
+function FeedbackPage() {
   const router = useRouter();
   const [student, setStudent] = useState<StudentInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -267,5 +268,14 @@ export default function FeedbackPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Wrap with StudentProtectedRoute for security
+export default function ProtectedFeedbackPage() {
+  return (
+    <StudentProtectedRoute>
+      <FeedbackPage />
+    </StudentProtectedRoute>
   );
 }

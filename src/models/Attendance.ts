@@ -18,7 +18,7 @@ const attendanceSchema = new Schema<IAttendance>({
   class: {
     type: String,
     required: true,
-    enum: ['9th standard', '10th standard', '11th standard', '12th standard']
+    enum: ['6th', '7th', '8th', '9th', '10th', '11th', '12th']
   },
   subject: {
     type: String,

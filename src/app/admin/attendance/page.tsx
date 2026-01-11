@@ -1,15 +1,55 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
-import { STANDARDS } from '@/constants/classes';
+import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
 
 interface StudentData {
   _id: string;
   studentName: string;
   registrationId: string;
 }
+
+// Separate component for attendance buttons to prevent closure issues
+const AttendanceButtons = memo(({ 
+  studentId, 
+  currentStatus, 
+  onStatusChange 
+}: { 
+  studentId: string; 
+  currentStatus: string | undefined; 
+  onStatusChange: (id: string, status: string) => void;
+}) => {
+  return (
+    <div className="flex justify-center gap-1 sm:gap-2">
+      <button
+        type="button"
+        onClick={() => onStatusChange(studentId, 'Present')}
+        className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
+          currentStatus === 'Present'
+            ? 'bg-green-600 text-white'
+            : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
+        }`}
+      >
+        P
+      </button>
+      <button
+        type="button"
+        onClick={() => onStatusChange(studentId, 'Absent')}
+        className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
+          currentStatus === 'Absent'
+            ? 'bg-red-600 text-white'
+            : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
+        }`}
+      >
+        A
+      </button>
+    </div>
+  );
+});
+AttendanceButtons.displayName = 'AttendanceButtons';
 
 const AdminAttendance: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState('');
@@ -74,8 +114,16 @@ const AdminAttendance: React.FC = () => {
       
       if (data.success) {
         if (data.data.length === 0) {
-          toast.error('No students found for this class');
+          toast('No students enrolled in this class yet', {
+            icon: 'ℹ️',
+            style: {
+              background: '#1e293b',
+              color: '#94a3b8',
+              border: '1px solid #475569'
+            }
+          });
         }
+        console.log('Fetched students:', data.data.map((s: StudentData) => ({ _id: s._id, name: s.studentName })));
         setStudents(data.data);
       } else {
         toast.error(data.message || 'Error loading students');
@@ -88,12 +136,18 @@ const AdminAttendance: React.FC = () => {
     }
   };
 
-  const handleStatusChange = (studentId: string, status: string) => {
-    setAttendance(prev => ({
-      ...prev,
-      [studentId]: status
-    }));
-  };
+  const handleStatusChange = useCallback((studentId: string, status: string) => {
+    console.log('=== handleStatusChange ===');
+    console.log('Student ID:', studentId);
+    console.log('Status:', status);
+    
+    setAttendance(prev => {
+      const newState = { ...prev, [studentId]: status };
+      console.log('Previous state:', prev);
+      console.log('New state:', newState);
+      return newState;
+    });
+  }, []);
 
   const markAllPresent = () => {
     const newAttendance: { [key: string]: string } = {};
@@ -110,9 +164,18 @@ const AdminAttendance: React.FC = () => {
       return;
     }
 
+    // Check if all students have been marked
+    const unmarkedStudents = students.filter(student => !attendance[student._id]);
+    if (unmarkedStudents.length > 0) {
+      toast.error(`Please mark attendance for all students. ${unmarkedStudents.length} student(s) not marked.`, {
+        duration: 4000
+      });
+      return;
+    }
+
     const attendanceData = students.map(student => ({
       studentId: student._id,
-      status: attendance[student._id] || 'Absent'
+      status: attendance[student._id]
     }));
 
     setLoading(true);
@@ -180,7 +243,7 @@ const AdminAttendance: React.FC = () => {
               >
                 <option value="">-- Select Class --</option>
                 {STANDARDS.map(standard => (
-                  <option key={standard} value={standard}>{standard}</option>
+                  <option key={standard} value={standard}>{STANDARD_LABELS[standard]}</option>
                 ))}
               </select>
             </div>
@@ -261,32 +324,21 @@ const AdminAttendance: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-[#111111] divide-y divide-gray-800">
-                    {students.map((student) => (
-                      <tr key={student._id} className="hover:bg-[#111111]/50 block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
+                    {students.map((student, index) => (
+                      <tr key={`student-row-${student._id}-${index}`} className="hover:bg-[#111111]/50 block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
                         <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
                           <span className="sm:hidden text-gray-500 font-medium text-xs">Name: </span>
-                          {student.studentName}
+                          {student.studentName} <span className="text-gray-500 text-xs">({student._id.slice(-6)})</span>
                         </td>
                         <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-400 hidden md:table-cell">
-                          <span className="sm:hidden text-gray-500 font-medium text-xs">Reg ID: </span>
                           {student.registrationId}
                         </td>
                         <td className="px-2 sm:px-4 py-2 sm:py-3 text-center block sm:table-cell">
-                          <div className="flex justify-center gap-1 sm:gap-2">
-                            {['Present', 'Absent'].map(status => (
-                              <button
-                                key={status}
-                                onClick={() => handleStatusChange(student._id, status)}
-                                className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
-                                  attendance[student._id] === status
-                                    ? status === 'Present' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                                    : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
-                                }`}
-                              >
-                                {status.charAt(0)}
-                              </button>
-                            ))}
-                          </div>
+                          <AttendanceButtons
+                            studentId={student._id}
+                            currentStatus={attendance[student._id]}
+                            onStatusChange={handleStatusChange}
+                          />
                         </td>
                       </tr>
                     ))}
@@ -323,4 +375,11 @@ const AdminAttendance: React.FC = () => {
   );
 };
 
-export default AdminAttendance;
+// Wrap with AdminProtectedRoute for security
+const ProtectedAdminAttendance = () => (
+  <AdminProtectedRoute>
+    <AdminAttendance />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedAdminAttendance;

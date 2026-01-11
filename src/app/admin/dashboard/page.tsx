@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
 import { Users, FileText, UserPlus, Calendar, TrendingUp, CheckCircle } from 'lucide-react';
 import { Loader } from '@/components';
@@ -197,4 +198,11 @@ const AdminDashboard: React.FC = () => {
   );
 };
 
-export default AdminDashboard;
+// Wrap with AdminProtectedRoute for security
+const ProtectedAdminDashboard = () => (
+  <AdminProtectedRoute>
+    <AdminDashboard />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedAdminDashboard;

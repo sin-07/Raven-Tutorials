@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
 import { Loader } from '@/components';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
@@ -211,4 +212,11 @@ const AdminStudents: React.FC = () => {
   );
 };
 
-export default AdminStudents;
+// Wrap with AdminProtectedRoute for security
+const ProtectedAdminStudents = () => (
+  <AdminProtectedRoute>
+    <AdminStudents />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedAdminStudents;

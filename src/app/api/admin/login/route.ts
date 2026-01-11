@@ -14,19 +14,34 @@ export async function POST(req: NextRequest) {
   try {
     await connectDB();
     
-    const { email, password } = await req.json();
+    // Parse request body with error handling
+    let body;
+    try {
+      body = await req.json();
+    } catch (parseError) {
+      console.log('[ERROR] Failed to parse request body:', parseError);
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid request format'
+      }, { status: 400 });
+    }
+
+    const { email, password, username } = body;
+    const emailToUse = email || username; // Support both email and username fields
     const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
     console.log('[INFO] ADMIN LOGIN ATTEMPT');
-    console.log('[INFO] Email:', email);
+    console.log('[INFO] Request body:', body);
+    console.log('[INFO] Email/Username:', emailToUse);
+    console.log('[INFO] Password present:', password ? 'Yes' : 'No');
     console.log('[INFO] IP Address:', clientIP);
     console.log('[INFO] User Agent:', userAgent);
     console.log('[INFO] Timestamp:', new Date().toISOString());
 
     // Validation
-    if (!email || !password) {
-      console.log('[ERROR] Missing credentials');
+    if (!emailToUse || !password) {
+      console.log('[ERROR] Missing credentials - email/username:', emailToUse, 'password:', password ? 'present' : 'missing');
       return NextResponse.json({
         success: false,
         message: 'Please provide email and password'
@@ -34,10 +49,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Find admin
-    const admin = await Admin.findOne({ email });
+    const admin = await Admin.findOne({ email: emailToUse });
 
     if (!admin) {
-      console.log(`[SECURITY] ALERT: Login attempt with non-existent email: ${email}`);
+      console.log(`[SECURITY] ALERT: Login attempt with non-existent email: ${emailToUse}`);
       console.log(`   IP: ${clientIP} | Time: ${new Date().toISOString()}`);
       return NextResponse.json({
         success: false,
@@ -45,7 +60,7 @@ export async function POST(req: NextRequest) {
       }, { status: 401 });
     }
 
-    console.log(`[INFO] Admin found: ${email}`);
+    console.log(`[INFO] Admin found: ${emailToUse}`);
     console.log(`[INFO] Admin active: ${admin.isActive}`);
     console.log(`[INFO] Admin role: ${admin.role}`);
 
@@ -63,7 +78,7 @@ export async function POST(req: NextRequest) {
     const isMatch = await admin.comparePassword(password);
 
     if (!isMatch) {
-      console.log(`[SECURITY] ALERT: Failed password attempt for: ${email}`);
+      console.log(`[SECURITY] ALERT: Failed password attempt for: ${emailToUse}`);
       console.log(`   IP: ${clientIP} | Time: ${new Date().toISOString()}`);
       console.log(`   User Agent: ${userAgent}`);
       return NextResponse.json({
@@ -79,7 +94,7 @@ export async function POST(req: NextRequest) {
     // Generate token
     const token = generateToken(admin._id.toString());
 
-    console.log(`[SUCCESS] SUCCESSFUL LOGIN: ${email}`);
+    console.log(`[SUCCESS] SUCCESSFUL LOGIN: ${emailToUse}`);
     console.log(`   Role: ${admin.role} | IP: ${clientIP}`);
     console.log(`   Time: ${new Date().toISOString()}`);
     console.log('========================================');

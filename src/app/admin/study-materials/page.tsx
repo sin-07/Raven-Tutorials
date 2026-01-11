@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Upload, FileText, Trash2, Download, Filter } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { STANDARDS } from '@/constants/classes';
 
 interface MaterialData {
@@ -369,4 +370,11 @@ const StudyMaterials: React.FC = () => {
   );
 };
 
-export default StudyMaterials;
+// Wrap with AdminProtectedRoute for security
+const ProtectedStudyMaterials = () => (
+  <AdminProtectedRoute>
+    <StudyMaterials />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedStudyMaterials;

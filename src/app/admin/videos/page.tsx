@@ -3,6 +3,7 @@
 import React from 'react';
 import { Video, Sparkles, Clock, Rocket, Zap, Star } from 'lucide-react';
 import AdminLayout from '@/components/admin/Layout';
+import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 
 const Videos: React.FC = () => {
   return (
@@ -104,4 +105,11 @@ const Videos: React.FC = () => {
   );
 };
 
-export default Videos;
+// Wrap with AdminProtectedRoute for security
+const ProtectedVideos = () => (
+  <AdminProtectedRoute>
+    <Videos />
+  </AdminProtectedRoute>
+);
+
+export default ProtectedVideos;

@@ -8,6 +8,7 @@ import {
   Download
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { StudentProtectedRoute } from '@/components';
 
 interface StudentData {
   _id: string;
@@ -41,12 +42,15 @@ interface TestResult {
 
 interface UpcomingTest {
   _id: string;
+  testId: string;
   title: string;
   subject: string;
-  testDate: string;
+  startDate: string;
+  endDate: string;
   duration: number;
   totalMarks: number;
   passingMarks: number;
+  hasAttempted: boolean;
 }
 
 interface StudyMaterial {
@@ -150,9 +154,10 @@ const Dashboard: React.FC = () => {
 
       const data = await res.json();
       
-      const now = new Date();
-      const future = (data.data || []).filter((t: UpcomingTest) => new Date(t.testDate) > now);
-      setUpcomingTests(future.slice(0, 5));
+      // API already filters to show only PUBLISHED tests within date range
+      // Just filter out already attempted tests and limit to 5
+      const available = (data.data || []).filter((t: UpcomingTest) => !t.hasAttempted);
+      setUpcomingTests(available.slice(0, 5));
     } catch (err) {
       console.error('Upcoming tests error:', err);
     }
@@ -408,7 +413,7 @@ const Dashboard: React.FC = () => {
             {/* Marks Tab */}
             {activeTab === 'marks' && (
               <div>
-                <h3 className="text-lg font-bold mb-4">Test Results</h3>
+                <h3 className="text-lg font-bold mb-4 text-white">Test Results</h3>
                 {testResults.length > 0 ? (
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
@@ -421,16 +426,16 @@ const Dashboard: React.FC = () => {
                           <th className="px-4 py-3 text-center font-semibold text-gray-900">Status</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y">
+                      <tbody className="divide-y divide-gray-700">
                         {testResults.map((test, idx) => {
                           const percentage = (test.marksObtained / test.totalMarks * 100).toFixed(1);
                           const passed = test.marksObtained >= test.passingMarks;
                           return (
-                            <tr key={idx} className="hover:bg-gray-50">
-                              <td className="px-4 py-3 text-gray-900 font-medium">{test.title}</td>
-                              <td className="px-4 py-3 text-gray-600">{test.subject}</td>
-                              <td className="px-4 py-3 text-center text-gray-900">{test.marksObtained}/{test.totalMarks}</td>
-                              <td className="px-4 py-3 text-center text-gray-900">{percentage}%</td>
+                            <tr key={idx} className="hover:bg-gray-800/50">
+                              <td className="px-4 py-3 text-white font-medium">{test.title}</td>
+                              <td className="px-4 py-3 text-gray-300">{test.subject}</td>
+                              <td className="px-4 py-3 text-center text-white">{test.marksObtained}/{test.totalMarks}</td>
+                              <td className="px-4 py-3 text-center text-white">{percentage}%</td>
                               <td className="px-4 py-3 text-center">
                                 <span className={`px-2 py-1 rounded text-xs font-medium ${
                                   passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -453,24 +458,24 @@ const Dashboard: React.FC = () => {
             {/* Upcoming Tests Tab */}
             {activeTab === 'tests' && (
               <div>
-                <h3 className="text-lg font-bold mb-4">Upcoming Tests</h3>
+                <h3 className="text-lg font-bold mb-4 text-white">Available Tests</h3>
                 {upcomingTests.length > 0 ? (
                   <div className="space-y-4">
                     {upcomingTests.map((test, idx) => (
-                      <div key={idx} className="p-4 border rounded-lg hover:shadow-md transition">
+                      <div key={idx} className="p-4 border border-gray-700 rounded-lg hover:shadow-md hover:border-gray-600 transition bg-gray-800/30">
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <h4 className="font-semibold text-gray-900">{test.title}</h4>
-                            <p className="text-sm text-gray-600">{test.subject}</p>
+                            <h4 className="font-semibold text-white">{test.title}</h4>
+                            <p className="text-sm text-gray-300">{test.subject}</p>
                           </div>
                           <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            Upcoming
+                            Available
                           </span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <p className="text-gray-600">Date</p>
-                            <p className="font-medium">{new Date(test.testDate).toLocaleDateString()}</p>
+                            <p className="text-gray-600">Available Until</p>
+                            <p className="font-medium">{new Date(test.endDate).toLocaleDateString()}</p>
                           </div>
                           <div>
                             <p className="text-gray-600">Duration</p>
@@ -485,11 +490,19 @@ const Dashboard: React.FC = () => {
                             <p className="font-medium">{test.passingMarks}</p>
                           </div>
                         </div>
+                        <div className="mt-3">
+                          <button
+                            onClick={() => router.push(`/test/${test._id}`)}
+                            className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-sm font-medium transition"
+                          >
+                            Start Test
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-center py-8">No upcoming tests</p>
+                  <p className="text-gray-500 text-center py-8">No tests available</p>
                 )}
               </div>
             )}
@@ -532,57 +545,57 @@ const Dashboard: React.FC = () => {
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
                       <User className="w-4 h-4" /> Personal Info
                     </h4>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-sm text-gray-600">Full Name</p>
-                        <p className="font-medium text-gray-900">{student.studentName}</p>
+                        <p className="text-sm text-gray-400">Full Name</p>
+                        <p className="font-medium text-white">{student.studentName}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Father&apos;s Name</p>
-                        <p className="font-medium text-gray-900">{student.fatherName}</p>
+                        <p className="text-sm text-gray-400">Father&apos;s Name</p>
+                        <p className="font-medium text-white">{student.fatherName}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Mother&apos;s Name</p>
-                        <p className="font-medium text-gray-900">{student.motherName}</p>
+                        <p className="text-sm text-gray-400">Mother&apos;s Name</p>
+                        <p className="font-medium text-white">{student.motherName}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Gender</p>
-                        <p className="font-medium text-gray-900">{student.gender}</p>
+                        <p className="text-sm text-gray-400">Gender</p>
+                        <p className="font-medium text-white">{student.gender}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Blood Group</p>
-                        <p className="font-medium text-gray-900">{student.bloodGroup || 'N/A'}</p>
+                        <p className="text-sm text-gray-400">Blood Group</p>
+                        <p className="font-medium text-white">{student.bloodGroup || 'N/A'}</p>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
                       <Mail className="w-4 h-4" /> Contact Info
                     </h4>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-sm text-gray-600">Email</p>
-                        <p className="font-medium text-gray-900 break-all">{student.email}</p>
+                        <p className="text-sm text-gray-400">Email</p>
+                        <p className="font-medium text-white break-all">{student.email}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Phone</p>
-                        <p className="font-medium text-gray-900">{student.phoneNumber}</p>
+                        <p className="text-sm text-gray-400">Phone</p>
+                        <p className="font-medium text-white">{student.phoneNumber}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Address</p>
-                        <p className="font-medium text-gray-900">{student.address}</p>
+                        <p className="text-sm text-gray-400">Address</p>
+                        <p className="font-medium text-white">{student.address}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">City</p>
-                        <p className="font-medium text-gray-900">{student.city}</p>
+                        <p className="text-sm text-gray-400">City</p>
+                        <p className="font-medium text-white">{student.city}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Class</p>
-                        <p className="font-medium text-gray-900">{student.standard}</p>
+                        <p className="text-sm text-gray-400">Class</p>
+                        <p className="font-medium text-white">{student.standard}</p>
                       </div>
                     </div>
                   </div>
@@ -596,4 +609,11 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+// Wrap with StudentProtectedRoute for security
+const ProtectedDashboard = () => (
+  <StudentProtectedRoute>
+    <Dashboard />
+  </StudentProtectedRoute>
+);
+
+export default ProtectedDashboard;
