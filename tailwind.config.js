@@ -12,6 +12,7 @@ module.exports = {
         'juana': ['Playfair Display', 'Georgia', 'serif'],
         'helvetica': ['DM Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
         'mono': ['JetBrains Mono', 'monospace'],
+        'cinzel': ['var(--font-cinzel)', 'serif'],
       },
       colors: {
         // Deep Black - Primary Dark Theme

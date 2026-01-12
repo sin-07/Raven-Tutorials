@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Cinzel } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
 import './globals.css';
@@ -14,6 +14,12 @@ const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-poppins',
+});
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-cinzel',
 });
 
 export const metadata: Metadata = {
@@ -71,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} ${cinzel.variable}`}>
       <body className={`${inter.className} antialiased`}>
         <AdminProvider>
           <ClientLayout>
