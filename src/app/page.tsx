@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { GlowBackground } from '@/components/ui';
 import { 
   GraduationCap, 
   Video, 
@@ -53,9 +54,7 @@ export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
+      <GlowBackground />
 
       {/* Hero Section - Sheryians Style */}
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
@@ -67,11 +66,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight tracking-[-0.03em] font-machina"
           >
-            We only{' '}
-            <span className="text-[#00E5A8] font-juana italic">teach</span>
-            {' '}what we are
-            <br className="hidden sm:block" />
-            really really good at.
+            <span className="block">At <span className="text-[#00E5A8] font-juana italic">Raven</span>, we teach</span>
+            <span className="block">what we do best.</span>
           </motion.h1>
 
           <motion.p

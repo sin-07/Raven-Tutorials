@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Target, BookOpen, Users, Code, X, ZoomIn } from 'lucide-react';
 import { LMSNavbar, LMSFooter } from '@/components/lms';
+import { GlowBackground } from '@/components/ui';
 
 interface FacultyMember {
   name: string;
@@ -93,10 +94,7 @@ const AboutUs: React.FC = () => {
       <LMSNavbar />
       <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
         {/* Green Radial Glow Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-        </div>
-
+      <GlowBackground />
         <div className="relative z-10">
         {/* Header */}
         <section className="py-16 pt-28">

@@ -17,9 +17,52 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Raven Tutorials - Learn Smarter, Achieve More',
+  title: {
+    default: 'Raven Tutorials - Learn Smarter, Achieve More',
+    template: '%s | Raven Tutorials',
+  },
   description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship for JEE, NEET, and Board exams.',
-  keywords: 'online courses, JEE preparation, NEET coaching, board exams, competitive exams, online learning, Raven Tutorials',
+  keywords: ['online courses', 'JEE preparation', 'NEET coaching', 'board exams', 'competitive exams', 'online learning', 'Raven Tutorials', 'coaching classes', 'Bihar coaching', 'Patna coaching'],
+  authors: [{ name: 'Raven Tutorials' }],
+  creator: 'Raven Tutorials',
+  publisher: 'Raven Tutorials',
+  metadataBase: new URL('https://raventutorials.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://raventutorials.com',
+    siteName: 'Raven Tutorials',
+    title: 'Raven Tutorials - Learn Smarter, Achieve More',
+    description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Raven Tutorials - Online Learning Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Raven Tutorials - Learn Smarter, Achieve More',
+    description: 'Master competitive exams with India\'s top educators.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
 };
 
 export default function RootLayout({

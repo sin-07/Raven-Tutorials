@@ -3,13 +3,17 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { Upload, Loader2, AlertCircle } from 'lucide-react';
+import { Upload, Loader2, AlertCircle, FileText, ChevronDown, CheckCircle2 } from 'lucide-react';
 
 export default function LearnerAdmissionPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, boolean>>({});
+  const [showCodeOfConduct, setShowCodeOfConduct] = useState(false);
+  const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
+  const [agreedToConduct, setAgreedToConduct] = useState(false);
   
   const [formData, setFormData] = useState({
     studentName: 'Test Student',
@@ -31,9 +35,24 @@ export default function LearnerAdmissionPage() {
     photo: null as File | null
   });
 
+  const getInputClassName = (fieldName: string) => {
+    const baseClass = "w-full px-4 py-2 bg-[#080808] border text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition";
+    const errorClass = fieldErrors[fieldName] ? "border-red-500" : "border-gray-800";
+    return `${baseClass} ${errorClass}`;
+  };
+
+  const handleConductScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const isAtBottom = Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 5;
+    if (isAtBottom && !hasScrolledToBottom) {
+      setHasScrolledToBottom(true);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setFieldErrors(prev => ({ ...prev, [name]: false }));
     setError('');
   };
 
@@ -51,6 +70,7 @@ export default function LearnerAdmissionPage() {
       }
 
       setFormData(prev => ({ ...prev, photo: file }));
+      setFieldErrors(prev => ({ ...prev, photo: false }));
       
       // Create preview
       const reader = new FileReader();
@@ -68,7 +88,7 @@ export default function LearnerAdmissionPage() {
     setError('');
 
     try {
-      // Validate required fields
+      // Validate required fields and collect all errors
       const requiredFields = [
         'studentName', 'fatherName', 'motherName', 'dateOfBirth',
         'gender', 'bloodGroup', 'category', 'phoneNumber',
@@ -76,16 +96,37 @@ export default function LearnerAdmissionPage() {
         'standard', 'previousSchool'
       ];
 
+      const errors: Record<string, boolean> = {};
+      let hasErrors = false;
+
       for (const field of requiredFields) {
         if (!formData[field as keyof typeof formData]) {
-          setError(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
-          setLoading(false);
-          return;
+          errors[field] = true;
+          hasErrors = true;
         }
       }
 
       if (!formData.photo) {
-        setError('Please upload your photo');
+        errors.photo = true;
+        hasErrors = true;
+      }
+
+      if (hasErrors) {
+        setFieldErrors(errors);
+        toast.error('Fill all the details', {
+          duration: 3000,
+          position: 'top-center',
+        });
+        setLoading(false);
+        return;
+      }
+
+      // Validate Code of Conduct agreement
+      if (!agreedToConduct) {
+        toast.error('Please read and agree to the Code of Conduct', {
+          duration: 3000,
+          position: 'top-center',
+        });
         setLoading(false);
         return;
       }
@@ -230,7 +271,7 @@ export default function LearnerAdmissionPage() {
                   name="studentName"
                   value={formData.studentName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("studentName")}
                   placeholder="Enter full name"
                   required
                 />
@@ -245,7 +286,7 @@ export default function LearnerAdmissionPage() {
                   name="fatherName"
                   value={formData.fatherName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("fatherName")}
                   placeholder="Enter father's name"
                   required
                 />
@@ -260,7 +301,7 @@ export default function LearnerAdmissionPage() {
                   name="motherName"
                   value={formData.motherName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("motherName")}
                   placeholder="Enter mother's name"
                   required
                 />
@@ -275,7 +316,7 @@ export default function LearnerAdmissionPage() {
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("dateOfBirth")}
                   required
                 />
               </div>
@@ -288,7 +329,7 @@ export default function LearnerAdmissionPage() {
                   name="gender"
                   value={formData.gender}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("gender")}
                   required
                 >
                   <option value="">Select Gender</option>
@@ -306,7 +347,7 @@ export default function LearnerAdmissionPage() {
                   name="bloodGroup"
                   value={formData.bloodGroup}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("bloodGroup")}
                   required
                 >
                   <option value="">Select Blood Group</option>
@@ -329,7 +370,7 @@ export default function LearnerAdmissionPage() {
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("category")}
                   required
                 >
                   <option value="">Select Category</option>
@@ -357,7 +398,7 @@ export default function LearnerAdmissionPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("phoneNumber")}
                   placeholder="10-digit phone number"
                   maxLength={10}
                   required
@@ -373,7 +414,7 @@ export default function LearnerAdmissionPage() {
                   name="alternatePhoneNumber"
                   value={formData.alternatePhoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("alternatePhoneNumber")}
                   placeholder="10-digit phone number"
                   maxLength={10}
                 />
@@ -388,7 +429,7 @@ export default function LearnerAdmissionPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("email")}
                   placeholder="your.email@example.com"
                   required
                 />
@@ -403,7 +444,7 @@ export default function LearnerAdmissionPage() {
                   value={formData.address}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("address")}
                   placeholder="Enter complete address"
                   required
                 />
@@ -419,7 +460,7 @@ export default function LearnerAdmissionPage() {
                     name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("city")}
                   placeholder="Enter city"
                   required
                 />
@@ -434,7 +475,7 @@ export default function LearnerAdmissionPage() {
                     name="state"
                     value={formData.state}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                    className={getInputClassName("state")}
                     placeholder="Enter state"
                     required
                   />
@@ -449,7 +490,7 @@ export default function LearnerAdmissionPage() {
                     name="pincode"
                     value={formData.pincode}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                    className={getInputClassName("pincode")}
                     placeholder="6-digit pincode"
                     maxLength={6}
                     required
@@ -472,7 +513,7 @@ export default function LearnerAdmissionPage() {
                   name="standard"
                   value={formData.standard}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("standard")}
                   required
                 >
                   <option value="">Select Standard</option>
@@ -495,7 +536,7 @@ export default function LearnerAdmissionPage() {
                   name="previousSchool"
                   value={formData.previousSchool}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 bg-[#080808] border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none transition"
+                  className={getInputClassName("previousSchool")}
                   placeholder="Enter previous school name"
                   required
                 />
@@ -527,7 +568,9 @@ export default function LearnerAdmissionPage() {
                   </button>
                 </div>
               ) : (
-                <label className="w-full max-w-md border-2 border-dashed border-gray-800 rounded-lg p-8 text-center cursor-pointer hover:border-[#00E5A8] transition bg-[#080808]">
+                <label className={`w-full max-w-md border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:border-[#00E5A8] transition bg-[#080808] ${
+                  fieldErrors.photo ? 'border-red-500' : 'border-gray-800'
+                }`}>
                   <Upload className="w-12 h-12 mx-auto text-gray-500 mb-2" />
                   <p className="text-gray-400 mb-1">Click to upload photo</p>
                   <p className="text-sm text-gray-500">Max size: 5MB (JPG, PNG)</p>
@@ -536,9 +579,172 @@ export default function LearnerAdmissionPage() {
                     accept="image/*"
                     onChange={handlePhotoChange}
                     className="hidden"
-                    required
                   />
                 </label>
+              )}
+            </div>
+          </div>
+
+          {/* Code of Conduct */}
+          <div className="mb-8">
+            <div className="border border-gray-800 rounded-lg overflow-hidden bg-[#080808]">
+              {/* Header */}
+              <button
+                type="button"
+                onClick={() => setShowCodeOfConduct(!showCodeOfConduct)}
+                className="w-full flex items-center justify-between p-4 hover:bg-[#111111] transition"
+              >
+                <div className="flex items-center gap-3">
+                  <FileText className="w-5 h-5 text-[#00E5A8]" />
+                  <h2 className="text-xl font-bold text-white">Code of Conduct</h2>
+                  <span className="text-red-500 text-sm">*</span>
+                </div>
+                <ChevronDown 
+                  className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${
+                    showCodeOfConduct ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {/* Content */}
+              {showCodeOfConduct && (
+                <div className="border-t border-gray-800">
+                  <div 
+                    className="max-h-96 overflow-y-auto p-6 space-y-4 scroll-smooth"
+                    onScroll={handleConductScroll}
+                  >
+                    <p className="text-gray-300 leading-relaxed">
+                      By enrolling at <span className="text-[#00E5A8] font-semibold">Raven Tutorials</span>, you agree to abide by the following Code of Conduct to maintain a respectful, safe, and productive learning environment:
+                    </p>
+
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">1.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Respect and Courtesy:</span> Treat all students, teachers, and staff with respect and kindness. Harassment, bullying, or discrimination of any kind will not be tolerated.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">2.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Punctuality:</span> Arrive on time for all classes, exams, and scheduled activities. Consistent tardiness disrupts the learning environment.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">3.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Academic Integrity:</span> Maintain honesty in all academic work. Cheating, plagiarism, or any form of academic dishonesty will result in serious consequences.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">4.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Attendance:</span> Regular attendance is mandatory. Maintain at least 75% attendance to be eligible for examinations and certifications.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">5.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Classroom Behavior:</span> Maintain appropriate behavior during classes. Use of mobile phones during class is strictly prohibited unless authorized by the instructor.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">6.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Dress Code:</span> Dress appropriately and professionally. Maintain a neat and clean appearance at all times.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">7.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Property Care:</span> Respect and take care of institute property, including furniture, equipment, and learning materials. Any damage caused will be subject to charges.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">8.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Safety and Security:</span> Follow all safety protocols and security measures. Report any safety concerns immediately to staff members.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">9.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Communication:</span> Use official communication channels for all institute-related correspondence. Check emails and notices regularly.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">10.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Fee Payment:</span> Pay all fees on time as per the payment schedule. Late payments may result in temporary suspension of services.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">11.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Technology Use:</span> Use institute technology and resources responsibly. Unauthorized access or misuse of systems is strictly prohibited.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">12.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Confidentiality:</span> Maintain confidentiality of proprietary study materials and teaching methods. Sharing or distributing institute materials without permission is prohibited.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <span className="text-[#00E5A8] font-bold flex-shrink-0">13.</span>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Compliance:</span> Comply with all institute policies, rules, and regulations. Violation of the Code of Conduct may result in disciplinary action, including suspension or expulsion.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 p-4 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
+                      <p className="text-[#00E5A8] text-sm font-medium">
+                        By proceeding with this admission, you acknowledge that you have read, understood, and agree to abide by this Code of Conduct.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Checkbox */}
+                  <div className="border-t border-gray-800 p-4 bg-[#111111]">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <div className="relative flex items-center justify-center mt-1">
+                        <input
+                          type="checkbox"
+                          checked={agreedToConduct}
+                          onChange={(e) => setAgreedToConduct(e.target.checked)}
+                          disabled={!hasScrolledToBottom}
+                          className="w-5 h-5 rounded border-2 border-gray-600 bg-[#080808] checked:bg-[#00E5A8] checked:border-[#00E5A8] disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#00E5A8] focus:ring-offset-2 focus:ring-offset-[#111111] transition"
+                        />
+                        {agreedToConduct && (
+                          <CheckCircle2 className="w-5 h-5 text-[#00E5A8] absolute pointer-events-none" />
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium group-hover:text-[#00E5A8] transition">
+                          I have read and agree to the Code of Conduct
+                        </p>
+                        {!hasScrolledToBottom && (
+                          <p className="text-xs text-gray-500 mt-1">
+                            Please scroll to the bottom to enable this checkbox
+                          </p>
+                        )}
+                      </div>
+                    </label>
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -554,7 +760,7 @@ export default function LearnerAdmissionPage() {
             </button>
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !agreedToConduct}
               className="flex-1 py-3 px-6 bg-[#00E5A8] text-black font-semibold rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
