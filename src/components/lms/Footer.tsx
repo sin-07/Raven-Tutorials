@@ -52,8 +52,8 @@ export default function LMSFooter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white font-machina">Stay Updated</h3>
-              <p className="text-gray-400 text-sm sm:text-base font-helvetica">Subscribe to our newsletter for latest courses and updates.</p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white font-cinzel">Stay Updated</h3>
+              <p className="text-gray-400 text-sm sm:text-base font-cinzel">Subscribe to our newsletter for latest courses and updates.</p>
             </div>
             <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
               <input
@@ -79,12 +79,12 @@ export default function LMSFooter() {
               <div className="w-10 h-10 rounded-xl bg-[#00E5A8] flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-black" />
               </div>
-              <span className="text-xl font-bold font-machina">
+              <span className="text-xl font-bold font-cinzel">
                 <span className="text-white">Raven</span>
                 <span className="text-[#00E5A8]"> Tutorials</span>
               </span>
             </Link>
-            <p className="text-gray-400 mb-6 leading-relaxed font-helvetica">
+            <p className="text-gray-400 mb-6 leading-relaxed font-cinzel">
               Empowering students to achieve academic excellence through quality education, 
               expert guidance, and innovative learning solutions.
             </p>
@@ -106,8 +106,8 @@ export default function LMSFooter() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-machina">Company</h4>
-            <ul className="space-y-3 font-helvetica">
+            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Company</h4>
+            <ul className="space-y-3 font-cinzel">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -123,8 +123,8 @@ export default function LMSFooter() {
 
           {/* Courses Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-machina">Courses</h4>
-            <ul className="space-y-3 font-helvetica">
+            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Courses</h4>
+            <ul className="space-y-3 font-cinzel">
               {footerLinks.courses.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -140,8 +140,8 @@ export default function LMSFooter() {
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-machina">Support</h4>
-            <ul className="space-y-3 font-helvetica">
+            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Support</h4>
+            <ul className="space-y-3 font-cinzel">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -184,3 +184,4 @@ export default function LMSFooter() {
     </footer>
   );
 }
+

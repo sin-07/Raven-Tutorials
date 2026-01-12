@@ -203,3 +203,4 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 };
 
 export default CodeOfConduct;
+

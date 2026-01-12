@@ -98,8 +98,8 @@ const Services: React.FC = () => {
         <section className="py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-5xl font-bold text-white mb-4 font-machina">Our Services</h1>
-              <p className="text-xl text-gray-400 font-helvetica">
+              <h1 className="text-5xl font-bold text-white mb-4 font-cinzel">Our Services</h1>
+              <p className="text-xl text-gray-400 font-cinzel">
                 Comprehensive educational programs designed for your success
               </p>
             </div>
@@ -119,10 +119,10 @@ const Services: React.FC = () => {
                     <div className="mb-4">
                       <service.icon className="w-12 h-12" />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-3 font-machina">
+                    <h3 className="text-lg font-bold text-white mb-3 font-cinzel">
                       {service.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed font-helvetica">
+                    <p className="text-gray-400 text-sm leading-relaxed font-cinzel">
                       {service.description}
                     </p>
                   </div>
@@ -136,7 +136,7 @@ const Services: React.FC = () => {
         <section className="bg-[#080808] py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold text-white mb-12 text-center font-machina">
+              <h2 className="text-4xl font-bold text-white mb-12 text-center font-cinzel">
                 Class, Batch and Subject Details
               </h2>
 
@@ -229,3 +229,4 @@ const Services: React.FC = () => {
 };
 
 export default Services;
+

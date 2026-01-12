@@ -378,3 +378,4 @@ const ProtectedStudyMaterials = () => (
 );
 
 export default ProtectedStudyMaterials;
+

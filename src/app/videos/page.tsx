@@ -352,3 +352,4 @@ export default function ProtectedVideosPage() {
     </StudentProtectedRoute>
   );
 }
+

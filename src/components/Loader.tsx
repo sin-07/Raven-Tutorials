@@ -67,3 +67,4 @@ export const ButtonLoader: React.FC<{ className?: string }> = ({ className = '' 
 );
 
 export default Loader;
+

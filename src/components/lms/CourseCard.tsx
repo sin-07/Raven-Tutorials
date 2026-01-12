@@ -142,3 +142,4 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
     </motion.div>
   );
 }
+

@@ -8,11 +8,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'machina': ['Syne', 'Space Grotesk', 'sans-serif'],
-        'juana': ['Playfair Display', 'Georgia', 'serif'],
-        'helvetica': ['DM Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
-        'cinzel': ['var(--font-cinzel)', 'serif'],
+        // Ensure Cinzel is used for all serif/display font utilities so
+        // existing classes like `font-machina`, `font-juana`, `font-helvetica`,
+        // and `font-display` will render Cinzel without changing every file.
+        cinzel: ['var(--font-cinzel)', 'serif'],
+        machina: ['var(--font-cinzel)', 'serif'],
+        juana: ['var(--font-cinzel)', 'serif'],
+        helvetica: ['var(--font-cinzel)', 'serif'],
+        display: ['var(--font-cinzel)', 'serif'],
+        // Keep monospace and system sans stacks intact
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Deep Black - Primary Dark Theme
@@ -70,11 +76,7 @@ module.exports = {
           900: '#064e3b',
         }
       },
-      fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-      },
+      // (other theme extensions remain unchanged)
       animation: {
         'gradient-x': 'gradient-x 15s ease infinite',
         'float': 'float 20s ease-in-out infinite',

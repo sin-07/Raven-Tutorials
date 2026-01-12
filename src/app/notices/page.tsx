@@ -163,10 +163,10 @@ const Notice: React.FC = () => {
                 <Megaphone size={28} className="text-black" />
               </div>
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-machina">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-cinzel">
                   Institute <span className="text-[#00E5A8]">Notices</span>
                 </h1>
-                <p className="text-gray-400 text-sm sm:text-base mt-1 font-helvetica">Important announcements and updates</p>
+                <p className="text-gray-400 text-sm sm:text-base mt-1 font-cinzel">Important announcements and updates</p>
               </div>
             </div>
           </div>
@@ -208,12 +208,12 @@ const Notice: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight font-machina">
+                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight font-cinzel">
                       {notice.title}
                     </h3>
 
                     {/* Message Preview */}
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed font-helvetica">
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed font-cinzel">
                       {notice.message}
                     </p>
 
@@ -347,3 +347,4 @@ const Notice: React.FC = () => {
 };
 
 export default Notice;
+

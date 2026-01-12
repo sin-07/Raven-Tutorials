@@ -78,7 +78,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} ${cinzel.variable}`}>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${cinzel.className} antialiased`}>
         <AdminProvider>
           <ClientLayout>
             {children}
@@ -118,3 +118,4 @@ export default function RootLayout({
     </html>
   );
 }
+

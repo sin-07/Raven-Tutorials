@@ -7,3 +7,4 @@ export const GlowBackground = () => (
 );
 
 export default GlowBackground;
+

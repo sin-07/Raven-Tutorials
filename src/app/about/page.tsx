@@ -100,8 +100,8 @@ const AboutUs: React.FC = () => {
         <section className="py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-slide-up font-machina">About <span className="text-[#00E5A8]">RAVEN</span> Tutorials</h1>
-              <p className="text-lg text-gray-400 animate-fade-in font-helvetica" style={{ animationDelay: '0.2s' }}>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-slide-up font-cinzel">About <span className="text-[#00E5A8]">RAVEN</span> Tutorials</h1>
+              <p className="text-lg text-gray-400 animate-fade-in font-cinzel" style={{ animationDelay: '0.2s' }}>
                 A home-based institution dedicated to providing affordable and comprehensive learning
               </p>
             </div>
@@ -116,9 +116,9 @@ const AboutUs: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
                   <Target className="w-6 h-6 text-[#00E5A8]" />
                 </div>
-                <h2 className="text-3xl font-bold text-white font-machina">Our Mission</h2>
+                <h2 className="text-3xl font-bold text-white font-cinzel">Our Mission</h2>
               </div>
-              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-helvetica" style={{ animationDelay: '0.2s' }}>
+              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-cinzel" style={{ animationDelay: '0.2s' }}>
                 Welcome to RAVEN Tutorials, a home-based institution dedicated to providing an affordable 
                 and comprehensive learning experience. We boost each student&apos;s potential, both academically 
                 and morally, to maximize their future opportunities.
@@ -135,9 +135,9 @@ const AboutUs: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
                   <BookOpen className="w-6 h-6 text-[#00E5A8]" />
                 </div>
-                <h2 className="text-3xl font-bold text-white font-machina">Our Approach</h2>
+                <h2 className="text-3xl font-bold text-white font-cinzel">Our Approach</h2>
               </div>
-              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-helvetica" style={{ animationDelay: '0.2s' }}>
+              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-cinzel" style={{ animationDelay: '0.2s' }}>
                 As a science-themed institute, we emphasize Science and Mathematics through detailed theory, 
                 practical sessions, and lab work. Our clear concepts and hands-on approach ensure a thorough 
                 understanding of subjects.
@@ -154,9 +154,9 @@ const AboutUs: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
                   <Users className="w-6 h-6 text-[#00E5A8]" />
                 </div>
-                <h2 className="text-3xl font-bold text-white font-machina">Our Philosophy</h2>
+                <h2 className="text-3xl font-bold text-white font-cinzel">Our Philosophy</h2>
               </div>
-              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-helvetica" style={{ animationDelay: '0.2s' }}>
+              <p className="text-gray-400 leading-relaxed text-lg animate-fade-in font-cinzel" style={{ animationDelay: '0.2s' }}>
                 Our team members are lifelong learners, constantly improving their skills and knowledge. 
                 We believe that to be a good teacher, one must also be an excellent learner.
               </p>
@@ -168,8 +168,8 @@ const AboutUs: React.FC = () => {
         <section className="bg-[#080808] py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-white mb-4 text-center font-machina">Meet Our Faculty</h2>
-              <p className="text-gray-400 text-center mb-12 font-helvetica">
+              <h2 className="text-3xl font-bold text-white mb-4 text-center font-cinzel">Meet Our Faculty</h2>
+              <p className="text-gray-400 text-center mb-12 font-cinzel">
                 Dedicated educators committed to excellence in teaching and student development
               </p>
               
@@ -183,13 +183,13 @@ const AboutUs: React.FC = () => {
                     <div className="w-24 h-24 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-full mx-auto mb-4 flex items-center justify-center">
                       <Users className="w-12 h-12 text-[#00E5A8]" />
                     </div>
-                    <h3 className="text-xl font-bold text-white text-center mb-1 font-machina">
+                    <h3 className="text-xl font-bold text-white text-center mb-1 font-cinzel">
                       {member.name}
                     </h3>
                     <p className="text-[#00E5A8] text-sm text-center mb-4">
                       {member.role} @ RAVEN Tutorials
                     </p>
-                    <p className="text-gray-400 text-sm leading-relaxed font-helvetica">
+                    <p className="text-gray-400 text-sm leading-relaxed font-cinzel">
                       {member.description}
                     </p>
                   </div>
@@ -392,3 +392,4 @@ const AboutUs: React.FC = () => {
 };
 
 export default AboutUs;
+

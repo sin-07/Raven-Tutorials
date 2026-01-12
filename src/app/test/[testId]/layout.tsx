@@ -13,3 +13,4 @@ export default function TestLayout({
   // No navbar in test layout - just render children
   return <>{children}</>;
 }
+

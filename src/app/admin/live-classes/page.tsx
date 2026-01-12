@@ -588,3 +588,4 @@ const ProtectedAdminLiveClasses = () => (
 );
 
 export default ProtectedAdminLiveClasses;
+

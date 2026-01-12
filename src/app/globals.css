@@ -21,7 +21,8 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* Use Cinzel via CSS variable provided by next/font in layout.tsx */
+  font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply text-white;
@@ -33,27 +34,28 @@ body {
 
 /* Headings - Neue Machina (with Space Grotesk fallback) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  /* Headings should render Cinzel (display serif) */
+  font-family: var(--font-cinzel), 'Syne', 'Space Grotesk', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 /* Hero & Display Text - Extra bold Syne */
 .font-display {
-  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  font-family: var(--font-cinzel), 'Syne', 'Space Grotesk', sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
 /* Elegant Text - Playfair Display */
 .font-elegant {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
   font-weight: 400;
 }
 
 /* Body Text - DM Sans */
 .font-body {
-  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-cinzel), 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Code blocks */

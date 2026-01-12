@@ -383,3 +383,4 @@ const ProtectedAdminAttendance = () => (
 );
 
 export default ProtectedAdminAttendance;
+

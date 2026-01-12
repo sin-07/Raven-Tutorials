@@ -107,3 +107,4 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
 };
 
 export default StudentProtectedRoute;
+
