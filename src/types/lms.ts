@@ -31,7 +31,10 @@ export interface Course {
   originalPrice?: number;
   isFree: boolean;
   isPopular?: boolean;
-  lessons: Lesson[];
+  lessons?: Lesson[];
+  features?: string[];
+  syllabus?: string[];
+  totalRatings?: number;
   createdAt: Date;
 }
 

@@ -13,30 +13,7 @@ import {
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { categories } from '@/constants/lmsData';
-
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  shortDescription: string;
-  thumbnail: string;
-  instructor: {
-    id: string;
-    name: string;
-    avatar: string;
-  };
-  category: string;
-  level: string;
-  duration: string;
-  totalLessons: number;
-  totalStudents: number;
-  rating: number;
-  price: number;
-  originalPrice: number;
-  isFree: boolean;
-  isPopular: boolean;
-  createdAt: string;
-}
+import { Course } from '@/types/lms';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
