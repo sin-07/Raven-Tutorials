@@ -30,6 +30,12 @@ export interface IStudent extends Document {
   attendancePercentage?: number;
   totalClasses?: number;
   attendedClasses?: number;
+  enrolledCourses?: {
+    courseType: 'annual' | 'crash';
+    subject: string;
+    standard: string;
+    enrolledAt: Date;
+  }[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -169,7 +175,26 @@ const studentSchema = new Schema<IStudent>({
   attendedClasses: {
     type: Number,
     default: 0
-  }
+  },
+  enrolledCourses: [{
+    courseType: {
+      type: String,
+      enum: ['annual', 'crash'],
+      required: true
+    },
+    subject: {
+      type: String,
+      required: true
+    },
+    standard: {
+      type: String,
+      required: true
+    },
+    enrolledAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 }, {
   timestamps: true
 });

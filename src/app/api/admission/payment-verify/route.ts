@@ -83,6 +83,25 @@ export async function POST(request: NextRequest) {
     // Get admission fee
     const admissionFee = parseInt(process.env.ADMISSION_FEE || '1000');
 
+    // Define annual batch subjects based on standard
+    const getAnnualBatchSubjects = (standard: string) => {
+      const standardMap: { [key: string]: string[] } = {
+        '9': ['Mathematics', 'Science', 'Social Science', 'English'],
+        '10': ['Mathematics', 'Science', 'Social Science', 'English', 'IT (Optional)'],
+        '11': ['Physics', 'Chemistry', 'Biology'],
+        '12': ['Physics', 'Chemistry', 'Biology']
+      };
+      return standardMap[standard] || [];
+    };
+
+    const annualSubjects = getAnnualBatchSubjects(tempAdmission.standard);
+    const enrolledCourses = annualSubjects.map(subject => ({
+      courseType: 'annual' as const,
+      subject,
+      standard: tempAdmission.standard,
+      enrolledAt: new Date()
+    }));
+
     // Create student record
     const student = await Student.create({
       registrationId,
@@ -109,7 +128,8 @@ export async function POST(request: NextRequest) {
       paymentId: razorpay_payment_id,
       orderId: razorpay_order_id,
       admissionDate: new Date(),
-      isActive: true
+      isActive: true,
+      enrolledCourses: enrolledCourses  // Auto-enroll in annual batch courses
     });
 
     // Also create admission record for reference

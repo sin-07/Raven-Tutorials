@@ -9,7 +9,12 @@ import {
   ChevronDown, 
   Grid3X3, 
   List,
-  X
+  X,
+  GraduationCap,
+  BookOpen,
+  Zap,
+  CheckCircle2,
+  ArrowRight
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { categories } from '@/constants/lmsData';
@@ -17,6 +22,50 @@ import { Course } from '@/types/lms';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
+
+// School course data
+const schoolCourses = [
+  {
+    class: 'XII',
+    grade: 12,
+    annualSubjects: ['Physics', 'Chemistry', 'Biology'],
+    crashSubjects: ['Physics', 'Chemistry', 'Biology'],
+    options: ['Subject-wise', 'Unit-wise'],
+    color: 'from-purple-500 to-indigo-600',
+    bgColor: 'bg-purple-500/10',
+    borderColor: 'border-purple-500/30'
+  },
+  {
+    class: 'XI',
+    grade: 11,
+    annualSubjects: ['Physics', 'Chemistry', 'Biology'],
+    crashSubjects: null, // Coming soon
+    options: ['Subject-wise', 'Unit-wise'],
+    color: 'from-blue-500 to-cyan-600',
+    bgColor: 'bg-blue-500/10',
+    borderColor: 'border-blue-500/30'
+  },
+  {
+    class: 'X',
+    grade: 10,
+    annualSubjects: ['Mathematics', 'Science', 'Social Science', 'English', 'IT (Optional)'],
+    crashSubjects: ['Mathematics', 'Science', 'English'],
+    options: ['Subject-wise', 'Unit-wise'],
+    color: 'from-emerald-500 to-teal-600',
+    bgColor: 'bg-emerald-500/10',
+    borderColor: 'border-emerald-500/30'
+  },
+  {
+    class: 'IX',
+    grade: 9,
+    annualSubjects: ['Mathematics', 'Science', 'Social Science', 'English'],
+    crashSubjects: ['Mathematics', 'Science'],
+    options: ['Subject-wise', 'Unit-wise'],
+    color: 'from-orange-500 to-amber-600',
+    bgColor: 'bg-orange-500/10',
+    borderColor: 'border-orange-500/30'
+  }
+];
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -29,6 +78,21 @@ export default function CoursesPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [showFreeOnly, setShowFreeOnly] = useState(false);
+  
+  // Student enrollment state
+  const [studentData, setStudentData] = useState<{
+    registrationId: string;
+    studentName: string;
+    standard: string;
+    enrolledCourses: {
+      courseType: 'annual' | 'crash';
+      subject: string;
+      standard: string;
+      enrolledAt: Date;
+    }[];
+  } | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [enrollingSubject, setEnrollingSubject] = useState<string | null>(null);
 
   // Fetch courses from API
   const fetchCourses = useCallback(async () => {
@@ -46,9 +110,69 @@ export default function CoursesPage() {
     }
   }, []);
 
+  // Fetch student enrollment data
+  const fetchStudentEnrollments = useCallback(async () => {
+    try {
+      const response = await fetch('/api/student/courses');
+      const data = await response.json();
+      if (data.success) {
+        setStudentData(data.data);
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   useEffect(() => {
     fetchCourses();
-  }, [fetchCourses]);
+    fetchStudentEnrollments();
+  }, [fetchCourses, fetchStudentEnrollments]);
+
+  // Check if student is enrolled in a course
+  const isEnrolled = (courseType: 'annual' | 'crash', subject: string) => {
+    if (!studentData) return false;
+    return studentData.enrolledCourses.some(
+      course => course.courseType === courseType && 
+                course.subject === subject &&
+                course.standard === studentData.standard
+    );
+  };
+
+  // Handle crash course enrollment
+  const handleEnrollCrashCourse = async (subject: string) => {
+    if (!isLoggedIn) {
+      alert('Please login to enroll in crash courses');
+      window.location.href = '/login';
+      return;
+    }
+
+    setEnrollingSubject(subject);
+    try {
+      const response = await fetch('/api/student/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Successfully enrolled in crash course!');
+        // Refresh enrollment data
+        await fetchStudentEnrollments();
+      } else {
+        alert(data.message || 'Failed to enroll');
+      }
+    } catch (error) {
+      console.error('Enrollment error:', error);
+      alert('Failed to enroll. Please try again.');
+    } finally {
+      setEnrollingSubject(null);
+    }
+  };
 
   // Filter courses
   const filteredCourses = courses.filter(course => {
@@ -112,6 +236,14 @@ export default function CoursesPage() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* All Courses Section Header */}
+      <section id="all-courses-section" className="pt-8 pb-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Browse All Courses</h2>
+          <p className="text-gray-400">Explore our complete catalog of professional courses</p>
         </div>
       </section>
 
