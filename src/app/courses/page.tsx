@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect, useCallback } from 'react';
 import { GlowBackground } from '@/components/ui';
 import { motion } from 'framer-motion';
 import { 
@@ -13,12 +12,38 @@ import {
   X
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
-import { dummyCourses, categories } from '@/constants/lmsData';
+import { categories } from '@/constants/lmsData';
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+  thumbnail: string;
+  instructor: {
+    id: string;
+    name: string;
+    avatar: string;
+  };
+  category: string;
+  level: string;
+  duration: string;
+  totalLessons: number;
+  totalStudents: number;
+  rating: number;
+  price: number;
+  originalPrice: number;
+  isFree: boolean;
+  isPopular: boolean;
+  createdAt: string;
+}
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
 
 export default function CoursesPage() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
@@ -28,8 +53,28 @@ export default function CoursesPage() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [showFreeOnly, setShowFreeOnly] = useState(false);
 
+  // Fetch courses from API
+  const fetchCourses = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/courses');
+      const data = await response.json();
+      if (data.success) {
+        setCourses(data.courses);
+      }
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
+
   // Filter courses
-  const filteredCourses = dummyCourses.filter(course => {
+  const filteredCourses = courses.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
@@ -258,7 +303,11 @@ export default function CoursesPage() {
           </div>
 
           {/* Courses Grid */}
-          {sortedCourses.length > 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00E5A8]"></div>
+            </div>
+          ) : sortedCourses.length > 0 ? (
             <div className={`grid gap-6 ${
               viewMode === 'grid' 
                 ? 'sm:grid-cols-2 lg:grid-cols-3' 
