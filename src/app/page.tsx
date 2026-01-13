@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { GlowBackground } from '@/components/ui';
@@ -30,7 +30,8 @@ import {
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import AdmissionSection from '@/components/AdmissionSection';
-import { dummyCourses, testimonials, features, categories, dashboardStats } from '@/constants/lmsData';
+import { testimonials, features, categories, dashboardStats } from '@/constants/lmsData';
+import { Course } from '@/types/lms';
 
 const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
   GraduationCap,
@@ -51,6 +52,29 @@ const categoryIconMap: { [key: string]: React.ComponentType<{ className?: string
 };
 
 export default function Home() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch courses from API
+  const fetchCourses = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/courses');
+      const data = await response.json();
+      if (data.success) {
+        setCourses(data.courses.slice(0, 6)); // Get only first 6 courses for home page
+      }
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Green Radial Glow Effect */}
@@ -173,41 +197,71 @@ export default function Home() {
 
           {/* Mobile Swipeable */}
           <div className="md:hidden relative">
-            <div className="flex gap-4 overflow-x-scroll pb-4 -mx-4 px-4" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
-              {dummyCourses.slice(0, 6).map((course) => (
-                <div key={course.id} className="min-w-[280px] flex-shrink-0" style={{ scrollSnapAlign: 'start' }}>
-                  <Link href={`/courses/${course.id}`}>
-                    <div className="bg-[#111111] rounded-2xl overflow-hidden border border-gray-800">
-                      <img
-                        src={course.thumbnail}
-                        alt={course.title}
-                        className="w-full h-40 object-cover"
-                      />
-                      <div className="p-4">
-                        <span className="text-xs text-[#00E5A8]">{course.category}</span>
-                        <h3 className="text-white font-semibold mt-1 line-clamp-2">{course.title}</h3>
-                        <div className="flex items-center gap-2 mt-3">
-                          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                          <span className="text-sm text-gray-400">{course.rating}</span>
-                          <span className="text-sm text-gray-500">• {course.totalStudents} students</span>
-                        </div>
-                        <div className="mt-3 flex items-center gap-2">
-                          <span className="text-lg font-bold text-[#00E5A8]">₹{course.price}</span>
-                          <span className="text-sm text-gray-500 line-through">₹{course.originalPrice}</span>
+            {loading ? (
+              <div className="flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#00E5A8]"></div>
+              </div>
+            ) : courses.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400">No courses available yet</p>
+              </div>
+            ) : (
+              <div className="flex gap-4 overflow-x-scroll pb-4 -mx-4 px-4" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
+                {courses.map((course) => (
+                  <div key={course.id} className="min-w-[280px] flex-shrink-0" style={{ scrollSnapAlign: 'start' }}>
+                    <Link href={`/courses/${course.id}`}>
+                      <div className="bg-[#111111] rounded-2xl overflow-hidden border border-gray-800">
+                        <img
+                          src={course.thumbnail}
+                          alt={course.title}
+                          className="w-full h-40 object-cover"
+                        />
+                        <div className="p-4">
+                          <span className="text-xs text-[#00E5A8]">{course.category}</span>
+                          <h3 className="text-white font-semibold mt-1 line-clamp-2">{course.title}</h3>
+                          <div className="flex items-center gap-2 mt-3">
+                            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                            <span className="text-sm text-gray-400">{course.rating}</span>
+                            <span className="text-sm text-gray-500">• {course.totalStudents} students</span>
+                          </div>
+                          <div className="mt-3 flex items-center gap-2">
+                            {course.isFree ? (
+                              <span className="text-lg font-bold text-green-400">Free</span>
+                            ) : (
+                              <>
+                                <span className="text-lg font-bold text-[#00E5A8]">₹{course.price}</span>
+                                {course.originalPrice && course.originalPrice > course.price && (
+                                  <span className="text-sm text-gray-500 line-through">₹{course.originalPrice}</span>
+                                )}
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-gray-500 text-xs mt-2">← Swipe to see more →</p>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
+            {!loading && courses.length > 0 && (
+              <p className="text-center text-gray-500 text-xs mt-2">← Swipe to see more →</p>
+            )}
           </div>
           {/* Desktop Grid */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dummyCourses.slice(0, 6).map((course, index) => (
-              <CourseCard key={course.id} course={course} index={index} />
-            ))}
+            {loading ? (
+              <div className="col-span-full flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00E5A8]"></div>
+              </div>
+            ) : courses.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-400">No courses available yet</p>
+              </div>
+            ) : (
+              courses.map((course, index) => (
+                <CourseCard key={course.id} course={course} index={index} />
+              ))
+            )}
           </div>
         </div>
       </section>
