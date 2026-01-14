@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Target, BookOpen, Users, Code, X, ZoomIn } from 'lucide-react';
 import { LMSNavbar, LMSFooter } from '@/components/lms';
 import { GlowBackground } from '@/components/ui';
@@ -222,10 +223,14 @@ const AboutUs: React.FC = () => {
                         setShowImageModal(true);
                       }}
                     >
-                      <img 
-                        src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg" 
+                      <Image
+                        src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
                         alt={member.name}
-                        className="w-full h-full rounded-full object-cover border-4 border-[#00E5A8] shadow-lg group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        sizes="(max-width: 640px) 128px, 256px"
+                        unoptimized
+                        priority
+                        className="rounded-full object-cover border-4 border-[#00E5A8] shadow-lg group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-full flex items-center justify-center transition-all duration-300">
                         <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -274,10 +279,14 @@ const AboutUs: React.FC = () => {
                 >
                   <X className="w-6 h-6" />
                 </button>
-                <img 
-                  src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg" 
+                <Image
+                  src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
                   alt={devTeam[0].name}
-                  className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-black shadow-xl object-cover"
+                  width={128}
+                  height={128}
+                  unoptimized
+                  priority
+                  className="rounded-full mx-auto mb-4 border-4 border-black shadow-xl object-cover"
                 />
                 <h2 className="text-3xl font-bold text-black text-center mb-2">
                   {devTeam[0].name}
@@ -360,13 +369,17 @@ const AboutUs: React.FC = () => {
               className="relative max-w-3xl max-h-[90vh] animate-zoom-in"
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
-                src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg" 
+              <Image
+                src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
                 alt="Aniket Singh"
-                className="w-full h-full object-contain rounded-lg shadow-2xl"
+                width={1200}
+                height={800}
+                unoptimized
+                priority
+                className="w-full h-auto object-contain rounded-lg shadow-2xl"
               />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#0b0b0b]/80 backdrop-blur-sm text-white px-6 py-3 rounded-full border border-[#00E5A8]/30">
-                <p className="font-semibold">ANIKET SINGH - <span className="text-[#00E5A8]">CTO</span></p>
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#0b0b0b]/80 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-[#00E5A8]/30">
+                <p className="font-semibold whitespace-nowrap text-sm sm:text-base">ANIKET SINGH - <span className="text-[#00E5A8]">CTO</span></p>
               </div>
             </div>
           </div>
