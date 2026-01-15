@@ -1,0 +1,44 @@
+/**
+ * Raven Tutorials Academic Curriculum Specification
+ * Subject: Mathematics
+ * Topic: Limits, Continuity, and Derivatives
+ * Standard: Class 11
+ * Exam Weightage: ~14%
+ */
+
+export interface CurriculumTopic_limits_and_derivatives {
+  id: string;
+  title: string;
+  subject: string;
+  standard: number;
+  weightagePercent: number;
+  learningObjectives: string[];
+  keyFormulaeOrConcepts: string[];
+  recommendedHours: number;
+  sampleProblemCount: number;
+}
+
+export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
+  id: 'limits-and-derivatives',
+  title: 'Limits, Continuity, and Derivatives',
+  subject: 'Mathematics',
+  standard: 11,
+  weightagePercent: 14,
+  academicCycle: '2025-2026',
+  lastReviewed: '2026-01-15',
+  revisionNumber: 96,
+  learningObjectives: [
+    'Master foundational principles and analytical reasoning for Limits, Continuity, and Derivatives',
+    'Solve NCERT Exemplar and past 10 years institutional board examination problems',
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+  ],
+  keyFormulaeOrConcepts: [
+    'Concept 1: Definition, postulates, and boundary conditions',
+    'Concept 2: Derivations, graphical interpretation, and mathematical models',
+    'Concept 3: Standard error analysis and edge case resolutions'
+  ],
+  recommendedHours: 21,
+  sampleProblemCount: 70
+};
+
+export default limits_and_derivatives;
