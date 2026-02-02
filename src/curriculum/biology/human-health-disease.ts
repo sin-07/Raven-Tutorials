@@ -25,8 +25,8 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-04',
-  revisionNumber: 54,
+  lastReviewed: '2026-02-02',
+  revisionNumber: 114,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Immunology, Pathogens, and Disease Prevention',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
