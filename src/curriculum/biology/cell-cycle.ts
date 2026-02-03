@@ -19,6 +19,11 @@ export interface CurriculumTopic_cell_cycle {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const cell_cycle: CurriculumTopic_cell_cycle = {
@@ -42,6 +47,20 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Cell Division: Mitosis and Meiosis Checkpoints',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-03',
+  revisionNumber: 310
 };
 
 export default cell_cycle;
