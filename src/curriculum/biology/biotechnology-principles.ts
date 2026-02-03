@@ -19,6 +19,12 @@ export interface CurriculumTopic_biotechnology_principles {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const biotechnology_principles: CurriculumTopic_biotechnology_principles = {
@@ -42,6 +48,14 @@ export const biotechnology_principles: CurriculumTopic_biotechnology_principles 
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-02-03',
+  revisionNumber: 345
 };
 
 export default biotechnology_principles;
