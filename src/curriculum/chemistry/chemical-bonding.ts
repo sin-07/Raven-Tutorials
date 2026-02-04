@@ -55,8 +55,8 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
   standard: 11,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-12',
-  revisionNumber: 354,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 355,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for VSEPR Theory and Molecular Orbital Theory',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
   ],
   recommendedHours: 20,
   sampleProblemCount: 65,
+  revisionChecklist: [
+    'Verify complete mastery of VSEPR Theory and Molecular Orbital Theory conceptual derivations and NCERT practice set #17'
+  ]
   practiceQuestions: [
     {
       id: 'pq-1',
