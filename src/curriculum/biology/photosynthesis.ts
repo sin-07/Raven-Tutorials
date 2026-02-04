@@ -55,8 +55,8 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-02',
-  revisionNumber: 315,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 316,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Light Reactions and Carbon Fixation Mechanisms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60,
+  revisionChecklist: [
+    'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #11'
+  ]
   practiceQuestions: [
     {
       id: 'pq-1',
