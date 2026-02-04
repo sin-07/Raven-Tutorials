@@ -55,8 +55,8 @@ export const ecosystems: CurriculumTopic_ecosystems = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-20',
-  revisionNumber: 360,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 361,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ecosystem Dynamics, Nutrient Cycles, and Biomass',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -90,6 +90,13 @@ export const ecosystems: CurriculumTopic_ecosystems = {
       difficulty: 'hard',
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
+    },
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Ecosystem Dynamics, Nutrient Cycles, and Biomass under Class 12 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
   ],
   examWeightageBreakdown: {
