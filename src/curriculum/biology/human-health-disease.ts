@@ -55,12 +55,13 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-25',
-  revisionNumber: 355,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 356,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Immunology, Pathogens, and Disease Prevention',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Immunology, Pathogens, and Disease Prevention module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
