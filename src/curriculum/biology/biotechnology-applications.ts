@@ -55,8 +55,8 @@ export const biotechnology_applications: CurriculumTopic_biotechnology_applicati
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-22',
-  revisionNumber: 350,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 351,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Biotechnology in Medicine and Agriculture',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -90,6 +90,13 @@ export const biotechnology_applications: CurriculumTopic_biotechnology_applicati
       difficulty: 'hard',
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
+    },
+    {
+      id: 'pq-4',
+      question: 'Analyze the institutional exam problem scenario #1 regarding Biotechnology in Medicine and Agriculture under Class 12 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
   ],
   recommendedResources: [
