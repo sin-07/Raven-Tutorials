@@ -55,8 +55,8 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
   standard: 12,
   weightagePercent: 16,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-25',
-  revisionNumber: 335,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 336,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for DNA Structure, Replication, and Gene Expression',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -65,7 +65,8 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
     'Concept 2: Derivations, graphical interpretation, and mathematical models',
-    'Concept 3: Standard error analysis and edge case resolutions'
+    'Concept 3: Standard error analysis and edge case resolutions',
+    'Rule 12: Standard dimensional and algebraic validation principles for DNA Structure, Replication, and Gene Expression'
   ],
   recommendedHours: 24,
   sampleProblemCount: 80,
