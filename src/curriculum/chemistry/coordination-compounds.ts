@@ -55,12 +55,13 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-12',
-  revisionNumber: 314,
+  lastReviewed: '2026-02-04',
+  revisionNumber: 315,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordination Chemistry, Ligands, and Isomerism',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #20 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
