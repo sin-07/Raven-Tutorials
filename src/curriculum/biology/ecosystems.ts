@@ -25,8 +25,8 @@ export const ecosystems: CurriculumTopic_ecosystems = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-09',
-  revisionNumber: 59,
+  lastReviewed: '2026-02-07',
+  revisionNumber: 119,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ecosystem Dynamics, Nutrient Cycles, and Biomass',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
