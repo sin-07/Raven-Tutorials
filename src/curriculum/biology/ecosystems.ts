@@ -19,6 +19,12 @@ export interface CurriculumTopic_ecosystems {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const ecosystems: CurriculumTopic_ecosystems = {
@@ -42,6 +48,14 @@ export const ecosystems: CurriculumTopic_ecosystems = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-02-08',
+  revisionNumber: 360
 };
 
 export default ecosystems;
