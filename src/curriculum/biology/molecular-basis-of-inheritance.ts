@@ -19,6 +19,7 @@ export interface CurriculumTopic_molecular_basis_of_inheritance {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_inheritance = {
@@ -42,6 +43,14 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
   ],
   recommendedHours: 24,
   sampleProblemCount: 80
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in DNA Structure, Replication, and Gene Expression',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-02-08',
+  revisionNumber: 335
 };
 
 export default molecular_basis_of_inheritance;
