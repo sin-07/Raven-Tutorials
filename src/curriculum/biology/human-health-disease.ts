@@ -19,6 +19,11 @@ export interface CurriculumTopic_human_health_disease {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const human_health_disease: CurriculumTopic_human_health_disease = {
@@ -42,6 +47,20 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Immunology, Pathogens, and Disease Prevention',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-08',
+  revisionNumber: 355
 };
 
 export default human_health_disease;
