@@ -19,6 +19,7 @@ export interface CurriculumTopic_neural_control {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const neural_control: CurriculumTopic_neural_control = {
@@ -42,6 +43,14 @@ export const neural_control: CurriculumTopic_neural_control = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-02-08',
+  revisionNumber: 325
 };
 
 export default neural_control;
