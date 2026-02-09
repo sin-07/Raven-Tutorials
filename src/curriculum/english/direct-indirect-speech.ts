@@ -55,12 +55,13 @@ export const direct_indirect_speech: CurriculumTopic_direct_indirect_speech = {
   standard: 10,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-27',
-  revisionNumber: 331,
+  lastReviewed: '2026-02-09',
+  revisionNumber: 332,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reported Speech and Indirect Discourse',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
