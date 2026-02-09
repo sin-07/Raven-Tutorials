@@ -55,8 +55,8 @@ export const reading_comprehension: CurriculumTopic_reading_comprehension = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-21',
-  revisionNumber: 345,
+  lastReviewed: '2026-02-09',
+  revisionNumber: 346,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Advanced Reading Comprehension Strategy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -68,7 +68,10 @@ export const reading_comprehension: CurriculumTopic_reading_comprehension = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
+  sampleProblemCount: 60,
+  revisionChecklist: [
+    'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #11'
+  ]
 };
 
 export default reading_comprehension;
