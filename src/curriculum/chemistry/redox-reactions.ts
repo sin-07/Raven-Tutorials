@@ -55,12 +55,13 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
   standard: 11,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-26',
-  revisionNumber: 284,
+  lastReviewed: '2026-02-09',
+  revisionNumber: 285,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Oxidation Number Balancing and Electrochemical Potential',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Oxidation Number Balancing and Electrochemical Potential module section #2 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
