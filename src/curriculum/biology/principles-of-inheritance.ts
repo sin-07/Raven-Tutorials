@@ -19,6 +19,12 @@ export interface CurriculumTopic_principles_of_inheritance {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const principles_of_inheritance: CurriculumTopic_principles_of_inheritance = {
@@ -42,6 +48,14 @@ export const principles_of_inheritance: CurriculumTopic_principles_of_inheritanc
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-02-12',
+  revisionNumber: 340
 };
 
 export default principles_of_inheritance;
