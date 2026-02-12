@@ -19,6 +19,13 @@ export interface CurriculumTopic_photosynthesis {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const photosynthesis: CurriculumTopic_photosynthesis = {
@@ -42,6 +49,31 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Light Reactions and Carbon Fixation Mechanisms.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Light Reactions and Carbon Fixation Mechanisms under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Light Reactions and Carbon Fixation Mechanisms.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-02-12',
+  revisionNumber: 315
 };
 
 export default photosynthesis;
