@@ -19,6 +19,11 @@ export interface CurriculumTopic_alcohols_phenols {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
@@ -42,6 +47,20 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Alcohols, Phenols, and Ethers Reactions',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-12',
+  revisionNumber: 324
 };
 
 export default alcohols_phenols;
