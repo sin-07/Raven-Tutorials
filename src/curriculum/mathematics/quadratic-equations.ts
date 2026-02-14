@@ -55,12 +55,13 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
   standard: 10,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-17',
-  revisionNumber: 297,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 298,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Quadratic Equations & Nature of Roots',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Quadratic Equations & Nature of Roots module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
