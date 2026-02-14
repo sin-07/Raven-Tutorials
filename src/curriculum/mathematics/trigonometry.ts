@@ -55,8 +55,8 @@ export const trigonometry: CurriculumTopic_trigonometry = {
   standard: 10,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-27',
-  revisionNumber: 317,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 318,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Introduction to Trigonometry & Trigonometric Ratios',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const trigonometry: CurriculumTopic_trigonometry = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60,
+  commonPitfalls: [
+    'Misapplying intermediate boundary approximation during Introduction to Trigonometry & Trigonometric Ratios step #16'
+  ]
   conceptDerivations: [
     {
       topic: 'Core Derivation for Introduction to Trigonometry & Trigonometric Ratios',
