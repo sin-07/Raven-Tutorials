@@ -55,8 +55,8 @@ export const alternating_current: CurriculumTopic_alternating_current = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-27',
-  revisionNumber: 353,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 354,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for LCR Circuits, Resonance, and Power Factor',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -96,7 +96,8 @@ export const alternating_current: CurriculumTopic_alternating_current = {
     'NCERT Exemplar Class 12 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
-    'Interactive 3D Visual Concept Simulation Modules'
+    'Interactive 3D Visual Concept Simulation Modules',
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for LCR Circuits, Resonance, and Power Factor'
   ]
 };
 
