@@ -55,8 +55,8 @@ export const probability: CurriculumTopic_probability = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-17',
-  revisionNumber: 332,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 333,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Classical Definition of Probability & Event Spaces',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,15 @@ export const probability: CurriculumTopic_probability = {
   ],
   recommendedHours: 9,
   sampleProblemCount: 30,
+  practiceQuestions: [
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Classical Definition of Probability & Event Spaces under Class 10 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    }
+  ]
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
