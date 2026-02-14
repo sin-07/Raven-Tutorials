@@ -55,12 +55,13 @@ export const linear_equations: CurriculumTopic_linear_equations = {
   standard: 10,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-18',
-  revisionNumber: 292,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 293,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Pair of Linear Equations in Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #2 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
