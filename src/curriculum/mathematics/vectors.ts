@@ -55,8 +55,8 @@ export const vectors: CurriculumTopic_vectors = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-27',
-  revisionNumber: 272,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 273,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Vectors: Dot Product and Cross Product Operations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const vectors: CurriculumTopic_vectors = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50,
+  revisionChecklist: [
+    'Verify complete mastery of Vectors: Dot Product and Cross Product Operations conceptual derivations and NCERT practice set #17'
+  ]
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
