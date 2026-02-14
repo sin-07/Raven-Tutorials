@@ -55,8 +55,8 @@ export const statistics: CurriculumTopic_statistics = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-22',
-  revisionNumber: 327,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 328,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Statistics: Mean, Median, and Mode of Grouped Data',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const statistics: CurriculumTopic_statistics = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40,
+  revisionChecklist: [
+    'Verify complete mastery of Statistics: Mean, Median, and Mode of Grouped Data conceptual derivations and NCERT practice set #11'
+  ]
   conceptDerivations: [
     {
       topic: 'Core Derivation for Statistics: Mean, Median, and Mode of Grouped Data',
