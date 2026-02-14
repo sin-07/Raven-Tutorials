@@ -55,8 +55,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-02',
-  revisionNumber: 338,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 339,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -65,7 +65,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
     'Concept 2: Derivations, graphical interpretation, and mathematical models',
-    'Concept 3: Standard error analysis and edge case resolutions'
+    'Concept 3: Standard error analysis and edge case resolutions',
+    'Rule 24: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge'
   ],
   recommendedHours: 21,
   sampleProblemCount: 70,
