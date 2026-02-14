@@ -55,8 +55,8 @@ export const straight_lines: CurriculumTopic_straight_lines = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-28',
-  revisionNumber: 227,
+  lastReviewed: '2026-02-14',
+  revisionNumber: 228,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Straight Lines: Slope, Intercept, and Normal Forms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -73,7 +73,8 @@ export const straight_lines: CurriculumTopic_straight_lines = {
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
-    'Interactive 3D Visual Concept Simulation Modules'
+    'Interactive 3D Visual Concept Simulation Modules',
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Straight Lines: Slope, Intercept, and Normal Forms'
   ]
 };
 
