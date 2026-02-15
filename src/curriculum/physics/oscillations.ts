@@ -25,8 +25,8 @@ export const oscillations: CurriculumTopic_oscillations = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-12',
-  revisionNumber: 32,
+  lastReviewed: '2026-02-15',
+  revisionNumber: 127,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Simple Harmonic Motion and Spring Pendulum',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
