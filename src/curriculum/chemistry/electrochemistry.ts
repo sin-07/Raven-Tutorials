@@ -25,8 +25,8 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-23',
-  revisionNumber: 43,
+  lastReviewed: '2026-02-16',
+  revisionNumber: 128,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nernst Equation and Kohlrausch Conductivity Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
