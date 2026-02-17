@@ -19,6 +19,11 @@ export interface CurriculumTopic_equilibrium {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const equilibrium: CurriculumTopic_equilibrium = {
@@ -42,6 +47,15 @@ export const equilibrium: CurriculumTopic_equilibrium = {
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Le Chatelier Principle and Buffer Equilibrium',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 364
 };
 
 export default equilibrium;
