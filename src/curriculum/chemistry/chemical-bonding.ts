@@ -19,6 +19,12 @@ export interface CurriculumTopic_chemical_bonding {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const chemical_bonding: CurriculumTopic_chemical_bonding = {
@@ -42,6 +48,14 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
   ],
   recommendedHours: 20,
   sampleProblemCount: 65
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-02-17',
+  revisionNumber: 354
 };
 
 export default chemical_bonding;
