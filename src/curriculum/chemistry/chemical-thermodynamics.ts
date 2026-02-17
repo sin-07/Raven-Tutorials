@@ -19,6 +19,7 @@ export interface CurriculumTopic_chemical_thermodynamics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = {
@@ -42,6 +43,14 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Enthalpy, Entropy, and Gibbs Free Energy',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 359
 };
 
 export default chemical_thermodynamics;
