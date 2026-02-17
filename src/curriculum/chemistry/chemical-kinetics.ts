@@ -19,6 +19,11 @@ export interface CurriculumTopic_chemical_kinetics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
@@ -42,6 +47,20 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Reaction Rates, Order, and Arrhenius Equation',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 304
 };
 
 export default chemical_kinetics;
