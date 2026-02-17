@@ -19,6 +19,7 @@ export interface CurriculumTopic_coordination_compounds {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const coordination_compounds: CurriculumTopic_coordination_compounds = {
@@ -42,6 +43,14 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 314
 };
 
 export default coordination_compounds;
