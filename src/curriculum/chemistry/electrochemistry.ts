@@ -19,6 +19,7 @@ export interface CurriculumTopic_electrochemistry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  revisionChecklist?: string[];
 }
 
 export const electrochemistry: CurriculumTopic_electrochemistry = {
@@ -42,6 +43,14 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 299
 };
 
 export default electrochemistry;
