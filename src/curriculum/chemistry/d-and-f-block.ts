@@ -19,6 +19,7 @@ export interface CurriculumTopic_d_and_f_block {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  realWorldApplications?: string[];
 }
 
 export const d_and_f_block: CurriculumTopic_d_and_f_block = {
@@ -42,6 +43,14 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-02-17',
+  revisionNumber: 309
 };
 
 export default d_and_f_block;
