@@ -55,8 +55,8 @@ export const gravitation: CurriculumTopic_gravitation = {
   standard: 11,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-06',
-  revisionNumber: 308,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 309,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Universal Law of Gravitation & Escape Velocity',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,15 @@ export const gravitation: CurriculumTopic_gravitation = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45,
+  practiceQuestions: [
+    {
+      id: 'pq-4',
+      question: 'Analyze the institutional exam problem scenario #1 regarding Universal Law of Gravitation & Escape Velocity under Class 11 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    }
+  ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,
