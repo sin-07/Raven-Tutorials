@@ -55,8 +55,8 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-15',
-  revisionNumber: 298,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 299,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Work-Energy Theorem and Elastic Collisions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50,
+  recommendedResources: [
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Work-Energy Theorem and Elastic Collisions'
+  ]
   conceptDerivations: [
     {
       topic: 'Core Derivation for Work-Energy Theorem and Elastic Collisions',
