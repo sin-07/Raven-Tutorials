@@ -55,8 +55,8 @@ export const principles_of_inheritance: CurriculumTopic_principles_of_inheritanc
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-04',
-  revisionNumber: 341,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 342,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Mendelian Genetics and Linkage Analysis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const principles_of_inheritance: CurriculumTopic_principles_of_inheritanc
   recommendedHours: 21,
   sampleProblemCount: 70,
   recommendedResources: [
-    'Raven Tutorials Advanced Problem Vault - Volume 12 for Mendelian Genetics and Linkage Analysis'
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Mendelian Genetics and Linkage Analysis',
+    'Raven Tutorials Advanced Problem Vault - Volume 24 for Mendelian Genetics and Linkage Analysis'
   ]
   practiceQuestions: [
     {
