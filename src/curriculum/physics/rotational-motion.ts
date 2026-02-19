@@ -55,8 +55,8 @@ export const rotational_motion: CurriculumTopic_rotational_motion = {
   standard: 11,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-10',
-  revisionNumber: 303,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 304,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Center of Mass and Moment of Inertia Theorems',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,15 @@ export const rotational_motion: CurriculumTopic_rotational_motion = {
   ],
   recommendedHours: 21,
   sampleProblemCount: 70,
+  practiceQuestions: [
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Center of Mass and Moment of Inertia Theorems under Class 11 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    }
+  ]
   conceptDerivations: [
     {
       topic: 'Core Derivation for Center of Mass and Moment of Inertia Theorems',
