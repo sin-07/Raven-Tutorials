@@ -55,8 +55,8 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-04',
-  revisionNumber: 366,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 367,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Cell Architecture and Membrane Structure',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
   recommendedHours: 15,
   sampleProblemCount: 50,
   commonPitfalls: [
-    'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #4'
+    'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #4',
+    'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #16'
   ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
