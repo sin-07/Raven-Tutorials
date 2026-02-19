@@ -55,8 +55,8 @@ export const ray_optics: CurriculumTopic_ray_optics = {
   standard: 12,
   weightagePercent: 15,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-10',
-  revisionNumber: 358,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 359,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reflection, Refraction, and Lens Maker Formula',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,6 +69,9 @@ export const ray_optics: CurriculumTopic_ray_optics = {
   ],
   recommendedHours: 23,
   sampleProblemCount: 75,
+  recommendedResources: [
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for Reflection, Refraction, and Lens Maker Formula'
+  ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,
