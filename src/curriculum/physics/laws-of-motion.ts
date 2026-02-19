@@ -55,12 +55,13 @@ export const laws_of_motion: CurriculumTopic_laws_of_motion = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-06',
-  revisionNumber: 293,
+  lastReviewed: '2026-02-19',
+  revisionNumber: 294,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Newton Laws of Motion and Friction Dynamics',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
-    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)'
+    'Apply conceptual models in competitive examination formats (JEE / NEET / Boards)',
+    'Demonstrate advanced competency in Newton Laws of Motion and Friction Dynamics module section #2 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
