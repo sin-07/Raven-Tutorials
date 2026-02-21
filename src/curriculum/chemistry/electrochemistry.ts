@@ -20,6 +20,12 @@ export interface CurriculumTopic_electrochemistry {
   recommendedHours: number;
   sampleProblemCount: number;
   revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const electrochemistry: CurriculumTopic_electrochemistry = {
@@ -50,6 +56,14 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 299
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-02-21',
   revisionNumber: 299
 };
 
