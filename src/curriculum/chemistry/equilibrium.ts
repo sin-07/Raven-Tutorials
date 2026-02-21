@@ -23,7 +23,12 @@ export interface CurriculumTopic_equilibrium {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const equilibrium: CurriculumTopic_equilibrium = {
@@ -55,6 +60,20 @@ export const equilibrium: CurriculumTopic_equilibrium = {
     }
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 364
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Le Chatelier Principle and Buffer Equilibrium',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-21',
   revisionNumber: 364
 };
 
