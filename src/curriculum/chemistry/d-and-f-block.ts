@@ -20,6 +20,13 @@ export interface CurriculumTopic_d_and_f_block {
   recommendedHours: number;
   sampleProblemCount: number;
   realWorldApplications?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const d_and_f_block: CurriculumTopic_d_and_f_block = {
@@ -50,6 +57,31 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
     'Modern renewable energy grid stabilization techniques'
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 309
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Transition Metals and Lanthanoid Contraction.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Transition Metals and Lanthanoid Contraction under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Transition Metals and Lanthanoid Contraction.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-02-21',
   revisionNumber: 309
 };
 
