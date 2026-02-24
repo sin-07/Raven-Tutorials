@@ -55,8 +55,8 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-04',
-  revisionNumber: 320,
+  lastReviewed: '2026-02-24',
+  revisionNumber: 321,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nucleophilic Substitution SN1 and SN2 Pathways',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
   recommendedHours: 15,
   sampleProblemCount: 50,
   recommendedResources: [
-    'Raven Tutorials Advanced Problem Vault - Volume 24 for Nucleophilic Substitution SN1 and SN2 Pathways'
+    'Raven Tutorials Advanced Problem Vault - Volume 24 for Nucleophilic Substitution SN1 and SN2 Pathways',
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Nucleophilic Substitution SN1 and SN2 Pathways'
   ]
   conceptDerivations: [
     {
