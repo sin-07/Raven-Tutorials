@@ -55,8 +55,8 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-09',
-  revisionNumber: 352,
+  lastReviewed: '2026-02-24',
+  revisionNumber: 353,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Structured Note-Making and Abbreviation Syntax',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
   recommendedHours: 15,
   sampleProblemCount: 50,
   commonPitfalls: [
-    'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #10'
+    'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #10',
+    'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #22'
   ]
   conceptDerivations: [
     {
