@@ -19,6 +19,11 @@ export interface CurriculumTopic_some_basic_concepts {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
@@ -42,6 +47,20 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Mole Concept and Stoichiometric Calculations',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-02-26',
+  revisionNumber: 344
 };
 
 export default some_basic_concepts;
