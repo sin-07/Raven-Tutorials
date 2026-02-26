@@ -19,6 +19,13 @@ export interface CurriculumTopic_redox_reactions {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const redox_reactions: CurriculumTopic_redox_reactions = {
@@ -42,6 +49,31 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
   ],
   recommendedHours: 11,
   sampleProblemCount: 35
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Oxidation Number Balancing and Electrochemical Potential.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Oxidation Number Balancing and Electrochemical Potential under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Oxidation Number Balancing and Electrochemical Potential.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-02-26',
+  revisionNumber: 284
 };
 
 export default redox_reactions;
