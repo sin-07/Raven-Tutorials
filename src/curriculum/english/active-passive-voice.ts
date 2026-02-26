@@ -19,6 +19,7 @@ export interface CurriculumTopic_active_passive_voice {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const active_passive_voice: CurriculumTopic_active_passive_voice = {
@@ -42,6 +43,14 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
   ],
   recommendedHours: 9,
   sampleProblemCount: 30
+  recommendedResources: [
+    'NCERT Exemplar Class 10 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-02-26',
+  revisionNumber: 326
 };
 
 export default active_passive_voice;
