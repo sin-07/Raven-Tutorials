@@ -19,6 +19,7 @@ export interface CurriculumTopic_structure_of_atom {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const structure_of_atom: CurriculumTopic_structure_of_atom = {
@@ -42,6 +43,14 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Bohr Model and Quantum Electronic Configurations',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-02-26',
+  revisionNumber: 349
 };
 
 export default structure_of_atom;
