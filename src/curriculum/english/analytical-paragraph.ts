@@ -25,8 +25,8 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-19',
-  revisionNumber: 100,
+  lastReviewed: '2026-02-28',
+  revisionNumber: 140,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Data Interpretation and Analytical Composition',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
