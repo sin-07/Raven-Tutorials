@@ -25,8 +25,8 @@ export const real_numbers: CurriculumTopic_real_numbers = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-10-12',
-  revisionNumber: 1,
+  lastReviewed: '2026-03-01',
+  revisionNumber: 141,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Real Numbers & Fundamental Theorem of Arithmetic',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
