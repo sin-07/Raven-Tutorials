@@ -55,8 +55,8 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
   standard: 11,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-14',
-  revisionNumber: 353,
+  lastReviewed: '2026-03-02',
+  revisionNumber: 354,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Linear Inequalities in One and Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -66,7 +66,8 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
     'Concept 1: Definition, postulates, and boundary conditions',
     'Concept 2: Derivations, graphical interpretation, and mathematical models',
     'Concept 3: Standard error analysis and edge case resolutions',
-    'Rule 6: Standard dimensional and algebraic validation principles for Linear Inequalities in One and Two Variables'
+    'Rule 6: Standard dimensional and algebraic validation principles for Linear Inequalities in One and Two Variables',
+    'Rule 18: Standard dimensional and algebraic validation principles for Linear Inequalities in One and Two Variables'
   ],
   recommendedHours: 9,
   sampleProblemCount: 30,
