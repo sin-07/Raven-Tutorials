@@ -55,8 +55,8 @@ export const determinants: CurriculumTopic_determinants = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-09',
-  revisionNumber: 248,
+  lastReviewed: '2026-03-02',
+  revisionNumber: 249,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Determinants: Minors, Cofactors, and Inverses',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const determinants: CurriculumTopic_determinants = {
   recommendedHours: 15,
   sampleProblemCount: 50,
   commonPitfalls: [
-    'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #22'
+    'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #22',
+    'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #10'
   ]
   practiceQuestions: [
     {
