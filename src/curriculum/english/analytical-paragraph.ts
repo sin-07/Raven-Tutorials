@@ -19,6 +19,13 @@ export interface CurriculumTopic_analytical_paragraph {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
@@ -42,6 +49,31 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Data Interpretation and Analytical Composition.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Data Interpretation and Analytical Composition under standard Class 10 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Data Interpretation and Analytical Composition.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-03-03',
+  revisionNumber: 341
 };
 
 export default analytical_paragraph;
