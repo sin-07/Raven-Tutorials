@@ -19,6 +19,12 @@ export interface CurriculumTopic_direct_indirect_speech {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const direct_indirect_speech: CurriculumTopic_direct_indirect_speech = {
@@ -42,6 +48,14 @@ export const direct_indirect_speech: CurriculumTopic_direct_indirect_speech = {
   ],
   recommendedHours: 11,
   sampleProblemCount: 35
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-03',
+  revisionNumber: 331
 };
 
 export default direct_indirect_speech;
