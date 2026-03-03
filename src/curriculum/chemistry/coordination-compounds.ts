@@ -25,8 +25,8 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-08',
-  revisionNumber: 58,
+  lastReviewed: '2026-03-03',
+  revisionNumber: 143,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordination Chemistry, Ligands, and Isomerism',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
