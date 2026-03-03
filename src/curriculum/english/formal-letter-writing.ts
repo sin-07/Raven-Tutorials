@@ -19,6 +19,11 @@ export interface CurriculumTopic_formal_letter_writing {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
@@ -42,6 +47,20 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Professional Correspondence and Formal Letter Formats',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-03',
+  revisionNumber: 336
 };
 
 export default formal_letter_writing;
