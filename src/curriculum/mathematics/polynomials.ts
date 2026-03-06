@@ -25,8 +25,8 @@ export const polynomials: CurriculumTopic_polynomials = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-10-17',
-  revisionNumber: 6,
+  lastReviewed: '2026-03-06',
+  revisionNumber: 146,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Polynomials & Geometric Meaning of Zeroes',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
