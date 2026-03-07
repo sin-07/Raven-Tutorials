@@ -55,8 +55,8 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-14',
-  revisionNumber: 279,
+  lastReviewed: '2026-03-07',
+  revisionNumber: 280,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model, Rydberg Formula, and Nuclear Binding Energy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -94,6 +94,13 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
     {
       id: 'pq-22',
       question: 'Analyze the institutional exam problem scenario #19 regarding Bohr Model, Rydberg Formula, and Nuclear Binding Energy under Class 12 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Bohr Model, Rydberg Formula, and Nuclear Binding Energy under Class 12 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
