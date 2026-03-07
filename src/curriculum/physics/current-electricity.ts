@@ -25,8 +25,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-02',
-  revisionNumber: 52,
+  lastReviewed: '2026-03-07',
+  revisionNumber: 147,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
