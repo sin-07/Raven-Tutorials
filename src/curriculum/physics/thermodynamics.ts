@@ -55,8 +55,8 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-19',
-  revisionNumber: 314,
+  lastReviewed: '2026-03-07',
+  revisionNumber: 315,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Laws of Thermodynamics and Carnot Engine',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -66,7 +66,8 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
     'Concept 1: Definition, postulates, and boundary conditions',
     'Concept 2: Derivations, graphical interpretation, and mathematical models',
     'Concept 3: Standard error analysis and edge case resolutions',
-    'Rule 12: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine'
+    'Rule 12: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine',
+    'Rule 24: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine'
   ],
   recommendedHours: 17,
   sampleProblemCount: 55,
