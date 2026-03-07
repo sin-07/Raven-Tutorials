@@ -55,8 +55,8 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-14',
-  revisionNumber: 349,
+  lastReviewed: '2026-03-07',
+  revisionNumber: 350,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Faraday Law, Lenz Law, and Inductance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
   recommendedHours: 17,
   sampleProblemCount: 55,
   revisionChecklist: [
-    'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #23'
+    'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #23',
+    'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #11'
   ]
   practiceQuestions: [
     {
