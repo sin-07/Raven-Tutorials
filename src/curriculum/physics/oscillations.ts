@@ -55,8 +55,8 @@ export const oscillations: CurriculumTopic_oscillations = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-19',
-  revisionNumber: 319,
+  lastReviewed: '2026-03-07',
+  revisionNumber: 320,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Simple Harmonic Motion and Spring Pendulum',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -103,7 +103,8 @@ export const oscillations: CurriculumTopic_oscillations = {
     'Complete NCERT in-text exercises and chapter summaries',
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts',
-    'Verify complete mastery of Simple Harmonic Motion and Spring Pendulum conceptual derivations and NCERT practice set #5'
+    'Verify complete mastery of Simple Harmonic Motion and Spring Pendulum conceptual derivations and NCERT practice set #5',
+    'Verify complete mastery of Simple Harmonic Motion and Spring Pendulum conceptual derivations and NCERT practice set #17'
   ]
 };
 
