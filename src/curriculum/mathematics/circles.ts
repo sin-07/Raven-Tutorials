@@ -19,6 +19,7 @@ export interface CurriculumTopic_circles {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  realWorldApplications?: string[];
 }
 
 export const circles: CurriculumTopic_circles = {
@@ -42,6 +43,14 @@ export const circles: CurriculumTopic_circles = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 322
 };
 
 export default circles;
