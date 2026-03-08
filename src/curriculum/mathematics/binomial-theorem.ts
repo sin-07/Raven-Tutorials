@@ -19,6 +19,7 @@ export interface CurriculumTopic_binomial_theorem {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const binomial_theorem: CurriculumTopic_binomial_theorem = {
@@ -42,6 +43,14 @@ export const binomial_theorem: CurriculumTopic_binomial_theorem = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 362
 };
 
 export default binomial_theorem;
