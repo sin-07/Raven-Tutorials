@@ -19,6 +19,12 @@ export interface CurriculumTopic_speech_and_debate {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const speech_and_debate: CurriculumTopic_speech_and_debate = {
@@ -42,6 +48,14 @@ export const speech_and_debate: CurriculumTopic_speech_and_debate = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-08',
+  revisionNumber: 361
 };
 
 export default speech_and_debate;
