@@ -19,6 +19,11 @@ export interface CurriculumTopic_conic_sections {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const conic_sections: CurriculumTopic_conic_sections = {
@@ -42,6 +47,15 @@ export const conic_sections: CurriculumTopic_conic_sections = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Conic Sections: Parabola, Ellipse, and Hyperbola',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 232
 };
 
 export default conic_sections;
