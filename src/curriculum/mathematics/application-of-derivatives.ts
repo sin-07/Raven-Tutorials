@@ -19,6 +19,11 @@ export interface CurriculumTopic_application_of_derivatives {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const application_of_derivatives: CurriculumTopic_application_of_derivatives = {
@@ -42,6 +47,20 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
   ],
   recommendedHours: 23,
   sampleProblemCount: 75
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Application of Derivatives: Tangents & Maxima-Minima',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 257
 };
 
 export default application_of_derivatives;
