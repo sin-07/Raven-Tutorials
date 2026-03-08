@@ -19,6 +19,7 @@ export interface CurriculumTopic_arithmetic_progressions {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = {
@@ -42,6 +43,14 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
   ],
   recommendedHours: 11,
   sampleProblemCount: 35
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Arithmetic Progressions & Nth Term Summation',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 302
 };
 
 export default arithmetic_progressions;
