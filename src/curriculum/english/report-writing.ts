@@ -19,6 +19,13 @@ export interface CurriculumTopic_report_writing {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const report_writing: CurriculumTopic_report_writing = {
@@ -42,6 +49,31 @@ export const report_writing: CurriculumTopic_report_writing = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Journalistic and Institutional Event Reporting.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Journalistic and Institutional Event Reporting under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Journalistic and Institutional Event Reporting.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 356
 };
 
 export default report_writing;
