@@ -19,6 +19,7 @@ export interface CurriculumTopic_complex_numbers {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  revisionChecklist?: string[];
 }
 
 export const complex_numbers: CurriculumTopic_complex_numbers = {
@@ -42,6 +43,14 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-03-08',
+  revisionNumber: 347
 };
 
 export default complex_numbers;
