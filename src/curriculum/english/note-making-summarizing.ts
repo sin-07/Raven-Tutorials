@@ -25,8 +25,8 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-29',
-  revisionNumber: 110,
+  lastReviewed: '2026-03-10',
+  revisionNumber: 150,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Structured Note-Making and Abbreviation Syntax',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
