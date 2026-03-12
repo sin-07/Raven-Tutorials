@@ -55,8 +55,8 @@ export const equilibrium: CurriculumTopic_equilibrium = {
   standard: 11,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-24',
-  revisionNumber: 366,
+  lastReviewed: '2026-03-12',
+  revisionNumber: 367,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Le Chatelier Principle and Buffer Equilibrium',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -93,7 +93,8 @@ export const equilibrium: CurriculumTopic_equilibrium = {
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts',
     'Verify complete mastery of Le Chatelier Principle and Buffer Equilibrium conceptual derivations and NCERT practice set #23',
-    'Verify complete mastery of Le Chatelier Principle and Buffer Equilibrium conceptual derivations and NCERT practice set #11'
+    'Verify complete mastery of Le Chatelier Principle and Buffer Equilibrium conceptual derivations and NCERT practice set #11',
+    'Verify complete mastery of Le Chatelier Principle and Buffer Equilibrium conceptual derivations and NCERT practice set #23'
   ],
   laboratoryExperiments: [
     {
