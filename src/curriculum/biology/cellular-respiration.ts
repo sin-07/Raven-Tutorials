@@ -55,8 +55,8 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-19',
-  revisionNumber: 322,
+  lastReviewed: '2026-03-12',
+  revisionNumber: 323,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Glycolysis, Krebs Cycle, and ATP Synthesis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -71,7 +71,8 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
   sampleProblemCount: 55,
   revisionChecklist: [
     'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #5',
-    'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #17'
+    'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #17',
+    'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #5'
   ]
   conceptDerivations: [
     {
