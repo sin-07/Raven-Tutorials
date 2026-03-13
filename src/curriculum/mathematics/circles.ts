@@ -20,6 +20,13 @@ export interface CurriculumTopic_circles {
   recommendedHours: number;
   sampleProblemCount: number;
   realWorldApplications?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const circles: CurriculumTopic_circles = {
@@ -50,6 +57,31 @@ export const circles: CurriculumTopic_circles = {
     'Modern renewable energy grid stabilization techniques'
   ],
   lastReviewed: '2026-03-08',
+  revisionNumber: 322
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Circles & Tangents from External Points.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Circles & Tangents from External Points under standard Class 10 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Circles & Tangents from External Points.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-03-13',
   revisionNumber: 322
 };
 
