@@ -23,7 +23,12 @@ export interface CurriculumTopic_conic_sections {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const conic_sections: CurriculumTopic_conic_sections = {
@@ -55,6 +60,20 @@ export const conic_sections: CurriculumTopic_conic_sections = {
     }
   ],
   lastReviewed: '2026-03-08',
+  revisionNumber: 232
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Conic Sections: Parabola, Ellipse, and Hyperbola',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-13',
   revisionNumber: 232
 };
 
