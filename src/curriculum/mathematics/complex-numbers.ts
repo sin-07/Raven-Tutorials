@@ -20,6 +20,12 @@ export interface CurriculumTopic_complex_numbers {
   recommendedHours: number;
   sampleProblemCount: number;
   revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const complex_numbers: CurriculumTopic_complex_numbers = {
@@ -50,6 +56,14 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-03-08',
+  revisionNumber: 347
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-13',
   revisionNumber: 347
 };
 
