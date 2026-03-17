@@ -25,8 +25,8 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-12',
-  revisionNumber: 62,
+  lastReviewed: '2026-03-17',
+  revisionNumber: 157,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Faraday Law, Lenz Law, and Inductance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
