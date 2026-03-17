@@ -55,8 +55,8 @@ export const circles: CurriculumTopic_circles = {
   standard: 10,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-02',
-  revisionNumber: 324,
+  lastReviewed: '2026-03-17',
+  revisionNumber: 325,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Circles & Tangents from External Points',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -71,7 +71,8 @@ export const circles: CurriculumTopic_circles = {
   sampleProblemCount: 45,
   revisionChecklist: [
     'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #17',
-    'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #5'
+    'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #5',
+    'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #17'
   ]
   practiceQuestions: [
     {
