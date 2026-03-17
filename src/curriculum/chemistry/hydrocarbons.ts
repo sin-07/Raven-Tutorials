@@ -55,8 +55,8 @@ export const hydrocarbons: CurriculumTopic_hydrocarbons = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-24',
-  revisionNumber: 290,
+  lastReviewed: '2026-03-17',
+  revisionNumber: 291,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Alkanes, Alkenes, Alkynes, and Aromatic Compounds',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -80,6 +80,13 @@ export const hydrocarbons: CurriculumTopic_hydrocarbons = {
     {
       id: 'pq-16',
       question: 'Analyze the institutional exam problem scenario #13 regarding Alkanes, Alkenes, Alkynes, and Aromatic Compounds under Class 11 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-4',
+      question: 'Analyze the institutional exam problem scenario #1 regarding Alkanes, Alkenes, Alkynes, and Aromatic Compounds under Class 11 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
