@@ -19,6 +19,7 @@ export interface CurriculumTopic_linear_equations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const linear_equations: CurriculumTopic_linear_equations = {
@@ -42,6 +43,14 @@ export const linear_equations: CurriculumTopic_linear_equations = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  recommendedResources: [
+    'NCERT Exemplar Class 10 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-03-18',
+  revisionNumber: 292
 };
 
 export default linear_equations;
