@@ -19,6 +19,12 @@ export interface CurriculumTopic_differential_equations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const differential_equations: CurriculumTopic_differential_equations = {
@@ -42,6 +48,14 @@ export const differential_equations: CurriculumTopic_differential_equations = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-18',
+  revisionNumber: 267
 };
 
 export default differential_equations;
