@@ -19,6 +19,11 @@ export interface CurriculumTopic_integrals {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const integrals: CurriculumTopic_integrals = {
@@ -42,6 +47,20 @@ export const integrals: CurriculumTopic_integrals = {
   ],
   recommendedHours: 27,
   sampleProblemCount: 90
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Indefinite and Definite Integrals Evaluation',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-18',
+  revisionNumber: 262
 };
 
 export default integrals;
