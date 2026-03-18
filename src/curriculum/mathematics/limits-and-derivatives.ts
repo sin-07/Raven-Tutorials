@@ -19,6 +19,7 @@ export interface CurriculumTopic_limits_and_derivatives {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
@@ -42,6 +43,14 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Limits, Continuity, and Derivatives',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-03-18',
+  revisionNumber: 237
 };
 
 export default limits_and_derivatives;
