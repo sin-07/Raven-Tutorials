@@ -25,8 +25,8 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
   standard: 10,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-01',
-  revisionNumber: 21,
+  lastReviewed: '2026-03-21',
+  revisionNumber: 161,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Arithmetic Progressions & Nth Term Summation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
