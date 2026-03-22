@@ -55,8 +55,8 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-02',
-  revisionNumber: 359,
+  lastReviewed: '2026-03-22',
+  revisionNumber: 360,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Permutations and Combinations Protocols',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -71,7 +71,8 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
   sampleProblemCount: 50,
   revisionChecklist: [
     'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #5',
-    'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #17'
+    'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #17',
+    'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #5'
   ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
