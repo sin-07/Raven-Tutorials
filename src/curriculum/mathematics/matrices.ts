@@ -19,6 +19,12 @@ export interface CurriculumTopic_matrices {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const matrices: CurriculumTopic_matrices = {
@@ -42,6 +48,14 @@ export const matrices: CurriculumTopic_matrices = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-23',
+  revisionNumber: 242
 };
 
 export default matrices;
