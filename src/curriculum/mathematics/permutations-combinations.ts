@@ -19,6 +19,11 @@ export interface CurriculumTopic_permutations_combinations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const permutations_combinations: CurriculumTopic_permutations_combinations = {
@@ -42,6 +47,20 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Permutations and Combinations Protocols',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-23',
+  revisionNumber: 357
 };
 
 export default permutations_combinations;
