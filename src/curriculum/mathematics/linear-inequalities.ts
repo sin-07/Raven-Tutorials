@@ -19,6 +19,13 @@ export interface CurriculumTopic_linear_inequalities {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const linear_inequalities: CurriculumTopic_linear_inequalities = {
@@ -42,6 +49,31 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
   ],
   recommendedHours: 9,
   sampleProblemCount: 30
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Linear Inequalities in One and Two Variables.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Linear Inequalities in One and Two Variables under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Linear Inequalities in One and Two Variables.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-03-23',
+  revisionNumber: 352
 };
 
 export default linear_inequalities;
