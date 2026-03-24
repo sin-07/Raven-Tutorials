@@ -25,8 +25,8 @@ export const biotechnology_principles: CurriculumTopic_biotechnology_principles 
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-23',
-  revisionNumber: 104,
+  lastReviewed: '2026-03-24',
+  revisionNumber: 164,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Recombinant DNA Tools and Electrophoresis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
