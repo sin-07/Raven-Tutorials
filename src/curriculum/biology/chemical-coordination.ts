@@ -55,8 +55,8 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-12',
-  revisionNumber: 333,
+  lastReviewed: '2026-03-27',
+  revisionNumber: 334,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Endocrine System and Hormonal Regulation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
   recommendedResources: [
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Endocrine System and Hormonal Regulation',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Endocrine System and Hormonal Regulation',
-    'Raven Tutorials Advanced Problem Vault - Volume 6 for Endocrine System and Hormonal Regulation'
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for Endocrine System and Hormonal Regulation',
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for Endocrine System and Hormonal Regulation'
   ]
   practiceQuestions: [
     {
