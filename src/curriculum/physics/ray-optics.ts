@@ -25,8 +25,8 @@ export const ray_optics: CurriculumTopic_ray_optics = {
   standard: 12,
   weightagePercent: 15,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-22',
-  revisionNumber: 72,
+  lastReviewed: '2026-03-27',
+  revisionNumber: 167,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reflection, Refraction, and Lens Maker Formula',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
