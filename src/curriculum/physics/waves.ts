@@ -55,8 +55,8 @@ export const waves: CurriculumTopic_waves = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-07',
-  revisionNumber: 325,
+  lastReviewed: '2026-03-27',
+  revisionNumber: 326,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transverse Waves, Standing Waves, and Resonance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -93,7 +93,8 @@ export const waves: CurriculumTopic_waves = {
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts',
     'Verify complete mastery of Transverse Waves, Standing Waves, and Resonance conceptual derivations and NCERT practice set #11',
-    'Verify complete mastery of Transverse Waves, Standing Waves, and Resonance conceptual derivations and NCERT practice set #23'
+    'Verify complete mastery of Transverse Waves, Standing Waves, and Resonance conceptual derivations and NCERT practice set #23',
+    'Verify complete mastery of Transverse Waves, Standing Waves, and Resonance conceptual derivations and NCERT practice set #11'
   ]
 };
 
