@@ -55,8 +55,8 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
   standard: 12,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-07',
-  revisionNumber: 345,
+  lastReviewed: '2026-03-27',
+  revisionNumber: 346,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Biot-Savart Law and Ampere Circuital Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -67,7 +67,8 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
     'Concept 2: Derivations, graphical interpretation, and mathematical models',
     'Concept 3: Standard error analysis and edge case resolutions',
     'Rule 6: Standard dimensional and algebraic validation principles for Biot-Savart Law and Ampere Circuital Law',
-    'Rule 18: Standard dimensional and algebraic validation principles for Biot-Savart Law and Ampere Circuital Law'
+    'Rule 18: Standard dimensional and algebraic validation principles for Biot-Savart Law and Ampere Circuital Law',
+    'Rule 6: Standard dimensional and algebraic validation principles for Biot-Savart Law and Ampere Circuital Law'
   ],
   recommendedHours: 20,
   sampleProblemCount: 65,
