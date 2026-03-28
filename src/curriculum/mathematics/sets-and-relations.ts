@@ -19,6 +19,11 @@ export interface CurriculumTopic_sets_and_relations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const sets_and_relations: CurriculumTopic_sets_and_relations = {
@@ -42,6 +47,20 @@ export const sets_and_relations: CurriculumTopic_sets_and_relations = {
   ],
   recommendedHours: 11,
   sampleProblemCount: 35
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Sets, Subsets, Power Sets & Cartesian Products',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-03-28',
+  revisionNumber: 337
 };
 
 export default sets_and_relations;
