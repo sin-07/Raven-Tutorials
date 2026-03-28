@@ -19,6 +19,12 @@ export interface CurriculumTopic_real_numbers {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const real_numbers: CurriculumTopic_real_numbers = {
@@ -42,6 +48,14 @@ export const real_numbers: CurriculumTopic_real_numbers = {
   ],
   recommendedHours: 9,
   sampleProblemCount: 30
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-03-28',
+  revisionNumber: 282
 };
 
 export default real_numbers;
