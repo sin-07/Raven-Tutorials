@@ -25,8 +25,8 @@ export const biomolecules: CurriculumTopic_biomolecules = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-02',
-  revisionNumber: 83,
+  lastReviewed: '2026-03-28',
+  revisionNumber: 168,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Carbohydrates, Amino Acids, and Peptide Structures',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
