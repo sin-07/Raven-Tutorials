@@ -19,6 +19,13 @@ export interface CurriculumTopic_quadratic_equations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const quadratic_equations: CurriculumTopic_quadratic_equations = {
@@ -42,6 +49,31 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Quadratic Equations & Nature of Roots.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Quadratic Equations & Nature of Roots under standard Class 10 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Quadratic Equations & Nature of Roots.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-03-28',
+  revisionNumber: 297
 };
 
 export default quadratic_equations;
