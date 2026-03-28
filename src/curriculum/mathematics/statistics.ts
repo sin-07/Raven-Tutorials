@@ -19,6 +19,7 @@ export interface CurriculumTopic_statistics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const statistics: CurriculumTopic_statistics = {
@@ -42,6 +43,14 @@ export const statistics: CurriculumTopic_statistics = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Statistics: Mean, Median, and Mode of Grouped Data',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-03-28',
+  revisionNumber: 327
 };
 
 export default statistics;
