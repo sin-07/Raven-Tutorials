@@ -19,6 +19,7 @@ export interface CurriculumTopic_straight_lines {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const straight_lines: CurriculumTopic_straight_lines = {
@@ -42,6 +43,14 @@ export const straight_lines: CurriculumTopic_straight_lines = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-03-28',
+  revisionNumber: 227
 };
 
 export default straight_lines;
