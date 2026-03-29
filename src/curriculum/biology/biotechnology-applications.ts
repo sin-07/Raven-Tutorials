@@ -25,8 +25,8 @@ export const biotechnology_applications: CurriculumTopic_biotechnology_applicati
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-28',
-  revisionNumber: 109,
+  lastReviewed: '2026-03-29',
+  revisionNumber: 169,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Biotechnology in Medicine and Agriculture',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
