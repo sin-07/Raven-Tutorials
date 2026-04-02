@@ -19,6 +19,13 @@ export interface CurriculumTopic_three_dimensional_geometry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geometry = {
@@ -42,6 +49,31 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Three-Dimensional Geometry: Direction Ratios & Planes.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Three-Dimensional Geometry: Direction Ratios & Planes under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Three-Dimensional Geometry: Direction Ratios & Planes.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-04-02',
+  revisionNumber: 277
 };
 
 export default three_dimensional_geometry;
