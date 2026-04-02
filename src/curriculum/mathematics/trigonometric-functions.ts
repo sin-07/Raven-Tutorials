@@ -19,6 +19,11 @@ export interface CurriculumTopic_trigonometric_functions {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const trigonometric_functions: CurriculumTopic_trigonometric_functions = {
@@ -42,6 +47,20 @@ export const trigonometric_functions: CurriculumTopic_trigonometric_functions = 
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Trigonometric Functions & General Solutions',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-04-02',
+  revisionNumber: 342
 };
 
 export default trigonometric_functions;
