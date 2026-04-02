@@ -19,6 +19,12 @@ export interface CurriculumTopic_triangles {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const triangles: CurriculumTopic_triangles = {
@@ -42,6 +48,14 @@ export const triangles: CurriculumTopic_triangles = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-02',
+  revisionNumber: 307
 };
 
 export default triangles;
