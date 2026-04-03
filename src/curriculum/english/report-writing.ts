@@ -55,8 +55,8 @@ export const report_writing: CurriculumTopic_report_writing = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-17',
-  revisionNumber: 359,
+  lastReviewed: '2026-04-03',
+  revisionNumber: 360,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Journalistic and Institutional Event Reporting',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const report_writing: CurriculumTopic_report_writing = {
   recommendedResources: [
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Journalistic and Institutional Event Reporting',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Journalistic and Institutional Event Reporting',
-    'Raven Tutorials Advanced Problem Vault - Volume 12 for Journalistic and Institutional Event Reporting'
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Journalistic and Institutional Event Reporting',
+    'Raven Tutorials Advanced Problem Vault - Volume 24 for Journalistic and Institutional Event Reporting'
   ]
   practiceQuestions: [
     {
