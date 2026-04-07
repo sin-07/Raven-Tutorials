@@ -19,6 +19,13 @@ export interface CurriculumTopic_alternating_current {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const alternating_current: CurriculumTopic_alternating_current = {
@@ -42,6 +49,31 @@ export const alternating_current: CurriculumTopic_alternating_current = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of LCR Circuits, Resonance, and Power Factor.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for LCR Circuits, Resonance, and Power Factor under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in LCR Circuits, Resonance, and Power Factor.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-04-07',
+  revisionNumber: 353
 };
 
 export default alternating_current;
