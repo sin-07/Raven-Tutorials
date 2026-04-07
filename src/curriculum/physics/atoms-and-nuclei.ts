@@ -19,6 +19,12 @@ export interface CurriculumTopic_atoms_and_nuclei {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
@@ -42,6 +48,14 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-07',
+  revisionNumber: 278
 };
 
 export default atoms_and_nuclei;
