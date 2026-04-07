@@ -19,6 +19,11 @@ export interface CurriculumTopic_capacitance {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const capacitance: CurriculumTopic_capacitance = {
@@ -42,6 +47,20 @@ export const capacitance: CurriculumTopic_capacitance = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Electrostatic Potential and Parallel Plate Capacitors',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-04-07',
+  revisionNumber: 333
 };
 
 export default capacitance;
