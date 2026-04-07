@@ -19,6 +19,7 @@ export interface CurriculumTopic_current_electricity {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const current_electricity: CurriculumTopic_current_electricity = {
@@ -42,6 +43,14 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-04-07',
+  revisionNumber: 338
 };
 
 export default current_electricity;
