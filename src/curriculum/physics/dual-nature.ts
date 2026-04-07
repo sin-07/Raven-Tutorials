@@ -19,6 +19,7 @@ export interface CurriculumTopic_dual_nature {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const dual_nature: CurriculumTopic_dual_nature = {
@@ -42,6 +43,14 @@ export const dual_nature: CurriculumTopic_dual_nature = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-04-07',
+  revisionNumber: 273
 };
 
 export default dual_nature;
