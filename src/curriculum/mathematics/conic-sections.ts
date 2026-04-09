@@ -55,8 +55,8 @@ export const conic_sections: CurriculumTopic_conic_sections = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-17',
-  revisionNumber: 235,
+  lastReviewed: '2026-04-09',
+  revisionNumber: 236,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Conic Sections: Parabola, Ellipse, and Hyperbola',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -87,6 +87,13 @@ export const conic_sections: CurriculumTopic_conic_sections = {
     {
       id: 'pq-22',
       question: 'Analyze the institutional exam problem scenario #19 regarding Conic Sections: Parabola, Ellipse, and Hyperbola under Class 11 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Conic Sections: Parabola, Ellipse, and Hyperbola under Class 11 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
