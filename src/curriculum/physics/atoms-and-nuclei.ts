@@ -25,8 +25,8 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-06',
-  revisionNumber: 87,
+  lastReviewed: '2026-04-11',
+  revisionNumber: 182,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model, Rydberg Formula, and Nuclear Binding Energy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
