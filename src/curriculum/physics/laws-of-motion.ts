@@ -19,6 +19,7 @@ export interface CurriculumTopic_laws_of_motion {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const laws_of_motion: CurriculumTopic_laws_of_motion = {
@@ -42,6 +43,14 @@ export const laws_of_motion: CurriculumTopic_laws_of_motion = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Newton Laws of Motion and Friction Dynamics',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 293
 };
 
 export default laws_of_motion;
