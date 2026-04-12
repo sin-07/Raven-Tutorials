@@ -19,6 +19,7 @@ export interface CurriculumTopic_motion_in_straight_line {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  realWorldApplications?: string[];
 }
 
 export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = {
@@ -42,6 +43,14 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 288
 };
 
 export default motion_in_straight_line;
