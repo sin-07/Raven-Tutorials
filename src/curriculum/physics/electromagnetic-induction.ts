@@ -19,6 +19,13 @@ export interface CurriculumTopic_electromagnetic_induction {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const electromagnetic_induction: CurriculumTopic_electromagnetic_induction = {
@@ -42,6 +49,31 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Faraday Law, Lenz Law, and Inductance.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Faraday Law, Lenz Law, and Inductance under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Faraday Law, Lenz Law, and Inductance.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 348
 };
 
 export default electromagnetic_induction;
