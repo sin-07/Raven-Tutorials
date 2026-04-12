@@ -19,6 +19,7 @@ export interface CurriculumTopic_magnetic_effects {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  recommendedResources?: string[];
 }
 
 export const magnetic_effects: CurriculumTopic_magnetic_effects = {
@@ -42,6 +43,14 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
   ],
   recommendedHours: 20,
   sampleProblemCount: 65
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 343
 };
 
 export default magnetic_effects;
