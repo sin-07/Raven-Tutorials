@@ -19,6 +19,7 @@ export interface CurriculumTopic_oscillations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  revisionChecklist?: string[];
 }
 
 export const oscillations: CurriculumTopic_oscillations = {
@@ -42,6 +43,14 @@ export const oscillations: CurriculumTopic_oscillations = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 318
 };
 
 export default oscillations;
