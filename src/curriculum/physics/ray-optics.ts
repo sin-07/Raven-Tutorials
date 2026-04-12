@@ -19,6 +19,11 @@ export interface CurriculumTopic_ray_optics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const ray_optics: CurriculumTopic_ray_optics = {
@@ -42,6 +47,15 @@ export const ray_optics: CurriculumTopic_ray_optics = {
   ],
   recommendedHours: 23,
   sampleProblemCount: 75
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Reflection, Refraction, and Lens Maker Formula',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-04-12',
+  revisionNumber: 358
 };
 
 export default ray_optics;
