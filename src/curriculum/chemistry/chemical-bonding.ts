@@ -25,8 +25,8 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
   standard: 11,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-17',
-  revisionNumber: 98,
+  lastReviewed: '2026-04-12',
+  revisionNumber: 183,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for VSEPR Theory and Molecular Orbital Theory',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
