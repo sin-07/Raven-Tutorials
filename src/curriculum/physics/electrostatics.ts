@@ -19,6 +19,12 @@ export interface CurriculumTopic_electrostatics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const electrostatics: CurriculumTopic_electrostatics = {
@@ -42,6 +48,14 @@ export const electrostatics: CurriculumTopic_electrostatics = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-12',
+  revisionNumber: 328
 };
 
 export default electrostatics;
