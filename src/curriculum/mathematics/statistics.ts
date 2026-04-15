@@ -25,8 +25,8 @@ export const statistics: CurriculumTopic_statistics = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-11-26',
-  revisionNumber: 46,
+  lastReviewed: '2026-04-15',
+  revisionNumber: 186,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Statistics: Mean, Median, and Mode of Grouped Data',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
