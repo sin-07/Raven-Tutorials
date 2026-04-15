@@ -55,8 +55,8 @@ export const electrostatics: CurriculumTopic_electrostatics = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-22',
-  revisionNumber: 331,
+  lastReviewed: '2026-04-15',
+  revisionNumber: 332,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const electrostatics: CurriculumTopic_electrostatics = {
   recommendedResources: [
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Coulomb Law, Electric Field Lines, and Gauss Law',
-    'Raven Tutorials Advanced Problem Vault - Volume 24 for Coulomb Law, Electric Field Lines, and Gauss Law'
+    'Raven Tutorials Advanced Problem Vault - Volume 24 for Coulomb Law, Electric Field Lines, and Gauss Law',
+    'Raven Tutorials Advanced Problem Vault - Volume 12 for Coulomb Law, Electric Field Lines, and Gauss Law'
   ]
   practiceQuestions: [
     {
