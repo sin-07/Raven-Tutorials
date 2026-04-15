@@ -55,8 +55,8 @@ export const dual_nature: CurriculumTopic_dual_nature = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-22',
-  revisionNumber: 276,
+  lastReviewed: '2026-04-15',
+  revisionNumber: 277,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Photoelectric Effect and De Broglie Hypothesis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const dual_nature: CurriculumTopic_dual_nature = {
   commonPitfalls: [
     'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #22',
     'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #10',
-    'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #22'
+    'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #22',
+    'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #10'
   ]
   recommendedResources: [
     'NCERT Exemplar Class 12 - Chapter Core Problems',
