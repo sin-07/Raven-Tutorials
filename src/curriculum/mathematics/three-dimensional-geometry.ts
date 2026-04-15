@@ -55,8 +55,8 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-22',
-  revisionNumber: 280,
+  lastReviewed: '2026-04-15',
+  revisionNumber: 281,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Three-Dimensional Geometry: Direction Ratios & Planes',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -108,6 +108,13 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
     {
       id: 'pq-16',
       question: 'Analyze the institutional exam problem scenario #13 regarding Three-Dimensional Geometry: Direction Ratios & Planes under Class 12 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-4',
+      question: 'Analyze the institutional exam problem scenario #1 regarding Three-Dimensional Geometry: Direction Ratios & Planes under Class 12 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
