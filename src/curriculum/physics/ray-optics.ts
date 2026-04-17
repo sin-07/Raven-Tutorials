@@ -23,7 +23,12 @@ export interface CurriculumTopic_ray_optics {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const ray_optics: CurriculumTopic_ray_optics = {
@@ -55,6 +60,20 @@ export const ray_optics: CurriculumTopic_ray_optics = {
     }
   ],
   lastReviewed: '2026-04-12',
+  revisionNumber: 358
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Reflection, Refraction, and Lens Maker Formula',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-04-17',
   revisionNumber: 358
 };
 
