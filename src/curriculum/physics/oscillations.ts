@@ -20,6 +20,12 @@ export interface CurriculumTopic_oscillations {
   recommendedHours: number;
   sampleProblemCount: number;
   revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const oscillations: CurriculumTopic_oscillations = {
@@ -50,6 +56,14 @@ export const oscillations: CurriculumTopic_oscillations = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-04-12',
+  revisionNumber: 318
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-17',
   revisionNumber: 318
 };
 
