@@ -55,8 +55,8 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-03',
-  revisionNumber: 313,
+  lastReviewed: '2026-04-20',
+  revisionNumber: 314,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transition Metals and Lanthanoid Contraction',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -69,7 +69,8 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
     'Rule 24: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction',
     'Rule 12: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction',
     'Rule 24: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction',
-    'Rule 12: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction'
+    'Rule 12: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction',
+    'Rule 24: Standard dimensional and algebraic validation principles for Transition Metals and Lanthanoid Contraction'
   ],
   recommendedHours: 14,
   sampleProblemCount: 45,
