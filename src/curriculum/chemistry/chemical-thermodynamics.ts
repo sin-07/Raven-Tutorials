@@ -55,8 +55,8 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-03',
-  revisionNumber: 363,
+  lastReviewed: '2026-04-20',
+  revisionNumber: 364,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Enthalpy, Entropy, and Gibbs Free Energy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -94,6 +94,13 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
     {
       id: 'pq-10',
       question: 'Analyze the institutional exam problem scenario #7 regarding Enthalpy, Entropy, and Gibbs Free Energy under Class 11 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-22',
+      question: 'Analyze the institutional exam problem scenario #19 regarding Enthalpy, Entropy, and Gibbs Free Energy under Class 11 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
