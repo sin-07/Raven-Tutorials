@@ -19,6 +19,13 @@ export interface CurriculumTopic_thermodynamics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 }
 
 export const thermodynamics: CurriculumTopic_thermodynamics = {
@@ -42,6 +49,31 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Laws of Thermodynamics and Carnot Engine.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Laws of Thermodynamics and Carnot Engine under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Laws of Thermodynamics and Carnot Engine.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-04-22',
+  revisionNumber: 313
 };
 
 export default thermodynamics;
