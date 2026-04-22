@@ -19,6 +19,7 @@ export interface CurriculumTopic_work_energy_power {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const work_energy_power: CurriculumTopic_work_energy_power = {
@@ -42,6 +43,14 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Work-Energy Theorem and Elastic Collisions',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-04-22',
+  revisionNumber: 298
 };
 
 export default work_energy_power;
