@@ -19,6 +19,11 @@ export interface CurriculumTopic_waves {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const waves: CurriculumTopic_waves = {
@@ -42,6 +47,20 @@ export const waves: CurriculumTopic_waves = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Transverse Waves, Standing Waves, and Resonance',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-04-22',
+  revisionNumber: 323
 };
 
 export default waves;
