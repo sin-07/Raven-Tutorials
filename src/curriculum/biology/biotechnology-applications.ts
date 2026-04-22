@@ -25,7 +25,8 @@ export interface CurriculumTopic_biotechnology_applications {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const biotechnology_applications: CurriculumTopic_biotechnology_applications = {
@@ -73,6 +74,14 @@ export const biotechnology_applications: CurriculumTopic_biotechnology_applicati
     }
   ],
   lastReviewed: '2026-02-03',
+  revisionNumber: 350
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-04-22',
   revisionNumber: 350
 };
 
