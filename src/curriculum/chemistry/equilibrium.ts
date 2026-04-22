@@ -25,8 +25,8 @@ export const equilibrium: CurriculumTopic_equilibrium = {
   standard: 11,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-27',
-  revisionNumber: 108,
+  lastReviewed: '2026-04-22',
+  revisionNumber: 193,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Le Chatelier Principle and Buffer Equilibrium',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
