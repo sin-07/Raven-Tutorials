@@ -19,6 +19,12 @@ export interface CurriculumTopic_wave_optics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }
 
 export const wave_optics: CurriculumTopic_wave_optics = {
@@ -42,6 +48,14 @@ export const wave_optics: CurriculumTopic_wave_optics = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-22',
+  revisionNumber: 363
 };
 
 export default wave_optics;
