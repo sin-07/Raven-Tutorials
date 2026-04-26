@@ -55,8 +55,8 @@ export const differential_equations: CurriculumTopic_differential_equations = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-09',
-  revisionNumber: 271,
+  lastReviewed: '2026-04-26',
+  revisionNumber: 272,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Differential Equations & Separation of Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -73,7 +73,8 @@ export const differential_equations: CurriculumTopic_differential_equations = {
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #23',
-    'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #11'
+    'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #11',
+    'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #23'
   ]
   practiceQuestions: [
     {
