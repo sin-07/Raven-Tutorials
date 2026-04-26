@@ -25,8 +25,8 @@ export const laws_of_motion: CurriculumTopic_laws_of_motion = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-21',
-  revisionNumber: 102,
+  lastReviewed: '2026-04-26',
+  revisionNumber: 197,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Newton Laws of Motion and Friction Dynamics',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
