@@ -55,8 +55,8 @@ export const direct_indirect_speech: CurriculumTopic_direct_indirect_speech = {
   standard: 10,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-03',
-  revisionNumber: 335,
+  lastReviewed: '2026-04-26',
+  revisionNumber: 336,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reported Speech and Indirect Discourse',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -64,7 +64,8 @@ export const direct_indirect_speech: CurriculumTopic_direct_indirect_speech = {
     'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #8 for competitive examinations',
     'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #20 for competitive examinations',
     'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #8 for competitive examinations',
-    'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #20 for competitive examinations'
+    'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #20 for competitive examinations',
+    'Demonstrate advanced competency in Reported Speech and Indirect Discourse module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
