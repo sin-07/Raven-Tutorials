@@ -24,7 +24,14 @@ export interface CurriculumTopic_biotechnology_principles {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const biotechnology_principles: CurriculumTopic_biotechnology_principles = {
@@ -55,6 +62,31 @@ export const biotechnology_principles: CurriculumTopic_biotechnology_principles 
     practicalMarks: 3
   },
   lastReviewed: '2026-02-03',
+  revisionNumber: 345
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Recombinant DNA Tools and Electrophoresis.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Recombinant DNA Tools and Electrophoresis under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Recombinant DNA Tools and Electrophoresis.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-04-27',
   revisionNumber: 345
 };
 
