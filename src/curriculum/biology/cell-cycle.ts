@@ -23,7 +23,13 @@ export interface CurriculumTopic_cell_cycle {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const cell_cycle: CurriculumTopic_cell_cycle = {
@@ -60,6 +66,14 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
     }
   ],
   lastReviewed: '2026-02-03',
+  revisionNumber: 310
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-04-27',
   revisionNumber: 310
 };
 
