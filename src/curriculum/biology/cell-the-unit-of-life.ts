@@ -19,6 +19,11 @@ export interface CurriculumTopic_cell_the_unit_of_life {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
@@ -42,6 +47,20 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Cell Architecture and Membrane Structure',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-04-27',
+  revisionNumber: 365
 };
 
 export default cell_the_unit_of_life;
