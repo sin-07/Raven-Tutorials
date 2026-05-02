@@ -25,7 +25,8 @@ export interface CurriculumTopic_photosynthesis {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const photosynthesis: CurriculumTopic_photosynthesis = {
@@ -73,6 +74,14 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
     }
   ],
   lastReviewed: '2026-02-12',
+  revisionNumber: 315
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-05-02',
   revisionNumber: 315
 };
 
