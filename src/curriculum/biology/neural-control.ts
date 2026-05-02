@@ -20,6 +20,7 @@ export interface CurriculumTopic_neural_control {
   recommendedHours: number;
   sampleProblemCount: number;
   recommendedResources?: string[];
+  commonPitfalls?: string[];
 }
 
 export const neural_control: CurriculumTopic_neural_control = {
@@ -50,6 +51,14 @@ export const neural_control: CurriculumTopic_neural_control = {
     'Interactive 3D Visual Concept Simulation Modules'
   ],
   lastReviewed: '2026-02-08',
+  revisionNumber: 325
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Nerve Impulse Propagation and Synaptic Action',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-05-02',
   revisionNumber: 325
 };
 
