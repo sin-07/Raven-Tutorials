@@ -24,7 +24,14 @@ export interface CurriculumTopic_ecosystems {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const ecosystems: CurriculumTopic_ecosystems = {
@@ -55,6 +62,31 @@ export const ecosystems: CurriculumTopic_ecosystems = {
     practicalMarks: 3
   },
   lastReviewed: '2026-02-08',
+  revisionNumber: 360
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Ecosystem Dynamics, Nutrient Cycles, and Biomass.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Ecosystem Dynamics, Nutrient Cycles, and Biomass under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Ecosystem Dynamics, Nutrient Cycles, and Biomass.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-05-02',
   revisionNumber: 360
 };
 
