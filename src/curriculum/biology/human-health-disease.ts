@@ -23,7 +23,13 @@ export interface CurriculumTopic_human_health_disease {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const human_health_disease: CurriculumTopic_human_health_disease = {
@@ -60,6 +66,14 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
     }
   ],
   lastReviewed: '2026-02-08',
+  revisionNumber: 355
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-05-02',
   revisionNumber: 355
 };
 
