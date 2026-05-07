@@ -23,7 +23,13 @@ export interface CurriculumTopic_alcohols_phenols {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
@@ -60,6 +66,14 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
     }
   ],
   lastReviewed: '2026-02-12',
+  revisionNumber: 324
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-05-07',
   revisionNumber: 324
 };
 
