@@ -19,6 +19,11 @@ export interface CurriculumTopic_aldehydes_ketones {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const aldehydes_ketones: CurriculumTopic_aldehydes_ketones = {
@@ -42,6 +47,20 @@ export const aldehydes_ketones: CurriculumTopic_aldehydes_ketones = {
   ],
   recommendedHours: 20,
   sampleProblemCount: 65
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Carbonyl Compounds, Aldol, and Cannizzaro Reactions',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-05-07',
+  revisionNumber: 329
 };
 
 export default aldehydes_ketones;
