@@ -25,8 +25,8 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-09',
-  revisionNumber: 149,
+  lastReviewed: '2026-05-08',
+  revisionNumber: 209,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Endocrine System and Hormonal Regulation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
