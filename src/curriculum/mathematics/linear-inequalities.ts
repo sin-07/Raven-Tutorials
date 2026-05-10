@@ -25,8 +25,8 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
   standard: 11,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-21',
-  revisionNumber: 71,
+  lastReviewed: '2026-05-10',
+  revisionNumber: 211,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Linear Inequalities in One and Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
