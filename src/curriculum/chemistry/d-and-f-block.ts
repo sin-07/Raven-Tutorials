@@ -26,7 +26,8 @@ export interface CurriculumTopic_d_and_f_block {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const d_and_f_block: CurriculumTopic_d_and_f_block = {
@@ -82,6 +83,14 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
     }
   ],
   lastReviewed: '2026-02-21',
+  revisionNumber: 309
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-05-12',
   revisionNumber: 309
 };
 
