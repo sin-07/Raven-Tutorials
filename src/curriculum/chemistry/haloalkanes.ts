@@ -19,6 +19,11 @@ export interface CurriculumTopic_haloalkanes {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const haloalkanes: CurriculumTopic_haloalkanes = {
@@ -42,6 +47,15 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Nucleophilic Substitution SN1 and SN2 Pathways',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-05-12',
+  revisionNumber: 319
 };
 
 export default haloalkanes;
