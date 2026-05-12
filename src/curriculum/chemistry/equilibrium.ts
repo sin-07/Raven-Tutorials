@@ -27,7 +27,8 @@ export interface CurriculumTopic_equilibrium {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    revisionChecklist?: string[];
+}>;
 }>;
 }
 
@@ -74,6 +75,14 @@ export const equilibrium: CurriculumTopic_equilibrium = {
     }
   ],
   lastReviewed: '2026-02-21',
+  revisionNumber: 364
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-05-12',
   revisionNumber: 364
 };
 
