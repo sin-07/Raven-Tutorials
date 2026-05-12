@@ -25,7 +25,8 @@ export interface CurriculumTopic_electrochemistry {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    realWorldApplications?: string[];
+};
 }
 
 export const electrochemistry: CurriculumTopic_electrochemistry = {
@@ -64,6 +65,14 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     practicalMarks: 3
   },
   lastReviewed: '2026-02-21',
+  revisionNumber: 299
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-05-12',
   revisionNumber: 299
 };
 
