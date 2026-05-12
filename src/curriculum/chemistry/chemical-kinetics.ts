@@ -23,7 +23,13 @@ export interface CurriculumTopic_chemical_kinetics {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
@@ -60,6 +66,14 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
     }
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 304
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-05-12',
   revisionNumber: 304
 };
 
