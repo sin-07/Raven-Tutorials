@@ -20,6 +20,11 @@ export interface CurriculumTopic_chemical_thermodynamics {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = {
@@ -50,6 +55,20 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 359
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Enthalpy, Entropy, and Gibbs Free Energy',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-05-12',
   revisionNumber: 359
 };
 
