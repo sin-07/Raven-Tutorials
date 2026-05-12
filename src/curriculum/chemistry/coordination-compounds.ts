@@ -20,6 +20,7 @@ export interface CurriculumTopic_coordination_compounds {
   recommendedHours: number;
   sampleProblemCount: number;
   recommendedResources?: string[];
+  commonPitfalls?: string[];
 }
 
 export const coordination_compounds: CurriculumTopic_coordination_compounds = {
@@ -50,6 +51,14 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
     'Interactive 3D Visual Concept Simulation Modules'
   ],
   lastReviewed: '2026-02-17',
+  revisionNumber: 314
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Coordination Chemistry, Ligands, and Isomerism',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-05-12',
   revisionNumber: 314
 };
 
