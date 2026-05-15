@@ -55,8 +55,8 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-20',
-  revisionNumber: 309,
+  lastReviewed: '2026-05-15',
+  revisionNumber: 310,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reaction Rates, Order, and Arrhenius Equation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -74,7 +74,8 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Reaction Rates, Order, and Arrhenius Equation',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Reaction Rates, Order, and Arrhenius Equation',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Reaction Rates, Order, and Arrhenius Equation',
-    'Raven Tutorials Advanced Problem Vault - Volume 18 for Reaction Rates, Order, and Arrhenius Equation'
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for Reaction Rates, Order, and Arrhenius Equation',
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for Reaction Rates, Order, and Arrhenius Equation'
   ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
