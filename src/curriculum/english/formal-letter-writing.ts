@@ -55,8 +55,8 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 341,
+  lastReviewed: '2026-05-15',
+  revisionNumber: 342,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Professional Correspondence and Formal Letter Formats',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
     'Rule 24: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats',
     'Rule 12: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats',
     'Rule 24: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats',
-    'Rule 12: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats'
+    'Rule 12: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats',
+    'Rule 24: Standard dimensional and algebraic validation principles for Professional Correspondence and Formal Letter Formats'
   ],
   recommendedHours: 12,
   sampleProblemCount: 40,
