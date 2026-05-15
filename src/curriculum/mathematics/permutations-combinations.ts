@@ -25,8 +25,8 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2025-12-26',
-  revisionNumber: 76,
+  lastReviewed: '2026-05-15',
+  revisionNumber: 216,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Permutations and Combinations Protocols',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
