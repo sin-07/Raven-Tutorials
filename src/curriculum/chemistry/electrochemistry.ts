@@ -26,6 +26,13 @@ export interface CurriculumTopic_electrochemistry {
     numericalMarks: number;
     practicalMarks: number;
     realWorldApplications?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
 };
 }
 
@@ -73,6 +80,31 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     'Modern renewable energy grid stabilization techniques'
   ],
   lastReviewed: '2026-05-12',
+  revisionNumber: 299
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Nernst Equation and Kohlrausch Conductivity Law.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Nernst Equation and Kohlrausch Conductivity Law under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Nernst Equation and Kohlrausch Conductivity Law.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-05-17',
   revisionNumber: 299
 };
 
