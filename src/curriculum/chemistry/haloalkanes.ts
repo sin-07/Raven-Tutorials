@@ -23,7 +23,12 @@ export interface CurriculumTopic_haloalkanes {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const haloalkanes: CurriculumTopic_haloalkanes = {
@@ -55,6 +60,20 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
     }
   ],
   lastReviewed: '2026-05-12',
+  revisionNumber: 319
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Nucleophilic Substitution SN1 and SN2 Pathways',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-05-17',
   revisionNumber: 319
 };
 
