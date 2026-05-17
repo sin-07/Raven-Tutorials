@@ -25,8 +25,8 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-21',
-  revisionNumber: 133,
+  lastReviewed: '2026-05-17',
+  revisionNumber: 218,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reaction Rates, Order, and Arrhenius Equation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
