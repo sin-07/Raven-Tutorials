@@ -28,6 +28,12 @@ export interface CurriculumTopic_equilibrium {
     steps: string[];
     concludingEquation: string;
     revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }>;
 }>;
 }
@@ -83,6 +89,14 @@ export const equilibrium: CurriculumTopic_equilibrium = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-05-12',
+  revisionNumber: 364
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-05-17',
   revisionNumber: 364
 };
 
