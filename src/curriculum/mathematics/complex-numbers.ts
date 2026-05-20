@@ -55,8 +55,8 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
   standard: 11,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 352,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 353,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Complex Numbers & Argand Plane',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -74,7 +74,8 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Complex Numbers & Argand Plane',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Complex Numbers & Argand Plane',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Complex Numbers & Argand Plane',
-    'Raven Tutorials Advanced Problem Vault - Volume 18 for Complex Numbers & Argand Plane'
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for Complex Numbers & Argand Plane',
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for Complex Numbers & Argand Plane'
   ]
   practiceQuestions: [
     {
