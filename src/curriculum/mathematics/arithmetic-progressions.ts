@@ -55,8 +55,8 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
   standard: 10,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 307,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 308,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Arithmetic Progressions & Nth Term Summation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
     'Rule 6: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation',
     'Rule 18: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation',
     'Rule 6: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation',
-    'Rule 18: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation'
+    'Rule 18: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation',
+    'Rule 6: Standard dimensional and algebraic validation principles for Arithmetic Progressions & Nth Term Summation'
   ],
   recommendedHours: 11,
   sampleProblemCount: 35,
