@@ -55,8 +55,8 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
   standard: 12,
   weightagePercent: 15,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 262,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 263,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Application of Derivatives: Tangents & Maxima-Minima',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -65,7 +65,8 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
     'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #2 for competitive examinations',
     'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #14 for competitive examinations',
     'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #2 for competitive examinations',
-    'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #14 for competitive examinations'
+    'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #14 for competitive examinations',
+    'Demonstrate advanced competency in Application of Derivatives: Tangents & Maxima-Minima module section #2 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
