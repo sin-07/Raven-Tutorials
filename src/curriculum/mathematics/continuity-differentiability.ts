@@ -55,8 +55,8 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 257,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 258,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Continuity, Differentiability, and Chain Rule',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -65,7 +65,8 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
     'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #8 for competitive examinations',
     'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #20 for competitive examinations',
     'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #8 for competitive examinations',
-    'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #20 for competitive examinations'
+    'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #20 for competitive examinations',
+    'Demonstrate advanced competency in Continuity, Differentiability, and Chain Rule module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
