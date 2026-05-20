@@ -55,8 +55,8 @@ export const binomial_theorem: CurriculumTopic_binomial_theorem = {
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-09',
-  revisionNumber: 366,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 368,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Binomial Theorem for Positive Integral Indices',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,6 +70,8 @@ export const binomial_theorem: CurriculumTopic_binomial_theorem = {
   recommendedHours: 12,
   sampleProblemCount: 40,
   commonPitfalls: [
+    'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #16',
+    'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #4',
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #16',
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #4',
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #16',
