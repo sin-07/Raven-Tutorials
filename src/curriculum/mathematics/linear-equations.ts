@@ -55,8 +55,8 @@ export const linear_equations: CurriculumTopic_linear_equations = {
   standard: 10,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-03',
-  revisionNumber: 297,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 298,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Pair of Linear Equations in Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -65,7 +65,8 @@ export const linear_equations: CurriculumTopic_linear_equations = {
     'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #14 for competitive examinations',
     'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #2 for competitive examinations',
     'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #14 for competitive examinations',
-    'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #2 for competitive examinations'
+    'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #2 for competitive examinations',
+    'Demonstrate advanced competency in Pair of Linear Equations in Two Variables module section #14 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
