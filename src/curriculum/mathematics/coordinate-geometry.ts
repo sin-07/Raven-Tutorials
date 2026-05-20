@@ -55,8 +55,8 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-26',
-  revisionNumber: 317,
+  lastReviewed: '2026-05-20',
+  revisionNumber: 318,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordinate Geometry & Distance Formulae',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
     'Rule 12: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae',
     'Rule 24: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae',
     'Rule 12: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae',
-    'Rule 24: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae'
+    'Rule 24: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae',
+    'Rule 12: Standard dimensional and algebraic validation principles for Coordinate Geometry & Distance Formulae'
   ],
   recommendedHours: 12,
   sampleProblemCount: 40,
