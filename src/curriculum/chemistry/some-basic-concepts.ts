@@ -23,7 +23,13 @@ export interface CurriculumTopic_some_basic_concepts {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
@@ -60,6 +66,14 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
     }
   ],
   lastReviewed: '2026-02-26',
+  revisionNumber: 344
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-05-22',
   revisionNumber: 344
 };
 
