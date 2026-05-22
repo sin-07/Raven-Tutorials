@@ -25,7 +25,8 @@ export interface CurriculumTopic_analytical_paragraph {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
@@ -73,6 +74,14 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
     }
   ],
   lastReviewed: '2026-03-03',
+  revisionNumber: 341
+  recommendedResources: [
+    'NCERT Exemplar Class 10 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-05-22',
   revisionNumber: 341
 };
 
