@@ -20,6 +20,11 @@ export interface CurriculumTopic_structure_of_atom {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const structure_of_atom: CurriculumTopic_structure_of_atom = {
@@ -50,6 +55,20 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-02-26',
+  revisionNumber: 349
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Bohr Model and Quantum Electronic Configurations',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-05-22',
   revisionNumber: 349
 };
 
