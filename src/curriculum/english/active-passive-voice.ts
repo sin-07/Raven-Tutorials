@@ -20,6 +20,7 @@ export interface CurriculumTopic_active_passive_voice {
   recommendedHours: number;
   sampleProblemCount: number;
   recommendedResources?: string[];
+  commonPitfalls?: string[];
 }
 
 export const active_passive_voice: CurriculumTopic_active_passive_voice = {
@@ -50,6 +51,14 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
     'Interactive 3D Visual Concept Simulation Modules'
   ],
   lastReviewed: '2026-02-26',
+  revisionNumber: 326
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Active and Passive Voice Syntactic Rules',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-05-22',
   revisionNumber: 326
 };
 
