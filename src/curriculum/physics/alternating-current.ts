@@ -55,8 +55,8 @@ export const alternating_current: CurriculumTopic_alternating_current = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-03',
-  revisionNumber: 358,
+  lastReviewed: '2026-05-26',
+  revisionNumber: 359,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for LCR Circuits, Resonance, and Power Factor',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -101,7 +101,8 @@ export const alternating_current: CurriculumTopic_alternating_current = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for LCR Circuits, Resonance, and Power Factor',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for LCR Circuits, Resonance, and Power Factor',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for LCR Circuits, Resonance, and Power Factor',
-    'Raven Tutorials Advanced Problem Vault - Volume 18 for LCR Circuits, Resonance, and Power Factor'
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for LCR Circuits, Resonance, and Power Factor',
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for LCR Circuits, Resonance, and Power Factor'
   ]
 };
 
