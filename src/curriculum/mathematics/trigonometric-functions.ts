@@ -55,8 +55,8 @@ export const trigonometric_functions: CurriculumTopic_trigonometric_functions = 
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-03',
-  revisionNumber: 347,
+  lastReviewed: '2026-05-26',
+  revisionNumber: 348,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Trigonometric Functions & General Solutions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -70,7 +70,8 @@ export const trigonometric_functions: CurriculumTopic_trigonometric_functions = 
     'Rule 6: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions',
     'Rule 18: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions',
     'Rule 6: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions',
-    'Rule 18: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions'
+    'Rule 18: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions',
+    'Rule 6: Standard dimensional and algebraic validation principles for Trigonometric Functions & General Solutions'
   ],
   recommendedHours: 17,
   sampleProblemCount: 55,
