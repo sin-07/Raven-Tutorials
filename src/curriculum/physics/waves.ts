@@ -25,8 +25,8 @@ export const waves: CurriculumTopic_waves = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-20',
-  revisionNumber: 132,
+  lastReviewed: '2026-05-26',
+  revisionNumber: 227,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transverse Waves, Standing Waves, and Resonance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
