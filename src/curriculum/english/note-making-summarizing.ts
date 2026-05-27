@@ -19,6 +19,11 @@ export interface CurriculumTopic_note_making_summarizing {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const note_making_summarizing: CurriculumTopic_note_making_summarizing = {
@@ -42,6 +47,20 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Structured Note-Making and Abbreviation Syntax',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-05-27',
+  revisionNumber: 351
 };
 
 export default note_making_summarizing;
