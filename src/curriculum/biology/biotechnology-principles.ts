@@ -55,8 +55,8 @@ export const biotechnology_principles: CurriculumTopic_biotechnology_principles 
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-09',
-  revisionNumber: 351,
+  lastReviewed: '2026-06-02',
+  revisionNumber: 352,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Recombinant DNA Tools and Electrophoresis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -66,7 +66,8 @@ export const biotechnology_principles: CurriculumTopic_biotechnology_principles 
     'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #2 for competitive examinations',
     'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #14 for competitive examinations',
     'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #2 for competitive examinations',
-    'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #14 for competitive examinations'
+    'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #14 for competitive examinations',
+    'Demonstrate advanced competency in Recombinant DNA Tools and Electrophoresis module section #2 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
