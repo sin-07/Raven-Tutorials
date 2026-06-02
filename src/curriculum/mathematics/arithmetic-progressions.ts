@@ -20,6 +20,11 @@ export interface CurriculumTopic_arithmetic_progressions {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = {
@@ -50,6 +55,20 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-03-08',
+  revisionNumber: 302
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Arithmetic Progressions & Nth Term Summation',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-02',
   revisionNumber: 302
 };
 
