@@ -55,8 +55,8 @@ export const neural_control: CurriculumTopic_neural_control = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-09',
-  revisionNumber: 331,
+  lastReviewed: '2026-06-02',
+  revisionNumber: 332,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nerve Impulse Propagation and Synaptic Action',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -91,7 +91,8 @@ export const neural_control: CurriculumTopic_neural_control = {
     'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #10',
     'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #22',
     'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #10',
-    'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #22'
+    'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #22',
+    'Misapplying intermediate boundary approximation during Nerve Impulse Propagation and Synaptic Action step #10'
   ],
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
