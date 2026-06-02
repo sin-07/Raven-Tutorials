@@ -55,8 +55,8 @@ export const amines: CurriculumTopic_amines = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-15',
-  revisionNumber: 339,
+  lastReviewed: '2026-06-02',
+  revisionNumber: 340,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Organic Nitrogen Compounds and Diazonium Chemistry',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -71,7 +71,8 @@ export const amines: CurriculumTopic_amines = {
     'Rule 18: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry',
     'Rule 6: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry',
     'Rule 18: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry',
-    'Rule 6: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry'
+    'Rule 6: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry',
+    'Rule 18: Standard dimensional and algebraic validation principles for Organic Nitrogen Compounds and Diazonium Chemistry'
   ],
   recommendedHours: 14,
   sampleProblemCount: 45
