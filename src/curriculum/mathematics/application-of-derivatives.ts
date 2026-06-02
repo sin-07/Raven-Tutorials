@@ -23,7 +23,13 @@ export interface CurriculumTopic_application_of_derivatives {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const application_of_derivatives: CurriculumTopic_application_of_derivatives = {
@@ -60,6 +66,14 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
     }
   ],
   lastReviewed: '2026-03-08',
+  revisionNumber: 257
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-02',
   revisionNumber: 257
 };
 
