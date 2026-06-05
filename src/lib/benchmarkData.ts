@@ -243,3 +243,4 @@ webVitalMetrics.push({ metricId: 'wv_2026_06_01_2', date: '2026-06-01', ttfbMs: 
 webVitalMetrics.push({ metricId: 'wv_2026_06_02_2', date: '2026-06-02', ttfbMs: 50, lcpMs: 283, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2026_06_03_2', date: '2026-06-03', ttfbMs: 45, lcpMs: 327, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2026_06_04_2', date: '2026-06-04', ttfbMs: 40, lcpMs: 321, clsScore: 0.01 });
+webVitalMetrics.push({ metricId: 'wv_2026_06_05_2', date: '2026-06-05', ttfbMs: 35, lcpMs: 315, clsScore: 0.01 });
