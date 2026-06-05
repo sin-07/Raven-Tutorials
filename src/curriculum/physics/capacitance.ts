@@ -25,8 +25,8 @@ export const capacitance: CurriculumTopic_capacitance = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-02',
-  revisionNumber: 142,
+  lastReviewed: '2026-06-05',
+  revisionNumber: 237,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Electrostatic Potential and Parallel Plate Capacitors',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
