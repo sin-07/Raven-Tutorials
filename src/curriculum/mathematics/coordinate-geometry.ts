@@ -19,6 +19,7 @@ export interface CurriculumTopic_coordinate_geometry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
@@ -42,6 +43,14 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Coordinate Geometry & Distance Formulae',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-06-07',
+  revisionNumber: 312
 };
 
 export default coordinate_geometry;
