@@ -20,6 +20,11 @@ export interface CurriculumTopic_limits_and_derivatives {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
@@ -50,6 +55,15 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-03-18',
+  revisionNumber: 237
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Limits, Continuity, and Derivatives',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-06-07',
   revisionNumber: 237
 };
 
