@@ -25,7 +25,8 @@ export interface CurriculumTopic_determinants {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const determinants: CurriculumTopic_determinants = {
@@ -73,6 +74,14 @@ export const determinants: CurriculumTopic_determinants = {
     }
   ],
   lastReviewed: '2026-03-18',
+  revisionNumber: 247
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-06-07',
   revisionNumber: 247
 };
 
