@@ -23,7 +23,8 @@ export interface CurriculumTopic_integrals {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    revisionChecklist?: string[];
+}>;
 }
 
 export const integrals: CurriculumTopic_integrals = {
@@ -60,6 +61,14 @@ export const integrals: CurriculumTopic_integrals = {
     }
   ],
   lastReviewed: '2026-03-18',
+  revisionNumber: 262
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-06-07',
   revisionNumber: 262
 };
 
