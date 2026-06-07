@@ -24,7 +24,8 @@ export interface CurriculumTopic_differential_equations {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    realWorldApplications?: string[];
+};
 }
 
 export const differential_equations: CurriculumTopic_differential_equations = {
@@ -55,6 +56,14 @@ export const differential_equations: CurriculumTopic_differential_equations = {
     practicalMarks: 3
   },
   lastReviewed: '2026-03-18',
+  revisionNumber: 267
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-06-07',
   revisionNumber: 267
 };
 
