@@ -27,7 +27,13 @@ export interface CurriculumTopic_conic_sections {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }>;
 }
 
@@ -74,6 +80,14 @@ export const conic_sections: CurriculumTopic_conic_sections = {
     }
   ],
   lastReviewed: '2026-03-13',
+  revisionNumber: 232
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-07',
   revisionNumber: 232
 };
 
