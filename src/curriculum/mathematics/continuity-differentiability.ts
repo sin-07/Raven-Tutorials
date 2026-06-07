@@ -19,6 +19,11 @@ export interface CurriculumTopic_continuity_differentiability {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const continuity_differentiability: CurriculumTopic_continuity_differentiability = {
@@ -42,6 +47,20 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Continuity, Differentiability, and Chain Rule',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-07',
+  revisionNumber: 252
 };
 
 export default continuity_differentiability;
