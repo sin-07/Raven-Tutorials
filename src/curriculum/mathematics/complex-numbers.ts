@@ -25,7 +25,14 @@ export interface CurriculumTopic_complex_numbers {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const complex_numbers: CurriculumTopic_complex_numbers = {
@@ -64,6 +71,31 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
     practicalMarks: 3
   },
   lastReviewed: '2026-03-13',
+  revisionNumber: 347
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Complex Numbers & Argand Plane.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Complex Numbers & Argand Plane under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Complex Numbers & Argand Plane.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-06-07',
   revisionNumber: 347
 };
 
