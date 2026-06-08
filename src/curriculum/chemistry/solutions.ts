@@ -55,8 +55,8 @@ export const solutions: CurriculumTopic_solutions = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-15',
-  revisionNumber: 300,
+  lastReviewed: '2026-06-08',
+  revisionNumber: 301,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Raoult Law and Colligative Properties',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -71,7 +71,8 @@ export const solutions: CurriculumTopic_solutions = {
     'Rule 6: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties',
     'Rule 18: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties',
     'Rule 6: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties',
-    'Rule 18: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties'
+    'Rule 18: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties',
+    'Rule 6: Standard dimensional and algebraic validation principles for Raoult Law and Colligative Properties'
   ],
   recommendedHours: 17,
   sampleProblemCount: 55,
