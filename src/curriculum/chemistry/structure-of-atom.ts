@@ -55,8 +55,8 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-15',
-  revisionNumber: 355,
+  lastReviewed: '2026-06-08',
+  revisionNumber: 356,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model and Quantum Electronic Configurations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -75,7 +75,8 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #5',
-    'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #17'
+    'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #17',
+    'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #5'
   ]
   conceptDerivations: [
     {
