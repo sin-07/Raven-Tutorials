@@ -25,8 +25,8 @@ export const matrices: CurriculumTopic_matrices = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-20',
-  revisionNumber: 101,
+  lastReviewed: '2026-06-09',
+  revisionNumber: 241,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Matrices: Operations and Symmetric Matrices',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
