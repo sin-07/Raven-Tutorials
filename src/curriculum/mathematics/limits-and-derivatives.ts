@@ -24,7 +24,12 @@ export interface CurriculumTopic_limits_and_derivatives {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
@@ -64,6 +69,20 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
     }
   ],
   lastReviewed: '2026-06-07',
+  revisionNumber: 237
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Limits, Continuity, and Derivatives',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-12',
   revisionNumber: 237
 };
 
