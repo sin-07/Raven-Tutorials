@@ -24,6 +24,12 @@ export interface CurriculumTopic_integrals {
     steps: string[];
     concludingEquation: string;
     revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }>;
 }
 
@@ -69,6 +75,14 @@ export const integrals: CurriculumTopic_integrals = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-06-07',
+  revisionNumber: 262
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-12',
   revisionNumber: 262
 };
 
