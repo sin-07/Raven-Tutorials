@@ -55,8 +55,8 @@ export const probability: CurriculumTopic_probability = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-20',
-  revisionNumber: 338,
+  lastReviewed: '2026-06-14',
+  revisionNumber: 339,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Classical Definition of Probability & Event Spaces',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -108,6 +108,13 @@ export const probability: CurriculumTopic_probability = {
     {
       id: 'pq-22',
       question: 'Analyze the institutional exam problem scenario #19 regarding Classical Definition of Probability & Event Spaces under Class 10 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Classical Definition of Probability & Event Spaces under Class 10 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
