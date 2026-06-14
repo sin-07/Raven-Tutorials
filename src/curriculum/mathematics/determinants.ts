@@ -25,8 +25,8 @@ export const determinants: CurriculumTopic_determinants = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-01-25',
-  revisionNumber: 106,
+  lastReviewed: '2026-06-14',
+  revisionNumber: 246,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Determinants: Minors, Cofactors, and Inverses',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
