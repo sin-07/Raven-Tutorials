@@ -25,8 +25,8 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
   standard: 12,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-12',
-  revisionNumber: 152,
+  lastReviewed: '2026-06-15',
+  revisionNumber: 247,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Biot-Savart Law and Ampere Circuital Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
