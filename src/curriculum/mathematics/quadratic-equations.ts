@@ -25,7 +25,8 @@ export interface CurriculumTopic_quadratic_equations {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const quadratic_equations: CurriculumTopic_quadratic_equations = {
@@ -73,6 +74,14 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
     }
   ],
   lastReviewed: '2026-03-28',
+  revisionNumber: 297
+  recommendedResources: [
+    'NCERT Exemplar Class 10 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-06-17',
   revisionNumber: 297
 };
 
