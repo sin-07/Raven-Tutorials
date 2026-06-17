@@ -19,6 +19,11 @@ export interface CurriculumTopic_polynomials {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const polynomials: CurriculumTopic_polynomials = {
@@ -42,6 +47,20 @@ export const polynomials: CurriculumTopic_polynomials = {
   ],
   recommendedHours: 12,
   sampleProblemCount: 40
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Polynomials & Geometric Meaning of Zeroes',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-17',
+  revisionNumber: 287
 };
 
 export default polynomials;
