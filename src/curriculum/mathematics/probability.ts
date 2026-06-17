@@ -19,6 +19,7 @@ export interface CurriculumTopic_probability {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const probability: CurriculumTopic_probability = {
@@ -42,6 +43,14 @@ export const probability: CurriculumTopic_probability = {
   ],
   recommendedHours: 9,
   sampleProblemCount: 30
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Classical Definition of Probability & Event Spaces',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-06-17',
+  revisionNumber: 332
 };
 
 export default probability;
