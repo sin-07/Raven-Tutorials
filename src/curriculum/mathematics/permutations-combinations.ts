@@ -23,7 +23,13 @@ export interface CurriculumTopic_permutations_combinations {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const permutations_combinations: CurriculumTopic_permutations_combinations = {
@@ -60,6 +66,14 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
     }
   ],
   lastReviewed: '2026-03-23',
+  revisionNumber: 357
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-17',
   revisionNumber: 357
 };
 
