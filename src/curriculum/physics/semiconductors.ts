@@ -55,8 +55,8 @@ export const semiconductors: CurriculumTopic_semiconductors = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-26',
-  revisionNumber: 289,
+  lastReviewed: '2026-06-20',
+  revisionNumber: 290,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for P-N Junction Diode, Rectifiers, and Logic Gates',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -66,7 +66,8 @@ export const semiconductors: CurriculumTopic_semiconductors = {
     'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #8 for competitive examinations',
     'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #20 for competitive examinations',
     'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #8 for competitive examinations',
-    'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #20 for competitive examinations'
+    'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #20 for competitive examinations',
+    'Demonstrate advanced competency in P-N Junction Diode, Rectifiers, and Logic Gates module section #8 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
