@@ -23,7 +23,13 @@ export interface CurriculumTopic_sets_and_relations {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const sets_and_relations: CurriculumTopic_sets_and_relations = {
@@ -60,6 +66,14 @@ export const sets_and_relations: CurriculumTopic_sets_and_relations = {
     }
   ],
   lastReviewed: '2026-03-28',
+  revisionNumber: 337
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-22',
   revisionNumber: 337
 };
 
