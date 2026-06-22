@@ -20,6 +20,11 @@ export interface CurriculumTopic_statistics {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const statistics: CurriculumTopic_statistics = {
@@ -50,6 +55,20 @@ export const statistics: CurriculumTopic_statistics = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-03-28',
+  revisionNumber: 327
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Statistics: Mean, Median, and Mode of Grouped Data',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-22',
   revisionNumber: 327
 };
 
