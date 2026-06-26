@@ -55,8 +55,8 @@ export const biomolecules: CurriculumTopic_biomolecules = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-02',
-  revisionNumber: 346,
+  lastReviewed: '2026-06-26',
+  revisionNumber: 347,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Carbohydrates, Amino Acids, and Peptide Structures',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -76,7 +76,8 @@ export const biomolecules: CurriculumTopic_biomolecules = {
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #4',
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #16',
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #4',
-    'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #16'
+    'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #16',
+    'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #4'
   ]
   practiceQuestions: [
     {
