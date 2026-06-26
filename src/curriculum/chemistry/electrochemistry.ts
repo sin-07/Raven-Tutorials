@@ -55,8 +55,8 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-02',
-  revisionNumber: 306,
+  lastReviewed: '2026-06-26',
+  revisionNumber: 307,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nernst Equation and Kohlrausch Conductivity Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -76,7 +76,8 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #10',
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #22',
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #10',
-    'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #22'
+    'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #22',
+    'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #10'
   ]
   practiceQuestions: [
     {
