@@ -55,8 +55,8 @@ export const reading_comprehension: CurriculumTopic_reading_comprehension = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-08',
-  revisionNumber: 352,
+  lastReviewed: '2026-06-26',
+  revisionNumber: 353,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Advanced Reading Comprehension Strategy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -76,7 +76,8 @@ export const reading_comprehension: CurriculumTopic_reading_comprehension = {
     'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #23',
-    'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #11'
+    'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #11',
+    'Verify complete mastery of Advanced Reading Comprehension Strategy conceptual derivations and NCERT practice set #23'
   ]
 };
 
