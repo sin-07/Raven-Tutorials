@@ -19,6 +19,11 @@ export interface CurriculumTopic_trigonometry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const trigonometry: CurriculumTopic_trigonometry = {
@@ -42,6 +47,20 @@ export const trigonometry: CurriculumTopic_trigonometry = {
   ],
   recommendedHours: 18,
   sampleProblemCount: 60
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Introduction to Trigonometry & Trigonometric Ratios',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-06-27',
+  revisionNumber: 317
 };
 
 export default trigonometry;
