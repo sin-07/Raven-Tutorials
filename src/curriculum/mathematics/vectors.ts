@@ -19,6 +19,7 @@ export interface CurriculumTopic_vectors {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const vectors: CurriculumTopic_vectors = {
@@ -42,6 +43,14 @@ export const vectors: CurriculumTopic_vectors = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Vectors: Dot Product and Cross Product Operations',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-06-27',
+  revisionNumber: 272
 };
 
 export default vectors;
