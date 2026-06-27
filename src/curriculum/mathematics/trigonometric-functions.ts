@@ -23,7 +23,13 @@ export interface CurriculumTopic_trigonometric_functions {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const trigonometric_functions: CurriculumTopic_trigonometric_functions = {
@@ -60,6 +66,14 @@ export const trigonometric_functions: CurriculumTopic_trigonometric_functions = 
     }
   ],
   lastReviewed: '2026-04-02',
+  revisionNumber: 342
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-06-27',
   revisionNumber: 342
 };
 
