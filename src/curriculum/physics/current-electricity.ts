@@ -20,6 +20,11 @@ export interface CurriculumTopic_current_electricity {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const current_electricity: CurriculumTopic_current_electricity = {
@@ -50,6 +55,20 @@ export const current_electricity: CurriculumTopic_current_electricity = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-04-07',
+  revisionNumber: 338
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-07-02',
   revisionNumber: 338
 };
 
