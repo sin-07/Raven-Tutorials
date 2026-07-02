@@ -25,8 +25,8 @@ export const neural_control: CurriculumTopic_neural_control = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-03',
-  revisionNumber: 204,
+  lastReviewed: '2026-07-02',
+  revisionNumber: 264,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nerve Impulse Propagation and Synaptic Action',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
