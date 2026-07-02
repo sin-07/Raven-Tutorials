@@ -55,8 +55,8 @@ export const matrices: CurriculumTopic_matrices = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-14',
-  revisionNumber: 249,
+  lastReviewed: '2026-07-02',
+  revisionNumber: 250,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Matrices: Operations and Symmetric Matrices',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -76,7 +76,8 @@ export const matrices: CurriculumTopic_matrices = {
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #16',
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #4',
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #16',
-    'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #4'
+    'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #4',
+    'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #16'
   ]
   practiceQuestions: [
     {
