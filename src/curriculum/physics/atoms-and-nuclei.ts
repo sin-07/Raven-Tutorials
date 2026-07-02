@@ -24,7 +24,14 @@ export interface CurriculumTopic_atoms_and_nuclei {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
@@ -55,6 +62,31 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
     practicalMarks: 3
   },
   lastReviewed: '2026-04-07',
+  revisionNumber: 278
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Bohr Model, Rydberg Formula, and Nuclear Binding Energy.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Bohr Model, Rydberg Formula, and Nuclear Binding Energy under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Bohr Model, Rydberg Formula, and Nuclear Binding Energy.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-07-02',
   revisionNumber: 278
 };
 
