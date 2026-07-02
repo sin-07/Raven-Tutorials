@@ -23,7 +23,13 @@ export interface CurriculumTopic_capacitance {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const capacitance: CurriculumTopic_capacitance = {
@@ -60,6 +66,14 @@ export const capacitance: CurriculumTopic_capacitance = {
     }
   ],
   lastReviewed: '2026-04-07',
+  revisionNumber: 333
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-02',
   revisionNumber: 333
 };
 
