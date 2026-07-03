@@ -269,3 +269,4 @@ routeConfigs.push({ path: '/courses/2026-06-29/modules', prefetch: true, cacheTt
 routeConfigs.push({ path: '/courses/2026-06-30/modules', prefetch: true, cacheTtl: 4442 });
 routeConfigs.push({ path: '/courses/2026-07-01/modules', prefetch: true, cacheTtl: 4494 });
 routeConfigs.push({ path: '/courses/2026-07-02/modules', prefetch: true, cacheTtl: 4546 });
+routeConfigs.push({ path: '/courses/2026-07-03/modules', prefetch: true, cacheTtl: 4598 });
