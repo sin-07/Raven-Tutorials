@@ -25,8 +25,8 @@ export const differential_equations: CurriculumTopic_differential_equations = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-14',
-  revisionNumber: 126,
+  lastReviewed: '2026-07-04',
+  revisionNumber: 266,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Differential Equations & Separation of Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
