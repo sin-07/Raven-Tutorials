@@ -20,6 +20,7 @@ export interface CurriculumTopic_magnetic_effects {
   recommendedHours: number;
   sampleProblemCount: number;
   recommendedResources?: string[];
+  commonPitfalls?: string[];
 }
 
 export const magnetic_effects: CurriculumTopic_magnetic_effects = {
@@ -50,6 +51,14 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
     'Interactive 3D Visual Concept Simulation Modules'
   ],
   lastReviewed: '2026-04-12',
+  revisionNumber: 343
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Biot-Savart Law and Ampere Circuital Law',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-07-06',
   revisionNumber: 343
 };
 
