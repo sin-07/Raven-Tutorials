@@ -23,7 +23,13 @@ export interface CurriculumTopic_gravitation {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const gravitation: CurriculumTopic_gravitation = {
@@ -60,6 +66,14 @@ export const gravitation: CurriculumTopic_gravitation = {
     }
   ],
   lastReviewed: '2026-04-12',
+  revisionNumber: 308
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-06',
   revisionNumber: 308
 };
 
