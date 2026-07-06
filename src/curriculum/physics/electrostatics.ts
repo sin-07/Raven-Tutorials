@@ -24,7 +24,14 @@ export interface CurriculumTopic_electrostatics {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const electrostatics: CurriculumTopic_electrostatics = {
@@ -55,6 +62,31 @@ export const electrostatics: CurriculumTopic_electrostatics = {
     practicalMarks: 3
   },
   lastReviewed: '2026-04-12',
+  revisionNumber: 328
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Coulomb Law, Electric Field Lines, and Gauss Law.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Coulomb Law, Electric Field Lines, and Gauss Law under standard Class 12 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Coulomb Law, Electric Field Lines, and Gauss Law.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-07-06',
   revisionNumber: 328
 };
 
