@@ -26,7 +26,8 @@ export interface CurriculumTopic_motion_in_straight_line {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = {
@@ -82,6 +83,14 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
     }
   ],
   lastReviewed: '2026-04-17',
+  revisionNumber: 288
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-07-06',
   revisionNumber: 288
 };
 
