@@ -55,8 +55,8 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-20',
-  revisionNumber: 320,
+  lastReviewed: '2026-07-07',
+  revisionNumber: 321,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Laws of Thermodynamics and Carnot Engine',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
     'Rule 24: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine',
     'Rule 12: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine',
     'Rule 24: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine',
-    'Rule 12: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine'
+    'Rule 12: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine',
+    'Rule 24: Standard dimensional and algebraic validation principles for Laws of Thermodynamics and Carnot Engine'
   ],
   recommendedHours: 17,
   sampleProblemCount: 55,
