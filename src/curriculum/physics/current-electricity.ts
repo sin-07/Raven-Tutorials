@@ -55,8 +55,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-14',
-  revisionNumber: 345,
+  lastReviewed: '2026-07-07',
+  revisionNumber: 346,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -72,7 +72,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
     'Rule 12: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Rule 24: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Rule 12: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
-    'Rule 24: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge'
+    'Rule 24: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
+    'Rule 12: Standard dimensional and algebraic validation principles for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge'
   ],
   recommendedHours: 21,
   sampleProblemCount: 70,
