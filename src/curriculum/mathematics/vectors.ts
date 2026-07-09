@@ -25,8 +25,8 @@ export const vectors: CurriculumTopic_vectors = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-19',
-  revisionNumber: 131,
+  lastReviewed: '2026-07-09',
+  revisionNumber: 271,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Vectors: Dot Product and Cross Product Operations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
