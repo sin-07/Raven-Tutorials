@@ -23,7 +23,8 @@ export interface CurriculumTopic_waves {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    revisionChecklist?: string[];
+}>;
 }
 
 export const waves: CurriculumTopic_waves = {
@@ -60,6 +61,14 @@ export const waves: CurriculumTopic_waves = {
     }
   ],
   lastReviewed: '2026-04-22',
+  revisionNumber: 323
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ],
+  lastReviewed: '2026-07-10',
   revisionNumber: 323
 };
 
