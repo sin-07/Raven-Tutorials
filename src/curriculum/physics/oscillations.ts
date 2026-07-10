@@ -25,7 +25,14 @@ export interface CurriculumTopic_oscillations {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+};
 }
 
 export const oscillations: CurriculumTopic_oscillations = {
@@ -64,6 +71,31 @@ export const oscillations: CurriculumTopic_oscillations = {
     practicalMarks: 3
   },
   lastReviewed: '2026-04-17',
+  revisionNumber: 318
+  practiceQuestions: [
+    {
+      id: 'pq-1',
+      question: 'Explain the fundamental theorem and underlying physical/mathematical model of Simple Harmonic Motion and Spring Pendulum.',
+      difficulty: 'easy',
+      marks: 2,
+      hint: 'Recall core definitions and standard boundary conditions.'
+    },
+    {
+      id: 'pq-2',
+      question: 'Derive the analytical expression for Simple Harmonic Motion and Spring Pendulum under standard Class 11 test scenarios.',
+      difficulty: 'medium',
+      marks: 3,
+      hint: 'Apply step-by-step mathematical substitution.'
+    },
+    {
+      id: 'pq-3',
+      question: 'Evaluate an edge-case problem involving composite systems in Simple Harmonic Motion and Spring Pendulum.',
+      difficulty: 'hard',
+      marks: 5,
+      hint: 'Check conservation laws and symmetry properties.'
+    }
+  ],
+  lastReviewed: '2026-07-10',
   revisionNumber: 318
 };
 
