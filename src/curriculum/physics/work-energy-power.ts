@@ -20,6 +20,11 @@ export interface CurriculumTopic_work_energy_power {
   recommendedHours: number;
   sampleProblemCount: number;
   commonPitfalls?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const work_energy_power: CurriculumTopic_work_energy_power = {
@@ -50,6 +55,15 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-04-22',
+  revisionNumber: 298
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Work-Energy Theorem and Elastic Collisions',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ],
+  lastReviewed: '2026-07-10',
   revisionNumber: 298
 };
 
