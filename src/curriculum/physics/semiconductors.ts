@@ -19,6 +19,7 @@ export interface CurriculumTopic_semiconductors {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  commonPitfalls?: string[];
 }
 
 export const semiconductors: CurriculumTopic_semiconductors = {
@@ -42,6 +43,14 @@ export const semiconductors: CurriculumTopic_semiconductors = {
   ],
   recommendedHours: 15,
   sampleProblemCount: 50
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in P-N Junction Diode, Rectifiers, and Logic Gates',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-07-10',
+  revisionNumber: 283
 };
 
 export default semiconductors;
