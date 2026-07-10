@@ -25,8 +25,8 @@ export const dual_nature: CurriculumTopic_dual_nature = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-06',
-  revisionNumber: 177,
+  lastReviewed: '2026-07-10',
+  revisionNumber: 272,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Photoelectric Effect and De Broglie Hypothesis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
