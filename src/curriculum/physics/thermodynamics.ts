@@ -25,7 +25,8 @@ export interface CurriculumTopic_thermodynamics {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 }
 
 export const thermodynamics: CurriculumTopic_thermodynamics = {
@@ -73,6 +74,14 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
     }
   ],
   lastReviewed: '2026-04-22',
+  revisionNumber: 313
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-07-10',
   revisionNumber: 313
 };
 
