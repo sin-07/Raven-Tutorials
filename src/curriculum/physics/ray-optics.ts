@@ -27,7 +27,13 @@ export interface CurriculumTopic_ray_optics {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }>;
 }
 
@@ -74,6 +80,14 @@ export const ray_optics: CurriculumTopic_ray_optics = {
     }
   ],
   lastReviewed: '2026-04-17',
+  revisionNumber: 358
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-10',
   revisionNumber: 358
 };
 
