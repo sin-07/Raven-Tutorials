@@ -19,6 +19,11 @@ export interface CurriculumTopic_rotational_motion {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const rotational_motion: CurriculumTopic_rotational_motion = {
@@ -42,6 +47,20 @@ export const rotational_motion: CurriculumTopic_rotational_motion = {
   ],
   recommendedHours: 21,
   sampleProblemCount: 70
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Center of Mass and Moment of Inertia Theorems',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-07-10',
+  revisionNumber: 303
 };
 
 export default rotational_motion;
