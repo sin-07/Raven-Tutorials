@@ -24,7 +24,8 @@ export interface CurriculumTopic_wave_optics {
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
-  };
+    realWorldApplications?: string[];
+};
 }
 
 export const wave_optics: CurriculumTopic_wave_optics = {
@@ -55,6 +56,14 @@ export const wave_optics: CurriculumTopic_wave_optics = {
     practicalMarks: 3
   },
   lastReviewed: '2026-04-22',
+  revisionNumber: 363
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  lastReviewed: '2026-07-10',
   revisionNumber: 363
 };
 
