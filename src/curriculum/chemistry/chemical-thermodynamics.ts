@@ -25,8 +25,8 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-17',
-  revisionNumber: 188,
+  lastReviewed: '2026-07-11',
+  revisionNumber: 273,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Enthalpy, Entropy, and Gibbs Free Energy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
