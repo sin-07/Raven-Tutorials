@@ -55,8 +55,8 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-26',
-  revisionNumber: 322,
+  lastReviewed: '2026-07-12',
+  revisionNumber: 323,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordination Chemistry, Ligands, and Isomerism',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -68,7 +68,8 @@ export const coordination_compounds: CurriculumTopic_coordination_compounds = {
     'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #20 for competitive examinations',
     'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #8 for competitive examinations',
     'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #20 for competitive examinations',
-    'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #8 for competitive examinations'
+    'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #8 for competitive examinations',
+    'Demonstrate advanced competency in Coordination Chemistry, Ligands, and Isomerism module section #20 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
