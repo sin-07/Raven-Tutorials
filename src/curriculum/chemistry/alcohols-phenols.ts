@@ -55,8 +55,8 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-26',
-  revisionNumber: 332,
+  lastReviewed: '2026-07-12',
+  revisionNumber: 333,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Alcohols, Phenols, and Ethers Reactions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -122,6 +122,13 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
     {
       id: 'pq-4',
       question: 'Analyze the institutional exam problem scenario #1 regarding Alcohols, Phenols, and Ethers Reactions under Class 12 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-16',
+      question: 'Analyze the institutional exam problem scenario #13 regarding Alcohols, Phenols, and Ethers Reactions under Class 12 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
