@@ -25,8 +25,8 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-02-24',
-  revisionNumber: 136,
+  lastReviewed: '2026-07-14',
+  revisionNumber: 276,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Three-Dimensional Geometry: Direction Ratios & Planes',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
