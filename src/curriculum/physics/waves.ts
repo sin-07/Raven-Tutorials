@@ -24,6 +24,12 @@ export interface CurriculumTopic_waves {
     steps: string[];
     concludingEquation: string;
     revisionChecklist?: string[];
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
 }>;
 }
 
@@ -69,6 +75,14 @@ export const waves: CurriculumTopic_waves = {
     'Review mistake notebook and re-derive weak concepts'
   ],
   lastReviewed: '2026-07-10',
+  revisionNumber: 323
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-15',
   revisionNumber: 323
 };
 
