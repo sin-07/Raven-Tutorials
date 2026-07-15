@@ -24,7 +24,12 @@ export interface CurriculumTopic_work_energy_power {
     title: string;
     apparatus: string[];
     objective: string;
+    conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
   }>;
+}>;
 }
 
 export const work_energy_power: CurriculumTopic_work_energy_power = {
@@ -64,6 +69,20 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
     }
   ],
   lastReviewed: '2026-07-10',
+  revisionNumber: 298
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Work-Energy Theorem and Elastic Collisions',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-07-15',
   revisionNumber: 298
 };
 
