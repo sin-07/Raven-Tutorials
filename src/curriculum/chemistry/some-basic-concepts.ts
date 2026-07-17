@@ -55,8 +55,8 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-26',
-  revisionNumber: 352,
+  lastReviewed: '2026-07-17',
+  revisionNumber: 353,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Mole Concept and Stoichiometric Calculations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -77,7 +77,8 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #4',
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #16',
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #4',
-    'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #16'
+    'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #16',
+    'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #4'
   ]
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
