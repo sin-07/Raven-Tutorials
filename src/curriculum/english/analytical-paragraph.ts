@@ -55,8 +55,8 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-26',
-  revisionNumber: 349,
+  lastReviewed: '2026-07-17',
+  revisionNumber: 350,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Data Interpretation and Analytical Composition',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -143,6 +143,13 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
     {
       id: 'pq-22',
       question: 'Analyze the institutional exam problem scenario #19 regarding Data Interpretation and Analytical Composition under Class 10 syllabus criteria.',
+      difficulty: 'hard',
+      marks: 2,
+      hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
+    },
+    {
+      id: 'pq-10',
+      question: 'Analyze the institutional exam problem scenario #7 regarding Data Interpretation and Analytical Composition under Class 10 syllabus criteria.',
       difficulty: 'hard',
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
