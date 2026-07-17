@@ -55,8 +55,8 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-26',
-  revisionNumber: 334,
+  lastReviewed: '2026-07-17',
+  revisionNumber: 335,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Active and Passive Voice Syntactic Rules',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -87,7 +87,8 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Active and Passive Voice Syntactic Rules',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Active and Passive Voice Syntactic Rules',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Active and Passive Voice Syntactic Rules',
-    'Raven Tutorials Advanced Problem Vault - Volume 18 for Active and Passive Voice Syntactic Rules'
+    'Raven Tutorials Advanced Problem Vault - Volume 18 for Active and Passive Voice Syntactic Rules',
+    'Raven Tutorials Advanced Problem Vault - Volume 6 for Active and Passive Voice Syntactic Rules'
   ]
 };
 
