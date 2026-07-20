@@ -25,8 +25,8 @@ export const semiconductors: CurriculumTopic_semiconductors = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-16',
-  revisionNumber: 187,
+  lastReviewed: '2026-07-20',
+  revisionNumber: 282,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for P-N Junction Diode, Rectifiers, and Logic Gates',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
