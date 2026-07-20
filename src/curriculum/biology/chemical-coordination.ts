@@ -25,7 +25,8 @@ export interface CurriculumTopic_chemical_coordination {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    commonPitfalls?: string[];
+}>;
 }
 
 export const chemical_coordination: CurriculumTopic_chemical_coordination = {
@@ -73,6 +74,14 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
     }
   ],
   lastReviewed: '2026-02-08',
+  revisionNumber: 330
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Endocrine System and Hormonal Regulation',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  lastReviewed: '2026-07-20',
   revisionNumber: 330
 };
 
