@@ -30,7 +30,8 @@ export interface CurriculumTopic_ecosystems {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-  }>;
+    recommendedResources?: string[];
+}>;
 };
 }
 
@@ -87,6 +88,14 @@ export const ecosystems: CurriculumTopic_ecosystems = {
     }
   ],
   lastReviewed: '2026-05-02',
+  revisionNumber: 360
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ],
+  lastReviewed: '2026-07-20',
   revisionNumber: 360
 };
 
