@@ -19,6 +19,11 @@ export interface CurriculumTopic_cellular_respiration {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const cellular_respiration: CurriculumTopic_cellular_respiration = {
@@ -42,6 +47,20 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
   ],
   recommendedHours: 17,
   sampleProblemCount: 55
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Glycolysis, Krebs Cycle, and ATP Synthesis',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-07-20',
+  revisionNumber: 320
 };
 
 export default cellular_respiration;
