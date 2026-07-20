@@ -23,7 +23,13 @@ export interface CurriculumTopic_cell_the_unit_of_life {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
@@ -60,6 +66,14 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
     }
   ],
   lastReviewed: '2026-04-27',
+  revisionNumber: 365
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-20',
   revisionNumber: 365
 };
 
