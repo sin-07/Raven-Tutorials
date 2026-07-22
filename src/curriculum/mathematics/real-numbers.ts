@@ -55,8 +55,8 @@ export const real_numbers: CurriculumTopic_real_numbers = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-02',
-  revisionNumber: 290,
+  lastReviewed: '2026-07-22',
+  revisionNumber: 291,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Real Numbers & Fundamental Theorem of Arithmetic',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -73,7 +73,8 @@ export const real_numbers: CurriculumTopic_real_numbers = {
     'Rule 12: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic',
     'Rule 24: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic',
     'Rule 12: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic',
-    'Rule 24: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic'
+    'Rule 24: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic',
+    'Rule 12: Standard dimensional and algebraic validation principles for Real Numbers & Fundamental Theorem of Arithmetic'
   ],
   recommendedHours: 9,
   sampleProblemCount: 30,
