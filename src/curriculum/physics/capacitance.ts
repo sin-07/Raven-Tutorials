@@ -55,8 +55,8 @@ export const capacitance: CurriculumTopic_capacitance = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-07',
-  revisionNumber: 341,
+  lastReviewed: '2026-07-22',
+  revisionNumber: 342,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Electrostatic Potential and Parallel Plate Capacitors',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -68,7 +68,8 @@ export const capacitance: CurriculumTopic_capacitance = {
     'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #20 for competitive examinations',
     'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #8 for competitive examinations',
     'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #20 for competitive examinations',
-    'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #8 for competitive examinations'
+    'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #8 for competitive examinations',
+    'Demonstrate advanced competency in Electrostatic Potential and Parallel Plate Capacitors module section #20 for competitive examinations'
   ],
   keyFormulaeOrConcepts: [
     'Concept 1: Definition, postulates, and boundary conditions',
