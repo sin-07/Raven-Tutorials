@@ -21,6 +21,11 @@ export interface CurriculumTopic_neural_control {
   sampleProblemCount: number;
   recommendedResources?: string[];
   commonPitfalls?: string[];
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
 }
 
 export const neural_control: CurriculumTopic_neural_control = {
@@ -59,6 +64,20 @@ export const neural_control: CurriculumTopic_neural_control = {
     'Premature approximation prior to final algebraic simplification'
   ],
   lastReviewed: '2026-05-02',
+  revisionNumber: 325
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Nerve Impulse Propagation and Synaptic Action',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ],
+  lastReviewed: '2026-07-25',
   revisionNumber: 325
 };
 
