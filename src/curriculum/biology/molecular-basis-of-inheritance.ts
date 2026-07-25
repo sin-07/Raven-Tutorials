@@ -24,7 +24,13 @@ export interface CurriculumTopic_molecular_basis_of_inheritance {
     topic: string;
     steps: string[];
     concludingEquation: string;
-  }>;
+    examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+}>;
 }
 
 export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_inheritance = {
@@ -69,6 +75,14 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
     }
   ],
   lastReviewed: '2026-05-02',
+  revisionNumber: 335
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  lastReviewed: '2026-07-25',
   revisionNumber: 335
 };
 
