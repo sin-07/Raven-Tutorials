@@ -25,8 +25,8 @@ export const hydrocarbons: CurriculumTopic_hydrocarbons = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-02',
-  revisionNumber: 203,
+  lastReviewed: '2026-07-26',
+  revisionNumber: 288,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Alkanes, Alkenes, Alkynes, and Aromatic Compounds',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
