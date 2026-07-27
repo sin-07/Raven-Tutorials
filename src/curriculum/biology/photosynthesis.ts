@@ -55,8 +55,8 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-12',
-  revisionNumber: 324,
+  lastReviewed: '2026-07-27',
+  revisionNumber: 325,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Light Reactions and Carbon Fixation Mechanisms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -78,7 +78,8 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #23',
-    'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #11'
+    'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #11',
+    'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #23'
   ]
   practiceQuestions: [
     {
