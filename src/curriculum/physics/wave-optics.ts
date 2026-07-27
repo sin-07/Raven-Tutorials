@@ -55,8 +55,8 @@ export const wave_optics: CurriculumTopic_wave_optics = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-07',
-  revisionNumber: 371,
+  lastReviewed: '2026-07-27',
+  revisionNumber: 372,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Huygens Principle and Double Slit Interference',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -77,7 +77,8 @@ export const wave_optics: CurriculumTopic_wave_optics = {
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #10',
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #22',
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #10',
-    'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #22'
+    'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #22',
+    'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #10'
   ]
   practiceQuestions: [
     {
