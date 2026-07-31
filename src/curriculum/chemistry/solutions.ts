@@ -25,8 +25,8 @@ export const solutions: CurriculumTopic_solutions = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-07',
-  revisionNumber: 208,
+  lastReviewed: '2026-07-31',
+  revisionNumber: 293,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Raoult Law and Colligative Properties',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
