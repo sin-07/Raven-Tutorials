@@ -25,8 +25,8 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-01',
-  revisionNumber: 202,
+  lastReviewed: '2026-08-04',
+  revisionNumber: 297,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Work-Energy Theorem and Elastic Collisions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
