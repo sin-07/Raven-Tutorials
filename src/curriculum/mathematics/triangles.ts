@@ -25,8 +25,8 @@ export const triangles: CurriculumTopic_triangles = {
   standard: 10,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-03-26',
-  revisionNumber: 166,
+  lastReviewed: '2026-08-13',
+  revisionNumber: 306,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Triangles & Similarity Criteria',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
