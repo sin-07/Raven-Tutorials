@@ -25,8 +25,8 @@ export const gravitation: CurriculumTopic_gravitation = {
   standard: 11,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-11',
-  revisionNumber: 212,
+  lastReviewed: '2026-08-14',
+  revisionNumber: 307,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Universal Law of Gravitation & Escape Velocity',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
