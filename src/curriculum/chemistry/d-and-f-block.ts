@@ -25,8 +25,8 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-22',
-  revisionNumber: 223,
+  lastReviewed: '2026-08-15',
+  revisionNumber: 308,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transition Metals and Lanthanoid Contraction',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
