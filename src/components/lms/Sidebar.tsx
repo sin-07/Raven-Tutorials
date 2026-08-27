@@ -84,13 +84,16 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-800">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00E5A8] to-[#00B386] flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-black" />
+            <Link href="/" className="flex items-center gap-2.5">
+              <img 
+                src="/logo.png" 
+                alt="RAVEN Logo" 
+                className="h-8 w-8 brightness-0 invert"
+              />
+              <div className="flex items-baseline gap-1 font-outfit">
+                <span className="text-base font-extrabold text-white">RAVEN</span>
+                <span className="text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Tutorials</span>
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-[#00E5A8] to-[#00E5A8] bg-clip-text text-transparent">
-                Raven
-              </span>
             </Link>
             <button 
               onClick={onClose}

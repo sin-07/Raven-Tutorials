@@ -1,13 +1,62 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { BookOpen, GraduationCap, Users, Microscope, FileText, BarChart3, Book, Rocket } from 'lucide-react';
 import Footer from '@/components/Footer';
 import { GlowBackground } from '@/components/ui';
+import {
+  gsap,
+  ScrollTrigger,
+  animateSplitText,
+  scrollFadeUp,
+  scrollStagger,
+  cardTilt,
+} from '@/lib/gsap';
 
 const Services: React.FC = () => {
   const router = useRouter();
+
+  // GSAP refs
+  const pageTitleRef = useRef<HTMLHeadingElement>(null);
+  const heroSubRef = useRef<HTMLParagraphElement>(null);
+  const servicesGridRef = useRef<HTMLDivElement>(null);
+  const detailsSectionRef = useRef<HTMLElement>(null);
+  const classCardsRef = useRef<HTMLDivElement>(null);
+
+  // ── GSAP animations ───────────────────────────────────────────────────────
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Text: page title split-char animation
+    if (pageTitleRef.current) animateSplitText(pageTitleRef.current, 0.2, 0.5);
+
+    // Core: subtitle fade up
+    if (heroSubRef.current) {
+      gsap.fromTo(heroSubRef.current,
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, delay: 0.75, ease: 'power3.out', clearProps: 'all' }
+      );
+    }
+
+    // Scroll + UI: services cards stagger + tilt
+    if (servicesGridRef.current) {
+      const cards = servicesGridRef.current.querySelectorAll('.service-card');
+      scrollStagger(cards, 0.08);
+      cards.forEach((c) => cardTilt(c as HTMLElement));
+    }
+
+    // Scroll: details section
+    if (detailsSectionRef.current) scrollFadeUp(detailsSectionRef.current);
+
+    // Scroll: class cards stagger
+    if (classCardsRef.current) {
+      const cards = classCardsRef.current.querySelectorAll('.class-card');
+      scrollStagger(cards, 0.1);
+    }
+
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+  }, []);
 
   const services = [
     {
@@ -98,9 +147,9 @@ const Services: React.FC = () => {
         <section className="py-16 pt-28">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-5xl font-bold text-white mb-4 font-cinzel">Our Services</h1>
-              <p className="text-xl text-gray-400 font-cinzel">
-                Comprehensive educational programs designed for your success
+              <h1 ref={pageTitleRef} className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 font-outfit tracking-tight">Our Services</h1>
+              <p ref={heroSubRef} className="text-lg sm:text-xl text-gray-300 font-jakarta leading-relaxed">
+                Comprehensive educational programs designed for your academic excellence
               </p>
             </div>
           </div>
@@ -109,20 +158,20 @@ const Services: React.FC = () => {
         {/* Services Grid */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            <div ref={servicesGridRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className={`${colorClasses[service.color]} rounded-xl border-2 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}
+                  className={`service-card ${colorClasses[service.color]} rounded-2xl border-2 p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1`}
                 >
                   <div className="flex flex-col items-center text-center">
                     <div className="mb-4">
                       <service.icon className="w-12 h-12" />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-3 font-cinzel">
+                    <h3 className="text-lg font-bold text-white mb-3 font-outfit">
                       {service.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed font-cinzel">
+                    <p className="text-gray-400 text-sm leading-relaxed font-jakarta">
                       {service.description}
                     </p>
                   </div>
@@ -133,13 +182,13 @@ const Services: React.FC = () => {
         </section>
 
         {/* Class Details Section */}
-        <section className="bg-[#080808] py-20">
+        <section ref={detailsSectionRef} className="bg-[#07080c] py-20 border-t border-white/5">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold text-white mb-6 text-center font-cinzel">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 text-center font-outfit tracking-tight">
                 Class, Batch and Subject Details
               </h2>
-              <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
+              <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12 font-jakarta">
                 Select from our comprehensive Annual Batch for year-round learning or intensive Crash Courses for quick exam preparation
               </p>
 
@@ -166,9 +215,9 @@ const Services: React.FC = () => {
               </div>
 
               {/* School Courses Grid */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <div ref={classCardsRef} className="grid md:grid-cols-2 gap-6">
                 {/* Class XII */}
-                <div className="relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
+                <div className="class-card relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-3">
@@ -231,7 +280,7 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class XI */}
-                <div className="relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
+                <div className="class-card relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-3">
@@ -283,7 +332,7 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class X */}
-                <div className="relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
+                <div className="class-card relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-3">
@@ -354,7 +403,7 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class IX */}
-                <div className="relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
+                <div className="class-card relative overflow-hidden rounded-2xl border border-gray-800 bg-[#111111]/50 backdrop-blur-sm hover:border-[#00E5A8]/50 transition-all duration-300">
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-3">

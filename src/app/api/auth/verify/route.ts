@@ -14,8 +14,9 @@ export async function GET(req: NextRequest) {
     if (!token) {
       return NextResponse.json({
         success: false,
-        message: 'No token provided'
-      }, { status: 401 });
+        authenticated: false,
+        message: 'Not logged in'
+      }, { status: 200 });
     }
 
     // Verify token

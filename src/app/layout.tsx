@@ -1,25 +1,29 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins, Cinzel } from 'next/font/google';
+import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-const poppins = Poppins({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
-});
-
-const cinzel = Cinzel({
+const outfit = Outfit({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-cinzel',
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-jakarta',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -66,6 +70,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   verification: {
     google: 'your-google-verification-code',
   },
@@ -77,8 +86,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} ${cinzel.variable}`}>
-      <body className={`${cinzel.className} antialiased`}>
+    <html lang="en" className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${plusJakarta.className} font-sans antialiased selection:bg-emerald-500 selection:text-white`}>
         <AdminProvider>
           <ClientLayout>
             {children}

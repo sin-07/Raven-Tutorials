@@ -10,6 +10,7 @@ interface Course {
   title: string;
   description: string;
   instructor: string;
+  instructorQualification?: string;
   instructorAvatar?: string;
   duration: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
@@ -31,6 +32,7 @@ interface CourseFormData {
   title: string;
   description: string;
   instructor: string;
+  instructorQualification: string;
   instructorAvatar: string;
   duration: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
@@ -46,6 +48,7 @@ const initialFormData: CourseFormData = {
   title: '',
   description: '',
   instructor: '',
+  instructorQualification: '',
   instructorAvatar: '',
   duration: '',
   level: 'Beginner',
@@ -186,6 +189,7 @@ export default function CoursesPage() {
       title: course.title,
       description: course.description,
       instructor: course.instructor,
+      instructorQualification: course.instructorQualification || '',
       instructorAvatar: course.instructorAvatar || '',
       duration: course.duration,
       level: course.level,
@@ -450,39 +454,52 @@ export default function CoursesPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Avatar</label>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleAvatarUpload}
-                        className="hidden"
-                        id="avatar-upload"
-                      />
-                      <label
-                        htmlFor="avatar-upload"
-                        className="flex items-center gap-2 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 cursor-pointer hover:border-[#00E5A8] transition-colors"
-                      >
-                        <Upload size={16} />
-                        Upload
-                      </label>
-                      {formData.instructorAvatar && (
-                        <>
-                          <img
-                            src={formData.instructorAvatar}
-                            alt="Avatar preview"
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setFormData(prev => ({ ...prev, instructorAvatar: '' }))}
-                            className="text-red-500 hover:text-red-400"
-                          >
-                            <X size={16} />
-                          </button>
-                        </>
-                      )}
-                    </div>
+                    <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Qualification</label>
+                    <input
+                      type="text"
+                      name="instructorQualification"
+                      value={formData.instructorQualification}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
+                      placeholder="e.g., M.Sc Physics, PhD Chemistry"
+                    />
+                  </div>
+                </div>
+
+                {/* Instructor Avatar */}
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Avatar</label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleAvatarUpload}
+                      className="hidden"
+                      id="avatar-upload"
+                    />
+                    <label
+                      htmlFor="avatar-upload"
+                      className="flex items-center gap-2 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 cursor-pointer hover:border-[#00E5A8] transition-colors"
+                    >
+                      <Upload size={16} />
+                      Upload
+                    </label>
+                    {formData.instructorAvatar && (
+                      <>
+                        <img
+                          src={formData.instructorAvatar}
+                          alt="Avatar preview"
+                          className="w-10 h-10 rounded-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, instructorAvatar: '' }))}
+                          className="text-red-500 hover:text-red-400"
+                        >
+                          <X size={16} />
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
 

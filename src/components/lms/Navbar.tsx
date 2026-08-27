@@ -34,13 +34,16 @@ export default function LMSNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 rounded-xl bg-[#00E5A8] flex items-center justify-center shadow-lg shadow-[#00E5A8]/25 group-hover:shadow-[#00E5A8]/40 transition-shadow">
-              <GraduationCap className="w-6 h-6 text-black" />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <img 
+              src="/logo.png" 
+              alt="RAVEN Logo" 
+              className="h-9 w-9 brightness-0 invert group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="flex items-baseline gap-1.5 font-outfit">
+              <span className="text-white font-extrabold text-2xl tracking-tight">RAVEN</span>
+              <span className="text-[#00E5A8] font-bold text-lg tracking-wide uppercase">Tutorials</span>
             </div>
-            <span className="text-xl font-bold text-[#00E5A8]">
-              Raven Tutorials
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

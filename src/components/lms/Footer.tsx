@@ -48,20 +48,20 @@ export default function LMSFooter() {
   return (
     <footer className="bg-[#080808] border-t border-gray-800 text-white">
       {/* Newsletter Section */}
-      <div className="border-b border-gray-800">
+      <div className="border-b border-white/5 bg-[#0a0d14]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white font-cinzel">Stay Updated</h3>
-              <p className="text-gray-400 text-sm sm:text-base font-cinzel">Subscribe to our newsletter for latest courses and updates.</p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white font-outfit">Stay Updated</h3>
+              <p className="text-gray-400 text-sm sm:text-base font-jakarta">Subscribe to our newsletter for latest courses, exam tips, and announcements.</p>
             </div>
             <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
               <input
                 type="email"
-                placeholder="Enter your email"
-                className="w-full sm:flex-1 md:w-80 px-4 py-3 rounded-lg bg-[#111111] border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent text-sm sm:text-base"
+                placeholder="Enter your email address"
+                className="w-full sm:flex-1 md:w-80 px-4 py-3 rounded-full bg-[#111622] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent text-sm font-jakarta"
               />
-              <button className="w-full sm:w-auto px-6 py-3 bg-[#00E5A8] text-black rounded-full font-medium hover:bg-[#00E5A8]/90 hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+              <button className="w-full sm:w-auto px-7 py-3 bg-[#00E5A8] text-black rounded-full font-bold hover:bg-emerald-400 hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm font-outfit shadow-lg shadow-[#00E5A8]/20">
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -75,39 +75,41 @@ export default function LMSFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-[#00E5A8] flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-black" />
+            <Link href="/" className="flex items-center gap-2.5 mb-6 group">
+              <img 
+                src="/logo.png" 
+                alt="RAVEN Logo" 
+                className="h-10 w-10 bg-[#11111c] rounded-full p-1.5 border border-[#00E5A8]/30 brightness-0 invert group-hover:scale-105 transition-transform"
+              />
+              <div className="flex items-baseline gap-1.5 font-outfit">
+                <span className="text-white font-black text-2xl tracking-tight">RAVEN</span>
+                <span className="text-[#00E5A8] font-bold text-base uppercase tracking-wider">Tutorials</span>
               </div>
-              <span className="text-xl font-bold font-cinzel">
-                <span className="text-white">Raven</span>
-                <span className="text-[#00E5A8]"> Tutorials</span>
-              </span>
             </Link>
-            <p className="text-gray-400 mb-6 leading-relaxed font-cinzel">
+            <p className="text-gray-400 mb-6 leading-relaxed font-jakarta text-sm sm:text-base">
               Empowering students to achieve academic excellence through quality education, 
-              expert guidance, and innovative learning solutions.
+              expert guidance, and interactive learning solutions.
             </p>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-gray-400">
-                <MapPin className="w-5 h-5 text-[#00E5A8]" />
-                <span>123 Education Street, Mumbai, India</span>
+            <div className="space-y-3 font-jakarta text-sm">
+              <div className="flex items-center gap-3 text-gray-300">
+                <MapPin className="w-5 h-5 text-[#00E5A8] flex-shrink-0" />
+                <span>Bajrangpuri, Patna - 800007, Bihar</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Phone className="w-5 h-5 text-[#00E5A8]" />
-                <span>+91 98765 43210</span>
+              <div className="flex items-center gap-3 text-gray-300">
+                <Phone className="w-5 h-5 text-[#00E5A8] flex-shrink-0" />
+                <span>+91 8618281816</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Mail className="w-5 h-5 text-[#00E5A8]" />
-                <span>support@raventutorials.com</span>
+              <div className="flex items-center gap-3 text-gray-300">
+                <Mail className="w-5 h-5 text-[#00E5A8] flex-shrink-0" />
+                <span>raventutorials@gmail.com</span>
               </div>
             </div>
           </div>
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Company</h4>
-            <ul className="space-y-3 font-cinzel">
+            <h4 className="text-base font-bold mb-4 text-white font-outfit uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3 font-jakarta text-sm">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -123,8 +125,8 @@ export default function LMSFooter() {
 
           {/* Courses Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Courses</h4>
-            <ul className="space-y-3 font-cinzel">
+            <h4 className="text-base font-bold mb-4 text-white font-outfit uppercase tracking-wider">Courses</h4>
+            <ul className="space-y-3 font-jakarta text-sm">
               {footerLinks.courses.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -140,8 +142,8 @@ export default function LMSFooter() {
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white font-cinzel">Support</h4>
-            <ul className="space-y-3 font-cinzel">
+            <h4 className="text-base font-bold mb-4 text-white font-outfit uppercase tracking-wider">Support</h4>
+            <ul className="space-y-3 font-jakarta text-sm">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link 

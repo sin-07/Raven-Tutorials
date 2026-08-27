@@ -28,18 +28,28 @@ const Loader: React.FC<LoaderProps> = ({
 
   const content = (
     <div className="flex flex-col items-center justify-center gap-4">
-      <div className="relative">
+      <div className="relative flex items-center justify-center">
         {/* Outer ring */}
         <div className={`${sizeClasses[size]} border-4 border-[#00E5A8]/20 rounded-full`}></div>
         {/* Spinning ring */}
         <div className={`absolute inset-0 ${sizeClasses[size]} border-4 border-transparent border-t-[#00E5A8] rounded-full animate-spin`}></div>
-        {/* Center dot */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`${size === 'sm' ? 'w-1.5 h-1.5' : size === 'md' ? 'w-2 h-2' : 'w-3 h-3'} bg-[#00E5A8] rounded-full animate-pulse`}></div>
-        </div>
+        {/* Logo or Center dot */}
+        {size === 'lg' || fullScreen ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Raven Logo" 
+              className="w-8 h-8 object-contain brightness-0 invert animate-pulse" 
+            />
+          </div>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className={`${size === 'sm' ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-[#00E5A8] rounded-full animate-pulse`}></div>
+          </div>
+        )}
       </div>
       {text && (
-        <p className={`text-gray-300 ${textSizes[size]} font-medium animate-pulse`}>
+        <p className={`text-gray-300 ${textSizes[size]} font-jakarta font-medium animate-pulse`}>
           {text}
         </p>
       )}

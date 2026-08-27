@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
-import { Users, FileText, UserPlus, Calendar, TrendingUp, CheckCircle } from 'lucide-react';
+import { Users, FileText, UserPlus, Calendar, TrendingUp, CheckCircle, GraduationCap, Clock, XCircle, Eye } from 'lucide-react';
 import { Loader } from '@/components';
 import useSessionTimeout from '@/hooks/useSessionTimeout';
 
@@ -18,13 +18,28 @@ interface TestData {
   status: string;
 }
 
+interface TeacherAppData {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  subjects: string[];
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+}
+
 interface StatsData {
   stats: {
     totalStudents: number;
     totalTests: number;
     recentAdmissions: number;
+    totalTeacherApplications: number;
+    pendingTeacherApplications: number;
+    approvedTeacherApplications: number;
+    rejectedTeacherApplications: number;
   };
   upcomingTests: TestData[];
+  recentTeacherApplications: TeacherAppData[];
 }
 
 const AdminDashboard: React.FC = () => {
@@ -121,6 +136,134 @@ const AdminDashboard: React.FC = () => {
                 <UserPlus className="text-black" size={20} />
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Teacher Applications Stats */}
+        <div className="bg-[#111111] rounded-xl shadow-xl border border-gray-800 overflow-hidden animate-slide-up">
+          <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 border-b border-gray-800 bg-[#080808]">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="bg-[#00E5A8] p-1.5 sm:p-2 md:p-2.5 rounded-xl shadow-lg flex-shrink-0">
+                  <GraduationCap className="text-black" size={18} />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white truncate">Teacher Applications</h3>
+                  <p className="text-xs sm:text-xs md:text-sm text-gray-400 hidden sm:block font-medium">Recruitment overview</p>
+                </div>
+              </div>
+              <button
+                onClick={() => router.push('/admin/teacher-applications')}
+                className="text-xs sm:text-sm bg-[#00E5A8]/10 hover:bg-[#00E5A8]/20 text-[#00E5A8] font-semibold px-3 py-1.5 rounded-lg transition-colors"
+              >
+                View All
+              </button>
+            </div>
+          </div>
+          <div className="p-3 sm:p-4 md:p-5 lg:p-6">
+            {/* Teacher Stats Mini Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-5 sm:mb-6">
+              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="text-[#00E5A8]" size={16} />
+                  <span className="text-xs text-gray-400 font-medium">Total</span>
+                </div>
+                <p className="text-xl sm:text-2xl font-extrabold text-white">{stats?.stats?.totalTeacherApplications || 0}</p>
+              </div>
+              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <Clock className="text-yellow-400" size={16} />
+                  <span className="text-xs text-gray-400 font-medium">Pending</span>
+                </div>
+                <p className="text-xl sm:text-2xl font-extrabold text-yellow-400">{stats?.stats?.pendingTeacherApplications || 0}</p>
+              </div>
+              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle className="text-green-400" size={16} />
+                  <span className="text-xs text-gray-400 font-medium">Approved</span>
+                </div>
+                <p className="text-xl sm:text-2xl font-extrabold text-green-400">{stats?.stats?.approvedTeacherApplications || 0}</p>
+              </div>
+              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <XCircle className="text-red-400" size={16} />
+                  <span className="text-xs text-gray-400 font-medium">Rejected</span>
+                </div>
+                <p className="text-xl sm:text-2xl font-extrabold text-red-400">{stats?.stats?.rejectedTeacherApplications || 0}</p>
+              </div>
+            </div>
+
+            {/* Recent Teacher Applications Table */}
+            {stats?.recentTeacherApplications && stats.recentTeacherApplications.length > 0 ? (
+              <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
+                <div className="inline-block min-w-full align-middle px-3 sm:px-4 md:px-0">
+                  <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-3">Recent Applications</p>
+                  <table className="min-w-full divide-y divide-gray-800">
+                    <thead className="bg-[#080808] hidden sm:table-header-group">
+                      <tr>
+                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Name</th>
+                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Contact</th>
+                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden md:table-cell">Subjects</th>
+                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Status</th>
+                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden lg:table-cell">Applied</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-[#111111] divide-y divide-gray-800">
+                      {stats.recentTeacherApplications.map((app) => (
+                        <tr key={app._id} className="hover:bg-[#080808]/50 transition-colors block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
+                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
+                            <span className="sm:hidden text-[#00E5A8] font-medium text-xs">Name: </span>
+                            {app.name}
+                          </td>
+                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell">
+                            <span className="sm:hidden text-gray-500 font-normal text-xs">Contact: </span>
+                            <span className="block text-xs text-gray-300">{app.email}</span>
+                            <span className="block text-xs text-gray-500">{app.phone}</span>
+                          </td>
+                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell md:hidden lg:table-cell">
+                            <span className="sm:hidden text-gray-500 font-normal text-xs">Subjects: </span>
+                            <div className="flex flex-wrap gap-1">
+                              {app.subjects.slice(0, 3).map((sub, i) => (
+                                <span key={i} className="inline-block px-1.5 py-0.5 bg-[#00E5A8]/10 text-[#00E5A8] text-xs rounded font-medium">
+                                  {sub}
+                                </span>
+                              ))}
+                              {app.subjects.length > 3 && (
+                                <span className="text-xs text-gray-500">+{app.subjects.length - 3}</span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 block sm:table-cell">
+                            <span className="sm:hidden text-gray-500 font-normal text-xs mr-1">Status: </span>
+                            <span className={`inline-block px-2 sm:px-2 md:px-3 py-1 rounded-full text-xs font-bold shadow-md ${
+                              app.status === 'approved'
+                                ? 'bg-green-500/20 text-green-400'
+                                : app.status === 'rejected'
+                                ? 'bg-red-500/20 text-red-400'
+                                : 'bg-yellow-500/20 text-yellow-400'
+                            }`}>
+                              {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
+                            </span>
+                          </td>
+                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell lg:hidden xl:table-cell">
+                            <span className="sm:hidden text-gray-500 font-normal text-xs">Applied: </span>
+                            {new Date(app.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-8 sm:py-10 md:py-12">
+                <div className="bg-[#080808] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap size={36} className="text-[#00E5A8]" />
+                </div>
+                <p className="text-sm sm:text-base text-white font-semibold">No teacher applications yet</p>
+                <p className="text-xs sm:text-sm text-[#00E5A8] mt-1 font-medium">Applications will appear here when teachers apply</p>
+              </div>
+            )}
           </div>
         </div>
 

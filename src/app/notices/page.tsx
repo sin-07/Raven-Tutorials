@@ -159,14 +159,14 @@ const Notice: React.FC = () => {
           {/* Header */}
           <div className="notice-header mb-8 sm:mb-10 md:mb-12">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="p-3 sm:p-4 bg-[#00E5A8] rounded-xl shadow-lg">
+              <div className="p-3 sm:p-4 bg-[#00E5A8] rounded-2xl shadow-lg shadow-[#00E5A8]/20">
                 <Megaphone size={28} className="text-black" />
               </div>
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-cinzel">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
                   Institute <span className="text-[#00E5A8]">Notices</span>
                 </h1>
-                <p className="text-gray-400 text-sm sm:text-base mt-1 font-cinzel">Important announcements and updates</p>
+                <p className="text-gray-400 text-sm sm:text-base mt-1 font-jakarta">Important announcements, schedules, and official updates</p>
               </div>
             </div>
           </div>
@@ -208,12 +208,12 @@ const Notice: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight font-cinzel">
+                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight font-cormorant">
                       {notice.title}
                     </h3>
 
                     {/* Message Preview */}
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed font-cinzel">
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed font-bricolage">
                       {notice.message}
                     </p>
 

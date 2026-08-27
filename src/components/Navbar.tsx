@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { MapPin, LogIn, User, LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
+import { gsap, magneticHover } from '@/lib/gsap';
 
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +15,11 @@ const Navbar: React.FC = React.memo(() => {
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
 
+  // GSAP refs
+  const navRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
+
   // Check if user is logged in (student) by verifying cookie
   useEffect(() => {
     const checkAuth = async () => {
@@ -21,7 +27,13 @@ const Navbar: React.FC = React.memo(() => {
         const res = await fetch('/api/auth/verify', {
           credentials: 'include'
         });
-        setIsStudentLoggedIn(res.ok);
+        if (res.ok) {
+          const data = await res.json();
+          // authenticated: false means no token (200); success: true + student means valid session
+          setIsStudentLoggedIn(data.success === true && !!data.student);
+        } else {
+          setIsStudentLoggedIn(false);
+        }
       } catch {
         // Silent fail - user is simply not logged in
         setIsStudentLoggedIn(false);
@@ -32,6 +44,39 @@ const Navbar: React.FC = React.memo(() => {
 
   // Check if admin is logged in
   const isAdminLoggedIn = !!admin;
+
+  // ── GSAP: Scroll hide/show + magnetic hover ─────────────────────────────
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const nav = navRef.current;
+    const logo = logoRef.current;
+    if (!nav) return;
+
+    // UI: magnetic hover on logo
+    const cleanupMagnetic = magneticHover(logo, logo, 0.25);
+
+    // Scroll: hide navbar when scrolling down, reveal when up
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 60) {
+        gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: true });
+      } else if (currentY > lastScrollY + 5) {
+        gsap.to(nav, { y: '-110%', duration: 0.4, ease: 'power2.inOut', overwrite: true });
+      } else if (currentY < lastScrollY - 5) {
+        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out', overwrite: true });
+      }
+      lastScrollY = currentY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (cleanupMagnetic) cleanupMagnetic();
+    };
+  }, []);
 
   const navLinks = useMemo(() => [
     { path: '/', label: 'Home' },
@@ -168,19 +213,22 @@ const Navbar: React.FC = React.memo(() => {
           box-shadow: 0 0 12px rgba(0, 229, 168, 0.6), 0 0 20px rgba(0, 229, 168, 0.3);
         }
       `}</style>
-      <nav className="navbar-fixed w-full transition-all duration-300">
+      <nav ref={navRef} className="navbar-fixed w-full transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-[#00E5A8] font-cinzel">
+          <Link ref={logoRef} href="/" className="flex items-center gap-2.5 group">
             <img 
               src="/logo.png" 
               alt="RAVEN Logo" 
-              className="h-10 w-10 brightness-0 invert"
+              className="h-9 w-9 brightness-0 invert group-hover:scale-105 transition-transform duration-300"
             />
-            <span className="text-white">RAVEN</span> <span className="text-[#00E5A8]">Tutorials</span>
+            <div className="flex items-baseline gap-1.5 font-outfit">
+              <span className="text-white font-extrabold text-2xl tracking-tight">RAVEN</span>
+              <span className="text-[#00E5A8] font-bold text-lg tracking-wide uppercase">Tutorials</span>
+            </div>
           </Link>
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 font-cinzel">
+          <div ref={linksRef} className="hidden md:flex items-center space-x-1 font-jakarta">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

@@ -6,6 +6,7 @@ import Admin from '@/models/Admin';
 import Admission from '@/models/Admission';
 import Test from '@/models/Test';
 import Attendance from '@/models/Attendance';
+import TeacherApplication from '@/models/TeacherApplication';
 
 export async function GET(req: NextRequest) {
   try {
@@ -87,8 +88,38 @@ export async function GET(req: NextRequest) {
       return [];
     });
 
+    console.log('🔍 Fetching teacher application stats...');
+    // Get teacher application stats
+    const totalTeacherApplications = await TeacherApplication.countDocuments().catch(err => {
+      console.error('❌ Error counting teacher applications:', err.message);
+      return 0;
+    });
+    const pendingTeacherApplications = await TeacherApplication.countDocuments({ status: 'pending' }).catch(err => {
+      console.error('❌ Error counting pending teacher apps:', err.message);
+      return 0;
+    });
+    const approvedTeacherApplications = await TeacherApplication.countDocuments({ status: 'approved' }).catch(err => {
+      console.error('❌ Error counting approved teacher apps:', err.message);
+      return 0;
+    });
+    const rejectedTeacherApplications = await TeacherApplication.countDocuments({ status: 'rejected' }).catch(err => {
+      console.error('❌ Error counting rejected teacher apps:', err.message);
+      return 0;
+    });
+
+    // Get recent teacher applications (latest 5)
+    const recentTeacherApplications = await TeacherApplication.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select('name email phone subjects status createdAt')
+      .lean()
+      .catch(err => {
+        console.error('❌ Error fetching recent teacher applications:', err.message);
+        return [];
+      });
+
     console.log('✅ Dashboard stats fetched successfully');
-    console.log('📈 Stats:', { totalStudents, totalTests, recentAdmissions, todayAttendance, upcomingTestsCount: upcomingTests.length });
+    console.log('📈 Stats:', { totalStudents, totalTests, recentAdmissions, todayAttendance, upcomingTestsCount: upcomingTests.length, totalTeacherApplications });
 
     return NextResponse.json({
       success: true,
@@ -97,9 +128,14 @@ export async function GET(req: NextRequest) {
           totalStudents,
           totalTests,
           recentAdmissions,
-          todayAttendance
+          todayAttendance,
+          totalTeacherApplications,
+          pendingTeacherApplications,
+          approvedTeacherApplications,
+          rejectedTeacherApplications
         },
-        upcomingTests
+        upcomingTests,
+        recentTeacherApplications
       }
     });
 

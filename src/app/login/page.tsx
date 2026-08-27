@@ -133,11 +133,14 @@ const LoginPage: React.FC = () => {
               {/* Form Header */}
               <div className="text-center mb-6 sm:mb-8">
                 <div className="flex items-center justify-center mb-4">
-                  <img src="/logo.png" alt="Raven Logo" className="w-16 h-16 object-contain brightness-0 invert" />
+                  <div className="p-3 rounded-2xl bg-[#10131c] border border-emerald-500/30 shadow-xl shadow-emerald-500/10">
+                    <img src="/logo.png" alt="Raven Logo" className="w-14 h-14 object-contain brightness-0 invert" />
+                  </div>
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-[#00E5A8] mb-4 font-cinzel">
-                  RAVEN Tutorials
-                </h1>
+                <div className="flex items-baseline justify-center gap-2 font-outfit mb-4">
+                  <span className="text-white font-black text-3xl sm:text-4xl tracking-tight">RAVEN</span>
+                  <span className="text-[#00E5A8] font-bold text-xl sm:text-2xl uppercase tracking-wider">Tutorials</span>
+                </div>
 
                 {/* Toggle Buttons */}
                 <div className="flex bg-[#0b0b0b] rounded-full p-1 border border-gray-800">
@@ -173,7 +176,7 @@ const LoginPage: React.FC = () => {
                 {loginType === 'student' ? (
                   /* Student Email Input */
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300 font-cinzel">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300 font-bricolage">
                       Email Address
                     </label>
                     <div className="relative group">
@@ -193,7 +196,7 @@ const LoginPage: React.FC = () => {
                 ) : (
                   /* Admin Username Input */
                   <div className="space-y-2">
-                    <label htmlFor="username" className="block text-sm font-semibold text-gray-300 font-cinzel">
+                    <label htmlFor="username" className="block text-sm font-semibold text-gray-300 font-bricolage">
                       Username
                     </label>
                     <div className="relative group">

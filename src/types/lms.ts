@@ -19,6 +19,7 @@ export interface Course {
   instructor: {
     id: string;
     name: string;
+    qualification?: string;
     avatar: string;
   };
   category: string;

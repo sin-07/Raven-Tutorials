@@ -214,23 +214,20 @@ const AdminLogin: React.FC = () => {
         )}
 
         <div className="relative z-10 w-full max-w-md px-6">
-          {/* Shield Icon with professional glow */}
-          <div className="flex justify-center mb-8 animate-fade-in-up">
-            <div className="relative">
-              <Shield className="w-24 h-24 text-[#00E5A8] drop-shadow-[0_0_30px_rgba(0,229,168,0.6)]" />
-              <div className="absolute inset-0 w-24 h-24 bg-[#00E5A8] blur-3xl opacity-40 animate-pulse-slow"></div>
+          {/* Logo with professional glow */}
+          <div className="flex justify-center mb-6 animate-fade-in-up">
+            <div className="relative p-3 rounded-2xl bg-[#10131c] border border-[#00E5A8]/30 shadow-2xl shadow-[#00E5A8]/20">
+              <img src="/logo.png" alt="Raven Logo" className="w-16 h-16 object-contain brightness-0 invert" />
+              <div className="absolute inset-0 rounded-2xl bg-[#00E5A8] blur-2xl opacity-20 -z-10"></div>
             </div>
           </div>
 
           {/* Professional Title */}
-          <h1 className="text-5xl font-bold text-center mb-2 bg-gradient-to-r from-[#00E5A8] via-[#00E5A8] to-[#00E5A8] bg-clip-text text-transparent animate-fade-in-up"
-              style={{
-                textShadow: '0 0 40px rgba(0, 229, 168, 0.3)'
-              }}>
-            Admin Portal
+          <h1 className="text-4xl font-extrabold text-center mb-2 font-outfit tracking-tight text-white animate-fade-in-up">
+            Admin <span className="text-[#00E5A8]">Portal</span>
           </h1>
           
-          <p className="text-gray-300 text-center text-sm mb-8 tracking-wide animate-fade-in-up">
+          <p className="text-gray-300 text-center text-sm mb-8 tracking-wide font-jakarta animate-fade-in-up">
             RAVEN Tutorials Management System
           </p>
 

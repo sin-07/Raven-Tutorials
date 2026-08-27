@@ -417,6 +417,21 @@ export default function NotFound() {
       {/* Main Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
         
+        {/* Brand Logo */}
+        <div className={`flex justify-center mb-6 ${isLoaded ? 'entrance-sub' : 'opacity-0'}`}>
+          <Link href="/" className="inline-flex items-center gap-2.5 group p-2.5 px-4 rounded-full bg-white/5 border border-white/10 hover:border-emerald-500/30 backdrop-blur-md transition-all">
+            <img 
+              src="/logo.png" 
+              alt="RAVEN Logo" 
+              className="h-8 w-8 brightness-0 invert group-hover:scale-105 transition-transform" 
+            />
+            <div className="flex items-baseline gap-1 font-outfit">
+              <span className="text-white font-black text-xl tracking-tight">RAVEN</span>
+              <span className="text-[#00E5A8] font-bold text-sm tracking-widest uppercase">Tutorials</span>
+            </div>
+          </Link>
+        </div>
+
         {/* 404 Text */}
         <div 
           className={`text-3d-wrapper mb-8 ${isLoaded ? 'entrance-main' : 'opacity-0'}`}

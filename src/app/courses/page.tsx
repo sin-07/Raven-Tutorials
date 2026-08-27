@@ -215,23 +215,23 @@ export default function CoursesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Explore Our Courses
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-outfit tracking-tight">
+              Explore Our <span className="text-gradient-emerald">Courses</span>
             </h1>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-              Discover 150+ expert-led courses designed to help you achieve academic excellence.
+            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 font-jakarta">
+              Discover 150+ expert-led courses designed to help you achieve competitive and academic excellence.
             </p>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl mx-auto font-jakarta">
               <div className="relative">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-500" />
+                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for courses..."
-                  className="w-full pl-14 pr-6 py-4 rounded-2xl bg-[#111111] border border-gray-800 text-white placeholder-gray-500 shadow-xl focus:outline-none focus:ring-4 focus:ring-[#00E5A8]/30 focus:border-[#00E5A8]"
+                  placeholder="Search for subjects, topics, or classes..."
+                  className="w-full pl-14 pr-6 py-4 rounded-full bg-[#10131c] border border-white/10 text-white placeholder-gray-500 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent text-sm sm:text-base font-jakarta"
                 />
               </div>
             </div>

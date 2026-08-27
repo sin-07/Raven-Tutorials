@@ -4,6 +4,7 @@ export interface ICourse extends Document {
   title: string;
   description: string;
   instructor: string;
+  instructorQualification?: string;
   instructorAvatar?: string;
   duration: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
@@ -35,6 +36,10 @@ const CourseSchema = new Schema<ICourse>(
     instructor: {
       type: String,
       required: [true, 'Instructor name is required'],
+    },
+    instructorQualification: {
+      type: String,
+      default: '',
     },
     instructorAvatar: {
       type: String,

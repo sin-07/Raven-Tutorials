@@ -8,17 +8,29 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // Ensure Cinzel is used for all serif/display font utilities so
-        // existing classes like `font-machina`, `font-juana`, `font-helvetica`,
-        // and `font-display` will render Cinzel without changing every file.
-        cinzel: ['var(--font-cinzel)', 'serif'],
-        machina: ['var(--font-cinzel)', 'serif'],
-        juana: ['var(--font-cinzel)', 'serif'],
-        helvetica: ['var(--font-cinzel)', 'serif'],
-        display: ['var(--font-cinzel)', 'serif'],
-        // Keep monospace and system sans stacks intact
+        // Outfit — Ultra-modern, bold & geometric for headings, titles & hero display
+        outfit: ['var(--font-outfit)', 'sans-serif'],
+        // Plus Jakarta Sans — Crisp, high-readability modern grotesque for body & UI
+        jakarta: ['var(--font-jakarta)', 'sans-serif'],
+        // Space Grotesk — Fancy tech aesthetic for accents, badges, and highlights
+        space: ['var(--font-space)', 'sans-serif'],
+        // Semantic aliases
+        display: ['var(--font-outfit)', 'sans-serif'],
+        heading: ['var(--font-outfit)', 'sans-serif'],
+        body: ['var(--font-jakarta)', 'sans-serif'],
+        brand: ['var(--font-outfit)', 'sans-serif'],
+        accent: ['var(--font-space)', 'sans-serif'],
+        // Fallback aliases so existing code smoothly uses new modern typography
+        cormorant: ['var(--font-outfit)', 'sans-serif'],
+        bricolage: ['var(--font-jakarta)', 'sans-serif'],
+        sacramento: ['var(--font-outfit)', 'sans-serif'],
+        macondo: ['var(--font-space)', 'sans-serif'],
+        cinzel: ['var(--font-outfit)', 'sans-serif'],
+        machina: ['var(--font-space)', 'sans-serif'],
+        juana: ['var(--font-outfit)', 'sans-serif'],
+        helvetica: ['var(--font-jakarta)', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-jakarta)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Deep Black - Primary Dark Theme

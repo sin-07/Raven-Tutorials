@@ -1,13 +1,9 @@
-/* Custom Font Imports - Using Google Fonts alternatives for Neue Machina & Juana */
-/* Syne - Modern geometric display font (alternative to Neue Machina) */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
-/* Space Grotesk - Modern grotesque font (alternative) */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-/* Playfair Display - Elegant serif font (alternative to Juana) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-/* DM Sans - Clean body font */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-/* JetBrains Mono - Code font */
+/* Google Fonts loaded via next/font/google in layout.tsx:
+   - Outfit: Ultra-modern geometric display & headings
+   - Plus Jakarta Sans: High-clarity modern body & UI
+   - Space Grotesk: Sleek tech badges & accents
+   - JetBrains Mono: Code & monospace
+*/
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -21,41 +17,93 @@
 }
 
 body {
-  /* Use Cinzel via CSS variable provided by next/font in layout.tsx */
-  font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply text-white;
-  background: radial-gradient(circle at top, rgba(0,229,168,0.18), #0b0b0b 60%);
-  background-color: #0b0b0b;
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12), transparent 50%),
+              radial-gradient(circle at 100% 20%, rgba(5, 150, 105, 0.08), transparent 40%),
+              #090a0f;
+  background-color: #090a0f;
   background-attachment: fixed;
   min-height: 100vh;
 }
 
-/* Headings - Neue Machina (with Space Grotesk fallback) */
+/* Headings — Outfit for crisp modern punch */
 h1, h2, h3, h4, h5, h6 {
-  /* Headings should render Cinzel (display serif) */
-  font-family: var(--font-cinzel), 'Syne', 'Space Grotesk', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
-/* Hero & Display Text - Extra bold Syne */
+/* Display & Hero Text — Outfit bold/black */
 .font-display {
-  font-family: var(--font-cinzel), 'Syne', 'Space Grotesk', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-/* Elegant Text - Playfair Display */
-.font-elegant {
-  font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
-  font-weight: 400;
+/* Heading Utility */
+.font-heading {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* Body Text - DM Sans */
+/* Body Text — Plus Jakarta Sans */
 .font-body {
-  font-family: var(--font-cinzel), 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+}
+
+/* Brand / Logo — Outfit extra bold with tight tracking */
+.font-brand {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Tech Accent / Badges — Space Grotesk */
+.font-accent {
+  font-family: var(--font-space), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Fallback / Backward Compatibility */
+.font-elegant {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Modern Gradient Text Utilities */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #ffffff 20%, #34d399 70%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(18, 24, 38, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(22, 30, 48, 0.85);
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Code blocks */

@@ -357,13 +357,13 @@ export default function AdmissionSection() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/20 text-[#00E5A8] rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-xs font-space uppercase tracking-wider font-semibold mb-4 border border-[#00E5A8]/20">
               Start Your Journey
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white font-outfit tracking-tight">
               I Want to Learn
             </h2>
-            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta">
               Take the first step towards your academic success. Join Raven Tutorials and unlock your potential with expert guidance.
             </p>
           </motion.div>
@@ -374,43 +374,43 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-6 font-jakarta"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#00E5A8] flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-[#00E5A8] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00E5A8]/20">
+                  <GraduationCap className="w-6 h-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Expert Faculty</h3>
-                  <p className="text-gray-400">Learn from experienced educators who are passionate about teaching.</p>
+                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Expert Faculty</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">Learn from experienced educators who are passionate about teaching.</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-teal-500 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-600/20">
                   <BookOpen className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Comprehensive Curriculum</h3>
-                  <p className="text-gray-400">Well-structured courses covering all subjects with detailed study materials.</p>
+                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Comprehensive Curriculum</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">Well-structured courses covering all subjects with detailed study materials.</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/20">
+                  <Shield className="w-6 h-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Personalized Attention</h3>
-                  <p className="text-gray-400">Small batch sizes ensure every student gets individual attention.</p>
+                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Personalized Attention</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">Small batch sizes ensure every student gets individual attention.</p>
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 font-outfit">
                 <p className="text-2xl font-bold text-white">
                   Admission Fee: <span className="text-[#00E5A8]">₹1,000</span>
                 </p>
-                <p className="text-gray-500 text-sm mt-1">One-time registration fee</p>
+                <p className="text-gray-400 text-xs font-jakarta mt-1">One-time registration fee</p>
               </div>
             </motion.div>
 
@@ -419,14 +419,14 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#111111] rounded-2xl shadow-xl p-8 border border-gray-800"
+              className="bg-[#10131c] rounded-2xl shadow-2xl p-8 border border-white/5 font-jakarta"
             >
               <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-[#00E5A8]/20 flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 rounded-full bg-[#00E5A8]/10 border border-[#00E5A8]/20 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#00E5A8]/10">
                   <GraduationCap className="w-10 h-10 text-[#00E5A8]" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Ready to Join?</h3>
-                <p className="text-gray-400 mb-8">
+                <h3 className="text-2xl font-bold text-white mb-4 font-outfit">Ready to Join?</h3>
+                <p className="text-gray-400 mb-8 font-jakarta text-sm sm:text-base">
                   Complete our simple admission process and start your learning journey today.
                 </p>
                 

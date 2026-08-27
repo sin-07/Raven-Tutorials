@@ -20,6 +20,7 @@ export async function GET() {
       instructor: {
         id: course._id.toString(),
         name: course.instructor,
+        qualification: course.instructorQualification || '',
         avatar: course.instructorAvatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
       },
       category: course.category,

@@ -1,10 +1,49 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Clock, Award, Shield, Heart } from 'lucide-react';
+import { gsap, ScrollTrigger, scrollStagger, scrollFadeUp } from '@/lib/gsap';
 
 const Footer: React.FC = React.memo(() => {
+  const footerRef = useRef<HTMLElement>(null);
+  const brandRef = useRef<HTMLDivElement>(null);
+  const quickLinksRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Scroll: reveal each footer column with stagger
+    const columns = [brandRef.current, quickLinksRef.current, contactRef.current, featuresRef.current].filter(Boolean) as Element[];
+    if (columns.length) {
+      gsap.fromTo(columns,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'all',
+          scrollTrigger: { trigger: footerRef.current, start: 'top 90%', toggleActions: 'play none none none' },
+        }
+      );
+    }
+
+    // Scroll: bottom bar fade up
+    if (bottomRef.current) {
+      scrollFadeUp(bottomRef.current, { start: 'top 98%' });
+    }
+
+    // Scroll: stagger links inside quick links
+    if (quickLinksRef.current) {
+      const links = quickLinksRef.current.querySelectorAll('a');
+      scrollStagger(links, 0.06, { start: 'top 90%' } as any);
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
   const currentYear = new Date().getFullYear();
 
   const contactInfo = [
@@ -35,24 +74,24 @@ const Footer: React.FC = React.memo(() => {
   ];
 
   return (
-    <footer className="bg-[#080808] border-t border-gray-800 text-white mt-auto">
+    <footer ref={footerRef} className="bg-[#080808] border-t border-gray-800 text-white mt-auto">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
+          <div ref={brandRef} className="space-y-4">
+            <div className="flex items-center gap-2.5">
               <img 
                 src="/logo.png" 
                 alt="RAVEN Logo" 
-                className="h-10 w-10 bg-[#111111] rounded-full p-1 border border-[#00E5A8]/30 brightness-0 invert"
+                className="h-10 w-10 bg-[#11111c] rounded-full p-1.5 border border-[#00E5A8]/30 brightness-0 invert"
               />
-              <span className="text-2xl font-bold">
-                <span className="text-white">RAVEN</span>
-                <span className="text-[#00E5A8]"> Tutorials</span>
-              </span>
+              <div className="flex items-baseline gap-1 font-outfit">
+                <span className="text-white font-black text-2xl tracking-tight">RAVEN</span>
+                <span className="text-[#00E5A8] font-bold text-sm tracking-widest uppercase">Tutorials</span>
+              </div>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm font-jakarta leading-relaxed">
               Empowering students with quality education and personalized attention for academic excellence.
             </p>
             <div className="flex space-x-4">
@@ -70,7 +109,7 @@ const Footer: React.FC = React.memo(() => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div ref={quickLinksRef}>
             <h3 className="text-lg font-semibold mb-4 border-b border-gray-800 pb-2 text-white">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
@@ -88,7 +127,7 @@ const Footer: React.FC = React.memo(() => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div ref={contactRef}>
             <h3 className="text-lg font-semibold mb-4 border-b border-gray-800 pb-2 text-white">Contact Us</h3>
             <ul className="space-y-3">
               {contactInfo.map((info, index) => (
@@ -101,7 +140,7 @@ const Footer: React.FC = React.memo(() => {
           </div>
 
           {/* Features */}
-          <div>
+          <div ref={featuresRef}>
             <h3 className="text-lg font-semibold mb-4 border-b border-gray-800 pb-2 text-white">Why Choose Us</h3>
             <ul className="space-y-3">
               {features.map((feature, index) => (
@@ -118,7 +157,7 @@ const Footer: React.FC = React.memo(() => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div ref={bottomRef} className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
             <p>© {currentYear} RAVEN Tutorials. All rights reserved.</p>
