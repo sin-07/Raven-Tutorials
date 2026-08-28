@@ -14,7 +14,6 @@ import {
   AlertCircle,
   Loader2
 } from 'lucide-react';
-import { GlowBackground } from '@/components/ui';
 
 /**
  * Teacher Admission Page
@@ -121,8 +120,7 @@ export default function TeacherAdmissionPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center px-4">
-        <GlowBackground />
+      <div className="min-h-screen bg-transparent flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -147,9 +145,7 @@ export default function TeacherAdmissionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4">
-      <GlowBackground />
-      
+    <div className="min-h-screen bg-transparent py-12 px-4">
       <div className="max-w-2xl mx-auto relative z-10">
         {/* Header */}
         <motion.div

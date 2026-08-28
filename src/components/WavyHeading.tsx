@@ -10,6 +10,7 @@ interface WavyHeadingProps {
   gradientClassName?: string;
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4';
+  continuous?: boolean;
 }
 
 export default function WavyHeading({

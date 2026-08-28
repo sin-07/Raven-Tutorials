@@ -11,7 +11,6 @@ import {
   AlertCircle,
   Loader2
 } from 'lucide-react';
-import { GlowBackground } from '@/components/ui';
 
 /**
  * Application Status Check Page
@@ -95,9 +94,7 @@ export default function StatusCheckPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4">
-      <GlowBackground />
-      
+    <div className="min-h-screen bg-transparent pt-24 pb-12 px-4">
       <div className="max-w-lg mx-auto relative z-10">
         {/* Header */}
         <motion.div
