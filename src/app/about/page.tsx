@@ -189,12 +189,6 @@ const AboutUs: React.FC = () => {
   return (
     <>
       <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
-        {/* Background Ambient Radial Glowing Auroras */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[850px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
-          <div className="absolute top-[45%] -left-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.07)_0%,_transparent_70%)]" />
-        </div>
-
         <div className="relative z-10">
           {/* Header Section */}
           <section className="pt-36 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">

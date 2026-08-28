@@ -85,12 +85,6 @@ export default function CoursesPage() {
   return (
     <>
       <div className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
-        {/* Ambient Glowing Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
-          <div className="absolute top-[40%] -right-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.06)_0%,_transparent_70%)]" />
-        </div>
-
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto space-y-5 flex flex-col items-center justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">

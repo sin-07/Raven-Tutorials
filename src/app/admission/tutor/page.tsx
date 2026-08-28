@@ -14,7 +14,6 @@ import {
   AlertCircle,
   Loader2
 } from 'lucide-react';
-import { GlowBackground } from '@/components/ui';
 
 /**
  * Teacher Admission Page
@@ -147,9 +146,7 @@ export default function TeacherAdmissionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-24 pb-12 px-4">
-      <GlowBackground />
-      
+    <div className="min-h-screen bg-transparent pt-24 pb-12 px-4">
       <div className="max-w-2xl mx-auto relative z-10">
         {/* Header */}
         <motion.div

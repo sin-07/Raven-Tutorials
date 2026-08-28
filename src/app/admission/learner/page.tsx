@@ -235,12 +235,7 @@ export default function LearnerAdmissionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden py-24">
-      {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
-
+    <div className="min-h-screen bg-transparent relative overflow-hidden py-24">
       <div className="relative z-10 w-full">
         {/* Header */}
         <div className="text-center mb-8 px-4 flex flex-col items-center justify-center">

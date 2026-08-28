@@ -82,12 +82,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#08090d] relative overflow-hidden pt-28 pb-16 selection:bg-emerald-500 selection:text-black">
-        {/* Ambient Radial Glow Background Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1400px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.2)_0%,_rgba(5,150,105,0.07)_35%,_transparent_70%)]" />
-        </div>
-
+      <div className="min-h-screen bg-transparent relative overflow-hidden pt-28 pb-16 selection:bg-emerald-500 selection:text-black">
         {/* Floating geometric particles */}
         {mounted && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
