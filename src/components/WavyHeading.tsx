@@ -20,7 +20,6 @@ export default function WavyHeading({
   gradientClassName = 'text-gradient-emerald',
   className = 'text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1]',
   as: Component = 'h1',
-  continuous = true,
 }: WavyHeadingProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -30,45 +29,29 @@ export default function WavyHeading({
     const chars = headingRef.current.querySelectorAll('.wavy-char');
     if (!chars.length) return;
 
-    // 1. Entrance Wave Animation (staggered rise with elastic ease)
+    // High-performance one-time wave entrance animation with automatic GPU memory cleanup
     const ctx = gsap.context(() => {
       gsap.fromTo(
         chars,
         {
           opacity: 0,
-          y: 35,
-          scale: 0.85,
-          rotateZ: -4,
+          y: 28,
+          scale: 0.9,
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          rotateZ: 0,
-          duration: 0.7,
-          stagger: 0.025,
-          ease: 'back.out(2)',
-          onComplete: () => {
-            if (continuous) {
-              // 2. Smooth Continuous Sine Wave (gentle organic floating ripple)
-              gsap.to(chars, {
-                y: -6,
-                duration: 1.6,
-                ease: 'sine.inOut',
-                stagger: {
-                  each: 0.06,
-                  repeat: -1,
-                  yoyo: true,
-                },
-              });
-            }
-          },
+          duration: 0.65,
+          stagger: 0.02,
+          ease: 'power3.out',
+          clearProps: 'transform,willChange',
         }
       );
     }, headingRef);
 
     return () => ctx.revert();
-  }, [continuous, text, gradientText]);
+  }, [text, gradientText]);
 
   // Split word into characters wrapped in inline-block spans
   const renderChars = (str: string, extraClass = '') => {
@@ -77,7 +60,7 @@ export default function WavyHeading({
         {word.split('').map((char, charIndex) => (
           <span
             key={charIndex}
-            className={`wavy-char inline-block will-change-transform ${extraClass}`}
+            className={`wavy-char inline-block ${extraClass}`}
           >
             {char}
           </span>

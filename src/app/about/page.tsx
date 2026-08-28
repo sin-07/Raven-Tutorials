@@ -240,7 +240,7 @@ const AboutUs: React.FC = () => {
           </section>
 
           {/* Faculty Showcase */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 content-auto">
             <div className="text-center mb-14">
               <span className="pill-badge mb-4">Master Mentors</span>
               <WavyHeading
@@ -258,7 +258,7 @@ const AboutUs: React.FC = () => {
               {faculty.map((member, index) => (
                 <div
                   key={index}
-                  className="faculty-card p-6 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-xl backdrop-blur-xl flex flex-col justify-between"
+                  className="faculty-card p-6 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-xl backdrop-blur-md flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-800/40 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 mx-auto font-black text-2xl font-outfit shadow-md">
@@ -285,7 +285,7 @@ const AboutUs: React.FC = () => {
           </section>
 
           {/* Technology & Development Team */}
-          <section ref={devSectionRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+          <section ref={devSectionRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 content-auto">
             <div className="text-center mb-14">
               <span className="pill-badge mb-4">Engineering & Architecture</span>
               <WavyHeading

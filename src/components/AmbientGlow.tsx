@@ -1,78 +1,88 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function AmbientGlow() {
-  const [mousePos, setMousePos] = useState({ x: -500, y: -500 });
-  const [mounted, setMounted] = useState(false);
+  const mouseLightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
-    let ticking = false;
+    const el = mouseLightRef.current;
+    if (!el || typeof window === 'undefined') return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    let ticking = false;
+    let targetX = -500;
+    let targetY = -500;
+
+    const onMouseMove = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setMousePos({ x: e.clientX, y: e.clientY });
+          if (el) {
+            el.style.transform = `translate3d(${targetX - 250}px, ${targetY - 250}px, 0)`;
+          }
           ticking = false;
         });
         ticking = true;
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMouseMove);
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 select-none">
-      {/* ── 1. PRIMARY TOP EMERALD SPOTLIGHT CONE ─────────────────── */}
+    <div 
+      className="fixed inset-0 pointer-events-none overflow-hidden -z-10 select-none"
+      style={{ contain: 'strict' }}
+    >
+      {/* ── 1. TOP PRIMARY EMERALD LIGHT CONE (Clean Radial Gradient) ─ */}
       <div 
-        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_top,_rgba(52,211,153,0.32)_0%,_rgba(16,185,129,0.2)_30%,_rgba(5,150,105,0.06)_60%,_transparent_80%)] blur-[95px] animate-pulse-glow" 
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] rounded-full"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(52, 211, 153, 0.22) 0%, rgba(16, 185, 129, 0.12) 35%, rgba(5, 150, 105, 0.03) 65%, transparent 80%)',
+          transform: 'translate3d(0, 0, 0)',
+        }}
       />
 
-      {/* Bright Core Neon Light Filament */}
+      {/* ── 2. ANGLED LEFT EMERALD LIGHT STREAM ─────────────────────── */}
       <div 
-        className="absolute -top-12 left-1/2 -translate-x-1/2 w-[450px] h-[90px] rounded-full bg-emerald-400/40 blur-[50px]"
+        className="absolute top-0 left-[5%] w-[450px] h-[90vh] rounded-full opacity-80"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.05) 50%, transparent 80%)',
+          transform: 'rotate(-15deg) translate3d(0, 0, 0)',
+        }}
       />
 
-      {/* ── 2. ANGLED NEON GREEN LIGHT BEAMS ──────────────────────── */}
-      {/* Left Laser Light Beam */}
+      {/* ── 3. ANGLED RIGHT TEAL LIGHT STREAM ───────────────────────── */}
       <div 
-        className="absolute top-0 left-[8%] w-[420px] h-[100vh] bg-gradient-to-b from-emerald-400/22 via-emerald-600/10 to-transparent blur-[110px] transform -rotate-12 animate-float-slow origin-top" 
+        className="absolute top-[10%] right-[5%] w-[450px] h-[85vh] rounded-full opacity-70"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(20, 184, 166, 0.16) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 80%)',
+          transform: 'rotate(15deg) translate3d(0, 0, 0)',
+        }}
       />
 
-      {/* Right Neon Cyan-Emerald Beam */}
+      {/* ── 4. SMOOTH MOUSE-FOLLOWING SPOTLIGHT (Direct Ref, 0 React Re-renders) ─ */}
       <div 
-        className="absolute top-[15%] right-[5%] w-[480px] h-[90vh] bg-gradient-to-b from-teal-400/22 via-emerald-500/10 to-transparent blur-[120px] transform rotate-12 animate-float-slow origin-top"
-        style={{ animationDelay: '-3.5s' }}
+        ref={mouseLightRef}
+        className="fixed w-[500px] h-[500px] rounded-full opacity-60 pointer-events-none transition-opacity duration-300"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(16, 185, 129, 0.16) 0%, rgba(52, 211, 153, 0.04) 45%, transparent 70%)',
+          transform: 'translate3d(-500px, -500px, 0)',
+          willChange: 'transform',
+        }}
       />
 
-      {/* ── 3. MID & BOTTOM FLOATING LIGHT ORBS ────────────────────── */}
-      {/* Middle Left Neon Green Pulse */}
+      {/* ── 5. LIGHTWEIGHT DOT MATRIX GRID ──────────────────────────── */}
       <div 
-        className="absolute top-[48%] -left-32 w-[650px] h-[650px] rounded-full bg-[radial-gradient(circle,_rgba(16,185,129,0.22)_0%,_rgba(5,150,105,0.08)_45%,_transparent_75%)] blur-[140px] animate-float-slow"
-        style={{ animationDelay: '-5s' }}
+        className="absolute inset-0 opacity-30" 
+        style={{
+          backgroundImage: 'radial-gradient(rgba(16, 185, 129, 0.12) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
       />
-
-      {/* Bottom Center Ground Glow */}
-      <div 
-        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[900px] h-[450px] rounded-full bg-gradient-to-t from-emerald-500/22 via-teal-600/10 to-transparent blur-[140px] animate-pulse-glow"
-        style={{ animationDelay: '-2s' }}
-      />
-
-      {/* ── 4. INTERACTIVE MOUSE-FOLLOWING EMERALD SPOTLIGHT ───────── */}
-      {mounted && (
-        <div 
-          className="fixed w-[550px] h-[550px] rounded-full bg-[radial-gradient(circle,_rgba(16,185,129,0.18)_0%,_rgba(52,211,153,0.06)_40%,_transparent_70%)] blur-[90px] transition-transform duration-200 ease-out will-change-transform opacity-70"
-          style={{
-            transform: `translate3d(${mousePos.x - 275}px, ${mousePos.y - 275}px, 0)`,
-          }}
-        />
-      )}
-
-      {/* ── 5. SUBTLE HIGH-TECH LIGHT MATRIX PATTERN ──────────────── */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(16,185,129,0.09)_1px,transparent_1px)] [background-size:28px_28px] opacity-45" />
     </div>
   );
 }

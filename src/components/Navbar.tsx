@@ -43,14 +43,13 @@ const Navbar: React.FC = React.memo(() => {
 
   const isAdminLoggedIn = !!admin;
 
-  // Scroll detection & magnetic hover effect
+  const [navVisible, setNavVisible] = useState(true);
+
+  // High-performance passive scroll handling
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const nav = navRef.current;
     const logo = logoRef.current;
-    if (!nav) return;
-
-    const cleanupMagnetic = magneticHover(logo, logo, 0.15);
+    const cleanupMagnetic = logo ? magneticHover(logo, logo, 0.12) : null;
 
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -59,15 +58,19 @@ const Navbar: React.FC = React.memo(() => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentY = window.scrollY;
-          setScrolled(currentY > 20);
+          
+          if (currentY > 20 !== scrolled) {
+            setScrolled(currentY > 20);
+          }
 
           if (currentY < 40) {
-            gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: true });
-          } else if (currentY > lastScrollY + 10) {
-            gsap.to(nav, { y: '-130%', duration: 0.35, ease: 'power2.inOut', overwrite: true });
+            setNavVisible(true);
+          } else if (currentY > lastScrollY + 8 && currentY > 100) {
+            setNavVisible(false);
           } else if (currentY < lastScrollY - 6) {
-            gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out', overwrite: true });
+            setNavVisible(true);
           }
+
           lastScrollY = currentY;
           ticking = false;
         });
@@ -81,7 +84,7 @@ const Navbar: React.FC = React.memo(() => {
       window.removeEventListener('scroll', handleScroll);
       if (cleanupMagnetic) cleanupMagnetic();
     };
-  }, []);
+  }, [scrolled]);
 
   const navLinks = useMemo(() => [
     { path: '/', label: 'Home' },
@@ -120,14 +123,16 @@ const Navbar: React.FC = React.memo(() => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 will-change-transform ${
+          navVisible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0 pointer-events-none'
+        }`}
       >
         <div className="max-w-6xl mx-auto">
           {/* Cyber-Obsidian Glass Capsule Navbar Container */}
-          <div className={`relative flex items-center justify-between h-[68px] px-4 sm:px-6 rounded-full transition-all duration-500 border ${
+          <div className={`relative flex items-center justify-between h-[68px] px-4 sm:px-6 rounded-full transition-all duration-300 border ${
             scrolled
-              ? 'bg-[#08090d]/90 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/20'
-              : 'bg-[#0b0e17]/80 backdrop-blur-xl border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.6)]'
+              ? 'bg-[#08090d]/92 backdrop-blur-xl border-emerald-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.8)] shadow-emerald-950/20'
+              : 'bg-[#0b0e17]/80 backdrop-blur-md border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
           }`}>
             {/* Top rim accent shine */}
             <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />

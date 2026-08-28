@@ -253,7 +253,7 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE RAVEN (FEATURES MATRIX) ────────────────────────── */}
-      <section ref={featuresSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10">
+      <section ref={featuresSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Why Choose RAVEN</span>
@@ -274,7 +274,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="feature-card group p-8 rounded-3xl bg-[#0e1320]/75 border border-white/5 hover:border-emerald-500/35 hover:bg-[#12192c]/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 hover:-translate-y-1.5 backdrop-blur-xl"
+                  className="feature-card group p-8 rounded-3xl bg-[#0e1320]/75 border border-white/5 hover:border-emerald-500/35 hover:bg-[#12192c]/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 hover:-translate-y-1.5 backdrop-blur-md"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/25">
                     <Icon className="w-7 h-7 text-black" />
@@ -293,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
-      <section ref={methodologySectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10">
+      <section ref={methodologySectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Structured Pedagogy</span>
@@ -309,7 +309,7 @@ export default function Home() {
           </div>
 
           <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl relative">
+            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">01</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <BookOpen className="w-6 h-6" />
@@ -320,7 +320,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl relative">
+            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">02</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <Zap className="w-6 h-6" />
@@ -331,7 +331,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl relative">
+            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">03</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <MessageCircle className="w-6 h-6" />
@@ -342,7 +342,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl relative">
+            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">04</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <Target className="w-6 h-6" />
@@ -357,7 +357,7 @@ export default function Home() {
       </section>
 
       {/* ── FEATURED COURSES SHOWCASE ────────────────────────── */}
-      <section ref={coursesSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10">
+      <section ref={coursesSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
@@ -437,7 +437,7 @@ export default function Home() {
       </section>
 
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
-      <section ref={categoriesSectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10">
+      <section ref={categoriesSectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="pill-badge mb-4">Curriculum Disciplines</span>
@@ -476,7 +476,7 @@ export default function Home() {
       <AdmissionSection />
 
       {/* ── TESTIMONIALS SECTION ────────────────────────── */}
-      <section ref={testimonialsSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10">
+      <section ref={testimonialsSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Hall of Fame</span>

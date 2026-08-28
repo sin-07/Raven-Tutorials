@@ -26,6 +26,10 @@
   --border-emerald: rgba(16, 185, 129, 0.25);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,10 +37,10 @@ body {
   @apply text-white;
   background-color: #07080c;
   background-image: 
-    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(16, 185, 129, 0.24) 0%, rgba(5, 150, 105, 0.08) 35%, transparent 70%),
-    radial-gradient(circle 750px at 95% 30%, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.05) 50%, transparent 80%),
-    radial-gradient(circle 650px at 5% 65%, rgba(16, 185, 129, 0.14) 0%, rgba(4, 120, 87, 0.04) 50%, transparent 80%),
-    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(16, 185, 129, 0.14) 0%, transparent 60%);
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.06) 35%, transparent 70%),
+    radial-gradient(circle 750px at 95% 30%, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.04) 50%, transparent 80%),
+    radial-gradient(circle 650px at 5% 65%, rgba(16, 185, 129, 0.12) 0%, rgba(4, 120, 87, 0.03) 50%, transparent 80%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(16, 185, 129, 0.12) 0%, transparent 60%);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -101,26 +105,26 @@ h1, h2, h3, h4, h5, h6 {
   display: inline;
 }
 
-/* Luxury Glassmorphic Panels & Cards */
+/* Luxury Glassmorphic Panels & Cards (Optimized Blur) */
 .glass-panel {
-  background: rgba(14, 18, 29, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(14, 18, 29, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: rgba(14, 18, 29, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(14, 18, 29, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .glass-card-hover:hover {
   background: rgba(19, 25, 41, 0.85);
   border-color: rgba(52, 211, 153, 0.35);
-  box-shadow: 0 16px 40px -12px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 16px 35px -12px rgba(16, 185, 129, 0.2);
   transform: translateY(-3px);
 }
 
