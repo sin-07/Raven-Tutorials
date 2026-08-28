@@ -10,7 +10,6 @@ interface WavyHeadingProps {
   gradientClassName?: string;
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4';
-  continuous?: boolean;
 }
 
 export default function WavyHeading({
@@ -24,64 +23,77 @@ export default function WavyHeading({
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    if (!headingRef.current || typeof window === 'undefined') return;
+    const el = headingRef.current;
+    if (!el || typeof window === 'undefined') return;
 
-    const chars = headingRef.current.querySelectorAll('.wavy-char');
-    if (!chars.length) return;
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    // High-performance one-time wave entrance animation with automatic GPU memory cleanup
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        chars,
-        {
-          opacity: 0,
-          y: 28,
-          scale: 0.9,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.65,
-          stagger: 0.02,
-          ease: 'power3.out',
-          clearProps: 'transform,willChange',
-        }
-      );
-    }, headingRef);
+    const words = el.querySelectorAll('.wavy-word');
+    if (!words.length) return;
 
-    return () => ctx.revert();
+    // Use IntersectionObserver to ONLY animate when heading scrolls into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Silky smooth, hardware-accelerated fluid wave animation
+            gsap.fromTo(
+              words,
+              {
+                opacity: 0,
+                y: 24,
+                scale: 0.94,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                stagger: 0.045,
+                ease: 'power3.out',
+                clearProps: 'transform,willChange',
+              }
+            );
+
+            // Disconnect observer after single clean trigger
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
   }, [text, gradientText]);
 
-  // Split word into characters wrapped in inline-block spans
-  const renderChars = (str: string, extraClass = '') => {
-    return str.split(' ').map((word, wordIndex, wordsArr) => (
-      <span key={wordIndex} className="inline-block whitespace-nowrap">
-        {word.split('').map((char, charIndex) => (
-          <span
-            key={charIndex}
-            className={`wavy-char inline-block ${extraClass}`}
-          >
-            {char}
-          </span>
-        ))}
-        {wordIndex < wordsArr.length - 1 && (
-          <span className="inline-block">&nbsp;</span>
-        )}
+  // Render text word by word for optimal kerning and high-speed GPU rendering
+  const renderWords = (str: string, extraClass = '') => {
+    return str.split(' ').map((word, i) => (
+      <span
+        key={i}
+        className={`wavy-word inline-block mr-[0.25em] last:mr-0 will-change-transform ${extraClass}`}
+      >
+        {word}
       </span>
     ));
   };
 
   return (
     <Component ref={headingRef} className={`relative text-center ${className}`}>
-      {text && renderChars(text)}
+      {text && renderWords(text)}
       {gradientText && (
-        <>
-          {text && <span>&nbsp;</span>}
-          <span className={gradientClassName}>
-            {renderChars(gradientText, gradientClassName)}
-          </span>
-        </>
+        <span className={gradientClassName}>
+          {renderWords(gradientText, gradientClassName)}
+        </span>
       )}
       {children}
     </Component>
