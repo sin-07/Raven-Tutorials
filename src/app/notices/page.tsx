@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { Megaphone, User, Clock, Download, Eye, AlertCircle, Sparkles, X, FileText, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
+import WavyHeading from '@/components/WavyHeading';
 
 interface NoticeData {
   _id: string;
@@ -97,9 +98,11 @@ const Notice: React.FC = () => {
               <span>Official Announcements</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
-              Institute <span className="text-gradient-emerald">Notice Board</span>
-            </h1>
+            <WavyHeading
+              text="Institute"
+              gradientText="Notice Board"
+              className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
+            />
 
             <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
               Stay up to date with exam schedules, class announcements, test dates, and holiday circulars.

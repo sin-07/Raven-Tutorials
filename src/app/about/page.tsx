@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Target, BookOpen, Users, X, ZoomIn, Sparkles } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import WavyHeading from '@/components/WavyHeading';
 import {
   gsap,
   animateSplitText,
@@ -202,12 +203,11 @@ const AboutUs: React.FC = () => {
               <span>About RAVEN Tutorials</span>
             </div>
 
-            <h1
-              ref={pageTitleRef}
+            <WavyHeading
+              text="Architecting"
+              gradientText="Academic Excellence"
               className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
-            >
-              Architecting <span className="text-gradient-emerald">Academic Excellence</span>
-            </h1>
+            />
 
             <p
               ref={heroSubRef}
@@ -243,9 +243,12 @@ const AboutUs: React.FC = () => {
           <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
             <div className="text-center mb-14">
               <span className="pill-badge mb-4">Master Mentors</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-                Our Distinguished Faculty
-              </h2>
+              <WavyHeading
+                text="Our Distinguished"
+                gradientText="Faculty"
+                as="h2"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+              />
               <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
                 Educators with decades of collective experience producing top 100 ranks across Board and National competitive exams.
               </p>
@@ -285,9 +288,12 @@ const AboutUs: React.FC = () => {
           <section ref={devSectionRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
             <div className="text-center mb-14">
               <span className="pill-badge mb-4">Engineering & Architecture</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-                Digital Infrastructure & Development
-              </h2>
+              <WavyHeading
+                text="Digital Infrastructure &"
+                gradientText="Development"
+                as="h2"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+              />
               <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
                 The core technology stack and digital learning engineering powering RAVEN Tutorials.
               </p>

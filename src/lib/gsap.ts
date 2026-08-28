@@ -80,7 +80,7 @@ export const staggerFadeUp = (
   );
 };
 
-/** Smooth reveal for headings without mutating React DOM tree */
+/** Smooth reveal for headings */
 export const animateSplitText = (
   el: Element | null,
   delay = 0,
@@ -96,6 +96,43 @@ export const animateSplitText = (
       delay,
       ease: 'power3.out',
       clearProps: 'all',
+    }
+  );
+};
+
+/** GSAP Wavy text animation */
+export const animateWavyText = (
+  el: Element | null,
+  continuous = true
+) => {
+  if (!el || typeof window === 'undefined') return;
+  const chars = el.querySelectorAll('.wavy-char');
+  if (!chars.length) {
+    return gsap.fromTo(el,
+      { opacity: 0, y: 35 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(2)' }
+    );
+  }
+
+  return gsap.fromTo(chars,
+    { opacity: 0, y: 30, rotateZ: -3 },
+    {
+      opacity: 1,
+      y: 0,
+      rotateZ: 0,
+      duration: 0.7,
+      stagger: 0.025,
+      ease: 'back.out(2)',
+      onComplete: () => {
+        if (continuous) {
+          gsap.to(chars, {
+            y: -5,
+            duration: 1.6,
+            ease: 'sine.inOut',
+            stagger: { each: 0.06, repeat: -1, yoyo: true }
+          });
+        }
+      }
     }
   );
 };

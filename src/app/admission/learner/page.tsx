@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { Upload, Loader2, AlertCircle, FileText, ChevronDown, CheckCircle2 } from 'lucide-react';
+import WavyHeading from '@/components/WavyHeading';
 
 export default function LearnerAdmissionPage() {
   const router = useRouter();
@@ -242,9 +243,13 @@ export default function LearnerAdmissionPage() {
 
       <div className="relative z-10 w-full">
         {/* Header */}
-        <div className="text-center mb-8 px-4">
-          <h1 className="text-4xl font-bold text-white mb-2">Learner Admission Form</h1>
-          <p className="text-gray-400">Fill in your details to complete the admission process</p>
+        <div className="text-center mb-8 px-4 flex flex-col items-center justify-center">
+          <WavyHeading
+            text="Learner Admission"
+            gradientText="Form"
+            className="text-3xl sm:text-4xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full mb-2"
+          />
+          <p className="text-gray-400 font-jakarta">Fill in your details to complete the admission process</p>
         </div>
 
         {/* Error Message */}

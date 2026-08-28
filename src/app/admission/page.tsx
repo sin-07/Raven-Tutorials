@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { GraduationCap, UserCircle, Sparkles, CheckCircle2, ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import WavyHeading from '@/components/WavyHeading';
 
 export default function AdmissionPage() {
   return (
@@ -23,9 +24,11 @@ export default function AdmissionPage() {
               <span>Enrollment Portal</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
-              Begin Your Journey with <span className="text-gradient-emerald">RAVEN</span>
-            </h1>
+            <WavyHeading
+              text="Begin Your Journey with"
+              gradientText="RAVEN"
+              className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
+            />
 
             <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
               Choose your profile track below to register for classroom batches or join our teaching faculty.

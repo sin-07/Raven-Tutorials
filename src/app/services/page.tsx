@@ -18,6 +18,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import WavyHeading from '@/components/WavyHeading';
 import {
   gsap,
   animateSplitText,
@@ -129,12 +130,11 @@ const Services: React.FC = () => {
               <span>Comprehensive Academic Offerings</span>
             </div>
 
-            <h1
-              ref={pageTitleRef}
+            <WavyHeading
+              text="Academic"
+              gradientText="Services & Programs"
               className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
-            >
-              Academic <span className="text-gradient-emerald">Services & Programs</span>
-            </h1>
+            />
 
             <p
               ref={heroSubRef}
@@ -173,9 +173,12 @@ const Services: React.FC = () => {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-14">
                 <span className="pill-badge mb-4">Batch Framework</span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-                  Class & Subject Structure
-                </h2>
+                <WavyHeading
+                  text="Class & Subject"
+                  gradientText="Structure"
+                  as="h2"
+                  className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+                />
                 <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
                   Explore curriculum tracks across foundational and senior secondary standards.
                 </p>

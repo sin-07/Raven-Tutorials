@@ -30,6 +30,7 @@ import {
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
+import WavyHeading from '@/components/WavyHeading';
 import {
   gsap,
   scrollFadeUp,
@@ -216,13 +217,12 @@ export default function Home() {
           </div>
 
           {/* Display Headline */}
-          <h1
-            ref={heroTitleRef}
+          <WavyHeading
+            text="Empower Your Mind."
+            gradientText="Lead Your Future."
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.06] tracking-tight font-outfit"
-          >
-            <span className="block">Empower Your Mind.</span>
-            <span className="block text-gradient-emerald">Lead Your Future.</span>
-          </h1>
+            continuous={true}
+          />
 
           {/* Subtitle */}
           <p
@@ -257,9 +257,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Why Choose RAVEN</span>
-            <h2 ref={featuresTitleRef} className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-              An Ecosystem Built for <span className="text-gradient-emerald">High Achievers</span>
-            </h2>
+            <WavyHeading
+              text="An Ecosystem Built for"
+              gradientText="High Achievers"
+              as="h2"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+            />
             <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
               From foundational concepts to advanced competitive problem-solving, our structured methodology ensures top results.
             </p>
@@ -294,9 +297,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Structured Pedagogy</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-              The 4-Step Road to <span className="text-gradient-emerald">Rank 1</span>
-            </h2>
+            <WavyHeading
+              text="The 4-Step Road to"
+              gradientText="Rank 1"
+              as="h2"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+            />
             <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
               A scientifically proven preparation model that leaves zero knowledge gaps.
             </p>
@@ -356,9 +362,12 @@ export default function Home() {
           <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
               <span className="pill-badge mb-4">Academic Catalog</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-                Featured Programs & Batches
-              </h2>
+              <WavyHeading
+                text="Featured Programs &"
+                gradientText="Batches"
+                as="h2"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight !text-left"
+              />
               <p className="mt-3 text-base text-gray-400 max-w-xl font-jakarta">
                 Choose the specialized batch aligned with your academic year and competitive target.
               </p>
@@ -471,9 +480,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Hall of Fame</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-              Trusted by Students & Parents
-            </h2>
+            <WavyHeading
+              text="Trusted by Students &"
+              gradientText="Parents"
+              as="h2"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+            />
             <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
               Real stories from students who unlocked their dream ranks with RAVEN Tutorials.
             </p>
@@ -519,9 +531,12 @@ export default function Home() {
             <span>Admissions for 2026-27 Academic Session Now Open</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight">
-            Ready to Accelerate Your Learning?
-          </h2>
+          <WavyHeading
+            text="Ready to Accelerate Your"
+            gradientText="Learning?"
+            as="h2"
+            className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight"
+          />
 
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta leading-relaxed">
             Secure your seat in our premier batch. Experience expert classroom mentorship, personalized tests, and continuous rank improvement.

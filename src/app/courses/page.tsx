@@ -18,6 +18,7 @@ import {
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { categories, dummyCourses } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
+import WavyHeading from '@/components/WavyHeading';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
@@ -97,9 +98,11 @@ export default function CoursesPage() {
             <span>Curated Academic Curricula</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
-            Explore Our <span className="text-gradient-emerald">Courses</span>
-          </h1>
+          <WavyHeading
+            text="Explore Our"
+            gradientText="Courses"
+            className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
+          />
 
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
             Comprehensive foundation programs, board preparations, and competitive JEE & NEET batches taught by master educators.

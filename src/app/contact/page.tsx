@@ -12,6 +12,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import WavyHeading from '@/components/WavyHeading';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -79,9 +80,11 @@ export default function ContactPage() {
             <span>Connect with our Patna Faculty</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
-            Get in <span className="text-gradient-emerald">Touch</span>
-          </h1>
+          <WavyHeading
+            text="Get in"
+            gradientText="Touch"
+            className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
+          />
 
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
             Have questions regarding batch schedules, course fees, or scholarship tests? Send us a message or visit our campus.
