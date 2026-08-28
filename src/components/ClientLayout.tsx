@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
+import AmbientGlow from '@/components/AmbientGlow';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   return (
     <>
+      <AmbientGlow />
       {!hideNavbar && <Navbar />}
       {children}
     </>
