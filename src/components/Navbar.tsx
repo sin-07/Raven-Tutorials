@@ -6,12 +6,13 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LogIn, User, LogOut, ArrowRight, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
-import { gsap, magneticHover } from '@/lib/gsap';
+import { magneticHover } from '@/lib/gsap';
 
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
@@ -43,8 +44,6 @@ const Navbar: React.FC = React.memo(() => {
 
   const isAdminLoggedIn = !!admin;
 
-  const [navVisible, setNavVisible] = useState(true);
-
   // High-performance passive scroll handling
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -59,8 +58,8 @@ const Navbar: React.FC = React.memo(() => {
         window.requestAnimationFrame(() => {
           const currentY = window.scrollY;
           
-          if (currentY > 20 !== scrolled) {
-            setScrolled(currentY > 20);
+          if (currentY > 15 !== scrolled) {
+            setScrolled(currentY > 15);
           }
 
           if (currentY < 40) {
@@ -129,63 +128,65 @@ const Navbar: React.FC = React.memo(() => {
       >
         <div className="max-w-6xl mx-auto">
           {/* Cyber-Obsidian Glass Capsule Navbar Container */}
-          <div className={`relative flex items-center justify-between h-[68px] px-4 sm:px-6 rounded-full transition-all duration-300 border ${
+          <div className={`relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full transition-all duration-300 border ${
             scrolled
-              ? 'bg-[#08090d]/92 backdrop-blur-xl border-emerald-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.8)] shadow-emerald-950/20'
-              : 'bg-[#0b0e17]/80 backdrop-blur-md border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+              ? 'bg-[#080a11]/92 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/25'
+              : 'bg-[#090c15]/85 backdrop-blur-xl border-emerald-500/20 shadow-[0_8px_32px_rgba(0,0,0,0.7)] shadow-emerald-950/15'
           }`}>
-            {/* Top rim accent shine */}
-            <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
+            {/* Top specular hairline shine */}
+            <div className="absolute inset-x-12 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
 
-            {/* Brand Logo & Tag */}
+            {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:shadow-[0_0_22px_rgba(16,185,129,0.4)]">
                 <img
                   src="/logo.png"
                   alt="RAVEN Logo"
-                  className="h-7 w-7 object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
-                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
               </div>
               
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 leading-none">
-                  <span className="text-white font-black text-xl sm:text-2xl tracking-tight font-outfit group-hover:text-white transition-colors">
+                  <span className="text-white font-black text-xl tracking-tight font-outfit group-hover:text-white transition-colors">
                     RAVEN
                   </span>
                   <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-space font-bold uppercase tracking-widest text-emerald-400">
                     Tutorials
                   </span>
                 </div>
-                <span className="text-[10px] font-space text-gray-400 tracking-wider uppercase mt-0.5 hidden sm:block">
+                <span className="text-[9px] font-space text-gray-400 tracking-wider uppercase mt-0.5 hidden sm:block">
                   Patna Campus
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links Dock */}
-            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#101424]/60 p-1.5 rounded-full border border-white/5 font-jakarta">
+            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#0e1322]/80 p-1.5 rounded-full border border-white/[0.07] font-jakarta shadow-inner">
               {navLinks.map((link) => {
                 const active = isActive(link.path);
                 return (
                   <Link
                     key={link.path}
                     href={link.path}
-                    className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 flex items-center gap-1.5 ${
+                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 flex items-center gap-1.5 ${
                       active
-                        ? 'text-white bg-gradient-to-r from-emerald-500/30 via-emerald-500/20 to-teal-500/10 border border-emerald-500/40 shadow-[0_0_16px_rgba(16,185,129,0.3)]'
+                        ? 'text-white bg-gradient-to-r from-emerald-500/30 via-emerald-500/20 to-teal-500/10 border border-emerald-500/40 shadow-[0_0_14px_rgba(16,185,129,0.3)]'
                         : 'text-gray-300 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    {active && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />}
+                    {active && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                    )}
                     <span>{link.label}</span>
                   </Link>
                 );
               })}
             </div>
 
-            {/* Action Buttons (Right) */}
+            {/* Action CTA Button (Right) */}
             <div className="hidden sm:flex items-center gap-3">
               {isAdminLoggedIn ? (
                 <div className="flex items-center gap-2">
@@ -224,7 +225,7 @@ const Navbar: React.FC = React.memo(() => {
               ) : (
                 <Link
                   href="/login"
-                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_22px_rgba(16,185,129,0.4)] hover:shadow-[0_0_32px_rgba(16,185,129,0.7)] transition-all duration-300 transform hover:scale-[1.04] active:scale-95"
+                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-[#02130e] font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_22px_rgba(16,185,129,0.4)] hover:shadow-[0_0_32px_rgba(16,185,129,0.7)] transition-all duration-300 transform hover:scale-[1.04] active:scale-95"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Portal Login</span>
@@ -261,7 +262,7 @@ const Navbar: React.FC = React.memo(() => {
 
           {/* Mobile Drawer Dropdown */}
           {isMenuOpen && (
-            <div className="md:hidden mt-2 p-5 rounded-3xl bg-[#0a0d17]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.9)] space-y-3 animate-fadeIn">
+            <div className="md:hidden mt-2 p-5 rounded-3xl bg-[#0a0d17]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.9)] space-y-3">
               <div className="space-y-1 font-jakarta">
                 {navLinks.map((link) => {
                   const active = isActive(link.path);
@@ -326,7 +327,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-black text-center font-extrabold text-sm rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)] font-outfit uppercase tracking-wider"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-[#02130e] text-center font-extrabold text-sm rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)] font-outfit uppercase tracking-wider"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>Portal Login</span>
