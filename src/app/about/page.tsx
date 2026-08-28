@@ -188,7 +188,7 @@ const AboutUs: React.FC = () => {
 
   return (
     <>
-      <div ref={containerRef} className="min-h-screen bg-[#08090d] text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
         {/* Background Ambient Radial Glowing Auroras */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[850px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />

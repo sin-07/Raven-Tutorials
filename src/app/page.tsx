@@ -253,7 +253,7 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE RAVEN (FEATURES MATRIX) ────────────────────────── */}
-      <section ref={featuresSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
+      <section ref={featuresSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Why Choose RAVEN</span>
@@ -293,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
-      <section ref={methodologySectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10 content-auto">
+      <section ref={methodologySectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Structured Pedagogy</span>
@@ -357,7 +357,7 @@ export default function Home() {
       </section>
 
       {/* ── FEATURED COURSES SHOWCASE ────────────────────────── */}
-      <section ref={coursesSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
+      <section ref={coursesSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
@@ -437,7 +437,7 @@ export default function Home() {
       </section>
 
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
-      <section ref={categoriesSectionRef} className="py-24 bg-[#07090f] border-t border-white/5 relative z-10 content-auto">
+      <section ref={categoriesSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="pill-badge mb-4">Curriculum Disciplines</span>
@@ -476,7 +476,7 @@ export default function Home() {
       <AdmissionSection />
 
       {/* ── TESTIMONIALS SECTION ────────────────────────── */}
-      <section ref={testimonialsSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 relative z-10 content-auto">
+      <section ref={testimonialsSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Hall of Fame</span>
