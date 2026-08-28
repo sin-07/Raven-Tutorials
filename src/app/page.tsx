@@ -76,7 +76,6 @@ export default function Home() {
   const heroBadgeRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
-  const heroStatsRef = useRef<HTMLDivElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
   const heroVisualRef = useRef<HTMLDivElement>(null);
 
@@ -138,15 +137,6 @@ export default function Home() {
 
       if (heroSubRef.current) {
         tl.fromTo(heroSubRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4');
-      }
-
-      if (heroStatsRef.current) {
-        tl.fromTo(
-          heroStatsRef.current.children,
-          { opacity: 0, scale: 0.9 },
-          { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 },
-          '-=0.3'
-        );
       }
 
       if (heroCTARef.current) {
@@ -241,29 +231,6 @@ export default function Home() {
           >
             Premier offline & digital coaching for <span className="text-white font-semibold">CBSE, ICSE, BSEB, JEE (Main & Advanced)</span>, and <span className="text-white font-semibold">NEET</span>. Experience personalized mentorship with India&apos;s finest educators.
           </p>
-
-          {/* Live Stats Row */}
-          <div
-            ref={heroStatsRef}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto pt-2"
-          >
-            <div className="p-4 rounded-2xl bg-[#0e1320]/75 border border-emerald-500/20 backdrop-blur-xl shadow-lg">
-              <p className="text-2xl sm:text-3xl font-black text-emerald-400 font-outfit">99.4%</p>
-              <p className="text-xs text-gray-400 font-jakarta mt-0.5">Board Pass Rate</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-[#0e1320]/75 border border-emerald-500/20 backdrop-blur-xl shadow-lg">
-              <p className="text-2xl sm:text-3xl font-black text-white font-outfit">500+</p>
-              <p className="text-xs text-gray-400 font-jakarta mt-0.5">Top Selections</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-[#0e1320]/75 border border-emerald-500/20 backdrop-blur-xl shadow-lg">
-              <p className="text-2xl sm:text-3xl font-black text-emerald-400 font-outfit">1:15</p>
-              <p className="text-xs text-gray-400 font-jakarta mt-0.5">Teacher-Student Ratio</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-[#0e1320]/75 border border-emerald-500/20 backdrop-blur-xl shadow-lg">
-              <p className="text-2xl sm:text-3xl font-black text-white font-outfit">24/7</p>
-              <p className="text-xs text-gray-400 font-jakarta mt-0.5">Doubt Assistance</p>
-            </div>
-          </div>
 
           {/* Action CTAs */}
           <div ref={heroCTARef} className="flex flex-wrap items-center justify-center gap-4 pt-4 font-outfit">
