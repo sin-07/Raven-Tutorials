@@ -39,8 +39,9 @@ const Loader: React.FC<LoaderProps> = ({
             <img 
               src="/logo.png" 
               alt="Raven Logo" 
-              className="w-8 h-8 object-contain brightness-0 invert animate-pulse" 
+              className="w-8 h-8 object-contain animate-pulse" 
             />
+
           </div>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">

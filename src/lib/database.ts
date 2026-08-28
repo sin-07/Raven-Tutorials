@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 import dns from 'dns';
-import { promisify } from 'util';
 
-// Force Node.js to use IPv4 DNS resolution and set custom DNS servers
-dns.setDefaultResultOrder('ipv4first');
-dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1']);
+// Configure DNS resolution for reliable MongoDB Atlas SRV lookups
+try {
+  dns.setDefaultResultOrder('ipv4first');
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1']);
+} catch {
+  // Ignore in environments where setting DNS servers is restricted
+}
 
-const resolveSrv = promisify(dns.resolveSrv);
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/raven-tutorials';
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/raventutorials';
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -17,73 +18,109 @@ interface MongooseCache {
 
 declare global {
   // eslint-disable-next-line no-var
-  var mongoose: MongooseCache | undefined;
+  var mongooseCache: MongooseCache | undefined;
 }
 
-const cached: MongooseCache = global.mongoose || { conn: null, promise: null };
+const cached: MongooseCache = global.mongooseCache || { conn: null, promise: null };
 
-if (!global.mongoose) {
-  global.mongoose = cached;
+if (!global.mongooseCache) {
+  global.mongooseCache = cached;
 }
 
-// Pre-warm DNS cache for MongoDB SRV records
-async function prewarmDNS() {
+/**
+ * Resolves a mongodb+srv:// URI into standard mongodb:// seed list using custom public DNS
+ */
+async function resolveSrvUriIfNeeded(uri: string): Promise<string> {
+  if (!uri.startsWith('mongodb+srv://')) {
+    return uri;
+  }
+
   try {
-    if (MONGODB_URI.includes('mongodb+srv://')) {
-      const match = MONGODB_URI.match(/mongodb\+srv:\/\/[^@]+@([^/?]+)/);
-      if (match && match[1]) {
-        const hostname = match[1];
-        await resolveSrv(`_mongodb._tcp.${hostname}`);
-        console.log('[DNS] Pre-warmed DNS cache for MongoDB Atlas');
-      }
+    const withoutScheme = uri.slice('mongodb+srv://'.length);
+    const authAndRest = withoutScheme.split('@');
+    let credentials = '';
+    let hostAndQuery = withoutScheme;
+
+    if (authAndRest.length === 2) {
+      credentials = authAndRest[0] + '@';
+      hostAndQuery = authAndRest[1];
     }
-  } catch (error) {
-    console.warn('[DNS] Pre-warm failed, will retry on connect:', error);
+
+    const [host, query = ''] = hostAndQuery.split('/');
+    const srvHostname = `_mongodb._tcp.${host}`;
+
+    dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1']);
+    const records = await dns.promises.resolveSrv(srvHostname);
+
+    if (!records || records.length === 0) {
+      return uri;
+    }
+
+    const seedList = records.map((r) => `${r.name}:${r.port}`).join(',');
+    const [database, queryString = ''] = query.split('?');
+
+    let txtOptions = '';
+    try {
+      const txtRecords = await dns.promises.resolveTxt(host);
+      if (txtRecords && txtRecords.length > 0) {
+        txtOptions = txtRecords.map((r) => r.join('')).join('&');
+      }
+    } catch {
+      // Ignore TXT lookup errors
+    }
+
+    const queryParts = [queryString, txtOptions, 'ssl=true', 'authSource=admin'].filter(Boolean);
+    const resolvedUri = `mongodb://${credentials}${seedList}/${database || 'raventutorials'}?${queryParts.join('&')}`;
+    return resolvedUri;
+  } catch (err) {
+    console.warn('[DATABASE] Could not resolve SRV ahead of time, falling back to original URI:', err);
+    return uri;
   }
 }
 
-prewarmDNS();
-
 export async function connectDatabase(): Promise<typeof mongoose> {
-  if (cached.conn) {
+  if (cached.conn && mongoose.connection.readyState >= 1) {
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const opts = {
+    const opts: mongoose.ConnectOptions = {
       bufferCommands: false,
       maxPoolSize: 10,
       minPoolSize: 2,
-      socketTimeoutMS: 60000,
-      serverSelectionTimeoutMS: 30000,
-      family: 4, // Force IPv4
+      socketTimeoutMS: 45000,
+      serverSelectionTimeoutMS: 15000,
+      family: 4,
       retryWrites: true,
-      w: 'majority' as const,
+      w: 'majority',
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      console.log('[SUCCESS] MongoDB Connected to Atlas');
-      return mongoose;
-    }).catch(async (error) => {
-      console.error('[ERROR] Initial connection failed, retrying with DNS refresh...', error.message);
-      // Retry once with fresh DNS
-      await prewarmDNS();
-      return mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-        console.log('[SUCCESS] MongoDB Connected to Atlas (after retry)');
-        return mongoose;
-      });
-    });
+    cached.promise = (async () => {
+      try {
+        dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1']);
+        const connectionString = await resolveSrvUriIfNeeded(MONGODB_URI);
+        const mongooseInstance = await mongoose.connect(connectionString, opts);
+        console.log('[SUCCESS] MongoDB Connected to Atlas');
+        return mongooseInstance;
+      } catch (error: any) {
+        cached.promise = null;
+        console.error('[ERROR] MongoDB connection failed:', error.message);
+        throw error;
+      }
+    })();
   }
 
   try {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error('[FATAL] MongoDB connection failed:', e);
     throw e;
   }
 
   return cached.conn;
 }
 
+export const connectDB = connectDatabase;
 export default connectDatabase;
+
+

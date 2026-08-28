@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { GlowBackground } from '@/components/ui';
-import { motion } from 'framer-motion';
 import { 
   Search, 
   Filter, 
@@ -12,6 +10,7 @@ import {
   X,
   GraduationCap,
   BookOpen,
+  Sparkles,
   Zap,
   CheckCircle2,
   ArrowRight
@@ -23,50 +22,6 @@ import { Course } from '@/types/lms';
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
 
-// School course data
-const schoolCourses = [
-  {
-    class: 'XII',
-    grade: 12,
-    annualSubjects: ['Physics', 'Chemistry', 'Biology'],
-    crashSubjects: ['Physics', 'Chemistry', 'Biology'],
-    options: ['Subject-wise', 'Unit-wise'],
-    color: 'from-purple-500 to-indigo-600',
-    bgColor: 'bg-purple-500/10',
-    borderColor: 'border-purple-500/30'
-  },
-  {
-    class: 'XI',
-    grade: 11,
-    annualSubjects: ['Physics', 'Chemistry', 'Biology'],
-    crashSubjects: null, // Coming soon
-    options: ['Subject-wise', 'Unit-wise'],
-    color: 'from-blue-500 to-cyan-600',
-    bgColor: 'bg-blue-500/10',
-    borderColor: 'border-blue-500/30'
-  },
-  {
-    class: 'X',
-    grade: 10,
-    annualSubjects: ['Mathematics', 'Science', 'Social Science', 'English', 'IT (Optional)'],
-    crashSubjects: ['Mathematics', 'Science', 'English'],
-    options: ['Subject-wise', 'Unit-wise'],
-    color: 'from-emerald-500 to-teal-600',
-    bgColor: 'bg-emerald-500/10',
-    borderColor: 'border-emerald-500/30'
-  },
-  {
-    class: 'IX',
-    grade: 9,
-    annualSubjects: ['Mathematics', 'Science', 'Social Science', 'English'],
-    crashSubjects: ['Mathematics', 'Science'],
-    options: ['Subject-wise', 'Unit-wise'],
-    color: 'from-orange-500 to-amber-600',
-    bgColor: 'bg-orange-500/10',
-    borderColor: 'border-orange-500/30'
-  }
-];
-
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
@@ -76,23 +31,7 @@ export default function CoursesPage() {
   const [sortBy, setSortBy] = useState('Most Popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [showFreeOnly, setShowFreeOnly] = useState(false);
-  
-  // Student enrollment state
-  const [studentData, setStudentData] = useState<{
-    registrationId: string;
-    studentName: string;
-    standard: string;
-    enrolledCourses: {
-      courseType: 'annual' | 'crash';
-      subject: string;
-      standard: string;
-      enrolledAt: Date;
-    }[];
-  } | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [enrollingSubject, setEnrollingSubject] = useState<string | null>(null);
 
   // Fetch courses from API
   const fetchCourses = useCallback(async () => {
@@ -100,7 +39,7 @@ export default function CoursesPage() {
       setLoading(true);
       const response = await fetch('/api/courses');
       const data = await response.json();
-      if (data.success) {
+      if (data.success && Array.isArray(data.courses)) {
         setCourses(data.courses);
       }
     } catch (error) {
@@ -110,78 +49,19 @@ export default function CoursesPage() {
     }
   }, []);
 
-  // Fetch student enrollment data
-  const fetchStudentEnrollments = useCallback(async () => {
-    try {
-      const response = await fetch('/api/student/courses');
-      const data = await response.json();
-      if (data.success) {
-        setStudentData(data.data);
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    } catch (error) {
-      setIsLoggedIn(false);
-    }
-  }, []);
-
   useEffect(() => {
     fetchCourses();
-    fetchStudentEnrollments();
-  }, [fetchCourses, fetchStudentEnrollments]);
-
-  // Check if student is enrolled in a course
-  const isEnrolled = (courseType: 'annual' | 'crash', subject: string) => {
-    if (!studentData) return false;
-    return studentData.enrolledCourses.some(
-      course => course.courseType === courseType && 
-                course.subject === subject &&
-                course.standard === studentData.standard
-    );
-  };
-
-  // Handle crash course enrollment
-  const handleEnrollCrashCourse = async (subject: string) => {
-    if (!isLoggedIn) {
-      alert('Please login to enroll in crash courses');
-      window.location.href = '/login';
-      return;
-    }
-
-    setEnrollingSubject(subject);
-    try {
-      const response = await fetch('/api/student/courses', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        alert('Successfully enrolled in crash course!');
-        // Refresh enrollment data
-        await fetchStudentEnrollments();
-      } else {
-        alert(data.message || 'Failed to enroll');
-      }
-    } catch (error) {
-      console.error('Enrollment error:', error);
-      alert('Failed to enroll. Please try again.');
-    } finally {
-      setEnrollingSubject(null);
-    }
-  };
+  }, [fetchCourses]);
 
   // Filter courses
-  const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || course.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesLevel = selectedLevel === 'All Levels' || course.level === selectedLevel;
-    const matchesPrice = showFreeOnly ? course.isFree : (course.price >= priceRange[0] && course.price <= priceRange[1]);
-    
+    const matchesPrice = showFreeOnly ? course.isFree : true;
+
     return matchesSearch && matchesCategory && matchesLevel && matchesPrice;
   });
 
@@ -191,7 +71,7 @@ export default function CoursesPage() {
       case 'Highest Rated':
         return b.rating - a.rating;
       case 'Newest':
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
       case 'Price: Low to High':
         return a.price - b.price;
       case 'Price: High to Low':
@@ -202,222 +82,140 @@ export default function CoursesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
-      {/* Green Radial Glow Effect */}
-      <GlowBackground />
-
-      {/* Hero Section */}
-      <section className="relative z-10 pt-24 pb-12 bg-gradient-to-br from-[#080808] via-[#111111] to-[#080808] overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-outfit tracking-tight">
-              Explore Our <span className="text-gradient-emerald">Courses</span>
-            </h1>
-            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 font-jakarta">
-              Discover 150+ expert-led courses designed to help you achieve competitive and academic excellence.
-            </p>
-
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto font-jakarta">
-              <div className="relative">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for subjects, topics, or classes..."
-                  className="w-full pl-14 pr-6 py-4 rounded-full bg-[#10131c] border border-white/10 text-white placeholder-gray-500 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent text-sm sm:text-base font-jakarta"
-                />
-              </div>
-            </div>
-          </motion.div>
+    <>
+      <div className="min-h-screen bg-[#08090d] text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+        {/* Ambient Glowing Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
+          <div className="absolute top-[40%] -right-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.06)_0%,_transparent_70%)]" />
         </div>
-      </section>
 
-      {/* All Courses Section Header */}
-      <section id="all-courses-section" className="pt-8 pb-4 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Browse All Courses</h2>
-          <p className="text-gray-400">Explore our complete catalog of professional courses</p>
-        </div>
-      </section>
+        {/* Hero Section */}
+        <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto space-y-5 flex flex-col items-center justify-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
+            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <span>Curated Academic Curricula</span>
+          </div>
 
-      {/* Filters & Courses */}
-      <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-4">
-              {/* Mobile Filter Toggle */}
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="md:hidden flex items-center gap-2 px-4 py-2 bg-[#111111] rounded-xl border border-gray-800 text-gray-300"
-              >
-                <Filter className="w-5 h-5" />
-                Filters
-              </button>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
+            Explore Our <span className="text-gradient-emerald">Courses</span>
+          </h1>
 
-              {/* Category Pills */}
-              <div className="hidden md:flex items-center gap-2 overflow-x-auto pb-2">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
+            Comprehensive foundation programs, board preparations, and competitive JEE & NEET batches taught by master educators.
+          </p>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto pt-4 font-jakarta">
+            <div className="relative">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by subject (Physics, Math), standard (Class 10, 12), or topic..."
+                className="w-full pl-14 pr-6 py-4 rounded-2xl bg-[#0e1320]/80 border border-emerald-500/20 text-white placeholder-gray-500 shadow-2xl focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition backdrop-blur-xl"
+              />
+              {searchQuery && (
                 <button
-                  onClick={() => setSelectedCategory('All')}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                    selectedCategory === 'All'
-                      ? 'bg-[#00E5A8] text-black'
-                      : 'bg-[#111111] text-gray-400 hover:bg-gray-800 border border-gray-800'
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Filters & Course Catalog */}
+        <section className="py-8 relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          {/* Controls Bar */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            {/* Category Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              <button
+                onClick={() => setSelectedCategory('All')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                  selectedCategory === 'All'
+                    ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
+                    : 'bg-[#0e1320] text-gray-300 hover:text-white border border-white/5'
+                }`}
+              >
+                All Courses
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => setSelectedCategory(cat.name)}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                    selectedCategory.toLowerCase() === cat.name.toLowerCase()
+                      ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
+                      : 'bg-[#0e1320] text-gray-300 hover:text-white border border-white/5'
                   }`}
                 >
-                  All Courses
+                  {cat.name}
                 </button>
-                {categories.map((cat) => (
-                  <button
-                    key={cat.name}
-                    onClick={() => setSelectedCategory(cat.name)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                      selectedCategory === cat.name
-                        ? 'bg-[#00E5A8] text-black'
-                        : 'bg-[#111111] text-gray-400 hover:bg-gray-800 border border-gray-800'
-                    }`}
-                  >
-                    {cat.icon} {cat.name}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
 
-            <div className="flex items-center gap-4">
-              {/* Sort Dropdown */}
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-3">
               <div className="relative">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none px-4 py-2 pr-10 bg-[#111111] rounded-xl border border-gray-800 text-sm font-medium text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00E5A8]"
+                  className="appearance-none px-4 py-2.5 pr-10 bg-[#0e1320] rounded-xl border border-white/10 text-xs sm:text-sm font-medium text-gray-300 focus:outline-none focus:border-emerald-400 font-jakarta"
                 >
                   {sortOptions.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                    <option key={option} value={option} className="bg-[#0e1320] text-white">
+                      {option}
+                    </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
 
-              {/* View Toggle */}
-                <div className="hidden sm:flex items-center bg-[#111111] rounded-xl border border-gray-800 p-1">
+              <div className="hidden sm:flex items-center bg-[#0e1320] rounded-xl border border-white/10 p-1">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 rounded-lg transition-colors ${
-                    viewMode === 'grid' ? 'bg-[#00E5A8]/20 text-[#00E5A8]' : 'text-gray-500'
+                  className={`p-2 rounded-lg transition ${
+                    viewMode === 'grid' ? 'bg-emerald-500/20 text-emerald-400' : 'text-gray-500'
                   }`}
+                  aria-label="Grid view"
                 >
-                  <Grid3X3 className="w-5 h-5" />
+                  <Grid3X3 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-2 rounded-lg transition-colors ${
-                    viewMode === 'list' ? 'bg-[#00E5A8]/20 text-[#00E5A8]' : 'text-gray-500'
+                  className={`p-2 rounded-lg transition ${
+                    viewMode === 'list' ? 'bg-emerald-500/20 text-emerald-400' : 'text-gray-500'
                   }`}
+                  aria-label="List view"
                 >
-                  <List className="w-5 h-5" />
+                  <List className="w-4 h-4" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Mobile Filters Panel */}
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[#111111] rounded-2xl p-6 mb-6 border border-gray-800"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-white">Filters</h3>
-                <button onClick={() => setShowFilters(false)}>
-                  <X className="w-5 h-5 text-gray-400" />
-                </button>
-              </div>
-
-              {/* Category */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-300 mb-2">Category</label>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl bg-[#080808] border border-gray-800 text-white"
-                >
-                  <option value="All">All Categories</option>
-                  {categories.map((cat) => (
-                    <option key={cat.name} value={cat.name}>{cat.name}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Level */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-300 mb-2">Level</label>
-                <select
-                  value={selectedLevel}
-                  onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl bg-[#080808] border border-gray-800 text-white"
-                >
-                  {levels.map((level) => (
-                    <option key={level} value={level}>{level}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Free Only */}
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={showFreeOnly}
-                  onChange={(e) => setShowFreeOnly(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-700 text-[#00E5A8] bg-[#080808]"
-                />
-                <span className="text-sm text-gray-400">Free courses only</span>
-              </label>
-            </motion.div>
-          )}
-
-          {/* Results Info */}
+          {/* Results Summary */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-gray-400">
-              Showing <span className="font-semibold text-white">{sortedCourses.length}</span> courses
+            <p className="text-xs sm:text-sm text-gray-400 font-jakarta">
+              Showing <span className="font-bold text-white">{sortedCourses.length}</span> programs
               {selectedCategory !== 'All' && (
-                <span> in <span className="font-semibold text-white">{selectedCategory}</span></span>
+                <span> in <span className="text-emerald-400 font-semibold">{selectedCategory}</span></span>
               )}
             </p>
-
-            {/* Desktop Level Filter */}
-            <div className="hidden md:flex items-center gap-2">
-              {levels.map((level) => (
-                <button
-                  key={level}
-                  onClick={() => setSelectedLevel(level)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                    selectedLevel === level
-                      ? 'bg-[#00E5A8]/20 text-[#00E5A8]'
-                      : 'text-gray-500 hover:bg-gray-800'
-                  }`}
-                >
-                  {level}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Courses Grid */}
           {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00E5A8]"></div>
+            <div className="flex justify-center items-center py-24">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500" />
             </div>
           ) : sortedCourses.length > 0 ? (
-            <div className={`grid gap-6 ${
+            <div className={`grid gap-6 sm:gap-8 ${
               viewMode === 'grid' 
                 ? 'sm:grid-cols-2 lg:grid-cols-3' 
                 : 'grid-cols-1'
@@ -427,32 +225,32 @@ export default function CoursesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <div className="w-24 h-24 bg-[#111111] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-10 h-10 text-gray-500" />
+            <div className="text-center py-24 rounded-3xl bg-[#0e1320]/60 border border-white/5 max-w-xl mx-auto p-8">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 text-emerald-400">
+                <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">No courses found</h3>
-              <p className="text-gray-400 mb-6">
-                Try adjusting your search or filters to find what you&apos;re looking for.
+              <h3 className="text-xl font-bold text-white font-outfit mb-2">No matching courses found</h3>
+              <p className="text-gray-400 text-sm mb-6 font-jakarta">
+                Try adjusting your search keywords or switching category filters.
               </p>
               <button
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('All');
                   setSelectedLevel('All Levels');
-                  setShowFreeOnly(false);
                 }}
-                className="px-6 py-3 bg-[#00E5A8] text-black font-medium rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition-all"
+                className="px-6 py-2.5 bg-emerald-500 text-black font-bold rounded-xl text-sm font-outfit hover:bg-emerald-400 transition"
               >
-                Clear All Filters
+                Reset Filters
               </button>
             </div>
           )}
-        </div>
-      </section>
+        </section>
 
-      <LMSFooter />
-    </div>
+        <LMSFooter />
+      </div>
+    </>
   );
 }
+
 

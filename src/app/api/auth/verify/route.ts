@@ -1,58 +1,55 @@
-import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/database';
 import Admission from '@/models/Admission';
 
-export async function GET(req: NextRequest) {
+const JWT_SECRET = process.env.JWT_SECRET || 'raven-tutorials-secret-key-production-change';
+
+export async function GET() {
   try {
-    await connectDB();
-    
-    const cookieStore = await cookies();
-    const token = cookieStore.get('studentToken')?.value;
+    const cookieStore = cookies();
+    const token = cookieStore.get('token')?.value || cookieStore.get('studentToken')?.value;
 
     if (!token) {
       return NextResponse.json({
         success: false,
         authenticated: false,
-        message: 'Not logged in'
-      }, { status: 200 });
+        message: 'Not logged in',
+      });
     }
 
     // Verify token
-    const decoded = jwt.verify(
-      token, 
-      process.env.JWT_SECRET || 'your-secret-key-change-in-production'
-    ) as { studentId: string; email: string; registrationId: string };
+    const decoded = jwt.verify(token, JWT_SECRET) as {
+      studentId?: string;
+      id?: string;
+      email: string;
+      registrationId?: string;
+    };
 
-    // Get student data
-    const student = await Admission.findById(decoded.studentId);
+    await connectDB();
 
-    if (!student) {
+    const query = decoded.registrationId
+      ? { registrationId: decoded.registrationId }
+      : { _id: decoded.studentId || decoded.id };
+
+    const student = await Admission.findOne(query).lean();
+
+    if (!student || student.paymentStatus !== 'completed') {
       return NextResponse.json({
         success: false,
-        message: 'Student not found'
-      }, { status: 404 });
+        authenticated: false,
+        message: 'Invalid session or payment incomplete',
+      });
     }
 
-    // Check payment status
-    if (student.isPendingPayment || student.paymentStatus !== 'completed') {
-      return NextResponse.json({
-        success: false,
-        message: 'Payment not completed'
-      }, { status: 403 });
-    }
-
-    // Return student data
     const studentData = {
-      _id: student._id,
-      registrationId: student.registrationId,
+      _id: student._id.toString(),
+      registrationId: student.registrationId || '',
       studentName: student.studentName,
       email: student.email,
       phoneNumber: student.phoneNumber,
-      alternatePhoneNumber: student.alternatePhoneNumber,
-      dateOfBirth: student.dateOfBirth,
-      gender: student.gender,
+      standard: student.standard,
       bloodGroup: student.bloodGroup,
       fatherName: student.fatherName,
       motherName: student.motherName,
@@ -60,25 +57,23 @@ export async function GET(req: NextRequest) {
       city: student.city,
       state: student.state,
       pincode: student.pincode,
-      previousSchool: student.previousSchool,
-      standard: student.standard,
-      category: student.category,
-      paymentAmount: student.paymentAmount,
+      photo: student.photo,
+      photoUrl: student.photo,
       paymentStatus: student.paymentStatus,
-      submittedAt: student.submittedAt,
-      photoUrl: student.photo
+      enrolledCourses: student.enrolledCourses || [],
     };
 
     return NextResponse.json({
       success: true,
-      student: studentData
+      authenticated: true,
+      student: studentData,
     });
-
-  } catch (error: any) {
-    console.error('Token verification error:', error);
+  } catch (error) {
     return NextResponse.json({
       success: false,
-      message: 'Invalid or expired token'
-    }, { status: 401 });
+      authenticated: false,
+      message: 'Invalid or expired token',
+    });
   }
 }
+

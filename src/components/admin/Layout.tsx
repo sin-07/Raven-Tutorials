@@ -169,8 +169,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               <img 
                 src="/logo.png" 
                 alt="RAVEN Logo" 
-                className="h-10 w-10 brightness-0 invert"
+                className="h-10 w-10 object-contain"
               />
+
               <div>
                 <span className="text-lg font-bold text-white">RAVEN</span>
                 <span className="text-lg font-bold text-[#00E5A8]"> Admin</span>

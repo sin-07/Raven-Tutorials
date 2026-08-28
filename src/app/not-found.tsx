@@ -423,8 +423,9 @@ export default function NotFound() {
             <img 
               src="/logo.png" 
               alt="RAVEN Logo" 
-              className="h-8 w-8 brightness-0 invert group-hover:scale-105 transition-transform" 
+              className="h-8 w-8 object-contain group-hover:scale-105 transition-transform" 
             />
+
             <div className="flex items-baseline gap-1 font-outfit">
               <span className="text-white font-black text-xl tracking-tight">RAVEN</span>
               <span className="text-[#00E5A8] font-bold text-sm tracking-widest uppercase">Tutorials</span>

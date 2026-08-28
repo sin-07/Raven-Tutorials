@@ -3,7 +3,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { MapPin, LogIn, User, LogOut } from 'lucide-react';
+import { LogIn, User, LogOut, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
 import { gsap, magneticHover } from '@/lib/gsap';
@@ -11,6 +11,7 @@ import { gsap, magneticHover } from '@/lib/gsap';
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
@@ -20,54 +21,58 @@ const Navbar: React.FC = React.memo(() => {
   const logoRef = useRef<HTMLAnchorElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
 
-  // Check if user is logged in (student) by verifying cookie
+  // Check if student session is active
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const res = await fetch('/api/auth/verify', {
-          credentials: 'include'
+          credentials: 'include',
         });
         if (res.ok) {
           const data = await res.json();
-          // authenticated: false means no token (200); success: true + student means valid session
           setIsStudentLoggedIn(data.success === true && !!data.student);
         } else {
           setIsStudentLoggedIn(false);
         }
       } catch {
-        // Silent fail - user is simply not logged in
         setIsStudentLoggedIn(false);
       }
     };
     checkAuth();
   }, [pathname]);
 
-  // Check if admin is logged in
   const isAdminLoggedIn = !!admin;
 
-  // ── GSAP: Scroll hide/show + magnetic hover ─────────────────────────────
+  // Scroll detection & magnetic hover effect
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const nav = navRef.current;
     const logo = logoRef.current;
     if (!nav) return;
 
-    // UI: magnetic hover on logo
-    const cleanupMagnetic = magneticHover(logo, logo, 0.25);
+    const cleanupMagnetic = magneticHover(logo, logo, 0.15);
 
-    // Scroll: hide navbar when scrolling down, reveal when up
     let lastScrollY = window.scrollY;
+    let ticking = false;
 
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY < 60) {
-        gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: true });
-      } else if (currentY > lastScrollY + 5) {
-        gsap.to(nav, { y: '-110%', duration: 0.4, ease: 'power2.inOut', overwrite: true });
-      } else if (currentY < lastScrollY - 5) {
-        gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out', overwrite: true });
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          setScrolled(currentY > 20);
+
+          if (currentY < 40) {
+            gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out', overwrite: true });
+          } else if (currentY > lastScrollY + 10) {
+            gsap.to(nav, { y: '-130%', duration: 0.35, ease: 'power2.inOut', overwrite: true });
+          } else if (currentY < lastScrollY - 6) {
+            gsap.to(nav, { y: 0, duration: 0.35, ease: 'power2.out', overwrite: true });
+          }
+          lastScrollY = currentY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      lastScrollY = currentY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -80,11 +85,11 @@ const Navbar: React.FC = React.memo(() => {
 
   const navLinks = useMemo(() => [
     { path: '/', label: 'Home' },
+    { path: '/courses', label: 'Courses' },
     { path: '/services', label: 'Services' },
-    // Hide admission link if student is logged in
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
     { path: '/notices', label: 'Notices' },
-    { path: '/about', label: 'About Us' }
+    { path: '/about', label: 'About Us' },
   ], [isStudentLoggedIn]);
 
   const isActive = (path: string) => pathname === path;
@@ -98,9 +103,7 @@ const Navbar: React.FC = React.memo(() => {
       setIsStudentLoggedIn(false);
       toast.success('Logged out successfully');
       router.push('/login');
-    } catch (error) {
-      console.error('Logout error:', error);
-      // Still clear local state even if API call fails
+    } catch {
       setIsStudentLoggedIn(false);
       router.push('/login');
     }
@@ -108,275 +111,226 @@ const Navbar: React.FC = React.memo(() => {
 
   const handleAdminLogout = async () => {
     await adminLogout();
-    toast.success('Admin logged out successfully');
+    toast.success('Admin logged out');
     router.push('/login');
   };
 
   return (
     <>
-      <style>{`
-        .navbar-fixed {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 100;
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          background-color: rgba(10, 10, 10, 0.85);
-          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
-          border-bottom: 1px solid rgba(0, 229, 168, 0.15);
-        }
-        @keyframes slideDownMenu {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-            max-height: 0;
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-            max-height: 1000px;
-          }
-        }
-        @keyframes slideUpMenu {
-          from {
-            opacity: 1;
-            transform: translateY(0);
-            max-height: 1000px;
-          }
-          to {
-            opacity: 0;
-            transform: translateY(-10px);
-            max-height: 0;
-          }
-        }
-        @keyframes menuItemSlideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .mobile-menu-open {
-          animation: slideDownMenu 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .mobile-menu-close {
-          animation: slideUpMenu 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .mobile-menu-item {
-          animation: menuItemSlideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        /* Custom Hamburger Menu */
-        .hamburger {
-          width: 26px;
-          height: 22px;
-          position: relative;
-          cursor: pointer;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .hamburger-line {
-          width: 100%;
-          height: 2.5px;
-          background-color: #d1d5db;
-          border-radius: 3px;
-          transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-          transform-origin: center;
-          box-shadow: 0 0 0 rgba(0, 229, 168, 0);
-        }
-        .hamburger:hover .hamburger-line {
-          background-color: #00E5A8;
-          box-shadow: 0 0 8px rgba(0, 229, 168, 0.3);
-        }
-        /* Top line - Rotate with bounce and glow */
-        .hamburger.open .hamburger-line:nth-child(1) {
-          transform: translateY(9.75px) rotate(225deg) scale(1.15);
-          background: linear-gradient(90deg, #00E5A8, #00B386);
-          box-shadow: 0 0 12px rgba(0, 229, 168, 0.6), 0 0 20px rgba(0, 229, 168, 0.3);
-        }
-        /* Middle line - Spin out with scale */
-        .hamburger.open .hamburger-line:nth-child(2) {
-          opacity: 0;
-          transform: rotate(360deg) scale(0.1);
-          transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        /* Bottom line - Counter rotate with bounce and glow */
-        .hamburger.open .hamburger-line:nth-child(3) {
-          transform: translateY(-9.75px) rotate(-225deg) scale(1.15);
-          background: linear-gradient(90deg, #00B386, #00E5A8);
-          box-shadow: 0 0 12px rgba(0, 229, 168, 0.6), 0 0 20px rgba(0, 229, 168, 0.3);
-        }
-      `}</style>
-      <nav ref={navRef} className="navbar-fixed w-full transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link ref={logoRef} href="/" className="flex items-center gap-2.5 group">
-            <img 
-              src="/logo.png" 
-              alt="RAVEN Logo" 
-              className="h-9 w-9 brightness-0 invert group-hover:scale-105 transition-transform duration-300"
-            />
-            <div className="flex items-baseline gap-1.5 font-outfit">
-              <span className="text-white font-extrabold text-2xl tracking-tight">RAVEN</span>
-              <span className="text-[#00E5A8] font-bold text-lg tracking-wide uppercase">Tutorials</span>
-            </div>
-          </Link>
-          {/* Desktop Navigation */}
-          <div ref={linksRef} className="hidden md:flex items-center space-x-1 font-jakarta">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`relative px-4 py-2 rounded-lg transition flex items-center ${
-                  isActive(link.path)
-                    ? 'text-[#00E5A8] bg-[#00E5A8]/10 font-semibold'
-                    : 'text-gray-300 hover:text-[#00E5A8] hover:bg-white/5'
-                }`}
-              >
-                {isActive(link.path) && (
-                  <MapPin className="w-4 h-4 inline-block mr-1 -mt-1" />
-                )}
-                {link.label}
-              </Link>
-            ))}
-            
-            {/* Desktop Login/Dashboard Button */}
-            {isAdminLoggedIn ? (
-              <>
-                <Link
-                  href="/admin/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
-                >
-                  <User className="w-4 h-4" />
-                  Admin Dashboard
-                </Link>
-                <button
-                  onClick={handleAdminLogout}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition font-semibold"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Logout
-                </button>
-              </>
-            ) : isStudentLoggedIn ? (
-              <>
-                <Link
-                  href="/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
-                >
-                  <User className="w-4 h-4" />
-                  Dashboard
-                </Link>
-                <button
-                  onClick={handleStudentLogout}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition font-semibold"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Link
-                href="/login"
-                className="flex items-center gap-2 px-4 py-2 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 transition font-semibold ml-2"
-              >
-                <LogIn className="w-4 h-4" />
-                Login
-              </Link>
-            )}
-          </div>
+      <nav
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
+      >
+        <div className="max-w-6xl mx-auto">
+          {/* Glass Capsule Navbar Container */}
+          <div className={`relative flex items-center justify-between h-[68px] px-4 sm:px-6 rounded-full transition-all duration-500 border ${
+            scrolled
+              ? 'bg-[#08090d]/90 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/20'
+              : 'bg-[#0b0e17]/80 backdrop-blur-xl border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.6)]'
+          }`}>
+            {/* Top rim accent shine */}
+            <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
 
-          {/* Mobile menu button - Custom Hamburger */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition"
-            aria-label="Toggle menu"
-          >
-            <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
-              <span className="hamburger-line"></span>
-              <span className="hamburger-line"></span>
-              <span className="hamburger-line"></span>
-            </div>
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className={`md:hidden bg-[#080808] border-t border-[#00E5A8]/20 ${isMenuOpen ? 'mobile-menu-open' : 'mobile-menu-close'}`}>
-            <div className="px-4 py-3 space-y-2">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-lg transition mobile-menu-item ${
-                    isActive(link.path)
-                      ? 'text-[#00E5A8] bg-[#00E5A8]/10 font-semibold'
-                      : 'text-gray-300 hover:text-[#00E5A8] hover:bg-white/5'
-                  }`}
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            {/* Brand Logo & Tag */}
+            <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
+              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+                <img
+                  src="/logo.png"
+                  alt="RAVEN Logo"
+                  className="h-7 w-7 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400" />
+              </div>
               
-              {/* Mobile Login/Dashboard */}
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5 leading-none">
+                  <span className="text-white font-black text-xl sm:text-2xl tracking-tight font-outfit group-hover:text-white transition-colors">
+                    RAVEN
+                  </span>
+                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-space font-bold uppercase tracking-widest text-emerald-400">
+                    Tutorials
+                  </span>
+                </div>
+                <span className="text-[10px] font-space text-gray-400 tracking-wider uppercase mt-0.5 hidden sm:block">
+                  Patna Campus
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation Links */}
+            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#101424]/60 p-1.5 rounded-full border border-white/5 font-jakarta">
+              {navLinks.map((link) => {
+                const active = isActive(link.path);
+                return (
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 flex items-center gap-1.5 ${
+                      active
+                        ? 'text-white bg-gradient-to-r from-emerald-500/30 via-emerald-500/20 to-teal-500/10 border border-emerald-500/40 shadow-[0_0_16px_rgba(16,185,129,0.3)]'
+                        : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />}
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Action Buttons (Right) */}
+            <div className="hidden sm:flex items-center gap-3">
               {isAdminLoggedIn ? (
-                <>
+                <div className="flex items-center gap-2">
                   <Link
                     href="/admin/dashboard"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 transform hover:scale-[1.03]"
                   >
-                    Admin Dashboard
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Admin Panel</span>
                   </Link>
                   <button
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleAdminLogout();
-                    }}
-                    className="w-full px-4 py-3 bg-red-500/10 text-red-400 rounded-lg text-center font-semibold mobile-menu-item"
+                    onClick={handleAdminLogout}
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-full text-xs font-semibold transition"
+                    title="Logout Admin"
                   >
-                    Logout
+                    <LogOut className="w-3.5 h-3.5" />
                   </button>
-                </>
+                </div>
               ) : isStudentLoggedIn ? (
-                <>
+                <div className="flex items-center gap-2">
                   <Link
                     href="/dashboard"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 transform hover:scale-[1.03]"
                   >
-                    Dashboard
+                    <User className="w-3.5 h-3.5" />
+                    <span>Student Dashboard</span>
                   </Link>
                   <button
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleStudentLogout();
-                    }}
-                    className="w-full px-4 py-3 bg-red-500/10 text-red-400 rounded-lg text-center font-semibold mobile-menu-item"
+                    onClick={handleStudentLogout}
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-full text-xs font-semibold transition"
+                    title="Logout Student"
                   >
-                    Logout
+                    <LogOut className="w-3.5 h-3.5" />
                   </button>
-                </>
+                </div>
               ) : (
                 <Link
                   href="/login"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 bg-[#00E5A8] text-black rounded-full text-center font-semibold mobile-menu-item"
+                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_22px_rgba(16,185,129,0.4)] hover:shadow-[0_0_32px_rgba(16,185,129,0.7)] transition-all duration-300 transform hover:scale-[1.04] active:scale-95"
                 >
-                  Login
+                  <LogIn className="w-3.5 h-3.5" />
+                  <span>Portal Login</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               )}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2.5 rounded-full bg-[#101424] hover:bg-[#141a2e] border border-emerald-500/30 text-gray-300 hover:text-emerald-400 transition shadow-md"
+              aria-label="Toggle menu"
+            >
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span
+                  className={`w-full h-0.5 bg-current rounded-full transition-transform duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-1.5 text-emerald-400' : ''
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-current rounded-full transition-opacity duration-300 ${
+                    isMenuOpen ? 'opacity-0' : ''
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-current rounded-full transition-transform duration-300 ${
+                    isMenuOpen ? '-rotate-45 -translate-y-2 text-emerald-400' : ''
+                  }`}
+                />
+              </div>
+            </button>
           </div>
-        )}
+
+          {/* Mobile Drawer Dropdown */}
+          {isMenuOpen && (
+            <div className="md:hidden mt-2 p-5 rounded-3xl bg-[#0a0d17]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.9)] space-y-3 animate-fadeIn">
+              <div className="space-y-1 font-jakarta">
+                {navLinks.map((link) => {
+                  const active = isActive(link.path);
+                  return (
+                    <Link
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition ${
+                        active
+                          ? 'text-white bg-emerald-500/20 border border-emerald-500/30'
+                          : 'text-gray-300 hover:text-white hover:bg-white/5'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {active && <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <div className="pt-3 border-t border-gray-800">
+                {isAdminLoggedIn ? (
+                  <div className="space-y-2">
+                    <Link
+                      href="/admin/dashboard"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black text-center font-bold text-sm rounded-2xl shadow-lg shadow-emerald-500/20 font-outfit uppercase tracking-wider"
+                    >
+                      Admin Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        handleAdminLogout();
+                      }}
+                      className="block w-full py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 text-center font-semibold text-sm rounded-2xl"
+                    >
+                      Logout Admin
+                    </button>
+                  </div>
+                ) : isStudentLoggedIn ? (
+                  <div className="space-y-2">
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black text-center font-bold text-sm rounded-2xl shadow-lg shadow-emerald-500/20 font-outfit uppercase tracking-wider"
+                    >
+                      Student Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        handleStudentLogout();
+                      }}
+                      className="block w-full py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 text-center font-semibold text-sm rounded-2xl"
+                    >
+                      Logout Student
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-black text-center font-extrabold text-sm rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)] font-outfit uppercase tracking-wider"
+                  >
+                    <LogIn className="w-4 h-4" />
+                    <span>Portal Login</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
     </>
   );
@@ -385,4 +339,3 @@ const Navbar: React.FC = React.memo(() => {
 Navbar.displayName = 'Navbar';
 
 export default Navbar;
-

@@ -26,30 +26,34 @@ const studyMaterialSchema = new Schema<IStudyMaterial>({
   class: {
     type: String,
     required: [true, 'Class is required'],
-    enum: ['9th standard', '10th standard', '11th standard', '12th standard']
+    index: true,
   },
   description: {
-    type: String
+    type: String,
   },
   fileUrl: {
     type: String,
-    required: [true, 'File URL is required']
+    required: [true, 'File URL is required'],
   },
   fileType: {
     type: String,
-    required: true
+    required: true,
   },
   cloudinaryId: {
-    type: String
+    type: String,
   },
   uploadedBy: {
     type: Schema.Types.ObjectId,
-    ref: 'Admin'
-  }
+    ref: 'Admin',
+  },
 }, {
-  timestamps: true
+  timestamps: true,
 });
 
-const StudyMaterial: Model<IStudyMaterial> = mongoose.models.StudyMaterial || mongoose.model<IStudyMaterial>('StudyMaterial', studyMaterialSchema);
+studyMaterialSchema.index({ class: 1, subject: 1, createdAt: -1 });
+
+const StudyMaterial: Model<IStudyMaterial> =
+  mongoose.models.StudyMaterial || mongoose.model<IStudyMaterial>('StudyMaterial', studyMaterialSchema);
 
 export default StudyMaterial;
+

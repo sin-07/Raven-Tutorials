@@ -38,8 +38,9 @@ export default function LMSNavbar() {
             <img 
               src="/logo.png" 
               alt="RAVEN Logo" 
-              className="h-9 w-9 brightness-0 invert group-hover:scale-105 transition-transform duration-300"
+              className="h-9 w-9 object-contain group-hover:scale-105 transition-transform duration-300"
             />
+
             <div className="flex items-baseline gap-1.5 font-outfit">
               <span className="text-white font-extrabold text-2xl tracking-tight">RAVEN</span>
               <span className="text-[#00E5A8] font-bold text-lg tracking-wide uppercase">Tutorials</span>

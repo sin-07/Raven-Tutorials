@@ -80,48 +80,22 @@ export const staggerFadeUp = (
   );
 };
 
-// ─── TEXT ───────────────────────────────────────────────────────────────────
-
-/** Split element text into per‑character spans, then animate them */
+/** Smooth reveal for headings without mutating React DOM tree */
 export const animateSplitText = (
   el: Element | null,
   delay = 0,
-  duration = 0.6
+  duration = 0.7
 ) => {
   if (!el || typeof window === 'undefined') return;
-  const allSpans: HTMLSpanElement[] = [];
-
-  // Recursively walk text nodes only — preserves nested element structure
-  // (colored spans, block spans, etc. are kept intact)
-  const processNode = (node: Node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const text = node.textContent ?? '';
-      if (!text) return;
-      const frag = document.createDocumentFragment();
-      text.split('').forEach((ch) => {
-        const s = document.createElement('span');
-        s.textContent = ch === ' ' ? '\u00A0' : ch;
-        s.style.cssText = 'display:inline-block;will-change:transform,opacity';
-        allSpans.push(s);
-        frag.appendChild(s);
-      });
-      node.parentNode?.replaceChild(frag, node);
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Snapshot children before iterating so DOM mutations don't skip nodes
-      Array.from(node.childNodes).forEach(processNode);
-    }
-  };
-
-  Array.from(el.childNodes).forEach(processNode);
-  if (!allSpans.length) return;
-
-  return gsap.fromTo(allSpans,
-    { opacity: 0, y: 60, rotationX: -90 },
+  return gsap.fromTo(el,
+    { opacity: 0, y: 35 },
     {
-      opacity: 1, y: 0, rotationX: 0,
-      transformOrigin: '0% 50% -50px',
-      duration, stagger: 0.025, delay,
-      ease: 'back.out(1.7)', clearProps: 'all',
+      opacity: 1,
+      y: 0,
+      duration,
+      delay,
+      ease: 'power3.out',
+      clearProps: 'all',
     }
   );
 };

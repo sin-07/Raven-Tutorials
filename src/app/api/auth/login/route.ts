@@ -1,166 +1,243 @@
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
 import connectDB from '@/lib/database';
 import Admission from '@/models/Admission';
+import Admin from '@/models/Admin';
+import {
+  generateStudentToken,
+  setStudentCookie,
+  generateAdminToken,
+  setAdminCookie,
+} from '@/lib/auth';
+import bcrypt from 'bcryptjs';
 
-// Helper function to format date from DDMMYYYY to Date object
 const parseDOBPassword = (dobString: string): Date | null => {
   try {
-    // Expected format: DDMMYYYY
-    if (dobString.length !== 8) return null;
-    
-    const day = dobString.substring(0, 2);
-    const month = dobString.substring(2, 4);
-    const year = dobString.substring(4, 8);
-    
-    return new Date(`${year}-${month}-${day}`);
-  } catch (error) {
+    if (!dobString) return null;
+    const clean = dobString.replace(/[-/]/g, '');
+    if (clean.length === 8) {
+      // DDMMYYYY
+      const day = parseInt(clean.substring(0, 2), 10);
+      const month = parseInt(clean.substring(2, 4), 10) - 1;
+      const year = parseInt(clean.substring(4, 8), 10);
+      return new Date(Date.UTC(year, month, day));
+    }
+    const d = new Date(dobString);
+    return isNaN(d.getTime()) ? null : d;
+  } catch {
     return null;
   }
 };
 
-// Compare dates (ignoring time)
 const compareDates = (date1: Date, date2: Date): boolean => {
   const d1 = new Date(date1);
   const d2 = new Date(date2);
-  
-  return d1.getDate() === d2.getDate() &&
-         d1.getMonth() === d2.getMonth() &&
-         d1.getFullYear() === d2.getFullYear();
+  return (
+    d1.getUTCDate() === d2.getUTCDate() &&
+    d1.getUTCMonth() === d2.getUTCMonth() &&
+    d1.getUTCFullYear() === d2.getUTCFullYear()
+  );
 };
 
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
-    
-    const { email, password } = await req.json();
 
-    console.log('[INFO] STUDENT LOGIN ATTEMPT');
-    console.log('[INFO] Email:', email);
-    console.log('[INFO] Timestamp:', new Date().toISOString());
-
-    // Validate input
-    if (!email || !password) {
-      console.log('[ERROR] Missing credentials');
-      return NextResponse.json({
-        success: false,
-        message: 'Email and password are required'
-      }, { status: 400 });
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: 'Invalid request format' },
+        { status: 400 }
+      );
     }
 
-    // Find student by email
-    const student = await Admission.findOne({ 
-      email: email.toLowerCase().trim() 
-    });
+    const { email, identifier, username, password } = body;
+    const inputIdentifier = (email || identifier || username || '').trim().toLowerCase();
 
-    if (!student) {
-      console.log('[ERROR] Student not found for email:', email);
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid email or password'
-      }, { status: 401 });
+    if (!inputIdentifier || !password) {
+      return NextResponse.json(
+        { success: false, message: 'Email address and password are required' },
+        { status: 400 }
+      );
     }
 
-    console.log('[INFO] Student found:', student.studentName);
-    console.log('[INFO] Payment status:', student.paymentStatus);
-    console.log('[INFO] Is pending payment:', student.isPendingPayment);
+    // ─────────────────────────────────────────────────────────────────────────
+    // 1. ADMIN AUTHENTICATION (Environment Variables & Admin Model)
+    // ─────────────────────────────────────────────────────────────────────────
+    const envAdminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
+    const envAdminPassword = process.env.ADMIN_PASSWORD || '';
 
-    // Check if payment is completed
-    if (student.isPendingPayment || student.paymentStatus !== 'completed') {
-      console.log('[ERROR] Payment not completed');
-      return NextResponse.json({
-        success: false,
-        message: 'Payment not completed. Please complete your admission payment first.'
-      }, { status: 403 });
+    const isEnvAdminMatch =
+      envAdminEmail &&
+      envAdminPassword &&
+      inputIdentifier === envAdminEmail &&
+      password === envAdminPassword;
+
+    if (isEnvAdminMatch) {
+      let admin = await Admin.findOne({ email: inputIdentifier });
+      if (!admin) {
+        admin = new Admin({
+          email: inputIdentifier,
+          password: password,
+          name: 'Admin',
+          role: 'admin',
+          isActive: true,
+        });
+      } else {
+        admin.isActive = true;
+        const matchesHashed = await admin.comparePassword(password);
+        if (!matchesHashed) {
+          admin.password = password; // pre-save will re-hash
+        }
+      }
+      admin.lastLogin = new Date();
+      await admin.save();
+
+      const adminToken = generateAdminToken(admin._id.toString(), admin.email);
+
+      const response = NextResponse.json({
+        success: true,
+        role: 'admin',
+        redirectTo: '/admin/dashboard',
+        message: 'Welcome back, Admin!',
+        token: adminToken,
+        user: {
+          id: admin._id.toString(),
+          email: admin.email,
+          name: admin.name,
+          role: admin.role,
+        },
+      });
+
+      const cookieOptions = setAdminCookie(adminToken);
+      response.cookies.set('adminToken', cookieOptions.value, cookieOptions.options as any);
+      return response;
     }
 
-    // Verify password (DOB in DDMMYYYY format)
-    const dobFromPassword = parseDOBPassword(password);
-    
-    console.log('[DEBUG] DOB from password:', dobFromPassword);
-    console.log('[DEBUG] DOB from database:', student.dateOfBirth);
-    
-    if (!dobFromPassword || !compareDates(dobFromPassword, student.dateOfBirth)) {
-      console.log('[ERROR] Password mismatch');
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid email or password'
-      }, { status: 401 });
+    // Secondary DB Admin check (if database admin exists)
+    const dbAdmin = await Admin.findOne({ email: inputIdentifier });
+    if (dbAdmin && dbAdmin.isActive) {
+      const isMatch = await dbAdmin.comparePassword(password);
+      if (isMatch) {
+        dbAdmin.lastLogin = new Date();
+        await dbAdmin.save();
+
+        const adminToken = generateAdminToken(dbAdmin._id.toString(), dbAdmin.email);
+
+        const response = NextResponse.json({
+          success: true,
+          role: 'admin',
+          redirectTo: '/admin/dashboard',
+          message: 'Welcome back, Admin!',
+          token: adminToken,
+          user: {
+            id: dbAdmin._id.toString(),
+            email: dbAdmin.email,
+            name: dbAdmin.name,
+            role: dbAdmin.role,
+          },
+        });
+
+        const cookieOptions = setAdminCookie(adminToken);
+        response.cookies.set('adminToken', cookieOptions.value, cookieOptions.options as any);
+        return response;
+      }
     }
 
-    console.log('[SUCCESS] Student login successful:', student.studentName);
+    // ─────────────────────────────────────────────────────────────────────────
+    // 2. STUDENT AUTHENTICATION
+    // ─────────────────────────────────────────────────────────────────────────
+    const isEmail = inputIdentifier.includes('@');
+    const studentQuery = isEmail
+      ? { email: inputIdentifier }
+      : { registrationId: inputIdentifier.toUpperCase() };
 
-    // Generate JWT token (1 hour expiry for security)
-    const token = jwt.sign(
-      { 
-        studentId: student._id.toString(),
-        email: student.email,
-        registrationId: student.registrationId
-      },
-      process.env.JWT_SECRET || 'your-secret-key-change-in-production',
-      { expiresIn: '1h' } // 1 hour session
+    const student = await Admission.findOne(studentQuery).lean();
+
+    if (student) {
+      if (student.paymentStatus !== 'completed') {
+        return NextResponse.json(
+          {
+            success: false,
+            message: 'Admission payment is pending. Please complete your admission payment.',
+          },
+          { status: 403 }
+        );
+      }
+
+      let isPasswordValid = false;
+
+      if (student.password) {
+        if (student.password.startsWith('$2a$') || student.password.startsWith('$2b$')) {
+          isPasswordValid = await bcrypt.compare(password, student.password);
+        } else {
+          isPasswordValid = student.password === password;
+        }
+      }
+
+      if (!isPasswordValid && student.dateOfBirth) {
+        const dobFromPassword = parseDOBPassword(password);
+        if (dobFromPassword && compareDates(dobFromPassword, student.dateOfBirth)) {
+          isPasswordValid = true;
+        }
+      }
+
+      if (isPasswordValid) {
+        const studentId = student._id.toString();
+        const regId = student.registrationId || '';
+        const token = generateStudentToken(studentId, student.email, regId);
+
+        const studentData = {
+          _id: studentId,
+          registrationId: regId,
+          studentName: student.studentName,
+          email: student.email,
+          phoneNumber: student.phoneNumber,
+          standard: student.standard,
+          bloodGroup: student.bloodGroup,
+          fatherName: student.fatherName,
+          motherName: student.motherName,
+          address: student.address,
+          city: student.city,
+          state: student.state,
+          pincode: student.pincode,
+          photoUrl: student.photo,
+          paymentStatus: student.paymentStatus,
+          enrolledCourses: student.enrolledCourses || [],
+        };
+
+        const response = NextResponse.json({
+          success: true,
+          role: 'student',
+          redirectTo: '/dashboard',
+          message: 'Welcome back!',
+          student: studentData,
+          token,
+        });
+
+        const cookieOptions = setStudentCookie(token);
+        response.cookies.set('token', cookieOptions.value, cookieOptions.options as any);
+        response.cookies.set('studentToken', cookieOptions.value, cookieOptions.options as any);
+
+        return response;
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // 3. INVALID CREDENTIALS
+    // ─────────────────────────────────────────────────────────────────────────
+    return NextResponse.json(
+      { success: false, message: 'Invalid email or password' },
+      { status: 401 }
     );
-
-    // Prepare student data (remove sensitive info)
-    const studentData = {
-      _id: student._id,
-      registrationId: student.registrationId,
-      studentName: student.studentName,
-      email: student.email,
-      phoneNumber: student.phoneNumber,
-      alternatePhoneNumber: student.alternatePhoneNumber,
-      dateOfBirth: student.dateOfBirth,
-      gender: student.gender,
-      bloodGroup: student.bloodGroup,
-      fatherName: student.fatherName,
-      motherName: student.motherName,
-      address: student.address,
-      city: student.city,
-      state: student.state,
-      pincode: student.pincode,
-      previousSchool: student.previousSchool,
-      standard: student.standard,
-      category: student.category,
-      paymentAmount: student.paymentAmount,
-      paymentStatus: student.paymentStatus,
-      submittedAt: student.submittedAt,
-      photoUrl: student.photo
-    };
-
-    // Create response with cookie
-    const response = NextResponse.json({
-      success: true,
-      message: 'Login successful',
-      student: studentData
-    });
-
-    // Set httpOnly cookie (1 hour expiry)
-    response.cookies.set('studentToken', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 60 * 60, // 1 hour in seconds
-      path: '/'
-    });
-
-    return response;
-
   } catch (error: any) {
-    console.error('[FATAL] Student login error:', error.message);
-    
-    // Handle specific error types
-    if (error.name === 'MongooseError' || error.name === 'MongoError') {
-      return NextResponse.json({
-        success: false,
-        message: 'Database connection error. Please try again in a moment.'
-      }, { status: 503 });
-    }
-    
-    return NextResponse.json({
-      success: false,
-      message: 'Server error during login. Please try again.',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
-    }, { status: 500 });
+    console.error('Unified login error:', error);
+    return NextResponse.json(
+      { success: false, message: 'Internal server error during login' },
+      { status: 500 }
+    );
   }
 }
+
+

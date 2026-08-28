@@ -192,11 +192,7 @@ testSchema.index({ testId: 1 });
 // MODEL EXPORT
 // ============================================
 
-// Clear cached model for hot reload in development
-if (mongoose.models.Test) {
-  delete mongoose.models.Test;
-}
-
-const Test = mongoose.model<ITest>('Test', testSchema);
+const Test: Model<ITest> = mongoose.models.Test || mongoose.model<ITest>('Test', testSchema);
 
 export default Test;
+

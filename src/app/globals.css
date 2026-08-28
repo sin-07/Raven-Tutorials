@@ -4,7 +4,6 @@
    - Space Grotesk: Sleek tech badges & accents
    - JetBrains Mono: Code & monospace
 */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,15 +15,27 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-main: #08090d;
+  --bg-card: #0e121d;
+  --bg-card-hover: #131929;
+  --emerald-primary: #10b981;
+  --emerald-light: #34d399;
+  --emerald-glow: rgba(16, 185, 129, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-emerald: rgba(16, 185, 129, 0.25);
+}
+
 body {
   font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply text-white;
-  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12), transparent 50%),
-              radial-gradient(circle at 100% 20%, rgba(5, 150, 105, 0.08), transparent 40%),
-              #090a0f;
-  background-color: #090a0f;
+  background-color: #08090d;
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(16, 185, 129, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 90% 25%, rgba(5, 150, 105, 0.09) 0%, transparent 40%),
+    radial-gradient(circle at 10% 60%, rgba(16, 185, 129, 0.07) 0%, transparent 40%);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -36,371 +47,206 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
 
-/* Display & Hero Text — Outfit bold/black */
+/* Display & Hero Text */
 .font-display {
   font-family: var(--font-outfit), sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-/* Heading Utility */
 .font-heading {
   font-family: var(--font-outfit), sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-/* Body Text — Plus Jakarta Sans */
 .font-body {
   font-family: var(--font-jakarta), system-ui, sans-serif;
 }
 
-/* Brand / Logo — Outfit extra bold with tight tracking */
 .font-brand {
   font-family: var(--font-outfit), sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
-/* Tech Accent / Badges — Space Grotesk */
 .font-accent {
   font-family: var(--font-space), sans-serif;
   letter-spacing: -0.01em;
 }
 
-/* Fallback / Backward Compatibility */
-.font-elegant {
-  font-family: var(--font-outfit), sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
 /* Modern Gradient Text Utilities */
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #ffffff 20%, #34d399 70%, #059669 100%);
+  background: linear-gradient(135deg, #ffffff 15%, #34d399 65%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
 }
 
-.text-gradient-subtle {
-  background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+.text-gradient-white {
+  background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.72) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
 }
 
-.glass-card {
-  background: rgba(18, 24, 38, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+.text-gradient-mint {
+  background: linear-gradient(135deg, #a7f3d0 0%, #10b981 60%, #047857 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* Luxury Glassmorphic Panels & Cards */
+.glass-panel {
+  background: rgba(14, 18, 29, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.glass-card {
+  background: rgba(14, 18, 29, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card-hover:hover {
-  background: rgba(22, 30, 48, 0.85);
-  border-color: rgba(52, 211, 153, 0.3);
-  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
+  background: rgba(19, 25, 41, 0.85);
+  border-color: rgba(52, 211, 153, 0.35);
+  box-shadow: 0 16px 40px -12px rgba(16, 185, 129, 0.2);
+  transform: translateY(-3px);
+}
+
+.glow-emerald-subtle {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.18);
+}
+
+.glow-emerald-strong {
+  box-shadow: 0 0 50px -5px rgba(16, 185, 129, 0.35);
+}
+
+/* Glowing Border Pill & Badges */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #34d399;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+/* Shimmer Button */
+.btn-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #000000;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.35);
+}
+
+.btn-emerald:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(16, 185, 129, 0.5);
+}
+
+.btn-emerald:active {
+  transform: scale(0.98);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34d399;
   transform: translateY(-2px);
 }
 
-/* Code blocks */
-code, pre {
-  font-family: 'JetBrains Mono', monospace;
+/* Background Patterns */
+.bg-grid-subtle {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Custom Animations for Student Dashboard */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.bg-radial-hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.05) 45%, transparent 75%);
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-in-out;
+/* High-performance content rendering */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInSimple {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Scale up animation for modals */
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.animate-scale-up {
-  animation: scaleUp 0.3s ease-out forwards;
-}
-
-/* Zoom in animation for image modal */
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-zoom-in {
-  animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-slideInLeft {
-  animation: slideInLeft 0.6s ease-out forwards;
-}
-
-.animate-slideInRight {
-  animation: slideInRight 0.6s ease-out forwards;
-}
-
-.animate-scaleIn {
-  animation: scaleIn 0.4s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-.animate-bounce-slow {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-/* Smooth transitions */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Hide all scrollbars globally */
+/* Hide scrollbars globally */
 ::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
 }
 
-/* Hide scrollbar for all browsers */
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-html,
-body {
+html, body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-x: hidden;
 }
 
-/* Advanced Animations */
-@keyframes blob {
+/* Keyframe Animations */
+@keyframes floatSlow {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(20px, -20px) scale(1.1);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  75% {
-    transform: translate(20px, 20px) scale(1.05);
-  }
-}
-
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(20deg);
-  }
-  75% {
-    transform: rotate(-20deg);
-  }
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-.animate-wave {
-  animation: wave 2s ease-in-out infinite;
-  display: inline-block;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
-
-/* Scrollbar hide for horizontal scroll */
-.scrollbar-hide,
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Smooth touch scrolling for swipeable elements */
-.snap-x {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Hide scrollbar on all overflow elements */
-.overflow-y-auto::-webkit-scrollbar,
-.overflow-x-auto::-webkit-scrollbar,
-.overflow-auto::-webkit-scrollbar,
-.overflow-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.overflow-y-auto,
-.overflow-x-auto,
-.overflow-auto,
-.overflow-scroll {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Gradient text animation */
-@keyframes gradient-x {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 3s ease infinite;
-}
-
-/* Hover glow effect */
-.hover-glow {
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-}
-
-/* Float slow animation */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-10px) translateX(5px);
+    transform: translateY(-12px) rotate(1deg);
   }
 }
 
 .animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
+  animation: floatSlow 8s ease-in-out infinite;
 }
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+

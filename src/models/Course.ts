@@ -103,7 +103,12 @@ const CourseSchema = new Schema<ICourse>(
   }
 );
 
-// Create index for search
+// Create indexes for search and filtered listing
 CourseSchema.index({ title: 'text', description: 'text', category: 'text' });
+CourseSchema.index({ isPublished: 1, createdAt: -1 });
+CourseSchema.index({ category: 1, isPublished: 1 });
 
-export default mongoose.models.Course || mongoose.model<ICourse>('Course', CourseSchema);
+const Course = mongoose.models.Course || mongoose.model<ICourse>('Course', CourseSchema);
+
+export default Course;
+

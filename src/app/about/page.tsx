@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { Target, BookOpen, Users, Code, X, ZoomIn } from 'lucide-react';
-import { LMSNavbar, LMSFooter } from '@/components/lms';
-import { GlowBackground } from '@/components/ui';
+import { Target, BookOpen, Users, X, ZoomIn, Sparkles } from 'lucide-react';
+import { LMSFooter } from '@/components/lms';
 import {
   gsap,
-  ScrollTrigger,
   animateSplitText,
   scrollFadeUp,
   scrollStagger,
@@ -18,7 +17,10 @@ interface FacultyMember {
   name: string;
   role: string;
   description: string;
-  image: string;
+  image?: string;
+  specialty: string;
+  dept: string;
+  qualification: string;
 }
 
 interface DevTeamMember {
@@ -26,6 +28,9 @@ interface DevTeamMember {
   role: string;
   description: string;
   image: string;
+  bio: string;
+  education: string;
+  skills: string[];
   fullProfile: {
     about: string;
     skills: string[];
@@ -34,428 +39,428 @@ interface DevTeamMember {
   };
 }
 
-// Sheryians-style accent color
-const ACCENT = '#00E5A8';
-
 const AboutUs: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showImageModal, setShowImageModal] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // GSAP refs
+  const containerRef = useRef<HTMLDivElement>(null);
   const pageTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const missionRef = useRef<HTMLElement>(null);
-  const approachRef = useRef<HTMLElement>(null);
-  const philosophyRef = useRef<HTMLElement>(null);
   const facultyGridRef = useRef<HTMLDivElement>(null);
   const devSectionRef = useRef<HTMLElement>(null);
-  
+
+  const pillars = [
+    {
+      icon: Target,
+      title: 'Our Mission',
+      desc: 'To provide accessible, high-impact education that builds rock-solid conceptual mastery and moral discipline, equipping students to conquer competitive exams and future careers.',
+    },
+    {
+      icon: BookOpen,
+      title: 'Our Approach',
+      desc: 'Detailed theory reinforced with real-life visualization, graded Daily Practice Papers (DPPs), periodic proctored mock exams, and instant 1-on-1 doubt resolution clinics.',
+    },
+    {
+      icon: Users,
+      title: 'Our Philosophy',
+      desc: 'We believe true mentorship requires educators to be passionate lifelong learners. We cultivate curiosity, discipline, and critical thinking in every single classroom session.',
+    },
+  ];
+
   const faculty: FacultyMember[] = [
     {
       name: 'S. Nandan Verma',
       role: 'Faculty & Operations Head',
-      description: 'Being a student of Life Sciences, I cherish life and its forms. Want to develop an inquisitive aptitude in students regarding their education and career.',
-      image: '/faculty/nandan.jpg'
+      dept: 'Life Sciences',
+      specialty: 'Life Sciences & Biology',
+      qualification: 'M.Sc Life Sciences',
+      description: 'Dedicated to developing an inquisitive aptitude in students regarding their education and competitive career paths.',
     },
     {
       name: 'Rakesh Ranjan',
-      role: 'CEO',
-      description: 'Pursuing MBBS at NMCH, Patna. Ardent reader. Teaching students for previous 3-4 years as freelancer. Exploring academia for delectational pedagogy with student community in focus. Want to develop a platform for students having dreams of exploration other than trendy profession.',
-      image: '/faculty/rakesh.jpg'
+      role: 'CEO & Senior Faculty',
+      dept: 'Medical Pedagogy',
+      specialty: 'Medical Sciences & Pedagogy',
+      qualification: 'MBBS (Pursuing), NMCH',
+      description: 'Experienced educator focusing on concept-first pedagogy. Committed to creating a premier platform for aspiring medical students.',
     },
     {
       name: 'Abhinay Gupta',
       role: 'Chief Project Officer',
-      description: 'Expertise in Commerce, Digital Marketing, Social media Coordinator. B.com Graduate Having a strong foundation in business principle, finance, taxation, accounting, Auditing, Business Management. My degree reflects my passion to do business in effective and efficient manner.',
-      image: '/faculty/abhinay.jpg'
+      dept: 'Management & Logistics',
+      specialty: 'Commerce & Management',
+      qualification: 'M.Com, Educational Strategy',
+      description: 'Ensuring structured operational excellence and seamless academic batch scheduling across all branches.',
     },
     {
       name: 'Niraj Kumar',
       role: 'Faculty & CPRO',
-      description: 'Pursuing Integrated B.Ed(B.A-B.Ed) from BRABU. CTET Qualified. Expertise in teaching.',
-      image: '/faculty/niraj.jpg'
+      dept: 'Foundational Sciences',
+      specialty: 'Foundational Pedagogy',
+      qualification: 'B.A-B.Ed (BRABU), CTET Qualified',
+      description: 'Extensive teaching expertise in conceptual clarity, child psychology, and structured board preparations.',
     },
     {
       name: 'Guddu Kumar',
-      role: 'Faculty',
-      description: 'B. Sc. Graduate in Mathematics. I have a passion for teaching and interacting with students coming from different backgrounds. An experience of 4 years as a full-time teacher has enabled me to unlock my problem-solving aptitude for my students.',
-      image: '/faculty/guddu.jpg'
-    }
+      role: 'Senior Mathematics Faculty',
+      dept: 'Higher Mathematics',
+      specialty: 'Higher Mathematics & Logic',
+      qualification: 'B.Sc. Mathematics',
+      description: 'Passionate about transforming complex mathematical formulas and calculus into intuitive problem-solving models.',
+    },
   ];
 
   const devTeam: DevTeamMember[] = [
     {
       name: 'ANIKET SINGH',
-      role: 'CTO',
-      description: 'This one is Full-stack developer with 5+ years of experience and mental aging thanks to debugging. Passionate about web development, problem-solving, and pretending I understand every new technology released each week. Code, coffee, chaos and that\'s my life.',
-      image: '/team/aniket.jpg',
+      role: 'CTO & Lead Architect',
+      education: 'ITER College - Computer Science Engineering',
+      bio: 'Full-stack software architect and CTO at RAVEN Tutorials. Specializing in high-performance cloud architectures, real-time student portals, and fluid user experiences.',
+      description: 'Full-stack software engineer & CTO at RAVEN Tutorials with 5+ years of software development experience.',
+      image: '/AniketSingh.jpg',
+      skills: ['Next.js 14', 'React.js', 'Node.js', 'MongoDB', 'TypeScript', 'GSAP Animation', 'Express.js', 'Python'],
       fullProfile: {
-        about: 'Passionate full-stack developer and CTO at RAVEN Tutorials with expertise in the MERN stack. Currently pursuing Computer Science Engineering at ITER College, I specialize in creating innovative educational platforms and web applications. My journey in technology is driven by the desire to make learning accessible and engaging for everyone.',
+        about: 'Passionate full-stack developer and CTO at RAVEN Tutorials with expertise across Next.js, Node.js, and MongoDB. Currently pursuing Computer Science Engineering at ITER College, I specialize in crafting high-performance, real-time educational systems and seamless digital learning portals.',
         skills: [
+          'Next.js 14',
           'React.js',
+          'TypeScript',
           'Node.js',
           'MongoDB',
           'Express.js',
-          'JavaScript',
           'Python',
-          'UI/UX Design',
-          'Full Stack Development'
+          'UI/UX & GSAP'
         ],
         education: 'ITER College - Computer Science Engineering',
-        experience: '5+ years in Full Stack Development'
+        experience: '5+ years in Full Stack Architecture & Engineering'
       }
     }
   ];
 
-  // ── GSAP animations (Core + Scroll + Text + UI) ──────────────────────────
+  // GSAP animations
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Text: Split and animate page title
-    if (pageTitleRef.current) animateSplitText(pageTitleRef.current, 0.2, 0.5);
+    const ctx = gsap.context(() => {
+      if (pageTitleRef.current) animateSplitText(pageTitleRef.current, 0.2, 0.5);
 
-    // Core: Subtitle fade up
-    if (heroSubRef.current) {
-      gsap.fromTo(heroSubRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: 'power3.out', clearProps: 'all' }
-      );
-    }
+      if (heroSubRef.current) {
+        gsap.fromTo(
+          heroSubRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, delay: 0.5, ease: 'power3.out', clearProps: 'all' }
+        );
+      }
 
-    // Scroll: Mission section
-    if (missionRef.current) scrollFadeUp(missionRef.current);
+      if (missionRef.current) scrollFadeUp(missionRef.current);
 
-    // Scroll: Approach section
-    if (approachRef.current) scrollFadeUp(approachRef.current);
+      if (facultyGridRef.current) {
+        const cards = facultyGridRef.current.querySelectorAll('.faculty-card');
+        scrollStagger(cards, 0.12);
+        cards.forEach((card) => cardTilt(card as HTMLElement));
+      }
 
-    // Scroll: Philosophy section
-    if (philosophyRef.current) scrollFadeUp(philosophyRef.current);
+      if (devSectionRef.current) scrollFadeUp(devSectionRef.current);
+    }, containerRef);
 
-    // Scroll + UI: Faculty cards stagger + tilt
-    if (facultyGridRef.current) {
-      const cards = facultyGridRef.current.querySelectorAll('.faculty-card');
-      scrollStagger(cards, 0.12);
-      cards.forEach((card) => cardTilt(card as HTMLElement));
-    }
-
-    // Scroll: Dev section
-    if (devSectionRef.current) scrollFadeUp(devSectionRef.current);
-
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => ctx.revert();
   }, []);
+
+  // Lock body scroll when modal is active
+  useEffect(() => {
+    if (showModal || showImageModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showModal, showImageModal]);
 
   return (
     <>
-      <LMSNavbar />
-      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden">
-        {/* Green Radial Glow Effect */}
-      <GlowBackground />
+      <div ref={containerRef} className="min-h-screen bg-[#08090d] text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+        {/* Background Ambient Radial Glowing Auroras */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[850px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
+          <div className="absolute top-[45%] -left-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.07)_0%,_transparent_70%)]" />
+        </div>
+
         <div className="relative z-10">
-        {/* Header */}
-        <section className="py-16 pt-28">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 ref={pageTitleRef} className="text-4xl md:text-5xl font-bold text-white mb-4 font-cormorant">About <span className="text-[#00E5A8] font-sacramento text-5xl md:text-6xl">RAVEN</span> Tutorials</h1>
-              <p ref={heroSubRef} className="text-lg text-gray-400 font-bricolage">
-                A home-based institution dedicated to providing affordable and comprehensive learning
-              </p>
+          {/* Header Section */}
+          <section className="pt-36 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span>About RAVEN Tutorials</span>
             </div>
-          </div>
-        </section>
 
-        {/* Our Mission */}
-        <section ref={missionRef} className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
-                  <Target className="w-6 h-6 text-[#00E5A8]" />
-                </div>
-                <h2 className="text-3xl font-extrabold text-white font-outfit">Our Mission</h2>
-              </div>
-              <p className="text-gray-300 leading-relaxed text-lg font-jakarta">
-                Welcome to RAVEN Tutorials, a premier educational institution dedicated to providing an affordable 
-                and comprehensive learning experience. We boost each student&apos;s potential, both academically 
-                and morally, to maximize their future opportunities.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Approach */}
-        <section ref={approachRef} className="bg-[#07080c] py-16 border-y border-white/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
-                  <BookOpen className="w-6 h-6 text-[#00E5A8]" />
-                </div>
-                <h2 className="text-3xl font-extrabold text-white font-outfit">Our Approach</h2>
-              </div>
-              <p className="text-gray-300 leading-relaxed text-lg font-jakarta">
-                As a science-focused institute, we emphasize Science and Mathematics through detailed theory, 
-                practical sessions, and conceptual clarity. Our hands-on approach ensures a thorough 
-                understanding of foundational and advanced subjects.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Philosophy */}
-        <section ref={philosophyRef} className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
-                  <Users className="w-6 h-6 text-[#00E5A8]" />
-                </div>
-                <h2 className="text-3xl font-extrabold text-white font-outfit">Our Philosophy</h2>
-              </div>
-              <p className="text-gray-300 leading-relaxed text-lg font-jakarta">
-                Our educators are lifelong learners, constantly improving their skills and pedagogical methods. 
-                We believe that to be a good mentor, one must also be an inspiring learner.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Faculty Section */}
-        <section className="bg-[#07080c] py-16 border-t border-white/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-extrabold text-white mb-4 text-center font-outfit">Meet Our Faculty</h2>
-              <p className="text-gray-400 text-center mb-12 font-jakarta text-base">
-                Dedicated educators committed to excellence in teaching and student development
-              </p>
-              
-              <div ref={facultyGridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {faculty.map((member, index) => (
-                  <div 
-                    key={index} 
-                    className="faculty-card bg-[#10131c] rounded-2xl border border-white/5 p-6 hover:shadow-xl hover:border-[#00E5A8]/30 hover:scale-105 transition-all duration-300"
-                  >
-                    <div className="w-24 h-24 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Users className="w-12 h-12 text-[#00E5A8]" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white text-center mb-1 font-outfit">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#00E5A8] text-xs uppercase tracking-wider font-space text-center mb-4 font-semibold">
-                      {member.role} @ RAVEN Tutorials
-                    </p>
-                    <p className="text-gray-400 text-sm leading-relaxed font-jakarta">
-                      {member.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Development Team */}
-        <section ref={devSectionRef} className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-white mb-4 text-center">Development Team</h2>
-              <p className="text-gray-400 text-center mb-12">
-                Technology professionals bringing innovative solutions to education
-              </p>
-              
-              <div className="max-w-md mx-auto">
-                {devTeam.map((member, index) => (
-                  <div 
-                    key={index} 
-                    className="bg-[#111111] rounded-xl border border-gray-800 p-8 hover:shadow-xl hover:border-[#00E5A8]/30 transition-all duration-300"
-                  >
-                    {/* Image with hover effect */}
-                    <div 
-                      className="relative w-32 h-32 mx-auto mb-4 group cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowImageModal(true);
-                      }}
-                    >
-                      <Image
-                        src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
-                        alt={member.name}
-                        fill
-                        sizes="(max-width: 640px) 128px, 256px"
-                        unoptimized
-                        priority
-                        className="rounded-full object-cover border-4 border-[#00E5A8] shadow-lg group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-full flex items-center justify-center transition-all duration-300">
-                        <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-white text-center mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#00E5A8] text-sm text-center mb-4">
-                      {member.role} @ RAVEN Tutorials
-                    </p>
-                    <p className="text-gray-400 text-sm leading-relaxed text-center">
-                      {member.description}
-                    </p>
-                    
-                    {/* Tap for details button */}
-                    <button
-                      onClick={() => setShowModal(true)}
-                      className="mt-4 w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black py-2 px-4 rounded-full transition-all duration-300 font-medium text-sm hover:scale-105 active:scale-95"
-                    >
-                      Tap for details
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Modal for Aniket Singh Details */}
-        {showModal && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in" 
-            onClick={() => setShowModal(false)}
-          >
-            <div 
-              className="bg-[#0b0b0b] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-up border border-gray-800" 
-              onClick={(e) => e.stopPropagation()}
+            <h1
+              ref={pageTitleRef}
+              className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
             >
-              {/* Header */}
-              <div className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] p-8 relative">
-                <button 
-                  onClick={() => setShowModal(false)}
-                  className="absolute top-4 right-4 text-black hover:bg-black/20 rounded-full p-2 transition-all duration-300 hover:rotate-90"
+              Architecting <span className="text-gradient-emerald">Academic Excellence</span>
+            </h1>
+
+            <p
+              ref={heroSubRef}
+              className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta leading-relaxed text-center"
+            >
+              A premier educational institution in Patna, Bihar dedicated to empowering students through rigorous conceptual clarity, empathetic mentorship, and modern digital learning.
+            </p>
+          </section>
+
+          {/* Core Pillars: Mission, Approach & Philosophy */}
+          <section ref={missionRef} className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+              {pillars.map((pillar, index) => (
+                <div
+                  key={index}
+                  className="p-8 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/45 hover:bg-[#12182c] transition-all duration-300 group hover:-translate-y-1.5"
                 >
-                  <X className="w-6 h-6" />
-                </button>
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-lg shadow-emerald-500/10 group-hover:scale-105 transition-transform">
+                    <pillar.icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white font-outfit mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm font-jakarta leading-relaxed">
+                    {pillar.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Faculty Showcase */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+            <div className="text-center mb-14">
+              <span className="pill-badge mb-4">Master Mentors</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
+                Our Distinguished Faculty
+              </h2>
+              <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
+                Educators with decades of collective experience producing top 100 ranks across Board and National competitive exams.
+              </p>
+            </div>
+
+            <div ref={facultyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {faculty.map((member, index) => (
+                <div
+                  key={index}
+                  className="faculty-card p-6 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-xl backdrop-blur-xl flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-800/40 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 mx-auto font-black text-2xl font-outfit shadow-md">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div className="text-center">
+                      <span className="text-xs font-space font-semibold uppercase text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                        {member.dept}
+                      </span>
+                      <h3 className="text-xl font-bold text-white font-outfit mt-3 mb-1">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs text-gray-400 font-jakarta mb-3">
+                        {member.qualification}
+                      </p>
+                      <p className="text-xs text-gray-300 font-jakarta leading-relaxed">
+                        {member.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Technology & Development Team */}
+          <section ref={devSectionRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+            <div className="text-center mb-14">
+              <span className="pill-badge mb-4">Engineering & Architecture</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
+                Digital Infrastructure & Development
+              </h2>
+              <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
+                The core technology stack and digital learning engineering powering RAVEN Tutorials.
+              </p>
+            </div>
+
+            <div className="max-w-xl mx-auto">
+              {devTeam.map((dev, index) => (
+                <div
+                  key={index}
+                  className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/90 border border-emerald-500/30 shadow-2xl backdrop-blur-xl text-center space-y-6 hover:border-emerald-500/60 transition-all"
+                >
+                  <div 
+                    className="relative w-36 h-36 mx-auto rounded-3xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/20 group cursor-pointer"
+                    onClick={() => setShowImageModal(true)}
+                  >
+                    <Image
+                      src={dev.image || "/AniketSingh.jpg"}
+                      alt={dev.name}
+                      fill
+                      unoptimized
+                      priority
+                      className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-outfit font-bold backdrop-blur-[2px]">
+                      <ZoomIn className="w-4 h-4 text-emerald-400" />
+                      <span>View Photo</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="px-3.5 py-1 rounded-full text-xs font-semibold uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-space tracking-wider">
+                      {dev.role}
+                    </span>
+                    <h3 className="text-3xl font-black text-white font-outfit mt-3">
+                      {dev.name}
+                    </h3>
+                    <p className="text-sm text-gray-400 font-jakarta mt-1">
+                      {dev.education}
+                    </p>
+                  </div>
+
+                  <p className="text-gray-300 text-sm font-jakarta leading-relaxed">
+                    {dev.bio}
+                  </p>
+
+                  <div className="flex flex-wrap justify-center gap-2 pt-2">
+                    {dev.skills.map((skill, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="px-3 py-1 bg-[#141a2c] text-gray-300 rounded-xl text-xs font-medium border border-white/5"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl transition-all duration-300 shadow-xl shadow-emerald-500/25 text-sm font-outfit transform hover:scale-[1.02]"
+                  >
+                    View Full Profile & Tech Stack
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Global High-Priority Modal rendered via React Portal directly into body */}
+      {mounted && showModal && createPortal(
+        <div 
+          className="fixed inset-0 bg-black/85 backdrop-blur-2xl flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto" 
+          onClick={() => setShowModal(false)}
+        >
+          <div 
+            className="bg-[#0e1320] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-emerald-500/30 shadow-2xl overflow-hidden relative z-[1000000] my-auto" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-emerald-500 to-emerald-700 p-8 relative text-black">
+              <button 
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-black hover:bg-black/20 rounded-full p-2 transition-all"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <div className="w-24 h-24 mx-auto mb-3 rounded-full border-4 border-black/30 overflow-hidden shadow-2xl relative">
                 <Image
-                  src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
+                  src={devTeam[0].image || "/AniketSingh.jpg"}
                   alt={devTeam[0].name}
-                  width={128}
-                  height={128}
+                  fill
                   unoptimized
                   priority
-                  className="rounded-full mx-auto mb-4 border-4 border-black shadow-xl object-cover"
+                  className="object-cover object-top"
                 />
-                <h2 className="text-3xl font-bold text-black text-center mb-2">
-                  {devTeam[0].name}
-                </h2>
-                <p className="text-black/70 text-center">
-                  {devTeam[0].role} @ RAVEN Tutorials
+              </div>
+              <h2 className="text-3xl font-black text-center font-outfit">
+                {devTeam[0].name}
+              </h2>
+              <p className="text-black/80 text-center font-space text-sm font-semibold tracking-wider uppercase">
+                {devTeam[0].role}
+              </p>
+            </div>
+
+            {/* Content */}
+            <div className="p-8 space-y-6 font-jakarta">
+              <div>
+                <h4 className="text-lg font-bold text-white font-outfit mb-2">About Me</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {devTeam[0].fullProfile.about}
                 </p>
               </div>
 
-              {/* Content */}
-              <div className="p-8">
-                {/* About Me */}
-                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  <h3 className="text-2xl font-bold text-white mb-4">About Me</h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {devTeam[0].fullProfile.about}
-                  </p>
+              <div>
+                <h4 className="text-lg font-bold text-white font-outfit mb-3">Core Skills & Technologies</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {devTeam[0].fullProfile.skills.map((skill, skillIndex) => (
+                    <div 
+                      key={skillIndex}
+                      className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-2 rounded-xl text-center text-xs font-semibold font-space"
+                    >
+                      {skill}
+                    </div>
+                  ))}
                 </div>
+              </div>
 
-                {/* Skills & Expertise */}
-                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  <h3 className="text-2xl font-bold text-white mb-4">Skills & Expertise</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {devTeam[0].fullProfile.skills.map((skill, skillIndex) => (
-                      <div 
-                        key={skillIndex}
-                        className="bg-[#00E5A8]/10 border border-[#00E5A8]/30 text-[#00E5A8] px-4 py-2 rounded-lg text-center font-medium text-sm hover:bg-[#00E5A8]/20 hover:scale-105 transition-all duration-300"
-                      >
-                        {skill}
-                      </div>
-                    ))}
-                  </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
+                  <p className="text-xs text-emerald-400 font-space uppercase">Education</p>
+                  <p className="text-sm text-gray-200 font-semibold mt-1">{devTeam[0].fullProfile.education}</p>
                 </div>
-
-                {/* Education */}
-                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <h3 className="text-2xl font-bold text-white mb-4">Education</h3>
-                  <div className="bg-[#111111] border border-gray-800 p-4 rounded-lg hover:border-[#00E5A8]/30 transition-colors duration-300">
-                    <p className="text-gray-300 font-medium">
-                      {devTeam[0].fullProfile.education}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Experience */}
-                <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                  <h3 className="text-2xl font-bold text-white mb-4">Experience</h3>
-                  <div className="bg-[#111111] border border-gray-800 p-4 rounded-lg hover:border-[#00E5A8]/30 transition-colors duration-300">
-                    <p className="text-gray-300 font-medium">
-                      {devTeam[0].fullProfile.experience}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Get In Touch */}
-                <div className="text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                  <h3 className="text-2xl font-bold text-white mb-4">Get In Touch</h3>
-                  <button className="bg-[#00E5A8] text-black px-8 py-3 rounded-full hover:bg-[#00E5A8]/90 transition-all duration-300 font-medium hover:scale-105 active:scale-95">
-                    Contact Me
-                  </button>
+                <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
+                  <p className="text-xs text-emerald-400 font-space uppercase">Experience</p>
+                  <p className="text-sm text-gray-200 font-semibold mt-1">{devTeam[0].fullProfile.experience}</p>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        </div>,
+        document.body
+      )}
 
-        {/* Image Modal for Full View */}
-        {showImageModal && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4 animate-fade-in" 
+      {/* Global Photo Modal rendered via React Portal */}
+      {mounted && showImageModal && createPortal(
+        <div 
+          className="fixed inset-0 bg-black/95 backdrop-blur-2xl flex items-center justify-center z-[999999] p-4" 
+          onClick={() => setShowImageModal(false)}
+        >
+          <button 
             onClick={() => setShowImageModal(false)}
+            className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition z-[1000000]"
           >
-            <button 
-              onClick={() => setShowImageModal(false)}
-              className="absolute top-6 right-6 text-white bg-[#111111]/50 backdrop-blur-sm hover:bg-red-500 rounded-full p-3 transition-all duration-300 hover:rotate-180 hover:scale-110 z-10 group border border-gray-800"
-            >
-              <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            </button>
-            <div 
-              className="relative max-w-3xl max-h-[90vh] animate-zoom-in"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src="https://res.cloudinary.com/dxli2mlbq/image/upload/v1764952898/raven-tutorials/team/aniket-singh-developer.jpg"
-                alt="Aniket Singh"
-                width={1200}
-                height={800}
-                unoptimized
-                priority
-                className="w-full h-auto object-contain rounded-lg shadow-2xl"
-              />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#0b0b0b]/80 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-[#00E5A8]/30">
-                <p className="font-semibold whitespace-nowrap text-sm sm:text-base">ANIKET SINGH - <span className="text-[#00E5A8]">CTO</span></p>
-              </div>
-            </div>
+            <X className="w-6 h-6" />
+          </button>
+          <div 
+            className="relative max-w-2xl max-h-[85vh] rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl my-auto" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={devTeam[0].image || "/AniketSingh.jpg"}
+              alt="Aniket Singh"
+              className="w-full h-auto max-h-[80vh] object-contain"
+            />
           </div>
-        )}
-        </div>
-      </div>
-      <LMSFooter />
+        </div>,
+        document.body
+      )}
 
-      <style jsx>{`
-        @keyframes scale-up {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes zoom-in {
-          from { opacity: 0; transform: scale(0.8); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .animate-scale-up { animation: scale-up 0.3s ease-out; }
-        .animate-zoom-in { animation: zoom-in 0.4s ease-out; }
-      `}</style>
+      <LMSFooter />
     </>
   );
 };
 
 export default AboutUs;
-

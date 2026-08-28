@@ -83,6 +83,10 @@ const liveClassSchema = new Schema<ILiveClass>({
   timestamps: true
 });
 
+liveClassSchema.index({ class: 1, status: 1, scheduledAt: -1 });
+liveClassSchema.index({ status: 1, scheduledAt: 1 });
+
 const LiveClass: Model<ILiveClass> = mongoose.models.LiveClass || mongoose.model<ILiveClass>('LiveClass', liveClassSchema);
 
 export default LiveClass;
+

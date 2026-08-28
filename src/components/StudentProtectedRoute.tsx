@@ -79,13 +79,12 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
     return () => window.removeEventListener('focus', handleFocus);
   }, [verifyAuth]);
 
-  // Loading state with dark theme
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
+      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-800 border-t-[#00E5A8] rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Verifying authentication...</p>
+          <div className="w-12 h-12 border-4 border-gray-800 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-400 text-sm font-jakarta">Verifying student access...</p>
         </div>
       </div>
     );
@@ -94,10 +93,10 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
   // Not authenticated - will redirect
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
+      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Redirecting to login...</p>
+          <div className="w-12 h-12 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-400 text-sm font-jakarta">Redirecting to login...</p>
         </div>
       </div>
     );
@@ -105,6 +104,7 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
 
   return <>{children}</>;
 };
+
 
 export default StudentProtectedRoute;
 

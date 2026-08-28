@@ -1,54 +1,40 @@
-import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/database';
+import { NextResponse } from 'next/server';
 import StudyMaterial from '@/models/StudyMaterial';
-import Admission from '@/models/Admission';
-import { verifyStudentToken } from '@/lib/auth';
+import { authenticateStudent } from '@/lib/apiMiddleware';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const token = request.cookies.get('studentToken')?.value;
-    if (!token) {
-      return NextResponse.json({
-        success: false,
-        message: 'Unauthorized'
-      }, { status: 401 });
+    const { student, error } = await authenticateStudent();
+    if (error || !student) {
+      return error || NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
-    const decoded = await verifyStudentToken(token);
-    
-    if (!decoded.success || !decoded.student) {
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid token'
-      }, { status: 401 });
-    }
+    const cleanStandard = student.standard.replace(/\D/g, '');
 
-    await connectDB();
-
-    // Get student
-    const student = await Admission.findById(decoded.student._id);
-    if (!student) {
-      return NextResponse.json({
-        success: false,
-        message: 'Student not found'
-      }, { status: 404 });
-    }
-
-    // Get study materials for this student's class
+    // Match variations like '9th', '9th standard', '9', etc.
     const materials = await StudyMaterial.find({
-      class: student.standard
-    }).sort({ createdAt: -1 });
+      class: {
+        $in: [
+          student.standard,
+          `${cleanStandard}th`,
+          `${cleanStandard}th standard`,
+          cleanStandard,
+        ],
+      },
+    })
+      .sort({ createdAt: -1 })
+      .lean();
 
     return NextResponse.json({
       success: true,
-      data: materials
+      data: materials,
     });
-
   } catch (error: any) {
     console.error('Study Materials Error:', error);
-    return NextResponse.json({
-      success: false,
-      message: error.message || 'Error fetching study materials'
-    }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: error.message || 'Error fetching study materials' },
+      { status: 500 }
+    );
   }
 }
+

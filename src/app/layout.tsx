@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { Outfit, Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
 import './globals.css';
@@ -7,14 +7,14 @@ import ClientLayout from '@/components/ClientLayout';
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-outfit',
   display: 'swap',
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-jakarta',
   display: 'swap',
 });
@@ -23,6 +23,13 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-space',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -46,9 +53,9 @@ export const metadata: Metadata = {
     description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship.',
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/logo.png',
+        width: 512,
+        height: 512,
         alt: 'Raven Tutorials - Online Learning Platform',
       },
     ],
@@ -57,7 +64,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Raven Tutorials - Learn Smarter, Achieve More',
     description: 'Master competitive exams with India\'s top educators.',
-    images: ['/og-image.png'],
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
@@ -75,8 +82,20 @@ export const metadata: Metadata = {
     shortcut: '/logo.png',
     apple: '/logo.png',
   },
-  verification: {
-    google: 'your-google-verification-code',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'Raven Tutorials',
+  url: 'https://raventutorials.com',
+  logo: 'https://raventutorials.com/logo.png',
+  description: 'Premier online learning and classroom coaching platform for Board exams, JEE, and NEET preparation.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Patna',
+    addressRegion: 'Bihar',
+    addressCountry: 'India',
   },
 };
 
@@ -86,7 +105,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang="en"
+      className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${plusJakarta.className} font-sans antialiased selection:bg-emerald-500 selection:text-white`}>
         <AdminProvider>
           <ClientLayout>
@@ -127,4 +155,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 

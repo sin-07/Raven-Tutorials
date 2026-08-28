@@ -2,129 +2,146 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, UserCircle } from 'lucide-react';
+import { GraduationCap, UserCircle, Sparkles, CheckCircle2, ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
+import { LMSFooter } from '@/components/lms';
 
 export default function AdmissionPage() {
   return (
-    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex items-center justify-center p-4 pt-24">
-      {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
+    <>
+      <div className="min-h-screen bg-[#08090d] text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+        {/* Background Ambient Radial Glowing Auroras */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
+          <div className="absolute top-[45%] -right-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.06)_0%,_transparent_70%)]" />
+        </div>
 
-      <div className="relative z-10 max-w-4xl w-full">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4 font-cormorant">Join <span className="text-[#00E5A8]">Raven Tutorials</span></h1>
-          <p className="text-gray-400 text-lg font-bricolage">
-            Choose your admission type to get started
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+          {/* Header */}
+          <div className="text-center space-y-4 mb-14 flex flex-col items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span>Enrollment Portal</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
+              Begin Your Journey with <span className="text-gradient-emerald">RAVEN</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
+              Choose your profile track below to register for classroom batches or join our teaching faculty.
+            </p>
+          </div>
+
+          {/* Admission Options Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Learner Track */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 hover:border-emerald-500/50 hover:bg-[#12182c] transition-all duration-300 shadow-2xl backdrop-blur-xl flex flex-col justify-between group">
+              <div>
+                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-lg shadow-emerald-500/15 group-hover:scale-105 transition-transform">
+                  <GraduationCap className="w-8 h-8" />
+                </div>
+
+                <div className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold uppercase font-space tracking-wider mb-3">
+                  Student Enrollment
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-black text-white font-outfit mb-3">
+                  Admission as a Learner
+                </h2>
+
+                <p className="text-gray-300 text-sm font-jakarta leading-relaxed mb-6">
+                  Join offline Patna classroom batches, get personalized mentor support, structured DPPs, and comprehensive test series.
+                </p>
+
+                <ul className="space-y-3 mb-8 font-jakarta text-sm text-gray-300">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Access to Class 9-12 & JEE/NEET tracks</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Daily lectures + Sunday doubt-clearing sessions</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>1:15 small batch student-to-teacher attention</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Monthly proctored progress benchmarking</span>
+                  </li>
+                </ul>
+              </div>
+
+              <Link
+                href="/admission/learner"
+                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl text-center font-outfit text-base shadow-xl shadow-emerald-500/20 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+              >
+                <span>Register as a Learner</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Tutor Track */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-2xl backdrop-blur-xl flex flex-col justify-between group">
+              <div>
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 mb-6 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-all group-hover:scale-105">
+                  <UserCircle className="w-8 h-8" />
+                </div>
+
+                <div className="inline-block px-3 py-1 bg-white/5 text-gray-300 rounded-full text-xs font-semibold uppercase font-space tracking-wider mb-3">
+                  Faculty Application
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-black text-white font-outfit mb-3">
+                  Join as an Instructor
+                </h2>
+
+                <p className="text-gray-300 text-sm font-jakarta leading-relaxed mb-6">
+                  Teach high-achieving batches, design specialized test series, and mentor the next generation of top performers in Patna.
+                </p>
+
+                <ul className="space-y-3 mb-8 font-jakarta text-sm text-gray-300">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>State-of-the-art smart classroom setup</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Collaborative academic curriculum design</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Competitive honorarium & performance incentives</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Dedicated teaching assistant support</span>
+                  </li>
+                </ul>
+              </div>
+
+              <Link
+                href="/admission/tutor"
+                className="w-full py-4 bg-[#141a2c] hover:bg-[#1a2238] border border-white/10 text-white font-bold rounded-xl text-center font-outfit text-base transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+              >
+                <span>Apply as Instructor</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Login Redirection Footer */}
+          <p className="text-center text-sm text-gray-400 font-jakarta">
+            Already registered with RAVEN Tutorials?{' '}
+            <Link href="/login" className="text-emerald-400 font-bold hover:underline">
+              Sign in to Dashboard →
+            </Link>
           </p>
         </div>
-
-        {/* Admission Options */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          {/* Learner Admission */}
-          <div className="bg-[#111111] rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-gray-800 hover:border-[#00E5A8]/30">
-            <div className="w-20 h-20 rounded-full bg-[#00E5A8]/10 border border-[#00E5A8]/30 flex items-center justify-center mx-auto mb-6">
-              <GraduationCap className="w-10 h-10 text-[#00E5A8]" />
-            </div>
-            
-            <h2 className="text-2xl font-bold text-white mb-4 text-center font-cormorant">Admission as a Learner</h2>
-            <p className="text-gray-400 mb-6 text-center font-bricolage">
-              Join as a student to access expert courses, live classes, and personalized learning paths.
-            </p>
-            
-            <ul className="space-y-3 mb-8 font-bricolage">
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Access to 150+ expert courses</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Live classes & doubt sessions</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Certificate on completion</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>24/7 support access</span>
-              </li>
-            </ul>
-            
-            <Link
-              href="/admission/learner"
-              className="block w-full py-3 bg-[#00E5A8] text-black font-semibold rounded-full hover:bg-[#00E5A8]/90 transition-all text-center hover:scale-105"
-            >
-              Take Admission as Learner
-            </Link>
-          </div>
-
-          {/* Tutor Admission */}
-          <div className="bg-[#111111] rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-gray-800 hover:border-[#00E5A8]/30">
-            <div className="w-20 h-20 rounded-full bg-[#00E5A8]/10 border border-[#00E5A8]/30 flex items-center justify-center mx-auto mb-6">
-              <UserCircle className="w-10 h-10 text-[#00E5A8]" />
-            </div>
-            
-            <h2 className="text-2xl font-bold text-white mb-4 text-center font-cormorant">Admission as a Tutor</h2>
-            <p className="text-gray-400 mb-6 text-center font-bricolage">
-              Join as an instructor to share your knowledge and teach thousands of students.
-            </p>
-            
-            <ul className="space-y-3 mb-8 font-bricolage">
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Reach thousands of students</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Create and manage courses</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Conduct live sessions</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Earn while teaching</span>
-              </li>
-            </ul>
-            
-            <Link
-              href="/admission/tutor"
-              className="block w-full py-3 bg-[#00E5A8] text-black font-semibold rounded-full hover:bg-[#00E5A8]/90 transition-all text-center hover:scale-105"
-            >
-              Take Admission as Tutor
-            </Link>
-          </div>
-        </div>
-        
-        {/* Login Link */}
-        <p className="text-center text-gray-400">
-          Already have an account?{' '}
-          <Link href="/login" className="text-[#00E5A8] font-medium hover:text-[#00E5A8]/80">
-            Login here
-          </Link>
-        </p>
       </div>
-    </div>
+      <LMSFooter />
+    </>
   );
 }
 

@@ -385,7 +385,7 @@ function TakeTestPage() {
               <img
                 src="/logo.png"
                 alt="RAVEN"
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain brightness-0 invert"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain brightness-0"
               />
               <span>RAVEN TUTORIALS</span>
             </div>
@@ -525,7 +525,7 @@ function TakeTestPage() {
                 <img
                   src="/logo.png"
                   alt="RAVEN"
-                  className="w-8 h-8 object-contain brightness-0 invert"
+                  className="w-8 h-8 object-contain brightness-0"
                 />
                 RAVEN
               </div>
@@ -754,7 +754,7 @@ function TakeTestPage() {
                   <img
                     src="/logo.png"
                     alt="RAVEN"
-                    className="w-8 h-8 object-contain brightness-0 invert"
+                    className="w-8 h-8 object-contain brightness-0"
                   />
                   RAVEN
                 </div>

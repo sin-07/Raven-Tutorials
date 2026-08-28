@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Megaphone, User, Clock, Download, Eye, AlertCircle } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Megaphone, User, Clock, Download, Eye, AlertCircle, Sparkles, X, FileText, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Footer from '@/components/Footer';
+import { LMSFooter } from '@/components/lms';
 
 interface NoticeData {
   _id: string;
@@ -20,24 +21,21 @@ const Notice: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedNotice, setSelectedNotice] = useState<NoticeData | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     fetchNotices();
   }, []);
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = '0px'; // Prevent layout shift
     } else {
       document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
     }
-    
     return () => {
       document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
     };
   }, [modalOpen]);
 
@@ -46,8 +44,11 @@ const Notice: React.FC = () => {
     try {
       const res = await fetch('/api/notices');
       const data = await res.json();
-      if (data.success) setNotices(data.data);
-      else toast.error('Failed to load notices');
+      if (data.success && Array.isArray(data.data)) {
+        setNotices(data.data);
+      } else {
+        toast.error('Failed to load notices');
+      }
     } catch {
       toast.error('Error fetching notices');
     }
@@ -81,270 +82,145 @@ const Notice: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden py-8 pt-20 sm:py-12 sm:pt-24 md:py-16 md:pt-28">
-        {/* Green Radial Glow Effect */}
+      <div className="min-h-screen bg-[#08090d] text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+        {/* Background Ambient Radial Glowing Auroras */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1400px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.18)_0%,_rgba(5,150,105,0.06)_35%,_transparent_70%)]" />
+          <div className="absolute top-[45%] -left-64 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.06)_0%,_transparent_70%)]" />
         </div>
-        
-        <style>{`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-          }
-          @keyframes modalSlideIn {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-          }
-          @keyframes modalBackdropFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          .notice-card { animation: fadeIn 0.5s ease-out forwards; }
-          .notice-header { animation: slideInLeft 0.6s ease-out; }
-          .notice-biscuit { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-          .notice-biscuit:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 229, 168, 0.2); border-color: rgba(0, 229, 168, 0.4); }
-          .modal-backdrop { animation: modalBackdropFadeIn 0.3s ease-out; backdrop-filter: blur(8px); }
-          .modal-content { animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-          .document-link { transition: all 0.3s ease; }
-          .document-link:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); }
-          .blur-background { filter: blur(4px); transition: filter 0.3s ease-out; }
-          
-          /* Custom Close Button */
-          .close-btn {
-            width: 32px;
-            height: 32px;
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-          }
-          .close-btn:hover {
-            background: rgba(239, 68, 68, 0.1);
-          }
-          .close-btn:hover .close-line {
-            background: #ef4444;
-          }
-          .close-line {
-            position: absolute;
-            width: 18px;
-            height: 2.5px;
-            background: #9ca3af;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-          }
-          .close-line:first-child {
-            transform: rotate(45deg);
-          }
-          .close-line:last-child {
-            transform: rotate(-45deg);
-          }
-          .close-btn:hover .close-line:first-child {
-            transform: rotate(45deg) scale(1.1);
-          }
-          .close-btn:hover .close-line:last-child {
-            transform: rotate(-45deg) scale(1.1);
-          }
-        `}</style>
 
-        <div className="relative z-10">
-        <div className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${modalOpen ? 'blur-background' : ''}`}>
-          {/* Header */}
-          <div className="notice-header mb-8 sm:mb-10 md:mb-12">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="p-3 sm:p-4 bg-[#00E5A8] rounded-2xl shadow-lg shadow-[#00E5A8]/20">
-                <Megaphone size={28} className="text-black" />
-              </div>
-              <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-                  Institute <span className="text-[#00E5A8]">Notices</span>
-                </h1>
-                <p className="text-gray-400 text-sm sm:text-base mt-1 font-jakarta">Important announcements, schedules, and official updates</p>
-              </div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24">
+          {/* Header Section */}
+          <div className="text-center space-y-4 mb-14 flex flex-col items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span>Official Announcements</span>
             </div>
+
+            <h1 className="text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full">
+              Institute <span className="text-gradient-emerald">Notice Board</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
+              Stay up to date with exam schedules, class announcements, test dates, and holiday circulars.
+            </p>
           </div>
 
-          {/* Notices Grid */}
-          <div>
-            {loading ? (
-              <div className="text-center py-16 sm:py-20">
-                <div className="w-16 h-16 border-4 border-gray-800 border-t-[#00E5A8] rounded-full animate-spin mx-auto"></div>
-                <p className="text-gray-400 mt-4 text-lg">Loading notices...</p>
+          {/* Notices List */}
+          {loading ? (
+            <div className="flex justify-center items-center py-24">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500" />
+            </div>
+          ) : notices.length === 0 ? (
+            <div className="text-center py-20 rounded-3xl bg-[#0e1320]/75 border border-white/5 p-8 max-w-md mx-auto">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 text-emerald-400">
+                <Megaphone className="w-8 h-8" />
               </div>
-            ) : notices.length === 0 ? (
-              <div className="text-center py-16 sm:py-20 bg-[#111111] rounded-2xl border-2 border-dashed border-gray-800">
-                <Megaphone size={48} className="text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400 text-lg font-medium">No notices yet.</p>
-                <p className="text-gray-500 text-sm mt-2">Check back soon for important updates!</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                {notices.map((notice, index) => (
-                  <div 
-                    key={notice._id} 
-                    className="notice-card notice-biscuit bg-[#111111] rounded-2xl shadow-lg hover:shadow-2xl border border-gray-800 p-6 overflow-hidden"
-                    style={{ '--index': index } as React.CSSProperties}
-                    onClick={() => openNoticeModal(notice)}
-                  >
-                    {/* Category Badge */}
-                    <div className="flex items-start justify-between mb-3">
-                      {notice.class && (
-                        <div className="inline-block px-3 py-1 bg-[#00E5A8]/10 text-[#00E5A8] border border-[#00E5A8]/30 rounded-full text-xs font-semibold">
-                          {notice.class}
-                        </div>
-                      )}
-                      {notice.documentUrl && (
-                        <div className="p-2 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
-                          <Eye size={16} className="text-[#00E5A8]" />
-                        </div>
-                      )}
+              <h3 className="text-xl font-bold text-white font-outfit mb-2">No Active Notices</h3>
+              <p className="text-gray-400 text-sm font-jakarta">
+                All announcements and notices will appear here as soon as they are published.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {notices.map((notice) => (
+                <div
+                  key={notice._id}
+                  onClick={() => openNoticeModal(notice)}
+                  className="p-6 sm:p-7 rounded-2xl bg-[#0e1320]/80 border border-emerald-500/20 hover:border-emerald-500/50 hover:bg-[#12182c] transition-all duration-300 shadow-xl backdrop-blur-xl cursor-pointer hover:-translate-y-1 group"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="space-y-2 flex-1">
+                      <div className="flex items-center gap-2.5 flex-wrap">
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold font-space uppercase border border-emerald-500/30">
+                          {notice.class ? `Class ${notice.class}` : 'General Notice'}
+                        </span>
+                        <span className="text-xs text-gray-400 flex items-center gap-1 font-jakarta">
+                          <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                          {formatDate(notice.createdAt)}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-bold text-white font-outfit group-hover:text-emerald-400 transition-colors">
+                        {notice.title}
+                      </h3>
+
+                      <p className="text-gray-300 text-sm font-jakarta line-clamp-2 leading-relaxed">
+                        {notice.message}
+                      </p>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight font-cormorant">
-                      {notice.title}
-                    </h3>
-
-                    {/* Message Preview */}
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed font-bricolage">
-                      {notice.message}
-                    </p>
-
-                    {/* Footer */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <Clock size={14} />
-                        <span className="truncate">{formatDate(notice.createdAt)}</span>
-                      </div>
-                      <div className="px-3 py-1 bg-[#00E5A8]/10 text-[#00E5A8] border border-[#00E5A8]/30 rounded-lg text-xs font-semibold hover:bg-[#00E5A8]/20 transition-colors">
-                        View More
-                      </div>
+                    <div className="flex items-center gap-2 self-end sm:self-center">
+                      <span className="text-xs font-semibold text-emerald-400 group-hover:underline font-outfit flex items-center gap-1">
+                        <span>Read Notice</span>
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-    </div>
 
-      {/* Modal - Outside of all relative containers */}
-      {modalOpen && selectedNotice && (
-        <div 
-          className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4 modal-backdrop"
+      {/* Notice Reader Modal */}
+      {mounted && modalOpen && selectedNotice && createPortal(
+        <div
+          className="fixed inset-0 bg-black/85 backdrop-blur-2xl flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto"
           onClick={closeModal}
         >
-          <div 
-            className="bg-[#080808] rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto modal-content border border-gray-800"
-            onClick={e => e.stopPropagation()}
+          <div
+            className="bg-[#0e1320] rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-emerald-500/30 shadow-2xl p-6 sm:p-8 space-y-6 relative z-[1000000] my-auto"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-[#111111] px-6 sm:px-8 py-5 sm:py-6 border-b border-gray-800 flex items-center justify-between z-10">
-              <div className="flex items-center gap-3 flex-1">
-                <div className="p-2 sm:p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
-                  <Megaphone size={20} className="text-[#00E5A8]" />
-                </div>
-                <div className="min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">Notice Details</h2>
-                  <p className="text-xs sm:text-sm text-gray-400 mt-1">{formatDate(selectedNotice.createdAt)}</p>
-                </div>
-              </div>
-              {/* Custom Close Button */}
-              <button
-                onClick={closeModal}
-                className="close-btn flex-shrink-0"
-                aria-label="Close modal"
-              >
-                <span className="close-line"></span>
-                <span className="close-line"></span>
-              </button>
-            </div>
-
-            {/* Modal Body */}
-            <div className="px-6 sm:px-8 py-6 sm:py-8 space-y-6">
-              {/* Posted By */}
-              <div className="flex items-center gap-3 pb-6 border-b border-gray-800">
-                <div className="p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex-shrink-0">
-                  <User size={20} className="text-[#00E5A8]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs sm:text-sm text-gray-400">Posted by</p>
-                  <p className="font-bold text-white truncate">{selectedNotice.postedBy || 'Administrator'}</p>
-                </div>
-                {selectedNotice.class && (
-                  <div className="px-4 py-2 bg-[#00E5A8]/10 text-[#00E5A8] border border-[#00E5A8]/30 rounded-lg text-sm font-semibold flex-shrink-0">
-                    {selectedNotice.class}
-                  </div>
-                )}
-              </div>
-
-              {/* Title */}
-              <h1 className="text-2xl sm:text-3xl font-bold text-white">
-                {selectedNotice.title}
-              </h1>
-
-              {/* Message */}
-              <div className="bg-[#111111] rounded-xl p-5 sm:p-6 border border-gray-800">
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed whitespace-pre-line">
-                  {selectedNotice.message}
+            <div className="flex items-start justify-between gap-4 border-b border-gray-800 pb-4">
+              <div className="space-y-1">
+                <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold font-space uppercase border border-emerald-500/30">
+                  {selectedNotice.class ? `Class ${selectedNotice.class}` : 'General Circular'}
+                </span>
+                <h2 className="text-2xl font-black text-white font-outfit mt-2">
+                  {selectedNotice.title}
+                </h2>
+                <p className="text-xs text-gray-400 flex items-center gap-1.5 font-jakarta">
+                  <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                  Published: {formatDate(selectedNotice.createdAt)}
                 </p>
               </div>
 
-              {/* Document Section */}
-              {selectedNotice.documentUrl && (
-                <div className="bg-[#111111] border border-[#00E5A8]/30 rounded-xl p-5 sm:p-6">
-                  <p className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                    <Eye size={18} className="text-[#00E5A8]" />
-                    Attached Document
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a
-                      href={selectedNotice.documentUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-[#00E5A8] text-black rounded-full font-semibold text-sm sm:text-base flex-1 hover:bg-[#00E5A8]/90 hover:scale-105 transition-all"
-                    >
-                      <Eye size={18} />
-                      View Document
-                    </a>
-                    <a
-                      href={selectedNotice.documentUrl}
-                      download
-                      className="document-link flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gray-800 text-gray-300 border border-gray-700 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-700 flex-1 transition-all"
-                    >
-                      <Download size={18} />
-                      Download
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-[#111111] px-6 sm:px-8 py-4 border-t border-gray-800 flex justify-end gap-3">
               <button
                 onClick={closeModal}
-                className="px-6 py-2 bg-gray-800 text-gray-300 rounded-full font-semibold hover:bg-gray-700 transition-colors"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition"
               >
-                Close
+                <X className="w-5 h-5" />
               </button>
             </div>
+
+            <div className="space-y-4 font-jakarta text-sm sm:text-base text-gray-200 leading-relaxed whitespace-pre-wrap">
+              {selectedNotice.message}
+            </div>
+
+            {selectedNotice.documentUrl && (
+              <div className="pt-4 border-t border-gray-800">
+                <a
+                  href={selectedNotice.documentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl text-sm font-outfit shadow-lg shadow-emerald-500/20 transition"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Attached Document</span>
+                </a>
+              </div>
+            )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
-      <Footer />
+      <LMSFooter />
     </>
   );
 };
 
 export default Notice;
-

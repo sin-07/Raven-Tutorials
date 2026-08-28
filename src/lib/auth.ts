@@ -1,24 +1,47 @@
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import { connectDatabase } from './database';
-import Admin from '@/models/Admin';
-import Admission from '@/models/Admission';
+import Admin, { IAdmin } from '@/models/Admin';
+import Admission, { IAdmission } from '@/models/Admission';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'raven-tutorials-secret-key-production-change';
 
 export interface JWTPayload {
   id?: string;
   studentId?: string;
   email: string;
   registrationId?: string;
+  role?: string;
 }
 
-export async function verifyAdminToken(token?: string): Promise<{ success: boolean; admin?: { _id: string; email: string; name: string; role: string } }> {
+export interface AdminAuthResult {
+  success: boolean;
+  admin?: {
+    _id: string;
+    email: string;
+    name: string;
+    role: string;
+  };
+}
+
+export interface StudentAuthResult {
+  success: boolean;
+  student?: {
+    _id: string;
+    email: string;
+    registrationId: string;
+    studentName: string;
+    standard: string;
+    photo?: string;
+  };
+}
+
+export async function verifyAdminToken(token?: string): Promise<AdminAuthResult> {
   try {
     let authToken = token;
-    
+
     if (!authToken) {
-      const cookieStore = await cookies();
+      const cookieStore = cookies();
       authToken = cookieStore.get('adminToken')?.value;
     }
 
@@ -27,9 +50,9 @@ export async function verifyAdminToken(token?: string): Promise<{ success: boole
     }
 
     const decoded = jwt.verify(authToken, JWT_SECRET) as JWTPayload;
-    
+
     await connectDatabase();
-    const admin = await Admin.findById(decoded.id).select('-password');
+    const admin = await Admin.findById(decoded.id).select('-password').lean() as (IAdmin & { _id: any }) | null;
 
     if (!admin || !admin.isActive) {
       return { success: false };
@@ -41,21 +64,21 @@ export async function verifyAdminToken(token?: string): Promise<{ success: boole
         _id: admin._id.toString(),
         email: admin.email,
         name: admin.name,
-        role: admin.role
-      }
+        role: admin.role,
+      },
     };
   } catch {
     return { success: false };
   }
 }
 
-export async function verifyStudentToken(token?: string): Promise<{ success: boolean; student?: { _id: string; email: string; registrationId: string; studentName: string; standard: string } }> {
+export async function verifyStudentToken(token?: string): Promise<StudentAuthResult> {
   try {
     let authToken = token;
-    
+
     if (!authToken) {
-      const cookieStore = await cookies();
-      authToken = cookieStore.get('studentToken')?.value;
+      const cookieStore = cookies();
+      authToken = cookieStore.get('token')?.value || cookieStore.get('studentToken')?.value;
     }
 
     if (!authToken) {
@@ -63,9 +86,13 @@ export async function verifyStudentToken(token?: string): Promise<{ success: boo
     }
 
     const decoded = jwt.verify(authToken, JWT_SECRET) as JWTPayload;
-    
+
     await connectDatabase();
-    const student = await Admission.findById(decoded.studentId);
+    const query = decoded.registrationId
+      ? { registrationId: decoded.registrationId }
+      : { _id: decoded.studentId || decoded.id };
+
+    const student = await Admission.findOne(query).lean() as (IAdmission & { _id: any }) | null;
 
     if (!student || student.paymentStatus !== 'completed') {
       return { success: false };
@@ -78,8 +105,9 @@ export async function verifyStudentToken(token?: string): Promise<{ success: boo
         email: student.email,
         registrationId: student.registrationId || '',
         studentName: student.studentName,
-        standard: student.standard
-      }
+        standard: student.standard,
+        photo: student.photo,
+      },
     };
   } catch {
     return { success: false };
@@ -87,45 +115,43 @@ export async function verifyStudentToken(token?: string): Promise<{ success: boo
 }
 
 export function generateAdminToken(adminId: string, email: string): string {
-  return jwt.sign(
-    { id: adminId, email },
-    JWT_SECRET,
-    { expiresIn: '1h' }
-  );
+  return jwt.sign({ id: adminId, email, role: 'admin' }, JWT_SECRET, { expiresIn: '7d' });
 }
 
 export function generateStudentToken(studentId: string, email: string, registrationId: string): string {
-  return jwt.sign(
-    { studentId, email, registrationId },
-    JWT_SECRET,
-    { expiresIn: '1h' }
-  );
+  return jwt.sign({ studentId, id: studentId, email, registrationId }, JWT_SECRET, {
+    expiresIn: '7d',
+  });
 }
 
-export function setAdminCookie(token: string): { name: string; value: string; options: Record<string, unknown> } {
+export function setAdminCookie(token: string) {
+  const sameSiteMode: 'none' | 'lax' = process.env.NODE_ENV === 'production' ? 'none' : 'lax';
   return {
     name: 'adminToken',
     value: token,
     options: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 60 * 60, // 1 hour
-      path: '/'
-    }
+      sameSite: sameSiteMode,
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+      path: '/',
+    },
   };
 }
 
-export function setStudentCookie(token: string): { name: string; value: string; options: Record<string, unknown> } {
+export function setStudentCookie(token: string) {
+  const sameSiteMode: 'none' | 'lax' = process.env.NODE_ENV === 'production' ? 'none' : 'lax';
   return {
-    name: 'studentToken',
+    name: 'token',
     value: token,
     options: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 60 * 60, // 1 hour
-      path: '/'
-    }
+      sameSite: sameSiteMode,
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+      path: '/',
+    },
   };
 }
+
+

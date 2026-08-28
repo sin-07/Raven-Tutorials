@@ -88,8 +88,9 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
               <img 
                 src="/logo.png" 
                 alt="RAVEN Logo" 
-                className="h-8 w-8 brightness-0 invert"
+                className="h-8 w-8 object-contain"
               />
+
               <div className="flex items-baseline gap-1 font-outfit">
                 <span className="text-base font-extrabold text-white">RAVEN</span>
                 <span className="text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Tutorials</span>

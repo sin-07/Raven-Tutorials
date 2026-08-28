@@ -27,38 +27,36 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
       const res = await fetch('/api/admin/verify', {
         method: 'GET',
         credentials: 'include',
-        cache: 'no-store'
+        cache: 'no-store',
       });
 
       if (!res.ok) {
-        // Clear any stale data
         setIsAuthenticated(false);
         setAdmin(null);
-        
-        // Don't show toast for login page
-        if (pathname !== '/admin/login') {
-          toast.error('Admin session expired. Please login again.');
+
+        if (pathname !== '/login') {
+          toast.error('Admin session expired or access unauthorized.');
         }
-        
-        router.replace('/admin/login');
+
+        router.replace('/login');
         return;
       }
 
       const data = await res.json();
-      
+
       if (data.success && data.data?.admin) {
         setIsAuthenticated(true);
         setAdmin(data.data.admin);
       } else {
         setIsAuthenticated(false);
         setAdmin(null);
-        router.replace('/admin/login');
+        router.replace('/login');
       }
     } catch (error) {
       console.error('[ADMIN AUTH ERROR] Failed to verify admin:', error);
       setIsAuthenticated(false);
       setAdmin(null);
-      router.replace('/admin/login');
+      router.replace('/login');
     } finally {
       setLoading(false);
     }
@@ -68,7 +66,7 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
     verifyAuth();
   }, [verifyAuth]);
 
-  // Re-verify on window focus (detect if session expired in another tab)
+  // Re-verify on window focus
   useEffect(() => {
     const handleFocus = () => {
       verifyAuth();
@@ -78,25 +76,23 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
     return () => window.removeEventListener('focus', handleFocus);
   }, [verifyAuth]);
 
-  // Loading state with dark theme
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
+      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-800 border-t-[#00E5A8] rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Verifying admin access...</p>
+          <div className="w-12 h-12 border-4 border-gray-800 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-400 text-sm font-jakarta">Verifying admin access...</p>
         </div>
       </div>
     );
   }
 
-  // Not authenticated - will redirect
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
+      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400 mt-4 text-lg">Redirecting to admin login...</p>
+          <div className="w-12 h-12 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-400 text-sm font-jakarta">Redirecting to login...</p>
         </div>
       </div>
     );
@@ -106,4 +102,5 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
 };
 
 export default AdminProtectedRoute;
+
 

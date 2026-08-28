@@ -1,103 +1,107 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/database';
 import Admission from '@/models/Admission';
-import { verifyAdminToken } from '@/lib/auth';
-import { cookies } from 'next/headers';
+import { authenticateAdmin } from '@/lib/apiMiddleware';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } | Promise<{ id: string }> }
 ) {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('adminToken')?.value;
-
-    if (!token) {
-      return NextResponse.json({
-        success: false,
-        message: 'Unauthorized'
-      }, { status: 401 });
+    const { admin, error } = await authenticateAdmin();
+    if (error || !admin) {
+      return error || NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
-    const decoded = await verifyAdminToken(token);
-    if (!decoded.success || !decoded.admin) {
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid token'
-      }, { status: 401 });
-    }
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
 
-    await connectDB();
-    const { id } = await params;
-
-    const student = await Admission.findById(id).select('-password -otp -otpExpiry');
+    const student = await Admission.findById(id).select('-password').lean();
 
     if (!student) {
-      return NextResponse.json({
-        success: false,
-        message: 'Student not found'
-      }, { status: 404 });
+      return NextResponse.json({ success: false, message: 'Student not found' }, { status: 404 });
     }
 
     return NextResponse.json({
       success: true,
-      data: student
+      data: student,
     });
-
   } catch (error: any) {
     console.error('Get Student Error:', error);
+    return NextResponse.json(
+      { success: false, message: error.message || 'Error fetching student' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } | Promise<{ id: string }> }
+) {
+  try {
+    const { admin, error } = await authenticateAdmin();
+    if (error || !admin) {
+      return error || NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
+    const updates = await request.json();
+
+    delete updates.password;
+    delete updates._id;
+
+    const student = await Admission.findByIdAndUpdate(id, { $set: updates }, { new: true })
+      .select('-password')
+      .lean();
+
+    if (!student) {
+      return NextResponse.json({ success: false, message: 'Student not found' }, { status: 404 });
+    }
+
     return NextResponse.json({
-      success: false,
-      message: error.message || 'Error fetching student'
-    }, { status: 500 });
+      success: true,
+      message: 'Student updated successfully',
+      data: student,
+    });
+  } catch (error: any) {
+    console.error('Update Student Error:', error);
+    return NextResponse.json(
+      { success: false, message: error.message || 'Error updating student' },
+      { status: 500 }
+    );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } | Promise<{ id: string }> }
 ) {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('adminToken')?.value;
-
-    if (!token) {
-      return NextResponse.json({
-        success: false,
-        message: 'Unauthorized'
-      }, { status: 401 });
+    const { admin, error } = await authenticateAdmin();
+    if (error || !admin) {
+      return error || NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
-    const decoded = await verifyAdminToken(token);
-    if (!decoded.success || !decoded.admin) {
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid token'
-      }, { status: 401 });
-    }
-
-    await connectDB();
-    const { id } = await params;
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
 
     const student = await Admission.findByIdAndDelete(id);
 
     if (!student) {
-      return NextResponse.json({
-        success: false,
-        message: 'Student not found'
-      }, { status: 404 });
+      return NextResponse.json({ success: false, message: 'Student not found' }, { status: 404 });
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Student deleted successfully'
+      message: 'Student deleted successfully',
     });
-
   } catch (error: any) {
     console.error('Delete Student Error:', error);
-    return NextResponse.json({
-      success: false,
-      message: error.message || 'Error deleting student'
-    }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: error.message || 'Error deleting student' },
+      { status: 500 }
+    );
   }
 }
+

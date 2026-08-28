@@ -84,8 +84,9 @@ const Footer: React.FC = React.memo(() => {
               <img 
                 src="/logo.png" 
                 alt="RAVEN Logo" 
-                className="h-10 w-10 bg-[#11111c] rounded-full p-1.5 border border-[#00E5A8]/30 brightness-0 invert"
+                className="h-10 w-10 object-contain"
               />
+
               <div className="flex items-baseline gap-1 font-outfit">
                 <span className="text-white font-black text-2xl tracking-tight">RAVEN</span>
                 <span className="text-[#00E5A8] font-bold text-sm tracking-widest uppercase">Tutorials</span>
