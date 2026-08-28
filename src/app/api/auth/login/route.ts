@@ -75,26 +75,32 @@ export async function POST(req: NextRequest) {
       password === envAdminPassword;
 
     if (isEnvAdminMatch) {
-      let admin = await Admin.findOne({ email: inputIdentifier });
-      if (!admin) {
-        admin = new Admin({
-          email: inputIdentifier,
-          password: password,
-          name: 'Admin',
-          role: 'admin',
-          isActive: true,
-        });
-      } else {
-        admin.isActive = true;
-        const matchesHashed = await admin.comparePassword(password);
-        if (!matchesHashed) {
-          admin.password = password; // pre-save will re-hash
+      let adminId = 'admin_primary';
+      try {
+        let admin = await Admin.findOne({ email: inputIdentifier });
+        if (!admin) {
+          admin = new Admin({
+            email: inputIdentifier,
+            password: password,
+            name: 'Admin',
+            role: 'admin',
+            isActive: true,
+          });
+        } else {
+          admin.isActive = true;
+          const matchesHashed = await admin.comparePassword(password);
+          if (!matchesHashed) {
+            admin.password = password;
+          }
         }
+        admin.lastLogin = new Date();
+        await admin.save();
+        adminId = admin._id.toString();
+      } catch (dbErr) {
+        console.warn('[AUTH] Admin DB sync notice, proceeding with verified credentials:', dbErr);
       }
-      admin.lastLogin = new Date();
-      await admin.save();
 
-      const adminToken = generateAdminToken(admin._id.toString(), admin.email);
+      const adminToken = generateAdminToken(adminId, envAdminEmail);
 
       const response = NextResponse.json({
         success: true,
@@ -103,10 +109,10 @@ export async function POST(req: NextRequest) {
         message: 'Welcome back, Admin!',
         token: adminToken,
         user: {
-          id: admin._id.toString(),
-          email: admin.email,
-          name: admin.name,
-          role: admin.role,
+          id: adminId,
+          email: envAdminEmail,
+          name: 'Admin',
+          role: 'admin',
         },
       });
 

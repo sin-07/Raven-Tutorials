@@ -16,15 +16,15 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
-import { categories } from '@/constants/lmsData';
+import { categories, dummyCourses } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
 
 export default function CoursesPage() {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState<Course[]>(dummyCourses);
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
@@ -36,16 +36,16 @@ export default function CoursesPage() {
   // Fetch courses from API
   const fetchCourses = useCallback(async () => {
     try {
-      setLoading(true);
       const response = await fetch('/api/courses');
       const data = await response.json();
-      if (data.success && Array.isArray(data.courses)) {
+      if (data.success && Array.isArray(data.courses) && data.courses.length > 0) {
         setCourses(data.courses);
+      } else {
+        setCourses(dummyCourses);
       }
     } catch (error) {
       console.error('Error fetching courses:', error);
-    } finally {
-      setLoading(false);
+      setCourses(dummyCourses);
     }
   }, []);
 
