@@ -25,8 +25,8 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-06',
-  revisionNumber: 238,
+  lastReviewed: '2026-08-30',
+  revisionNumber: 323,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Alcohols, Phenols, and Ethers Reactions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
