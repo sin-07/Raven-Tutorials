@@ -25,8 +25,8 @@ export const electrostatics: CurriculumTopic_electrostatics = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-31',
-  revisionNumber: 232,
+  lastReviewed: '2026-09-03',
+  revisionNumber: 327,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
