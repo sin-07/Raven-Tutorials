@@ -25,8 +25,8 @@ export const probability: CurriculumTopic_probability = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-20',
-  revisionNumber: 191,
+  lastReviewed: '2026-09-07',
+  revisionNumber: 331,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Classical Definition of Probability & Event Spaces',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
