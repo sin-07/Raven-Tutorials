@@ -25,8 +25,8 @@ export const amines: CurriculumTopic_amines = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-16',
-  revisionNumber: 248,
+  lastReviewed: '2026-09-09',
+  revisionNumber: 333,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Organic Nitrogen Compounds and Diazonium Chemistry',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
