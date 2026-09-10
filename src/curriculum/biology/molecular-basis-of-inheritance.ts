@@ -25,8 +25,8 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
   standard: 12,
   weightagePercent: 16,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-12',
-  revisionNumber: 274,
+  lastReviewed: '2026-09-10',
+  revisionNumber: 334,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for DNA Structure, Replication, and Gene Expression',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
