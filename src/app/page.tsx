@@ -31,13 +31,7 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
-import {
-  gsap,
-  scrollFadeUp,
-  scrollStagger,
-  cardTilt,
-  magneticHover,
-} from '@/lib/gsap';
+
 
 // Lazily load heavy admission section to optimize initial bundle
 const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), {
@@ -114,80 +108,7 @@ export default function Home() {
     fetchCourses();
   }, [fetchCourses]);
 
-  // GSAP animations
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
 
-    const ctx = gsap.context(() => {
-      // 1. Hero Entrance Animations
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      if (heroBadgeRef.current) {
-        tl.fromTo(heroBadgeRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6 });
-      }
-
-      if (heroTitleRef.current) {
-        const titleLines = Array.from(heroTitleRef.current.children);
-        tl.fromTo(
-          titleLines,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
-          '-=0.3'
-        );
-      }
-
-      if (heroSubRef.current) {
-        tl.fromTo(heroSubRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4');
-      }
-
-      if (heroCTARef.current) {
-        tl.fromTo(heroCTARef.current.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.2');
-      }
-
-      if (heroVisualRef.current) {
-        gsap.fromTo(
-          heroVisualRef.current,
-          { opacity: 0, scale: 0.92, y: 40 },
-          { opacity: 1, scale: 1, y: 0, duration: 1, delay: 0.4, ease: 'power3.out' }
-        );
-      }
-
-      // 2. Features ScrollTrigger
-      if (featuresTitleRef.current) {
-        scrollFadeUp(featuresTitleRef.current);
-      }
-      if (featuresGridRef.current) {
-        const cards = featuresGridRef.current.querySelectorAll('.feature-card');
-        scrollStagger(cards, 0.1);
-        cards.forEach((card) => cardTilt(card as HTMLElement));
-      }
-
-      // 3. Methodology ScrollTrigger
-      if (methodologyGridRef.current) {
-        const steps = methodologyGridRef.current.querySelectorAll('.methodology-step');
-        scrollStagger(steps, 0.12);
-      }
-
-      // 4. Courses ScrollTrigger
-      if (coursesTitleRef.current) {
-        scrollFadeUp(coursesTitleRef.current);
-      }
-
-      // 5. Categories Grid
-      if (categoriesGridRef.current) {
-        const catCards = categoriesGridRef.current.querySelectorAll('.cat-card');
-        scrollStagger(catCards, 0.06);
-      }
-
-      // 6. Testimonials Grid
-      if (testimonialsSectionRef.current) {
-        const cards = testimonialsSectionRef.current.querySelectorAll('.testimonial-card');
-        scrollStagger(cards, 0.1);
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   // Filtered courses
   const filteredCourses = courses.filter((c) => {
@@ -206,7 +127,7 @@ export default function Home() {
         <div className="relative z-10 text-center max-w-5xl mx-auto space-y-7">
           {/* Badge Pill */}
           <div ref={heroBadgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md shadow-lg shadow-emerald-500/10">
-            <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
+            <Sparkles className="w-4 h-4 text-emerald-400" />
             <span>Academic Excellence & Competitive Mastery</span>
           </div>
 
@@ -268,7 +189,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="feature-card group p-8 rounded-3xl bg-[#0e1320]/75 border border-white/5 hover:border-emerald-500/35 hover:bg-[#12192c]/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 hover:-translate-y-1.5 backdrop-blur-md"
+                  className="feature-card card-green-gradient group p-8 rounded-3xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 hover:-translate-y-1.5 backdrop-blur-md"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/25">
                     <Icon className="w-7 h-7 text-black" />
@@ -303,7 +224,7 @@ export default function Home() {
           </div>
 
           <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
+            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">01</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <BookOpen className="w-6 h-6" />
@@ -314,7 +235,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
+            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">02</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <Zap className="w-6 h-6" />
@@ -325,7 +246,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
+            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">03</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <MessageCircle className="w-6 h-6" />
@@ -336,7 +257,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="methodology-step p-7 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-md relative">
+            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
               <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">04</span>
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
                 <Target className="w-6 h-6" />
@@ -447,7 +368,7 @@ export default function Home() {
                 <div key={category.name} className="cat-card">
                   <Link
                     href={`/courses?category=${category.name.toLowerCase()}`}
-                    className="block p-6 rounded-2xl bg-[#0e1320]/75 border border-white/5 hover:border-emerald-500 hover:bg-emerald-500 group transition-all duration-300 text-center hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/20"
+                    className="block p-6 rounded-2xl card-green-gradient group transition-all duration-300 text-center hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/20"
                   >
                     <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-black/15 transition-colors">
                       <CategoryIcon className="w-6 h-6 text-emerald-400 group-hover:text-black transition-colors" />
@@ -489,7 +410,7 @@ export default function Home() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="testimonial-card rounded-3xl p-7 bg-[#0e1320]/80 border border-white/5 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xl backdrop-blur-xl"
+                className="testimonial-card card-green-gradient rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1.5 shadow-xl backdrop-blur-xl"
               >
                 <div className="flex items-center gap-1 mb-4 text-amber-400">
                   {[...Array(testimonial.rating)].map((_, i) => (

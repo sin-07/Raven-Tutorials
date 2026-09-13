@@ -6,13 +6,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LogIn, User, LogOut, ArrowRight, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
-import { magneticHover } from '@/lib/gsap';
 
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
@@ -43,47 +40,6 @@ const Navbar: React.FC = React.memo(() => {
   }, [pathname]);
 
   const isAdminLoggedIn = !!admin;
-
-  // High-performance passive scroll handling
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const logo = logoRef.current;
-    const cleanupMagnetic = logo ? magneticHover(logo, logo, 0.12) : null;
-
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentY = window.scrollY;
-          
-          if (currentY > 15 !== scrolled) {
-            setScrolled(currentY > 15);
-          }
-
-          if (currentY < 40) {
-            setNavVisible(true);
-          } else if (currentY > lastScrollY + 8 && currentY > 100) {
-            setNavVisible(false);
-          } else if (currentY < lastScrollY - 6) {
-            setNavVisible(true);
-          }
-
-          lastScrollY = currentY;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (cleanupMagnetic) cleanupMagnetic();
-    };
-  }, [scrolled]);
 
   const navLinks = useMemo(() => [
     { path: '/', label: 'Home' },
@@ -122,29 +78,22 @@ const Navbar: React.FC = React.memo(() => {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 will-change-transform ${
-          navVisible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0 pointer-events-none'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
       >
         <div className="max-w-6xl mx-auto">
           {/* Cyber-Obsidian Glass Capsule Navbar Container */}
-          <div className={`relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full transition-all duration-300 border ${
-            scrolled
-              ? 'bg-[#080a11]/92 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/25'
-              : 'bg-[#090c15]/85 backdrop-blur-xl border-emerald-500/20 shadow-[0_8px_32px_rgba(0,0,0,0.7)] shadow-emerald-950/15'
-          }`}>
+          <div className="relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full border bg-[#080a11]/92 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/25">
             {/* Top specular hairline shine */}
             <div className="absolute inset-x-12 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
 
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:shadow-[0_0_22px_rgba(16,185,129,0.4)]">
+              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
                 <img
                   src="/logo.png"
                   alt="RAVEN Logo"
-                  className="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="h-6 w-6 object-contain"
                 />
-                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
                 <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
               </div>
               

@@ -91,7 +91,7 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="p-6 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/45 hover:bg-[#12182c] transition-all duration-300 text-center flex flex-col items-center justify-center"
+                className="card-green-gradient p-6 rounded-3xl shadow-xl backdrop-blur-xl text-center flex flex-col items-center justify-center transition-all duration-300"
               >
                 <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 shadow-md shadow-emerald-500/10">
                   <info.icon className="w-7 h-7" />
@@ -107,7 +107,7 @@ export default function ContactPage() {
           {/* Form & Map Section */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-20">
             {/* Contact Form */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/85 border border-emerald-500/25 shadow-2xl backdrop-blur-xl">
+            <div className="card-green-gradient p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-xl">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-black shadow-lg shadow-emerald-500/20">
                   <MessageSquare className="w-6 h-6" />

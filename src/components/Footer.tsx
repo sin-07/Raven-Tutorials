@@ -3,46 +3,12 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Clock, Award, Shield, Heart } from 'lucide-react';
-import { gsap, ScrollTrigger, scrollStagger, scrollFadeUp } from '@/lib/gsap';
-
 const Footer: React.FC = React.memo(() => {
-  const footerRef = useRef<HTMLElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
   const quickLinksRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    // Scroll: reveal each footer column with stagger
-    const columns = [brandRef.current, quickLinksRef.current, contactRef.current, featuresRef.current].filter(Boolean) as Element[];
-    if (columns.length) {
-      gsap.fromTo(columns,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'all',
-          scrollTrigger: { trigger: footerRef.current, start: 'top 90%', toggleActions: 'play none none none' },
-        }
-      );
-    }
-
-    // Scroll: bottom bar fade up
-    if (bottomRef.current) {
-      scrollFadeUp(bottomRef.current, { start: 'top 98%' });
-    }
-
-    // Scroll: stagger links inside quick links
-    if (quickLinksRef.current) {
-      const links = quickLinksRef.current.querySelectorAll('a');
-      scrollStagger(links, 0.06, { start: 'top 90%' } as any);
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
 
   const currentYear = new Date().getFullYear();
 
@@ -74,7 +40,7 @@ const Footer: React.FC = React.memo(() => {
   ];
 
   return (
-    <footer ref={footerRef} className="bg-[#080808] border-t border-gray-800 text-white mt-auto">
+    <footer className="bg-[#080808] border-t border-gray-800 text-white mt-auto">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

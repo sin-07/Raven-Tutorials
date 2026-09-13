@@ -2,27 +2,20 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Star, Clock, Users, BookOpen, PlayCircle } from 'lucide-react';
 import { Course } from '@/types/lms';
-import { motion } from 'framer-motion';
+
 
 interface CourseCardProps {
   course: Course;
   index?: number;
 }
 
-export default function CourseCard({ course, index = 0 }: CourseCardProps) {
+export default function CourseCard({ course }: CourseCardProps) {
   return (
-    <motion.div
-      initial={index > 0 ? { opacity: 0, y: 20 } : false}
-      whileInView={index > 0 ? { opacity: 1, y: 0 } : {}}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="h-full"
-    >
+    <div className="h-full">
       <Link href={`/courses/${course.id}`}>
-        <div className="group bg-[#111111] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-800 hover:border-[#00E5A8]/30 h-full flex flex-col">
+        <div className="group card-green-gradient bg-gradient-to-br from-emerald-950/45 via-[#0b101d] to-emerald-950/25 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-500/25 hover:border-emerald-400/50 h-full flex flex-col">
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden">
             <img
@@ -146,7 +139,7 @@ export default function CourseCard({ course, index = 0 }: CourseCardProps) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 

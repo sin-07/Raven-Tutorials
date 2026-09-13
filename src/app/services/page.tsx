@@ -19,13 +19,6 @@ import {
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
-import {
-  gsap,
-  animateSplitText,
-  scrollFadeUp,
-  scrollStagger,
-  cardTilt,
-} from '@/lib/gsap';
 
 const Services: React.FC = () => {
   const router = useRouter();
@@ -37,38 +30,6 @@ const Services: React.FC = () => {
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const detailsSectionRef = useRef<HTMLElement>(null);
   const classCardsRef = useRef<HTMLDivElement>(null);
-
-  // GSAP animations
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const ctx = gsap.context(() => {
-      if (pageTitleRef.current) animateSplitText(pageTitleRef.current, 0.2, 0.5);
-
-      if (heroSubRef.current) {
-        gsap.fromTo(
-          heroSubRef.current,
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.65, delay: 0.5, ease: 'power3.out', clearProps: 'all' }
-        );
-      }
-
-      if (servicesGridRef.current) {
-        const cards = servicesGridRef.current.querySelectorAll('.service-card');
-        scrollStagger(cards, 0.08);
-        cards.forEach((c) => cardTilt(c as HTMLElement));
-      }
-
-      if (detailsSectionRef.current) scrollFadeUp(detailsSectionRef.current);
-
-      if (classCardsRef.current) {
-        const cards = classCardsRef.current.querySelectorAll('.class-card');
-        scrollStagger(cards, 0.1);
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const services = [
     {
@@ -144,7 +105,7 @@ const Services: React.FC = () => {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="service-card p-8 rounded-3xl bg-[#0e1320]/80 border border-white/5 hover:border-emerald-500/35 hover:bg-[#12192c] transition-all duration-300 shadow-xl backdrop-blur-xl hover:-translate-y-1.5 flex flex-col justify-between"
+                  className="service-card card-green-gradient p-8 rounded-3xl transition-all duration-300 shadow-xl backdrop-blur-xl hover:-translate-y-1.5 flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-md shadow-emerald-500/10">

@@ -57,44 +57,44 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 animate-fade-in">
-      <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] flex flex-col animate-scale-up">
+    <div className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="card-green-gradient bg-[#090d16] rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-emerald-500/30 text-white shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-br from-red-700 via-red-600 to-red-700 p-8 rounded-t-lg relative shadow-lg">
+        <div className="bg-gradient-to-br from-emerald-950/80 via-[#0d1526] to-emerald-950/80 p-7 rounded-t-2xl relative border-b border-emerald-500/20">
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 text-white/90 hover:text-white hover:bg-white/20 rounded-full p-2 transition-all duration-300 hover:rotate-90"
+            className="absolute top-4 right-4 text-gray-400 hover:text-white hover:bg-white/10 rounded-full p-2 transition-all duration-200"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
           <div className="text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full mb-4">
-              <span className="text-white/90 text-xs font-semibold tracking-wider">OFFICIAL DOCUMENT</span>
+            <div className="inline-block bg-emerald-500/10 border border-emerald-500/30 px-5 py-1.5 rounded-full mb-3">
+              <span className="text-emerald-400 text-xs font-semibold tracking-wider font-space">OFFICIAL ACADEMIC DOCUMENT</span>
             </div>
-            <h2 className="text-4xl font-extrabold text-white mb-3 tracking-tight">
+            <h2 className="text-3xl font-black text-white mb-2 tracking-tight font-outfit">
               RAVEN CODE OF CONDUCT
             </h2>
-            <div className="w-24 h-1 bg-white/30 mx-auto mb-3"></div>
-            <p className="text-red-50 text-base font-medium">
-              Principles & Values for RAVEN LLC Members
+            <div className="w-20 h-0.5 bg-emerald-500/40 mx-auto mb-2"></div>
+            <p className="text-emerald-300/80 text-sm font-jakarta">
+              Core Principles & Ethical Values for RAVEN Members
             </p>
           </div>
         </div>
 
         {/* Scrollable Content with Preamble */}
         <div 
-          className="flex-1 overflow-y-auto p-6 space-y-4"
+          className="flex-1 overflow-y-auto p-6 space-y-4 font-jakarta"
           onScroll={handleScroll}
         >
           {/* Preamble inside scrollable area */}
-          <div className="mb-6 bg-gradient-to-b from-red-50 to-white rounded-lg p-5 shadow-sm border-2 border-red-200">
+          <div className="card-green-gradient rounded-xl p-5 shadow-sm border border-emerald-500/30">
             <div className="flex items-start gap-3">
-              <div className="w-1 h-full bg-red-600 rounded-full flex-shrink-0"></div>
+              <div className="w-1 h-full bg-emerald-500 rounded-full flex-shrink-0"></div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="text-2xl">📜</span> Preamble
+                <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2 font-outfit">
+                  <span className="text-xl">📜</span> Preamble
                 </h3>
-                <p className="text-sm text-gray-700 leading-relaxed text-justify font-medium">
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed text-justify font-normal">
                   THE FOLLOWING DRAFT CONTAINS CERTAIN CODES OF CONDUCT FOR RAVEN LLC. 
                   IN CASE OF CERTAIN CEREBRAL CONFLICTS, THE SAME MUST BE BROUGHT OUT 
                   INTO THE CORDIAL MEETING DECIDING THE COUNSEL MEMBER ATTENDANCE OF 
@@ -113,14 +113,14 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             {codeOfConductPoints.map((point, index) => (
               <div 
                 key={index}
-                className="flex gap-4 p-4 bg-white border-l-4 border-red-500 rounded-r-lg shadow-sm hover:shadow-md transition-all duration-200 hover:border-red-600"
+                className="card-green-gradient flex gap-4 p-4 rounded-xl border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-200"
               >
                 <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                  <div className="w-7 h-7 bg-emerald-500 text-black rounded-lg flex items-center justify-center font-bold text-xs font-space">
                     {index + 1}
                   </div>
                 </div>
-                <p className="text-gray-800 leading-relaxed font-medium text-sm pt-1">
+                <p className="text-gray-200 leading-relaxed font-medium text-xs sm:text-sm pt-0.5">
                   {point}
                 </p>
               </div>
@@ -129,8 +129,8 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
           {/* Scroll indicator */}
           {!hasScrolledToBottom && (
-            <div className="sticky bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white to-transparent py-4 text-center">
-              <p className="text-sm text-red-600 font-semibold animate-bounce">
+            <div className="sticky bottom-0 left-0 right-0 bg-gradient-to-t from-[#090d16] via-[#090d16] to-transparent py-4 text-center">
+              <p className="text-xs text-emerald-400 font-semibold font-space">
                 ↓ Please scroll down to read all points ↓
               </p>
             </div>
@@ -138,7 +138,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
         </div>
 
         {/* Footer with checkbox and buttons */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50 rounded-b-lg">
+        <div className="border-t border-emerald-500/20 p-6 bg-[#070b13] rounded-b-2xl font-jakarta">
           {/* Agreement checkbox */}
           <div className="mb-4">
             <label className="flex items-start gap-3 cursor-pointer group">
@@ -147,10 +147,10 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
                 disabled={!hasScrolledToBottom}
-                className="mt-1 w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-1 w-4 h-4 text-emerald-500 border-emerald-500/30 rounded focus:ring-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed bg-black/40"
               />
-              <span className={`text-sm leading-relaxed ${!hasScrolledToBottom ? 'text-gray-400' : 'text-gray-700 group-hover:text-gray-900'}`}>
-                I have read and understood the <strong>RAVEN Code of Conduct</strong>. 
+              <span className={`text-xs sm:text-sm leading-relaxed ${!hasScrolledToBottom ? 'text-gray-500' : 'text-gray-300 group-hover:text-white'}`}>
+                I have read and understood the <strong className="text-emerald-400">RAVEN Code of Conduct</strong>. 
                 I agree to abide by these principles and uphold the dignity of the institution.
               </span>
             </label>
@@ -158,19 +158,19 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
           {/* Warning message */}
           {!hasScrolledToBottom && (
-            <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-2">
-              <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-yellow-800">
-                ⚠️ <strong>You must scroll to the bottom</strong> and read all the Code of Conduct points before you can proceed with admission.
+            <div className="mb-4 p-3 bg-amber-500/10 border border-amber-500/25 rounded-xl flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-amber-300">
+                ⚠️ <strong>You must scroll to the bottom</strong> and read all the Code of Conduct points before you can proceed.
               </p>
             </div>
           )}
 
           {!agreedToTerms && hasScrolledToBottom && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-red-800">
-                ⚠️ <strong>You must accept the Code of Conduct</strong> to proceed with admission and payment.
+            <div className="mb-4 p-3 bg-emerald-500/10 border border-emerald-500/25 rounded-xl flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-emerald-300">
+                ⚠️ <strong>You must check the agreement box</strong> to proceed with enrollment.
               </p>
             </div>
           )}
@@ -180,18 +180,18 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             <button
               onClick={handleAccept}
               disabled={!agreedToTerms}
-              className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+              className={`flex-1 py-3 px-6 rounded-xl font-bold font-outfit text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                 agreedToTerms
-                  ? 'bg-green-600 hover:bg-green-700 text-white hover:scale-105 active:scale-95'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/25'
+                  : 'bg-white/5 text-gray-500 cursor-not-allowed border border-white/5'
               }`}
             >
-              <CheckCircle2 className="w-5 h-5" />
+              <CheckCircle2 className="w-4 h-4" />
               I Understand & Accept
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition-all duration-300"
+              className="px-6 py-3 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl font-medium font-outfit text-sm border border-white/10 transition-all duration-200"
             >
               Cancel
             </button>

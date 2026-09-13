@@ -111,7 +111,7 @@ export default function CoursesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by subject (Physics, Math), standard (Class 10, 12), or topic..."
-                className="w-full pl-14 pr-6 py-4 rounded-2xl bg-[#0e1320]/80 border border-emerald-500/20 text-white placeholder-gray-500 shadow-2xl focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition backdrop-blur-xl"
+                className="w-full pl-14 pr-6 py-4 rounded-2xl card-green-gradient text-white placeholder-gray-500 shadow-2xl focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition backdrop-blur-xl"
               />
               {searchQuery && (
                 <button

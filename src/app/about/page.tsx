@@ -6,13 +6,7 @@ import Image from 'next/image';
 import { Target, BookOpen, Users, X, ZoomIn, Sparkles } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
-import {
-  gsap,
-  animateSplitText,
-  scrollFadeUp,
-  scrollStagger,
-  cardTilt,
-} from '@/lib/gsap';
+
 
 interface FacultyMember {
   name: string;
@@ -145,34 +139,7 @@ const AboutUs: React.FC = () => {
     }
   ];
 
-  // GSAP animations
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
 
-    const ctx = gsap.context(() => {
-      if (pageTitleRef.current) animateSplitText(pageTitleRef.current, 0.2, 0.5);
-
-      if (heroSubRef.current) {
-        gsap.fromTo(
-          heroSubRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.7, delay: 0.5, ease: 'power3.out', clearProps: 'all' }
-        );
-      }
-
-      if (missionRef.current) scrollFadeUp(missionRef.current);
-
-      if (facultyGridRef.current) {
-        const cards = facultyGridRef.current.querySelectorAll('.faculty-card');
-        scrollStagger(cards, 0.12);
-        cards.forEach((card) => cardTilt(card as HTMLElement));
-      }
-
-      if (devSectionRef.current) scrollFadeUp(devSectionRef.current);
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   // Lock body scroll when modal is active
   useEffect(() => {
@@ -217,7 +184,7 @@ const AboutUs: React.FC = () => {
               {pillars.map((pillar, index) => (
                 <div
                   key={index}
-                  className="p-8 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/45 hover:bg-[#12182c] transition-all duration-300 group hover:-translate-y-1.5"
+                  className="card-green-gradient p-8 rounded-3xl backdrop-blur-xl shadow-xl transition-all duration-300 group hover:-translate-y-1.5"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-lg shadow-emerald-500/10 group-hover:scale-105 transition-transform">
                     <pillar.icon className="w-7 h-7" />
@@ -252,7 +219,7 @@ const AboutUs: React.FC = () => {
               {faculty.map((member, index) => (
                 <div
                   key={index}
-                  className="faculty-card p-6 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-xl backdrop-blur-md flex flex-col justify-between"
+                  className="faculty-card card-green-gradient p-6 rounded-3xl shadow-xl backdrop-blur-md flex flex-col justify-between transition-all duration-300"
                 >
                   <div>
                     <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-800/40 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 mx-auto font-black text-2xl font-outfit shadow-md">
@@ -297,7 +264,7 @@ const AboutUs: React.FC = () => {
               {devTeam.map((dev, index) => (
                 <div
                   key={index}
-                  className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/90 border border-emerald-500/30 shadow-2xl backdrop-blur-xl text-center space-y-6 hover:border-emerald-500/60 transition-all"
+                  className="card-green-gradient p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-xl text-center space-y-6 transition-all"
                 >
                   <div 
                     className="relative w-36 h-36 mx-auto rounded-3xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/20 group cursor-pointer"

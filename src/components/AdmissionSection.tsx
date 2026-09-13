@@ -419,7 +419,7 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#10131c] rounded-2xl shadow-2xl p-8 border border-white/5 font-jakarta"
+              className="card-green-gradient rounded-2xl shadow-2xl p-8 font-jakarta"
             >
               <div className="text-center">
                 <div className="w-20 h-20 rounded-full bg-[#00E5A8]/10 border border-[#00E5A8]/20 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#00E5A8]/10">
@@ -477,7 +477,7 @@ export default function AdmissionSection() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-2xl bg-[#111111] rounded-2xl shadow-2xl my-8 max-h-[90vh] overflow-y-auto border border-gray-800"
+              className="card-green-gradient relative w-full max-w-2xl rounded-2xl shadow-2xl my-8 max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               {step !== 4 && (

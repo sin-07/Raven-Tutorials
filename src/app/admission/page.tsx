@@ -32,7 +32,7 @@ export default function AdmissionPage() {
           {/* Admission Options Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Learner Track */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/80 border border-emerald-500/20 hover:border-emerald-500/50 hover:bg-[#12182c] transition-all duration-300 shadow-2xl backdrop-blur-xl flex flex-col justify-between group">
+            <div className="card-green-gradient p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-xl flex flex-col justify-between group transition-all duration-300">
               <div>
                 <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-lg shadow-emerald-500/15 group-hover:scale-105 transition-transform">
                   <GraduationCap className="w-8 h-8" />
@@ -80,7 +80,7 @@ export default function AdmissionPage() {
             </div>
 
             {/* Tutor Track */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0e1320]/80 border border-white/10 hover:border-emerald-500/40 hover:bg-[#12182c] transition-all duration-300 shadow-2xl backdrop-blur-xl flex flex-col justify-between group">
+            <div className="card-green-gradient p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-xl flex flex-col justify-between group transition-all duration-300">
               <div>
                 <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 mb-6 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-all group-hover:scale-105">
                   <UserCircle className="w-8 h-8" />
