@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
+import { CheckSquare, Users, Calendar, Sparkles, CheckCircle2, XCircle, Check } from 'lucide-react';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
 
 interface StudentData {
@@ -23,28 +24,28 @@ const AttendanceButtons = memo(({
   onStatusChange: (id: string, status: string) => void;
 }) => {
   return (
-    <div className="flex justify-center gap-1 sm:gap-2">
+    <div className="flex justify-center gap-2">
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Present')}
-        className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
+        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all ${
           currentStatus === 'Present'
-            ? 'bg-green-600 text-white'
-            : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
+            ? 'bg-[#86efac] text-black border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
+            : 'bg-white text-neutral-500 hover:text-black hover:bg-neutral-100 border-2 border-black/30 shadow-none'
         }`}
       >
-        P
+        Present
       </button>
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Absent')}
-        className={`px-2 sm:px-4 py-1 sm:py-2 rounded text-xs sm:text-sm font-semibold transition duration-200 ${
+        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all ${
           currentStatus === 'Absent'
-            ? 'bg-red-600 text-white'
-            : 'bg-[#111111] text-gray-400 hover:bg-[#080808]'
+            ? 'bg-rose-200 text-rose-950 border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
+            : 'bg-white text-neutral-500 hover:text-rose-900 hover:bg-rose-50 border-2 border-black/30 shadow-none'
         }`}
       >
-        A
+        Absent
       </button>
     </div>
   );
@@ -222,24 +223,47 @@ const AdminAttendance: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };  const presentCount = Object.values(attendance).filter(v => v === 'Present').length;
+  const absentCount = Object.values(attendance).filter(v => v === 'Absent').length;
 
   return (
     <AdminLayout>
-      <div className="space-y-4 sm:space-y-5 md:space-y-6">
-        <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white">Attendance Management</h2>
-
-        {/* Filters */}
-        <div className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6 border border-gray-800">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                Class *
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+                <CheckSquare className="w-3.5 h-3.5 text-emerald-800" />
+                <span>Attendance Registry</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight">
+                Daily Attendance Roll Call
+              </h1>
+              <p className="text-neutral-900 font-bold font-jakarta text-xs sm:text-sm mt-1">
+                Record classroom attendance, track absent students, and update session records
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="px-4 py-2 rounded-2xl bg-white border-2 border-black font-mono font-black text-sm shadow-[2px_2px_0px_#000]">
+                {new Date(selectedDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Cartoon Controls & Filters Panel */}
+        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border-3 border-black shadow-[6px_6px_0px_#000]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
+                Standard / Class *
               </label>
               <select
                 value={selectedClass}
                 onChange={(e) => setSelectedClass(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
+                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
               >
                 <option value="">-- Select Class --</option>
                 {STANDARDS.map(standard => (
@@ -249,13 +273,13 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                Subject *
+              <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
+                Subject Session *
               </label>
               <select
                 value={selectedSubject}
                 onChange={(e) => setSelectedSubject(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
+                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
               >
                 <option value="">-- Select Subject --</option>
                 {subjects.map(subject => (
@@ -265,14 +289,14 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
-                Date *
+              <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
+                Attendance Date *
               </label>
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 text-sm bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] outline-none text-white"
+                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-mono focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
               />
             </div>
 
@@ -280,94 +304,132 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={markAllPresent}
                 disabled={!selectedClass || !selectedSubject || students.length === 0}
-                className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold disabled:bg-gray-600 disabled:text-white text-sm sm:text-base transition-all"
+                className="btn-cartoon w-full py-2.5 px-4 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
-                Mark All
+                <Check size={16} />
+                <span>Mark All Present</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Attendance Status Indicator */}
+        {/* Status Notification Banner */}
         {selectedClass && selectedSubject && isMarked && (
-          <div className="bg-[#00E5A8]/10 border-l-4 border-[#00E5A8] p-3 sm:p-4 rounded-lg">
-            <div className="flex items-start gap-2 sm:gap-3">
-              <div className="flex-shrink-0 mt-0.5">
-                <svg className="h-4 sm:h-5 w-4 sm:w-5 text-[#00E5A8]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
+          <div className="bg-[#dcfce7] border-2 border-black p-4 rounded-2xl shadow-[4px_4px_0px_#000] flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-400 rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                <CheckCircle2 className="w-5 h-5 text-black" />
               </div>
-              <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-[#00E5A8]">
-                  [DONE] Attendance for {selectedSubject} already marked for {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              <div>
+                <p className="font-outfit font-black text-black text-sm">
+                  Attendance Already Recorded
+                </p>
+                <p className="text-neutral-700 text-xs font-jakarta font-medium">
+                  Attendance for Class {selectedClass} • {selectedSubject} on {new Date(selectedDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })} is saved. You can adjust statuses and re-save.
                 </p>
               </div>
             </div>
+            <span className="px-3 py-1 rounded-lg bg-white border border-black text-xs font-black font-space uppercase shadow-[1px_1px_0px_#000]">
+              Status: Logged
+            </span>
           </div>
         )}
 
         {/* Attendance Table */}
         {selectedClass && selectedSubject && students.length > 0 && (
-          <div className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-4 sm:p-5 md:p-6 border border-gray-800">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4">
-              {isMarked ? 'Update Attendance' : 'Mark Attendance'} - {students.length} Students
-            </h3>
+          <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+            {/* Table Header / Stats Bar */}
+            <div className="p-5 bg-[#86efac] border-b-2 border-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <h3 className="text-xl font-black font-outfit text-black">
+                  {isMarked ? 'Update Attendance Record' : 'Take Attendance'}
+                </h3>
+                <p className="text-xs font-bold font-jakarta text-neutral-800">
+                  Class {selectedClass} • {selectedSubject} • {students.length} Total Enrolled
+                </p>
+              </div>
 
-            <div className="overflow-x-auto -mx-4 sm:-mx-0">
-              <div className="inline-block min-w-full align-middle px-4 sm:px-0">
-                <table className="min-w-full divide-y divide-gray-800">
-                  <thead className="bg-[#080808] hidden sm:table-header-group">
-                    <tr>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-400 uppercase">Name</th>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-400 uppercase hidden md:table-cell">Reg ID</th>
-                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs font-medium text-gray-400 uppercase">Attendance</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-[#111111] divide-y divide-gray-800">
-                    {students.map((student, index) => (
-                      <tr key={`student-row-${student._id}-${index}`} className="hover:bg-[#111111]/50 block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
-                          <span className="sm:hidden text-gray-500 font-medium text-xs">Name: </span>
-                          {student.studentName} <span className="text-gray-500 text-xs">({student._id.slice(-6)})</span>
-                        </td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-400 hidden md:table-cell">
-                          {student.registrationId}
-                        </td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center block sm:table-cell">
-                          <AttendanceButtons
-                            studentId={student._id}
-                            currentStatus={attendance[student._id]}
-                            onStatusChange={handleStatusChange}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              {/* Attendance Mini Counter */}
+              <div className="flex items-center gap-2">
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-emerald-700">
+                  ✓ {presentCount} Present
+                </span>
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-rose-700">
+                  ✗ {absentCount} Absent
+                </span>
               </div>
             </div>
 
-            <div className="mt-4 sm:mt-6 flex justify-end">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y-2 divide-black">
+                <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black text-xs">
+                  <tr>
+                    <th className="px-5 py-3.5 text-left">#</th>
+                    <th className="px-5 py-3.5 text-left">Student Name</th>
+                    <th className="px-5 py-3.5 text-left hidden md:table-cell">Registration ID</th>
+                    <th className="px-5 py-3.5 text-center">Attendance Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-200 font-jakarta text-sm">
+                  {students.map((student, index) => (
+                    <tr key={`student-row-${student._id}-${index}`} className="hover:bg-[#f0fdf4] transition-colors">
+                      <td className="px-5 py-3.5 font-mono text-xs font-bold text-neutral-500">
+                        {index + 1}
+                      </td>
+                      <td className="px-5 py-3.5">
+                        <span className="font-bold text-black block">{student.studentName}</span>
+                        <span className="text-[11px] text-neutral-500 font-mono sm:hidden">{student.registrationId}</span>
+                      </td>
+                      <td className="px-5 py-3.5 hidden md:table-cell">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-[1px_1px_0px_#000]">
+                          {student.registrationId}
+                        </span>
+                      </td>
+                      <td className="px-5 py-3.5 text-center">
+                        <AttendanceButtons
+                          studentId={student._id}
+                          currentStatus={attendance[student._id]}
+                          onStatusChange={handleStatusChange}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Bottom Save Action Bar */}
+            <div className="p-5 bg-[#f0fdf4] border-t-2 border-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="text-xs font-jakarta font-medium text-neutral-600">
+                Ensure all students are marked before submitting. Absentees will be logged in the academic history.
+              </div>
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold disabled:bg-gray-600 disabled:text-white text-sm sm:text-base transition-all"
+                className="btn-cartoon px-8 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-sm sm:text-base disabled:opacity-50 transition-all flex items-center justify-center gap-2"
               >
-                {loading ? 'Saving...' : 'Save Attendance'}
+                <CheckSquare size={18} />
+                <span>{loading ? 'Saving...' : isMarked ? 'Update Attendance' : 'Save Attendance'}</span>
               </button>
             </div>
           </div>
         )}
 
         {selectedClass && selectedSubject && students.length === 0 && (
-          <div className="text-center py-8 sm:py-12 bg-[#111111] rounded-lg md:rounded-xl shadow-md border border-gray-800">
-            <p className="text-gray-500 text-sm sm:text-base font-medium">No students found in Class {selectedClass}</p>
+          <div className="text-center py-16 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
+            <Users className="w-12 h-12 text-neutral-300 mx-auto mb-2" />
+            <p className="text-black font-black text-lg font-outfit">No Enrolled Students</p>
+            <p className="text-neutral-500 text-xs font-jakarta mt-1">No students are currently enrolled in Class {selectedClass}</p>
           </div>
         )}
 
         {(!selectedClass || !selectedSubject) && (
-          <div className="text-center py-8 sm:py-12 bg-[#111111] rounded-lg md:rounded-xl shadow-md border border-gray-800">
-            <p className="text-gray-500 text-sm sm:text-base font-medium">Select a class and subject to view and mark attendance</p>
+          <div className="text-center py-16 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
+            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border-2 border-black flex items-center justify-center mx-auto mb-3 shadow-[2px_2px_0px_#000]">
+              <Calendar className="w-8 h-8 text-black" />
+            </div>
+            <p className="text-black font-black text-lg font-outfit">Select Class & Subject</p>
+            <p className="text-neutral-500 text-xs font-jakarta mt-1">Choose a standard and subject above to load student roll call</p>
           </div>
         )}
       </div>

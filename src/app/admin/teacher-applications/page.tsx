@@ -13,7 +13,8 @@ import {
   Phone,
   GraduationCap,
   Briefcase,
-  BookOpen
+  BookOpen,
+  UserCheck
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
@@ -22,7 +23,7 @@ import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 /**
  * Admin Teacher Applications Page
  * --------------------------------
- * Manage teacher applications: view, approve, reject
+ * Manage teacher applications: view, approve, reject with cartoonish interface
  */
 
 interface TeacherApplication {
@@ -118,19 +119,19 @@ export default function TeacherApplicationsPage() {
     switch (status) {
       case 'approved':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#86efac] text-emerald-950 border-2 border-black shadow-[1px_1px_0px_#000]">
             <CheckCircle size={12} /> Approved
           </span>
         );
       case 'rejected':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-rose-200 text-rose-900 border-2 border-black shadow-[1px_1px_0px_#000]">
             <XCircle size={12} /> Rejected
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#fef08a] text-amber-950 border-2 border-black shadow-[1px_1px_0px_#000]">
             <Clock size={12} /> Pending
           </span>
         );
@@ -139,132 +140,147 @@ export default function TeacherApplicationsPage() {
 
   return (
     <AdminLayout>
-      <div className="p-6">
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white">Teacher Applications</h1>
-          <p className="text-gray-400 mt-1">Review and manage teacher applications</p>
+      <div className="space-y-6">
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000]">
+          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-2 shadow-[2px_2px_0px_#000]">
+            <UserCheck size={14} className="text-black" />
+            <span>Faculty Recruitment</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
+            Teacher Applications 🎓
+          </h1>
+          <p className="text-black/80 font-jakarta font-semibold mt-1">
+            Review applicant qualifications, teaching credentials, and approve new educators
+          </p>
         </div>
 
-        {/* Filters & Search */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          {/* Search */}
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search by name, email or phone..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#00E5A8]"
-            />
+        {/* Stats Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="bg-white rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+            <p className="text-xs font-space font-black uppercase text-black/60">Total Applicants</p>
+            <p className="text-3xl font-outfit font-black text-black mt-1">{applications.length}</p>
           </div>
-
-          {/* Status Filter */}
-          <div className="flex items-center gap-2">
-            <Filter size={20} className="text-gray-400" />
-            <select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value as typeof filter)}
-              className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-            >
-              <option value="all">All Applications</option>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <p className="text-gray-400 text-sm">Total</p>
-            <p className="text-2xl font-bold text-white">{applications.length}</p>
-          </div>
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <p className="text-gray-400 text-sm">Pending</p>
-            <p className="text-2xl font-bold text-yellow-400">
+          <div className="bg-[#fef08a] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+            <p className="text-xs font-space font-black uppercase text-black/70">Pending Review</p>
+            <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'pending').length}
             </p>
           </div>
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <p className="text-gray-400 text-sm">Approved</p>
-            <p className="text-2xl font-bold text-green-400">
+          <div className="bg-[#86efac] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+            <p className="text-xs font-space font-black uppercase text-black/70">Approved</p>
+            <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'approved').length}
             </p>
           </div>
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <p className="text-gray-400 text-sm">Rejected</p>
-            <p className="text-2xl font-bold text-red-400">
+          <div className="bg-rose-200 rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+            <p className="text-xs font-space font-black uppercase text-black/70">Rejected</p>
+            <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'rejected').length}
             </p>
           </div>
         </div>
 
-        {/* Applications List */}
+        {/* Search & Filter Card */}
+        <div className="bg-white rounded-3xl p-5 border-3 border-black shadow-[5px_5px_0px_#000]">
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Search */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-black/50" size={18} />
+              <input
+                type="text"
+                placeholder="Search by teacher name, email or contact number..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+              />
+            </div>
+
+            {/* Status Filter */}
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shrink-0">
+                <Filter size={18} className="text-black" />
+              </div>
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value as typeof filter)}
+                className="px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
+              >
+                <option value="all">All Applications</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Applications Table Card */}
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00E5A8]"></div>
+          <div className="flex justify-center items-center h-64 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000]">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-[#86efac]"></div>
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No applications found</p>
+          <div className="text-center py-12 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
+            <UserCheck className="w-12 h-12 text-black/30 mx-auto mb-3" />
+            <p className="font-outfit font-black text-xl text-black">No applications found</p>
+            <p className="text-sm font-jakarta font-medium text-black/60 mt-1">Try switching filters or search terms.</p>
           </div>
         ) : (
-          <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+          <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-900">
+                <thead className="bg-[#86efac] border-b-3 border-black">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Name</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Contact</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Qualification</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Subjects</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Status</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Applied</th>
-                    <th className="px-4 py-3 text-center text-sm font-medium text-gray-300">Actions</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Teacher Name</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Contact Details</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Qualification</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Subjects</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Status</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Applied Date</th>
+                    <th className="px-5 py-4 text-center text-xs font-space font-black uppercase text-black">Review</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-700">
+                <tbody className="divide-y-2 divide-black">
                   {filteredApplications.map((app) => (
-                    <tr key={app._id} className="hover:bg-gray-750">
-                      <td className="px-4 py-4">
-                        <p className="text-white font-medium">{app.name}</p>
+                    <tr key={app._id} className="hover:bg-[#f0fdf4] transition-colors">
+                      <td className="px-5 py-4">
+                        <p className="font-outfit font-black text-black text-base">{app.name}</p>
                       </td>
-                      <td className="px-4 py-4">
-                        <p className="text-gray-300 text-sm">{app.email}</p>
-                        <p className="text-gray-500 text-sm">{app.phone}</p>
+                      <td className="px-5 py-4">
+                        <p className="font-mono font-bold text-black text-xs">{app.email}</p>
+                        <p className="font-mono font-medium text-black/60 text-xs mt-0.5">{app.phone}</p>
                       </td>
-                      <td className="px-4 py-4">
-                        <p className="text-gray-300 text-sm">{app.qualification}</p>
-                        <p className="text-gray-500 text-xs">{app.experience}</p>
+                      <td className="px-5 py-4">
+                        <p className="font-jakarta font-bold text-black text-sm">{app.qualification}</p>
+                        <p className="font-mono font-medium text-black/60 text-xs mt-0.5">{app.experience}</p>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="flex flex-wrap gap-1 max-w-[200px]">
+                      <td className="px-5 py-4">
+                        <div className="flex flex-wrap gap-1 max-w-[220px]">
                           {app.subjects.slice(0, 3).map((subject, i) => (
-                            <span key={i} className="px-2 py-0.5 bg-gray-700 text-gray-300 text-xs rounded">
+                            <span key={i} className="px-2 py-0.5 bg-[#dcfce7] text-black font-space font-bold text-[10px] rounded border border-black uppercase">
                               {subject}
                             </span>
                           ))}
                           {app.subjects.length > 3 && (
-                            <span className="text-gray-500 text-xs">+{app.subjects.length - 3}</span>
+                            <span className="text-black/60 font-mono font-bold text-xs self-center">+{app.subjects.length - 3}</span>
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-4">
+                      <td className="px-5 py-4">
                         {getStatusBadge(app.status)}
                       </td>
-                      <td className="px-4 py-4 text-gray-400 text-sm">
+                      <td className="px-5 py-4 font-mono font-bold text-black/70 text-xs">
                         {new Date(app.createdAt).toLocaleDateString('en-IN')}
                       </td>
-                      <td className="px-4 py-4 text-center">
+                      <td className="px-5 py-4 text-center">
                         <button
                           onClick={() => {
                             setSelectedApplication(app);
                             setAdminNotes(app.adminNotes || '');
                           }}
-                          className="p-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 rounded-lg transition-colors"
+                          className="p-2.5 bg-[#fef08a] text-black border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          title="View Application Details"
                         >
                           <Eye size={16} />
                         </button>
@@ -279,15 +295,15 @@ export default function TeacherApplicationsPage() {
 
         {/* Detail Modal */}
         {selectedApplication && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overscroll-contain">
-            <div className="bg-gray-800 rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain">
-              <div className="sticky top-0 bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
-                <h2 className="text-xl font-bold text-white">Application Details</h2>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4 overscroll-contain">
+            <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[8px_8px_0px_#000] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain">
+              <div className="sticky top-0 bg-[#86efac] p-5 border-b-3 border-black flex justify-between items-center">
+                <h2 className="text-xl font-outfit font-black text-black">Application Details</h2>
                 <button
                   onClick={() => setSelectedApplication(null)}
-                  className="text-gray-400 hover:text-white"
+                  className="w-8 h-8 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold hover:bg-neutral-100 cursor-pointer"
                 >
-                  <X size={24} />
+                  <X size={18} />
                 </button>
               </div>
 
@@ -298,102 +314,104 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 {/* Name */}
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                    <span className="text-lg font-bold text-[#00E5A8]">
+                <div className="flex items-center gap-3 bg-white border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]">
+                  <div className="w-12 h-12 bg-[#86efac] border-2 border-black rounded-2xl flex items-center justify-center shadow-[1px_1px_0px_#000]">
+                    <span className="text-xl font-outfit font-black text-black">
                       {selectedApplication.name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-lg">{selectedApplication.name}</p>
-                    <p className="text-gray-400 text-sm">Applicant</p>
+                    <p className="text-black font-outfit font-black text-xl">{selectedApplication.name}</p>
+                    <p className="text-black/60 font-space font-bold text-xs uppercase">Teacher Candidate</p>
                   </div>
                 </div>
 
                 {/* Contact */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2">
-                    <Mail size={16} className="text-gray-500" />
-                    <span className="text-gray-300 text-sm">{selectedApplication.email}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2 bg-white border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                    <Mail size={16} className="text-black shrink-0" />
+                    <span className="text-black font-mono font-bold text-xs truncate">{selectedApplication.email}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Phone size={16} className="text-gray-500" />
-                    <span className="text-gray-300 text-sm">{selectedApplication.phone}</span>
+                  <div className="flex items-center gap-2 bg-white border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                    <Phone size={16} className="text-black shrink-0" />
+                    <span className="text-black font-mono font-bold text-xs">{selectedApplication.phone}</span>
                   </div>
                 </div>
 
                 {/* Qualification */}
-                <div className="flex items-start gap-2">
-                  <GraduationCap size={16} className="text-gray-500 mt-1" />
+                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000] flex items-start gap-3">
+                  <GraduationCap size={18} className="text-black mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-white">{selectedApplication.qualification}</p>
-                    <p className="text-gray-500 text-sm">Qualification</p>
+                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.qualification}</p>
+                    <p className="text-black/60 text-xs font-space font-bold uppercase">Qualification</p>
                   </div>
                 </div>
 
                 {/* Experience */}
-                <div className="flex items-start gap-2">
-                  <Briefcase size={16} className="text-gray-500 mt-1" />
+                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000] flex items-start gap-3">
+                  <Briefcase size={18} className="text-black mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-white">{selectedApplication.experience}</p>
-                    <p className="text-gray-500 text-sm">Experience</p>
+                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.experience}</p>
+                    <p className="text-black/60 text-xs font-space font-bold uppercase">Experience</p>
                   </div>
                 </div>
 
                 {/* Subjects */}
-                <div className="flex items-start gap-2">
-                  <BookOpen size={16} className="text-gray-500 mt-1" />
-                  <div>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedApplication.subjects.map((subject, i) => (
-                        <span key={i} className="px-3 py-1 bg-[#00E5A8]/20 text-[#00E5A8] text-sm rounded-full">
-                          {subject}
-                        </span>
-                      ))}
+                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000]">
+                  <div className="flex items-start gap-2">
+                    <BookOpen size={18} className="text-black mt-0.5 shrink-0" />
+                    <div>
+                      <div className="flex flex-wrap gap-1.5 mt-0.5">
+                        {selectedApplication.subjects.map((subject, i) => (
+                          <span key={i} className="px-2.5 py-1 bg-[#dcfce7] text-black text-xs font-space font-black uppercase rounded-lg border border-black">
+                            {subject}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-black/60 text-xs font-space font-bold uppercase mt-2">Subjects Eligible To Teach</p>
                     </div>
-                    <p className="text-gray-500 text-sm mt-1">Subjects</p>
                   </div>
                 </div>
 
                 {/* Admin Notes */}
                 {selectedApplication.status === 'pending' && (
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Admin Notes (Optional)
+                    <label className="block text-black text-xs font-space font-black uppercase mb-1.5">
+                      Admin Evaluation Notes (Optional)
                     </label>
                     <textarea
                       value={adminNotes}
                       onChange={(e) => setAdminNotes(e.target.value)}
                       rows={3}
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                      placeholder="Add any notes about this application..."
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+                      placeholder="Add any internal assessment or interview remarks..."
                     />
                   </div>
                 )}
 
                 {/* Show existing notes if already reviewed */}
                 {selectedApplication.adminNotes && selectedApplication.status !== 'pending' && (
-                  <div className="p-3 bg-gray-700 rounded-lg">
-                    <p className="text-gray-400 text-sm">Admin Notes:</p>
-                    <p className="text-white">{selectedApplication.adminNotes}</p>
+                  <div className="p-3.5 bg-[#86efac] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000]">
+                    <p className="text-black/70 text-xs font-space font-black uppercase mb-1">Admin Notes:</p>
+                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.adminNotes}</p>
                   </div>
                 )}
 
                 {/* Action Buttons */}
                 {selectedApplication.status === 'pending' && (
-                  <div className="flex gap-3 pt-4">
+                  <div className="flex gap-3 pt-2">
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'approved')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
                     >
                       <CheckCircle size={18} />
-                      Approve
+                      Approve Educator
                     </button>
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'rejected')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 py-3 bg-rose-200 hover:bg-rose-300 text-rose-950 font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
                     >
                       <XCircle size={18} />
                       Reject

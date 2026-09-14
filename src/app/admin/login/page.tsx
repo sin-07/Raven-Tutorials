@@ -11,13 +11,12 @@ export default function AdminLoginPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-12 h-12 border-4 border-gray-800 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gray-400 text-sm">Redirecting to login...</p>
+    <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+      <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+        <div className="w-12 h-12 border-4 border-black border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
+        <h3 className="font-outfit font-black text-xl text-black">Redirecting to Login</h3>
+        <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Please wait a moment...</p>
       </div>
     </div>
   );
 }
-
-

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
+import { FileText, Plus, Edit2, Trash2, Send, Lock, Sparkles, X, Check, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Loader } from '@/components';
 import { STANDARDS } from '@/constants/classes';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -293,113 +294,137 @@ const AdminTests: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'PUBLISHED':
-        return 'bg-green-500/20 text-green-400';
+        return 'bg-[#86efac] text-black border border-black';
       case 'EXPIRED':
-        return 'bg-red-500/20 text-red-400';
+        return 'bg-rose-200 text-rose-950 border border-black';
       case 'DRAFT':
       default:
-        return 'bg-yellow-500/20 text-yellow-400';
+        return 'bg-amber-200 text-black border border-black';
     }
   };
 
   const formatDateRange = (startDate: string, endDate: string) => {
-    const start = new Date(startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const end = new Date(endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const start = new Date(startDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+    const end = new Date(endDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
     return `${start} - ${end}`;
   };
 
   if (loading) {
     return (
       <AdminLayout>
-        <Loader />
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+            <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-3"></div>
+            <p className="text-black font-black font-outfit text-lg">Loading Assessments...</p>
+          </div>
+        </div>
       </AdminLayout>
     );
   }
 
   return (
     <AdminLayout>
-      <div className="space-y-4 sm:space-y-5 md:space-y-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
-          <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white">Tests Management</h2>
-          <button
-            onClick={() => setShowModal(true)}
-            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base w-full sm:w-auto transition-all"
-          >
-            + Create Test
-          </button>
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+                <FileText className="w-3.5 h-3.5 text-emerald-800" />
+                <span>Examinations & Assessments</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight">
+                Tests & Examinations
+              </h1>
+              <p className="text-neutral-900 font-bold font-jakarta text-xs sm:text-sm mt-1">
+                Author quizzes, set MCQ & subjective papers, and publish tests by batch
+              </p>
+            </div>
+            <button
+              onClick={() => setShowModal(true)}
+              className="btn-cartoon flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm font-outfit"
+            >
+              <Plus size={18} className="text-black" />
+              <span>Create New Test</span>
+            </button>
+          </div>
         </div>
 
         {/* Status Legend */}
-        <div className="bg-[#111111] rounded-lg p-3 sm:p-4 border border-gray-800">
-          <p className="text-sm text-gray-400 mb-2">Status Legend:</p>
-          <div className="flex flex-wrap gap-3 text-xs sm:text-sm">
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full bg-yellow-500/40"></span>
-              <span className="text-yellow-400">DRAFT</span> - Not visible to students
+        <div className="bg-[#f0fdf4] rounded-2xl p-4 border-2 border-black shadow-[4px_4px_0px_#000] flex flex-wrap items-center justify-between gap-3">
+          <span className="text-xs font-black uppercase font-space text-black">Status Guide:</span>
+          <div className="flex flex-wrap gap-2 text-xs font-space font-bold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-200 border border-black text-black shadow-[1px_1px_0px_#000]">
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+              DRAFT (Hidden)
             </span>
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full bg-green-500/40"></span>
-              <span className="text-green-400">PUBLISHED</span> - Visible to students (within date range)
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#86efac] border border-black text-black shadow-[1px_1px_0px_#000]">
+              <span className="w-2 h-2 rounded-full bg-emerald-700"></span>
+              PUBLISHED (Live)
             </span>
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full bg-red-500/40"></span>
-              <span className="text-red-400">EXPIRED</span> - Past end date, no longer visible
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-rose-200 border border-black text-rose-950 shadow-[1px_1px_0px_#000]">
+              <span className="w-2 h-2 rounded-full bg-rose-600"></span>
+              EXPIRED (Archived)
             </span>
           </div>
         </div>
 
         {/* Desktop Table View */}
-        <div className="hidden lg:block bg-[#111111] rounded-lg md:rounded-xl shadow-md overflow-x-auto border border-gray-800">
+        <div className="hidden lg:block bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
           <table className="w-full">
-            <thead className="bg-[#080808]">
+            <thead className="bg-[#86efac] border-b-2 border-black font-space font-black uppercase text-black text-xs">
               <tr>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Test ID</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Title</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Standard</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Subject</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Date Range</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Questions</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Marks</th>
-                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Status</th>
-                <th className="px-4 md:px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase">Actions</th>
+                <th className="px-5 py-3.5 text-left">Test ID</th>
+                <th className="px-5 py-3.5 text-left">Title</th>
+                <th className="px-5 py-3.5 text-left">Standard</th>
+                <th className="px-5 py-3.5 text-left">Subject</th>
+                <th className="px-5 py-3.5 text-left">Date Range</th>
+                <th className="px-5 py-3.5 text-center">Questions</th>
+                <th className="px-5 py-3.5 text-center">Marks</th>
+                <th className="px-5 py-3.5 text-center">Status</th>
+                <th className="px-5 py-3.5 text-center">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-[#111111] divide-y divide-gray-800">
+            <tbody className="divide-y divide-neutral-200 font-jakarta text-sm">
               {tests.map((test) => (
-                <tr key={test._id} className="hover:bg-[#111111]/50">
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs text-gray-500 font-mono">{test.testId}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-white">{test.title}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.standard}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.subject}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">
+                <tr key={test._id} className="hover:bg-[#f0fdf4] transition-colors">
+                  <td className="px-5 py-3.5 text-xs text-neutral-500 font-mono font-bold">{test.testId}</td>
+                  <td className="px-5 py-3.5 font-bold text-black">{test.title}</td>
+                  <td className="px-5 py-3.5">
+                    <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black text-xs font-black font-space text-black">
+                      Class {test.standard}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5 text-neutral-800 font-medium">{test.subject}</td>
+                  <td className="px-5 py-3.5 text-xs text-neutral-600 font-mono font-bold">
                     {formatDateRange(test.startDate, test.endDate)}
                   </td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.questions?.length || 0}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-400">{test.totalMarks}</td>
-                  <td className="px-4 md:px-6 py-3 md:py-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(test.status)}`}>
+                  <td className="px-5 py-3.5 text-center font-mono font-bold">{test.questions?.length || 0}</td>
+                  <td className="px-5 py-3.5 text-center font-mono font-bold">{test.totalMarks}</td>
+                  <td className="px-5 py-3.5 text-center">
+                    <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-black font-space uppercase shadow-[1px_1px_0px_#000] ${getStatusBadge(test.status)}`}>
                       {test.status}
                     </span>
                   </td>
-                  <td className="px-4 md:px-6 py-3 md:py-4 text-center">
-                    <div className="flex items-center justify-center gap-1 sm:gap-2">
+                  <td className="px-5 py-3.5 text-center">
+                    <div className="flex items-center justify-center gap-1.5">
                       {test.status === 'DRAFT' && (
                         <>
                           <button
                             onClick={() => handleEdit(test)}
-                            className="text-[#00E5A8] hover:text-[#00E5A8]/80 hover:bg-[#00E5A8]/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
-                            title="Edit"
+                            className="btn-cartoon p-1.5 bg-white hover:bg-sky-100 text-black rounded-lg border border-black shadow-[1px_1px_0px_#000]"
+                            title="Edit Assessment"
                           >
-                            ✏️
+                            <Edit2 size={14} />
                           </button>
                           <button
                             onClick={() => handlePublish(test._id)}
                             disabled={publishingId === test._id}
-                            className="text-green-400 hover:text-green-300 hover:bg-green-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm disabled:opacity-50"
-                            title="Publish"
+                            className="btn-cartoon px-2.5 py-1 bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs rounded-lg border border-black shadow-[1px_1px_0px_#000] flex items-center gap-1"
+                            title="Publish Test"
                           >
-                            {publishingId === test._id ? '⏳' : '📢'}
+                            <Send size={12} />
+                            <span>Publish</span>
                           </button>
                         </>
                       )}
@@ -407,18 +432,19 @@ const AdminTests: React.FC = () => {
                         <button
                           onClick={() => handleUnpublish(test._id)}
                           disabled={publishingId === test._id}
-                          className="text-orange-400 hover:text-orange-300 hover:bg-orange-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm disabled:opacity-50"
-                          title="Unpublish (back to Draft)"
+                          className="btn-cartoon px-2.5 py-1 bg-amber-200 hover:bg-amber-300 text-black font-bold text-xs rounded-lg border border-black shadow-[1px_1px_0px_#000] flex items-center gap-1"
+                          title="Unpublish to Draft"
                         >
-                          {publishingId === test._id ? '⏳' : '🔒'}
+                          <Lock size={12} />
+                          <span>Unpublish</span>
                         </button>
                       )}
                       <button
                         onClick={() => handleDelete(test._id)}
-                        className="text-red-500 hover:text-red-400 hover:bg-red-500/10 px-2 sm:px-3 py-1 rounded transition-colors text-sm"
-                        title="Delete"
+                        className="btn-cartoon p-1.5 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black shadow-[1px_1px_0px_#000]"
+                        title="Delete Assessment"
                       >
-                        🗑️
+                        <Trash2 size={14} />
                       </button>
                     </div>
                   </td>
@@ -429,59 +455,52 @@ const AdminTests: React.FC = () => {
 
           {tests.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No tests created yet</p>
+              <p className="text-neutral-500 font-bold font-jakarta text-sm">No tests created yet. Click above to create your first assessment.</p>
             </div>
           )}
         </div>
 
         {/* Mobile Card View */}
-        <div className="lg:hidden space-y-3 sm:space-y-4">
+        <div className="lg:hidden space-y-4">
           {tests.map((test) => (
-            <div key={test._id} className="bg-[#111111] rounded-lg md:rounded-xl shadow-md p-3 sm:p-4 border border-gray-800">
-              <div className="flex justify-between items-start mb-3 gap-2">
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-gray-500 font-mono mb-1">{test.testId}</p>
-                  <h3 className="font-semibold text-white text-sm sm:text-base mb-1 truncate">{test.title}</h3>
-                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(test.status)}`}>
-                    {test.status}
-                  </span>
+            <div key={test._id} className="bg-[#f0fdf4] rounded-2xl p-4 border-2 border-black shadow-[4px_4px_0px_#000]">
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <p className="text-[10px] text-neutral-500 font-mono font-bold mb-0.5">{test.testId}</p>
+                  <h3 className="font-black text-black text-base font-outfit">{test.title}</h3>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4">
-                <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Standard</p>
-                  <p className="font-medium text-white">{test.standard}</p>
-                </div>
-                <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Subject</p>
-                  <p className="font-medium text-white truncate">{test.subject}</p>
-                </div>
-                <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Date Range</p>
-                  <p className="font-medium text-white text-xs">{formatDateRange(test.startDate, test.endDate)}</p>
-                </div>
-                <div className="bg-[#080808] p-2 rounded">
-                  <p className="text-gray-500 text-xs">Questions</p>
-                  <p className="font-medium text-white">{test.questions?.length || 0}</p>
-                </div>
+                <span className={`px-2 py-0.5 rounded-md text-[10px] font-black font-space uppercase shadow-[1px_1px_0px_#000] ${getStatusBadge(test.status)}`}>
+                  {test.status}
+                </span>
               </div>
 
-              <div className="flex gap-2 pt-2 sm:pt-3 border-t border-gray-800">
+              <div className="flex flex-wrap gap-2 text-xs mb-3">
+                <span className="px-2 py-0.5 rounded-md bg-white border border-black font-space font-bold">
+                  Class {test.standard}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-white border border-black font-medium">
+                  {test.subject}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-white border border-black font-mono font-bold">
+                  {test.totalMarks} Marks
+                </span>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-black/10">
                 {test.status === 'DRAFT' && (
                   <>
                     <button
                       onClick={() => handleEdit(test)}
-                      className="flex-1 bg-[#00E5A8]/10 text-[#00E5A8] hover:bg-[#00E5A8]/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                      className="btn-cartoon px-3 py-1.5 bg-white text-black font-bold text-xs rounded-xl border border-black"
                     >
-                      ✏️ Edit
+                      Edit
                     </button>
                     <button
                       onClick={() => handlePublish(test._id)}
                       disabled={publishingId === test._id}
-                      className="flex-1 bg-green-500/10 text-green-400 hover:bg-green-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors disabled:opacity-50"
+                      className="btn-cartoon px-3 py-1.5 bg-emerald-400 text-black font-bold text-xs rounded-xl border border-black"
                     >
-                      {publishingId === test._id ? '⏳' : '📢 Publish'}
+                      Publish
                     </button>
                   </>
                 )}
@@ -489,45 +508,58 @@ const AdminTests: React.FC = () => {
                   <button
                     onClick={() => handleUnpublish(test._id)}
                     disabled={publishingId === test._id}
-                    className="flex-1 bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors disabled:opacity-50"
+                    className="btn-cartoon px-3 py-1.5 bg-amber-200 text-black font-bold text-xs rounded-xl border border-black"
                   >
-                    {publishingId === test._id ? '⏳' : '🔒 Unpublish'}
+                    Unpublish
                   </button>
-                )}
-                {test.status === 'EXPIRED' && (
-                  <span className="flex-1 text-center text-gray-500 text-xs sm:text-sm py-1.5 sm:py-2">
-                    Test has expired
-                  </span>
                 )}
                 <button
                   onClick={() => handleDelete(test._id)}
-                  className="bg-red-500/10 text-red-500 hover:bg-red-500/20 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                  className="btn-cartoon px-3 py-1.5 bg-rose-100 text-rose-900 font-bold text-xs rounded-xl border border-black"
                 >
-                  🗑️
+                  Delete
                 </button>
               </div>
             </div>
           ))}
 
           {tests.length === 0 && (
-            <div className="bg-[#111111] rounded-lg shadow-md p-12 text-center border border-gray-800">
-              <p className="text-gray-500 text-base">No tests created yet</p>
+            <div className="bg-white rounded-2xl p-8 text-center border-2 border-black">
+              <p className="text-neutral-500 font-bold text-sm">No tests created yet.</p>
             </div>
           )}
         </div>
 
-        {/* Create Test Modal */}
+        {/* Cartoon Create / Edit Test Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto overscroll-contain">
-            <div className="bg-[#111111] rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto overscroll-contain border border-gray-800">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-                {editingTestId ? 'Edit Test' : 'Create New Test'} - {currentStep === 1 ? 'Basic Information' : 'Add Questions'}
-              </h3>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto overscroll-contain">
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 max-w-3xl w-full my-6 max-h-[90vh] overflow-y-auto overscroll-contain">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b-2 border-black">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-[#86efac] rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                    <FileText size={20} className="text-black" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black font-outfit text-black">
+                      {editingTestId ? 'Edit Assessment' : 'Create New Assessment'}
+                    </h3>
+                    <p className="text-xs text-neutral-600 font-space font-bold uppercase">
+                      {currentStep === 1 ? 'Step 1: Basic Specifications' : 'Step 2: Questions & Marks'}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={resetModal}
+                  className="btn-cartoon p-1.5 rounded-xl bg-white border border-black hover:bg-rose-100"
+                >
+                  <X size={18} className="text-black" />
+                </button>
+              </div>
               
               {!editingTestId && (
-                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-4">
-                  <p className="text-yellow-400 text-sm">
-                    ℹ️ New tests are created as <strong>DRAFT</strong>. Students won&apos;t see them until you publish.
+                <div className="bg-amber-100 border-2 border-black rounded-xl p-3 mb-4 shadow-[2px_2px_0px_#000]">
+                  <p className="text-amber-950 text-xs font-bold font-jakarta">
+                    ℹ️ New tests will initially be saved as <strong>DRAFT</strong>. Students will only see the assessment once you hit Publish.
                   </p>
                 </div>
               )}
@@ -536,25 +568,26 @@ const AdminTests: React.FC = () => {
                 <form onSubmit={(e) => { e.preventDefault(); setCurrentStep(2); }} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="col-span-1 sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Test Title *</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Test Title *</label>
                       <input
                         type="text"
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        placeholder="e.g. Unit Test 2 - Electrostatics"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Standard *</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Standard / Class *</label>
                       <select
                         value={formData.standard}
                         onChange={(e) => setFormData({ ...formData, standard: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                         required
                       >
-                        <option value="">Select Standard</option>
+                        <option value="">Select Class</option>
                         {classes.map(cls => (
                           <option key={cls} value={cls}>{cls}</option>
                         ))}
@@ -562,83 +595,88 @@ const AdminTests: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Subject *</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Subject *</label>
                       <input
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        placeholder="e.g. Physics"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Start Date * (Students can see from this date)</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Start Date * (Visible From)</label>
                       <input
                         type="date"
                         value={formData.startDate}
                         onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">End Date * (Test expires after this date)</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">End Date * (Expiry Date)</label>
                       <input
                         type="date"
                         value={formData.endDate}
                         onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                         min={formData.startDate}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Duration (minutes) *</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Duration (Minutes) *</label>
                       <input
                         type="number"
                         value={formData.duration}
                         onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        placeholder="60"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Passing Marks *</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Passing Marks *</label>
                       <input
                         type="number"
                         value={formData.passingMarks}
                         onChange={(e) => setFormData({ ...formData, passingMarks: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        placeholder="40"
                         required
                       />
                     </div>
 
                     <div className="col-span-1 sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Description / Instructions</label>
                       <textarea
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                         rows={3}
+                        placeholder="Instructions for students taking this test..."
                       />
                     </div>
                   </div>
 
-                  <div className="flex gap-4 mt-6">
+                  <div className="flex gap-3 pt-4 border-t-2 border-black/10">
                     <button
                       type="submit"
-                      className="flex-1 bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold transition-all"
+                      className="btn-cartoon flex-1 py-3 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-2"
                     >
-                      Next: Add Questions →
+                      <span>Next: Add Questions</span>
+                      <ArrowRight size={16} />
                     </button>
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="flex-1 bg-[#111111] hover:bg-[#080808] text-gray-300 py-2 rounded-lg font-semibold"
+                      className="btn-cartoon py-3 px-6 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm"
                     >
                       Cancel
                     </button>
@@ -648,22 +686,24 @@ const AdminTests: React.FC = () => {
                 <div className="space-y-6">
                   {/* Added Questions List */}
                   {formData.questions.length > 0 && (
-                    <div className="bg-[#080808] p-4 rounded-lg mb-4">
-                      <h4 className="font-semibold text-gray-300 mb-3">
-                        Added Questions ({formData.questions.length}) - Total Marks: {calculateTotalMarks()}
+                    <div className="bg-white p-4 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <h4 className="font-outfit font-black text-black text-sm mb-3">
+                        Added Questions ({formData.questions.length}) • Total Calculated Marks: {calculateTotalMarks()}
                       </h4>
-                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                      <div className="space-y-2 max-h-48 overflow-y-auto">
                         {formData.questions.map((q, index) => (
-                          <div key={index} className="flex justify-between items-center bg-[#111111] p-3 rounded border border-gray-800">
-                            <div className="flex-1 text-white">
-                              <span className="font-medium">Q{index + 1}:</span> {q.questionText.substring(0, 50)}...
-                              <span className="ml-2 text-sm text-gray-400">({q.questionType} - {q.marks} marks)</span>
+                          <div key={index} className="flex justify-between items-center bg-[#f0fdf4] p-3 rounded-xl border border-black">
+                            <div className="flex-1 text-black text-xs font-jakarta">
+                              <span className="font-black">Q{index + 1}:</span> {q.questionText.substring(0, 60)}...
+                              <span className="ml-2 font-space font-bold uppercase text-[10px] text-emerald-800">
+                                ({q.questionType} • {q.marks} pts)
+                              </span>
                             </div>
                             <button
                               onClick={() => handleRemoveQuestion(index)}
-                              className="text-red-500 hover:text-red-400 ml-2"
+                              className="btn-cartoon p-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg border border-black ml-2"
                             >
-                              ✕
+                              <X size={14} />
                             </button>
                           </div>
                         ))}
@@ -672,144 +712,141 @@ const AdminTests: React.FC = () => {
                   )}
 
                   {/* Add New Question Form */}
-                  <div className="border-2 border-dashed border-gray-800 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-300 mb-4">Add New Question</h4>
+                  <div className="bg-white p-5 rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] space-y-4">
+                    <h4 className="font-outfit font-black text-black text-sm">Add New Question</h4>
                     
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Question Type</label>
-                        <select
-                          value={currentQuestion.questionType}
-                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionType: e.target.value as Question['questionType'] })}
-                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white"
-                        >
-                          <option value="MCQ">Multiple Choice (MCQ)</option>
-                          <option value="Short Answer">Short Answer</option>
-                          <option value="Long Answer">Long Answer</option>
-                          <option value="True/False">True/False</option>
-                        </select>
-                      </div>
+                    <div>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Question Format</label>
+                      <select
+                        value={currentQuestion.questionType}
+                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionType: e.target.value as Question['questionType'] })}
+                        className="w-full px-3.5 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                      >
+                        <option value="MCQ">Multiple Choice (MCQ)</option>
+                        <option value="Short Answer">Short Answer</option>
+                        <option value="Long Answer">Long Answer</option>
+                        <option value="True/False">True/False</option>
+                      </select>
+                    </div>
 
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Question Text *</label>
-                        <textarea
-                          value={currentQuestion.questionText}
-                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
-                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
-                          rows={3}
-                          placeholder="Enter your question here..."
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Question Prompt *</label>
+                      <textarea
+                        value={currentQuestion.questionText}
+                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        rows={3}
+                        placeholder="Type question content here..."
+                      />
+                    </div>
 
-                      {currentQuestion.questionType === 'MCQ' && (
-                        <div>
-                          <label className="block text-sm font-medium text-gray-300 mb-2">Options (MCQ) *</label>
-                          {currentQuestion.options.map((option, idx) => (
-                            <div key={idx} className="flex items-center gap-2 mb-2">
-                              <span className="font-semibold text-white">{String.fromCharCode(65 + idx)}.</span>
-                              <input
-                                type="text"
-                                value={option}
-                                onChange={(e) => {
-                                  const newOptions = [...currentQuestion.options];
-                                  newOptions[idx] = e.target.value;
-                                  setCurrentQuestion({ ...currentQuestion, options: newOptions });
-                                }}
-                                className="flex-1 px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
-                                placeholder={`Option ${String.fromCharCode(65 + idx)}`}
-                              />
+                    {currentQuestion.questionType === 'MCQ' && (
+                      <div>
+                        <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Options (Mark correct answer) *</label>
+                        {currentQuestion.options.map((option, idx) => (
+                          <div key={idx} className="flex items-center gap-2 mb-2">
+                            <span className="font-black font-space text-black text-xs w-5">{String.fromCharCode(65 + idx)}.</span>
+                            <input
+                              type="text"
+                              value={option}
+                              onChange={(e) => {
+                                const newOptions = [...currentQuestion.options];
+                                newOptions[idx] = e.target.value;
+                                setCurrentQuestion({ ...currentQuestion, options: newOptions });
+                              }}
+                              className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium text-xs focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[1px_1px_0px_#000]"
+                              placeholder={`Option ${String.fromCharCode(65 + idx)}`}
+                            />
+                            <label className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-black bg-[#dcfce7] cursor-pointer">
                               <input
                                 type="radio"
                                 name="correctAnswer"
                                 checked={currentQuestion.correctAnswer === option && option !== ''}
                                 onChange={() => setCurrentQuestion({ ...currentQuestion, correctAnswer: option })}
-                                className="w-5 h-5 accent-[#00E5A8]"
+                                className="accent-black"
                                 disabled={option === ''}
                               />
-                              <span className="text-sm text-gray-400">Correct</span>
-                            </div>
-                          ))}
-                          <p className="text-xs text-gray-500 mt-1">Select the radio button next to the correct answer</p>
-                        </div>
-                      )}
-
-                      {currentQuestion.questionType === 'True/False' && (
-                        <div>
-                          <label className="block text-sm font-medium text-gray-300 mb-2">Correct Answer *</label>
-                          <div className="flex gap-4">
-                            <label className="flex items-center text-white">
-                              <input
-                                type="radio"
-                                name="trueFalse"
-                                value="True"
-                                checked={currentQuestion.correctAnswer === 'True'}
-                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                                className="mr-2 accent-[#00E5A8]"
-                              />
-                              True
-                            </label>
-                            <label className="flex items-center text-white">
-                              <input
-                                type="radio"
-                                name="trueFalse"
-                                value="False"
-                                checked={currentQuestion.correctAnswer === 'False'}
-                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                                className="mr-2 accent-[#00E5A8]"
-                              />
-                              False
+                              <span className="text-[10px] font-black font-space uppercase text-black">Correct</span>
                             </label>
                           </div>
-                        </div>
-                      )}
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Marks *</label>
-                        <input
-                          type="number"
-                          value={currentQuestion.marks}
-                          onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
-                          className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500"
-                          placeholder="Enter marks for this question"
-                          min="1"
-                        />
+                        ))}
                       </div>
+                    )}
 
-                      <button
-                        type="button"
-                        onClick={handleAddQuestion}
-                        className="w-full bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black py-2 rounded-lg font-semibold transition-all"
-                      >
-                        + Add This Question
-                      </button>
+                    {currentQuestion.questionType === 'True/False' && (
+                      <div>
+                        <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Correct Answer *</label>
+                        <div className="flex gap-4">
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-black cursor-pointer">
+                            <input
+                              type="radio"
+                              name="trueFalse"
+                              value="True"
+                              checked={currentQuestion.correctAnswer === 'True'}
+                              onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
+                              className="accent-black"
+                            />
+                            <span className="font-black font-outfit text-sm">True</span>
+                          </label>
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-black cursor-pointer">
+                            <input
+                              type="radio"
+                              name="trueFalse"
+                              value="False"
+                              checked={currentQuestion.correctAnswer === 'False'}
+                              onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
+                              className="accent-black"
+                            />
+                            <span className="font-black font-outfit text-sm">False</span>
+                          </label>
+                        </div>
+                      </div>
+                    )}
+
+                    <div>
+                      <label className="block text-xs font-black uppercase font-space text-black mb-1">Score Marks *</label>
+                      <input
+                        type="number"
+                        value={currentQuestion.marks}
+                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
+                        className="w-full px-4 py-2 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        placeholder="e.g. 5"
+                        min="1"
+                      />
                     </div>
+
+                    <button
+                      type="button"
+                      onClick={handleAddQuestion}
+                      className="btn-cartoon w-full py-2.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-2"
+                    >
+                      <Plus size={16} />
+                      <span>Add This Question</span>
+                    </button>
                   </div>
 
-                  {/* Navigation Buttons */}
-                  <div className="flex gap-4 mt-6">
+                  {/* Modal Footer Controls */}
+                  <div className="flex gap-3 pt-4 border-t-2 border-black/10">
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="flex-1 bg-[#111111] hover:bg-[#080808] text-gray-300 py-2 rounded-lg font-semibold"
+                      className="btn-cartoon py-3 px-5 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm flex items-center gap-1.5"
                     >
-                      ← Back to Basic Info
+                      <ArrowLeft size={16} />
+                      <span>Back to Step 1</span>
                     </button>
                     <button
                       type="button"
                       onClick={handleSubmit}
                       disabled={formData.questions.length === 0}
-                      className={`flex-1 py-2 rounded-lg font-semibold ${
-                        formData.questions.length === 0
-                          ? 'bg-[#111111] text-gray-500 cursor-not-allowed'
-                          : 'bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black transition-all'
-                      }`}
+                      className="btn-cartoon flex-1 py-3 px-5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-sm disabled:opacity-50"
                     >
-                      {editingTestId ? 'Update Test' : 'Save as Draft'} ({formData.questions.length} questions, {calculateTotalMarks()} marks)
+                      {editingTestId ? 'Update Test' : 'Save as Draft'} ({formData.questions.length} Questions, {calculateTotalMarks()} Marks)
                     </button>
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"
+                      className="btn-cartoon py-3 px-5 bg-rose-100 hover:bg-rose-200 text-rose-950 font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm"
                     >
                       Cancel
                     </button>

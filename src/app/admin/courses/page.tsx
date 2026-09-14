@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload, BookOpen, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -265,215 +265,260 @@ export default function CoursesPage() {
 
   return (
     <AdminLayout>
-      <div className="p-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Course Management</h1>
-            <p className="text-gray-400 mt-1">Manage your courses and curriculum</p>
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+                <BookOpen className="w-3.5 h-3.5 text-emerald-800" />
+                <span>Curriculum Management</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight">
+                Courses & Batches
+              </h1>
+              <p className="text-neutral-900 font-bold font-jakarta text-xs sm:text-sm mt-1">
+                Create, edit, publish, and manage academic courses and syllabus
+              </p>
+            </div>
+            <button
+              onClick={openCreateModal}
+              className="btn-cartoon flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm font-outfit"
+            >
+              <Plus size={18} className="text-black" />
+              <span>Add New Course</span>
+            </button>
           </div>
-          <button
-            onClick={openCreateModal}
-            className="flex items-center gap-2 bg-[#00E5A8] hover:bg-[#00cc96] text-black font-semibold px-4 py-2 rounded-lg transition-colors"
-          >
-            <Plus size={20} />
-            Add Course
-          </button>
         </div>
 
         {/* Search */}
-        <div className="relative mb-6">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-black/60" size={20} />
           <input
             type="text"
-            placeholder="Search courses..."
+            placeholder="Search courses by title, instructor, category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#00E5A8]"
+            className="w-full pl-12 pr-4 py-3 bg-white border-2 border-black rounded-2xl text-black placeholder-neutral-500 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[3px_3px_0px_#000]"
           />
         </div>
 
         {/* Courses Grid */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00E5A8]"></div>
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 shadow-[6px_6px_0px_#000] text-center max-w-xs w-full">
+              <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500 mx-auto mb-2"></div>
+              <p className="font-outfit font-black text-black">Loading courses...</p>
+            </div>
           </div>
         ) : filteredCourses.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No courses found</p>
+          <div className="text-center py-16 bg-white border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000] p-8">
+            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border-2 border-black flex items-center justify-center mx-auto mb-3 shadow-[2px_2px_0px_#000]">
+              <BookOpen className="w-8 h-8 text-black" />
+            </div>
+            <p className="text-black font-black text-xl font-outfit">No courses found</p>
+            <p className="text-neutral-600 text-sm font-jakarta mt-1 mb-4">Start by creating your first academic course</p>
             <button
               onClick={openCreateModal}
-              className="mt-4 text-[#00E5A8] hover:underline"
+              className="btn-cartoon px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] inline-flex items-center gap-2 text-sm"
             >
-              Create your first course
+              <Plus size={16} />
+              <span>Create Your First Course</span>
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 cartoon-stagger">
             {filteredCourses.map((course) => (
               <div
                 key={course._id}
-                className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-[#00E5A8] transition-colors"
+                className="card-cartoon bg-[#f0fdf4] rounded-3xl overflow-hidden border-3 border-black shadow-[6px_6px_0px_#000] flex flex-col justify-between transition-all"
               >
-                {/* Thumbnail */}
-                <div className="relative h-40 bg-gray-700">
-                  {course.thumbnail ? (
-                    <img
-                      src={course.thumbnail}
-                      alt={course.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-500">
-                      No Image
+                <div>
+                  {/* Thumbnail */}
+                  <div className="relative h-44 bg-[#dcfce7] border-b-2 border-black">
+                    {course.thumbnail ? (
+                      <img
+                        src={course.thumbnail}
+                        alt={course.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-neutral-500 gap-1">
+                        <BookOpen size={32} className="text-black/40" />
+                        <span className="text-xs font-bold font-space uppercase">No Thumbnail</span>
+                      </div>
+                    )}
+                    <div className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg border border-black text-xs font-black font-space uppercase shadow-[2px_2px_0px_#000] ${
+                      course.isPublished ? 'bg-[#86efac] text-black' : 'bg-amber-200 text-black'
+                    }`}>
+                      {course.isPublished ? 'Published' : 'Draft'}
                     </div>
-                  )}
-                  <div className={`absolute top-2 right-2 px-2 py-1 rounded text-xs font-semibold ${
-                    course.isPublished ? 'bg-green-500 text-white' : 'bg-yellow-500 text-black'
-                  }`}>
-                    {course.isPublished ? 'Published' : 'Draft'}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="px-2 py-0.5 rounded-md bg-white border border-black text-[10px] font-black uppercase font-space text-black shadow-[1px_1px_0px_#000]">
+                        {course.category}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black text-[10px] font-black uppercase font-space text-black">
+                        {course.level}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-black text-black font-outfit mb-1.5 line-clamp-1">{course.title}</h3>
+                    <p className="text-neutral-700 font-medium font-jakarta text-xs mb-3 line-clamp-2 leading-relaxed">{course.description}</p>
+                    
+                    <div className="flex items-center gap-2.5 mb-3 p-2 bg-white rounded-xl border border-black/20">
+                      {course.instructorAvatar ? (
+                        <img
+                          src={course.instructorAvatar}
+                          alt={course.instructor}
+                          className="w-7 h-7 rounded-full object-cover border border-black"
+                        />
+                      ) : (
+                        <div className="w-7 h-7 rounded-full bg-emerald-200 border border-black flex items-center justify-center text-xs font-bold">
+                          {course.instructor.charAt(0)}
+                        </div>
+                      )}
+                      <div>
+                        <span className="text-black font-bold font-jakarta text-xs block leading-tight">{course.instructor}</span>
+                        {course.instructorQualification && (
+                          <span className="text-[10px] text-neutral-500 font-medium block">{course.instructorQualification}</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs font-space font-bold text-neutral-700 mb-3">
+                      <span>⏱ {course.duration}</span>
+                      <span>👥 {course.enrolledStudents} Enrolled</span>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-black/10">
+                      <div>
+                        <span className="text-black font-black font-mono text-xl">₹{course.price}</span>
+                        {course.originalPrice && course.originalPrice > course.price && (
+                          <span className="text-neutral-500 font-mono line-through ml-2 text-xs">₹{course.originalPrice}</span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-white mb-1 line-clamp-1">{course.title}</h3>
-                  <p className="text-gray-400 text-sm mb-2 line-clamp-2">{course.description}</p>
-                  
-                  <div className="flex items-center gap-2 mb-3">
-                    {course.instructorAvatar && (
-                      <img
-                        src={course.instructorAvatar}
-                        alt={course.instructor}
-                        className="w-6 h-6 rounded-full object-cover"
-                      />
-                    )}
-                    <span className="text-gray-300 text-sm">{course.instructor}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between text-sm text-gray-400 mb-3">
-                    <span>{course.level}</span>
-                    <span>{course.duration}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-[#00E5A8] font-bold text-lg">₹{course.price}</span>
-                      {course.originalPrice && course.originalPrice > course.price && (
-                        <span className="text-gray-500 line-through ml-2 text-sm">₹{course.originalPrice}</span>
-                      )}
-                    </div>
-                    <span className="text-gray-400 text-sm">{course.enrolledStudents} enrolled</span>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => togglePublish(course)}
-                      className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        course.isPublished
-                          ? 'bg-yellow-500/20 text-yellow-500 hover:bg-yellow-500/30'
-                          : 'bg-green-500/20 text-green-500 hover:bg-green-500/30'
-                      }`}
-                    >
-                      {course.isPublished ? <EyeOff size={16} /> : <Eye size={16} />}
-                      {course.isPublished ? 'Unpublish' : 'Publish'}
-                    </button>
-                    <button
-                      onClick={() => handleEdit(course)}
-                      className="p-2 bg-blue-500/20 text-blue-500 hover:bg-blue-500/30 rounded-lg transition-colors"
-                    >
-                      <Edit2 size={16} />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(course._id)}
-                      className="p-2 bg-red-500/20 text-red-500 hover:bg-red-500/30 rounded-lg transition-colors"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
+                {/* Actions */}
+                <div className="p-4 pt-0 flex gap-2">
+                  <button
+                    onClick={() => togglePublish(course)}
+                    className={`btn-cartoon flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-black font-outfit border-2 border-black shadow-[2px_2px_0px_#000] transition-colors ${
+                      course.isPublished
+                        ? 'bg-amber-100 hover:bg-amber-200 text-amber-950'
+                        : 'bg-emerald-400 hover:bg-emerald-300 text-black'
+                    }`}
+                  >
+                    {course.isPublished ? <EyeOff size={14} /> : <Eye size={14} />}
+                    <span>{course.isPublished ? 'Unpublish' : 'Publish'}</span>
+                  </button>
+                  <button
+                    onClick={() => handleEdit(course)}
+                    className="btn-cartoon p-2 bg-white hover:bg-sky-100 text-black rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition-colors"
+                    title="Edit course"
+                  >
+                    <Edit2 size={16} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(course._id)}
+                    className="btn-cartoon p-2 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition-colors"
+                    title="Delete course"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Modal */}
+        {/* Cartoon Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overscroll-contain">
-            <div className="bg-gray-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
-              <div className="sticky top-0 bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
-                <h2 className="text-xl font-bold text-white">
-                  {editingCourse ? 'Edit Course' : 'Create New Course'}
-                </h2>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4 overscroll-contain">
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
+              <div className="sticky top-0 bg-[#86efac] p-5 border-b-2 border-black flex justify-between items-center z-10">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 bg-white rounded-lg border border-black shadow-[1px_1px_0px_#000]">
+                    <BookOpen size={18} className="text-black" />
+                  </div>
+                  <h2 className="text-xl font-black font-outfit text-black">
+                    {editingCourse ? 'Edit Course' : 'Create New Course'}
+                  </h2>
+                </div>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="btn-cartoon p-1.5 rounded-lg bg-white border border-black hover:bg-rose-100 text-black transition-colors"
                 >
-                  <X size={24} />
+                  <X size={18} />
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="p-4 space-y-4">
+              <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 {/* Title */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Title *</label>
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Course Title *</label>
                   <input
                     type="text"
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                    placeholder="Course title"
+                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                    placeholder="e.g. Class 10 Foundation Physics"
                   />
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Description *</label>
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Description *</label>
                   <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
                     required
                     rows={3}
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                    placeholder="Course description"
+                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                    placeholder="Detailed overview of syllabus, targets, and objectives..."
                   />
                 </div>
 
                 {/* Instructor */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Name *</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Instructor Name *</label>
                     <input
                       type="text"
                       name="instructor"
                       value={formData.instructor}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                      placeholder="Instructor name"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      placeholder="e.g., Er. Aniket Singh"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Qualification</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Instructor Qualification</label>
                     <input
                       type="text"
                       name="instructorQualification"
                       value={formData.instructorQualification}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                      placeholder="e.g., M.Sc Physics, PhD Chemistry"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      placeholder="e.g., B.Tech, 8+ Yrs Exp"
                     />
                   </div>
                 </div>
 
                 {/* Instructor Avatar */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Instructor Avatar</label>
-                  <div className="flex items-center gap-2">
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Instructor Avatar</label>
+                  <div className="flex items-center gap-3">
                     <input
                       type="file"
                       accept="image/*"
@@ -483,26 +528,26 @@ export default function CoursesPage() {
                     />
                     <label
                       htmlFor="avatar-upload"
-                      className="flex items-center gap-2 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 cursor-pointer hover:border-[#00E5A8] transition-colors"
+                      className="btn-cartoon flex items-center gap-2 px-4 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-xs cursor-pointer hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]"
                     >
                       <Upload size={16} />
-                      Upload
+                      Upload Photo
                     </label>
                     {formData.instructorAvatar && (
-                      <>
+                      <div className="flex items-center gap-2 p-1.5 bg-white border border-black rounded-xl">
                         <img
                           src={formData.instructorAvatar}
                           alt="Avatar preview"
-                          className="w-10 h-10 rounded-full object-cover"
+                          className="w-8 h-8 rounded-lg object-cover border border-black"
                         />
                         <button
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, instructorAvatar: '' }))}
-                          className="text-red-500 hover:text-red-400"
+                          className="text-rose-600 hover:text-rose-800 p-1"
                         >
                           <X size={16} />
                         </button>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -510,25 +555,25 @@ export default function CoursesPage() {
                 {/* Duration, Level, Category */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Duration *</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Duration *</label>
                     <input
                       type="text"
                       name="duration"
                       value={formData.duration}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                      placeholder="e.g., 12 weeks"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      placeholder="e.g., 6 Months"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Level *</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Level *</label>
                     <select
                       name="level"
                       value={formData.level}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                     >
                       <option value="Beginner">Beginner</option>
                       <option value="Intermediate">Intermediate</option>
@@ -536,15 +581,15 @@ export default function CoursesPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Category *</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Category *</label>
                     <input
                       type="text"
                       name="category"
                       value={formData.category}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                      placeholder="e.g., Web Development"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      placeholder="e.g., Class 10 Foundation"
                     />
                   </div>
                 </div>
@@ -552,7 +597,7 @@ export default function CoursesPage() {
                 {/* Pricing */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Price (₹) *</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Price (₹) *</label>
                     <input
                       type="number"
                       name="price"
@@ -560,19 +605,19 @@ export default function CoursesPage() {
                       onChange={handleInputChange}
                       required
                       min="0"
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-1">Original Price (₹)</label>
+                    <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Original Price (₹)</label>
                     <input
                       type="number"
                       name="originalPrice"
                       value={formData.originalPrice}
                       onChange={handleInputChange}
                       min="0"
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
+                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                       placeholder="0"
                     />
                   </div>
@@ -580,36 +625,36 @@ export default function CoursesPage() {
 
                 {/* Thumbnail */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Thumbnail URL</label>
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Thumbnail URL</label>
                   <input
                     type="url"
                     name="thumbnail"
                     value={formData.thumbnail}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
+                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
 
                 {/* Syllabus */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Syllabus</label>
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Syllabus Modules</label>
                   {formData.syllabus.map((item, index) => (
                     <div key={index} className="flex gap-2 mb-2">
                       <input
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('syllabus', index, e.target.value)}
-                        className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                        placeholder={`Module ${index + 1}`}
+                        className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        placeholder={`Module ${index + 1} Title`}
                       />
                       {formData.syllabus.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeArrayItem('syllabus', index)}
-                          className="p-2 text-red-500 hover:bg-red-500/20 rounded-lg"
+                          className="p-2 text-rose-600 hover:bg-rose-100 rounded-xl border border-black"
                         >
-                          <X size={20} />
+                          <X size={18} />
                         </button>
                       )}
                     </div>
@@ -617,31 +662,31 @@ export default function CoursesPage() {
                   <button
                     type="button"
                     onClick={() => addArrayItem('syllabus')}
-                    className="text-[#00E5A8] text-sm hover:underline"
+                    className="text-xs font-black font-outfit text-black hover:underline inline-flex items-center gap-1 mt-1"
                   >
-                    + Add Module
+                    + Add Another Module
                   </button>
                 </div>
 
                 {/* Features */}
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Features</label>
+                  <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Key Highlights & Features</label>
                   {formData.features.map((item, index) => (
                     <div key={index} className="flex gap-2 mb-2">
                       <input
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('features', index, e.target.value)}
-                        className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#00E5A8]"
-                        placeholder={`Feature ${index + 1}`}
+                        className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        placeholder={`Highlight ${index + 1}`}
                       />
                       {formData.features.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeArrayItem('features', index)}
-                          className="p-2 text-red-500 hover:bg-red-500/20 rounded-lg"
+                          className="p-2 text-rose-600 hover:bg-rose-100 rounded-xl border border-black"
                         >
-                          <X size={20} />
+                          <X size={18} />
                         </button>
                       )}
                     </div>
@@ -649,25 +694,25 @@ export default function CoursesPage() {
                   <button
                     type="button"
                     onClick={() => addArrayItem('features')}
-                    className="text-[#00E5A8] text-sm hover:underline"
+                    className="text-xs font-black font-outfit text-black hover:underline inline-flex items-center gap-1 mt-1"
                   >
-                    + Add Feature
+                    + Add Another Feature
                   </button>
                 </div>
 
-                {/* Submit */}
-                <div className="flex gap-3 pt-4">
+                {/* Submit Buttons */}
+                <div className="flex gap-3 pt-4 border-t-2 border-black/10">
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="flex-1 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                    className="btn-cartoon flex-1 py-2.5 px-4 bg-white hover:bg-neutral-100 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-2 bg-[#00E5A8] text-black font-semibold rounded-lg hover:bg-[#00cc96] transition-colors disabled:opacity-50"
+                    className="btn-cartoon flex-1 py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] disabled:opacity-50"
                   >
                     {submitting ? 'Saving...' : editingCourse ? 'Update Course' : 'Create Course'}
                   </button>

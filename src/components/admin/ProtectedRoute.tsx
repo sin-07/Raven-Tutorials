@@ -78,10 +78,11 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-800 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400 text-sm font-jakarta">Verifying admin access...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+          <div className="w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-black font-black text-lg font-outfit">Verifying Admin Access...</p>
+          <p className="text-neutral-600 text-xs font-bold font-jakarta mt-1">Securing control session</p>
         </div>
       </div>
     );
@@ -89,10 +90,11 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400 text-sm font-jakarta">Redirecting to login...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#fef2f2] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+          <div className="w-12 h-12 border-4 border-black border-t-rose-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-black font-black text-lg font-outfit">Redirecting to Login...</p>
+          <p className="text-neutral-600 text-xs font-bold font-jakarta mt-1">Authentication required</p>
         </div>
       </div>
     );
