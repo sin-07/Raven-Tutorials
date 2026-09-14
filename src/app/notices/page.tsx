@@ -6,6 +6,7 @@ import { Megaphone, User, Clock, Download, Eye, AlertCircle, Sparkles, X, FileTe
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface NoticeData {
   _id: string;
@@ -24,21 +25,13 @@ const Notice: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Freeze background when notice popup is open
+  useBodyScrollLock(modalOpen && !!selectedNotice);
+
   useEffect(() => {
     setMounted(true);
     fetchNotices();
   }, []);
-
-  useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [modalOpen]);
 
   const fetchNotices = async () => {
     setLoading(true);
@@ -164,11 +157,11 @@ const Notice: React.FC = () => {
       {/* Notice Reader Modal */}
       {mounted && modalOpen && selectedNotice && createPortal(
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto overscroll-contain"
           onClick={closeModal}
         >
           <div
-            className="bg-[#f0fdf4] rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border-3 border-black shadow-[10px_10px_0px_#000] p-6 sm:p-8 space-y-6 relative z-[1000000] my-auto text-black"
+            className="bg-[#f0fdf4] rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto overscroll-contain border-3 border-black shadow-[10px_10px_0px_#000] p-6 sm:p-8 space-y-6 relative z-[1000000] my-auto text-black"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4 border-b-2 border-black pb-4">

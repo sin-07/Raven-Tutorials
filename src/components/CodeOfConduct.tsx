@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, CheckCircle2, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { animateFromLeft, animateFromRight, animateFromUp, animateFromDown, scaleIn } from '@/lib/gsap';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface CodeOfConductProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface CodeOfConductProps {
 }
 
 const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept }) => {
+  useBodyScrollLock(isOpen);
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
@@ -87,8 +89,8 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div ref={modalRef} className="bg-[#f0fdf4] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border-3 border-black text-black shadow-[8px_8px_0px_#000000] overflow-hidden">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overscroll-contain">
+      <div ref={modalRef} className="bg-[#f0fdf4] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border-3 border-black text-black shadow-[8px_8px_0px_#000000] overflow-hidden overscroll-contain">
         {/* Header */}
         <div ref={headerRef} className="bg-[#86efac] p-6 sm:p-7 relative border-b-3 border-black text-black">
           <button 

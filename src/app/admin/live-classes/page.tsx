@@ -7,6 +7,7 @@ import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { Loader } from '@/components';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface LiveClassData {
   _id: string;
@@ -42,6 +43,9 @@ const AdminLiveClasses: React.FC = () => {
   const [liveClasses, setLiveClasses] = useState<LiveClassData[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
+  // Freeze background when modal is open
+  useBodyScrollLock(showModal);
   const [editingClassId, setEditingClassId] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState('');
   const [filterClass, setFilterClass] = useState('');
@@ -405,8 +409,8 @@ const AdminLiveClasses: React.FC = () => {
 
         {/* Create/Edit Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
-            <div className="bg-[#111111] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-800">
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 overscroll-contain">
+            <div className="bg-[#111111] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-gray-800">
               <div className="p-6">
                 <h2 className="text-2xl font-bold text-white mb-6">
                   {editingClassId ? 'Edit Live Class' : 'Create New Live Class'}

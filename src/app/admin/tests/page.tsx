@@ -6,6 +6,7 @@ import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
 import { Loader } from '@/components';
 import { STANDARDS } from '@/constants/classes';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface Question {
   questionText: string;
@@ -49,6 +50,9 @@ const AdminTests: React.FC = () => {
   const [tests, setTests] = useState<TestData[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
+  // Freeze background when modal is open
+  useBodyScrollLock(showModal);
   const [editingTestId, setEditingTestId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [publishingId, setPublishingId] = useState<string | null>(null);
@@ -514,8 +518,8 @@ const AdminTests: React.FC = () => {
 
         {/* Create Test Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
-            <div className="bg-[#111111] rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-gray-800">
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto overscroll-contain">
+            <div className="bg-[#111111] rounded-lg p-4 sm:p-6 lg:p-8 max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto overscroll-contain border border-gray-800">
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
                 {editingTestId ? 'Edit Test' : 'Create New Test'} - {currentStep === 1 ? 'Basic Information' : 'Add Questions'}
               </h3>

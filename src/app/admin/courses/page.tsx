@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface Course {
   _id: string;
@@ -64,6 +65,9 @@ export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
+  // Freeze background when modal is open
+  useBodyScrollLock(showModal);
   const [editingCourse, setEditingCourse] = useState<Course | null>(null);
   const [formData, setFormData] = useState<CourseFormData>(initialFormData);
   const [searchTerm, setSearchTerm] = useState('');
@@ -396,8 +400,8 @@ export default function CoursesPage() {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-            <div className="bg-gray-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overscroll-contain">
+            <div className="bg-gray-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain">
               <div className="sticky top-0 bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
                 <h2 className="text-xl font-bold text-white">
                   {editingCourse ? 'Edit Course' : 'Create New Course'}

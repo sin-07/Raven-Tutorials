@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Play, Clock, User, Video, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute } from '@/components';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface VideoData {
   _id: string;
@@ -28,6 +29,9 @@ function VideosPage() {
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
+
+  // Freeze background when video modal is open
+  useBodyScrollLock(!!selectedVideo);
   const [studentStandard, setStudentStandard] = useState('');
   const [filterSubject, setFilterSubject] = useState('');
 
@@ -247,8 +251,8 @@ function VideosPage() {
 
       {/* Video Modal */}
       {selectedVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 modal-backdrop z-50 flex items-center justify-center p-4">
-          <div className="modal-content bg-[#111111] rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-800">
+        <div className="fixed inset-0 bg-black bg-opacity-70 modal-backdrop z-50 flex items-center justify-center p-4 overscroll-contain">
+          <div className="modal-content bg-[#111111] rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-gray-800">
             {/* Modal Header */}
             <div className="sticky top-0 bg-gradient-to-r from-[#00E5A8] to-[#00B386] text-white p-4 sm:p-6 flex items-center justify-between z-10">
               <h2 className="text-xl sm:text-2xl font-bold line-clamp-1">{selectedVideo.title}</h2>

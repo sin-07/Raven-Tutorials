@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Target, BookOpen, Users, X, ZoomIn, Sparkles } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 import { 
   animateFromUp, 
   animateFromDown, 
@@ -171,17 +172,8 @@ const AboutUs: React.FC = () => {
 
 
 
-  // Lock body scroll when modal is active
-  useEffect(() => {
-    if (showModal || showImageModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [showModal, showImageModal]);
+  // Freeze background when modal is active
+  useBodyScrollLock(showModal || showImageModal);
 
   const pillarStyles = [
     { cardBg: 'bg-[#f0fdf4]', iconBg: 'bg-emerald-300' },
@@ -373,11 +365,11 @@ const AboutUs: React.FC = () => {
       {/* Global High-Priority Modal rendered via React Portal directly into body */}
       {mounted && showModal && createPortal(
         <div 
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto" 
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999999] p-4 sm:p-6 overflow-y-auto overscroll-contain" 
           onClick={() => setShowModal(false)}
         >
           <div 
-            className="bg-[#f0fdf4] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border-3 border-black shadow-[10px_10px_0px_#000] overflow-hidden relative z-[1000000] my-auto text-black" 
+            className="bg-[#f0fdf4] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border-3 border-black shadow-[10px_10px_0px_#000] overflow-hidden relative z-[1000000] my-auto text-black" 
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -448,7 +440,7 @@ const AboutUs: React.FC = () => {
       {/* Global Photo Modal rendered via React Portal */}
       {mounted && showImageModal && createPortal(
         <div 
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[999999] p-4" 
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[999999] p-4 overscroll-contain" 
           onClick={() => setShowImageModal(false)}
         >
           <button 

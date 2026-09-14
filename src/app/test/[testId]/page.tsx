@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Loader from '@/components/Loader';
 import { StudentProtectedRoute } from '@/components';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface Question {
   _id?: string;
@@ -58,6 +59,9 @@ function TakeTestPage() {
   const [testStarted, setTestStarted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+
+  // Freeze background when submit modal is open
+  useBodyScrollLock(showSubmitModal);
 
   const testContainerRef = useRef<HTMLDivElement>(null);
   const warningTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -745,8 +749,8 @@ function TakeTestPage() {
 
       {/* Submit Confirmation Modal */}
       {showSubmitModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[10000] p-4">
-          <div className="bg-[#111111] rounded-2xl shadow-2xl max-w-md w-full p-8 animate-fadeIn border border-gray-800">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[10000] p-4 overscroll-contain">
+          <div className="bg-[#111111] rounded-2xl shadow-2xl max-w-md w-full p-8 animate-fadeIn border border-gray-800 overscroll-contain">
             <div className="text-center">
               {/* RAVEN Logo */}
               <div className="mx-auto flex items-center justify-center gap-2 mb-4">

@@ -8,6 +8,7 @@ import {
   BookOpen, Megaphone, Video, MessageSquare, Sparkles 
 } from 'lucide-react';
 import Navbar from '../Navbar';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -37,21 +38,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Prevent body scroll when sidebar is open on mobile
-  useEffect(() => {
-    if (sidebarOpen && !isDesktop) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
-    };
-  }, [sidebarOpen, isDesktop]);
+  // Freeze background when sidebar is open on mobile
+  useBodyScrollLock(sidebarOpen && !isDesktop);
 
   const menuItems = [
     { path: '/admin/dashboard', icon: BarChart3, label: 'Dashboard' },

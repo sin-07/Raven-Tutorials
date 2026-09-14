@@ -19,6 +19,7 @@ import {
   LogOut,
   X
 } from 'lucide-react';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface SidebarProps {
   role: 'student' | 'instructor' | 'admin';
@@ -63,6 +64,9 @@ const menuItems = {
 export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const items = menuItems[role];
+
+  // Freeze background when mobile sidebar is open
+  useBodyScrollLock(isOpen);
 
   return (
     <>

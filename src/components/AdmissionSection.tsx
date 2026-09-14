@@ -25,6 +25,7 @@ import toast from 'react-hot-toast';
 import { STANDARDS } from '@/constants/classes';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 import CartoonDatePicker from '@/components/ui/CartoonDatePicker';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 declare global {
   interface Window {
@@ -60,6 +61,7 @@ interface Credentials {
 
 export default function AdmissionSection() {
   const [showModal, setShowModal] = useState(false);
+  useBodyScrollLock(showModal);
   const [step, setStep] = useState(1); // 1: Form, 2: OTP, 3: Payment, 4: Success
   const [tempAdmissionId, setTempAdmissionId] = useState<string | null>(null);
   const [otp, setOtp] = useState('');
@@ -472,14 +474,14 @@ export default function AdmissionSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto overscroll-contain"
             onClick={(e) => e.target === e.currentTarget && step !== 4 && closeModal()}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#f0fdf4] border-3 border-black text-black relative w-full max-w-2xl rounded-3xl shadow-[8px_8px_0px_#000] my-8 max-h-[90vh] overflow-y-auto"
+              className="bg-[#f0fdf4] border-3 border-black text-black relative w-full max-w-2xl rounded-3xl shadow-[8px_8px_0px_#000] my-8 max-h-[90vh] overflow-y-auto overscroll-contain"
             >
               {/* Close Button */}
               {step !== 4 && (

@@ -6,9 +6,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LogIn, User, LogOut, ArrowRight, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Freeze background when mobile menu is open
+  useBodyScrollLock(isMenuOpen);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
   const pathname = usePathname();
   const router = useRouter();

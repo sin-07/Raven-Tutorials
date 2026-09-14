@@ -339,6 +339,18 @@ button, a, input, select, textarea {
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 
+/* ── POPUP BACKGROUND FREEZE STYLES ────────────────────────── */
+html.popup-frozen,
+body.popup-frozen {
+  overflow: hidden !important;
+  overscroll-behavior: contain !important;
+}
+
+body.popup-frozen {
+  touch-action: none !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
@@ -347,3 +359,4 @@ button, a, input, select, textarea {
     scroll-behavior: auto !important;
   }
 }
+
