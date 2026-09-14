@@ -343,3 +343,4 @@ telemetryRecords.push({ id: 'evt_2026_09_10_0', timestamp: '2026-09-10T09:30:15+
 telemetryRecords.push({ id: 'evt_2026_09_11_0', timestamp: '2026-09-11T09:30:15+05:30', latencyMs: 25, status: 'ok' });
 telemetryRecords.push({ id: 'evt_2026_09_12_0', timestamp: '2026-09-12T09:30:15+05:30', latencyMs: 53, status: 'ok' });
 telemetryRecords.push({ id: 'evt_2026_09_13_0', timestamp: '2026-09-13T09:30:15+05:30', latencyMs: 36, status: 'ok' });
+telemetryRecords.push({ id: 'evt_2026_09_14_0', timestamp: '2026-09-14T09:30:15+05:30', latencyMs: 64, status: 'ok' });
