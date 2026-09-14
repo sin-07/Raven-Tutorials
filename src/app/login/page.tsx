@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { LMSFooter } from '@/components/lms';
 
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -110,11 +111,11 @@ const LoginPage: React.FC = () => {
             }`}
           >
             {/* Card Container */}
-            <div className="relative bg-[#0e1320]/85 backdrop-blur-xl border border-emerald-500/25 rounded-3xl p-7 sm:p-9 shadow-2xl shadow-emerald-950/40">
+            <div className="relative bg-[#f0fdf4] border-3 border-black rounded-3xl p-7 sm:p-9 shadow-[8px_8px_0px_#000] text-black">
               {/* Form Header */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="p-3.5 rounded-2xl bg-[#08090d] border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+                  <div className="p-3 rounded-2xl bg-emerald-300 border-2 border-black shadow-[3px_3px_0px_#000]">
                     <img
                       src="/logo.png"
                       alt="Raven Tutorials Logo"
@@ -124,11 +125,11 @@ const LoginPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-baseline justify-center gap-2 font-outfit mb-2">
-                  <span className="text-white font-black text-3xl tracking-tight">RAVEN</span>
-                  <span className="text-emerald-400 font-bold text-xl uppercase tracking-wider">Tutorials</span>
+                  <span className="text-black font-black text-3xl tracking-tight">RAVEN</span>
+                  <span className="text-emerald-800 font-black text-xl uppercase tracking-wider">Tutorials</span>
                 </div>
 
-                <p className="text-gray-400 text-sm font-jakarta">
+                <p className="text-neutral-700 text-sm font-jakarta font-medium">
                   Enter your credentials to access your dashboard
                 </p>
               </div>
@@ -139,12 +140,12 @@ const LoginPage: React.FC = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="email"
-                    className="block text-xs font-semibold uppercase tracking-wider text-gray-300 font-space"
+                    className="block text-xs font-bold uppercase tracking-wider text-black font-space"
                   >
                     Email Address
                   </label>
                   <div className="relative group">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-emerald-400 transition-colors" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-black transition-colors" />
                     <input
                       type="email"
                       id="email"
@@ -154,7 +155,7 @@ const LoginPage: React.FC = () => {
                       placeholder="name@example.com"
                       required
                       autoComplete="email"
-                      className="w-full pl-12 pr-4 py-3.5 bg-[#08090d]/90 border border-gray-800 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200 text-white placeholder-gray-500 text-sm font-jakarta"
+                      className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all duration-200 text-black placeholder-neutral-400 text-sm font-jakarta font-medium"
                     />
                   </div>
                 </div>
@@ -163,12 +164,12 @@ const LoginPage: React.FC = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="password"
-                    className="block text-xs font-semibold uppercase tracking-wider text-gray-300 font-space"
+                    className="block text-xs font-bold uppercase tracking-wider text-black font-space"
                   >
                     Password
                   </label>
                   <div className="relative group">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-emerald-400 transition-colors" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-black transition-colors" />
                     <input
                       type={showPassword ? 'text' : 'password'}
                       id="password"
@@ -178,19 +179,19 @@ const LoginPage: React.FC = () => {
                       placeholder="Enter your password"
                       required
                       autoComplete="current-password"
-                      className="w-full pl-12 pr-12 py-3.5 bg-[#08090d]/90 border border-gray-800 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all duration-200 text-white placeholder-gray-500 text-sm font-jakarta"
+                      className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all duration-200 text-black placeholder-neutral-400 text-sm font-jakarta font-medium"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-emerald-400 transition-colors focus:outline-none"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black transition-colors focus:outline-none"
                       tabIndex={-1}
                       aria-label={showPassword ? 'Hide password' : 'Show password'}
                     >
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed font-jakarta">
+                  <p className="text-[11px] text-neutral-600 leading-relaxed font-jakarta">
                     Students: Use your account password or Date of Birth (DDMMYYYY).
                   </p>
                 </div>
@@ -199,7 +200,7 @@ const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full mt-2 py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 font-outfit"
+                  className="btn-cartoon w-full mt-2 py-3.5 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-outfit"
                 >
                   {loading ? (
                     <>
@@ -209,29 +210,29 @@ const LoginPage: React.FC = () => {
                   ) : (
                     <>
                       <span>Login to Dashboard</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-black" />
                     </>
                   )}
                 </button>
               </form>
 
               {/* Footer Links */}
-              <div className="mt-8 pt-6 border-t border-gray-800/80 text-center space-y-3">
-                <p className="text-xs text-gray-400 font-jakarta">
+              <div className="mt-8 pt-6 border-t-2 border-black text-center space-y-3">
+                <p className="text-xs text-neutral-700 font-jakarta">
                   New student to RAVEN?{' '}
                   <Link
                     href="/admission"
-                    className="text-emerald-400 hover:text-emerald-300 font-semibold hover:underline transition-colors"
+                    className="text-black font-black hover:underline transition-colors"
                   >
                     Apply for Admission
                   </Link>
                 </p>
 
-                <p className="text-xs text-gray-500 font-jakarta">
+                <p className="text-xs text-neutral-600 font-jakarta">
                   Need assistance?{' '}
                   <a
                     href="mailto:raventutorials@gmail.com"
-                    className="text-gray-400 hover:text-emerald-400 transition-colors underline"
+                    className="text-black font-bold hover:underline transition-colors"
                   >
                     Contact Support
                   </a>
@@ -256,6 +257,7 @@ const LoginPage: React.FC = () => {
           }
         `}</style>
       </div>
+      <LMSFooter />
     </>
   );
 };

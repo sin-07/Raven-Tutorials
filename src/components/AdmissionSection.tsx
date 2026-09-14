@@ -23,6 +23,8 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { STANDARDS } from '@/constants/classes';
+import CartoonDropdown from '@/components/ui/CartoonDropdown';
+import CartoonDatePicker from '@/components/ui/CartoonDatePicker';
 
 declare global {
   interface Window {
@@ -349,7 +351,7 @@ export default function AdmissionSection() {
   return (
     <>
       {/* I Want to Learn Section */}
-      <section className="py-20 bg-[#080808]/50">
+      <section className="py-20 bg-transparent border-t-2 sm:border-t-3 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -357,13 +359,13 @@ export default function AdmissionSection() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#00E5A8]/10 text-[#00E5A8] rounded-full text-xs font-space uppercase tracking-wider font-semibold mb-4 border border-[#00E5A8]/20">
+            <span className="inline-block px-4 py-1.5 bg-[#dcfce7] text-emerald-900 rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border-2 border-black shadow-[2px_2px_0px_#000]">
               Start Your Journey
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white font-outfit tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-black font-outfit tracking-tight">
               I Want to Learn
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta">
+            <p className="mt-4 text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium">
               Take the first step towards your academic success. Join Raven Tutorials and unlock your potential with expert guidance.
             </p>
           </motion.div>
@@ -376,41 +378,41 @@ export default function AdmissionSection() {
               viewport={{ once: true }}
               className="space-y-6 font-jakarta"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#00E5A8] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00E5A8]/20">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="w-12 h-12 rounded-xl bg-emerald-300 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
                   <GraduationCap className="w-6 h-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Expert Faculty</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">Learn from experienced educators who are passionate about teaching.</p>
+                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Expert Faculty</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Learn from experienced educators who are passionate about teaching.</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-600/20">
-                  <BookOpen className="w-6 h-6 text-white" />
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="w-12 h-12 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
+                  <BookOpen className="w-6 h-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Comprehensive Curriculum</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">Well-structured courses covering all subjects with detailed study materials.</p>
+                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Comprehensive Curriculum</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Well-structured courses covering all subjects with detailed study materials.</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/20">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
                   <Shield className="w-6 h-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 font-outfit">Personalized Attention</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">Small batch sizes ensure every student gets individual attention.</p>
+                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Personalized Attention</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Small batch sizes ensure every student gets individual attention.</p>
                 </div>
               </div>
 
-              <div className="pt-4 font-outfit">
-                <p className="text-2xl font-bold text-white">
-                  Admission Fee: <span className="text-[#00E5A8]">₹1,000</span>
+              <div className="pt-2 font-outfit">
+                <p className="text-2xl font-black text-black">
+                  Admission Fee: <span className="text-emerald-700 bg-[#dcfce7] px-3 py-1 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">₹1,000</span>
                 </p>
-                <p className="text-gray-400 text-xs font-jakarta mt-1">One-time registration fee</p>
+                <p className="text-neutral-600 text-xs font-jakarta mt-2 font-bold">One-time registration fee</p>
               </div>
             </motion.div>
 
@@ -419,39 +421,39 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="card-green-gradient rounded-2xl shadow-2xl p-8 font-jakarta"
+              className="bg-[#f0fdf4] rounded-2xl border-3 border-black shadow-[6px_6px_0px_#000] p-8 font-jakarta"
             >
               <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-[#00E5A8]/10 border border-[#00E5A8]/20 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#00E5A8]/10">
-                  <GraduationCap className="w-10 h-10 text-[#00E5A8]" />
+                <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+                  <GraduationCap className="w-10 h-10 text-black" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 font-outfit">Ready to Join?</h3>
-                <p className="text-gray-400 mb-8 font-jakarta text-sm sm:text-base">
+                <h3 className="text-2xl font-black text-black mb-3 font-outfit">Ready to Join?</h3>
+                <p className="text-neutral-700 mb-6 font-jakarta text-sm sm:text-base font-medium">
                   Complete our simple admission process and start your learning journey today.
                 </p>
                 
-                <div className="space-y-4 text-left mb-8">
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-[#00E5A8]" />
+                <div className="space-y-3 text-left mb-8">
+                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     <span>Fill the admission form</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-[#00E5A8]" />
+                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     <span>Verify your email with OTP</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-[#00E5A8]" />
+                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     <span>Complete payment</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-[#00E5A8]" />
+                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     <span>Get your login credentials</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full py-4 bg-[#00E5A8] text-white font-semibold rounded-xl hover:bg-[#00E5A8]/90 transition-all shadow-lg shadow-[#00E5A8]/25 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-base rounded-xl border-2 border-black transition-all shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2 font-outfit uppercase tracking-wider"
                 >
                   <GraduationCap className="w-5 h-5" />
                   Take Admission Now
@@ -470,40 +472,40 @@ export default function AdmissionSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
             onClick={(e) => e.target === e.currentTarget && step !== 4 && closeModal()}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="card-green-gradient relative w-full max-w-2xl rounded-2xl shadow-2xl my-8 max-h-[90vh] overflow-y-auto"
+              className="bg-[#f0fdf4] border-3 border-black text-black relative w-full max-w-2xl rounded-3xl shadow-[8px_8px_0px_#000] my-8 max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               {step !== 4 && (
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-[#1a1a1a] transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white hover:bg-rose-200 border-2 border-black shadow-[2px_2px_0px_#000] transition-colors z-10"
                 >
-                  <X className="w-5 h-5 text-gray-400" />
+                  <X className="w-5 h-5 text-black" />
                 </button>
               )}
 
               {/* Step Indicator */}
-              <div className="p-6 border-b border-gray-800">
+              <div className="p-6 border-b-2 border-black bg-[#dcfce7] rounded-t-3xl">
                 <div className="flex items-center justify-between max-w-md mx-auto">
                   {['Form', 'OTP', 'Payment', 'Success'].map((label, index) => (
                     <div key={label} className="flex items-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                        step > index + 1 ? 'bg-[#00E5A8] text-white' :
-                        step === index + 1 ? 'bg-[#00E5A8] text-white' :
-                        'bg-[#222222] text-gray-500'
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black font-space border-2 border-black ${
+                        step > index + 1 ? 'bg-emerald-400 text-black shadow-[2px_2px_0px_#000]' :
+                        step === index + 1 ? 'bg-emerald-400 text-black shadow-[2px_2px_0px_#000]' :
+                        'bg-white text-neutral-500'
                       }`}>
-                        {step > index + 1 ? <CheckCircle className="w-5 h-5" /> : index + 1}
+                        {step > index + 1 ? <CheckCircle className="w-4 h-4" /> : index + 1}
                       </div>
                       {index < 3 && (
-                        <div className={`w-12 sm:w-16 h-1 mx-1 ${
-                          step > index + 1 ? 'bg-[#00E5A8]' : 'bg-[#222222]'
+                        <div className={`w-12 sm:w-16 h-1 mx-1 border-y border-black ${
+                          step > index + 1 ? 'bg-emerald-500' : 'bg-neutral-300'
                         }`} />
                       )}
                     </div>
@@ -511,228 +513,211 @@ export default function AdmissionSection() {
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 font-jakarta">
                 {/* Step 1: Form */}
                 {step === 1 && (
                   <form onSubmit={handleSubmitForm} className="space-y-6">
-                    <h3 className="text-xl font-bold text-white mb-6">Admission Form</h3>
+                    <h3 className="text-xl font-black text-black mb-6 font-outfit">Admission Form</h3>
                     
                     {/* Photo Upload */}
                     <div className="flex justify-center mb-6">
                       <label className="cursor-pointer">
-                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-[#00E5A8]' : 'border-gray-700'} flex items-center justify-center overflow-hidden bg-[#080808] hover:bg-[#1a1a1a] transition-colors`}>
+                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-emerald-600' : 'border-black'} flex items-center justify-center overflow-hidden bg-white hover:bg-[#dcfce7] transition-colors shadow-[2px_2px_0px_#000]`}>
                           {photoPreview ? (
                             <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
                           ) : (
-                            <Upload className="w-8 h-8 text-gray-500" />
+                            <Upload className="w-8 h-8 text-neutral-600" />
                           )}
                         </div>
                         <input type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" />
-                        <p className="text-xs text-gray-500 text-center mt-2">Upload Photo*</p>
+                        <p className="text-xs text-neutral-700 font-bold text-center mt-2">Upload Photo*</p>
                       </label>
                     </div>
 
                     {/* Personal Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Student Name*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Student Name*</label>
                         <input
                           type="text"
                           name="studentName"
                           value={formData.studentName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Father&apos;s Name*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Father&apos;s Name*</label>
                         <input
                           type="text"
                           name="fatherName"
                           value={formData.fatherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Mother&apos;s Name*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Mother&apos;s Name*</label>
                         <input
                           type="text"
                           name="motherName"
                           value={formData.motherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Date of Birth*</label>
-                        <input
-                          type="date"
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Date of Birth*</label>
+                        <CartoonDatePicker
                           name="dateOfBirth"
                           value={formData.dateOfBirth}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          placeholder="Select Date of Birth"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Gender*</label>
-                        <select
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Gender*</label>
+                        <CartoonDropdown
                           name="gender"
                           value={formData.gender}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
-                          required
-                        >
-                          <option value="">Select Gender</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          <option value="other">Other</option>
-                        </select>
+                          placeholder="Select Gender"
+                          options={[
+                            { label: 'Male', value: 'male' },
+                            { label: 'Female', value: 'female' },
+                            { label: 'Other', value: 'other' },
+                          ]}
+                        />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Blood Group*</label>
-                        <select
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Blood Group*</label>
+                        <CartoonDropdown
                           name="bloodGroup"
                           value={formData.bloodGroup}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
-                          required
-                        >
-                          <option value="">Select Blood Group</option>
-                          {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(bg => (
-                            <option key={bg} value={bg}>{bg}</option>
-                          ))}
-                        </select>
+                          placeholder="Select Blood Group"
+                          options={['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']}
+                        />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Category*</label>
-                        <select
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Category*</label>
+                        <CartoonDropdown
                           name="category"
                           value={formData.category}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
-                          required
-                        >
-                          <option value="">Select Category</option>
-                          {['General', 'OBC', 'SC', 'ST', 'EWS'].map(cat => (
-                            <option key={cat} value={cat}>{cat}</option>
-                          ))}
-                        </select>
+                          placeholder="Select Category"
+                          options={['General', 'OBC', 'SC', 'ST', 'EWS']}
+                        />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Standard*</label>
-                        <select
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Standard*</label>
+                        <CartoonDropdown
                           name="standard"
                           value={formData.standard}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
-                          required
-                        >
-                          <option value="">Select Standard</option>
-                          {STANDARDS.map(std => (
-                            <option key={std} value={std}>{std}</option>
-                          ))}
-                        </select>
+                          placeholder="Select Standard"
+                          options={STANDARDS}
+                        />
                       </div>
                     </div>
 
                     {/* Contact Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Email*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Email*</label>
                         <input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Phone Number*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Phone Number*</label>
                         <input
                           type="tel"
                           name="phoneNumber"
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Alternate Phone</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Alternate Phone</label>
                         <input
                           type="tel"
                           name="alternatePhoneNumber"
                           value={formData.alternatePhoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                         />
                       </div>
                     </div>
 
                     {/* Address */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">Address*</label>
+                      <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Address*</label>
                       <textarea
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
                         rows={2}
-                        className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">City*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">City*</label>
                         <input
                           type="text"
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">State*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">State*</label>
                         <input
                           type="text"
                           name="state"
                           value={formData.state}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Pincode*</label>
+                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Pincode*</label>
                         <input
                           type="text"
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                           required
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">Previous School*</label>
+                      <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Previous School*</label>
                       <input
                         type="text"
                         name="previousSchool"
                         value={formData.previousSchool}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
@@ -744,9 +729,9 @@ export default function AdmissionSection() {
                         id="terms"
                         checked={acceptedTerms}
                         onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-[#00E5A8] bg-[#080808] border-gray-800 rounded focus:ring-[#00E5A8]"
+                        className="mt-1 w-4 h-4 text-emerald-600 bg-white border-2 border-black rounded focus:ring-emerald-400"
                       />
-                      <label htmlFor="terms" className="text-sm text-gray-400">
+                      <label htmlFor="terms" className="text-xs text-neutral-700 font-bold leading-relaxed">
                         I agree to the terms and conditions and understand that my data will be stored securely.
                       </label>
                     </div>
@@ -754,7 +739,7 @@ export default function AdmissionSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 bg-[#00E5A8] text-white font-semibold rounded-xl hover:bg-[#00E5A8]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -774,13 +759,13 @@ export default function AdmissionSection() {
                 {/* Step 2: OTP Verification */}
                 {step === 2 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-full bg-[#00E5A8]/20 flex items-center justify-center mx-auto">
-                      <Mail className="w-10 h-10 text-[#00E5A8]" />
+                    <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
+                      <Mail className="w-10 h-10 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">Verify Your Email</h3>
-                      <p className="text-gray-400">
-                        We&apos;ve sent a 6-digit OTP to <span className="font-medium text-[#00E5A8]">{formData.email}</span>
+                      <h3 className="text-xl font-black text-black mb-2 font-outfit">Verify Your Email</h3>
+                      <p className="text-neutral-700 font-medium text-sm">
+                        We&apos;ve sent a 6-digit OTP to <span className="font-black text-emerald-800 underline">{formData.email}</span>
                       </p>
                     </div>
 
@@ -789,8 +774,8 @@ export default function AdmissionSection() {
                         type="text"
                         value={otp}
                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                        placeholder="Enter 6-digit OTP"
-                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-[#080808] border border-gray-800 rounded-lg text-white focus:ring-2 focus:ring-[#00E5A8] focus:border-transparent"
+                        placeholder="000000"
+                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
                         maxLength={6}
                       />
                     </div>
@@ -798,7 +783,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handleVerifyOTP}
                       disabled={loading || otp.length !== 6}
-                      className="w-full max-w-xs mx-auto py-3 bg-[#00E5A8] text-white font-semibold rounded-xl hover:bg-[#00E5A8]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full max-w-xs mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -815,7 +800,7 @@ export default function AdmissionSection() {
 
                     <button
                       onClick={() => setStep(1)}
-                      className="text-gray-500 hover:text-gray-300 text-sm flex items-center gap-1 mx-auto"
+                      className="text-neutral-600 hover:text-black font-bold text-sm flex items-center gap-1 mx-auto"
                     >
                       <ArrowLeft className="w-4 h-4" />
                       Back to Form
@@ -826,22 +811,22 @@ export default function AdmissionSection() {
                 {/* Step 3: Payment */}
                 {step === 3 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-full bg-[#00E5A8]/20 flex items-center justify-center mx-auto">
-                      <CreditCard className="w-10 h-10 text-[#00E5A8]" />
+                    <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
+                      <CreditCard className="w-10 h-10 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">Complete Payment</h3>
-                      <p className="text-gray-400">
+                      <h3 className="text-xl font-black text-black mb-2 font-outfit">Complete Payment</h3>
+                      <p className="text-neutral-700 font-medium text-sm">
                         Pay the admission fee to complete your registration
                       </p>
                     </div>
 
-                    <div className="bg-[#080808] rounded-xl p-6 max-w-sm mx-auto border border-gray-800">
+                    <div className="bg-[#dcfce7] rounded-2xl p-6 max-w-sm mx-auto border-2 border-black shadow-[3px_3px_0px_#000]">
                       <div className="flex justify-between items-center mb-4">
-                        <span className="text-gray-400">Admission Fee</span>
-                        <span className="text-2xl font-bold text-white">₹{paymentAmount}</span>
+                        <span className="text-neutral-800 font-bold">Admission Fee</span>
+                        <span className="text-2xl font-black text-black font-outfit">₹{paymentAmount}</span>
                       </div>
-                      <div className="text-left text-sm text-gray-500 space-y-1">
+                      <div className="text-left text-xs text-neutral-700 font-medium space-y-1">
                         <p>• Secure payment via Razorpay</p>
                         <p>• Instant confirmation</p>
                         <p>• Get login credentials after payment</p>
@@ -851,7 +836,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handlePayment}
                       disabled={loading}
-                      className="w-full max-w-sm mx-auto py-3 bg-[#00E5A8] text-white font-semibold rounded-xl hover:bg-[#00E5A8]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full max-w-sm mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -874,48 +859,48 @@ export default function AdmissionSection() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-24 h-24 rounded-full bg-[#00E5A8]/20 flex items-center justify-center mx-auto"
+                      className="w-24 h-24 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]"
                     >
-                      <CheckCircle className="w-12 h-12 text-[#00E5A8]" />
+                      <CheckCircle className="w-12 h-12 text-black" />
                     </motion.div>
                     
                     <div>
-                      <h3 className="text-2xl font-bold text-[#00E5A8] mb-2">Registration Successful!</h3>
-                      <p className="text-gray-400">
+                      <h3 className="text-2xl font-black text-emerald-900 mb-2 font-outfit">Registration Successful!</h3>
+                      <p className="text-neutral-700 font-medium text-sm">
                         Welcome to Raven Tutorials! Your account has been created.
                       </p>
                     </div>
 
-                    <div className="bg-[#080808] rounded-xl p-6 max-w-sm mx-auto text-left border border-gray-800">
-                      <h4 className="font-semibold text-white mb-4 text-center">Your Login Credentials</h4>
+                    <div className="bg-[#dcfce7] rounded-2xl p-6 max-w-sm mx-auto text-left border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <h4 className="font-black text-black mb-4 text-center font-outfit">Your Login Credentials</h4>
                       
                       <div className="space-y-3">
-                        <div className="flex items-center gap-3 p-3 bg-[#111111] rounded-lg border border-gray-700">
-                          <Key className="w-5 h-5 text-[#00E5A8]" />
+                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
+                          <Key className="w-5 h-5 text-emerald-700" />
                           <div>
-                            <p className="text-xs text-gray-500">Registration ID</p>
-                            <p className="font-mono font-bold text-white">{credentials.registrationId}</p>
+                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Registration ID</p>
+                            <p className="font-mono font-black text-black">{credentials.registrationId}</p>
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-3 p-3 bg-[#111111] rounded-lg border border-gray-700">
-                          <Mail className="w-5 h-5 text-[#00E5A8]" />
+                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
+                          <Mail className="w-5 h-5 text-emerald-700" />
                           <div>
-                            <p className="text-xs text-gray-500">Email</p>
-                            <p className="font-medium text-white">{credentials.email}</p>
+                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Email</p>
+                            <p className="font-bold text-black text-sm">{credentials.email}</p>
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-3 p-3 bg-[#111111] rounded-lg border border-gray-700">
-                          <Shield className="w-5 h-5 text-[#00E5A8]" />
+                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
+                          <Shield className="w-5 h-5 text-emerald-700" />
                           <div>
-                            <p className="text-xs text-gray-500">Password</p>
-                            <p className="font-mono font-bold text-white">{credentials.password}</p>
+                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Password</p>
+                            <p className="font-mono font-black text-black">{credentials.password}</p>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-xs text-red-400 mt-4 text-center">
+                      <p className="text-xs text-rose-700 font-bold mt-4 text-center">
                         ⚠️ Please save these credentials. You&apos;ll need them to login.
                       </p>
                     </div>
@@ -926,7 +911,7 @@ export default function AdmissionSection() {
                         setShowModal(false);
                         window.location.href = '/login';
                       }}
-                      className="w-full max-w-sm mx-auto py-3 bg-[#00E5A8] text-white font-semibold rounded-xl hover:bg-[#00E5A8]/90 transition-all flex items-center justify-center gap-2"
+                      className="w-full max-w-sm mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2"
                     >
                       Go to Login
                       <ArrowRight className="w-5 h-5" />

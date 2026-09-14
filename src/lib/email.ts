@@ -1,12 +1,22 @@
+import dns from 'node:dns';
+// Force IPv4 first so Brevo matches the user's whitelisted IPv4 address
+try {
+  dns.setDefaultResultOrder?.('ipv4first');
+} catch {}
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import nodemailer from 'nodemailer';
+
 /**
- * Brevo Transactional Email Utility
+ * Brevo & SMTP Transactional Email Utility
  * 
- * Simple, direct email sending for Vercel serverless
- * Uses Promise.race for reliable timeout
+ * Supports Brevo API with automatic SMTP fallback (Nodemailer)
+ * and detailed development console logging.
  */
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
-const TIMEOUT_MS = 9000; // 9 seconds to stay under Vercel's 10s limit
+const TIMEOUT_MS = 9000;
 
 interface BrevoPayload {
   sender: { name: string; email: string };
@@ -15,7 +25,6 @@ interface BrevoPayload {
   htmlContent: string;
 }
 
-// Timeout promise that rejects after specified ms
 function timeout(ms: number): Promise<never> {
   return new Promise((_, reject) => {
     setTimeout(() => reject(new Error(`TIMEOUT_${ms}ms`)), ms);
@@ -23,9 +32,58 @@ function timeout(ms: number): Promise<never> {
 }
 
 /**
- * Send email via Brevo API with reliable timeout using Promise.race
+ * Send email via SMTP (Gmail or custom SMTP) if configured
+ */
+async function sendSmtpEmail(to: string, name: string, subject: string, html: string): Promise<boolean> {
+  const host = process.env.SMTP_HOST || (process.env.GMAIL_USER ? 'smtp.gmail.com' : '');
+  const port = parseInt(process.env.SMTP_PORT || '465');
+  const user = process.env.SMTP_USER || process.env.GMAIL_USER;
+  const pass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASS;
+
+  if (!host || !user || !pass) {
+    return false;
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    const senderEmail = process.env.BREVO_SENDER_EMAIL || user;
+    await transporter.sendMail({
+      from: `"${process.env.BREVO_SENDER_NAME || 'Raven Tutorials'}" <${senderEmail}>`,
+      to: `"${name}" <${to}>`,
+      subject,
+      html
+    });
+
+    console.log(`✅ SMTP Email sent successfully to ${to}`);
+    return true;
+  } catch (err: any) {
+    console.error('❌ SMTP dispatch failed:', err.message);
+    return false;
+  }
+}
+
+/**
+ * Send email via Brevo API with timeout and SMTP fallback
  */
 async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
+  // First try SMTP if configured
+  const smtpSent = await sendSmtpEmail(
+    payload.to[0].email, 
+    payload.to[0].name, 
+    payload.subject, 
+    payload.htmlContent
+  );
+  if (smtpSent) return true;
+
   const apiKey = process.env.BREVO_API_KEY;
   
   if (!apiKey) {
@@ -52,7 +110,6 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
       body: JSON.stringify(payload),
     });
 
-    // Race between fetch and timeout
     const res = await Promise.race([fetchPromise, timeout(TIMEOUT_MS)]) as Response;
     const duration = Date.now() - startTime;
 
@@ -66,7 +123,9 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
     console.error(`❌ Brevo API error ${res.status} (${duration}ms):`, errorText);
     
     if (res.status === 401) {
-      console.error('   → Check your BREVO_API_KEY is valid');
+      console.error('   → ⚠️ Brevo Error 401: Unrecognized IP address.');
+      console.error('   → To resolve in Brevo: Whitelist your IP at https://app.brevo.com/security/authorised_ips');
+      console.error('   → OR configure Gmail/SMTP in .env with GMAIL_USER and GMAIL_APP_PASSWORD');
     } else if (res.status === 400 || res.status === 403) {
       console.error('   → Sender email not verified. Verify at: https://app.brevo.com/settings/senders');
     }
@@ -75,7 +134,6 @@ async function sendBrevoEmail(payload: BrevoPayload): Promise<boolean> {
 
   } catch (err: any) {
     const duration = Date.now() - startTime;
-    
     if (err.message?.startsWith('TIMEOUT_')) {
       console.error(`❌ Request timeout after ${duration}ms`);
     } else {
@@ -93,7 +151,7 @@ function getSender() {
 }
 
 // ============================================
-// OTP Email
+// OTP Email (Cartoonish Style)
 // ============================================
 
 interface SendOTPEmailParams {
@@ -104,34 +162,69 @@ interface SendOTPEmailParams {
 
 export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams): Promise<boolean> {
   const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="font-family:'Segoe UI',Arial,sans-serif;background:#0b0b0b;margin:0;padding:20px">
-<div style="max-width:500px;margin:0 auto;background:#111111;border-radius:16px;overflow:hidden;border:1px solid #222">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verification OTP - Raven Tutorials</title>
+</head>
+<body style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background-color:#f6fcf8;margin:0;padding:24px 12px;">
+  <div style="max-width:520px;margin:0 auto;background-color:#f0fdf4;border-radius:24px;overflow:hidden;border:3px solid #000000;box-shadow:6px 6px 0px #000000;">
+    
+    <!-- Comic Header Banner -->
+    <div style="background-color:#86efac;padding:28px 20px;text-align:center;border-bottom:3px solid #000000;">
+      <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
+        RAVEN TUTORIALS
+      </div>
+      <h1 style="color:#000000;margin:0;font-size:26px;font-weight:900;letter-spacing:-0.5px;">Email Verification</h1>
+      <p style="color:#166534;margin:6px 0 0;font-size:13px;font-weight:700;">Student Admission Portal</p>
+    </div>
 
-<div style="background:linear-gradient(135deg,#0b0b0b 0%,#1a1a1a 100%);padding:32px;text-align:center;border-bottom:1px solid #222">
-<h1 style="color:#00E5A8;margin:0;font-size:28px;font-weight:700;letter-spacing:1px">RAVEN Tutorials</h1>
-<p style="color:#9ca3af;margin:8px 0 0;font-size:13px">Email Verification</p>
-</div>
+    <!-- Content Body -->
+    <div style="padding:28px 24px;color:#000000;">
+      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">Hello <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span> 👋</p>
+      <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
+        Thank you for starting your admission with Raven Tutorials! Please use the secret 6-digit verification code below to verify your email address:
+      </p>
 
-<div style="padding:32px">
-<p style="color:#e5e7eb;font-size:16px;margin:0 0 8px">Hello <span style="color:#00E5A8;font-weight:600">${studentName}</span>!</p>
-<p style="color:#9ca3af;font-size:14px;line-height:1.6;margin:0 0 24px">Use the code below to verify your email address:</p>
+      <!-- Cartoon OTP Box -->
+      <div style="background-color:#ffffff;border:3px solid #000000;border-radius:18px;box-shadow:4px 4px 0px #000000;padding:22px;text-align:center;margin:24px 0;">
+        <span style="display:inline-block;background-color:#dcfce7;border:1.5px solid #000000;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:#000000;">
+          CONFIRMATION CODE
+        </span>
+        <div style="font-size:38px;font-weight:900;color:#000000;letter-spacing:8px;font-family:'Courier New',Courier,monospace;margin:12px 0;">
+          ${otp}
+        </div>
+        <p style="margin:0;font-size:12px;font-weight:700;color:#15803d;">
+          ⏱ Valid for 10 minutes • Do not share with anyone
+        </p>
+      </div>
 
-<div style="text-align:center;margin:32px 0">
-<p style="color:#6b7280;font-size:11px;margin:0 0 12px;text-transform:uppercase;letter-spacing:2px">Verification Code</p>
-<div style="font-size:36px;font-weight:700;color:#00E5A8;letter-spacing:8px;font-family:monospace;background:#0b0b0b;padding:20px;border-radius:12px;border:2px solid #00E5A8">${otp}</div>
-<p style="color:#6b7280;font-size:12px;margin:16px 0 0">⏱ Expires in 10 minutes</p>
-</div>
+      <!-- Security Notice -->
+      <div style="background-color:#ffffff;border:2px solid #000000;border-radius:12px;padding:12px 16px;margin-bottom:20px;">
+        <p style="color:#4b5563;font-size:12px;line-height:1.5;margin:0;">
+          💡 If you did not request this verification code, you can safely disregard this email.
+        </p>
+      </div>
+    </div>
 
-<p style="color:#6b7280;font-size:13px;line-height:1.6;margin:24px 0 0">If you didn't request this code, please ignore this email.</p>
-</div>
+    <!-- Footer -->
+    <div style="background-color:#e6f9ee;padding:16px;text-align:center;border-top:2px solid #000000;">
+      <p style="color:#1f2937;font-size:11px;font-weight:700;margin:0;">
+        © ${new Date().getFullYear()} Raven Tutorials • Premier Coaching & LMS
+      </p>
+    </div>
 
-<div style="background:#0b0b0b;padding:20px;text-align:center;border-top:1px solid #222">
-<p style="color:#4b5563;font-size:11px;margin:0">© ${new Date().getFullYear()} Raven Tutorials. All rights reserved.</p>
-</div>
+  </div>
+</body>
+</html>`;
 
-</div>
-</body></html>`;
+  // Always log OTP clearly to server console so registration flow can never be blocked
+  console.log(`\n======================================================`);
+  console.log(`📬 [ADMISSION OTP DISPATCH]`);
+  console.log(`📬 Recipient: ${to} (${studentName})`);
+  console.log(`📬 OTP CODE:  ${otp}`);
+  console.log(`======================================================\n`);
 
   const success = await sendBrevoEmail({
     sender: getSender(),
@@ -140,71 +233,188 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
     htmlContent: html,
   });
 
-  console.log(success ? `✓ OTP sent to ${to}` : `✗ OTP failed for ${to}`);
+  console.log(success ? `✓ OTP sent to ${to}` : `✗ OTP email delivery failed for ${to}`);
   return success;
 }
 
 // ============================================
-// Welcome Email
+// Welcome Email & Official Fee Receipt (Cartoonish Style)
 // ============================================
 
-interface SendWelcomeEmailParams {
+export interface SendWelcomeEmailParams {
   to: string;
   studentName: string;
   registrationId: string;
   password: string;
+  amount?: number;
+  paymentId?: string;
+  standard?: string;
+  date?: Date | string;
 }
 
-export async function sendWelcomeEmail({ to, studentName, registrationId, password }: SendWelcomeEmailParams): Promise<boolean> {
+export async function sendWelcomeEmail({
+  to,
+  studentName,
+  registrationId,
+  password,
+  amount = 1000,
+  paymentId = '',
+  standard = '',
+  date = new Date()
+}: SendWelcomeEmailParams): Promise<boolean> {
+  const receiptNo = `REC-2026-${registrationId.replace(/^RT-/, '')}`;
+  const formattedDate = new Date(date).toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
+
   const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="font-family:'Segoe UI',Arial,sans-serif;background:#0b0b0b;margin:0;padding:20px">
-<div style="max-width:500px;margin:0 auto;background:#111111;border-radius:16px;overflow:hidden;border:1px solid #222">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admission Confirmed - Raven Tutorials</title>
+</head>
+<body style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background-color:#f6fcf8;margin:0;padding:24px 12px;">
+  <div style="max-width:540px;margin:0 auto;background-color:#f0fdf4;border-radius:24px;overflow:hidden;border:3px solid #000000;box-shadow:6px 6px 0px #000000;">
+    
+    <!-- Comic Header Banner -->
+    <div style="background-color:#86efac;padding:30px 20px;text-align:center;border-bottom:3px solid #000000;">
+      <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
+        RAVEN TUTORIALS
+      </div>
+      <h1 style="color:#000000;margin:0;font-size:28px;font-weight:900;letter-spacing:-0.5px;">🎉 Admission Confirmed!</h1>
+      <p style="color:#166534;margin:6px 0 0;font-size:13px;font-weight:700;">Official Registration & Fee Invoice</p>
+    </div>
 
-<div style="background:linear-gradient(135deg,#0b0b0b 0%,#1a1a1a 100%);padding:32px;text-align:center;border-bottom:1px solid #222">
-<h1 style="color:#00E5A8;margin:0;font-size:28px;font-weight:700;letter-spacing:1px">RAVEN Tutorials</h1>
-<p style="color:#9ca3af;margin:8px 0 0;font-size:13px">Registration Successful</p>
-</div>
+    <!-- Content Body -->
+    <div style="padding:28px 24px;color:#000000;">
+      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">
+        Welcome to the family, <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>! 🚀
+      </p>
+      <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
+        Your student profile has been registered and verified. Below are your student portal login credentials and your official payment fee receipt.
+      </p>
 
-<div style="padding:32px">
-<h2 style="color:#00E5A8;margin:0 0 8px;font-size:22px;font-weight:600;text-align:center">🎉 Congratulations!</h2>
-<p style="color:#e5e7eb;font-size:16px;text-align:center;margin:0 0 24px">Welcome aboard, <span style="color:#00E5A8;font-weight:600">${studentName}</span></p>
+      <!-- 1. Cartoon Credentials Box -->
+      <div style="background-color:#ffffff;border:2.5px solid #000000;border-radius:16px;box-shadow:4px 4px 0px #000000;padding:18px;margin-bottom:24px;">
+        <div style="display:inline-block;background-color:#dcfce7;border:1.5px solid #000000;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">
+          🔑 STUDENT LOGIN CREDENTIALS
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <tr style="border-bottom:1.5px dashed #000000;">
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Registration ID</td>
+            <td style="padding:8px 0;text-align:right;font-family:monospace;font-weight:900;color:#000000;font-size:15px;">${registrationId}</td>
+          </tr>
+          <tr style="border-bottom:1.5px dashed #000000;">
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Login Email</td>
+            <td style="padding:8px 0;text-align:right;font-weight:800;color:#000000;">${to}</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Password (DOB)</td>
+            <td style="padding:8px 0;text-align:right;font-family:monospace;font-weight:900;color:#000000;font-size:15px;">${password}</td>
+          </tr>
+        </table>
+        
+        <div style="text-align:center;margin-top:16px;">
+          <a href="https://www.raventutorials.in/login" style="display:inline-block;background-color:#4ade80;color:#000000;border:2px solid #000000;box-shadow:3px 3px 0px #000000;padding:10px 24px;border-radius:10px;font-weight:900;text-decoration:none;font-size:13px;">
+            Go to Student Login Portal →
+          </a>
+        </div>
+      </div>
 
-<p style="color:#9ca3af;font-size:14px;line-height:1.6;margin:0 0 24px">Your admission has been confirmed. Here are your login credentials:</p>
+      <!-- 2. Cartoon Admission Fee Bill / Receipt Box -->
+      <div style="background-color:#ffffff;border:2.5px solid #000000;border-radius:16px;box-shadow:4px 4px 0px #000000;padding:18px;margin-bottom:20px;">
+        <table style="width:100%;border-collapse:collapse;margin-bottom:12px;">
+          <tr>
+            <td style="vertical-align:middle;">
+              <span style="display:inline-block;background-color:#bbf7d0;border:1.5px solid #000000;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;">
+                🧾 OFFICIAL FEE RECEIPT
+              </span>
+            </td>
+            <td style="vertical-align:middle;text-align:right;">
+              <span style="font-size:11px;font-weight:800;color:#374151;font-family:monospace;">
+                ${receiptNo}
+              </span>
+            </td>
+          </tr>
+        </table>
 
-<div style="margin:24px 0">
-<div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #222">
-<span style="color:#6b7280;font-size:13px">Registration ID</span>
-<span style="color:#00E5A8;font-size:15px;font-weight:600;font-family:monospace">${registrationId}</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #222">
-<span style="color:#6b7280;font-size:13px">Email</span>
-<span style="color:#e5e7eb;font-size:14px">${to}</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:16px 0">
-<span style="color:#6b7280;font-size:13px">Password</span>
-<span style="color:#00E5A8;font-size:15px;font-weight:600;font-family:monospace">${password}</span>
-</div>
-</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px;">
+          <tr>
+            <td style="padding:4px 0;color:#6b7280;font-weight:700;">Student:</td>
+            <td style="padding:4px 0;text-align:right;font-weight:800;color:#000000;">${studentName}</td>
+          </tr>
+          ${standard ? `
+          <tr>
+            <td style="padding:4px 0;color:#6b7280;font-weight:700;">Class / Standard:</td>
+            <td style="padding:4px 0;text-align:right;font-weight:800;color:#000000;">${standard}</td>
+          </tr>` : ''}
+          <tr>
+            <td style="padding:4px 0;color:#6b7280;font-weight:700;">Date:</td>
+            <td style="padding:4px 0;text-align:right;font-weight:800;color:#000000;">${formattedDate}</td>
+          </tr>
+          <tr>
+            <td style="padding:4px 0;color:#6b7280;font-weight:700;">Payment Mode:</td>
+            <td style="padding:4px 0;text-align:right;font-weight:800;color:#000000;">Online (Razorpay)</td>
+          </tr>
+          ${paymentId ? `
+          <tr>
+            <td style="padding:4px 0;color:#6b7280;font-weight:700;">Transaction ID:</td>
+            <td style="padding:4px 0;text-align:right;font-family:monospace;font-weight:800;color:#000000;">${paymentId}</td>
+          </tr>` : ''}
+        </table>
 
-<div style="text-align:center;margin:32px 0 0">
-<a href="https://www.raventutorials.in/login" style="display:inline-block;background:#00E5A8;color:#0b0b0b;text-decoration:none;padding:14px 40px;border-radius:8px;font-weight:700;font-size:15px">Login Now →</a>
-</div>
+        <!-- Itemized Fee Table -->
+        <table style="width:100%;border-collapse:collapse;border:2px solid #000000;border-radius:8px;overflow:hidden;margin-bottom:14px;font-size:12px;">
+          <thead>
+            <tr style="background-color:#dcfce7;border-bottom:2px solid #000000;">
+              <th style="padding:8px;text-align:left;font-weight:900;color:#000000;">Particulars</th>
+              <th style="padding:8px;text-align:right;font-weight:900;color:#000000;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #e5e7eb;">
+              <td style="padding:8px;color:#374151;font-weight:600;">Admission & Student LMS Enrollment</td>
+              <td style="padding:8px;text-align:right;font-weight:800;color:#000000;">₹${amount}</td>
+            </tr>
+            <tr style="border-bottom:1.5px solid #000000;">
+              <td style="padding:8px;color:#374151;font-weight:600;">Taxes & Educational Surcharge</td>
+              <td style="padding:8px;text-align:right;font-weight:800;color:#15803d;">₹0 (Included)</td>
+            </tr>
+            <tr style="background-color:#f0fdf4;">
+              <td style="padding:8px;font-weight:900;color:#000000;font-size:13px;">Total Amount Paid</td>
+              <td style="padding:8px;text-align:right;font-weight:900;color:#000000;font-size:14px;">₹${amount}</td>
+            </tr>
+          </tbody>
+        </table>
 
-<p style="color:#6b7280;font-size:12px;text-align:center;margin:24px 0 0">Please save these credentials securely and don't share with anyone.</p>
-</div>
+        <!-- Official Stamp Badge -->
+        <div style="text-align:center;padding-top:4px;">
+          <div style="display:inline-block;background-color:#dcfce7;border:2px solid #000000;border-radius:8px;padding:6px 14px;font-size:11px;font-weight:900;color:#166534;letter-spacing:1px;box-shadow:2px 2px 0px #000000;">
+            PAID & VERIFIED ✓ RAVEN ACADEMIC COUNCIL
+          </div>
+        </div>
+      </div>
 
-<div style="background:#0b0b0b;padding:20px;text-align:center;border-top:1px solid #222">
-<p style="color:#4b5563;font-size:11px;margin:0">© ${new Date().getFullYear()} Raven Tutorials. All rights reserved.</p>
-</div>
+    </div>
 
-</div>
-</body></html>`;
+    <!-- Footer -->
+    <div style="background-color:#e6f9ee;padding:16px;text-align:center;border-top:2px solid #000000;">
+      <p style="color:#1f2937;font-size:11px;font-weight:700;margin:0;">
+        © ${new Date().getFullYear()} Raven Tutorials • All Rights Reserved
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>`;
 
   const success = await sendBrevoEmail({
     sender: getSender(),
     to: [{ email: to, name: studentName }],
-    subject: 'Welcome to Raven Tutorials - Your Credentials',
+    subject: 'Welcome to Raven Tutorials - Your Credentials & Fee Receipt',
     htmlContent: html,
   });
 
@@ -213,7 +423,7 @@ export async function sendWelcomeEmail({ to, studentName, registrationId, passwo
 }
 
 // ============================================
-// Absence Notification Email
+// Absence Notification Email (Cartoonish Style)
 // ============================================
 
 interface SendAbsenceEmailParams {
@@ -232,44 +442,65 @@ export async function sendAbsenceNotificationEmail({ to, studentName, subject, d
   });
 
   const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="font-family:'Segoe UI',Arial,sans-serif;background:#0b0b0b;margin:0;padding:20px">
-<div style="max-width:500px;margin:0 auto;background:#111111;border-radius:16px;overflow:hidden;border:1px solid #222">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Attendance Alert - Raven Tutorials</title>
+</head>
+<body style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background-color:#f6fcf8;margin:0;padding:24px 12px;">
+  <div style="max-width:520px;margin:0 auto;background-color:#fff1f2;border-radius:24px;overflow:hidden;border:3px solid #000000;box-shadow:6px 6px 0px #000000;">
+    
+    <!-- Header Banner -->
+    <div style="background-color:#fca5a5;padding:28px 20px;text-align:center;border-bottom:3px solid #000000;">
+      <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
+        RAVEN TUTORIALS
+      </div>
+      <h1 style="color:#000000;margin:0;font-size:26px;font-weight:900;letter-spacing:-0.5px;">⚠️ Attendance Alert</h1>
+      <p style="color:#991b1b;margin:6px 0 0;font-size:13px;font-weight:700;">Class Absence Notification</p>
+    </div>
 
-<div style="background:linear-gradient(135deg,#1a0b0b 0%,#2a1515 100%);padding:32px;text-align:center;border-bottom:1px solid #3a2020">
-<h1 style="color:#ef4444;margin:0;font-size:28px;font-weight:700;letter-spacing:1px">RAVEN Tutorials</h1>
-<p style="color:#fca5a5;margin:8px 0 0;font-size:13px">⚠️ Attendance Alert</p>
-</div>
+    <!-- Content Body -->
+    <div style="padding:28px 24px;color:#000000;">
+      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">Dear <span style="background-color:#fee2e2;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>,</p>
+      <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
+        This is an official notice to inform you that you were marked <strong style="color:#b91c1c;">ABSENT</strong> for the following scheduled class:
+      </p>
 
-<div style="padding:32px">
-<p style="color:#e5e7eb;font-size:16px;margin:0 0 8px">Dear <span style="color:#00E5A8;font-weight:600">${studentName}</span>,</p>
-<p style="color:#9ca3af;font-size:14px;line-height:1.6;margin:0 0 24px">This is to inform you that you were marked <span style="color:#ef4444;font-weight:700">ABSENT</span> for the following class:</p>
+      <div style="background-color:#ffffff;border:2.5px solid #000000;border-radius:16px;box-shadow:4px 4px 0px #000000;padding:18px;margin-bottom:20px;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <tr style="border-bottom:1.5px dashed #000000;">
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Subject</td>
+            <td style="padding:8px 0;text-align:right;font-weight:900;color:#000000;">${subject}</td>
+          </tr>
+          <tr style="border-bottom:1.5px dashed #000000;">
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Class</td>
+            <td style="padding:8px 0;text-align:right;font-weight:900;color:#000000;">${className}</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0;color:#6b7280;font-weight:700;">Date</td>
+            <td style="padding:8px 0;text-align:right;font-weight:900;color:#b91c1c;">${formattedDate}</td>
+          </tr>
+        </table>
+      </div>
 
-<div style="margin:24px 0">
-<div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #222">
-<span style="color:#6b7280;font-size:13px">Subject</span>
-<span style="color:#e5e7eb;font-size:15px;font-weight:600">${subject}</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #222">
-<span style="color:#6b7280;font-size:13px">Class</span>
-<span style="color:#e5e7eb;font-size:15px;font-weight:600">${className}</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:16px 0">
-<span style="color:#6b7280;font-size:13px">Date</span>
-<span style="color:#ef4444;font-size:15px;font-weight:600">${formattedDate}</span>
-</div>
-</div>
+      <div style="background-color:#ffffff;border:2px solid #000000;border-radius:12px;padding:12px 16px;margin-bottom:16px;">
+        <p style="color:#4b5563;font-size:12px;line-height:1.5;margin:0;">
+          💡 Regular attendance is vital for academic excellence. If this is an error, please reach out to your instructor within 24 hours.
+        </p>
+      </div>
+    </div>
 
-<p style="color:#9ca3af;font-size:13px;line-height:1.6;margin:24px 0 0">If you believe this is an error, please contact your class teacher or administration within 2 hours of receiving this notification.</p>
-<p style="color:#6b7280;font-size:12px;line-height:1.6;margin:16px 0 0">📚 Regular attendance is crucial for your academic success. Please ensure you attend all classes.</p>
-</div>
+    <!-- Footer -->
+    <div style="background-color:#fee2e2;padding:16px;text-align:center;border-top:2px solid #000000;">
+      <p style="color:#1f2937;font-size:11px;font-weight:700;margin:0;">
+        © ${new Date().getFullYear()} Raven Tutorials • Attendance Management
+      </p>
+    </div>
 
-<div style="background:#0b0b0b;padding:20px;text-align:center;border-top:1px solid #222">
-<p style="color:#4b5563;font-size:11px;margin:0">© ${new Date().getFullYear()} Raven Tutorials. All rights reserved.</p>
-</div>
-
-</div>
-</body></html>`;
+  </div>
+</body>
+</html>`;
 
   const success = await sendBrevoEmail({
     sender: getSender(),
@@ -283,7 +514,7 @@ export async function sendAbsenceNotificationEmail({ to, studentName, subject, d
 }
 
 // ============================================
-// Test Result Email
+// Test Result Email (Cartoonish Style)
 // ============================================
 
 interface SendTestResultEmailParams {
@@ -314,77 +545,77 @@ export async function sendTestResultEmail({
   const formattedDate = submittedAt.toLocaleDateString('en-IN', { 
     day: 'numeric', 
     month: 'long', 
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
   });
 
   const percentage = ((marksObtained / totalMarks) * 100).toFixed(2);
   const isPassed = status === 'Pass';
 
   const html = `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="font-family:'Segoe UI',Arial,sans-serif;background:#0b0b0b;margin:0;padding:20px">
-<div style="max-width:500px;margin:0 auto;background:#111111;border-radius:16px;overflow:hidden;border:1px solid #222">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test Result - Raven Tutorials</title>
+</head>
+<body style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background-color:#f6fcf8;margin:0;padding:24px 12px;">
+  <div style="max-width:520px;margin:0 auto;background-color:#f0fdf4;border-radius:24px;overflow:hidden;border:3px solid #000000;box-shadow:6px 6px 0px #000000;">
+    
+    <!-- Comic Header Banner -->
+    <div style="background-color:${isPassed ? '#86efac' : '#fca5a5'};padding:28px 20px;text-align:center;border-bottom:3px solid #000000;">
+      <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
+        RAVEN TUTORIALS
+      </div>
+      <h1 style="color:#000000;margin:0;font-size:26px;font-weight:900;letter-spacing:-0.5px;">Test Completed!</h1>
+      <p style="color:#166534;margin:6px 0 0;font-size:13px;font-weight:700;">Academic Performance Report</p>
+    </div>
 
-<div style="background:linear-gradient(135deg,#0b0b0b 0%,#1a1a1a 100%);padding:32px;text-align:center;border-bottom:1px solid #222">
-<h1 style="color:#00E5A8;margin:0;font-size:28px;font-weight:700;letter-spacing:1px">RAVEN Tutorials</h1>
-<p style="color:#9ca3af;margin:8px 0 0;font-size:13px">Test Result Notification</p>
-</div>
+    <!-- Content Body -->
+    <div style="padding:28px 24px;color:#000000;">
+      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">Dear <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>,</p>
+      <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
+        Your submission for <strong>${testTitle}</strong> (${subject}) has been evaluated:
+      </p>
 
-<div style="padding:32px">
-<h2 style="color:#e5e7eb;margin:0 0 8px;font-size:20px;font-weight:600">Test Completed Successfully!</h2>
-<p style="color:#9ca3af;font-size:14px;margin:0 0 24px">Dear <span style="color:#00E5A8;font-weight:600">${studentName}</span>,</p>
-<p style="color:#9ca3af;font-size:14px;line-height:1.6;margin:0 0 24px">Your test has been successfully submitted. Here are your results:</p>
+      <!-- Score Card -->
+      <div style="background-color:#ffffff;border:2.5px solid #000000;border-radius:16px;box-shadow:4px 4px 0px #000000;padding:18px;margin-bottom:20px;">
+        <table style="width:100%;border-collapse:collapse;margin-bottom:14px;">
+          <tr>
+            <td>
+              <span style="font-size:11px;font-weight:900;color:#6b7280;text-transform:uppercase;">Score Obtained</span>
+              <div style="font-size:28px;font-weight:900;color:#000000;">${marksObtained} / ${totalMarks}</div>
+            </td>
+            <td style="text-align:right;">
+              <span style="font-size:11px;font-weight:900;color:#6b7280;text-transform:uppercase;">Percentage</span>
+              <div style="font-size:28px;font-weight:900;color:#000000;">${percentage}%</div>
+            </td>
+          </tr>
+        </table>
 
-<div style="margin:0 0 24px">
-<h3 style="color:#e5e7eb;margin:0 0 8px;font-size:18px;font-weight:600">${testTitle}</h3>
-<p style="color:#6b7280;font-size:14px;margin:0"><strong style="color:#9ca3af">Subject:</strong> ${subject}</p>
-<p style="color:#6b7280;font-size:14px;margin:8px 0 0"><strong style="color:#9ca3af">Submitted:</strong> ${formattedDate}</p>
-</div>
+        <div style="text-align:center;padding-top:8px;border-top:1.5px dashed #000000;">
+          <div style="display:inline-block;background-color:${isPassed ? '#4ade80' : '#f87171'};color:#000000;border:2px solid #000000;border-radius:8px;padding:6px 20px;font-size:14px;font-weight:900;box-shadow:2px 2px 0px #000000;">
+            ${isPassed ? 'RESULT: PASSED 🎉' : 'RESULT: NEEDS IMPROVEMENT 💪'}
+          </div>
+        </div>
+      </div>
 
-<div style="background:${isPassed ? 'linear-gradient(135deg,#052e16 0%,#064e3b 100%)' : 'linear-gradient(135deg,#2a0f0f 0%,#3b1515 100%)'};border-radius:12px;padding:24px;margin:24px 0;border:1px solid ${isPassed ? '#00E5A8' : '#ef4444'}33">
-<div style="display:flex;justify-content:space-between;margin-bottom:20px">
-<div>
-<p style="color:#6b7280;font-size:11px;margin:0 0 4px;text-transform:uppercase;letter-spacing:1px">Score</p>
-<p style="color:#e5e7eb;font-size:28px;font-weight:700;margin:0">${marksObtained} / ${totalMarks}</p>
-</div>
-<div style="text-align:right">
-<p style="color:#6b7280;font-size:11px;margin:0 0 4px;text-transform:uppercase;letter-spacing:1px">Percentage</p>
-<p style="color:#e5e7eb;font-size:28px;font-weight:700;margin:0">${percentage}%</p>
-</div>
-</div>
-<div style="border-top:1px solid ${isPassed ? '#00E5A8' : '#ef4444'}33;padding-top:20px;display:flex;justify-content:space-between;align-items:center">
-<div>
-<p style="color:#6b7280;font-size:11px;margin:0 0 4px;text-transform:uppercase;letter-spacing:1px">Passing Marks</p>
-<p style="color:#e5e7eb;font-size:18px;font-weight:600;margin:0">${passingMarks}</p>
-</div>
-<div style="background:${isPassed ? '#00E5A8' : '#ef4444'};color:${isPassed ? '#0b0b0b' : '#fff'};padding:10px 24px;border-radius:8px;font-weight:700;font-size:16px">
-${status}
-</div>
-</div>
-</div>
+      <p style="color:#4b5563;font-size:13px;line-height:1.6;margin:0;">
+        ${isPassed ? '⭐ Excellent performance! Keep practicing to maintain your high score.' : '📚 Keep your chin up! Review the solution key in your portal and take the practice test again.'}
+      </p>
+    </div>
 
-${violationsCount > 0 ? `
-<div style="margin:24px 0;padding:16px;background:#2a200f;border-radius:8px;border:1px solid #f59e0b33">
-<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>Warning:</strong> ${violationsCount} violation(s) were recorded during the test.</p>
-</div>
-` : ''}
+    <!-- Footer -->
+    <div style="background-color:#e6f9ee;padding:16px;text-align:center;border-top:2px solid #000000;">
+      <p style="color:#1f2937;font-size:11px;font-weight:700;margin:0;">
+        © ${new Date().getFullYear()} Raven Tutorials • Online Test Center
+      </p>
+    </div>
 
-<p style="color:#9ca3af;font-size:14px;line-height:1.6;margin:0">
-${isPassed 
-  ? '🎉 Congratulations on passing the test! Keep up the excellent work.' 
-  : '💪 Don\'t be discouraged. Review the topics and try again. We\'re here to help you succeed!'}
-</p>
-</div>
-
-<div style="background:#0b0b0b;padding:20px;text-align:center;border-top:1px solid #222">
-<p style="color:#4b5563;font-size:11px;margin:0">© ${new Date().getFullYear()} Raven Tutorials. All rights reserved.</p>
-<p style="color:#374151;font-size:10px;margin:8px 0 0">This is an automated email. Please do not reply.</p>
-</div>
-
-</div>
-</body></html>`;
+  </div>
+</body>
+</html>`;
 
   const emailSuccess = await sendBrevoEmail({
     sender: getSender(),

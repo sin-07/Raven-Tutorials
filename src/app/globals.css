@@ -1,8 +1,8 @@
 /* Google Fonts loaded via next/font/google in layout.tsx:
-   - Outfit: Ultra-modern geometric display & headings
-   - Plus Jakarta Sans: High-clarity modern body & UI
-   - Space Grotesk: Sleek tech badges & accents
-   - JetBrains Mono: Code & monospace
+   - Outfit: Ultra-bold modern display & cartoon headings
+   - Plus Jakarta Sans: High-clarity legible body & UI
+   - Space Grotesk: Fun retro-tech & sticker badges
+   - JetBrains Mono: Monospace & code tags
 */
 
 @tailwind base;
@@ -16,14 +16,28 @@
 }
 
 :root {
-  --bg-main: #08090d;
-  --bg-card: #0e121d;
-  --bg-card-hover: #131929;
-  --emerald-primary: #10b981;
-  --emerald-light: #34d399;
-  --emerald-glow: rgba(16, 185, 129, 0.15);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-emerald: rgba(16, 185, 129, 0.25);
+  --bg-canvas: #f6fcf8;
+  --bg-card: #f0fdf4;
+  --bg-card-hover: #e6f9ee;
+  --color-black: #000000;
+  --color-yellow: #facc15;
+  --color-yellow-light: #fef08a;
+  --color-blue: #38bdf8;
+  --color-blue-light: #bae6fd;
+  --color-green: #4ade80;
+  --color-green-light: #bbf7d0;
+  --color-green-tint: #f0fdf4;
+  --color-green-border: #86efac;
+  --color-pink: #f472b6;
+  --color-pink-light: #fbcfe8;
+  --color-purple: #c084fc;
+  --color-purple-light: #ddd6fe;
+  --color-orange: #fb923c;
+  --color-orange-light: #fed7aa;
+  --shadow-cartoon: 4px 4px 0px #000000;
+  --shadow-cartoon-sm: 2px 2px 0px #000000;
+  --shadow-cartoon-lg: 6px 6px 0px #000000;
+  --shadow-cartoon-xl: 8px 8px 0px #000000;
 }
 
 html {
@@ -34,28 +48,28 @@ body {
   font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply text-white;
-  background-color: #07080c;
+  background-color: #f6fcf8;
+  color: #0f172a;
   min-height: 100vh;
 }
 
-/* Headings — Outfit for crisp modern punch */
+/* Headings — Outfit for bold punchy cartoon presence */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-outfit), sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.025em;
+  color: #09090b;
 }
 
-/* Display & Hero Text */
 .font-display {
   font-family: var(--font-outfit), sans-serif;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.03em;
 }
 
 .font-heading {
   font-family: var(--font-outfit), sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
 }
 
@@ -65,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .font-brand {
   font-family: var(--font-outfit), sans-serif;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.02em;
 }
 
@@ -74,42 +88,41 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* Modern Gradient Text Utilities */
-.text-gradient-emerald {
-  background: linear-gradient(135deg, #ffffff 15%, #34d399 65%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── STRICT ZERO-GRADIENT TEXT UTILITIES ────────────────────── */
+/* Mapped to solid bold cartoon pop colors (NO gradients) */
+.text-gradient-emerald,
+.text-gradient-mint {
+  color: #15803d !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
   display: inline;
 }
 
 .text-gradient-white {
-  background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.72) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #09090b !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
   display: inline;
 }
 
-.text-gradient-mint {
-  background: linear-gradient(135deg, #a7f3d0 0%, #10b981 60%, #047857 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline;
+/* Solid Pop Highlight Marker */
+.cartoon-highlight {
+  background-color: #86efac;
+  color: #000000;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  display: inline-block;
 }
 
-/* Luxury Glassmorphic Panels & Cards (Optimized Blur) */
-.glass-panel {
-  background: rgba(14, 18, 29, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Universal Luxury Subtle Green Gradient for all cards across the website */
+/* ── CARTOON CARDS & CONTAINERS WITH FRESH GREENISH EFFECT ─── */
+.card-cartoon,
 .card-green-gradient,
 .glass-card,
+.glass-panel,
 .feature-card,
 .methodology-step,
 .service-card,
@@ -117,13 +130,18 @@ h1, h2, h3, h4, h5, h6 {
 .cat-card > a,
 .testimonial-card,
 .course-card-box {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.12) 0%, rgba(10, 15, 26, 0.92) 50%, rgba(6, 78, 59, 0.10) 100%) !important;
-  border: 1px solid rgba(16, 185, 129, 0.22) !important;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -6px rgba(16, 185, 129, 0.15) !important;
+  background-color: #f0fdf4 !important; /* Fresh light greenish effect on every card */
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 1.25rem !important;
+  color: #0f172a !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
 }
 
+.card-cartoon:hover,
 .card-green-gradient:hover,
 .glass-card:hover,
+.glass-panel:hover,
 .feature-card:hover,
 .methodology-step:hover,
 .service-card:hover,
@@ -131,109 +149,174 @@ h1, h2, h3, h4, h5, h6 {
 .cat-card > a:hover,
 .testimonial-card:hover,
 .course-card-box:hover {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.20) 0%, rgba(13, 21, 36, 0.95) 50%, rgba(6, 78, 59, 0.18) 100%) !important;
-  border-color: rgba(52, 211, 153, 0.45) !important;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 28px -2px rgba(16, 185, 129, 0.28) !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 7px 7px 0px #000000 !important;
+  background-color: #e6f9ee !important; /* Richer mint green tint on hover */
 }
 
-.glow-emerald-subtle {
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.18);
+/* Cartoon Pop Color Cards */
+.card-yellow {
+  background-color: #fef08a !important;
+}
+.card-blue {
+  background-color: #bae6fd !important;
+}
+.card-green {
+  background-color: #bbf7d0 !important;
+}
+.card-pink {
+  background-color: #fbcfe8 !important;
+}
+.card-purple {
+  background-color: #ddd6fe !important;
+}
+.card-orange {
+  background-color: #fed7aa !important;
 }
 
-.glow-emerald-strong {
-  box-shadow: 0 0 50px -5px rgba(16, 185, 129, 0.35);
+/* ── CARTOON BUTTONS & TACTILE CLICKS ──────────────────────── */
+.btn-cartoon {
+  border: 2.5px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 0.875rem;
+  font-weight: 800;
+  font-family: var(--font-outfit), sans-serif;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
 }
 
-.glow-green-shadow {
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px 0px rgba(16, 185, 129, 0.22);
+.btn-cartoon:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
 }
 
-.glow-green-neon {
-  box-shadow: 0 0 45px 5px rgba(16, 185, 129, 0.3), 0 0 15px 0px rgba(52, 211, 153, 0.5);
+.btn-cartoon:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
 }
 
-.light-beam-green {
-  background: radial-gradient(ellipse at top, rgba(52, 211, 153, 0.35) 0%, rgba(16, 185, 129, 0.15) 40%, transparent 70%);
+.btn-cartoon-yellow,
+.btn-emerald {
+  background-color: #facc15 !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 0.875rem !important;
+  font-weight: 800 !important;
 }
 
-.border-light-green {
-  border-color: rgba(52, 211, 153, 0.3);
-  box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+.btn-cartoon-yellow:hover,
+.btn-emerald:hover {
+  background-color: #fde047 !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #000000 !important;
 }
 
-/* Glowing Border Pill & Badges */
+.btn-cartoon-yellow:active,
+.btn-emerald:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+.btn-cartoon-white,
+.btn-glass {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 0.875rem !important;
+  font-weight: 800 !important;
+}
+
+.btn-cartoon-white:hover,
+.btn-glass:hover {
+  background-color: #f8fafc !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+.btn-cartoon-white:active,
+.btn-glass:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+.btn-cartoon-green {
+  background-color: #4ade80 !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 0.875rem !important;
+  font-weight: 800 !important;
+}
+
+.btn-cartoon-green:hover {
+  background-color: #86efac !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+.btn-cartoon-sky {
+  background-color: #38bdf8 !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 0.875rem !important;
+  font-weight: 800 !important;
+}
+
+.btn-cartoon-sky:hover {
+  background-color: #7dd3fc !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+/* ── CARTOON STICKERS & PILLS ──────────────────────────────── */
 .pill-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 0.875rem;
+  padding: 0.4rem 1rem;
   border-radius: 9999px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #34d399;
+  background-color: #dcfce7 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+  color: #14532d !important;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 0.025em;
   text-transform: uppercase;
+  font-family: var(--font-space), sans-serif;
 }
 
-/* Shimmer Button */
-.btn-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: var(--font-space), sans-serif;
   color: #000000;
-  font-weight: 700;
-  border-radius: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.35);
 }
 
-.btn-emerald:hover {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -4px rgba(16, 185, 129, 0.5);
+/* Cartoon Dot Grid Background */
+.cartoon-bg-dots {
+  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px);
 }
 
-.btn-emerald:active {
-  transform: scale(0.98);
-}
-
-.btn-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-glass:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(52, 211, 153, 0.4);
-  color: #34d399;
-  transform: translateY(-2px);
-}
-
-/* Background Patterns */
-.bg-grid-subtle {
-  background-size: 40px 40px;
+.cartoon-bg-grid {
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
-.bg-radial-hero {
-  background: radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.05) 45%, transparent 75%);
-}
-
-/* High-performance content rendering */
-.content-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 500px;
-}
-
-/* Hide scrollbars globally */
+/* Hide scrollbars */
 ::-webkit-scrollbar {
   display: none;
   width: 0;
@@ -251,17 +334,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Zero-Lag Performance: Disable all heavy animations and continuous layout transitions */
-*,
-::before,
-::after {
-  animation: none !important;
-  transition-duration: 0.05s !important;
-}
-
-/* Allow clean, instant color feedback on interactive elements */
+/* Quick color transitions */
 button, a, input, select, textarea {
-  transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease, opacity 0.1s ease !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 
-
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

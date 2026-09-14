@@ -1,22 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { 
   Mail, 
-  Search,
-  CheckCircle,
-  Clock,
-  XCircle,
-  AlertCircle,
-  Loader2
+  Search, 
+  CheckCircle, 
+  Clock, 
+  XCircle, 
+  AlertCircle, 
+  Loader2,
+  Sparkles,
+  ArrowLeft
 } from 'lucide-react';
-
-/**
- * Application Status Check Page
- * -----------------------------
- * Allows applicants to check their application status using email
- */
+import WavyHeading from '@/components/WavyHeading';
+import { LMSFooter } from '@/components/lms';
 
 interface ApplicationStatus {
   name: string;
@@ -51,166 +49,159 @@ export default function StatusCheckPage() {
       if (data.success) {
         setApplication(data.application);
       } else {
-        setError(data.message || 'Unable to find application');
+        setError(data.message || 'Unable to find application for this email');
       }
     } catch {
-      setError('Something went wrong. Please try again later.');
+      setError('Something went wrong. Please check your connection.');
     } finally {
       setLoading(false);
     }
   };
 
-  const getStatusIcon = (status: string) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle className="w-16 h-16 text-green-500" />;
+        return (
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+            <CheckCircle className="w-5 h-5 text-black" />
+            <span>APPROVED</span>
+          </div>
+        );
       case 'rejected':
-        return <XCircle className="w-16 h-16 text-red-500" />;
+        return (
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+            <XCircle className="w-5 h-5 text-black" />
+            <span>NOT PROCEEDING</span>
+          </div>
+        );
       default:
-        return <Clock className="w-16 h-16 text-yellow-500" />;
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'approved':
-        return 'bg-green-500/10 border-green-500/30 text-green-400';
-      case 'rejected':
-        return 'bg-red-500/10 border-red-500/30 text-red-400';
-      default:
-        return 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400';
+        return (
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+            <Clock className="w-5 h-5 text-black" />
+            <span>UNDER REVIEW</span>
+          </div>
+        );
     }
   };
 
   const getStatusMessage = (status: string) => {
     switch (status) {
       case 'approved':
-        return 'Congratulations! Your application has been approved. We will contact you soon with further details.';
+        return 'Congratulations! Your faculty application has been accepted. Our academic director will contact you directly with batch schedule details.';
       case 'rejected':
-        return 'We appreciate your interest, but we are unable to proceed with your application at this time. You may reapply after 6 months.';
+        return 'Thank you for your application. We are unable to proceed with an offer for the current batch cycle. You may reapply for the next term.';
       default:
-        return 'Your application is currently under review. We will notify you once a decision has been made.';
+        return 'Your credentials and teaching profile are currently being benchmarked by the faculty board. We will notify you by email shortly.';
     }
   };
 
   return (
-    <div className="min-h-screen bg-transparent pt-24 pb-12 px-4">
-      <div className="max-w-lg mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-10"
-        >
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Check Application Status
-          </h1>
-          <p className="text-gray-400">
-            Enter your email to check your application status
-          </p>
-        </motion.div>
+    <>
+      <div className="min-h-screen bg-transparent pt-32 pb-20 px-4 selection:bg-emerald-300 selection:text-black">
+        <div className="max-w-lg mx-auto relative z-10">
+          {/* Header */}
+          <div className="text-center mb-8 flex flex-col items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mb-4">
+              <Sparkles className="w-4 h-4 text-emerald-700" />
+              <span>Recruitment Tracker</span>
+            </div>
 
-        {/* Search Form */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          onSubmit={handleCheck}
-          className="bg-[#111111] rounded-2xl p-6 border border-gray-800 mb-6"
-        >
-          <div className="relative mb-4">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError('');
-              }}
-              placeholder="Enter your email address"
-              className="w-full pl-11 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00E5A8] transition-colors"
+            <WavyHeading
+              text="Application"
+              gradientText="Status"
+              className="text-3xl sm:text-4xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full mb-2"
             />
+
+            <p className="text-sm text-neutral-700 font-jakarta font-medium text-center">
+              Enter your registered email to check review status.
+            </p>
           </div>
 
-          {error && (
-            <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-              <p className="text-red-400 text-sm">{error}</p>
+          {/* Search Card */}
+          <form
+            onSubmit={handleCheck}
+            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border-3 border-black shadow-[8px_8px_0px_#000] mb-6 space-y-4"
+          >
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-black font-space mb-2">
+                Registered Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError('');
+                  }}
+                  placeholder="name@example.com"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  required
+                />
+              </div>
+            </div>
+
+            {error && (
+              <div className="p-3.5 bg-rose-100 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] flex items-center gap-2.5">
+                <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />
+                <p className="text-rose-900 text-xs font-jakarta font-bold">{error}</p>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin text-black" />
+                  <span>Checking Records...</span>
+                </>
+              ) : (
+                <>
+                  <Search className="w-5 h-5 text-black" />
+                  <span>Check Application Status</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Status Result Card */}
+          {application && (
+            <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border-3 border-black shadow-[8px_8px_0px_#000] text-center space-y-4 mb-6">
+              <div>
+                {getStatusBadge(application.status)}
+              </div>
+
+              <h2 className="text-xl font-black text-black font-outfit">
+                Hello, {application.name}!
+              </h2>
+
+              <p className="text-sm font-jakarta text-neutral-800 font-medium leading-relaxed">
+                {getStatusMessage(application.status)}
+              </p>
+
+              <div className="pt-3 border-t-2 border-black/10 text-xs text-neutral-600 font-jakarta">
+                Application Submitted: {new Date(application.submittedAt).toLocaleDateString()}
+              </div>
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 bg-[#00E5A8] text-black font-bold rounded-lg hover:bg-[#00cc96] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Checking...
-              </>
-            ) : (
-              <>
-                <Search className="w-5 h-5" />
-                Check Status
-              </>
-            )}
-          </button>
-        </motion.form>
-
-        {/* Application Status */}
-        {application && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-[#111111] rounded-2xl p-8 border border-gray-800 text-center"
-          >
-            <div className="mb-6">
-              {getStatusIcon(application.status)}
-            </div>
-
-            <h2 className="text-xl font-bold text-white mb-2">
-              Hello, {application.name}!
-            </h2>
-
-            <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${getStatusColor(application.status)}`}>
-              {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
-            </div>
-
-            <p className="text-gray-400 mb-6">
-              {getStatusMessage(application.status)}
-            </p>
-
-            <div className="border-t border-gray-800 pt-4 space-y-2 text-sm">
-              <p className="text-gray-500">
-                <span className="text-gray-400">Submitted:</span>{' '}
-                {new Date(application.submittedAt).toLocaleDateString('en-IN', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric'
-                })}
-              </p>
-              {application.reviewedAt && (
-                <p className="text-gray-500">
-                  <span className="text-gray-400">Reviewed:</span>{' '}
-                  {new Date(application.reviewedAt).toLocaleDateString('en-IN', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  })}
-                </p>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Back Link */}
-        <div className="mt-8 text-center">
-          <a href="/admission/tutor" className="text-[#00E5A8] hover:underline">
-            ← Back to Application Form
-          </a>
+          {/* Return Links */}
+          <div className="text-center">
+            <Link
+              href="/admission/tutor"
+              className="inline-flex items-center gap-2 text-sm font-black font-outfit text-black underline hover:text-emerald-800"
+            >
+              <ArrowLeft className="w-4 h-4 text-black" />
+              <span>Back to Instructor Application Form</span>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+      <LMSFooter />
+    </>
   );
 }

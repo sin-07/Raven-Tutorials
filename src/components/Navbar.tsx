@@ -81,53 +81,51 @@ const Navbar: React.FC = React.memo(() => {
         className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
       >
         <div className="max-w-6xl mx-auto">
-          {/* Cyber-Obsidian Glass Capsule Navbar Container */}
-          <div className="relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full border bg-[#080a11]/92 backdrop-blur-2xl border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] shadow-emerald-950/25">
-            {/* Top specular hairline shine */}
-            <div className="absolute inset-x-12 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent pointer-events-none" />
+          {/* Cartoon Capsule Navbar Container */}
+          <div className="relative flex items-center justify-between h-[66px] px-4 sm:px-6 rounded-full border-2 sm:border-[2.5px] border-black bg-[#f0fdf4]/95 backdrop-blur-xl shadow-[4px_4px_0px_#000000]">
 
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="relative p-2 rounded-2xl bg-gradient-to-br from-[#10192e] to-[#0a0f1d] border border-emerald-500/40 group-hover:border-emerald-400/80 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+              <div className="relative p-2 rounded-xl bg-emerald-300 border-2 border-black shadow-[2px_2px_0px_#000] group-hover:-translate-y-0.5 transition-transform">
                 <img
                   src="/logo.png"
                   alt="RAVEN Logo"
                   className="h-6 w-6 object-contain"
                 />
-                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-black" />
               </div>
               
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 leading-none">
-                  <span className="text-white font-black text-xl tracking-tight font-outfit group-hover:text-white transition-colors">
+                  <span className="text-black font-black text-xl tracking-tight font-outfit">
                     RAVEN
                   </span>
-                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-space font-bold uppercase tracking-widest text-emerald-400">
+                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-200 border border-black text-[10px] font-space font-extrabold uppercase tracking-widest text-black shadow-[1px_1px_0px_#000]">
                     Tutorials
                   </span>
                 </div>
-                <span className="text-[9px] font-space text-gray-400 tracking-wider uppercase mt-0.5 hidden sm:block">
+                <span className="text-[10px] font-space font-bold text-neutral-600 tracking-wider uppercase mt-0.5 hidden sm:block">
                   Patna Campus
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links Dock */}
-            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#0e1322]/80 p-1.5 rounded-full border border-white/[0.07] font-jakarta shadow-inner">
+            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#dcfce7] p-1 rounded-full border-2 border-black font-jakarta shadow-[2px_2px_0px_#000]">
               {navLinks.map((link) => {
                 const active = isActive(link.path);
                 return (
                   <Link
                     key={link.path}
                     href={link.path}
-                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 flex items-center gap-1.5 ${
+                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 ${
                       active
-                        ? 'text-white bg-gradient-to-r from-emerald-500/30 via-emerald-500/20 to-teal-500/10 border border-emerald-500/40 shadow-[0_0_14px_rgba(16,185,129,0.3)]'
-                        : 'text-gray-300 hover:text-white hover:bg-white/5'
+                        ? 'text-black bg-[#4ade80] border-2 border-black shadow-[2px_2px_0px_#000]'
+                        : 'text-neutral-700 hover:text-black hover:bg-[#f0fdf4]'
                     }`}
                   >
                     {active && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-black" />
                     )}
                     <span>{link.label}</span>
                   </Link>
@@ -141,14 +139,14 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/admin/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 transform hover:scale-[1.03]"
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                   >
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Admin Panel</span>
                   </Link>
                   <button
                     onClick={handleAdminLogout}
-                    className="flex items-center gap-1.5 px-3.5 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-full text-xs font-semibold transition"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition"
                     title="Logout Admin"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -158,14 +156,14 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 transform hover:scale-[1.03]"
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                   >
                     <User className="w-3.5 h-3.5" />
-                    <span>Student Dashboard</span>
+                    <span>Student Portal</span>
                   </Link>
                   <button
                     onClick={handleStudentLogout}
-                    className="flex items-center gap-1.5 px-3.5 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-full text-xs font-semibold transition"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition"
                     title="Logout Student"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -174,7 +172,7 @@ const Navbar: React.FC = React.memo(() => {
               ) : (
                 <Link
                   href="/login"
-                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-[#02130e] font-extrabold text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_22px_rgba(16,185,129,0.4)] hover:shadow-[0_0_32px_rgba(16,185,129,0.7)] transition-all duration-300 transform hover:scale-[1.04] active:scale-95"
+                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Portal Login</span>
@@ -186,23 +184,23 @@ const Navbar: React.FC = React.memo(() => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2.5 rounded-full bg-[#101424] hover:bg-[#141a2e] border border-emerald-500/30 text-gray-300 hover:text-emerald-400 transition shadow-md"
+              className="md:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition"
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
                 <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-transform duration-300 ${
-                    isMenuOpen ? 'rotate-45 translate-y-1.5 text-emerald-400' : ''
+                  className={`w-full h-0.5 bg-black rounded-full transition-transform duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
                   }`}
                 />
                 <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-opacity duration-300 ${
+                  className={`w-full h-0.5 bg-black rounded-full transition-opacity duration-300 ${
                     isMenuOpen ? 'opacity-0' : ''
                   }`}
                 />
                 <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-transform duration-300 ${
-                    isMenuOpen ? '-rotate-45 -translate-y-2 text-emerald-400' : ''
+                  className={`w-full h-0.5 bg-black rounded-full transition-transform duration-300 ${
+                    isMenuOpen ? '-rotate-45 -translate-y-2' : ''
                   }`}
                 />
               </div>
@@ -211,8 +209,8 @@ const Navbar: React.FC = React.memo(() => {
 
           {/* Mobile Drawer Dropdown */}
           {isMenuOpen && (
-            <div className="md:hidden mt-2 p-5 rounded-3xl bg-[#0a0d17]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.9)] space-y-3">
-              <div className="space-y-1 font-jakarta">
+            <div className="md:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3">
+              <div className="space-y-1.5 font-jakarta">
                 {navLinks.map((link) => {
                   const active = isActive(link.path);
                   return (
@@ -220,26 +218,26 @@ const Navbar: React.FC = React.memo(() => {
                       key={link.path}
                       href={link.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition ${
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border-2 border-black transition ${
                         active
-                          ? 'text-white bg-emerald-500/20 border border-emerald-500/30'
-                          : 'text-gray-300 hover:text-white hover:bg-white/5'
+                          ? 'text-black bg-[#4ade80] shadow-[3px_3px_0px_#000]'
+                          : 'text-neutral-800 bg-white hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                       }`}
                     >
                       <span>{link.label}</span>
-                      {active && <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />}
+                      {active && <span className="w-2.5 h-2.5 rounded-full bg-black" />}
                     </Link>
                   );
                 })}
               </div>
 
-              <div className="pt-3 border-t border-gray-800">
+              <div className="pt-3 border-t-2 border-black">
                 {isAdminLoggedIn ? (
                   <div className="space-y-2">
                     <Link
                       href="/admin/dashboard"
                       onClick={() => setIsMenuOpen(false)}
-                      className="block w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black text-center font-bold text-sm rounded-2xl shadow-lg shadow-emerald-500/20 font-outfit uppercase tracking-wider"
+                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider"
                     >
                       Admin Dashboard
                     </Link>
@@ -248,7 +246,7 @@ const Navbar: React.FC = React.memo(() => {
                         setIsMenuOpen(false);
                         handleAdminLogout();
                       }}
-                      className="block w-full py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 text-center font-semibold text-sm rounded-2xl"
+                      className="block w-full py-2.5 bg-rose-200 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000]"
                     >
                       Logout Admin
                     </button>
@@ -258,7 +256,7 @@ const Navbar: React.FC = React.memo(() => {
                     <Link
                       href="/dashboard"
                       onClick={() => setIsMenuOpen(false)}
-                      className="block w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black text-center font-bold text-sm rounded-2xl shadow-lg shadow-emerald-500/20 font-outfit uppercase tracking-wider"
+                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider"
                     >
                       Student Dashboard
                     </Link>
@@ -267,7 +265,7 @@ const Navbar: React.FC = React.memo(() => {
                         setIsMenuOpen(false);
                         handleStudentLogout();
                       }}
-                      className="block w-full py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 text-center font-semibold text-sm rounded-2xl"
+                      className="block w-full py-2.5 bg-rose-200 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000]"
                     >
                       Logout Student
                     </button>
@@ -276,7 +274,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-[#02130e] text-center font-extrabold text-sm rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)] font-outfit uppercase tracking-wider"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[4px_4px_0px_#000] font-outfit uppercase tracking-wider"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>Portal Login</span>

@@ -31,6 +31,18 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
+import {
+  gsap,
+  scrollFromLeft,
+  scrollFromRight,
+  scrollFromUp,
+  scrollFromDown,
+  scrollStaggerDirectional,
+  animateFromUp,
+  animateFromDown,
+  animateFromLeft,
+  animateFromRight,
+} from '@/lib/gsap';
 
 
 // Lazily load heavy admission section to optimize initial bundle
@@ -108,6 +120,61 @@ export default function Home() {
     fetchCourses();
   }, [fetchCourses]);
 
+  // GSAP Directional Animations (Left, Right, Up, Down)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const ctx = gsap.context(() => {
+      // 1. Hero: Badge from Up, Title & Subtitle from Down, Buttons from Left & Right
+      if (heroBadgeRef.current) animateFromUp(heroBadgeRef.current, 0.1, 35, 0.65);
+      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.25, 45, 0.7);
+      if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.4, 35, 0.65);
+      if (heroCTARef.current) {
+        const buttons = Array.from(heroCTARef.current.children);
+        if (buttons[0]) animateFromLeft(buttons[0], 0.5, 40, 0.6);
+        if (buttons[1]) animateFromRight(buttons[1], 0.5, 40, 0.6);
+      }
+
+      // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
+      if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 40 });
+      if (featuresGridRef.current) {
+        const cards = featuresGridRef.current.querySelectorAll('.feature-card');
+        scrollStaggerDirectional(cards, 'cross', 0.1, { distance: 45 });
+      }
+
+      // 3. 4-Step Methodology: 01 from Left, 02 from Up, 03 from Down, 04 from Right
+      if (methodologyGridRef.current) {
+        const steps = methodologyGridRef.current.querySelectorAll('.methodology-step');
+        if (steps[0]) scrollFromLeft(steps[0], { distance: 50 });
+        if (steps[1]) scrollFromUp(steps[1], { distance: 45 });
+        if (steps[2]) scrollFromDown(steps[2], { distance: 45 });
+        if (steps[3]) scrollFromRight(steps[3], { distance: 50 });
+      }
+
+      // 4. Featured Courses: Catalog title from Left
+      if (coursesTitleRef.current) scrollFromLeft(coursesTitleRef.current, { distance: 45 });
+
+      // 5. Subject Focus Categories: Stagger alternating from Left & Right
+      if (categoriesGridRef.current) {
+        const catCards = categoriesGridRef.current.querySelectorAll('.cat-card');
+        scrollStaggerDirectional(catCards, 'cross', 0.07, { distance: 35 });
+      }
+
+      // 6. Testimonials: Alternating Left & Right entrance
+      if (testimonialsSectionRef.current) {
+        const cards = testimonialsSectionRef.current.querySelectorAll('.testimonial-card');
+        scrollStaggerDirectional(cards, 'alternating', 0.09, { distance: 45 });
+      }
+
+      // 7. CTA Banner: Reveal from Down
+      if (ctaSectionRef.current) {
+        scrollFromDown(ctaSectionRef.current, { distance: 45 });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
 
 
   // Filtered courses
@@ -120,47 +187,49 @@ export default function Home() {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-transparent text-neutral-900 selection:bg-yellow-300 selection:text-black relative overflow-hidden">
 
       {/* ── HERO SECTION ────────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="relative z-10 text-center max-w-5xl mx-auto space-y-7">
           {/* Badge Pill */}
-          <div ref={heroBadgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md shadow-lg shadow-emerald-500/10">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div ref={heroBadgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-black uppercase tracking-wider shadow-[3px_3px_0px_#000]">
+            <Sparkles className="w-4 h-4 text-emerald-700" />
             <span>Academic Excellence & Competitive Mastery</span>
           </div>
 
           {/* Display Headline */}
-          <WavyHeading
-            text="Empower Your Mind."
-            gradientText="Lead Your Future."
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.06] tracking-tight font-outfit"
-            continuous={true}
-          />
+          <div ref={heroTitleRef}>
+            <WavyHeading
+              text="Empower Your Mind."
+              gradientText="Lead Your Future."
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-neutral-950 leading-[1.08] tracking-tight font-outfit"
+              continuous={true}
+            />
+          </div>
 
           {/* Subtitle */}
           <p
             ref={heroSubRef}
-            className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-jakarta font-normal leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto font-jakarta font-semibold leading-relaxed"
           >
-            Premier offline & digital coaching for <span className="text-white font-semibold">CBSE, ICSE, BSEB, JEE (Main & Advanced)</span>, and <span className="text-white font-semibold">NEET</span>. Experience personalized mentorship with India&apos;s finest educators.
+            Premier coaching for <span className="text-black font-black underline decoration-emerald-400 decoration-4">CBSE, ICSE, BSEB, JEE</span>, and <span className="text-black font-black underline decoration-teal-400 decoration-4">NEET</span>. Experience personalized mentorship with India&apos;s finest educators.
           </p>
 
           {/* Action CTAs */}
-          <div ref={heroCTARef} className="flex flex-wrap items-center justify-center gap-4 pt-4 font-outfit">
+          <div ref={heroCTARef} className="flex flex-wrap items-center justify-center gap-4 pt-3 font-outfit">
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl transition-all duration-300 shadow-xl shadow-emerald-500/25 transform hover:scale-[1.02] text-sm sm:text-base"
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#4ade80] hover:bg-[#86efac] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-sm sm:text-base"
             >
               <span>Explore Programs</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
             </Link>
             <Link
               href="/admission"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#101422]/90 hover:bg-[#151c30] text-white font-semibold rounded-xl border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 text-sm sm:text-base font-jakarta backdrop-blur-xl shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#f0fdf4] hover:bg-[#dcfce7] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-sm sm:text-base font-jakarta"
             >
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-black" />
               <span>Apply for Admission</span>
             </Link>
           </div>
@@ -168,7 +237,7 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE RAVEN (FEATURES MATRIX) ────────────────────────── */}
-      <section ref={featuresSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
+      <section ref={featuresSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Why Choose RAVEN</span>
@@ -176,9 +245,9 @@ export default function Home() {
               text="An Ecosystem Built for"
               gradientText="High Achievers"
               as="h2"
-              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight"
             />
-            <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
+            <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold max-w-2xl mx-auto font-jakarta">
               From foundational concepts to advanced competitive problem-solving, our structured methodology ensures top results.
             </p>
           </div>
@@ -186,20 +255,32 @@ export default function Home() {
           <div ref={featuresGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => {
               const Icon = iconMap[feature.icon] || GraduationCap;
+              const cardColors = [
+                'bg-[#f0fdf4]',
+                'bg-[#dcfce7]',
+                'bg-[#bbf7d0]',
+                'bg-[#ecfdf5]',
+                'bg-[#e6f9ee]',
+                'bg-[#d1fae5]',
+              ];
+              const cardBg = cardColors[index % cardColors.length];
+
               return (
                 <div
                   key={index}
-                  className="feature-card card-green-gradient group p-8 rounded-3xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/40 hover:-translate-y-1.5 backdrop-blur-md"
+                  className={`feature-card ${cardBg} group p-8 rounded-3xl transition-all duration-200 border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 flex flex-col justify-between`}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/25">
-                    <Icon className="w-7 h-7 text-black" />
+                  <div>
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mb-6 shadow-[3px_3px_0px_#000] group-hover:scale-105 transition-transform">
+                      <Icon className="w-7 h-7 text-black" />
+                    </div>
+                    <h3 className="text-xl font-black text-black mb-3 font-outfit">
+                      {feature.title}
+                    </h3>
+                    <p className="text-neutral-800 leading-relaxed font-jakarta font-bold text-sm sm:text-base">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-outfit group-hover:text-emerald-400 transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed font-jakarta text-sm sm:text-base">
-                    {feature.description}
-                  </p>
                 </div>
               );
             })}
@@ -208,7 +289,7 @@ export default function Home() {
       </section>
 
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
-      <section ref={methodologySectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
+      <section ref={methodologySectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Structured Pedagogy</span>
@@ -216,54 +297,54 @@ export default function Home() {
               text="The 4-Step Road to"
               gradientText="Rank 1"
               as="h2"
-              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight"
             />
-            <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
+            <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold max-w-2xl mx-auto font-jakarta">
               A scientifically proven preparation model that leaves zero knowledge gaps.
             </p>
           </div>
 
           <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
-              <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">01</span>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+            <div className="methodology-step bg-[#f0fdf4] p-7 rounded-3xl border-2 border-black shadow-[4px_4px_0px_#000] relative transition-all duration-200 hover:-translate-y-1">
+              <span className="w-10 h-10 bg-black text-emerald-300 rounded-xl flex items-center justify-center font-black font-space text-base border-2 border-black shadow-[2px_2px_0px_#000] absolute top-6 right-6">01</span>
+              <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center text-black mb-5 shadow-[2px_2px_0px_#000]">
                 <BookOpen className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 font-outfit">Concept Mastery</h3>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+              <h3 className="text-lg font-black text-black mb-2 font-outfit">Concept Mastery</h3>
+              <p className="text-neutral-800 text-xs sm:text-sm leading-relaxed font-jakarta font-bold">
                 Deep theoretical breakdown with visualization, live demonstrations, and intuitive understanding.
               </p>
             </div>
 
-            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
-              <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">02</span>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+            <div className="methodology-step bg-[#dcfce7] p-7 rounded-3xl border-2 border-black shadow-[4px_4px_0px_#000] relative transition-all duration-200 hover:-translate-y-1">
+              <span className="w-10 h-10 bg-black text-emerald-300 rounded-xl flex items-center justify-center font-black font-space text-base border-2 border-black shadow-[2px_2px_0px_#000] absolute top-6 right-6">02</span>
+              <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center text-black mb-5 shadow-[2px_2px_0px_#000]">
                 <Zap className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 font-outfit">Targeted Practice</h3>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+              <h3 className="text-lg font-black text-black mb-2 font-outfit">Targeted Practice</h3>
+              <p className="text-neutral-800 text-xs sm:text-sm leading-relaxed font-jakarta font-bold">
                 Graded Daily Practice Papers (DPPs) ranging from foundational boards to high-difficulty competitive questions.
               </p>
             </div>
 
-            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
-              <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">03</span>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+            <div className="methodology-step bg-[#bbf7d0] p-7 rounded-3xl border-2 border-black shadow-[4px_4px_0px_#000] relative transition-all duration-200 hover:-translate-y-1">
+              <span className="w-10 h-10 bg-black text-emerald-300 rounded-xl flex items-center justify-center font-black font-space text-base border-2 border-black shadow-[2px_2px_0px_#000] absolute top-6 right-6">03</span>
+              <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center text-black mb-5 shadow-[2px_2px_0px_#000]">
                 <MessageCircle className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 font-outfit">1-on-1 Doubt Relief</h3>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+              <h3 className="text-lg font-black text-black mb-2 font-outfit">1-on-1 Doubt Relief</h3>
+              <p className="text-neutral-800 text-xs sm:text-sm leading-relaxed font-jakarta font-bold">
                 Dedicated daily doubt clearing clinics ensuring no student leaves the classroom with unresolved questions.
               </p>
             </div>
 
-            <div className="methodology-step card-green-gradient p-7 rounded-3xl backdrop-blur-md relative transition-all duration-300">
-              <span className="text-4xl font-black text-emerald-400/25 font-space absolute top-6 right-6">04</span>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+            <div className="methodology-step bg-[#ecfdf5] p-7 rounded-3xl border-2 border-black shadow-[4px_4px_0px_#000] relative transition-all duration-200 hover:-translate-y-1">
+              <span className="w-10 h-10 bg-black text-emerald-300 rounded-xl flex items-center justify-center font-black font-space text-base border-2 border-black shadow-[2px_2px_0px_#000] absolute top-6 right-6">04</span>
+              <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center text-black mb-5 shadow-[2px_2px_0px_#000]">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 font-outfit">Real-Time Testing</h3>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+              <h3 className="text-lg font-black text-black mb-2 font-outfit">Real-Time Testing</h3>
+              <p className="text-neutral-800 text-xs sm:text-sm leading-relaxed font-jakarta font-bold">
                 National level mock tests with instant graphical AI analysis, speed benchmarking, and rank prediction.
               </p>
             </div>
@@ -272,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ── FEATURED COURSES SHOWCASE ────────────────────────── */}
-      <section ref={coursesSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
+      <section ref={coursesSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
@@ -281,9 +362,9 @@ export default function Home() {
                 text="Featured Programs &"
                 gradientText="Batches"
                 as="h2"
-                className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight !text-left"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight !text-left"
               />
-              <p className="mt-3 text-base text-gray-400 max-w-xl font-jakarta">
+              <p className="mt-3 text-base text-neutral-600 font-bold max-w-xl font-jakarta">
                 Choose the specialized batch aligned with your academic year and competitive target.
               </p>
             </div>
@@ -291,40 +372,40 @@ export default function Home() {
             <div className="flex items-center gap-2 flex-wrap font-jakarta text-xs sm:text-sm">
               <button
                 onClick={() => setActiveTab('all')}
-                className={`px-4 py-2 rounded-xl transition ${
+                className={`px-4 py-2.5 rounded-xl border-2 border-black font-black transition-all ${
                   activeTab === 'all'
-                    ? 'bg-emerald-500 text-black font-bold shadow-lg shadow-emerald-500/20'
-                    : 'bg-[#101422] text-gray-400 hover:text-white border border-white/5'
+                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                    : 'bg-[#f0fdf4] text-neutral-800 hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                 }`}
               >
                 All Courses
               </button>
               <button
                 onClick={() => setActiveTab('foundation')}
-                className={`px-4 py-2 rounded-xl transition ${
+                className={`px-4 py-2.5 rounded-xl border-2 border-black font-black transition-all ${
                   activeTab === 'foundation'
-                    ? 'bg-emerald-500 text-black font-bold shadow-lg shadow-emerald-500/20'
-                    : 'bg-[#101422] text-gray-400 hover:text-white border border-white/5'
+                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                    : 'bg-[#f0fdf4] text-neutral-800 hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                 }`}
               >
                 Class 8 - 10
               </button>
               <button
                 onClick={() => setActiveTab('science')}
-                className={`px-4 py-2 rounded-xl transition ${
+                className={`px-4 py-2.5 rounded-xl border-2 border-black font-black transition-all ${
                   activeTab === 'science'
-                    ? 'bg-emerald-500 text-black font-bold shadow-lg shadow-emerald-500/20'
-                    : 'bg-[#101422] text-gray-400 hover:text-white border border-white/5'
+                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                    : 'bg-[#f0fdf4] text-neutral-800 hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                 }`}
               >
                 Class 11 - 12
               </button>
               <button
                 onClick={() => setActiveTab('competitive')}
-                className={`px-4 py-2 rounded-xl transition ${
+                className={`px-4 py-2.5 rounded-xl border-2 border-black font-black transition-all ${
                   activeTab === 'competitive'
-                    ? 'bg-emerald-500 text-black font-bold shadow-lg shadow-emerald-500/20'
-                    : 'bg-[#101422] text-gray-400 hover:text-white border border-white/5'
+                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                    : 'bg-[#f0fdf4] text-neutral-800 hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                 }`}
               >
                 JEE & NEET
@@ -336,11 +417,11 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {loading ? (
               <div className="col-span-full flex justify-center items-center py-16">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500" />
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-emerald-500" />
               </div>
             ) : filteredCourses.length === 0 ? (
-              <div className="col-span-full text-center py-16">
-                <p className="text-gray-400 font-jakarta">No courses currently found in this category.</p>
+              <div className="col-span-full text-center py-16 bg-[#f0fdf4] border-2 border-black rounded-3xl p-8 shadow-[4px_4px_0px_#000]">
+                <p className="text-neutral-700 font-bold font-jakarta">No courses currently found in this category.</p>
               </div>
             ) : (
               filteredCourses.map((course, index) => (
@@ -352,31 +433,41 @@ export default function Home() {
       </section>
 
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
-      <section ref={categoriesSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
+      <section ref={categoriesSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="pill-badge mb-4">Curriculum Disciplines</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight">
               Browse by Subject Focus
             </h2>
           </div>
 
           <div ref={categoriesGridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category) => {
+            {categories.map((category, cIdx) => {
               const CategoryIcon = categoryIconMap[category.icon] || Microscope;
+              const catBgs = [
+                'bg-[#f0fdf4]',
+                'bg-[#dcfce7]',
+                'bg-[#bbf7d0]',
+                'bg-[#ecfdf5]',
+                'bg-[#e6f9ee]',
+                'bg-[#d1fae5]',
+              ];
+              const cardBg = catBgs[cIdx % catBgs.length];
+
               return (
                 <div key={category.name} className="cat-card">
                   <Link
                     href={`/courses?category=${category.name.toLowerCase()}`}
-                    className="block p-6 rounded-2xl card-green-gradient group transition-all duration-300 text-center hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/20"
+                    className={`block p-6 rounded-2xl ${cardBg} border-2 border-black shadow-[4px_4px_0px_#000] group transition-all duration-200 text-center hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000]`}
                   >
-                    <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-black/15 transition-colors">
-                      <CategoryIcon className="w-6 h-6 text-emerald-400 group-hover:text-black transition-colors" />
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center">
+                      <CategoryIcon className="w-6 h-6 text-black" />
                     </div>
-                    <h3 className="font-bold text-white group-hover:text-black transition-colors font-outfit text-sm sm:text-base">
+                    <h3 className="font-black text-black font-outfit text-sm sm:text-base">
                       {category.name}
                     </h3>
-                    <p className="text-xs text-gray-400 group-hover:text-black/70 transition-colors mt-1 font-jakarta">
+                    <p className="text-xs text-emerald-900 font-bold mt-1 font-jakarta">
                       {category.count} Modules
                     </p>
                   </Link>
@@ -391,7 +482,7 @@ export default function Home() {
       <AdmissionSection />
 
       {/* ── TESTIMONIALS SECTION ────────────────────────── */}
-      <section ref={testimonialsSectionRef} className="py-24 bg-transparent border-t border-white/5 relative z-10 content-auto">
+      <section ref={testimonialsSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="pill-badge mb-4">Hall of Fame</span>
@@ -399,9 +490,9 @@ export default function Home() {
               text="Trusted by Students &"
               gradientText="Parents"
               as="h2"
-              className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight"
             />
-            <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto font-jakarta">
+            <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold max-w-2xl mx-auto font-jakarta">
               Real stories from students who unlocked their dream ranks with RAVEN Tutorials.
             </p>
           </div>
@@ -410,25 +501,27 @@ export default function Home() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="testimonial-card card-green-gradient rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1.5 shadow-xl backdrop-blur-xl"
+                className="testimonial-card bg-[#f0fdf4] hover:bg-[#e6f9ee] rounded-3xl p-7 transition-all duration-200 hover:-translate-y-1.5 border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[7px_7px_0px_#000] text-black flex flex-col justify-between"
               >
-                <div className="flex items-center gap-1 mb-4 text-amber-400">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
+                <div>
+                  <div className="flex items-center gap-1 mb-4 text-amber-500">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-neutral-800 text-sm leading-relaxed mb-6 font-jakarta font-medium">
+                    &ldquo;{testimonial.content}&rdquo;
+                  </p>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 font-jakarta">
-                  &ldquo;{testimonial.content}&rdquo;
-                </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-800/60">
+                <div className="flex items-center gap-3 pt-4 border-t-2 border-black/10">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-11 h-11 rounded-full object-cover ring-2 ring-emerald-500/30"
+                    className="w-11 h-11 rounded-full object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
                   />
                   <div>
-                    <p className="font-bold text-white font-outfit text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-emerald-400 font-space">{testimonial.role}</p>
+                    <p className="font-black text-black font-outfit text-sm">{testimonial.name}</p>
+                    <p className="text-xs text-emerald-800 font-black font-space">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
@@ -438,10 +531,9 @@ export default function Home() {
       </section>
 
       {/* ── CONVERSION CTA BANNER ────────────────────────── */}
-      <section ref={ctaSectionRef} className="py-28 relative overflow-hidden border-t border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090b12] to-emerald-950/30" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs uppercase tracking-wider font-space font-semibold">
+      <section ref={ctaSectionRef} className="py-24 relative overflow-hidden border-t-3 border-black px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-5xl mx-auto bg-[#dcfce7] border-3 border-black rounded-3xl p-8 sm:p-14 text-center space-y-6 shadow-[8px_8px_0px_#000000]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-emerald-300 text-xs uppercase tracking-wider font-space font-black border border-black shadow-[2px_2px_0px_#000]">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>Admissions for 2026-27 Academic Session Now Open</span>
           </div>
@@ -450,24 +542,24 @@ export default function Home() {
             text="Ready to Accelerate Your"
             gradientText="Learning?"
             as="h2"
-            className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-black text-black font-outfit tracking-tight"
           />
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta leading-relaxed">
+          <p className="text-base sm:text-lg text-neutral-800 max-w-2xl mx-auto font-jakarta font-bold leading-relaxed">
             Secure your seat in our premier batch. Experience expert classroom mentorship, personalized tests, and continuous rank improvement.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 font-outfit">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2 font-outfit">
             <Link
               href="/admission"
-              className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl transition-all duration-300 shadow-xl shadow-emerald-500/25 text-base transform hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-base active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
               <span>Apply Online Now</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 text-black" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-[#101422]/90 hover:bg-[#151c30] text-white font-semibold rounded-xl border border-white/10 hover:border-emerald-400 transition-all text-base font-jakarta backdrop-blur-xl"
+              className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-[#f0fdf4] hover:bg-[#bbf7d0] text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-base font-jakarta active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
               <span>Speak to Academic Counselor</span>
             </Link>

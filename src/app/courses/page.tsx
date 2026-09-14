@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { 
   Search, 
   Filter, 
@@ -19,6 +19,8 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { categories, dummyCourses } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
+import { animateFromUp, animateFromDown, scrollFromDown } from '@/lib/gsap';
+import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
@@ -33,6 +35,23 @@ export default function CoursesPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
   const [showFreeOnly, setShowFreeOnly] = useState(false);
+
+  // Directional GSAP refs
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const subRef = useRef<HTMLParagraphElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
+    animateFromDown(subRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
+    animateFromUp(searchRef.current, { distance: 20, duration: 0.7, delay: 0.3 });
+    if (filtersRef.current) {
+      scrollFromDown(filtersRef.current, { distance: 25 });
+    }
+  }, []);
 
   // Fetch courses from API
   const fetchCourses = useCallback(async () => {
@@ -84,39 +103,41 @@ export default function CoursesPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-yellow-300 selection:text-black relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto space-y-5 flex flex-col items-center justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
+            <Sparkles className="w-4 h-4 text-emerald-700" />
             <span>Curated Academic Curricula</span>
           </div>
 
-          <WavyHeading
-            text="Explore Our"
-            gradientText="Courses"
-            className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
-          />
+          <div ref={titleRef} className="w-full">
+            <WavyHeading
+              text="Explore Our"
+              gradientText="Courses"
+              className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+            />
+          </div>
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
+          <p ref={subRef} className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium text-center">
             Comprehensive foundation programs, board preparations, and competitive JEE & NEET batches taught by master educators.
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto pt-4 font-jakarta">
+          <div ref={searchRef} className="max-w-2xl mx-auto pt-4 font-jakarta w-full">
             <div className="relative">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by subject (Physics, Math), standard (Class 10, 12), or topic..."
-                className="w-full pl-14 pr-6 py-4 rounded-2xl card-green-gradient text-white placeholder-gray-500 shadow-2xl focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition backdrop-blur-xl"
+                className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#f0fdf4] border-3 border-black text-black placeholder-neutral-500 shadow-[4px_4px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-black hover:text-neutral-600"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -126,17 +147,17 @@ export default function CoursesPage() {
         </section>
 
         {/* Filters & Course Catalog */}
-        <section className="py-8 relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section ref={filtersRef} className="py-8 relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           {/* Controls Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             {/* Category Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
               <button
                 onClick={() => setSelectedCategory('All')}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`btn-cartoon px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border-2 border-black ${
                   selectedCategory === 'All'
-                    ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                    : 'bg-[#0e1320] text-gray-300 hover:text-white border border-white/5'
+                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                    : 'bg-[#f0fdf4] text-black hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                 }`}
               >
                 All Courses
@@ -145,10 +166,10 @@ export default function CoursesPage() {
                 <button
                   key={cat.name}
                   onClick={() => setSelectedCategory(cat.name)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                  className={`btn-cartoon px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border-2 border-black ${
                     selectedCategory.toLowerCase() === cat.name.toLowerCase()
-                      ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                      : 'bg-[#0e1320] text-gray-300 hover:text-white border border-white/5'
+                      ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
+                      : 'bg-[#f0fdf4] text-black hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
                   }`}
                 >
                   {cat.name}
@@ -158,26 +179,20 @@ export default function CoursesPage() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <select
+              <div className="w-48">
+                <CartoonDropdown
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none px-4 py-2.5 pr-10 bg-[#0e1320] rounded-xl border border-white/10 text-xs sm:text-sm font-medium text-gray-300 focus:outline-none focus:border-emerald-400 font-jakarta"
-                >
-                  {sortOptions.map((option) => (
-                    <option key={option} value={option} className="bg-[#0e1320] text-white">
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  onChange={(e) => setSortBy(typeof e === 'string' ? e : e.target.value)}
+                  options={sortOptions}
+                  placeholder="Sort by"
+                />
               </div>
 
-              <div className="hidden sm:flex items-center bg-[#0e1320] rounded-xl border border-white/10 p-1">
+              <div className="hidden sm:flex items-center bg-[#f0fdf4] rounded-xl border-2 border-black p-1 shadow-[3px_3px_0px_#000]">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'grid' ? 'bg-emerald-500/20 text-emerald-400' : 'text-gray-500'
+                    viewMode === 'grid' ? 'bg-[#4ade80] text-black font-black' : 'text-neutral-500'
                   }`}
                   aria-label="Grid view"
                 >
@@ -186,7 +201,7 @@ export default function CoursesPage() {
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'list' ? 'bg-emerald-500/20 text-emerald-400' : 'text-gray-500'
+                    viewMode === 'list' ? 'bg-[#4ade80] text-black font-black' : 'text-neutral-500'
                   }`}
                   aria-label="List view"
                 >
@@ -198,10 +213,10 @@ export default function CoursesPage() {
 
           {/* Results Summary */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-xs sm:text-sm text-gray-400 font-jakarta">
-              Showing <span className="font-bold text-white">{sortedCourses.length}</span> programs
+            <p className="text-xs sm:text-sm text-neutral-700 font-jakarta font-medium">
+              Showing <span className="font-black text-black">{sortedCourses.length}</span> programs
               {selectedCategory !== 'All' && (
-                <span> in <span className="text-emerald-400 font-semibold">{selectedCategory}</span></span>
+                <span> in <span className="text-black bg-[#dcfce7] px-2 py-0.5 rounded-lg border border-black font-bold shadow-[1px_1px_0px_#000]">{selectedCategory}</span></span>
               )}
             </p>
           </div>
@@ -209,7 +224,7 @@ export default function CoursesPage() {
           {/* Courses Grid */}
           {loading ? (
             <div className="flex justify-center items-center py-24">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500" />
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-emerald-500" />
             </div>
           ) : sortedCourses.length > 0 ? (
             <div className={`grid gap-6 sm:gap-8 ${
@@ -222,12 +237,12 @@ export default function CoursesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-24 rounded-3xl bg-[#0e1320]/60 border border-white/5 max-w-xl mx-auto p-8">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 text-emerald-400">
+            <div className="text-center py-16 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000] max-w-xl mx-auto p-8">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto mb-4 text-black shadow-[3px_3px_0px_#000]">
                 <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white font-outfit mb-2">No matching courses found</h3>
-              <p className="text-gray-400 text-sm mb-6 font-jakarta">
+              <h3 className="text-xl font-black text-black font-outfit mb-2">No matching courses found</h3>
+              <p className="text-neutral-700 text-sm mb-6 font-jakarta font-medium">
                 Try adjusting your search keywords or switching category filters.
               </p>
               <button
@@ -236,7 +251,7 @@ export default function CoursesPage() {
                   setSelectedCategory('All');
                   setSelectedLevel('All Levels');
                 }}
-                className="px-6 py-2.5 bg-emerald-500 text-black font-bold rounded-xl text-sm font-outfit hover:bg-emerald-400 transition"
+                className="btn-cartoon px-6 py-2.5 bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-emerald-300 transition"
               >
                 Reset Filters
               </button>

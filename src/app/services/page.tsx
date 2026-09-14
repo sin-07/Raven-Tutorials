@@ -19,17 +19,49 @@ import {
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import { 
+  animateFromUp, 
+  animateFromDown, 
+  scrollFromUp, 
+  scrollFromDown, 
+  scrollStaggerDirectional 
+} from '@/lib/gsap';
 
 const Services: React.FC = () => {
   const router = useRouter();
 
   // GSAP refs
   const containerRef = useRef<HTMLDivElement>(null);
-  const pageTitleRef = useRef<HTMLHeadingElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const servicesGridRef = useRef<HTMLDivElement>(null);
   const detailsSectionRef = useRef<HTMLElement>(null);
+  const detailsHeaderRef = useRef<HTMLDivElement>(null);
   const classCardsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
+    animateFromDown(heroSubRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
+
+    if (servicesGridRef.current) {
+      scrollStaggerDirectional(servicesGridRef.current.children, 'cross', 0.08, { distance: 35 });
+    }
+
+    if (detailsHeaderRef.current) {
+      scrollFromUp(detailsHeaderRef.current, { distance: 30 });
+    }
+
+    if (classCardsRef.current) {
+      scrollStaggerDirectional(classCardsRef.current.children, 'alternating', 0.15, { distance: 40 });
+    }
+
+    if (ctaRef.current) {
+      scrollFromDown(ctaRef.current, { distance: 35 });
+    }
+  }, []);
 
   const services = [
     {
@@ -74,26 +106,50 @@ const Services: React.FC = () => {
     }
   ];
 
+  const serviceColors = [
+    'bg-[#f0fdf4]',
+    'bg-[#dcfce7]',
+    'bg-[#bbf7d0]',
+    'bg-[#ecfdf5]',
+    'bg-[#e6f9ee]',
+    'bg-[#d1fae5]',
+    'bg-[#f0fdf4]',
+    'bg-[#dcfce7]'
+  ];
+
+  const iconColors = [
+    'bg-emerald-300',
+    'bg-emerald-200',
+    'bg-[#86efac]',
+    'bg-emerald-300',
+    'bg-emerald-200',
+    'bg-[#86efac]',
+    'bg-emerald-300',
+    'bg-emerald-200'
+  ];
+
   return (
     <>
-      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+      <div ref={containerRef} className="min-h-screen bg-transparent text-neutral-900 selection:bg-emerald-300 selection:text-black relative overflow-hidden">
         <div className="relative z-10">
           {/* Header Section */}
           <section className="pt-36 pb-14 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
-              <Sparkles className="w-4 h-4 text-emerald-400" />
+            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
+              <Sparkles className="w-4 h-4 text-emerald-700" />
               <span>Comprehensive Academic Offerings</span>
             </div>
 
-            <WavyHeading
-              text="Academic"
-              gradientText="Services & Programs"
-              className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
-            />
+            <div ref={titleRef} className="w-full">
+              <WavyHeading
+                text="Academic"
+                gradientText="Services & Programs"
+                className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+              />
+            </div>
 
             <p
               ref={heroSubRef}
-              className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta leading-relaxed text-center"
+              className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium leading-relaxed text-center"
             >
               Tailored classroom pedagogy, intensive mock testing series, and individualized doubt mentorship built to guarantee rank improvements.
             </p>
@@ -105,16 +161,16 @@ const Services: React.FC = () => {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="service-card card-green-gradient p-8 rounded-3xl transition-all duration-300 shadow-xl backdrop-blur-xl hover:-translate-y-1.5 flex flex-col justify-between"
+                  className={`service-card ${serviceColors[index % serviceColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] p-7 sm:p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[7px_7px_0px_#000] flex flex-col justify-between`}
                 >
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-md shadow-emerald-500/10">
+                    <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-6 shadow-[3px_3px_0px_#000]`}>
                       <service.icon className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3 font-outfit">
+                    <h3 className="text-xl font-black text-black mb-3 font-outfit">
                       {service.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed font-jakarta">
+                    <p className="text-neutral-800 text-sm leading-relaxed font-jakarta font-medium">
                       {service.description}
                     </p>
                   </div>
@@ -124,17 +180,17 @@ const Services: React.FC = () => {
           </section>
 
           {/* Class, Batch & Subject Details */}
-          <section ref={detailsSectionRef} className="py-24 bg-[#090b12] border-t border-white/5 px-4 sm:px-6 lg:px-8">
+          <section ref={detailsSectionRef} className="py-24 bg-transparent border-t-3 border-black px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-14">
+              <div ref={detailsHeaderRef} className="text-center mb-14">
                 <span className="pill-badge mb-4">Batch Framework</span>
                 <WavyHeading
                   text="Class & Subject"
                   gradientText="Structure"
                   as="h2"
-                  className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-black text-black font-outfit tracking-tight"
                 />
-                <p className="mt-3 text-base text-gray-400 max-w-2xl mx-auto font-jakarta">
+                <p className="mt-3 text-base text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium">
                   Explore curriculum tracks across foundational and senior secondary standards.
                 </p>
               </div>
@@ -142,38 +198,38 @@ const Services: React.FC = () => {
               {/* Class Cards Grid */}
               <div ref={classCardsRef} className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {/* Class XII */}
-                <div className="class-card p-8 rounded-3xl bg-[#0e1320]/85 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/40 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-black font-black text-2xl font-outfit shadow-lg shadow-emerald-500/20">
+                      <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
                         12
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-white font-outfit">Class XII</h3>
-                        <p className="text-xs text-emerald-400 font-space uppercase">Senior Secondary & Boards</p>
+                        <h3 className="text-2xl font-black text-black font-outfit">Class XII</h3>
+                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Senior Secondary & Boards</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-black" />
                         Annual Batch
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Physics (Theory + Numericals)</li>
                         <li>• Chemistry (Organic, Inorganic, Physical)</li>
                         <li>• Biology (Zoology & Botany)</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-black" />
                         Crash Course
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Rapid Board PYQ Solving</li>
                         <li>• High-Weightage Concept Blitz</li>
                         <li>• Proctored Sample Paper Series</li>
@@ -183,38 +239,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class XI */}
-                <div className="class-card p-8 rounded-3xl bg-[#0e1320]/85 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/40 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-black font-black text-2xl font-outfit shadow-lg shadow-emerald-500/20">
+                      <div className="w-14 h-14 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
                         11
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-white font-outfit">Class XI</h3>
-                        <p className="text-xs text-emerald-400 font-space uppercase">Foundation for Competitive Exams</p>
+                        <h3 className="text-2xl font-black text-black font-outfit">Class XI</h3>
+                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Foundation for Competitive Exams</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-black" />
                         Annual Batch
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Physics (Mechanics & Waves)</li>
                         <li>• Chemistry (Fundamental Principles)</li>
                         <li>• Biology (Cell & Diversity)</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-black" />
                         Competitive Edge
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• JEE / NEET Problem Drills</li>
                         <li>• Advanced DPPs & Numerical Sets</li>
                         <li>• Continuous Speed Benchmarking</li>
@@ -224,38 +280,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class X */}
-                <div className="class-card p-8 rounded-3xl bg-[#0e1320]/85 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/40 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-black font-black text-2xl font-outfit shadow-lg shadow-emerald-500/20">
+                      <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
                         10
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-white font-outfit">Class X</h3>
-                        <p className="text-xs text-emerald-400 font-space uppercase">Board Target Batch</p>
+                        <h3 className="text-2xl font-black text-black font-outfit">Class X</h3>
+                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Board Target Batch</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-black" />
                         Comprehensive Batch
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Mathematics & Higher Geometry</li>
                         <li>• Science (Physics, Chem, Bio)</li>
                         <li>• Social Science & English</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-black" />
                         Pre-Board Crash Batch
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Full Mock Paper Simulations</li>
                         <li>• Answer Writing Optimization</li>
                         <li>• 100% Board Syllabus Review</li>
@@ -265,38 +321,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class IX */}
-                <div className="class-card p-8 rounded-3xl bg-[#0e1320]/85 border border-emerald-500/20 backdrop-blur-xl shadow-xl hover:border-emerald-500/40 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-black font-black text-2xl font-outfit shadow-lg shadow-emerald-500/20">
+                      <div className="w-14 h-14 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
                         09
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-white font-outfit">Class IX</h3>
-                        <p className="text-xs text-emerald-400 font-space uppercase">Foundation Building</p>
+                        <h3 className="text-2xl font-black text-black font-outfit">Class IX</h3>
+                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Foundation Building</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-semibold">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-black" />
                         Annual Program
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• Mathematics & Logical Reasoning</li>
                         <li>• General Science Foundations</li>
                         <li>• English & Social Studies</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-[#141a2c] border border-white/5">
-                      <p className="font-bold text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-emerald-400" />
+                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
+                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-black" />
                         Exam Revision
                       </p>
-                      <ul className="space-y-1.5 text-gray-300 text-xs">
+                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
                         <li>• School Exam Question Banks</li>
                         <li>• Weekly Timed Tests</li>
                         <li>• Conceptual Doubt Resolution</li>
@@ -309,20 +365,21 @@ const Services: React.FC = () => {
           </section>
 
           {/* CTA Section */}
-          <section className="py-24 border-t border-white/5 px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="max-w-4xl mx-auto space-y-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit">
+          <section ref={ctaRef} className="py-20 border-t-3 border-black px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div className="max-w-4xl mx-auto p-10 sm:p-14 bg-[#dcfce7] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] space-y-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black font-outfit">
                 Ready to Join a Batch?
               </h2>
-              <p className="text-gray-300 max-w-xl mx-auto font-jakarta text-base">
+              <p className="text-neutral-900 max-w-xl mx-auto font-jakarta text-base font-semibold">
                 Secure your admission today and start your journey toward academic distinction.
               </p>
               <div className="flex justify-center gap-4 pt-2">
                 <Link
                   href="/admission"
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl shadow-xl shadow-emerald-500/25 transition-all transform hover:scale-[1.02] font-outfit"
+                  className="btn-cartoon px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-2xl shadow-[4px_4px_0px_#000] border-2 border-black transition-all font-outfit inline-flex items-center gap-2 text-lg"
                 >
-                  Apply for Admission
+                  <span>Apply for Admission</span>
+                  <ArrowRight className="w-5 h-5 text-black" />
                 </Link>
               </div>
             </div>

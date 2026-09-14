@@ -135,12 +135,16 @@ export async function POST(request: NextRequest) {
     // Cleanup temp admission
     await TempAdmission.deleteOne({ _id: tempAdmission._id });
 
-    // Send welcome email with credentials asynchronously
+    // Send welcome email with credentials & cartoon bill asynchronously
     sendWelcomeEmail({
       to: student.email,
       studentName: student.studentName,
       registrationId,
       password,
+      amount: student.paymentAmount,
+      paymentId: student.paymentId,
+      standard: student.standard,
+      date: student.admissionDate,
     }).catch(console.error);
 
     return NextResponse.json({
@@ -149,9 +153,15 @@ export async function POST(request: NextRequest) {
       data: {
         registrationId,
         studentName: student.studentName,
+        fatherName: student.fatherName,
         email: student.email,
+        phoneNumber: student.phoneNumber,
         password,
         standard: student.standard,
+        amount: student.paymentAmount,
+        paymentId: student.paymentId,
+        orderId: student.orderId,
+        admissionDate: student.admissionDate,
       },
     });
   } catch (error: any) {

@@ -1,18 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Mail, 
   Phone, 
   MapPin, 
-  Send,
-  MessageSquare,
-  Clock,
-  CheckCircle2,
-  Sparkles
+  Send, 
+  MessageSquare, 
+  Clock, 
+  CheckCircle2, 
+  Sparkles 
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import CartoonDropdown from '@/components/ui/CartoonDropdown';
+import { 
+  animateFromUp, 
+  animateFromDown, 
+  scrollFromLeft, 
+  scrollFromRight, 
+  scrollStaggerDirectional 
+} from '@/lib/gsap';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,6 +32,32 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // GSAP directional refs
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const infoCardsRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
+    animateFromDown(subtitleRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
+
+    if (infoCardsRef.current) {
+      scrollStaggerDirectional(infoCardsRef.current.children, 'cross', 0.1, { distance: 35 });
+    }
+
+    if (formRef.current) {
+      scrollFromLeft(formRef.current, { distance: 40 });
+    }
+
+    if (mapRef.current) {
+      scrollFromRight(mapRef.current, { distance: 40 });
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,41 +98,46 @@ export default function ContactPage() {
     },
   ];
 
+  const cardColors = ['bg-[#f0fdf4]', 'bg-[#dcfce7]', 'bg-[#bbf7d0]', 'bg-[#ecfdf5]'];
+  const iconColors = ['bg-emerald-300', 'bg-[#86efac]', 'bg-emerald-200', 'bg-emerald-300'];
+
   return (
     <>
-      <div className="min-h-screen bg-transparent text-white selection:bg-emerald-500 selection:text-black relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-emerald-300 selection:text-black relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs sm:text-sm font-space font-semibold uppercase tracking-wider backdrop-blur-md mx-auto">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
+            <Sparkles className="w-4 h-4 text-emerald-700" />
             <span>Connect with our Patna Faculty</span>
           </div>
 
-          <WavyHeading
-            text="Get in"
-            gradientText="Touch"
-            className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
-          />
+          <div ref={titleRef} className="w-full">
+            <WavyHeading
+              text="Get in"
+              gradientText="Touch"
+              className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+            />
+          </div>
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-jakarta text-center">
+          <p ref={subtitleRef} className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium text-center">
             Have questions regarding batch schedules, course fees, or scholarship tests? Send us a message or visit our campus.
           </p>
         </section>
 
         {/* Contact Information Cards */}
         <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div ref={infoCardsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="card-green-gradient p-6 rounded-3xl shadow-xl backdrop-blur-xl text-center flex flex-col items-center justify-center transition-all duration-300"
+                className={`p-6 rounded-3xl ${cardColors[index % cardColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 text-center flex flex-col items-center justify-center transition-all duration-300`}
               >
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 shadow-md shadow-emerald-500/10">
+                <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-4 shadow-[3px_3px_0px_#000]`}>
                   <info.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 font-outfit">{info.title}</h3>
+                <h3 className="text-lg font-black text-black mb-2 font-outfit">{info.title}</h3>
                 {info.details.map((detail, i) => (
-                  <p key={i} className="text-gray-400 text-xs sm:text-sm font-jakarta">{detail}</p>
+                  <p key={i} className="text-neutral-800 text-xs sm:text-sm font-jakarta font-semibold">{detail}</p>
                 ))}
               </div>
             ))}
@@ -107,29 +146,29 @@ export default function ContactPage() {
           {/* Form & Map Section */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-20">
             {/* Contact Form */}
-            <div className="card-green-gradient p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-xl">
+            <div ref={formRef} className="p-8 sm:p-10 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[8px_8px_0px_#000]">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-black shadow-lg shadow-emerald-500/20">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black shadow-[3px_3px_0px_#000]">
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white font-outfit">Send an Inquiry</h2>
-                  <p className="text-gray-400 text-xs sm:text-sm font-jakarta">We typically reply within 24 hours</p>
+                  <h2 className="text-2xl font-black text-black font-outfit">Send an Inquiry</h2>
+                  <p className="text-neutral-700 text-xs sm:text-sm font-jakarta font-medium">We typically reply within 24 hours</p>
                 </div>
               </div>
 
               {isSubmitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-emerald-400 shadow-xl shadow-emerald-500/20">
-                    <CheckCircle2 className="w-8 h-8" />
+                  <div className="w-16 h-16 bg-[#bbf7d0] border-2 border-black rounded-full flex items-center justify-center mx-auto text-black shadow-[3px_3px_0px_#000]">
+                    <CheckCircle2 className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white font-outfit">Inquiry Received!</h3>
-                  <p className="text-gray-300 text-sm font-jakarta max-w-sm mx-auto">
+                  <h3 className="text-2xl font-black text-black font-outfit">Inquiry Received!</h3>
+                  <p className="text-neutral-800 text-sm font-jakarta font-medium max-w-sm mx-auto">
                     Thank you for reaching out. Our academic counselors will get in touch with you shortly.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="px-6 py-2.5 bg-emerald-500 text-black font-bold text-sm font-outfit rounded-xl hover:bg-emerald-400 transition"
+                    className="btn-cartoon px-6 py-2.5 bg-emerald-400 text-black border-2 border-black font-black text-sm font-outfit rounded-xl shadow-[3px_3px_0px_#000] hover:bg-emerald-300 transition"
                   >
                     Send Another Message
                   </button>
@@ -138,7 +177,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-5 font-jakarta">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold uppercase text-gray-300 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
                         Student / Parent Name
                       </label>
                       <input
@@ -147,12 +186,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Aniket Singh"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold uppercase text-gray-300 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
                         Email Address
                       </label>
                       <input
@@ -161,7 +200,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="example@gmail.com"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
@@ -169,7 +208,7 @@ export default function ContactPage() {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold uppercase text-gray-300 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
                         Phone Number
                       </label>
                       <input
@@ -178,33 +217,32 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 8618281816"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold uppercase text-gray-300 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
                         Interested Track
                       </label>
-                      <select
+                      <CartoonDropdown
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white focus:border-emerald-400 focus:outline-none text-sm"
-                        required
-                      >
-                        <option value="">Select target class/stream</option>
-                        <option value="class-9-10">Class 9 & 10 Foundation</option>
-                        <option value="class-11-12">Class 11 & 12 Boards</option>
-                        <option value="jee-neet">JEE / NEET Prep</option>
-                        <option value="crash-course">Exam Crash Course</option>
-                        <option value="other">Other Inquiry</option>
-                      </select>
+                        placeholder="Select target class/stream"
+                        options={[
+                          { label: 'Class 9 & 10 Foundation', value: 'class-9-10' },
+                          { label: 'Class 11 & 12 Boards', value: 'class-11-12' },
+                          { label: 'JEE / NEET Prep', value: 'jee-neet' },
+                          { label: 'Exam Crash Course', value: 'crash-course' },
+                          { label: 'Other Inquiry', value: 'other' },
+                        ]}
+                      />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold uppercase text-gray-300 mb-2 font-space">
+                    <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
                       Message / Question
                     </label>
                     <textarea
@@ -213,7 +251,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Share details about current academic standard or specific questions..."
                       rows={4}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm resize-none"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm resize-none shadow-[2px_2px_0px_#000]"
                       required
                     />
                   </div>
@@ -221,14 +259,14 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-bold rounded-xl text-sm font-outfit shadow-xl shadow-emerald-500/25 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2"
+                    className="btn-cartoon w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit shadow-[4px_4px_0px_#000] border-2 border-black transition-all flex items-center justify-center gap-2 active:translate-x-1 active:translate-y-1"
                   >
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <>
                         <span>Submit Inquiry</span>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4 h-4 text-black" />
                       </>
                     )}
                   </button>
@@ -237,7 +275,7 @@ export default function ContactPage() {
             </div>
 
             {/* Patna Location Map */}
-            <div className="rounded-3xl overflow-hidden border border-emerald-500/20 bg-[#0e1320]/80 shadow-2xl backdrop-blur-xl relative min-h-[450px]">
+            <div ref={mapRef} className="rounded-3xl overflow-hidden border-3 border-black bg-white shadow-[8px_8px_0px_#000] relative min-h-[450px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14392.544773820253!2d85.1843236!3d25.6004944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed58c148fa7949%3A0x6b4f74d6c4eef888!2sBajrangpuri%2C%20Patna%2C%20Bihar%20800007!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%"
