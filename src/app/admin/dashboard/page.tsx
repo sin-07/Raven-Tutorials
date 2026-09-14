@@ -5,7 +5,10 @@ import { useRouter } from 'next/navigation';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
-import { Users, FileText, UserPlus, Calendar, TrendingUp, CheckCircle, GraduationCap, Clock, XCircle, Eye } from 'lucide-react';
+import { 
+  Users, FileText, UserPlus, Calendar, TrendingUp, 
+  CheckCircle, GraduationCap, Clock, XCircle, Sparkles, ArrowRight 
+} from 'lucide-react';
 import { Loader } from '@/components';
 import useSessionTimeout from '@/hooks/useSessionTimeout';
 
@@ -79,263 +82,263 @@ const AdminDashboard: React.FC = () => {
   if (loading) {
     return (
       <AdminLayout>
-        <Loader />
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+            <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-3"></div>
+            <p className="text-black font-black font-outfit text-lg">Loading Admin Overview...</p>
+          </div>
+        </div>
       </AdminLayout>
     );
   }
 
   return (
     <AdminLayout>
-      <div className="space-y-4 sm:space-y-5 md:space-y-6 px-0 sm:px-0">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-[#00E5A8] to-[#00B386] rounded-xl shadow-2xl p-4 sm:p-6 md:p-8 text-black relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-black opacity-5 rounded-full -mr-32 -mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-black opacity-5 rounded-full -ml-24 -mb-24"></div>
-          <div className="relative z-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">Dashboard Overview</h2>
-            <p className="text-xs sm:text-sm text-black/70">Welcome back! Here&apos;s what&apos;s happening today.</p>
-          </div>
-        </div>
-
-        {/* Stats Cards with animations */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-          <div className="bg-[#111111] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-4 sm:p-4 md:p-5 lg:p-6 border border-gray-800 hover:border-[#00E5A8]/30 animate-fade-in group" style={{ animationDelay: '0.1s' }}>
-            <div className="flex items-start sm:items-center justify-between gap-2 sm:gap-3">
-              <div className="flex-1 min-w-0">
-                <p className="text-[#00E5A8] text-xs sm:text-xs md:text-sm font-bold uppercase tracking-wide">Total Students</p>
-                <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mt-1 sm:mt-2">{stats?.stats?.totalStudents || 0}</p>
-                <p className="text-xs sm:text-xs md:text-sm text-gray-400 mt-0.5 sm:mt-1 truncate font-medium">Enrolled students</p>
+      <div className="space-y-6 max-w-7xl mx-auto">
+        
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-800" />
+                <span>Executive Command Center</span>
               </div>
-              <div className="bg-[#00E5A8] p-2 sm:p-2.5 md:p-3 lg:p-4 rounded-xl shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:bg-[#00E5A8]/90 transition-all">
-                <Users className="text-black" size={20} />
-              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight">
+                Academic Dashboard Overview
+              </h1>
+              <p className="text-neutral-900 font-bold font-jakarta text-xs sm:text-sm mt-1">
+                Real-time student admissions, teacher applications, and assessment stats.
+              </p>
             </div>
-          </div>
 
-          <div className="bg-[#111111] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-4 sm:p-4 md:p-5 lg:p-6 border border-gray-800 hover:border-[#00E5A8]/30 animate-fade-in group" style={{ animationDelay: '0.2s' }}>
-            <div className="flex items-start sm:items-center justify-between gap-2 sm:gap-3">
-              <div className="flex-1 min-w-0">
-                <p className="text-[#00E5A8] text-xs sm:text-xs md:text-sm font-bold uppercase tracking-wide">Total Tests</p>
-                <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mt-1 sm:mt-2">{stats?.stats?.totalTests || 0}</p>
-                <p className="text-xs sm:text-xs md:text-sm text-gray-400 mt-0.5 sm:mt-1 truncate font-medium">Created assessments</p>
-              </div>
-              <div className="bg-[#00E5A8] p-2 sm:p-2.5 md:p-3 lg:p-4 rounded-xl shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:bg-[#00E5A8]/90 transition-all">
-                <FileText className="text-black" size={20} />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-[#111111] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-4 sm:p-4 md:p-5 lg:p-6 border border-gray-800 hover:border-[#00E5A8]/30 sm:col-span-2 lg:col-span-1 animate-fade-in group" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-start sm:items-center justify-between gap-2 sm:gap-3">
-              <div className="flex-1 min-w-0">
-                <p className="text-[#00E5A8] text-xs sm:text-xs md:text-sm font-bold uppercase tracking-wide">Recent Admissions</p>
-                <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mt-1 sm:mt-2">{stats?.stats?.recentAdmissions || 0}</p>
-                <p className="text-xs sm:text-xs md:text-sm text-gray-400 mt-0.5 sm:mt-1 truncate font-medium">Last 7 days</p>
-              </div>
-              <div className="bg-[#00E5A8] p-2 sm:p-2.5 md:p-3 lg:p-4 rounded-xl shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:bg-[#00E5A8]/90 transition-all">
-                <UserPlus className="text-black" size={20} />
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="px-3.5 py-1.5 rounded-xl bg-white border-2 border-black font-mono font-black text-xs shadow-[2px_2px_0px_#000]">
+                LIVE SYSTEM
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Teacher Applications Stats */}
-        <div className="bg-[#111111] rounded-xl shadow-xl border border-gray-800 overflow-hidden animate-slide-up">
-          <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 border-b border-gray-800 bg-[#080808]">
+        {/* 3 Core Stats Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 cartoon-stagger">
+          {/* Card 1: Total Students */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="bg-[#00E5A8] p-1.5 sm:p-2 md:p-2.5 rounded-xl shadow-lg flex-shrink-0">
-                  <GraduationCap className="text-black" size={18} />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white truncate">Teacher Applications</h3>
-                  <p className="text-xs sm:text-xs md:text-sm text-gray-400 hidden sm:block font-medium">Recruitment overview</p>
-                </div>
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Total Enrolled</p>
+                <p className="text-3xl sm:text-4xl font-black text-black font-mono mt-1">
+                  {stats?.stats?.totalStudents || 0}
+                </p>
+                <p className="text-xs font-bold text-neutral-600 mt-1">Verified students</p>
               </div>
-              <button
-                onClick={() => router.push('/admin/teacher-applications')}
-                className="text-xs sm:text-sm bg-[#00E5A8]/10 hover:bg-[#00E5A8]/20 text-[#00E5A8] font-semibold px-3 py-1.5 rounded-lg transition-colors"
-              >
-                View All
-              </button>
+              <div className="p-3.5 bg-emerald-400 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <Users className="text-black" size={24} />
+              </div>
             </div>
           </div>
-          <div className="p-3 sm:p-4 md:p-5 lg:p-6">
-            {/* Teacher Stats Mini Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-5 sm:mb-6">
-              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <GraduationCap className="text-[#00E5A8]" size={16} />
-                  <span className="text-xs text-gray-400 font-medium">Total</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-extrabold text-white">{stats?.stats?.totalTeacherApplications || 0}</p>
+
+          {/* Card 2: Total Tests */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Total Tests</p>
+                <p className="text-3xl sm:text-4xl font-black text-black font-mono mt-1">
+                  {stats?.stats?.totalTests || 0}
+                </p>
+                <p className="text-xs font-bold text-neutral-600 mt-1">Active assessments</p>
               </div>
-              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock className="text-yellow-400" size={16} />
-                  <span className="text-xs text-gray-400 font-medium">Pending</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-extrabold text-yellow-400">{stats?.stats?.pendingTeacherApplications || 0}</p>
+              <div className="p-3.5 bg-amber-200 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <FileText className="text-black" size={24} />
               </div>
-              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="text-green-400" size={16} />
-                  <span className="text-xs text-gray-400 font-medium">Approved</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-extrabold text-green-400">{stats?.stats?.approvedTeacherApplications || 0}</p>
+            </div>
+          </div>
+
+          {/* Card 3: Recent Admissions */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] sm:col-span-2 lg:col-span-1 transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Recent Admissions</p>
+                <p className="text-3xl sm:text-4xl font-black text-black font-mono mt-1">
+                  {stats?.stats?.recentAdmissions || 0}
+                </p>
+                <p className="text-xs font-bold text-neutral-600 mt-1">Enrolled in last 7 days</p>
               </div>
-              <div className="bg-[#080808] rounded-lg p-3 sm:p-4 border border-gray-800">
-                <div className="flex items-center gap-2 mb-2">
-                  <XCircle className="text-red-400" size={16} />
-                  <span className="text-xs text-gray-400 font-medium">Rejected</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-extrabold text-red-400">{stats?.stats?.rejectedTeacherApplications || 0}</p>
+              <div className="p-3.5 bg-sky-200 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <UserPlus className="text-black" size={24} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Teacher Applications Panel */}
+        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b-2 border-black flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                <GraduationCap className="text-black" size={20} />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-black font-outfit">Teacher Recruitment</h3>
+                <p className="text-xs text-neutral-800 font-bold font-jakarta">Faculty application pipeline</p>
+              </div>
+            </div>
+            <button
+              onClick={() => router.push('/admin/teacher-applications')}
+              className="btn-cartoon text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1"
+            >
+              <span>View All</span>
+              <ArrowRight size={14} className="text-black" />
+            </button>
+          </div>
+
+          <div className="p-5 sm:p-6 bg-[#f0fdf4]">
+            {/* 4 Mini Status Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div className="bg-white rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Total Applied</span>
+                <p className="text-xl sm:text-2xl font-black text-black font-mono mt-0.5">
+                  {stats?.stats?.totalTeacherApplications || 0}
+                </p>
+              </div>
+              <div className="bg-amber-50 rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="text-[10px] font-black uppercase text-amber-800 font-space block">Pending Review</span>
+                <p className="text-xl sm:text-2xl font-black text-amber-950 font-mono mt-0.5">
+                  {stats?.stats?.pendingTeacherApplications || 0}
+                </p>
+              </div>
+              <div className="bg-[#dcfce7] rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="text-[10px] font-black uppercase text-emerald-800 font-space block">Approved</span>
+                <p className="text-xl sm:text-2xl font-black text-emerald-950 font-mono mt-0.5">
+                  {stats?.stats?.approvedTeacherApplications || 0}
+                </p>
+              </div>
+              <div className="bg-rose-50 rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="text-[10px] font-black uppercase text-rose-800 font-space block">Rejected</span>
+                <p className="text-xl sm:text-2xl font-black text-rose-950 font-mono mt-0.5">
+                  {stats?.stats?.rejectedTeacherApplications || 0}
+                </p>
               </div>
             </div>
 
-            {/* Recent Teacher Applications Table */}
+            {/* Applications Table */}
             {stats?.recentTeacherApplications && stats.recentTeacherApplications.length > 0 ? (
-              <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
-                <div className="inline-block min-w-full align-middle px-3 sm:px-4 md:px-0">
-                  <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-3">Recent Applications</p>
-                  <table className="min-w-full divide-y divide-gray-800">
-                    <thead className="bg-[#080808] hidden sm:table-header-group">
-                      <tr>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Name</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Contact</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden md:table-cell">Subjects</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Status</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden lg:table-cell">Applied</th>
+              <div className="overflow-x-auto rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] bg-white">
+                <table className="w-full text-xs font-jakarta">
+                  <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                    <tr>
+                      <th className="px-3.5 py-2.5 text-left">Applicant Name</th>
+                      <th className="px-3.5 py-2.5 text-left">Contact Info</th>
+                      <th className="px-3.5 py-2.5 text-left hidden sm:table-cell">Subjects</th>
+                      <th className="px-3.5 py-2.5 text-center">Status</th>
+                      <th className="px-3.5 py-2.5 text-right hidden md:table-cell">Applied Date</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-neutral-200">
+                    {stats.recentTeacherApplications.map((app) => (
+                      <tr key={app._id} className="hover:bg-[#f0fdf4]">
+                        <td className="px-3.5 py-3 font-bold text-black">{app.name}</td>
+                        <td className="px-3.5 py-3 text-neutral-600">
+                          <div>{app.email}</div>
+                          <div className="text-[11px] text-neutral-500 font-mono">{app.phone}</div>
+                        </td>
+                        <td className="px-3.5 py-3 hidden sm:table-cell">
+                          <div className="flex flex-wrap gap-1">
+                            {app.subjects.map((s, i) => (
+                              <span key={i} className="px-1.5 py-0.5 bg-[#dcfce7] border border-black rounded text-[10px] font-bold">
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="px-3.5 py-3 text-center">
+                          <span className={`inline-block px-2.5 py-0.5 rounded-md border border-black text-[10px] font-black uppercase ${
+                            app.status === 'approved'
+                              ? 'bg-[#86efac] text-black'
+                              : app.status === 'rejected'
+                              ? 'bg-rose-200 text-black'
+                              : 'bg-amber-200 text-black'
+                          }`}>
+                            {app.status}
+                          </span>
+                        </td>
+                        <td className="px-3.5 py-3 text-right text-neutral-600 hidden md:table-cell font-mono">
+                          {new Date(app.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="bg-[#111111] divide-y divide-gray-800">
-                      {stats.recentTeacherApplications.map((app) => (
-                        <tr key={app._id} className="hover:bg-[#080808]/50 transition-colors block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
-                            <span className="sm:hidden text-[#00E5A8] font-medium text-xs">Name: </span>
-                            {app.name}
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs">Contact: </span>
-                            <span className="block text-xs text-gray-300">{app.email}</span>
-                            <span className="block text-xs text-gray-500">{app.phone}</span>
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell md:hidden lg:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs">Subjects: </span>
-                            <div className="flex flex-wrap gap-1">
-                              {app.subjects.slice(0, 3).map((sub, i) => (
-                                <span key={i} className="inline-block px-1.5 py-0.5 bg-[#00E5A8]/10 text-[#00E5A8] text-xs rounded font-medium">
-                                  {sub}
-                                </span>
-                              ))}
-                              {app.subjects.length > 3 && (
-                                <span className="text-xs text-gray-500">+{app.subjects.length - 3}</span>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 block sm:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs mr-1">Status: </span>
-                            <span className={`inline-block px-2 sm:px-2 md:px-3 py-1 rounded-full text-xs font-bold shadow-md ${
-                              app.status === 'approved'
-                                ? 'bg-green-500/20 text-green-400'
-                                : app.status === 'rejected'
-                                ? 'bg-red-500/20 text-red-400'
-                                : 'bg-yellow-500/20 text-yellow-400'
-                            }`}>
-                              {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
-                            </span>
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell lg:hidden xl:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs">Applied: </span>
-                            {new Date(app.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             ) : (
-              <div className="text-center py-8 sm:py-10 md:py-12">
-                <div className="bg-[#080808] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <GraduationCap size={36} className="text-[#00E5A8]" />
-                </div>
-                <p className="text-sm sm:text-base text-white font-semibold">No teacher applications yet</p>
-                <p className="text-xs sm:text-sm text-[#00E5A8] mt-1 font-medium">Applications will appear here when teachers apply</p>
+              <div className="text-center py-8 bg-white rounded-xl border border-black">
+                <p className="text-neutral-500 font-bold font-jakarta text-xs">No pending teacher applications.</p>
               </div>
             )}
           </div>
         </div>
 
-        {/* Upcoming Tests with animation */}
-        <div className="bg-[#111111] rounded-xl shadow-xl border border-gray-800 overflow-hidden animate-slide-up">
-          <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 border-b border-gray-800 bg-[#080808]">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="bg-[#00E5A8] p-1.5 sm:p-2 md:p-2.5 rounded-xl shadow-lg flex-shrink-0">
-                <Calendar className="text-black" size={18} />
+        {/* Upcoming Assessments Panel */}
+        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b-2 border-black flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                <Calendar className="text-black" size={20} />
               </div>
-              <div className="min-w-0">
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white truncate">Upcoming Tests</h3>
-                <p className="text-xs sm:text-xs md:text-sm text-gray-400 hidden sm:block font-medium">Scheduled assessments</p>
+              <div>
+                <h3 className="text-lg font-black text-black font-outfit">Upcoming Assessments</h3>
+                <p className="text-xs text-neutral-800 font-bold font-jakarta">Scheduled student tests</p>
               </div>
             </div>
+            <button
+              onClick={() => router.push('/admin/tests')}
+              className="btn-cartoon text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1"
+            >
+              <span>Manage Tests</span>
+              <ArrowRight size={14} className="text-black" />
+            </button>
           </div>
-          <div className="p-3 sm:p-4 md:p-5 lg:p-6">
+
+          <div className="p-5 sm:p-6 bg-[#f0fdf4]">
             {stats?.upcomingTests && stats.upcomingTests.length > 0 ? (
-              <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
-                <div className="inline-block min-w-full align-middle px-3 sm:px-4 md:px-0">
-                  <table className="min-w-full divide-y divide-gray-800">
-                    <thead className="bg-[#080808] hidden sm:table-header-group">
-                      <tr>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Test Title</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Class</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden md:table-cell">Subject</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider">Date</th>
-                        <th className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left text-xs font-bold text-[#00E5A8] uppercase tracking-wider hidden lg:table-cell">Status</th>
+              <div className="overflow-x-auto rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] bg-white">
+                <table className="w-full text-xs font-jakarta">
+                  <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                    <tr>
+                      <th className="px-3.5 py-2.5 text-left">Test Title</th>
+                      <th className="px-3.5 py-2.5 text-left">Class</th>
+                      <th className="px-3.5 py-2.5 text-left hidden sm:table-cell">Subject</th>
+                      <th className="px-3.5 py-2.5 text-left">Scheduled Date</th>
+                      <th className="px-3.5 py-2.5 text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-neutral-200">
+                    {stats.upcomingTests.map((t) => (
+                      <tr key={t._id} className="hover:bg-[#f0fdf4]">
+                        <td className="px-3.5 py-3 font-bold text-black">{t.title}</td>
+                        <td className="px-3.5 py-3 font-black text-emerald-900">{t.class}</td>
+                        <td className="px-3.5 py-3 text-neutral-600 hidden sm:table-cell">{t.subject}</td>
+                        <td className="px-3.5 py-3 text-neutral-600 font-mono">
+                          {new Date(t.testDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </td>
+                        <td className="px-3.5 py-3 text-center">
+                          <span className="px-2.5 py-0.5 rounded-md border border-black text-[10px] font-black uppercase bg-emerald-300 text-black">
+                            {t.status}
+                          </span>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="bg-[#111111] divide-y divide-gray-800">
-                      {stats.upcomingTests.map((test) => (
-                        <tr key={test._id} className="hover:bg-[#111111]/50 transition-colors block sm:table-row border-b border-gray-800 sm:border-0 pb-3 sm:pb-0 mb-3 sm:mb-0 space-y-1 sm:space-y-0">
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm font-semibold text-white block sm:table-cell">
-                            <span className="sm:hidden text-[#00E5A8] font-medium text-xs">Test: </span>
-                            {test.title}
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-[#00E5A8] font-medium block sm:table-cell">
-                            <span className="sm:hidden text-gray-400 font-normal text-xs">Class: </span>
-                            {test.class}
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell md:hidden lg:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs">Subject: </span>
-                            {test.subject}
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 text-xs sm:text-sm text-gray-400 block sm:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs">Date: </span>
-                            {new Date(test.testDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                          </td>
-                          <td className="px-2 sm:px-3 md:px-4 py-2 md:py-3 block sm:table-cell lg:hidden xl:table-cell">
-                            <span className="sm:hidden text-gray-500 font-normal text-xs mr-1">Status: </span>
-                            <span className="inline-block px-2 sm:px-2 md:px-3 py-1 rounded-full text-xs font-bold bg-[#00E5A8] hover:bg-[#00E5A8]/90 text-black shadow-md">
-                              {test.status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             ) : (
-              <div className="text-center py-8 sm:py-10 md:py-12">
-                <div className="bg-[#111111] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Calendar size={36} className="text-[#00E5A8]" />
-                </div>
-                <p className="text-sm sm:text-base text-white font-semibold">No upcoming tests scheduled</p>
-                <p className="text-xs sm:text-sm text-[#00E5A8] mt-1 font-medium">Create a new test to get started</p>
+              <div className="text-center py-8 bg-white rounded-xl border border-black">
+                <p className="text-neutral-500 font-bold font-jakarta text-xs">No upcoming assessments currently scheduled.</p>
               </div>
             )}
           </div>
         </div>
+
       </div>
     </AdminLayout>
   );
@@ -349,4 +352,3 @@ const ProtectedAdminDashboard = () => (
 );
 
 export default ProtectedAdminDashboard;
-

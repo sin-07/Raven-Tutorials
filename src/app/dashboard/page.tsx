@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  LogOut, BookOpen, BarChart3, Calendar, FileText,
+  BookOpen, BarChart3, Calendar, FileText,
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
-  Download
+  Download, Printer, Sparkles, LogOut, ArrowRight, ShieldCheck
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute } from '@/components';
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
 
       setStudent(verifyData.student);
       
-      // Fetch all data (cookies sent automatically with credentials: 'include')
+      // Fetch all data
       await Promise.all([
         fetchAttendance(),
         fetchTestResults(),
@@ -119,9 +119,7 @@ const Dashboard: React.FC = () => {
       const res = await fetch('/api/student/attendance', {
         credentials: 'include'
       });
-
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
       const data = await res.json();
       setAttendance(data.data || []);
     } catch (err) {
@@ -134,9 +132,7 @@ const Dashboard: React.FC = () => {
       const res = await fetch('/api/student/tests/results', {
         credentials: 'include'
       });
-
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
       const data = await res.json();
       setTestResults(data.data || []);
     } catch (err) {
@@ -149,15 +145,9 @@ const Dashboard: React.FC = () => {
       const res = await fetch('/api/student/tests', {
         credentials: 'include'
       });
-
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
       const data = await res.json();
-      
-      // API already filters to show only PUBLISHED tests within date range
-      // Just filter out already attempted tests and limit to 5
-      const available = (data.data || []).filter((t: UpcomingTest) => !t.hasAttempted);
-      setUpcomingTests(available.slice(0, 5));
+      setUpcomingTests(data.data || []);
     } catch (err) {
       console.error('Upcoming tests error:', err);
     }
@@ -168,9 +158,7 @@ const Dashboard: React.FC = () => {
       const res = await fetch('/api/student/study-materials', {
         credentials: 'include'
       });
-
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
       const data = await res.json();
       setStudyMaterials(data.data || []);
     } catch (err) {
@@ -178,61 +166,64 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const handleDownloadReceipt = async () => {
+  const handleDownloadReceipt = () => {
+    if (!student) return;
     setDownloading(true);
 
     try {
-      const res = await fetch('/api/auth/download-receipt', {
-        credentials: 'include'
-      });
+      const content = `
+════════════════════════════════════════════════════════
+        RAVEN TUTORIALS - STUDENT ENROLLMENT RECEIPT
+════════════════════════════════════════════════════════
 
-      if (!res.ok) throw new Error('Failed to download');
+✓ Official Student Record
 
-      const blob = await res.blob();
+STUDENT DETAILS
+───────────────
+Student Name     : ${student.studentName}
+Registration ID  : ${student.registrationId}
+Enrolled Standard: ${student.standard}
+Email (User ID)  : ${student.email}
+Contact Phone    : ${student.phoneNumber}
+City / Address   : ${student.city}, ${student.address}
+
+PORTAL ACCESS
+─────────────
+Portal Login URL : ${window.location.origin}/login
+Status           : ACTIVE & VERIFIED ✓
+
+════════════════════════════════════════════════════════
+        Raven Tutorials - Academic Excellence
+════════════════════════════════════════════════════════
+      `;
+
+      const blob = new Blob([content], { type: 'text/plain' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `receipt-${Date.now()}.pdf`;
+      a.download = `Raven_Tutorials_Receipt_${student.registrationId}.txt`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
 
-      toast.success('Receipt downloaded!');
+      toast.success('Receipt downloaded successfully!');
     } catch (err) {
-      toast.error('Failed to download receipt');
+      toast.error('Failed to generate receipt');
     } finally {
       setDownloading(false);
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
-      window.location.href = '/login';
-    } catch (err) {
-      console.error('Logout error:', err);
-      window.location.href = '/login';
-    }
-  };
-
   if (loading) {
     return (
-      <>
-        <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
-          <div className="text-center">
-            <div className="relative">
-              <div className="animate-spin rounded-full h-20 w-20 border-4 border-[#005544] border-t-[#00E5A8] mx-auto mb-6"></div>
-              <div className="absolute inset-0 rounded-full h-20 w-20 border-4 border-transparent border-t-[#00E5A8] animate-ping mx-auto opacity-20"></div>
-            </div>
-            <p className="text-white text-lg font-medium">Loading your dashboard...</p>
-            <p className="text-gray-500 text-sm mt-2">Please wait a moment</p>
-          </div>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+          <div className="animate-spin w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-4"></div>
+          <p className="text-black font-black text-xl font-outfit">Loading Student Portal...</p>
+          <p className="text-neutral-600 text-sm font-medium mt-1">Preparing your dashboard</p>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -245,367 +236,428 @@ const Dashboard: React.FC = () => {
   const hasLowAttendance = attendance.some(s => s.percentage < 75);
 
   return (
-    <>
-      <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden pt-16">
-        {/* Green Radial Glow Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
+    <div className="min-h-screen bg-transparent relative overflow-hidden pt-24 pb-16 selection:bg-emerald-300 selection:text-black">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        
+        {/* Cartoon Welcome Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 sm:p-8 text-black mb-8 shadow-[8px_8px_0px_#000] relative overflow-hidden cartoon-pop">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-3 shadow-[1.5px_1.5px_0px_#000]">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-800" />
+                <span>Student Academic Portal</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-black font-outfit tracking-tight">
+                Welcome, {student.studentName}! 👋
+              </h1>
+              <p className="text-neutral-900 font-bold font-jakarta text-sm sm:text-base mt-1">
+                Class {student.standard} • Registration ID: <span className="font-mono font-black">{student.registrationId}</span>
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="px-3.5 py-1.5 rounded-xl bg-[#dcfce7] border-2 border-black font-black text-xs font-space shadow-[2px_2px_0px_#000]">
+                ENROLLED 2026-27
+              </span>
+              <button
+                onClick={handleDownloadReceipt}
+                disabled={downloading}
+                className="btn-cartoon px-4 py-2 bg-white hover:bg-[#dcfce7] text-black font-bold font-outfit text-xs sm:text-sm rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] flex items-center gap-1.5 transition active:translate-x-0.5 active:translate-y-0.5"
+              >
+                <Download className="w-3.5 h-3.5 text-black" />
+                <span>{downloading ? 'Downloading...' : 'Receipt'}</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Welcome Section */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-[#00E5A8] via-[#00C090] to-[#00B386] rounded-2xl p-8 text-black mb-8 shadow-xl border border-[#00E5A8]/20">
-            <div className="absolute inset-0 bg-grid-white/5"></div>
-            <div className="relative">
-              <h2 className="text-3xl font-bold mb-2 drop-shadow-sm font-cormorant">Welcome, {student.studentName}!</h2>
-              <p className="text-black/80 font-medium font-bricolage">Class {student.standard} | ID: {student.registrationId}</p>
-            </div>
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-[#00E5A8]/10 rounded-full blur-2xl"></div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1 font-bricolage">Overall Attendance</p>
-                  <p className="text-3xl font-bold text-[#00E5A8] font-cormorant">{overallAttendance}%</p>
-                </div>
-                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
-                  <Calendar className="w-8 h-8 text-[#00E5A8]" />
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1 font-bricolage">Tests Completed</p>
-                  <p className="text-3xl font-bold text-[#00E5A8] font-cormorant">{testResults.length}</p>
-                </div>
-                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
-                  <Award className="w-8 h-8 text-[#00E5A8]" />
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1 font-bricolage">Upcoming Tests</p>
-                  <p className="text-3xl font-bold text-[#00E5A8] font-cormorant">{upcomingTests.length}</p>
-                </div>
-                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
-                  <Clock className="w-8 h-8 text-[#00E5A8]" />
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#111111] rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-800 hover:border-[#00E5A8]/30 group">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1 font-bricolage">Study Materials</p>
-                  <p className="text-3xl font-bold text-white font-cormorant">{studyMaterials.length}</p>
-                </div>
-                <div className="p-3 bg-[#00E5A8]/10 rounded-xl group-hover:scale-110 transition-transform">
-                  <BookOpen className="w-8 h-8 text-white" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Alerts */}
-          {hasLowAttendance && (
-            <div className="bg-[#111111] border-l-4 border-orange-500 rounded-xl p-5 mb-8 flex gap-4 shadow-md">
-              <div className="p-2 bg-orange-500/10 rounded-lg h-fit">
-                <AlertCircle className="w-6 h-6 text-orange-500" />
-              </div>
+        {/* Quick Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8 cartoon-stagger">
+          {/* Card 1: Attendance */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+            <div className="flex items-center justify-between">
               <div>
-                <p className="font-bold text-orange-400 text-lg mb-1">⚠️ Attendance Warning</p>
-                <p className="text-gray-400">Your attendance in some subjects is below 75%. Please improve your attendance to meet requirements.</p>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Overall Attendance</p>
+                <p className="text-3xl font-black text-black font-mono mt-1">{overallAttendance}%</p>
+              </div>
+              <div className="p-3 bg-[#86efac] rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <Calendar className="w-6 h-6 text-black" />
+              </div>
+            </div>
+            <div className="mt-3 w-full bg-white rounded-full h-3 border border-black overflow-hidden">
+              <div
+                className="h-full bg-emerald-400 transition-all duration-500"
+                style={{ width: `${overallAttendance}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Card 2: Tests Completed */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Tests Evaluated</p>
+                <p className="text-3xl font-black text-black font-mono mt-1">{testResults.length}</p>
+              </div>
+              <div className="p-3 bg-amber-200 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <Award className="w-6 h-6 text-black" />
+              </div>
+            </div>
+            <p className="text-xs font-bold text-neutral-600 mt-3">Completed mock tests</p>
+          </div>
+
+          {/* Card 3: Upcoming Tests */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Available Tests</p>
+                <p className="text-3xl font-black text-black font-mono mt-1">{upcomingTests.length}</p>
+              </div>
+              <div className="p-3 bg-sky-200 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <Clock className="w-6 h-6 text-black" />
+              </div>
+            </div>
+            <p className="text-xs font-bold text-neutral-600 mt-3">Scheduled assessments</p>
+          </div>
+
+          {/* Card 4: Study Materials */}
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Study Notes</p>
+                <p className="text-3xl font-black text-black font-mono mt-1">{studyMaterials.length}</p>
+              </div>
+              <div className="p-3 bg-[#bbf7d0] rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <BookOpen className="w-6 h-6 text-black" />
+              </div>
+            </div>
+            <p className="text-xs font-bold text-neutral-600 mt-3">Class study resources</p>
+          </div>
+        </div>
+
+        {/* Low Attendance Warning */}
+        {hasLowAttendance && (
+          <div className="bg-[#fef2f2] border-3 border-black rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[4px_4px_0px_#000] cartoon-pop">
+            <div className="p-2.5 bg-rose-200 rounded-xl border-2 border-black flex-shrink-0 shadow-[1.5px_1.5px_0px_#000]">
+              <AlertCircle className="w-6 h-6 text-rose-800" />
+            </div>
+            <div>
+              <p className="font-black text-black text-base font-outfit">Attendance Advisory</p>
+              <p className="text-xs sm:text-sm text-neutral-700 font-semibold font-jakarta mt-0.5">
+                Your attendance in some subjects is currently below 75%. Please ensure regular attendance to maintain test eligibility.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Cartoon Tab Navigation */}
+        <div className="bg-[#f0fdf4] rounded-2xl p-1.5 border-3 border-black shadow-[4px_4px_0px_#000] mb-8 overflow-x-auto flex gap-2">
+          {['overview', 'attendance', 'marks', 'tests', 'materials', 'profile'].map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`btn-cartoon flex-shrink-0 px-4 sm:px-6 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all ${
+                activeTab === tab
+                  ? 'bg-emerald-400 text-black border-2 border-black shadow-[2px_2px_0px_#000]'
+                  : 'text-neutral-700 hover:text-black hover:bg-[#dcfce7] border border-transparent font-bold'
+              }`}
+            >
+              {tab.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content Panels */}
+        <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 border-3 border-black">
+          
+          {/* 1. Overview Tab */}
+          {activeTab === 'overview' && (
+            <div className="space-y-6">
+              <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-[3px_3px_0px_#000]">
+                <h3 className="font-black text-black mb-3 flex items-center gap-2 text-lg font-outfit">
+                  <CheckCircle className="w-5 h-5 text-emerald-600" />
+                  Quick Academic Shortcuts
+                </h3>
+                <p className="text-sm text-neutral-700 font-medium font-jakarta mb-5">
+                  Welcome to your student control center. Access your official admission fee invoice, test schedule, and syllabus notes.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={handleDownloadReceipt}
+                    disabled={downloading}
+                    className="btn-cartoon px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                  >
+                    <Download className="w-4 h-4 text-black" />
+                    <span>Download Admission Receipt (.txt)</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('tests')}
+                    className="btn-cartoon px-5 py-3 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                  >
+                    <Clock className="w-4 h-4 text-black" />
+                    <span>View Scheduled Tests ({upcomingTests.length})</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Student Details Mini Card */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Registered Class</span>
+                  <span className="text-base font-black text-black font-outfit">{student.standard}</span>
+                </div>
+                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Roll / Reg Number</span>
+                  <span className="text-base font-mono font-black text-black">{student.registrationId}</span>
+                </div>
+                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Admission Status</span>
+                  <span className="text-base font-black text-emerald-800 flex items-center gap-1 font-outfit">
+                    <ShieldCheck className="w-4 h-4" /> Active & Verified
+                  </span>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Tab Navigation */}
-          <div className="bg-[#111111] rounded-xl shadow-md mb-8 overflow-hidden border border-gray-800">
-            <div className="flex flex-wrap border-b border-gray-800">
-              {['overview', 'attendance', 'marks', 'tests', 'materials', 'profile'].map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`flex-1 sm:flex-none px-4 sm:px-6 py-4 font-semibold transition-all text-sm sm:text-base relative ${
-                    activeTab === tab
-                      ? 'text-[#00E5A8] bg-[#00E5A8]/10'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
-                  }`}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                  {activeTab === tab && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00E5A8] to-[#00C090] rounded-t-full"></div>
-                  )}
-                </button>
-              ))}
+          {/* 2. Attendance Tab */}
+          {activeTab === 'attendance' && (
+            <div>
+              <h3 className="text-xl font-black text-black font-outfit mb-4">Subject-wise Attendance</h3>
+              {attendance.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {attendance.map(subject => (
+                    <div key={subject.subject} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000]">
+                      <div className="flex justify-between items-center mb-3">
+                        <h4 className="font-black text-black font-outfit text-base">{subject.subject}</h4>
+                        <span className={`px-2.5 py-1 rounded-lg border border-black font-mono font-black text-sm ${
+                          subject.percentage >= 75 ? 'bg-[#dcfce7] text-emerald-950' : 'bg-rose-100 text-rose-950'
+                        }`}>
+                          {subject.percentage}%
+                        </span>
+                      </div>
+                      <div className="mb-2">
+                        <div className="flex justify-between text-xs font-bold font-jakarta mb-1.5 text-neutral-600">
+                          <span>Classes Attended</span>
+                          <span className="font-mono text-black">{subject.present} / {subject.total}</span>
+                        </div>
+                        <div className="w-full bg-neutral-100 rounded-full h-3 border border-black overflow-hidden">
+                          <div
+                            className={`h-full ${subject.percentage >= 75 ? 'bg-emerald-400' : 'bg-rose-400'}`}
+                            style={{ width: `${subject.percentage}%` }}
+                          />
+                        </div>
+                      </div>
+                      <p className="text-xs font-bold mt-2 text-neutral-600">
+                        {subject.percentage >= 75 ? '✓ On track (Above 75%)' : '⚠ Action required (Below 75%)'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                  <p className="text-neutral-500 font-bold font-jakarta">No subject attendance recorded yet.</p>
+                </div>
+              )}
             </div>
-          </div>
+          )}
 
-          {/* Tab Content */}
-          <div className="bg-[#111111] rounded-xl shadow-md p-8 border border-gray-800">
-            {/* Overview Tab */}
-            {activeTab === 'overview' && (
-              <div className="space-y-6">
-                <div className="bg-[#080808] border border-[#00E5A8]/20 rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-white mb-4 flex items-center gap-2 text-lg font-cormorant">
-                    <CheckCircle className="w-6 h-6 text-[#00E5A8]" />
-                    Quick Actions
-                  </h3>
-                  <button
-                    onClick={handleDownloadReceipt}
-                    disabled={downloading}
-                    className="px-6 py-3 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 disabled:bg-gray-600 disabled:text-gray-400 transition-all shadow-md hover:shadow-lg flex items-center gap-2 font-medium"
-                  >
-                    <Download className="w-5 h-5" />
-                    {downloading ? 'Downloading...' : 'Download Receipt'}
-                  </button>
+          {/* 3. Marks Tab */}
+          {activeTab === 'marks' && (
+            <div>
+              <h3 className="text-xl font-black text-black font-outfit mb-4">Completed Test Results</h3>
+              {testResults.length > 0 ? (
+                <div className="overflow-x-auto rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] bg-white">
+                  <table className="w-full text-xs sm:text-sm font-jakarta">
+                    <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                      <tr>
+                        <th className="px-4 py-3 text-left">Test Name</th>
+                        <th className="px-4 py-3 text-left">Subject</th>
+                        <th className="px-4 py-3 text-center">Score</th>
+                        <th className="px-4 py-3 text-center">Percentage</th>
+                        <th className="px-4 py-3 text-center">Result</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-200">
+                      {testResults.map((test, idx) => {
+                        const percentage = ((test.marksObtained / test.totalMarks) * 100).toFixed(1);
+                        const passed = test.marksObtained >= test.passingMarks;
+                        return (
+                          <tr key={idx} className="hover:bg-[#f0fdf4] transition-colors">
+                            <td className="px-4 py-3.5 font-bold text-black">{test.title}</td>
+                            <td className="px-4 py-3.5 text-neutral-700">{test.subject}</td>
+                            <td className="px-4 py-3.5 text-center font-mono font-black text-black">
+                              {test.marksObtained} / {test.totalMarks}
+                            </td>
+                            <td className="px-4 py-3.5 text-center font-mono font-bold">{percentage}%</td>
+                            <td className="px-4 py-3.5 text-center">
+                              <span className={`px-2.5 py-0.5 rounded-lg border border-black text-xs font-black uppercase ${
+                                passed ? 'bg-[#86efac] text-black' : 'bg-rose-200 text-black'
+                              }`}>
+                                {passed ? 'PASS ✓' : 'FAIL'}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                  <p className="text-neutral-500 font-bold font-jakarta">No test evaluations found yet.</p>
+                </div>
+              )}
+            </div>
+          )}
 
-            {/* Attendance Tab */}
-            {activeTab === 'attendance' && (
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-white font-cormorant">Subject-wise Attendance</h3>
-                {attendance.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {attendance.map(subject => (
-                      <div key={subject.subject} className="p-4 border border-gray-800 rounded-lg bg-[#080808]">
-                        <div className="flex justify-between items-center mb-3">
-                          <h4 className="font-semibold text-white">{subject.subject}</h4>
-                          <span className={`text-lg font-bold ${subject.percentage >= 75 ? 'text-green-600' : 'text-orange-600'}`}>
-                            {subject.percentage}%
+          {/* 4. Upcoming Tests Tab */}
+          {activeTab === 'tests' && (
+            <div>
+              <h3 className="text-xl font-black text-black font-outfit mb-4">Available Mock Tests</h3>
+              {upcomingTests.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {upcomingTests.map((test, idx) => (
+                    <div key={idx} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000] flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-black text-black font-outfit text-base">{test.title}</h4>
+                          <span className="px-2.5 py-0.5 bg-[#dcfce7] border border-black rounded-md text-[10px] font-black uppercase font-space">
+                            ACTIVE
                           </span>
                         </div>
-                        <div className="mb-2">
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-600">Attendance</span>
-                            <span className="font-medium">{subject.present}/{subject.total}</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className={`h-2 rounded-full transition-all ${subject.percentage >= 75 ? 'bg-green-500' : 'bg-orange-500'}`}
-                              style={{ width: `${subject.percentage}%` }}
-                            />
-                          </div>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          {subject.percentage >= 75 ? '✓ Good attendance' : '⚠ Below 75%'}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">No attendance data available</p>
-                )}
-              </div>
-            )}
+                        <p className="text-xs font-bold text-neutral-600 mb-4">{test.subject}</p>
 
-            {/* Marks Tab */}
-            {activeTab === 'marks' && (
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-white">Test Results</h3>
-                {testResults.length > 0 ? (
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead className="bg-gray-100 border-b">
-                        <tr>
-                          <th className="px-4 py-3 text-left font-semibold text-gray-900">Test</th>
-                          <th className="px-4 py-3 text-left font-semibold text-gray-900">Subject</th>
-                          <th className="px-4 py-3 text-center font-semibold text-gray-900">Marks</th>
-                          <th className="px-4 py-3 text-center font-semibold text-gray-900">%</th>
-                          <th className="px-4 py-3 text-center font-semibold text-gray-900">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-700">
-                        {testResults.map((test, idx) => {
-                          const percentage = (test.marksObtained / test.totalMarks * 100).toFixed(1);
-                          const passed = test.marksObtained >= test.passingMarks;
-                          return (
-                            <tr key={idx} className="hover:bg-gray-800/50">
-                              <td className="px-4 py-3 text-white font-medium">{test.title}</td>
-                              <td className="px-4 py-3 text-gray-300">{test.subject}</td>
-                              <td className="px-4 py-3 text-center text-white">{test.marksObtained}/{test.totalMarks}</td>
-                              <td className="px-4 py-3 text-center text-white">{percentage}%</td>
-                              <td className="px-4 py-3 text-center">
-                                <span className={`px-2 py-1 rounded text-xs font-medium ${
-                                  passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                                }`}>
-                                  {passed ? 'Pass' : 'Fail'}
-                                </span>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">No test results yet</p>
-                )}
-              </div>
-            )}
-
-            {/* Upcoming Tests Tab */}
-            {activeTab === 'tests' && (
-              <div>
-                <h3 className="text-lg font-bold mb-4 text-white">Available Tests</h3>
-                {upcomingTests.length > 0 ? (
-                  <div className="space-y-4">
-                    {upcomingTests.map((test, idx) => (
-                      <div key={idx} className="p-4 border border-gray-700 rounded-lg hover:shadow-md hover:border-gray-600 transition bg-gray-800/30">
-                        <div className="flex justify-between items-start mb-3">
+                        <div className="grid grid-cols-2 gap-2 text-xs font-jakarta mb-4 bg-[#f0fdf4] p-3 rounded-xl border border-black">
                           <div>
-                            <h4 className="font-semibold text-white">{test.title}</h4>
-                            <p className="text-sm text-gray-300">{test.subject}</p>
-                          </div>
-                          <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            Available
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-                          <div>
-                            <p className="text-gray-600">Available Until</p>
-                            <p className="font-medium">{new Date(test.endDate).toLocaleDateString()}</p>
+                            <span className="text-neutral-500 block text-[10px]">Duration:</span>
+                            <span className="font-bold text-black">{test.duration} Minutes</span>
                           </div>
                           <div>
-                            <p className="text-gray-600">Duration</p>
-                            <p className="font-medium">{test.duration} mins</p>
+                            <span className="text-neutral-500 block text-[10px]">Total Marks:</span>
+                            <span className="font-bold text-black">{test.totalMarks}</span>
                           </div>
-                          <div>
-                            <p className="text-gray-600">Total Marks</p>
-                            <p className="font-medium">{test.totalMarks}</p>
-                          </div>
-                          <div>
-                            <p className="text-gray-600">Pass Marks</p>
-                            <p className="font-medium">{test.passingMarks}</p>
-                          </div>
-                        </div>
-                        <div className="mt-3">
-                          <button
-                            onClick={() => router.push(`/test/${test._id}`)}
-                            className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-sm font-medium transition"
-                          >
-                            Start Test
-                          </button>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">No tests available</p>
-                )}
-              </div>
-            )}
 
-            {/* Study Materials Tab */}
-            {activeTab === 'materials' && (
-              <div>
-                <h3 className="text-lg font-bold mb-4">Study Materials</h3>
-                {studyMaterials.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {studyMaterials.map((material, idx) => (
-                      <div key={idx} className="p-4 border rounded-lg hover:shadow-md transition">
+                      <button
+                        onClick={() => router.push(`/test/${test._id}`)}
+                        className="btn-cartoon w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center gap-1.5"
+                      >
+                        <span>Start Online Test</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-black" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                  <p className="text-neutral-500 font-bold font-jakarta">No active assessments scheduled right now.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 5. Study Materials Tab */}
+          {activeTab === 'materials' && (
+            <div>
+              <h3 className="text-xl font-black text-black font-outfit mb-4">Class Study Materials & PDFs</h3>
+              {studyMaterials.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {studyMaterials.map((material, idx) => (
+                    <div key={idx} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000] flex flex-col justify-between">
+                      <div>
                         <div className="flex gap-3 mb-3">
-                          <FileText className="w-6 h-6 text-orange-600 flex-shrink-0" />
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 text-sm">{material.title}</h4>
-                            <p className="text-xs text-gray-600">{material.subject}</p>
+                          <div className="p-2.5 bg-[#86efac] border border-black rounded-xl h-fit">
+                            <FileText className="w-5 h-5 text-black" />
+                          </div>
+                          <div>
+                            <h4 className="font-black text-black font-outfit text-sm">{material.title}</h4>
+                            <p className="text-[11px] font-bold text-neutral-600">{material.subject}</p>
                           </div>
                         </div>
-                        <p className="text-xs text-gray-500 mb-3 line-clamp-2">{material.description}</p>
-                        <a
-                          href={material.fileUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full block px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-center text-xs font-medium"
-                        >
-                          Download
-                        </a>
+                        <p className="text-xs text-neutral-600 line-clamp-2 font-medium mb-4">{material.description}</p>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">No study materials available</p>
-                )}
+
+                      <a
+                        href={material.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-cartoon w-full py-2 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] text-center flex items-center justify-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5 text-black" />
+                        <span>Download Material</span>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                  <p className="text-neutral-500 font-bold font-jakarta">No study files uploaded for this standard yet.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 6. Profile Tab */}
+          {activeTab === 'profile' && (
+            <div className="bg-white rounded-2xl border-2 border-black p-6 sm:p-8 shadow-[3px_3px_0px_#000]">
+              <div className="border-b-2 border-black/15 pb-4 mb-6 flex items-center gap-3">
+                <div className="p-3 bg-[#86efac] border-2 border-black rounded-2xl shadow-[2px_2px_0px_#000]">
+                  <User className="w-6 h-6 text-black" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-black font-outfit">Student Profile Records</h3>
+                  <p className="text-xs text-neutral-600 font-bold font-jakarta">Personal and guardian information on record</p>
+                </div>
               </div>
-            )}
 
-            {/* Profile Tab */}
-            {activeTab === 'profile' && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
-                      <User className="w-4 h-4" /> Personal Info
-                    </h4>
-                    <div className="space-y-3">
-                      <div>
-                        <p className="text-sm text-gray-400">Full Name</p>
-                        <p className="font-medium text-white">{student.studentName}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Father&apos;s Name</p>
-                        <p className="font-medium text-white">{student.fatherName}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Mother&apos;s Name</p>
-                        <p className="font-medium text-white">{student.motherName}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Gender</p>
-                        <p className="font-medium text-white">{student.gender}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Blood Group</p>
-                        <p className="font-medium text-white">{student.bloodGroup || 'N/A'}</p>
-                      </div>
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm font-jakarta">
+                <div className="space-y-4">
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Student Full Name</span>
+                    <span className="font-bold text-black text-base">{student.studentName}</span>
                   </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Father&apos;s / Guardian Name</span>
+                    <span className="font-bold text-black">{student.fatherName}</span>
+                  </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Mother&apos;s Name</span>
+                    <span className="font-bold text-black">{student.motherName}</span>
+                  </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Gender & Blood Group</span>
+                    <span className="font-bold text-black">{student.gender} • {student.bloodGroup || 'N/A'}</span>
+                  </div>
+                </div>
 
-                  <div>
-                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
-                      <Mail className="w-4 h-4" /> Contact Info
-                    </h4>
-                    <div className="space-y-3">
-                      <div>
-                        <p className="text-sm text-gray-400">Email</p>
-                        <p className="font-medium text-white break-all">{student.email}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Phone</p>
-                        <p className="font-medium text-white">{student.phoneNumber}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Address</p>
-                        <p className="font-medium text-white">{student.address}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">City</p>
-                        <p className="font-medium text-white">{student.city}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Class</p>
-                        <p className="font-medium text-white">{student.standard}</p>
-                      </div>
-                    </div>
+                <div className="space-y-4">
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Registered Email</span>
+                    <span className="font-bold text-black break-all">{student.email}</span>
+                  </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Contact Phone Number</span>
+                    <span className="font-bold text-black">{student.phoneNumber}</span>
+                  </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Residential Address</span>
+                    <span className="font-bold text-black">{student.address}, {student.city}</span>
+                  </div>
+                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
+                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Registered Class & Reg ID</span>
+                    <span className="font-bold text-black">{student.standard} • <span className="font-mono">{student.registrationId}</span></span>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        </main>
-      </div>
-    </>
+            </div>
+          )}
+
+        </div>
+      </main>
+    </div>
   );
 };
 
@@ -617,4 +669,3 @@ const ProtectedDashboard = () => (
 );
 
 export default ProtectedDashboard;
-

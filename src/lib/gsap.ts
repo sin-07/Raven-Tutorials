@@ -495,3 +495,156 @@ export const makeDraggable = (
     inertia: false,
   });
 };
+
+// ─── 4. CARTOON ANIMATION ENGINE (SPRING, POP, WOBBLE) ─────────────────────
+
+/**
+ * Cartoon spring pop entrance for cards, badges, and modals
+ */
+export const cartoonPop = (
+  el: Element | string | null,
+  delay = 0,
+  duration = 0.45
+) => {
+  if (!el || typeof window === 'undefined') return;
+  return gsap.fromTo(
+    el,
+    { opacity: 0, scale: 0.88, y: 14 },
+    {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration,
+      delay,
+      ease: 'back.out(2)',
+      clearProps: 'transform,opacity',
+    }
+  );
+};
+
+/**
+ * Cartoon staggered pop for grid items
+ */
+export const cartoonStagger = (
+  els: NodeListOf<Element> | HTMLCollection | Element[],
+  stagger = 0.08,
+  delay = 0
+) => {
+  if (typeof window === 'undefined') return;
+  const arr = Array.from(els);
+  if (!arr.length) return;
+  return gsap.fromTo(
+    arr,
+    { opacity: 0, scale: 0.88, y: 18 },
+    {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.45,
+      stagger,
+      delay,
+      ease: 'back.out(1.8)',
+      clearProps: 'transform,opacity',
+    }
+  );
+};
+
+/**
+ * Initializes website-wide cartoon micro-animations:
+ * - Cards & containers bounce in with GSAP spring
+ * - Buttons have tactile cartoon click feedback
+ * - Badges settle with a slight playful tilt
+ */
+export const initCartoonAnimations = (scope?: HTMLElement | null) => {
+  if (typeof window === 'undefined') return;
+  const root = scope || document;
+
+  // Pop-in elements
+  const popEls = root.querySelectorAll('.cartoon-pop, [data-cartoon="pop"]');
+  popEls.forEach((el, i) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, scale: 0.9, y: 16 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.4,
+        delay: i * 0.04,
+        ease: 'back.out(2)',
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 92%',
+          once: true,
+        },
+      }
+    );
+  });
+
+  // Stagger grids
+  const staggerGrids = root.querySelectorAll('.cartoon-stagger, [data-cartoon="stagger"]');
+  staggerGrids.forEach((grid) => {
+    const children = Array.from(grid.children);
+    if (children.length) {
+      gsap.fromTo(
+        children,
+        { opacity: 0, scale: 0.9, y: 16 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.38,
+          stagger: 0.06,
+          ease: 'back.out(1.8)',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
+    }
+  });
+
+  // Playful hover on cartoon cards
+  const cards = root.querySelectorAll<HTMLElement>('.card-cartoon, .cartoon-card');
+  cards.forEach((card) => {
+    // Ensure GPU acceleration
+    card.style.willChange = 'transform';
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -4,
+        x: -2,
+        rotation: 0.5,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        x: 0,
+        rotation: 0,
+        duration: 0.25,
+        ease: 'back.out(2)',
+      });
+    });
+  });
+
+  // Tactile click on cartoon buttons
+  const buttons = root.querySelectorAll<HTMLElement>('.btn-cartoon, [data-cartoon="btn"]');
+  buttons.forEach((btn) => {
+    btn.addEventListener('mousedown', () => {
+      gsap.to(btn, { scale: 0.97, x: 2, y: 2, duration: 0.1, ease: 'power1.out' });
+    });
+    btn.addEventListener('mouseup', () => {
+      gsap.to(btn, { scale: 1, x: 0, y: 0, duration: 0.18, ease: 'back.out(3)' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { scale: 1, x: 0, y: 0, duration: 0.15, ease: 'power1.out' });
+    });
+  });
+};
+

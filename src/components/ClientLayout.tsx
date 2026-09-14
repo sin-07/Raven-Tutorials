@@ -1,8 +1,9 @@
 'use client';
-
+import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import AmbientGlow from '@/components/AmbientGlow';
+import { initCartoonAnimations, initDirectionalAnimations } from '@/lib/gsap';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -13,6 +14,15 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   
   // Hide navbar on test pages
   const hideNavbar = pathname?.startsWith('/test/');
+
+  // Initialize website-wide cartoon & directional animations on page change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      initCartoonAnimations();
+      initDirectionalAnimations();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   return (
     <>
