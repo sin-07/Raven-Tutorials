@@ -141,8 +141,12 @@ export default function VerifyOTPPage() {
 
   if (!tempAdmission) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-black" />
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+          <div className="w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-black font-black text-xl font-outfit">Loading Verification...</p>
+          <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Validating admission session</p>
+        </div>
       </div>
     );
   }

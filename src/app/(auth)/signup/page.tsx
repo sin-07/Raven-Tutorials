@@ -2,130 +2,123 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, UserCircle } from 'lucide-react';
+import { GraduationCap, UserCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex items-center justify-center p-4">
-      {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
-
-      <div className="relative z-10 max-w-4xl w-full">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Join Raven Tutorials</h1>
-          <p className="text-gray-400 text-lg">
-            Choose your admission type to get started
+    <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4 py-16 sm:py-20">
+      <div className="max-w-4xl w-full space-y-8">
+        {/* Cartoon Header */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center">
+          <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-3 shadow-[2px_2px_0px_#000]">
+            <GraduationCap size={14} className="text-black" />
+            <span>Join Raven Tutorials</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-outfit font-black text-black tracking-tight mb-2">
+            Choose Your Admission Track 🎯
+          </h1>
+          <p className="text-black/80 font-jakarta font-semibold text-sm sm:text-base max-w-xl mx-auto">
+            Select how you would like to join the Raven Tutorials academic ecosystem
           </p>
         </div>
 
         {/* Admission Options */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          {/* Learner Admission */}
-          <div className="bg-[#111111] rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-gray-800 hover:border-[#00E5A8]/50">
-            <div className="w-20 h-20 rounded-full bg-[#00E5A8]/20 flex items-center justify-center mx-auto mb-6">
-              <GraduationCap className="w-10 h-10 text-[#00E5A8]" />
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Learner Admission Card */}
+          <div className="bg-white rounded-3xl p-8 border-3 border-black shadow-[6px_6px_0px_#000] hover:shadow-[8px_8px_0px_#000] transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-16 h-16 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+                <GraduationCap className="w-9 h-9 text-black" />
+              </div>
+              
+              <h2 className="text-2xl font-outfit font-black text-black mb-2 text-center">
+                Student / Learner
+              </h2>
+              <p className="text-sm font-jakarta font-medium text-black/70 mb-6 text-center">
+                Enroll for comprehensive board coaching, JEE/NEET test series, and live classroom sessions.
+              </p>
+              
+              <ul className="space-y-3 mb-8 text-sm font-jakarta font-bold text-black/80">
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>Interactive Live Classes & Doubt Solving</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>Chapter-wise PDF Notes & Materials</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>Periodic Mock Tests & Performance Ranks</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>Personalized Academic Mentorship</span>
+                </li>
+              </ul>
             </div>
-            
-            <h2 className="text-2xl font-bold text-white mb-4 text-center">Admission as a Learner</h2>
-            <p className="text-gray-400 mb-6 text-center">
-              Join as a student to access expert courses, live classes, and personalized learning paths.
-            </p>
-            
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Access to 150+ expert courses</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Live classes & doubt sessions</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Certificate on completion</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-[#00E5A8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>24/7 support access</span>
-              </li>
-            </ul>
             
             <Link
               href="/admission"
-              className="block w-full py-3 bg-[#00E5A8] text-black font-semibold rounded-full hover:scale-105 transition-all text-center"
+              className="w-full py-3.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
             >
-              Take Admission as Learner
+              <span>Apply as a Student</span>
+              <ArrowRight size={18} />
             </Link>
           </div>
 
-          {/* Tutor Admission */}
-          <div className="bg-[#111111] rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all border-2 border-gray-800 hover:border-teal-500/50">
-            <div className="w-20 h-20 rounded-full bg-teal-500/20 flex items-center justify-center mx-auto mb-6">
-              <UserCircle className="w-10 h-10 text-teal-400" />
+          {/* Tutor Admission Card */}
+          <div className="bg-white rounded-3xl p-8 border-3 border-black shadow-[6px_6px_0px_#000] hover:shadow-[8px_8px_0px_#000] transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-16 h-16 rounded-2xl bg-[#fef08a] border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+                <UserCircle className="w-9 h-9 text-black" />
+              </div>
+              
+              <h2 className="text-2xl font-outfit font-black text-black mb-2 text-center">
+                Faculty / Educator
+              </h2>
+              <p className="text-sm font-jakarta font-medium text-black/70 mb-6 text-center">
+                Join our teaching faculty to mentor ambitious students and deliver high-impact lectures.
+              </p>
+              
+              <ul className="space-y-3 mb-8 text-sm font-jakarta font-bold text-black/80">
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
+                  <span>Deliver Live Interactive Lectures</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
+                  <span>Create Assessments & Review Progress</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
+                  <span>Upload Study Material Resources</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
+                  <span>Competitive Educator Honorarium</span>
+                </li>
+              </ul>
             </div>
-            
-            <h2 className="text-2xl font-bold text-white mb-4 text-center">Admission as a Tutor</h2>
-            <p className="text-gray-400 mb-6 text-center">
-              Join as an instructor to share your knowledge and teach thousands of students.
-            </p>
-            
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Reach thousands of students</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Create and manage courses</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Conduct live sessions</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Earn while teaching</span>
-              </li>
-            </ul>
             
             <Link
               href="/admission?role=tutor"
-              className="block w-full py-3 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition-all text-center"
+              className="w-full py-3.5 bg-[#fef08a] hover:bg-[#fde047] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
             >
-              Take Admission as Tutor
+              <span>Apply as a Teacher</span>
+              <ArrowRight size={18} />
             </Link>
           </div>
         </div>
         
         {/* Login Link */}
-        <p className="text-center text-gray-400">
-          Already have an account?{' '}
-          <Link href="/login" className="text-[#00E5A8] font-medium hover:text-[#00E5A8]">
-            Login here
+        <p className="text-center font-jakarta font-semibold text-sm text-black/70">
+          Already registered?{' '}
+          <Link href="/login" className="text-black font-outfit font-black underline hover:text-emerald-700">
+            Sign In to Your Account
           </Link>
         </p>
       </div>
     </div>
   );
 }
-
-

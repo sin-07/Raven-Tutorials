@@ -23,7 +23,10 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
   const [loading, setLoading] = useState<boolean>(true);
   const [student, setStudent] = useState<StudentData | null>(null);
 
-  const verifyAuth = useCallback(async () => {
+  const verifyAuth = useCallback(async (isInitial = false) => {
+    if (isInitial) {
+      setLoading(true);
+    }
     try {
       const res = await fetch('/api/auth/verify', {
         method: 'GET',
@@ -32,11 +35,9 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
       });
 
       if (!res.ok) {
-        // Clear any stale data
         setIsAuthenticated(false);
         setStudent(null);
         
-        // Don't show toast for initial page load
         if (pathname !== '/login') {
           toast.error('Session expired. Please login again.');
         }
@@ -66,13 +67,13 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
   }, [router, pathname]);
 
   useEffect(() => {
-    verifyAuth();
+    verifyAuth(true);
   }, [verifyAuth]);
 
-  // Re-verify on window focus (detect if session expired in another tab)
+  // Re-verify silently on window focus (no blocking loader)
   useEffect(() => {
     const handleFocus = () => {
-      verifyAuth();
+      verifyAuth(false);
     };
 
     window.addEventListener('focus', handleFocus);
@@ -81,10 +82,11 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-800 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400 text-sm font-jakarta">Verifying student access...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+          <div className="w-12 h-12 border-4 border-black border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
+          <h3 className="font-outfit font-black text-xl text-black">Verifying Student Access</h3>
+          <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Please hold on a moment...</p>
         </div>
       </div>
     );
@@ -93,10 +95,11 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
   // Not authenticated - will redirect
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#090a0f] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-800 border-t-red-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400 text-sm font-jakarta">Redirecting to login...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+          <div className="w-12 h-12 border-4 border-black border-t-rose-500 rounded-full animate-spin mx-auto mb-4" />
+          <h3 className="font-outfit font-black text-xl text-black">Redirecting to Login</h3>
+          <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Please sign in to continue</p>
         </div>
       </div>
     );
@@ -105,6 +108,4 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
   return <>{children}</>;
 };
 
-
 export default StudentProtectedRoute;
-

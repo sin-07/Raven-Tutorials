@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, Loader, AlertCircle, Trash2, Eye } from 'lucide-react';
+import { MessageSquare, AlertCircle, Trash2, Eye, Sparkles, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import FeedbackForm from '@/components/FeedbackForm';
 import { StudentProtectedRoute } from '@/components';
@@ -94,103 +94,118 @@ function FeedbackPage() {
 
   const getCategoryColor = (category: string): string => {
     const colors: Record<string, string> = {
-      general: 'bg-blue-500/20 text-blue-400',
-      course_content: 'bg-blue-500/20 text-blue-400',
-      teaching_method: 'bg-green-500/20 text-green-400',
-      study_materials: 'bg-orange-500/20 text-orange-400',
-      online_classes: 'bg-pink-500/20 text-pink-400',
-      test_system: 'bg-blue-500/20 text-blue-400',
-      complaint: 'bg-red-500/20 text-red-400'
+      general: 'bg-[#bfdbfe] text-blue-950',
+      course_content: 'bg-[#fef08a] text-yellow-950',
+      teaching_method: 'bg-[#dcfce7] text-emerald-950',
+      study_materials: 'bg-[#fed7aa] text-amber-950',
+      online_classes: 'bg-[#e9d5ff] text-purple-950',
+      test_system: 'bg-[#cffafe] text-cyan-950',
+      complaint: 'bg-rose-200 text-rose-950'
     };
-    return colors[category] || colors.general;
+    return colors[category] || 'bg-[#bfdbfe] text-blue-950';
   };
 
   const getStatusColor = (status: string): string => {
     const colors: Record<string, string> = {
-      new: 'bg-yellow-500/20 text-yellow-400',
-      reviewed: 'bg-blue-500/20 text-blue-400',
-      resolved: 'bg-green-500/20 text-green-400'
+      new: 'bg-[#fef08a] text-amber-950',
+      reviewed: 'bg-[#bfdbfe] text-blue-950',
+      resolved: 'bg-[#86efac] text-emerald-950'
     };
     return colors[status] || colors.new;
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center">
-        <div className="text-center">
-          <Loader className="w-12 h-12 animate-spin text-[#00E5A8] mx-auto mb-4" />
-          <p className="text-gray-400 text-lg">Loading feedback...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+          <div className="w-12 h-12 border-4 border-black border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
+          <h3 className="font-outfit font-black text-xl text-black">Loading Feedback</h3>
+          <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Fetching your ticket history...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] relative overflow-hidden flex flex-col">
-      {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
-
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 w-full">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
-            <MessageSquare className="w-8 h-8 text-[#00E5A8]" />
-            Feedback & Support
+    <div className="min-h-screen bg-[#f6fcf8] flex flex-col pt-20 pb-16">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-8">
+        {/* Cartoon Header Banner */}
+        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
+          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-2 shadow-[2px_2px_0px_#000]">
+            <MessageSquare size={14} className="text-black" />
+            <span>Student Support</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-outfit font-black text-black tracking-tight">
+            Feedback & Support 💬
           </h1>
-          <p className="text-gray-400">Share your feedback to help us improve</p>
+          <p className="text-black/80 font-jakarta font-semibold mt-1">
+            Share your thoughts, suggestions, and queries directly with our faculty team
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Feedback Form */}
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Feedback Form (Left Column) */}
+          <div className="lg:col-span-5">
             <FeedbackForm
               studentId={student?._id}
               onSubmitSuccess={() => fetchFeedback()}
             />
           </div>
 
-          {/* Feedback List */}
-          <div className="lg:col-span-2">
-            <div className="bg-[#111111] rounded-lg shadow border border-gray-800">
-              <div className="p-6 border-b border-gray-800">
-                <h2 className="text-lg font-bold text-white">Your Feedback History</h2>
-                <p className="text-sm text-gray-400">Total: {feedbackList.length} submissions</p>
+          {/* Feedback List (Right Column) */}
+          <div className="lg:col-span-7">
+            <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+              <div className="p-5 bg-[#86efac] border-b-3 border-black flex justify-between items-center">
+                <div>
+                  <h2 className="text-xl font-outfit font-black text-black">Your Submissions</h2>
+                  <p className="text-xs font-space font-bold uppercase text-black/70">
+                    Total: {feedbackList.length} feedback ticket{feedbackList.length !== 1 ? 's' : ''}
+                  </p>
+                </div>
               </div>
 
               {feedbackList.length > 0 ? (
-                <div className="divide-y divide-gray-800">
+                <div className="divide-y-2 divide-black max-h-[650px] overflow-y-auto">
                   {feedbackList.map(feedback => (
-                    <div key={feedback._id} className="p-6 hover:bg-gray-800/50 transition">
-                      <div className="flex items-start justify-between mb-3">
+                    <div key={feedback._id} className="p-5 hover:bg-[#f0fdf4] transition-colors">
+                      <div className="flex items-start justify-between gap-3 mb-2">
                         <div className="flex-1">
-                          <div className="flex gap-2 mb-2 flex-wrap">
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(feedback.category)}`}>
-                              {feedback.category?.replace(/_/g, ' ').toUpperCase()}
+                          <div className="flex gap-1.5 mb-2 flex-wrap">
+                            <span className={`px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase border border-black ${getCategoryColor(feedback.category)}`}>
+                              {feedback.category?.replace(/_/g, ' ')}
                             </span>
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(feedback.status || 'new')}`}>
-                              {(feedback.status || 'new').toUpperCase()}
+                            <span className={`px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase border border-black ${getStatusColor(feedback.status || 'new')}`}>
+                              {(feedback.status || 'new')}
                             </span>
                           </div>
-                          <h3 className="text-base font-semibold text-white">{feedback.subject}</h3>
+                          <h3 className="text-lg font-outfit font-black text-black">{feedback.subject}</h3>
                         </div>
-                        <button
-                          onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
-                          className="text-[#00E5A8] hover:text-[#00E5A8]/80"
-                          title="View details"
-                        >
-                          <Eye className="w-5 h-5" />
-                        </button>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
+                            className="p-2 bg-[#fef08a] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                            title="View details"
+                          >
+                            <Eye className="w-4 h-4 text-black" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteFeedback(feedback._id)}
+                            disabled={deleting === feedback._id}
+                            className="p-2 bg-rose-100 text-rose-700 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer disabled:opacity-40"
+                            title="Delete feedback"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
 
                       {/* Rating */}
                       {feedback.rating && (
-                        <div className="flex gap-1 mb-3">
+                        <div className="flex gap-1 mb-2">
                           {[...Array(5)].map((_, i) => (
                             <span
                               key={i}
-                              className={`text-lg ${i < feedback.rating! ? 'text-yellow-400' : 'text-gray-600'}`}
+                              className={`text-base ${i < feedback.rating! ? 'text-amber-500' : 'text-neutral-300'}`}
                             >
                               ★
                             </span>
@@ -198,39 +213,31 @@ function FeedbackPage() {
                         </div>
                       )}
 
-                      {/* Date and Actions */}
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-gray-500">
-                          {new Date(feedback.createdAt).toLocaleDateString()} at{' '}
-                          {new Date(feedback.createdAt).toLocaleTimeString([], {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
-                        </p>
-                        <button
-                          onClick={() => handleDeleteFeedback(feedback._id)}
-                          disabled={deleting === feedback._id}
-                          className="text-red-500 hover:text-red-400 disabled:text-gray-500 transition flex items-center gap-1"
-                          title="Delete feedback"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
+                      {/* Date */}
+                      <p className="text-xs font-mono font-bold text-black/50">
+                        {new Date(feedback.createdAt).toLocaleDateString()} at{' '}
+                        {new Date(feedback.createdAt).toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
 
                       {/* Expanded View */}
                       {selectedFeedback?._id === feedback._id && (
-                        <div className="mt-4 pt-4 border-t border-gray-800 bg-[#080808] rounded p-4">
-                          <h4 className="font-medium text-white mb-2">Message:</h4>
-                          <p className="text-sm text-gray-300 whitespace-pre-wrap break-words">
-                            {feedback.message}
-                          </p>
+                        <div className="mt-3 p-4 bg-[#f0fdf4] border-2 border-black rounded-2xl space-y-3">
+                          <div>
+                            <h4 className="font-outfit font-black text-xs uppercase text-black/60 mb-1">Your Message:</h4>
+                            <p className="text-sm font-jakarta font-medium text-black whitespace-pre-wrap break-words">
+                              {feedback.message}
+                            </p>
+                          </div>
                           {feedback.adminResponse && (
-                            <div className="mt-4 pt-4 border-t border-gray-800">
-                              <h4 className="font-medium text-white mb-2 flex items-center gap-2">
-                                <span className="w-2 h-2 bg-[#00E5A8] rounded-full"></span>
-                                Admin Response
+                            <div className="pt-3 border-t-2 border-black">
+                              <h4 className="font-outfit font-black text-xs uppercase text-emerald-900 mb-1 flex items-center gap-1.5">
+                                <CheckCircle className="w-3.5 h-3.5" />
+                                Official Admin Response:
                               </h4>
-                              <p className="text-sm text-gray-300 whitespace-pre-wrap break-words">
+                              <p className="text-sm font-jakarta font-bold text-black whitespace-pre-wrap break-words">
                                 {feedback.adminResponse}
                               </p>
                             </div>
@@ -241,27 +248,28 @@ function FeedbackPage() {
                   ))}
                 </div>
               ) : (
-                <div className="p-8 text-center">
-                  <MessageSquare className="w-12 h-12 text-gray-600 mx-auto mb-3" />
-                  <p className="text-gray-400">No feedback submitted yet</p>
-                  <p className="text-sm text-gray-500">Your feedback submissions will appear here</p>
+                <div className="p-12 text-center bg-[#f0fdf4]">
+                  <MessageSquare className="w-12 h-12 text-black/30 mx-auto mb-2" />
+                  <p className="font-outfit font-black text-lg text-black">No feedback submitted yet</p>
+                  <p className="text-xs font-jakarta text-black/60 mt-1">Submit your first suggestion using the form on the left</p>
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Info Section */}
-        <div className="mt-8 p-6 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg">
-          <div className="flex gap-3">
-            <AlertCircle className="w-5 h-5 text-[#00E5A8] flex-shrink-0 mt-0.5" />
+        {/* Info Card */}
+        <div className="p-6 bg-[#fef08a] border-3 border-black rounded-3xl shadow-[4px_4px_0px_#000]">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center shrink-0 shadow-[1px_1px_0px_#000]">
+              <Sparkles className="w-5 h-5 text-black" />
+            </div>
             <div>
-              <h3 className="font-semibold text-white mb-2">We Value Your Feedback</h3>
-              <ul className="text-sm text-gray-300 space-y-1">
-                <li>• Your feedback helps us improve our teaching methods and course content</li>
-                <li>• All feedback is reviewed by our admin team and kept confidential</li>
-                <li>• You will receive responses to important feedback submissions</li>
-                <li>• Share your concerns, suggestions, or compliments anytime</li>
+              <h3 className="font-outfit font-black text-lg text-black mb-1">Every Voice Matters!</h3>
+              <ul className="text-xs sm:text-sm font-jakarta font-bold text-black/80 space-y-1 list-disc list-inside">
+                <li>Your suggestions directly shape class schedules, study materials, and teaching aids</li>
+                <li>All submissions are reviewed by the lead academic mentors</li>
+                <li>You will receive verified responses for inquiries or feedback tickets</li>
               </ul>
             </div>
           </div>
@@ -279,4 +287,3 @@ export default function ProtectedFeedbackPage() {
     </StudentProtectedRoute>
   );
 }
-

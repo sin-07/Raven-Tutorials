@@ -99,28 +99,34 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
   };
 
   return (
-    <div className="bg-[#111111] rounded-lg shadow border border-gray-800 p-6">
-      <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-        <Send className="w-5 h-5 text-[#00E5A8]" />
-        {isAuthenticated ? 'Share Your Feedback' : 'Send Us Your Feedback'}
-      </h3>
-      <p className="text-sm text-gray-400 mb-6">Help us improve by sharing your thoughts and suggestions</p>
+    <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-6">
+      <div className="flex items-center gap-2.5 mb-2">
+        <div className="w-8 h-8 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+          <Send className="w-4 h-4 text-black" />
+        </div>
+        <h3 className="text-xl font-outfit font-black text-black">
+          {isAuthenticated ? 'Share Your Feedback' : 'Send Feedback'}
+        </h3>
+      </div>
+      <p className="text-xs font-jakarta font-medium text-black/70 mb-5">
+        Help us improve by sharing your honest thoughts and academic suggestions
+      </p>
 
       {submitted && (
-        <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-          <p className="text-green-400 text-sm">Thank you! Your feedback has been recorded.</p>
+        <div className="mb-5 p-3.5 bg-[#86efac] border-2 border-black rounded-xl flex items-center gap-2.5 shadow-[2px_2px_0px_#000]">
+          <CheckCircle className="w-5 h-5 text-black shrink-0" />
+          <p className="text-black text-xs font-jakarta font-bold">Thank you! Your feedback has been safely submitted.</p>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Authentication Required Message */}
+        {/* Authentication Notice */}
         {!isAuthenticated && (
-          <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4">
-            <div className="flex">
-              <AlertCircle className="w-5 h-5 text-yellow-500 mr-2" />
-              <p className="text-sm text-yellow-400">
-                Please <a href="/login" className="font-semibold underline text-yellow-300 hover:text-yellow-200">login</a> to submit feedback.
+          <div className="bg-[#fef08a] border-2 border-black rounded-xl p-3.5 shadow-[2px_2px_0px_#000]">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-black shrink-0" />
+              <p className="text-xs font-jakarta font-bold text-black">
+                Please <a href="/login" className="underline font-black hover:text-neutral-800">login</a> to submit student feedback.
               </p>
             </div>
           </div>
@@ -128,15 +134,15 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Category Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Feedback Category
+          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+            Category
           </label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             disabled={!isAuthenticated}
-            className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-500"
+            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] text-sm disabled:opacity-50"
           >
             {categories.map(cat => (
               <option key={cat.value} value={cat.value}>
@@ -148,7 +154,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Subject */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
             Subject
           </label>
           <input
@@ -157,27 +163,27 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             value={formData.subject}
             onChange={handleChange}
             disabled={!isAuthenticated}
-            placeholder="Brief subject of your feedback"
-            className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] text-white placeholder-gray-500 disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-500"
+            placeholder="Brief topic of your feedback"
+            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400 text-sm disabled:opacity-50"
             maxLength={100}
           />
-          <p className="text-xs text-gray-500 mt-1">{formData.subject.length}/100</p>
+          <p className="text-[10px] font-mono font-bold text-black/50 mt-1">{formData.subject.length}/100</p>
         </div>
 
         {/* Rating */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-xs font-space font-black uppercase text-black mb-1">
             Overall Rating
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 bg-white border-2 border-black rounded-xl p-2 w-fit shadow-[2px_2px_0px_#000]">
             {[1, 2, 3, 4, 5].map(star => (
               <button
                 key={star}
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
                 disabled={!isAuthenticated}
-                className={`text-3xl transition-colors ${
-                  star <= formData.rating ? 'text-yellow-400' : 'text-gray-600'
+                className={`text-2xl transition-transform hover:scale-110 active:scale-95 ${
+                  star <= formData.rating ? 'text-amber-500' : 'text-neutral-300'
                 } disabled:cursor-not-allowed`}
               >
                 ★
@@ -188,41 +194,30 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Message */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Your Feedback
+          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+            Your Feedback Message
           </label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             disabled={!isAuthenticated}
-            placeholder="Share your detailed feedback, suggestions, or concerns..."
-            rows={5}
-            className="w-full px-4 py-2 bg-[#080808] border border-gray-800 rounded-lg focus:ring-2 focus:ring-[#00E5A8] focus:border-[#00E5A8] resize-none text-white placeholder-gray-500 disabled:bg-gray-800 disabled:cursor-not-allowed disabled:text-gray-500"
+            placeholder="Share your detailed thoughts, suggestions, or concerns..."
+            rows={4}
+            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] resize-none placeholder-neutral-400 text-sm disabled:opacity-50"
             maxLength={1000}
           />
-          <p className="text-xs text-gray-500 mt-1">{formData.message.length}/1000</p>
-        </div>
-
-        {/* Info Box */}
-        <div className="p-3 bg-[#00E5A8]/10 border border-[#00E5A8]/30 rounded-lg flex gap-3">
-          <AlertCircle className="w-4 h-4 text-[#00E5A8] flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-gray-300">
-            {isAuthenticated 
-              ? 'Your feedback is valuable and helps us improve. All submissions are reviewed by our team.'
-              : 'Login as a registered student to submit feedback and help us improve our services.'
-            }
-          </p>
+          <p className="text-[10px] font-mono font-bold text-black/50 mt-1">{formData.message.length}/1000</p>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
           disabled={loading || !isAuthenticated}
-          className="w-full px-6 py-3 bg-[#00E5A8] text-black rounded-full hover:bg-[#00E5A8]/90 hover:scale-105 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed transition font-medium flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <Send className="w-4 h-4" />
-          {loading ? 'Submitting...' : 'Submit Feedback'}
+          <span>{loading ? 'Submitting...' : 'Submit Feedback 🚀'}</span>
         </button>
       </form>
     </div>
@@ -230,4 +225,3 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 };
 
 export default FeedbackForm;
-

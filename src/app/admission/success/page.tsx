@@ -127,8 +127,12 @@ IMPORTANT NOTES
 
   if (!successData) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center">
-        <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full"></div>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
+          <div className="animate-spin w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-4" />
+          <p className="text-black font-black text-xl font-outfit">Loading Admission Slip...</p>
+          <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Confirming student registration</p>
+        </div>
       </div>
     );
   }

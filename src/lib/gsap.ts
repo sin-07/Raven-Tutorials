@@ -392,6 +392,13 @@ export const initDirectionalAnimations = (scope?: HTMLElement | null) => {
   if (typeof window === 'undefined') return;
   const root = scope || document;
 
+  // Kill orphaned ScrollTriggers from unmounted components to prevent scroll lag
+  ScrollTrigger.getAll().forEach((st) => {
+    if (!st.trigger || !document.contains(st.trigger as Node)) {
+      st.kill();
+    }
+  });
+
   // Left
   root.querySelectorAll('[data-gsap="left"], .gsap-left').forEach((el) => {
     scrollFromLeft(el);
@@ -608,43 +615,5 @@ export const initCartoonAnimations = (scope?: HTMLElement | null) => {
     }
   });
 
-  // Playful hover on cartoon cards
-  const cards = root.querySelectorAll<HTMLElement>('.card-cartoon, .cartoon-card');
-  cards.forEach((card) => {
-    // Ensure GPU acceleration
-    card.style.willChange = 'transform';
-    card.addEventListener('mouseenter', () => {
-      gsap.to(card, {
-        y: -4,
-        x: -2,
-        rotation: 0.5,
-        duration: 0.2,
-        ease: 'power2.out',
-      });
-    });
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        y: 0,
-        x: 0,
-        rotation: 0,
-        duration: 0.25,
-        ease: 'back.out(2)',
-      });
-    });
-  });
-
-  // Tactile click on cartoon buttons
-  const buttons = root.querySelectorAll<HTMLElement>('.btn-cartoon, [data-cartoon="btn"]');
-  buttons.forEach((btn) => {
-    btn.addEventListener('mousedown', () => {
-      gsap.to(btn, { scale: 0.97, x: 2, y: 2, duration: 0.1, ease: 'power1.out' });
-    });
-    btn.addEventListener('mouseup', () => {
-      gsap.to(btn, { scale: 1, x: 0, y: 0, duration: 0.18, ease: 'back.out(3)' });
-    });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { scale: 1, x: 0, y: 0, duration: 0.15, ease: 'power1.out' });
-    });
-  });
 };
 

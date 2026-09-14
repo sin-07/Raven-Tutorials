@@ -291,10 +291,11 @@ function LiveClassPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <LoaderIcon className="w-16 h-16 text-white animate-spin mx-auto mb-4" />
-          <p className="text-white text-xl">Loading live class...</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
+          <div className="w-12 h-12 border-4 border-black border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
+          <h3 className="font-outfit font-black text-xl text-black">Entering Classroom</h3>
+          <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Connecting to live broadcast stream...</p>
         </div>
       </div>
     );
@@ -302,16 +303,18 @@ function LiveClassPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] flex items-center justify-center p-4">
-        <div className="bg-[#111111] rounded-lg p-8 max-w-md w-full text-center border border-gray-800">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-2">Unable to Load Class</h2>
-          <p className="text-gray-400 mb-6">{error}</p>
+      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
+        <div className="bg-[#f0fdf4] rounded-3xl p-8 max-w-md w-full text-center border-3 border-black shadow-[6px_6px_0px_#000]">
+          <div className="w-14 h-14 rounded-2xl bg-rose-200 border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[2px_2px_0px_#000]">
+            <AlertCircle className="w-7 h-7 text-rose-900" />
+          </div>
+          <h2 className="text-2xl font-outfit font-black text-black mb-2">Unable to Load Class</h2>
+          <p className="text-sm font-jakarta font-medium text-black/70 mb-6">{error}</p>
           <button
             onClick={() => router.push(isModerator ? '/admin/dashboard' : '/dashboard')}
-            className="bg-[#00E5A8] hover:bg-[#00E5A8]/90 hover:scale-105 text-black px-6 py-2 rounded-full transition-all"
+            className="bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black px-6 py-2.5 rounded-xl font-outfit font-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
           >
-            Go Back
+            Go Back to Dashboard
           </button>
         </div>
       </div>
@@ -319,26 +322,23 @@ function LiveClassPage() {
   }
 
   return (
-    <div className="relative w-screen h-screen bg-[#0b0b0b] overflow-hidden">
-      {/* Green Radial Glow Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_top,_rgba(0,229,168,0.2)_0%,_rgba(0,229,168,0.1)_30%,_transparent_70%)]"></div>
-      </div>
-
+    <div className="relative w-screen h-screen bg-black overflow-hidden">
       {/* Header Bar */}
-      <div className="absolute top-0 left-0 right-0 bg-[#080808] bg-opacity-95 text-white p-4 z-10 border-b border-gray-800">
+      <div className="absolute top-0 left-0 right-0 bg-white text-black p-3.5 z-10 border-b-3 border-black shadow-[0_3px_0px_#000]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Video className="w-6 h-6 text-[#00E5A8]" />
+            <div className="w-9 h-9 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+              <Video className="w-5 h-5 text-black" />
+            </div>
             <div>
-              <h1 className="font-bold text-lg">{liveClass?.title}</h1>
-              <p className="text-sm text-gray-400">
-                {liveClass?.subject} • {liveClass?.class} • Teacher: {liveClass?.teacherName}
+              <h1 className="font-outfit font-black text-base sm:text-lg text-black">{liveClass?.title}</h1>
+              <p className="text-xs font-space font-bold uppercase text-black/60">
+                {liveClass?.subject} • Class {liveClass?.class} • Teacher: {liveClass?.teacherName}
               </p>
             </div>
           </div>
           {isModerator && (
-            <span className="bg-[#00E5A8] text-black px-3 py-1 rounded-full text-sm font-semibold">
+            <span className="bg-[#fef08a] border-2 border-black text-black px-3 py-1 rounded-full text-xs font-space font-black uppercase shadow-[1px_1px_0px_#000]">
               Moderator
             </span>
           )}
