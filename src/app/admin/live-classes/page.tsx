@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Video, Plus, Edit, Trash2, Play, Square, Calendar, Clock, Users, Filter, Radio, X } from 'lucide-react';
+import { Video, Plus, Edit, Trash2, Play, Square, Calendar, Clock, Users, Filter, Radio, X, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { Loader } from '@/components';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface LiveClassData {
@@ -246,7 +247,7 @@ const AdminLiveClasses: React.FC = () => {
   const getStatusBadge = (status: string) => {
     const config: Record<string, { bg: string; text: string; label: string }> = {
       Scheduled: { bg: 'bg-[#bfdbfe]', text: 'text-blue-900', label: 'Scheduled' },
-      Live: { bg: 'bg-rose-500 text-white animate-pulse', text: 'text-white', label: '🔴 Live Now' },
+      Live: { bg: 'bg-rose-500 text-white animate-pulse', text: 'text-white', label: 'Live Now' },
       Completed: { bg: 'bg-neutral-200', text: 'text-neutral-800', label: 'Completed' },
       Cancelled: { bg: 'bg-rose-200', text: 'text-rose-900', label: 'Cancelled' }
     };
@@ -273,7 +274,7 @@ const AdminLiveClasses: React.FC = () => {
               <span>Broadcast Center</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-              Live Classes 📹
+              Live Classes
             </h1>
             <p className="text-black/80 font-jakarta font-semibold mt-1">
               Host and manage real-time online classes powered by Jitsi Meet
@@ -299,31 +300,31 @@ const AdminLiveClasses: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-space font-black uppercase text-black mb-1">Class Status</label>
-              <select
+              <CartoonDropdown
                 value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-              >
-                <option value="">All Statuses</option>
-                <option value="Scheduled">Scheduled</option>
-                <option value="Live">Live</option>
-                <option value="Completed">Completed</option>
-                <option value="Cancelled">Cancelled</option>
-              </select>
+                onChange={(val) => setFilterStatus(val)}
+                placeholder="All Statuses"
+                options={[
+                  { value: '', label: 'All Statuses' },
+                  { value: 'Scheduled', label: 'Scheduled' },
+                  { value: 'Live', label: 'Live' },
+                  { value: 'Completed', label: 'Completed' },
+                  { value: 'Cancelled', label: 'Cancelled' },
+                ]}
+              />
             </div>
             <div>
               <label className="block text-xs font-space font-black uppercase text-black mb-1">Standard / Grade</label>
-              <select
+              <CartoonDropdown
                 value={filterClass}
-                onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-              >
-                <option value="">All Classes</option>
-                {STANDARDS.map(std => (
-                  <option key={std} value={std}>{STANDARD_LABELS[std]}</option>
-                ))}
-                <option value="All">All Students</option>
-              </select>
+                onChange={(val) => setFilterClass(val)}
+                placeholder="All Classes"
+                options={[
+                  { value: '', label: 'All Classes' },
+                  ...STANDARDS.map(std => ({ value: std, label: STANDARD_LABELS[std] || std })),
+                  { value: 'All', label: 'All Students' },
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -496,37 +497,31 @@ const AdminLiveClasses: React.FC = () => {
                       <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
                         Subject <span className="text-rose-600">*</span>
                       </label>
-                      <select
-                        name="subject"
+                      <CartoonDropdown
                         value={formData.subject}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-                        required
-                      >
-                        <option value="">Select Subject</option>
-                        {subjects.map(sub => (
-                          <option key={sub} value={sub}>{sub}</option>
-                        ))}
-                      </select>
+                        onChange={(val) => setFormData(prev => ({ ...prev, subject: val }))}
+                        placeholder="Select Subject"
+                        options={[
+                          { value: '', label: 'Select Subject' },
+                          ...subjects.map(sub => ({ value: sub, label: sub }))
+                        ]}
+                      />
                     </div>
 
                     <div>
                       <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
                         Target Standard <span className="text-rose-600">*</span>
                       </label>
-                      <select
-                        name="class"
+                      <CartoonDropdown
                         value={formData.class}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-                        required
-                      >
-                        <option value="">Select Class</option>
-                        {STANDARDS.map(std => (
-                          <option key={std} value={std}>{STANDARD_LABELS[std]}</option>
-                        ))}
-                        <option value="All">All Students</option>
-                      </select>
+                        onChange={(val) => setFormData(prev => ({ ...prev, class: val }))}
+                        placeholder="Select Class"
+                        options={[
+                          { value: '', label: 'Select Class' },
+                          ...STANDARDS.map(std => ({ value: std, label: STANDARD_LABELS[std] || std })),
+                          { value: 'All', label: 'All Students' },
+                        ]}
+                      />
                     </div>
                   </div>
 
@@ -577,8 +572,9 @@ const AdminLiveClasses: React.FC = () => {
 
                   {Number(formData.duration) > 0 && (
                     <div className="bg-[#86efac] border-2 border-black p-3.5 rounded-xl shadow-[2px_2px_0px_#000]">
-                      <p className="text-xs font-mono font-black text-black">
-                        ⚡ DURATION: {formData.duration} minutes ({Math.floor(Number(formData.duration) / 60)}h {Number(formData.duration) % 60}m)
+                      <p className="text-xs font-mono font-black text-black flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-black inline" />
+                        <span>DURATION: {formData.duration} minutes ({Math.floor(Number(formData.duration) / 60)}h {Number(formData.duration) % 60}m)</span>
                       </p>
                     </div>
                   )}
@@ -615,7 +611,7 @@ const AdminLiveClasses: React.FC = () => {
                       type="submit"
                       className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black py-3 px-4 rounded-xl border-2 border-black font-outfit font-black text-base shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                     >
-                      {editingClassId ? 'Update Class' : 'Schedule Live Class 🚀'}
+                      {editingClassId ? 'Update Class' : 'Schedule Live Class'}
                     </button>
                     <button
                       type="button"

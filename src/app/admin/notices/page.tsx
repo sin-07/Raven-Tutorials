@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
 interface Notice {
   _id: string;
@@ -116,7 +117,7 @@ function AdminNoticesPage() {
             <span>Official Announcements</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-            Notice Board 📢
+            Notice Board
           </h1>
           <p className="text-black/80 font-jakarta font-semibold mt-1">
             Broadcast institute circulars, holiday announcements, and exam schedules
@@ -184,17 +185,17 @@ function AdminNoticesPage() {
                 <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
                   Target Class / Standard
                 </label>
-                <select
-                  name="class"
+                <CartoonDropdown
                   value={form.class}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-black font-jakarta font-bold focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] text-sm"
-                >
-                  <option value="All">All Classes (General Announcement)</option>
-                  {STANDARDS.map(std => (
-                    <option key={std} value={std}>{STANDARD_LABELS[std]}</option>
-                  ))}
-                </select>
+                  onChange={(val) => setForm(prev => ({ ...prev, class: val }))}
+                  options={[
+                    { value: 'All', label: 'All Classes (General Announcement)' },
+                    ...STANDARDS.map(std => ({
+                      value: std,
+                      label: STANDARD_LABELS[std] || std,
+                    }))
+                  ]}
+                />
               </div>
             </div>
 
@@ -205,7 +206,7 @@ function AdminNoticesPage() {
                 className="bg-[#86efac] text-black border-2 border-black px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
               >
                 <Send size={18} />
-                <span>{posting ? 'Broadcasting Notice...' : 'Broadcast Notice 🚀'}</span>
+                <span>{posting ? 'Broadcasting Notice...' : 'Broadcast Notice'}</span>
               </button>
             </div>
           </form>
@@ -242,8 +243,9 @@ function AdminNoticesPage() {
                       <User size={12} className="text-black" />
                       <span>{notice.postedBy}</span>
                     </div>
-                    <span className="bg-[#fef08a] border-2 border-black px-3 py-1 rounded-full text-xs font-space font-black uppercase text-black shadow-[1px_1px_0px_#000]">
-                      {notice.class === 'All' ? '📢 All Classes' : `Class ${notice.class}`}
+                    <span className="bg-[#fef08a] border-2 border-black px-3 py-1 rounded-full text-xs font-space font-black uppercase text-black shadow-[1px_1px_0px_#000] inline-flex items-center gap-1">
+                      <Megaphone size={12} className="text-black" />
+                      <span>{notice.class === 'All' ? 'All Classes' : `Class ${notice.class}`}</span>
                     </span>
                     <span className="text-xs font-mono font-bold text-black/60 ml-1">
                       {new Date(notice.createdAt).toLocaleString()}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, FileText } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { animateFromLeft, animateFromRight, animateFromUp, animateFromDown, scaleIn } from '@/lib/gsap';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -52,7 +52,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
     const isAtBottom = Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 10;
     if (isAtBottom && !hasScrolledToBottom) {
       setHasScrolledToBottom(true);
-      toast.success('✓ You can now accept the Code of Conduct', {
+      toast.success('You can now accept the Code of Conduct', {
         duration: 3000,
         style: {
           background: '#10b981',
@@ -124,7 +124,8 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
               <div className="w-2 h-full bg-black rounded-full flex-shrink-0 self-stretch"></div>
               <div>
                 <h3 className="text-base font-black text-black mb-2 flex items-center gap-2 font-outfit">
-                  <span>📜</span> Preamble
+                  <FileText className="w-5 h-5 text-black" />
+                  <span>Preamble</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-neutral-900 leading-relaxed text-justify font-bold">
                   THE FOLLOWING DRAFT CONTAINS CERTAIN CODES OF CONDUCT FOR RAVEN LLC. 
@@ -201,7 +202,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             <div className="mb-4 p-3 bg-[#dcfce7] border-2 border-black rounded-xl flex items-start gap-2 shadow-[2px_2px_0px_#000]">
               <AlertCircle className="w-4 h-4 text-black flex-shrink-0 mt-0.5" />
               <p className="text-xs text-black font-bold">
-                ⚠️ <strong>You must scroll to the bottom</strong> and read all points before accepting.
+                <strong>You must scroll to the bottom</strong> and read all points before accepting.
               </p>
             </div>
           )}
@@ -210,7 +211,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             <div className="mb-4 p-3 bg-emerald-200 border-2 border-black rounded-xl flex items-start gap-2 shadow-[2px_2px_0px_#000]">
               <AlertCircle className="w-4 h-4 text-black flex-shrink-0 mt-0.5" />
               <p className="text-xs text-black font-bold">
-                ⚠️ <strong>Check the box above</strong> to proceed with enrollment.
+                <strong>Check the box above</strong> to proceed with enrollment.
               </p>
             </div>
           )}

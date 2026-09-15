@@ -19,6 +19,8 @@ export interface CartoonDropdownProps {
   error?: boolean;
   disabled?: boolean;
   className?: string;
+  buttonClassName?: string;
+  size?: 'sm' | 'md';
   id?: string;
   required?: boolean;
 }
@@ -32,6 +34,8 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
   error = false,
   disabled = false,
   className = '',
+  buttonClassName = '',
+  size = 'md',
   id,
   required = false,
 }) => {
@@ -197,23 +201,25 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
         type="button"
         disabled={disabled}
         onClick={toggleDropdown}
-        className={`w-full px-4 py-3 bg-white border-2 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-all ${
+        className={`w-full ${
+          size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2.5 text-sm sm:text-base'
+        } bg-white border-2 text-left rounded-xl font-jakarta font-bold flex items-center justify-between shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-all ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:translate-x-0.5 active:translate-y-0.5'
         } ${
           error
             ? 'border-rose-500 bg-rose-50/70 text-rose-950'
             : 'border-black text-black'
-        }`}
+        } ${buttonClassName}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className={selectedOption ? 'text-black font-semibold' : 'text-neutral-400'}>
+        <span className={`truncate ${selectedOption ? 'text-black font-semibold' : 'text-neutral-400'}`}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
 
         <ChevronDown
           ref={chevronRef}
-          className="w-5 h-5 text-black flex-shrink-0 ml-2 transform transition-transform"
+          className={`${size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'} text-black flex-shrink-0 ml-2 transform transition-transform`}
         />
       </button>
 

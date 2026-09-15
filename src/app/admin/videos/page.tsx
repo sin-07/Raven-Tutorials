@@ -16,7 +16,7 @@ const Videos: React.FC = () => {
             <span>Media Center</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-            Video Management 🎬
+            Video Management
           </h2>
           <p className="text-black/80 font-jakarta font-semibold mt-1">
             Manage educational video lectures, live recordings, and class highlights
@@ -42,7 +42,7 @@ const Videos: React.FC = () => {
               <Clock className="w-8 h-8 text-black animate-pulse" />
             </div>
             <h2 className="text-2xl md:text-3xl font-outfit font-black text-black mb-2">
-              Launching Very Soon! 🚀
+              Launching Very Soon!
             </h2>
             <p className="text-base font-jakarta font-medium text-black/80">
               Our development team is currently integrating high-speed CDN video streaming and YouTube unlisted lecture playlists. Get ready for a smooth video experience!

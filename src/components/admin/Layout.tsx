@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   Menu, X, BarChart3, Users, CheckSquare, FileText, 
-  BookOpen, Megaphone, Video, MessageSquare, Sparkles 
+  BookOpen, Megaphone, Video, MessageSquare, Sparkles, CreditCard 
 } from 'lucide-react';
 import Navbar from '../Navbar';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -43,6 +43,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
   const menuItems = [
     { path: '/admin/dashboard', icon: BarChart3, label: 'Dashboard' },
+    { path: '/admin/fees', icon: CreditCard, label: 'Fee Management' },
     { path: '/admin/students', icon: Users, label: 'Students' },
     { path: '/admin/courses', icon: BookOpen, label: 'Courses' },
     { path: '/admin/attendance', icon: CheckSquare, label: 'Attendance' },

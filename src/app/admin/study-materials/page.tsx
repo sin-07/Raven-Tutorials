@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Upload, FileText, Trash2, Download, Filter, BookOpen, Sparkles, X } from 'lucide-react';
+import { Upload, FileText, Trash2, Download, Filter, BookOpen, Sparkles, X, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { STANDARDS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
 interface MaterialData {
   _id: string;
@@ -162,7 +163,7 @@ const StudyMaterials: React.FC = () => {
               <span>Resources & Notes</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-              Study Materials 📚
+              Study Materials
             </h1>
             <p className="text-black/80 font-jakarta font-semibold mt-1">
               Upload, organize, and distribute PDF guides and notes to students
@@ -220,36 +221,30 @@ const StudyMaterials: React.FC = () => {
                   <label className="block text-sm font-space font-black uppercase text-black mb-2">
                     Class / Standard <span className="text-rose-600">*</span>
                   </label>
-                  <select
-                    name="class"
+                  <CartoonDropdown
                     value={formData.class}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-                    required
-                  >
-                    <option value="">Select Class</option>
-                    {classes.map(cls => (
-                      <option key={cls} value={cls}>{cls}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setFormData(prev => ({ ...prev, class: val }))}
+                    placeholder="Select Class"
+                    options={[
+                      { value: '', label: 'Select Class' },
+                      ...classes.map(cls => ({ value: cls, label: cls }))
+                    ]}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-space font-black uppercase text-black mb-2">
                     Subject <span className="text-rose-600">*</span>
                   </label>
-                  <select
-                    name="subject"
+                  <CartoonDropdown
                     value={formData.subject}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-                    required
-                  >
-                    <option value="">Select Subject</option>
-                    {subjects.map(sub => (
-                      <option key={sub} value={sub}>{sub}</option>
-                    ))}
-                  </select>
+                    onChange={(val) => setFormData(prev => ({ ...prev, subject: val }))}
+                    placeholder="Select Subject"
+                    options={[
+                      { value: '', label: 'Select Subject' },
+                      ...subjects.map(sub => ({ value: sub, label: sub }))
+                    ]}
+                  />
                 </div>
 
                 <div>
@@ -264,8 +259,9 @@ const StudyMaterials: React.FC = () => {
                     required
                   />
                   {formData.file && (
-                    <p className="text-xs font-mono font-bold text-black mt-2 bg-[#dcfce7] p-1.5 rounded-lg border border-black inline-block">
-                      ✓ Selected: {formData.file.name} ({(formData.file.size / (1024 * 1024)).toFixed(2)} MB)
+                    <p className="text-xs font-mono font-bold text-black mt-2 bg-[#dcfce7] p-1.5 rounded-lg border border-black inline-flex items-center gap-1.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-800 stroke-[3]" />
+                      <span>Selected: {formData.file.name} ({(formData.file.size / (1024 * 1024)).toFixed(2)} MB)</span>
                     </p>
                   )}
                 </div>
@@ -291,7 +287,7 @@ const StudyMaterials: React.FC = () => {
                   disabled={loading}
                   className="bg-[#86efac] text-black border-2 border-black px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
                 >
-                  {loading ? 'Uploading PDF...' : 'Upload Material 🚀'}
+                  {loading ? 'Uploading PDF...' : 'Upload Material'}
                 </button>
                 <button
                   type="button"
@@ -316,30 +312,28 @@ const StudyMaterials: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-space font-black uppercase text-black mb-1">Standard / Class</label>
-              <select
+              <CartoonDropdown
                 value={filterClass}
-                onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-              >
-                <option value="">All Classes</option>
-                {classes.map(cls => (
-                  <option key={cls} value={cls}>{cls}</option>
-                ))}
-              </select>
+                onChange={(val) => setFilterClass(val)}
+                placeholder="All Classes"
+                options={[
+                  { value: '', label: 'All Classes' },
+                  ...classes.map(cls => ({ value: cls, label: cls }))
+                ]}
+              />
             </div>
 
             <div>
               <label className="block text-xs font-space font-black uppercase text-black mb-1">Subject</label>
-              <select
+              <CartoonDropdown
                 value={filterSubject}
-                onChange={(e) => setFilterSubject(e.target.value)}
-                className="w-full px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-              >
-                <option value="">All Subjects</option>
-                {subjects.map(sub => (
-                  <option key={sub} value={sub}>{sub}</option>
-                ))}
-              </select>
+                onChange={(val) => setFilterSubject(val)}
+                placeholder="All Subjects"
+                options={[
+                  { value: '', label: 'All Subjects' },
+                  ...subjects.map(sub => ({ value: sub, label: sub }))
+                ]}
+              />
             </div>
           </div>
         </div>

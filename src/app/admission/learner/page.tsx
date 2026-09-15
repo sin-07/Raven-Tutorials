@@ -192,7 +192,6 @@ export default function LearnerAdmissionPage() {
               padding: '16px',
               borderRadius: '16px',
             },
-            icon: '⚠️',
           });
         }
         throw new Error(data.message || 'Failed to submit admission form');

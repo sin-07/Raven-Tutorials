@@ -14,7 +14,10 @@ import {
   ArrowLeft,
   ShieldAlert,
   HelpCircle,
-  Award
+  Award,
+  Zap,
+  Check,
+  Send,
 } from 'lucide-react';
 import Loader from '@/components/Loader';
 import { StudentProtectedRoute } from '@/components';
@@ -312,7 +315,7 @@ function TakeTestPage() {
       const data = await res.json();
 
       if (data.success) {
-        toast.success('Test submitted successfully! 🎉');
+        toast.success('Test submitted successfully!');
 
         if (document.fullscreenElement) {
           await document.exitFullscreen();
@@ -481,8 +484,9 @@ function TakeTestPage() {
             <ArrowRight className="w-6 h-6 text-black" />
           </button>
 
-          <p className="text-xs font-jakarta font-semibold text-black/60 text-center mt-4">
-            ⚡ Fullscreen is recommended but optional. Once you begin, the timer starts automatically.
+          <p className="text-xs font-jakarta font-semibold text-black/60 text-center mt-4 flex items-center justify-center gap-1.5">
+            <Zap className="w-3.5 h-3.5 text-amber-500 inline flex-shrink-0" />
+            <span>Fullscreen is recommended but optional. Once you begin, the timer starts automatically.</span>
           </p>
 
           {/* Back to Dashboard */}
@@ -774,7 +778,8 @@ function TakeTestPage() {
                     disabled={submitting}
                     className="w-full sm:w-auto px-8 py-3 bg-[#fef08a] hover:bg-[#fde047] text-black border-3 border-black rounded-2xl font-outfit font-black text-base shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <span>Finish & Submit Test 🚀</span>
+                    <span>Finish & Submit Test</span>
+                    <Send className="w-4 h-4 text-black" />
                   </button>
                 ) : (
                   <button
@@ -844,12 +849,14 @@ function TakeTestPage() {
             </div>
 
             {Object.keys(answers).length < test.questions.length ? (
-              <div className="bg-[#fef08a] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-black shadow-[2px_2px_0px_#000]">
-                ⚠️ You have {test.questions.length - Object.keys(answers).length} unanswered question(s). You can still submit or go back to complete them.
+              <div className="bg-[#fef08a] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-black flex-shrink-0" />
+                <span>You have {test.questions.length - Object.keys(answers).length} unanswered question(s). You can still submit or go back to complete them.</span>
               </div>
             ) : (
-              <div className="bg-[#dcfce7] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-emerald-950 shadow-[2px_2px_0px_#000]">
-                ✓ Great job! All questions have been answered.
+              <div className="bg-[#dcfce7] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-emerald-950 shadow-[2px_2px_0px_#000] flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-800 flex-shrink-0" />
+                <span>Great job! All questions have been answered.</span>
               </div>
             )}
 
@@ -865,9 +872,10 @@ function TakeTestPage() {
               <button
                 onClick={confirmSubmit}
                 disabled={submitting}
-                className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black py-3 rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer"
+                className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black py-3 rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5"
               >
-                {submitting ? 'Submitting...' : 'Yes, Submit Test 🚀'}
+                <span>{submitting ? 'Submitting...' : 'Yes, Submit Test'}</span>
+                {!submitting && <Send className="w-4 h-4" />}
               </button>
             </div>
 

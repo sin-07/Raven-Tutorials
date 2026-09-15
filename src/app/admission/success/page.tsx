@@ -77,7 +77,7 @@ export default function AdmissionSuccessPage() {
         RAVEN TUTORIALS - ADMISSION CONFIRMATION
 ════════════════════════════════════════════════════════
 
-✓ Registration & Admission Successful!
+[VERIFIED] Registration & Admission Successful!
 
 RECEIPT & INVOICE DETAILS
 ─────────────────────────
@@ -192,7 +192,7 @@ IMPORTANT NOTES
           </div>
 
           {/* ======================================================== */}
-          {/* 🧾 CARTOON OFFICIAL ADMISSION BILL / RECEIPT CARD */}
+          {/* CARTOON OFFICIAL ADMISSION BILL / RECEIPT CARD */}
           {/* ======================================================== */}
           <div className="printable-bill bg-white rounded-3xl shadow-[8px_8px_0px_#000] border-3 border-black p-6 sm:p-8 mb-6 relative overflow-hidden">
             
@@ -357,7 +357,7 @@ IMPORTANT NOTES
           </div>
 
           {/* ======================================================== */}
-          {/* 🔑 CARTOON CREDENTIALS CARD */}
+          {/* CARTOON CREDENTIALS CARD */}
           {/* ======================================================== */}
           <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 mb-6 border-3 border-black no-print">
             <div className="bg-[#86efac] border-2 border-black rounded-2xl p-4 mb-6 shadow-[3px_3px_0px_#000] flex items-center gap-3">

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { Send, AlertCircle, CheckCircle, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
+import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
 interface FeedbackFormProps {
   studentId?: string;
@@ -137,19 +138,16 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
           <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
             Category
           </label>
-          <select
+          <CartoonDropdown
             name="category"
             value={formData.category}
-            onChange={handleChange}
+            onChange={(e: any) => {
+              const val = typeof e === 'string' ? e : e?.target?.value;
+              setFormData((prev) => ({ ...prev, category: val }));
+            }}
             disabled={!isAuthenticated}
-            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] text-sm disabled:opacity-50"
-          >
-            {categories.map(cat => (
-              <option key={cat.value} value={cat.value}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
+            options={categories}
+          />
         </div>
 
         {/* Subject */}
@@ -175,18 +173,16 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
           <label className="block text-xs font-space font-black uppercase text-black mb-1">
             Overall Rating
           </label>
-          <div className="flex gap-1.5 bg-white border-2 border-black rounded-xl p-2 w-fit shadow-[2px_2px_0px_#000]">
+          <div className="flex gap-2 bg-white border-2 border-black rounded-xl p-2.5 w-fit shadow-[2px_2px_0px_#000]">
             {[1, 2, 3, 4, 5].map(star => (
               <button
                 key={star}
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
                 disabled={!isAuthenticated}
-                className={`text-2xl transition-transform hover:scale-110 active:scale-95 ${
-                  star <= formData.rating ? 'text-amber-500' : 'text-neutral-300'
-                } disabled:cursor-not-allowed`}
+                className="transition-transform hover:scale-110 active:scale-95 disabled:cursor-not-allowed p-0.5"
               >
-                ★
+                <Star className={`w-6 h-6 ${star <= formData.rating ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
               </button>
             ))}
           </div>
@@ -217,7 +213,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
           className="w-full px-6 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <Send className="w-4 h-4" />
-          <span>{loading ? 'Submitting...' : 'Submit Feedback 🚀'}</span>
+          <span>{loading ? 'Submitting...' : 'Submit Feedback'}</span>
         </button>
       </form>
     </div>

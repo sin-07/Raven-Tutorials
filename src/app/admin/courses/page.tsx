@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload, BookOpen, Sparkles } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload, BookOpen, Sparkles, Clock, Users } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface Course {
@@ -390,8 +391,14 @@ export default function CoursesPage() {
                     </div>
 
                     <div className="flex items-center justify-between text-xs font-space font-bold text-neutral-700 mb-3">
-                      <span>⏱ {course.duration}</span>
-                      <span>👥 {course.enrolledStudents} Enrolled</span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-black" />
+                        {course.duration}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-black" />
+                        {course.enrolledStudents} Enrolled
+                      </span>
                     </div>
 
                     <div className="flex items-center justify-between pt-2 border-t border-black/10">
@@ -568,17 +575,15 @@ export default function CoursesPage() {
                   </div>
                   <div>
                     <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Level *</label>
-                    <select
-                      name="level"
+                    <CartoonDropdown
                       value={formData.level}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
-                    >
-                      <option value="Beginner">Beginner</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                    </select>
+                      onChange={(val) => setFormData(prev => ({ ...prev, level: val }))}
+                      options={[
+                        { value: 'Beginner', label: 'Beginner' },
+                        { value: 'Intermediate', label: 'Intermediate' },
+                        { value: 'Advanced', label: 'Advanced' },
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Category *</label>

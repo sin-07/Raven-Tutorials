@@ -282,6 +282,48 @@ const AboutUs: React.FC = () => {
             </div>
           </section>
 
+          {/* Hall of Excellence & Academic Milestones */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t-3 border-black content-auto">
+            <div className="text-center mb-14">
+              <span className="pill-badge mb-4">Track Record of Success</span>
+              <WavyHeading
+                text="Hall of Excellence &"
+                gradientText="Academic Milestones"
+                as="h2"
+                className="text-3xl sm:text-4xl md:text-5xl font-black text-black font-outfit tracking-tight"
+              />
+              <p className="mt-3 text-base text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium">
+                Over a decade of mentorship helping students from Patna achieve stellar ranks in JEE, NEET, and Board Examinations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+              <div className="p-6 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[5px_5px_0px_#000] text-center">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-emerald-800">94%</p>
+                <p className="font-black text-black font-outfit text-sm sm:text-base mt-2">Selection Rate</p>
+                <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">In competitive entrance tests</p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#dcfce7] border-3 border-black shadow-[5px_5px_0px_#000] text-center">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-black">150+</p>
+                <p className="font-black text-black font-outfit text-sm sm:text-base mt-2">IIT & NIT Selections</p>
+                <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">Top Engineering branches</p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#bbf7d0] border-3 border-black shadow-[5px_5px_0px_#000] text-center">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-emerald-950">85+</p>
+                <p className="font-black text-black font-outfit text-sm sm:text-base mt-2">AIIMS & Govt MBBS</p>
+                <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">Medical entrance ranks</p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#fef9c3] border-3 border-black shadow-[5px_5px_0px_#000] text-center">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-amber-950">500+</p>
+                <p className="font-black text-black font-outfit text-sm sm:text-base mt-2">90%+ in Boards</p>
+                <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">CBSE Class 10th & 12th</p>
+              </div>
+            </div>
+          </section>
+
           {/* Technology & Development Team */}
           <section ref={devSectionRef} className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t-3 border-black content-auto">
             <div className="text-center mb-14">

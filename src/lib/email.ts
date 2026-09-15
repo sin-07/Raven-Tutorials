@@ -182,7 +182,7 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
 
     <!-- Content Body -->
     <div style="padding:28px 24px;color:#000000;">
-      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">Hello <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span> 👋</p>
+      <p style="font-size:16px;margin:0 0 10px;font-weight:800;">Hello <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>,</p>
       <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
         Thank you for starting your admission with Raven Tutorials! Please use the secret 6-digit verification code below to verify your email address:
       </p>
@@ -196,14 +196,14 @@ export async function sendOTPEmail({ to, studentName, otp }: SendOTPEmailParams)
           ${otp}
         </div>
         <p style="margin:0;font-size:12px;font-weight:700;color:#15803d;">
-          ⏱ Valid for 10 minutes • Do not share with anyone
+          Valid for 10 minutes • Do not share with anyone
         </p>
       </div>
 
       <!-- Security Notice -->
       <div style="background-color:#ffffff;border:2px solid #000000;border-radius:12px;padding:12px 16px;margin-bottom:20px;">
         <p style="color:#4b5563;font-size:12px;line-height:1.5;margin:0;">
-          💡 If you did not request this verification code, you can safely disregard this email.
+          If you did not request this verification code, you can safely disregard this email.
         </p>
       </div>
     </div>
@@ -284,14 +284,14 @@ export async function sendWelcomeEmail({
       <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
         RAVEN TUTORIALS
       </div>
-      <h1 style="color:#000000;margin:0;font-size:28px;font-weight:900;letter-spacing:-0.5px;">🎉 Admission Confirmed!</h1>
+      <h1 style="color:#000000;margin:0;font-size:28px;font-weight:900;letter-spacing:-0.5px;">Admission Confirmed!</h1>
       <p style="color:#166534;margin:6px 0 0;font-size:13px;font-weight:700;">Official Registration & Fee Invoice</p>
     </div>
 
     <!-- Content Body -->
     <div style="padding:28px 24px;color:#000000;">
       <p style="font-size:16px;margin:0 0 10px;font-weight:800;">
-        Welcome to the family, <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>! 🚀
+        Welcome to the family, <span style="background-color:#dcfce7;border:1.5px solid #000000;padding:2px 8px;border-radius:6px;">${studentName}</span>!
       </p>
       <p style="color:#374151;font-size:14px;line-height:1.6;margin:0 0 20px;font-weight:500;">
         Your student profile has been registered and verified. Below are your student portal login credentials and your official payment fee receipt.
@@ -300,7 +300,7 @@ export async function sendWelcomeEmail({
       <!-- 1. Cartoon Credentials Box -->
       <div style="background-color:#ffffff;border:2.5px solid #000000;border-radius:16px;box-shadow:4px 4px 0px #000000;padding:18px;margin-bottom:24px;">
         <div style="display:inline-block;background-color:#dcfce7;border:1.5px solid #000000;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">
-          🔑 STUDENT LOGIN CREDENTIALS
+          STUDENT LOGIN CREDENTIALS
         </div>
         <table style="width:100%;border-collapse:collapse;font-size:13px;">
           <tr style="border-bottom:1.5px dashed #000000;">
@@ -330,7 +330,7 @@ export async function sendWelcomeEmail({
           <tr>
             <td style="vertical-align:middle;">
               <span style="display:inline-block;background-color:#bbf7d0;border:1.5px solid #000000;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;">
-                🧾 OFFICIAL FEE RECEIPT
+                OFFICIAL FEE RECEIPT
               </span>
             </td>
             <td style="vertical-align:middle;text-align:right;">
@@ -393,7 +393,7 @@ export async function sendWelcomeEmail({
         <!-- Official Stamp Badge -->
         <div style="text-align:center;padding-top:4px;">
           <div style="display:inline-block;background-color:#dcfce7;border:2px solid #000000;border-radius:8px;padding:6px 14px;font-size:11px;font-weight:900;color:#166534;letter-spacing:1px;box-shadow:2px 2px 0px #000000;">
-            PAID & VERIFIED ✓ RAVEN ACADEMIC COUNCIL
+            PAID & VERIFIED • RAVEN ACADEMIC COUNCIL
           </div>
         </div>
       </div>
@@ -456,7 +456,7 @@ export async function sendAbsenceNotificationEmail({ to, studentName, subject, d
       <div style="display:inline-block;background-color:#000000;color:#ffffff;padding:5px 16px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">
         RAVEN TUTORIALS
       </div>
-      <h1 style="color:#000000;margin:0;font-size:26px;font-weight:900;letter-spacing:-0.5px;">⚠️ Attendance Alert</h1>
+      <h1 style="color:#000000;margin:0;font-size:26px;font-weight:900;letter-spacing:-0.5px;">Attendance Alert</h1>
       <p style="color:#991b1b;margin:6px 0 0;font-size:13px;font-weight:700;">Class Absence Notification</p>
     </div>
 
@@ -486,7 +486,7 @@ export async function sendAbsenceNotificationEmail({ to, studentName, subject, d
 
       <div style="background-color:#ffffff;border:2px solid #000000;border-radius:12px;padding:12px 16px;margin-bottom:16px;">
         <p style="color:#4b5563;font-size:12px;line-height:1.5;margin:0;">
-          💡 Regular attendance is vital for academic excellence. If this is an error, please reach out to your instructor within 24 hours.
+          Regular attendance is vital for academic excellence. If this is an error, please reach out to your instructor within 24 hours.
         </p>
       </div>
     </div>
@@ -596,13 +596,13 @@ export async function sendTestResultEmail({
 
         <div style="text-align:center;padding-top:8px;border-top:1.5px dashed #000000;">
           <div style="display:inline-block;background-color:${isPassed ? '#4ade80' : '#f87171'};color:#000000;border:2px solid #000000;border-radius:8px;padding:6px 20px;font-size:14px;font-weight:900;box-shadow:2px 2px 0px #000000;">
-            ${isPassed ? 'RESULT: PASSED 🎉' : 'RESULT: NEEDS IMPROVEMENT 💪'}
+            ${isPassed ? 'RESULT: PASSED' : 'RESULT: NEEDS IMPROVEMENT'}
           </div>
         </div>
       </div>
 
       <p style="color:#4b5563;font-size:13px;line-height:1.6;margin:0;">
-        ${isPassed ? '⭐ Excellent performance! Keep practicing to maintain your high score.' : '📚 Keep your chin up! Review the solution key in your portal and take the practice test again.'}
+        ${isPassed ? 'Excellent performance! Keep practicing to maintain your high score.' : 'Keep your chin up! Review the solution key in your portal and take the practice test again.'}
       </p>
     </div>
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, AlertCircle, Trash2, Eye, Sparkles, CheckCircle } from 'lucide-react';
+import { MessageSquare, AlertCircle, Trash2, Eye, Sparkles, CheckCircle, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
 import FeedbackForm from '@/components/FeedbackForm';
 import { StudentProtectedRoute } from '@/components';
@@ -136,7 +136,7 @@ function FeedbackPage() {
             <span>Student Support</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-outfit font-black text-black tracking-tight">
-            Feedback & Support 💬
+            Feedback & Support
           </h1>
           <p className="text-black/80 font-jakarta font-semibold mt-1">
             Share your thoughts, suggestions, and queries directly with our faculty team
@@ -201,14 +201,12 @@ function FeedbackPage() {
 
                       {/* Rating */}
                       {feedback.rating && (
-                        <div className="flex gap-1 mb-2">
+                        <div className="flex gap-1 mb-2 items-center">
                           {[...Array(5)].map((_, i) => (
-                            <span
+                            <Star
                               key={i}
-                              className={`text-base ${i < feedback.rating! ? 'text-amber-500' : 'text-neutral-300'}`}
-                            >
-                              ★
-                            </span>
+                              className={`w-4 h-4 ${i < feedback.rating! ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`}
+                            />
                           ))}
                         </div>
                       )}

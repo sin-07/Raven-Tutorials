@@ -122,7 +122,7 @@ function VideosPage() {
               <span>Video Library</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-outfit font-black text-black tracking-tight">
-              Recorded Video Lectures 🎬
+              Recorded Video Lectures
             </h1>
             <p className="text-black/80 font-jakarta font-semibold mt-1">
               Watch curated topic explanations, chapter summaries, and revision masterclasses

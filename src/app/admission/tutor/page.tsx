@@ -15,7 +15,8 @@ import {
   AlertCircle, 
   Loader2,
   Sparkles,
-  ArrowLeft
+  ArrowLeft,
+  Check
 } from 'lucide-react';
 import WavyHeading from '@/components/WavyHeading';
 import { LMSFooter } from '@/components/lms';
@@ -283,13 +284,14 @@ export default function TeacherAdmissionPage() {
                       key={subject}
                       type="button"
                       onClick={() => handleSubjectToggle(subject)}
-                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold font-space border-2 border-black transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 ${
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold font-space border-2 border-black transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center gap-1.5 ${
                         isSelected
                           ? 'bg-emerald-300 text-black scale-105'
                           : 'bg-white text-black hover:bg-[#dcfce7]'
                       }`}
                     >
-                      {subject} {isSelected && '✓'}
+                      <span>{subject}</span>
+                      {isSelected && <Check className="w-3.5 h-3.5 inline stroke-[3]" />}
                     </button>
                   );
                 })}

@@ -15,7 +15,7 @@ export default function SignupPage() {
             <span>Join Raven Tutorials</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-outfit font-black text-black tracking-tight mb-2">
-            Choose Your Admission Track 🎯
+            Choose Your Admission Track
           </h1>
           <p className="text-black/80 font-jakarta font-semibold text-sm sm:text-base max-w-xl mx-auto">
             Select how you would like to join the Raven Tutorials academic ecosystem

@@ -47,6 +47,7 @@ const Navbar: React.FC = React.memo(() => {
   const navLinks = useMemo(() => [
     { path: '/', label: 'Home' },
     { path: '/courses', label: 'Courses' },
+    { path: '/rsat', label: "RSAT '26" },
     { path: '/services', label: 'Services' },
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
     { path: '/notices', label: 'Notices' },

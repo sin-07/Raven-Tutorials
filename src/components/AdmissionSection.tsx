@@ -19,7 +19,8 @@ import {
   ArrowRight,
   ArrowLeft,
   Shield,
-  BookOpen
+  BookOpen,
+  AlertTriangle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { STANDARDS } from '@/constants/classes';
@@ -902,8 +903,9 @@ export default function AdmissionSection() {
                         </div>
                       </div>
 
-                      <p className="text-xs text-rose-700 font-bold mt-4 text-center">
-                        ⚠️ Please save these credentials. You&apos;ll need them to login.
+                      <p className="text-xs text-rose-700 font-bold mt-4 text-center flex items-center justify-center gap-1.5">
+                        <AlertTriangle className="w-4 h-4 text-rose-700 inline flex-shrink-0" />
+                        <span>Please save these credentials. You&apos;ll need them to login.</span>
                       </p>
                     </div>
 

@@ -4,8 +4,9 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
-import { CheckSquare, Users, Calendar, Sparkles, CheckCircle2, XCircle, Check } from 'lucide-react';
+import { CheckSquare, Users, Calendar, Sparkles, CheckCircle2, XCircle, Check, X } from 'lucide-react';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
 interface StudentData {
   _id: string;
@@ -116,7 +117,6 @@ const AdminAttendance: React.FC = () => {
       if (data.success) {
         if (data.data.length === 0) {
           toast('No students enrolled in this class yet', {
-            icon: 'ℹ️',
             style: {
               background: '#1e293b',
               color: '#94a3b8',
@@ -260,32 +260,37 @@ const AdminAttendance: React.FC = () => {
               <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
                 Standard / Class *
               </label>
-              <select
+              <CartoonDropdown
                 value={selectedClass}
-                onChange={(e) => setSelectedClass(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
-              >
-                <option value="">-- Select Class --</option>
-                {STANDARDS.map(standard => (
-                  <option key={standard} value={standard}>{STANDARD_LABELS[standard]}</option>
-                ))}
-              </select>
+                onChange={(val) => setSelectedClass(val)}
+                placeholder="-- Select Class --"
+                options={[
+                  { value: '', label: '-- Select Class --' },
+                  ...STANDARDS.map(standard => ({
+                    value: standard,
+                    label: STANDARD_LABELS[standard] || standard
+                  }))
+                ]}
+              />
             </div>
 
             <div>
               <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
                 Subject Session *
               </label>
-              <select
+              <CartoonDropdown
                 value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
-              >
-                <option value="">-- Select Subject --</option>
-                {subjects.map(subject => (
-                  <option key={subject} value={subject}>{subject}</option>
-                ))}
-              </select>
+                onChange={(val) => setSelectedSubject(val)}
+                placeholder="-- Select Subject --"
+                disabled={!selectedClass}
+                options={[
+                  { value: '', label: '-- Select Subject --' },
+                  ...subjects.map(subject => ({
+                    value: subject,
+                    label: subject
+                  }))
+                ]}
+              />
             </div>
 
             <div>
@@ -351,11 +356,13 @@ const AdminAttendance: React.FC = () => {
 
               {/* Attendance Mini Counter */}
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-emerald-700">
-                  ✓ {presentCount} Present
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-emerald-700 flex items-center gap-1">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  {presentCount} Present
                 </span>
-                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-rose-700">
-                  ✗ {absentCount} Absent
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-rose-700 flex items-center gap-1">
+                  <X className="w-3.5 h-3.5 stroke-[3]" />
+                  {absentCount} Absent
                 </span>
               </div>
             </div>

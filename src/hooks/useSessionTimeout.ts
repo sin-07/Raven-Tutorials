@@ -58,9 +58,8 @@ const useSessionTimeout = (userType: 'student' | 'admin' = 'student') => {
   };
 
   const showWarning = () => {
-    toast('⏰ Your session will expire in 5 minutes. Save your work!', {
+    toast('Your session will expire in 5 minutes. Save your work!', {
       duration: 10000,
-      icon: '⚠️',
       style: {
         background: '#f59e0b',
         color: '#fff',

@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { Users, Search, Trash2, Sparkles, Filter } from 'lucide-react';
 import { Loader } from '@/components';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
 interface StudentData {
   _id: string;
@@ -140,18 +141,18 @@ const AdminStudents: React.FC = () => {
               <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
                 Filter by Class
               </label>
-              <select
+              <CartoonDropdown
                 value={filterClass}
-                onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
-              >
-                <option value="">All Classes</option>
-                {STANDARDS.map((std) => (
-                  <option key={std} value={std}>
-                    {STANDARD_LABELS[std] || std}
-                  </option>
-                ))}
-              </select>
+                onChange={(val) => setFilterClass(val)}
+                placeholder="All Classes"
+                options={[
+                  { value: '', label: 'All Classes' },
+                  ...STANDARDS.map((std) => ({
+                    value: std,
+                    label: STANDARD_LABELS[std] || std,
+                  }))
+                ]}
+              />
             </div>
 
             <div className="flex items-end">

@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import toast from 'react-hot-toast';
-import { FileText, Plus, Edit2, Trash2, Send, Lock, Sparkles, X, Check, ArrowRight, ArrowLeft } from 'lucide-react';
+import { FileText, Plus, Edit2, Trash2, Send, Lock, Sparkles, X, Check, ArrowRight, ArrowLeft, Info } from 'lucide-react';
 import { Loader } from '@/components';
 import { STANDARDS } from '@/constants/classes';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface Question {
@@ -558,8 +559,9 @@ const AdminTests: React.FC = () => {
               
               {!editingTestId && (
                 <div className="bg-amber-100 border-2 border-black rounded-xl p-3 mb-4 shadow-[2px_2px_0px_#000]">
-                  <p className="text-amber-950 text-xs font-bold font-jakarta">
-                    ℹ️ New tests will initially be saved as <strong>DRAFT</strong>. Students will only see the assessment once you hit Publish.
+                  <p className="text-amber-950 text-xs font-bold font-jakarta flex items-center gap-1.5">
+                    <Info className="w-4 h-4 inline shrink-0 text-amber-900" />
+                    <span>New tests will initially be saved as <strong>DRAFT</strong>. Students will only see the assessment once you hit Publish.</span>
                   </p>
                 </div>
               )}
@@ -581,17 +583,15 @@ const AdminTests: React.FC = () => {
 
                     <div>
                       <label className="block text-xs font-black uppercase font-space text-black mb-1">Standard / Class *</label>
-                      <select
+                      <CartoonDropdown
                         value={formData.standard}
-                        onChange={(e) => setFormData({ ...formData, standard: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
-                        required
-                      >
-                        <option value="">Select Class</option>
-                        {classes.map(cls => (
-                          <option key={cls} value={cls}>{cls}</option>
-                        ))}
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, standard: val })}
+                        placeholder="Select Class"
+                        options={[
+                          { value: '', label: 'Select Class' },
+                          ...classes.map(cls => ({ value: cls, label: cls }))
+                        ]}
+                      />
                     </div>
 
                     <div>
@@ -717,16 +717,16 @@ const AdminTests: React.FC = () => {
                     
                     <div>
                       <label className="block text-xs font-black uppercase font-space text-black mb-1">Question Format</label>
-                      <select
+                      <CartoonDropdown
                         value={currentQuestion.questionType}
-                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionType: e.target.value as Question['questionType'] })}
-                        className="w-full px-3.5 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-bold font-outfit focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                      >
-                        <option value="MCQ">Multiple Choice (MCQ)</option>
-                        <option value="Short Answer">Short Answer</option>
-                        <option value="Long Answer">Long Answer</option>
-                        <option value="True/False">True/False</option>
-                      </select>
+                        onChange={(val) => setCurrentQuestion({ ...currentQuestion, questionType: val as Question['questionType'] })}
+                        options={[
+                          { value: 'MCQ', label: 'Multiple Choice (MCQ)' },
+                          { value: 'Short Answer', label: 'Short Answer' },
+                          { value: 'Long Answer', label: 'Long Answer' },
+                          { value: 'True/False', label: 'True/False' },
+                        ]}
+                      />
                     </div>
 
                     <div>

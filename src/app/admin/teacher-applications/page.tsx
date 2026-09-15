@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 /**
@@ -148,7 +149,7 @@ export default function TeacherApplicationsPage() {
             <span>Faculty Recruitment</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-            Teacher Applications 🎓
+            Teacher Applications
           </h1>
           <p className="text-black/80 font-jakarta font-semibold mt-1">
             Review applicant qualifications, teaching credentials, and approve new educators
@@ -201,16 +202,18 @@ export default function TeacherApplicationsPage() {
               <div className="w-10 h-10 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shrink-0">
                 <Filter size={18} className="text-black" />
               </div>
-              <select
+              <CartoonDropdown
+                size="sm"
                 value={filter}
-                onChange={(e) => setFilter(e.target.value as typeof filter)}
-                className="px-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000]"
-              >
-                <option value="all">All Applications</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-              </select>
+                onChange={(val) => setFilter(val as typeof filter)}
+                className="min-w-[160px]"
+                options={[
+                  { value: 'all', label: 'All Applications' },
+                  { value: 'pending', label: 'Pending' },
+                  { value: 'approved', label: 'Approved' },
+                  { value: 'rejected', label: 'Rejected' },
+                ]}
+              />
             </div>
           </div>
         </div>
