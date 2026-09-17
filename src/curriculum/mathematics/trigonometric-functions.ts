@@ -25,8 +25,8 @@ export const trigonometric_functions: CurriculumTopic_trigonometric_functions = 
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-04-30',
-  revisionNumber: 201,
+  lastReviewed: '2026-09-17',
+  revisionNumber: 341,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Trigonometric Functions & General Solutions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
