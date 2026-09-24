@@ -25,8 +25,8 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-01',
-  revisionNumber: 263,
+  lastReviewed: '2026-09-24',
+  revisionNumber: 348,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model and Quantum Electronic Configurations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
