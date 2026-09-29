@@ -130,8 +130,18 @@ export default function Home() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero: Badge from Up, Title & Subtitle from Down, Buttons from Left & Right
-      if (heroBadgeRef.current) animateFromUp(heroBadgeRef.current, 0.1, 35, 0.65);
+      // 1. Hero: Badge from Up with smooth continuous float, Title & Subtitle from Down, Buttons from Left & Right
+      if (heroBadgeRef.current) {
+        animateFromUp(heroBadgeRef.current, 0.1, 35, 0.65);
+        gsap.to(heroBadgeRef.current, {
+          y: -5,
+          duration: 2.4,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: 0.8,
+        });
+      }
       if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.25, 45, 0.7);
       if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.4, 35, 0.65);
       if (heroCTARef.current) {
@@ -225,14 +235,14 @@ export default function Home() {
           <div ref={heroCTARef} className="flex flex-wrap items-center justify-center gap-4 pt-3 font-outfit">
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#4ade80] hover:bg-[#86efac] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-sm sm:text-base"
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#4ade80] hover:bg-[#86efac] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0px_#000] transition-spring text-sm sm:text-base cursor-pointer"
             >
               <span>Explore Programs</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
             </Link>
             <Link
               href="/admission"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#f0fdf4] hover:bg-[#dcfce7] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-sm sm:text-base font-jakarta"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#f0fdf4] hover:bg-[#dcfce7] text-black font-black rounded-2xl border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0px_#000] transition-spring text-sm sm:text-base font-jakarta cursor-pointer"
             >
               <ShieldCheck className="w-4 h-4 text-black" />
               <span>Apply for Admission</span>
