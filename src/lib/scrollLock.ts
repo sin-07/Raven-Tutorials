@@ -116,3 +116,10 @@ export function resetScrollLock(): void {
 
   window.removeEventListener('touchmove', preventTouchMove);
 }
+
+/**
+ * Check if scroll is currently locked
+ */
+export function isScrollLocked(): boolean {
+  return lockCount > 0;
+}
