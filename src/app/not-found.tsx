@@ -20,9 +20,9 @@ export default function NotFound() {
     }
     if (badge404Ref.current) {
       gsap.to(badge404Ref.current, {
-        rotation: 2,
-        y: -4,
-        duration: 1.6,
+        rotation: 3,
+        y: -6,
+        duration: 2.2,
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut',
@@ -42,7 +42,7 @@ export default function NotFound() {
             </div>
 
             {/* Huge 404 Badge with subtle floating GSAP animation */}
-            <div ref={badge404Ref} className="inline-block px-8 py-3 bg-emerald-300 text-black border-3 border-black rounded-2xl shadow-[6px_6px_0px_#000] transform -rotate-2">
+            <div ref={badge404Ref} className="inline-block px-8 py-3 bg-emerald-300 text-black border-3 border-black rounded-2xl shadow-[6px_6px_0px_#000] transform -rotate-2 will-change-transform">
               <span className="text-6xl sm:text-8xl font-black font-outfit tracking-wider">404</span>
             </div>
 
@@ -59,7 +59,7 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 href="/"
-                className="btn-cartoon w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all"
+                className="btn-cartoon w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-spring cursor-pointer"
               >
                 <Home className="w-4 h-4 text-black" />
                 <span>Return to Home</span>
@@ -67,7 +67,7 @@ export default function NotFound() {
 
               <button
                 onClick={() => window.history.back()}
-                className="btn-cartoon w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all"
+                className="btn-cartoon w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-spring cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 text-black" />
                 <span>Go Back</span>
