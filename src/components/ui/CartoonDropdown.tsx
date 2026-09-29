@@ -230,7 +230,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
         onClick={toggleDropdown}
         className={`w-full ${
           size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2.5 text-sm sm:text-base'
-        } bg-white border-2 text-left rounded-xl font-jakarta font-bold flex items-center justify-between shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-all ${
+        } bg-white border-2 text-left rounded-xl font-jakarta font-bold flex items-center justify-between shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-spring ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:translate-x-0.5 active:translate-y-0.5'
         } ${
           error
@@ -276,7 +276,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(opt.value)}
-                  className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-bold flex items-center justify-between cursor-pointer border transition-all ${
+                  className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-bold flex items-center justify-between cursor-pointer border transition-spring ${
                     isSelected
                       ? 'bg-emerald-300 text-black border-2 border-black shadow-[2px_2px_0px_#000]'
                       : 'bg-white text-black border-transparent hover:bg-[#dcfce7] hover:border-black hover:shadow-[1.5px_1.5px_0px_#000] hover:translate-x-0.5'
