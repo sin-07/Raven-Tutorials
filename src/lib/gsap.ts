@@ -663,3 +663,58 @@ export const animatePageEnter = (
   );
 };
 
+/**
+ * Smooth cartoon modal dialog pop entrance
+ */
+export const animateModalEnter = (
+  modalEl: HTMLElement | null,
+  backdropEl?: HTMLElement | null
+) => {
+  if (!modalEl || typeof window === 'undefined') return;
+  gsap.killTweensOf(modalEl);
+
+  if (backdropEl) {
+    gsap.killTweensOf(backdropEl);
+    gsap.fromTo(backdropEl, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+  }
+
+  return gsap.fromTo(
+    modalEl,
+    { opacity: 0, scale: 0.88, y: 16 },
+    {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.32,
+      ease: 'back.out(1.8)',
+      clearProps: 'transform',
+    }
+  );
+};
+
+/**
+ * Smooth cartoon modal dialog exit
+ */
+export const animateModalExit = (
+  modalEl: HTMLElement | null,
+  backdropEl?: HTMLElement | null,
+  onComplete?: () => void
+) => {
+  if (!modalEl || typeof window === 'undefined') return;
+  gsap.killTweensOf(modalEl);
+
+  if (backdropEl) {
+    gsap.killTweensOf(backdropEl);
+    gsap.to(backdropEl, { opacity: 0, duration: 0.2, ease: 'power2.in' });
+  }
+
+  return gsap.to(modalEl, {
+    opacity: 0,
+    scale: 0.9,
+    y: 12,
+    duration: 0.2,
+    ease: 'power2.in',
+    onComplete,
+  });
+};
+
