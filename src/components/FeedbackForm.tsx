@@ -180,9 +180,9 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
                 disabled={!isAuthenticated}
-                className="transition-transform hover:scale-110 active:scale-95 disabled:cursor-not-allowed p-0.5"
+                className="transition-spring hover:scale-125 active:scale-90 disabled:cursor-not-allowed p-0.5 cursor-pointer"
               >
-                <Star className={`w-6 h-6 ${star <= formData.rating ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
+                <Star className={`w-6 h-6 transition-all duration-200 ${star <= formData.rating ? 'text-amber-500 fill-amber-500 scale-105' : 'text-neutral-300'}`} />
               </button>
             ))}
           </div>
@@ -210,7 +210,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
         <button
           type="submit"
           disabled={loading || !isAuthenticated}
-          className="w-full px-6 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full px-6 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-spring flex items-center justify-center gap-2 cursor-pointer"
         >
           <Send className="w-4 h-4" />
           <span>{loading ? 'Submitting...' : 'Submit Feedback'}</span>

@@ -167,7 +167,7 @@ function FeedbackPage() {
               {feedbackList.length > 0 ? (
                 <div className="divide-y-2 divide-black max-h-[650px] overflow-y-auto">
                   {feedbackList.map(feedback => (
-                    <div key={feedback._id} className="p-5 hover:bg-[#f0fdf4] transition-colors">
+                    <div key={feedback._id} className="p-5 hover:bg-[#f0fdf4] transition-spring">
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <div className="flex-1">
                           <div className="flex gap-1.5 mb-2 flex-wrap">
@@ -183,7 +183,7 @@ function FeedbackPage() {
                         <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
-                            className="p-2 bg-[#fef08a] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                            className="p-2 bg-[#fef08a] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-spring cursor-pointer"
                             title="View details"
                           >
                             <Eye className="w-4 h-4 text-black" />
@@ -191,7 +191,7 @@ function FeedbackPage() {
                           <button
                             onClick={() => handleDeleteFeedback(feedback._id)}
                             disabled={deleting === feedback._id}
-                            className="p-2 bg-rose-100 text-rose-700 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer disabled:opacity-40"
+                            className="p-2 bg-rose-100 text-rose-700 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-spring cursor-pointer disabled:opacity-40"
                             title="Delete feedback"
                           >
                             <Trash2 className="w-4 h-4" />
