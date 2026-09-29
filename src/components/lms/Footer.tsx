@@ -67,7 +67,7 @@ export default function LMSFooter() {
                 placeholder="Enter student / parent email"
                 className="w-full sm:w-80 px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm font-jakarta font-semibold shadow-[2px_2px_0px_#000]"
               />
-              <button className="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 text-sm font-outfit">
+              <button className="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-spring flex items-center justify-center gap-2 text-sm font-outfit cursor-pointer">
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4 text-black" />
               </button>
@@ -200,7 +200,7 @@ export default function LMSFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[2px_2px_0px_#000] hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0px_#000] hover:bg-[#dcfce7] active:translate-y-0.5 active:shadow-[1px_1px_0px_#000] transition-all"
+                  className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[2px_2px_0px_#000] hover:-translate-y-1 hover:scale-110 hover:shadow-[4px_4px_0px_#000] hover:bg-[#dcfce7] active:translate-y-0 active:shadow-[1px_1px_0px_#000] transition-spring cursor-pointer"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
