@@ -461,7 +461,7 @@ Status           : ACTIVE & VERIFIED
           {/* Card 1: Attendance */}
           <div
             onClick={() => setActiveTab('attendance')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -495,7 +495,7 @@ Status           : ACTIVE & VERIFIED
           {/* Card 2: Tests Completed */}
           <div
             onClick={() => setActiveTab('marks')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#fef9c3] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#fef9c3] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -517,7 +517,7 @@ Status           : ACTIVE & VERIFIED
           {/* Card 3: Upcoming Tests */}
           <div
             onClick={() => setActiveTab('tests')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#e0f2fe] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#e0f2fe] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -539,7 +539,7 @@ Status           : ACTIVE & VERIFIED
           {/* Card 4: Study Materials */}
           <div
             onClick={() => setActiveTab('materials')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
           >
             <div className="flex items-center justify-between">
               <div>
