@@ -813,7 +813,7 @@ export default function AdmissionSection() {
 
                 {/* Step 3: Payment */}
                 {step === 3 && (
-                  <div className="text-center space-y-6">
+                  <div className="text-center space-y-6 cartoon-pop">
                     <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
                       <CreditCard className="w-10 h-10 text-black" />
                     </div>
@@ -858,7 +858,7 @@ export default function AdmissionSection() {
 
                 {/* Step 4: Success */}
                 {step === 4 && (
-                  <div className="text-center space-y-6">
+                  <div className="text-center space-y-6 cartoon-pop">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
