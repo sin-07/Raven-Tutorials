@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { LogIn, User, LogOut, ArrowRight, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
+import { gsap } from '@/lib/gsap';
 
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDrawerMounted, setIsDrawerMounted] = useState(false);
   // Freeze background when mobile menu is open
   useBodyScrollLock(isMenuOpen);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
@@ -21,6 +23,7 @@ const Navbar: React.FC = React.memo(() => {
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   // Check if student session is active
   useEffect(() => {
@@ -77,6 +80,90 @@ const Navbar: React.FC = React.memo(() => {
     toast.success('Admin logged out');
     router.push('/login');
   };
+
+  // Entrance animation for Navbar
+  useEffect(() => {
+    if (navRef.current) {
+      gsap.fromTo(
+        navRef.current,
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', clearProps: 'transform,opacity' }
+      );
+    }
+    return () => {
+      if (drawerRef.current) gsap.killTweensOf(drawerRef.current);
+      if (navRef.current) gsap.killTweensOf(navRef.current);
+    };
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    if (isMenuOpen) {
+      if (drawerRef.current) {
+        gsap.killTweensOf(drawerRef.current);
+        gsap.to(drawerRef.current, {
+          opacity: 0,
+          scale: 0.94,
+          y: -8,
+          duration: 0.18,
+          ease: 'power2.in',
+          onComplete: () => {
+            setIsMenuOpen(false);
+            setIsDrawerMounted(false);
+          },
+        });
+      } else {
+        setIsMenuOpen(false);
+        setIsDrawerMounted(false);
+      }
+    } else {
+      setIsDrawerMounted(true);
+      setIsMenuOpen(true);
+    }
+  }, [isMenuOpen]);
+
+  const closeMenu = useCallback(() => {
+    if (!isMenuOpen) return;
+    if (drawerRef.current) {
+      gsap.killTweensOf(drawerRef.current);
+      gsap.to(drawerRef.current, {
+        opacity: 0,
+        scale: 0.94,
+        y: -8,
+        duration: 0.18,
+        ease: 'power2.in',
+        onComplete: () => {
+          setIsMenuOpen(false);
+          setIsDrawerMounted(false);
+        },
+      });
+    } else {
+      setIsMenuOpen(false);
+      setIsDrawerMounted(false);
+    }
+  }, [isMenuOpen]);
+
+  // Animate drawer when opened
+  useEffect(() => {
+    if (isMenuOpen && isDrawerMounted && drawerRef.current) {
+      gsap.killTweensOf(drawerRef.current);
+      gsap.fromTo(
+        drawerRef.current,
+        {
+          opacity: 0,
+          scale: 0.93,
+          y: -12,
+          transformOrigin: 'top center',
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.28,
+          ease: 'back.out(1.8)',
+        }
+      );
+    }
+  }, [isMenuOpen, isDrawerMounted]);
 
   return (
     <>
@@ -187,8 +274,8 @@ const Navbar: React.FC = React.memo(() => {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition"
+              onClick={toggleMenu}
+              className="md:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
@@ -211,9 +298,18 @@ const Navbar: React.FC = React.memo(() => {
             </button>
           </div>
 
-          {/* Mobile Drawer Dropdown */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3">
+          {/* Mobile Drawer Dropdown (GSAP Animated) */}
+          {(isMenuOpen || isDrawerMounted) && (
+            <div
+              ref={drawerRef}
+              style={{
+                opacity: 0,
+                transform: 'scale(0.93) translateY(-12px)',
+                transformOrigin: 'top center',
+                willChange: 'transform, opacity',
+              }}
+              className="md:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3"
+            >
               <div className="space-y-1.5 font-jakarta">
                 {navLinks.map((link) => {
                   const active = isActive(link.path);
@@ -221,7 +317,7 @@ const Navbar: React.FC = React.memo(() => {
                     <Link
                       key={link.path}
                       href={link.path}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                       className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border-2 border-black transition ${
                         active
                           ? 'text-black bg-[#4ade80] shadow-[3px_3px_0px_#000]'
@@ -240,17 +336,17 @@ const Navbar: React.FC = React.memo(() => {
                   <div className="space-y-2">
                     <Link
                       href="/admin/dashboard"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider"
+                      onClick={closeMenu}
+                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider active:translate-x-0.5 active:translate-y-0.5 transition"
                     >
                       Admin Dashboard
                     </Link>
                     <button
                       onClick={() => {
-                        setIsMenuOpen(false);
+                        closeMenu();
                         handleAdminLogout();
                       }}
-                      className="block w-full py-2.5 bg-rose-200 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000]"
+                      className="block w-full py-2.5 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition"
                     >
                       Logout Admin
                     </button>
@@ -259,17 +355,17 @@ const Navbar: React.FC = React.memo(() => {
                   <div className="space-y-2">
                     <Link
                       href="/dashboard"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider"
+                      onClick={closeMenu}
+                      className="block w-full py-3 bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] font-outfit uppercase tracking-wider active:translate-x-0.5 active:translate-y-0.5 transition"
                     >
                       Student Dashboard
                     </Link>
                     <button
                       onClick={() => {
-                        setIsMenuOpen(false);
+                        closeMenu();
                         handleStudentLogout();
                       }}
-                      className="block w-full py-2.5 bg-rose-200 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000]"
+                      className="block w-full py-2.5 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black text-center font-bold text-sm rounded-xl shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition"
                     >
                       Logout Student
                     </button>
@@ -277,8 +373,8 @@ const Navbar: React.FC = React.memo(() => {
                 ) : (
                   <Link
                     href="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[4px_4px_0px_#000] font-outfit uppercase tracking-wider"
+                    onClick={closeMenu}
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black text-center font-black text-sm rounded-xl border-2 border-black shadow-[4px_4px_0px_#000] font-outfit uppercase tracking-wider active:translate-x-0.5 active:translate-y-0.5 transition"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>Portal Login</span>
