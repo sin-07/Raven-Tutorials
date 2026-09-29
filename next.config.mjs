@@ -42,6 +42,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   async headers() {

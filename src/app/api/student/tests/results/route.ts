@@ -4,6 +4,8 @@ import Test from '@/models/Test';
 import Admission from '@/models/Admission';
 import { verifyStudentToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const token = request.cookies.get('studentToken')?.value;

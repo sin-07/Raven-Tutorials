@@ -4,6 +4,8 @@ import Test from '@/models/Test';
 import Admission from '@/models/Admission';
 import { verifyStudentToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 // Helper function to auto-expire tests past their endDate
 async function autoExpireTests() {
   const now = new Date();
