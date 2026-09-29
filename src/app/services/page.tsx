@@ -43,6 +43,16 @@ const Services: React.FC = () => {
 
   useEffect(() => {
     animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    if (badgeRef.current) {
+      gsap.to(badgeRef.current, {
+        y: -4,
+        duration: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.6,
+      });
+    }
     animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
     animateFromDown(heroSubRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
 
@@ -161,10 +171,10 @@ const Services: React.FC = () => {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className={`service-card ${serviceColors[index % serviceColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] p-7 sm:p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[7px_7px_0px_#000] flex flex-col justify-between`}
+                  className={`service-card ${serviceColors[index % serviceColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] p-7 sm:p-8 rounded-3xl transition-spring hover:-translate-y-1.5 hover:shadow-[8px_8px_0px_#000] flex flex-col justify-between group cursor-pointer`}
                 >
                   <div>
-                    <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-6 shadow-[3px_3px_0px_#000]`}>
+                    <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-6 shadow-[3px_3px_0px_#000] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`}>
                       <service.icon className="w-7 h-7" />
                     </div>
                     <h3 className="text-xl font-black text-black mb-3 font-outfit">
