@@ -614,6 +614,52 @@ export const initCartoonAnimations = (scope?: HTMLElement | null) => {
       );
     }
   });
+};
 
+// ─── 5. GLOBAL PAGE ROUTE TRANSITION ───────────────────────────────────────
+
+/**
+ * Safely clean up orphaned ScrollTrigger instances from unmounted components
+ */
+export const cleanupScrollTriggers = () => {
+  if (typeof window === 'undefined') return;
+  ScrollTrigger.getAll().forEach((st) => {
+    if (!st.trigger || !document.contains(st.trigger as Node)) {
+      st.kill();
+    }
+  });
+};
+
+/**
+ * High-performance, hardware-accelerated GSAP page entrance animation.
+ * Smoothly introduces new route content with subtle spring lift,
+ * then clears transform props to prevent breaking CSS fixed/sticky positioning.
+ */
+export const animatePageEnter = (
+  el: HTMLElement | null,
+  onComplete?: () => void
+) => {
+  if (!el || typeof window === 'undefined') return;
+
+  // Kill running tweens on the container
+  gsap.killTweensOf(el);
+
+  return gsap.fromTo(
+    el,
+    {
+      opacity: 0,
+      y: 14,
+      scale: 0.996,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.38,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      onComplete,
+    }
+  );
 };
 
