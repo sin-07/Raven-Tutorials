@@ -114,7 +114,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
       </p>
 
       {submitted && (
-        <div className="mb-5 p-3.5 bg-[#86efac] border-2 border-black rounded-xl flex items-center gap-2.5 shadow-[2px_2px_0px_#000]">
+        <div className="mb-5 p-3.5 bg-[#86efac] border-2 border-black rounded-xl flex items-center gap-2.5 shadow-[2px_2px_0px_#000] cartoon-pop">
           <CheckCircle className="w-5 h-5 text-black shrink-0" />
           <p className="text-black text-xs font-jakarta font-bold">Thank you! Your feedback has been safely submitted.</p>
         </div>
