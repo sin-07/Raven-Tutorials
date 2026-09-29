@@ -200,7 +200,7 @@ export default function LMSFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[2px_2px_0px_#000] hover:-translate-y-0.5 hover:bg-[#dcfce7] transition-all"
+                  className="w-9 h-9 rounded-xl bg-white border-2 border-black flex items-center justify-center text-black shadow-[2px_2px_0px_#000] hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0px_#000] hover:bg-[#dcfce7] active:translate-y-0.5 active:shadow-[1px_1px_0px_#000] transition-all"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
