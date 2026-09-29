@@ -268,7 +268,7 @@ function VideosPage() {
         {/* Video Player Modal */}
         {selectedVideo && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 overscroll-contain">
-            <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border-3 border-black">
+            <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border-3 border-black cartoon-pop">
               {/* Header */}
               <div className="sticky top-0 bg-[#86efac] p-5 border-b-3 border-black flex items-center justify-between z-10">
                 <div className="flex items-center gap-2.5 max-w-[85%]">
