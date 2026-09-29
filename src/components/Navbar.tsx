@@ -142,7 +142,7 @@ const Navbar: React.FC = React.memo(() => {
     }
   }, [isMenuOpen]);
 
-  // Animate drawer when opened
+  // Animate drawer when opened with smooth stagger
   useEffect(() => {
     if (isMenuOpen && isDrawerMounted && drawerRef.current) {
       gsap.killTweensOf(drawerRef.current);
@@ -162,6 +162,14 @@ const Navbar: React.FC = React.memo(() => {
           ease: 'back.out(1.8)',
         }
       );
+      const items = drawerRef.current.querySelectorAll('.mobile-nav-link');
+      if (items.length) {
+        gsap.fromTo(
+          items,
+          { opacity: 0, x: -8 },
+          { opacity: 1, x: 0, duration: 0.2, stagger: 0.025, ease: 'power2.out', delay: 0.06 }
+        );
+      }
     }
   }, [isMenuOpen, isDrawerMounted]);
 
@@ -318,7 +326,7 @@ const Navbar: React.FC = React.memo(() => {
                       key={link.path}
                       href={link.path}
                       onClick={closeMenu}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border-2 border-black transition ${
+                      className={`mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border-2 border-black transition-spring ${
                         active
                           ? 'text-black bg-[#4ade80] shadow-[3px_3px_0px_#000]'
                           : 'text-neutral-800 bg-white hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
