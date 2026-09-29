@@ -202,8 +202,11 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
     };
   }, [isOpen, closeCalendar]);
 
-  // Navigation handlers
+  // Navigation handlers with smooth directional slide
   const handlePrevMonth = () => {
+    if (gridRef.current) {
+      gsap.fromTo(gridRef.current, { x: 10, opacity: 0.7 }, { x: 0, opacity: 1, duration: 0.22, ease: 'power2.out' });
+    }
     if (viewMonth === 0) {
       setViewMonth(11);
       setViewYear((y) => y - 1);
@@ -213,6 +216,9 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
   };
 
   const handleNextMonth = () => {
+    if (gridRef.current) {
+      gsap.fromTo(gridRef.current, { x: -10, opacity: 0.7 }, { x: 0, opacity: 1, duration: 0.22, ease: 'power2.out' });
+    }
     if (viewMonth === 11) {
       setViewMonth(0);
       setViewYear((y) => y + 1);
@@ -309,7 +315,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
             openCalendar();
           }
         }}
-        className={`w-full px-4 py-3 bg-white border-2 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-all ${
+        className={`w-full px-4 py-3 bg-white border-2 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-spring ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:translate-x-0.5 active:translate-y-0.5'
         } ${
           error
