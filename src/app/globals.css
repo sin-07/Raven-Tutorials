@@ -41,7 +41,13 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -383,5 +389,22 @@ body.popup-frozen {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #4ade80;
+}
+
+/* ── SMOOTH HARDWARE ACCELERATION & SPRING TRANSITIONS ─────── */
+.smooth-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.transition-spring {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.25s ease;
+}
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
