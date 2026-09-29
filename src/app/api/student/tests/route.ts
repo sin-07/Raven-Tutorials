@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import Test from '@/models/Test';
 import { authenticateStudent } from '@/lib/apiMiddleware';
 
+export const dynamic = 'force-dynamic';
+
 async function autoExpireTests(): Promise<void> {
   const now = new Date();
   await Test.updateMany(

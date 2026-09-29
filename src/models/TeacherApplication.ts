@@ -89,8 +89,6 @@ const TeacherApplicationSchema = new Schema<ITeacherApplication>(
 );
 
 // Create indexes for faster queries
-TeacherApplicationSchema.index({ email: 1 }, { unique: true });
-TeacherApplicationSchema.index({ phone: 1 }, { unique: true });
 TeacherApplicationSchema.index({ status: 1 });
 TeacherApplicationSchema.index({ createdAt: -1 });
 

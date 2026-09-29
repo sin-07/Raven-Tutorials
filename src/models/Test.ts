@@ -185,9 +185,6 @@ const testSchema = new Schema<ITest>({
 // Index for efficient student queries (status + standard + date range)
 testSchema.index({ status: 1, standard: 1, startDate: 1, endDate: 1 });
 
-// Index for testId lookups
-testSchema.index({ testId: 1 });
-
 // ============================================
 // MODEL EXPORT
 // ============================================
