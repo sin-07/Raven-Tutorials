@@ -381,8 +381,8 @@ export default function AdmissionSection() {
               viewport={{ once: true }}
               className="space-y-6 font-jakarta"
             >
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
-                <div className="w-12 h-12 rounded-xl bg-emerald-300 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-emerald-300 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform">
                   <GraduationCap className="w-6 h-6 text-black" />
                 </div>
                 <div>
@@ -391,8 +391,8 @@ export default function AdmissionSection() {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
-                <div className="w-12 h-12 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6 text-black" />
                 </div>
                 <div>
@@ -456,7 +456,7 @@ export default function AdmissionSection() {
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-base rounded-xl border-2 border-black transition-all shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2 font-outfit uppercase tracking-wider"
+                  className="w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-base rounded-xl border-2 border-black transition-spring shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
                 >
                   <GraduationCap className="w-5 h-5" />
                   Take Admission Now
