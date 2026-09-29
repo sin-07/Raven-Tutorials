@@ -320,7 +320,7 @@ const AdminAttendance: React.FC = () => {
 
         {/* Status Notification Banner */}
         {selectedClass && selectedSubject && isMarked && (
-          <div className="bg-[#dcfce7] border-2 border-black p-4 rounded-2xl shadow-[4px_4px_0px_#000] flex items-center justify-between">
+          <div className="bg-[#dcfce7] border-2 border-black p-4 rounded-2xl shadow-[4px_4px_0px_#000] flex items-center justify-between cartoon-pop">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-emerald-400 rounded-xl border border-black shadow-[1px_1px_0px_#000]">
                 <CheckCircle2 className="w-5 h-5 text-black" />
