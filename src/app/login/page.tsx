@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
+import { animateShake } from '@/lib/gsap';
 
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -64,6 +66,7 @@ const LoginPage: React.FC = () => {
           window.location.href = targetUrl;
         }, 400);
       } else {
+        if (cardRef.current) animateShake(cardRef.current);
         toast.error(data.message || 'Invalid email or password', {
           style: {
             background: '#dc2626',
@@ -75,6 +78,7 @@ const LoginPage: React.FC = () => {
       }
     } catch (error: any) {
       console.error('Login error:', error);
+      if (cardRef.current) animateShake(cardRef.current);
       toast.error('Login failed. Please check your credentials and try again.');
     } finally {
       setLoading(false);
@@ -111,7 +115,7 @@ const LoginPage: React.FC = () => {
             }`}
           >
             {/* Card Container */}
-            <div className="relative bg-[#f0fdf4] border-3 border-black rounded-3xl p-7 sm:p-9 shadow-[8px_8px_0px_#000] text-black">
+            <div ref={cardRef} className="relative bg-[#f0fdf4] border-3 border-black rounded-3xl p-7 sm:p-9 shadow-[8px_8px_0px_#000] text-black">
               {/* Form Header */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
