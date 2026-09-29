@@ -425,10 +425,10 @@ export default function RSATPage() {
                       <button
                         key={opt}
                         onClick={() => handleSelectOption(opt)}
-                        className={`w-full text-left p-4 rounded-2xl border-2 border-black transition-all flex items-center gap-4 ${
+                        className={`w-full text-left p-4 rounded-2xl border-2 border-black transition-spring flex items-center gap-4 cursor-pointer ${
                           isSelected
                             ? 'bg-[#86efac] font-black text-black shadow-[3px_3px_0px_#000] translate-x-1'
-                            : 'bg-white hover:bg-[#dcfce7] font-bold text-neutral-800 shadow-[2px_2px_0px_#000]'
+                            : 'bg-white hover:bg-[#dcfce7] hover:shadow-[4px_4px_0px_#000] hover:-translate-y-0.5 font-bold text-neutral-800 shadow-[2px_2px_0px_#000]'
                         }`}
                       >
                         <span className={`w-8 h-8 rounded-xl border-2 border-black flex items-center justify-center font-mono font-black text-xs ${
@@ -448,7 +448,7 @@ export default function RSATPage() {
                   <button
                     onClick={() => setCurrentQIndex((prev) => Math.max(0, prev - 1))}
                     disabled={currentQIndex === 0}
-                    className="px-4 py-2 bg-white hover:bg-neutral-100 disabled:opacity-40 text-black font-bold text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5"
+                    className="px-4 py-2 bg-white hover:bg-neutral-100 disabled:opacity-40 text-black font-bold text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 transition-spring flex items-center gap-1.5 cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     <span>Previous</span>
@@ -461,7 +461,7 @@ export default function RSATPage() {
                   {currentQIndex < questions.length - 1 ? (
                     <button
                       onClick={() => setCurrentQIndex((prev) => Math.min(questions.length - 1, prev + 1))}
-                      className="px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5"
+                      className="px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 transition-spring flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>Next</span>
                       <ChevronRight className="w-4 h-4" />
@@ -470,7 +470,7 @@ export default function RSATPage() {
                     <button
                       onClick={handleSubmitTest}
                       disabled={submitting}
-                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]"
+                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer"
                     >
                       {submitting ? 'Submitting...' : 'Finish & Submit'}
                     </button>
