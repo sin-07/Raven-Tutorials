@@ -14,18 +14,18 @@ export default function CourseCard({ course }: CourseCardProps) {
   return (
     <div className="h-full">
       <Link href={`/courses/${course.id}`}>
-        <div className="group bg-[#f0fdf4] hover:bg-[#e6f9ee] rounded-2xl overflow-hidden border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000000] hover:shadow-[7px_7px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200 h-full flex flex-col">
+        <div className="group bg-[#f0fdf4] hover:bg-[#e6f9ee] rounded-2xl overflow-hidden border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000000] hover:shadow-[8px_8px_0px_#000000] hover:-translate-x-1 hover:-translate-y-1 transition-spring h-full flex flex-col cursor-pointer">
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden border-b-2 border-black bg-neutral-100">
             <img
               src={course.thumbnail}
               alt={course.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform"
             />
 
             {/* Play Button Icon */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/20">
-              <div className="w-14 h-14 rounded-full bg-emerald-300 border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_#000] transform scale-90 group-hover:scale-100 transition-transform">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/25 backdrop-blur-[1px]">
+              <div className="w-14 h-14 rounded-full bg-emerald-300 border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_#000] transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
                 <PlayCircle className="w-8 h-8 text-black ml-0.5" />
               </div>
             </div>
