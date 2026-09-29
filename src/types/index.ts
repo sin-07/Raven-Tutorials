@@ -206,3 +206,19 @@ export interface AdminContextType {
   logout: () => Promise<void>;
   isAuthenticated: boolean;
 }
+
+// Animation & Transition Types
+export type AnimationDirection = 'left' | 'right' | 'up' | 'down' | 'alternating' | 'cross';
+
+export interface PageTransitionConfig {
+  duration?: number;
+  ease?: string;
+  distance?: number;
+}
+
+export interface CartoonDropdownOption {
+  label: string;
+  value: string;
+  badge?: string;
+  icon?: string;
+}
