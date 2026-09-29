@@ -718,3 +718,33 @@ export const animateModalExit = (
   });
 };
 
+/**
+ * Playful cartoon shake animation (ideal for form validation errors or wrong answers)
+ */
+export const animateShake = (el: Element | null) => {
+  if (!el || typeof window === 'undefined') return;
+  gsap.killTweensOf(el);
+  return gsap.fromTo(
+    el,
+    { x: -8 },
+    {
+      x: 8,
+      duration: 0.08,
+      repeat: 3,
+      yoyo: true,
+      ease: 'power2.inOut',
+      clearProps: 'transform',
+    }
+  );
+};
+
+/**
+ * Tactile cartoon button click feedback
+ */
+export const animateButtonPress = (el: Element | null) => {
+  if (!el || typeof window === 'undefined') return;
+  return gsap.timeline()
+    .to(el, { scale: 0.95, y: 2, duration: 0.08, ease: 'power2.in' })
+    .to(el, { scale: 1, y: 0, duration: 0.16, ease: 'back.out(2)' });
+};
+
