@@ -29,10 +29,10 @@ const AttendanceButtons = memo(({
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Present')}
-        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all ${
+        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
           currentStatus === 'Present'
             ? 'bg-[#86efac] text-black border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
-            : 'bg-white text-neutral-500 hover:text-black hover:bg-neutral-100 border-2 border-black/30 shadow-none'
+            : 'bg-white text-neutral-500 hover:text-black hover:bg-neutral-100 hover:border-black border-2 border-black/30 shadow-none'
         }`}
       >
         Present
@@ -40,10 +40,10 @@ const AttendanceButtons = memo(({
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Absent')}
-        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all ${
+        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
           currentStatus === 'Absent'
             ? 'bg-rose-200 text-rose-950 border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
-            : 'bg-white text-neutral-500 hover:text-rose-900 hover:bg-rose-50 border-2 border-black/30 shadow-none'
+            : 'bg-white text-neutral-500 hover:text-rose-900 hover:bg-rose-50 hover:border-black border-2 border-black/30 shadow-none'
         }`}
       >
         Absent
