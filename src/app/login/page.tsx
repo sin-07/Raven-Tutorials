@@ -159,7 +159,7 @@ const LoginPage: React.FC = () => {
                       placeholder="name@example.com"
                       required
                       autoComplete="email"
-                      className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all duration-200 text-black placeholder-neutral-400 text-sm font-jakarta font-medium"
+                      className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[3px_3px_0px_#000] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[2px_2px_0px_#000]"
                     />
                   </div>
                 </div>
@@ -183,7 +183,7 @@ const LoginPage: React.FC = () => {
                       placeholder="Enter your password"
                       required
                       autoComplete="current-password"
-                      className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all duration-200 text-black placeholder-neutral-400 text-sm font-jakarta font-medium"
+                      className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[3px_3px_0px_#000] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[2px_2px_0px_#000]"
                     />
                     <button
                       type="button"
@@ -204,7 +204,7 @@ const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-cartoon w-full mt-2 py-3.5 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-outfit"
+                  className="btn-cartoon w-full mt-2 py-3.5 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-spring disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-outfit cursor-pointer"
                 >
                   {loading ? (
                     <>
