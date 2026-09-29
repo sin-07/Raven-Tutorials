@@ -256,7 +256,7 @@ const AboutUs: React.FC = () => {
               {faculty.map((member, index) => (
                 <div
                   key={index}
-                  className={`faculty-card ${facultyColors[index % facultyColors.length]} border-[2.5px] border-black p-6 rounded-3xl shadow-[5px_5px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 flex flex-col justify-between transition-all duration-300`}
+                  className={`faculty-card ${facultyColors[index % facultyColors.length]} border-[2.5px] border-black p-6 rounded-3xl shadow-[5px_5px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 active:translate-y-0 active:shadow-[3px_3px_0px_#000] flex flex-col justify-between transition-all duration-200`}
                 >
                   <div>
                     <div className={`w-20 h-20 rounded-2xl ${facultyBadgeColors[index % facultyBadgeColors.length]} border-2 border-black flex items-center justify-center text-black mb-5 mx-auto font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]`}>
