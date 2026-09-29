@@ -54,7 +54,7 @@ const Loader: React.FC<LoaderProps> = ({
   if (fullScreen) {
     return (
       <div className="fixed inset-0 bg-[#f6fcf8]/85 backdrop-blur-xs flex items-center justify-center z-[150] p-4">
-        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-xs w-full flex flex-col items-center justify-center">
+        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-xs w-full flex flex-col items-center justify-center cartoon-pop">
           {spinnerContent}
         </div>
       </div>
