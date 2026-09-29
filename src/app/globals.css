@@ -360,3 +360,28 @@ body.popup-frozen {
   }
 }
 
+/* ── PAGE TRANSITION & SCROLLBAR UTILITIES ─────────────────── */
+.page-transition-wrapper {
+  min-height: 100vh;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #dcfce7;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border: 1px solid #000000;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+}
+
