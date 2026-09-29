@@ -748,3 +748,17 @@ export const animateButtonPress = (el: Element | null) => {
     .to(el, { scale: 1, y: 0, duration: 0.16, ease: 'back.out(2)' });
 };
 
+/**
+ * Rhythmic cartoon pulse glow for active live badges and status pills
+ */
+export const pulseGlowBadge = (el: Element | null) => {
+  if (!el || typeof window === 'undefined') return;
+  return gsap.to(el, {
+    scale: 1.05,
+    duration: 0.9,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut',
+  });
+};
+
