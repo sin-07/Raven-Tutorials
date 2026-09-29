@@ -43,6 +43,16 @@ export default function ContactPage() {
 
   useEffect(() => {
     animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    if (badgeRef.current) {
+      gsap.to(badgeRef.current, {
+        y: -4,
+        duration: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.6,
+      });
+    }
     animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
     animateFromDown(subtitleRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
 
@@ -130,9 +140,9 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-3xl ${cardColors[index % cardColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 text-center flex flex-col items-center justify-center transition-all duration-300`}
+                className={`p-6 rounded-3xl ${cardColors[index % cardColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1.5 text-center flex flex-col items-center justify-center transition-spring group cursor-pointer`}
               >
-                <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-4 shadow-[3px_3px_0px_#000]`}>
+                <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-4 shadow-[3px_3px_0px_#000] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`}>
                   <info.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-lg font-black text-black mb-2 font-outfit">{info.title}</h3>
@@ -259,7 +269,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-cartoon w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit shadow-[4px_4px_0px_#000] border-2 border-black transition-all flex items-center justify-center gap-2 active:translate-x-1 active:translate-y-1"
+                    className="btn-cartoon w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 border-2 border-black transition-spring flex items-center justify-center gap-2 active:translate-x-1 active:translate-y-1 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
