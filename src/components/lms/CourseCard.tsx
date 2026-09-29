@@ -60,7 +60,7 @@ export default function CourseCard({ course }: CourseCardProps) {
             </span>
 
             {/* Title */}
-            <h3 className="mt-1.5 text-lg font-black text-neutral-950 group-hover:text-blue-600 transition-colors line-clamp-2 font-outfit">
+            <h3 className="mt-1.5 text-lg font-black text-neutral-950 group-hover:text-emerald-700 transition-colors line-clamp-2 font-outfit">
               {course.title}
             </h3>
 
