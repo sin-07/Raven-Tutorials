@@ -39,7 +39,15 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
   maxYear = new Date().getFullYear(),
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const isClosingRef = useRef(false);
+
+  // Cleanup tweens on unmount
+  useEffect(() => {
+    return () => {
+      if (popupRef.current) gsap.killTweensOf(popupRef.current);
+    };
+  }, []);
 
   // Parse current value or default to a sensible birthdate (~15 years ago)
   const initialDate = value ? new Date(value) : new Date(new Date().getFullYear() - 15, 0, 1);
@@ -73,28 +81,33 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
 
   // Open calendar with GSAP animation
   const openCalendar = useCallback(() => {
-    if (disabled || isOpen) return;
+    if (disabled) return;
     setMode('days');
-    setIsOpen(true);
     isClosingRef.current = false;
-  }, [disabled, isOpen]);
+    setIsMounted(true);
+    setIsOpen(true);
+  }, [disabled]);
 
   // Close calendar with GSAP animation
   const closeCalendar = useCallback(() => {
     if (!popupRef.current || !isOpen || isClosingRef.current) {
       setIsOpen(false);
+      setIsMounted(false);
       return;
     }
     isClosingRef.current = true;
 
+    gsap.killTweensOf(popupRef.current);
     gsap.to(popupRef.current, {
       opacity: 0,
-      scale: 0.94,
-      y: -6,
-      duration: 0.15,
+      scale: 0.93,
+      y: -8,
+      duration: 0.18,
       ease: 'power2.in',
+      overwrite: 'auto',
       onComplete: () => {
         setIsOpen(false);
+        setIsMounted(false);
         isClosingRef.current = false;
       },
     });
@@ -102,7 +115,8 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
 
   // Animate popup on open
   useEffect(() => {
-    if (isOpen && popupRef.current) {
+    if (isOpen && isMounted && popupRef.current) {
+      gsap.killTweensOf(popupRef.current);
       gsap.fromTo(
         popupRef.current,
         {
@@ -115,29 +129,35 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.25,
-          ease: 'back.out(2)',
+          duration: 0.28,
+          ease: 'back.out(1.8)',
+          overwrite: 'auto',
+          clearProps: 'willChange',
         }
       );
 
       if (gridRef.current) {
         const days = gridRef.current.children;
         if (days.length > 0) {
+          gsap.killTweensOf(days);
           gsap.fromTo(
             days,
-            { opacity: 0, scale: 0.8 },
+            { opacity: 0, scale: 0.85, y: -4 },
             {
               opacity: 1,
               scale: 1,
-              stagger: 0.01,
+              y: 0,
+              stagger: 0.008,
               duration: 0.2,
-              ease: 'power1.out',
+              ease: 'power2.out',
+              clearProps: 'transform,opacity',
+              overwrite: 'auto',
             }
           );
         }
       }
     }
-  }, [isOpen]);
+  }, [isOpen, isMounted]);
 
   // Animate grid when viewMonth or viewYear changes
   useEffect(() => {
@@ -281,7 +301,14 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
       <button
         type="button"
         disabled={disabled}
-        onClick={() => (isOpen ? closeCalendar() : openCalendar())}
+        onClick={() => {
+          if (disabled) return;
+          if (isOpen && !isClosingRef.current) {
+            closeCalendar();
+          } else {
+            openCalendar();
+          }
+        }}
         className={`w-full px-4 py-3 bg-white border-2 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-all ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:translate-x-0.5 active:translate-y-0.5'
         } ${
@@ -317,10 +344,16 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
         </div>
       </button>
 
-      {/* GSAP Animated Cartoon Calendar Popup */}
-      {isOpen && (
+      {/* GSAP Animated Cartoon Calendar Popup with initial zero-flash styling */}
+      {(isOpen || isMounted) && (
         <div
           ref={popupRef}
+          style={{
+            opacity: 0,
+            transform: 'scale(0.9) translateY(-10px)',
+            transformOrigin: 'top center',
+            willChange: 'transform, opacity',
+          }}
           className="absolute left-0 right-0 sm:right-auto sm:w-80 top-full mt-2 z-[9999] bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-4 text-black"
         >
           {/* Header Navigation */}
