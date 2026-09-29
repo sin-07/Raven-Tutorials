@@ -62,6 +62,16 @@ const AboutUs: React.FC = () => {
     setMounted(true);
 
     animateFromUp(badgeRef.current, { distance: 25, duration: 0.6 });
+    if (badgeRef.current) {
+      gsap.to(badgeRef.current, {
+        y: -4,
+        duration: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.6,
+      });
+    }
     animateFromDown(titleRef.current, { distance: 30, duration: 0.7, delay: 0.1 });
     animateFromDown(heroSubRef.current, { distance: 25, duration: 0.7, delay: 0.2 });
 
@@ -221,7 +231,7 @@ const AboutUs: React.FC = () => {
               {pillars.map((pillar, index) => (
                 <div
                   key={index}
-                  className={`${pillarStyles[index % pillarStyles.length].cardBg} border-[2.5px] border-black shadow-[6px_6px_0px_#000] p-8 rounded-3xl transition-all duration-300 group hover:-translate-y-1.5`}
+                  className={`${pillarStyles[index % pillarStyles.length].cardBg} border-[2.5px] border-black shadow-[6px_6px_0px_#000] p-8 rounded-3xl transition-spring group hover:-translate-y-1.5 hover:shadow-[8px_8px_0px_#000] cursor-pointer`}
                 >
                   <div className={`w-14 h-14 rounded-2xl ${pillarStyles[index % pillarStyles.length].iconBg} border-2 border-black flex items-center justify-center text-black mb-6 shadow-[3px_3px_0px_#000] group-hover:scale-105 transition-transform`}>
                     <pillar.icon className="w-7 h-7" />
@@ -256,7 +266,7 @@ const AboutUs: React.FC = () => {
               {faculty.map((member, index) => (
                 <div
                   key={index}
-                  className={`faculty-card ${facultyColors[index % facultyColors.length]} border-[2.5px] border-black p-6 rounded-3xl shadow-[5px_5px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 active:translate-y-0 active:shadow-[3px_3px_0px_#000] flex flex-col justify-between transition-all duration-200`}
+                  className={`faculty-card ${facultyColors[index % facultyColors.length]} border-[2.5px] border-black p-6 rounded-3xl shadow-[5px_5px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1 active:translate-y-0 active:shadow-[3px_3px_0px_#000] flex flex-col justify-between transition-spring cursor-pointer`}
                 >
                   <div>
                     <div className={`w-20 h-20 rounded-2xl ${facultyBadgeColors[index % facultyBadgeColors.length]} border-2 border-black flex items-center justify-center text-black mb-5 mx-auto font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]`}>
