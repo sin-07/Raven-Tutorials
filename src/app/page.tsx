@@ -29,7 +29,10 @@ import {
   Trophy,
   Crown,
   Medal,
-  Stethoscope
+  Stethoscope,
+  HeartHandshake,
+  Quote,
+  MapPin
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
@@ -59,6 +62,14 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
   ),
 });
 
+const HomeArticlesSection = dynamic(() => import('@/components/HomeArticlesSection'), {
+  loading: () => (
+    <div className="py-24 flex justify-center items-center">
+      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500" />
+    </div>
+  ),
+});
+
 const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
   GraduationCap,
   Video,
@@ -81,7 +92,7 @@ export default function Home() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
-  const [topperCategory, setTopperCategory] = useState<'All' | 'JEE' | 'NEET' | 'Boards'>('All');
+  const [testimonialFilter, setTestimonialFilter] = useState<'all' | 'students' | 'parents'>('all');
 
   // GSAP animation refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -175,10 +186,12 @@ export default function Home() {
         scrollStaggerDirectional(catCards, 'cross', 0.07, { distance: 35 });
       }
 
-      // 6. Testimonials: Alternating Left & Right entrance
+      // 6. Testimonials: Stats entrance animation
       if (testimonialsSectionRef.current) {
-        const cards = testimonialsSectionRef.current.querySelectorAll('.testimonial-card');
-        scrollStaggerDirectional(cards, 'alternating', 0.09, { distance: 45 });
+        const statCards = testimonialsSectionRef.current.querySelectorAll('.testimonial-stat-card');
+        if (statCards.length > 0) {
+          scrollStaggerDirectional(statCards, 'cross', 0.08, { distance: 30 });
+        }
       }
 
       // 7. CTA Banner: Reveal from Down
@@ -536,212 +549,407 @@ export default function Home() {
       {/* ── ADMISSION FLOW COMPONENT ────────────────────────── */}
       <AdmissionSection />
 
-      {/* ── TOPPERS WALL & VERIFIED TESTIMONIALS SECTION ────────────────────────── */}
-      <section ref={testimonialsSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
+      {/* ── STUDENTS & PARENTS TESTIMONIALS SECTION (DUAL-ROW MARQUEE) ────────────────────────── */}
+      <section ref={testimonialsSectionRef} className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="pill-badge mb-4">Hall of Fame & Results</span>
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <span className="pill-badge mb-4">
+              <Sparkles className="w-3.5 h-3.5 inline mr-1 text-emerald-700" />
+              Real Voices & Authentic Experiences
+            </span>
             <WavyHeading
-              text="Toppers Wall & Verified"
-              gradientText="Student Stories"
+              text="Hear From Our"
+              gradientText="Students & Parents"
               as="h2"
               className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight"
             />
             <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold max-w-2xl mx-auto font-jakarta">
-              From Patna to IITs, AIIMS, and Top Universities. Meet the students who achieved top percentiles with Raven Tutorials mentorship.
+              Real stories of academic transformation from students cracking JEE, NEET & Boards, and the parents who trusted Raven Tutorials for their journey.
             </p>
           </div>
 
-          {/* 3D-Style Cartoon Podium for Patna's Top Rankers */}
-          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-10 shadow-[8px_8px_0px_#000] mb-14">
-            <div className="text-center mb-8">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-black rounded-full text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
-                <Trophy className="w-3.5 h-3.5 text-amber-600" />
-                <span>Academic Year 2024-25 State & National Stars</span>
-              </span>
+          {/* Trust & Satisfaction Metrics Ribbon */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-10">
+            <div className="testimonial-stat-card bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-2xl p-4 sm:p-5 text-center shadow-[3px_3px_0px_#000] flex flex-col justify-center items-center">
+              <div className="flex items-center justify-center gap-0.5 text-amber-500 mb-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-black stroke-[1.5]" />
+                ))}
+              </div>
+              <p className="text-2xl sm:text-3xl font-black text-black font-outfit">4.9 / 5.0</p>
+              <p className="text-xs font-black text-neutral-800 font-jakarta mt-0.5">Average Review Rating</p>
+              <span className="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-100 border border-black/30 px-2 py-0.5 rounded mt-1.5">1,400+ Verified Reviews</span>
             </div>
 
-            <div className="flex items-end justify-center gap-3 sm:gap-6 pt-4 max-w-2xl mx-auto">
-              {/* Rank 2: NEET 692 */}
-              <div className="flex-1 flex flex-col items-center">
-                <div className="w-12 h-12 rounded-2xl bg-slate-200 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center font-bold text-lg mb-2">
-                  <Medal className="w-6 h-6 text-slate-700" />
-                </div>
-                <p className="font-black text-black text-sm font-outfit text-center">Rahul Kumar</p>
-                <p className="text-xs font-black text-emerald-800 font-mono">692 / 720</p>
-                <p className="text-[10px] font-bold text-neutral-600 font-jakarta text-center">AIIMS Patna (MBBS)</p>
-                <div className="w-full h-32 bg-[#e2e8f0] border-3 border-black rounded-t-2xl shadow-[3px_0px_0px_#000] flex flex-col items-center justify-center mt-3">
-                  <span className="font-black font-outfit text-3xl text-slate-800">2nd</span>
-                  <span className="text-[10px] font-black font-space uppercase text-slate-600">NEET Rank</span>
-                </div>
+            <div className="testimonial-stat-card bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-2xl p-4 sm:p-5 text-center shadow-[3px_3px_0px_#000] flex flex-col justify-center items-center">
+              <div className="w-8 h-8 rounded-xl bg-emerald-200 border border-black flex items-center justify-center mb-1.5 shadow-[1px_1px_0px_#000]">
+                <GraduationCap className="w-4 h-4 text-emerald-950" />
               </div>
+              <p className="text-2xl sm:text-3xl font-black text-emerald-950 font-outfit">98.4%</p>
+              <p className="text-xs font-black text-neutral-800 font-jakarta mt-0.5">Target Score Growth</p>
+              <span className="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-100 border border-black/30 px-2 py-0.5 rounded mt-1.5">Board & Competitive</span>
+            </div>
 
-              {/* Rank 1: JEE Adv AIR 142 */}
-              <div className="flex-1 flex flex-col items-center">
-                <div className="w-14 h-14 rounded-2xl bg-amber-300 border-3 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center text-xl mb-2">
-                  <Crown className="w-7 h-7 text-amber-950" />
-                </div>
-                <p className="font-black text-black text-base font-outfit text-center">Ananya Verma</p>
-                <p className="text-xs font-black text-amber-900 font-mono">AIR 142 • 99.8%ile</p>
-                <p className="text-[10px] font-bold text-neutral-600 font-jakarta text-center">IIT Bombay (CSE)</p>
-                <div className="w-full h-44 bg-[#fde047] border-3 border-black rounded-t-2xl shadow-[4px_0px_0px_#000] flex flex-col items-center justify-center mt-3">
-                  <span className="font-black font-outfit text-4xl text-amber-950">1st</span>
-                  <span className="text-[10px] font-black font-space uppercase text-amber-900">JEE Adv Rank</span>
-                </div>
+            <div className="testimonial-stat-card bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-2xl p-4 sm:p-5 text-center shadow-[3px_3px_0px_#000] flex flex-col justify-center items-center">
+              <div className="w-8 h-8 rounded-xl bg-amber-200 border border-black flex items-center justify-center mb-1.5 shadow-[1px_1px_0px_#000]">
+                <HeartHandshake className="w-4 h-4 text-amber-950" />
               </div>
+              <p className="text-2xl sm:text-3xl font-black text-amber-950 font-outfit">99.1%</p>
+              <p className="text-xs font-black text-neutral-800 font-jakarta mt-0.5">Parent Recommendation</p>
+              <span className="text-[10px] font-mono font-bold text-amber-900 bg-amber-100 border border-black/30 px-2 py-0.5 rounded mt-1.5">Transparent Mentorship</span>
+            </div>
 
-              {/* Rank 3: CBSE 98.8% */}
-              <div className="flex-1 flex flex-col items-center">
-                <div className="w-12 h-12 rounded-2xl bg-[#fed7aa] border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center font-bold text-lg mb-2">
-                  <Award className="w-6 h-6 text-amber-900" />
-                </div>
-                <p className="font-black text-black text-sm font-outfit text-center">Priya Singh</p>
-                <p className="text-xs font-black text-orange-900 font-mono">98.8% Aggregate</p>
-                <p className="text-[10px] font-bold text-neutral-600 font-jakarta text-center">Bihar State Rank 2</p>
-                <div className="w-full h-24 bg-[#fed7aa] border-3 border-black rounded-t-2xl shadow-[3px_0px_0px_#000] flex flex-col items-center justify-center mt-3">
-                  <span className="font-black font-outfit text-2xl text-orange-950">3rd</span>
-                  <span className="text-[10px] font-black font-space uppercase text-orange-800">12th Boards</span>
-                </div>
+            <div className="testimonial-stat-card bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-2xl p-4 sm:p-5 text-center shadow-[3px_3px_0px_#000] flex flex-col justify-center items-center">
+              <div className="w-8 h-8 rounded-xl bg-sky-200 border border-black flex items-center justify-center mb-1.5 shadow-[1px_1px_0px_#000]">
+                <Users className="w-4 h-4 text-sky-950" />
               </div>
+              <p className="text-2xl sm:text-3xl font-black text-slate-900 font-outfit">1 : 15</p>
+              <p className="text-xs font-black text-neutral-800 font-jakarta mt-0.5">Optimal Batch Ratio</p>
+              <span className="text-[10px] font-mono font-bold text-sky-900 bg-sky-100 border border-black/30 px-2 py-0.5 rounded mt-1.5">Personal Attention</span>
             </div>
           </div>
 
-          {/* Exam Category Filter Tabs */}
-          <div className="flex items-center justify-center gap-2 mb-10 overflow-x-auto">
-            {(['All', 'JEE', 'NEET', 'Boards'] as const).map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setTopperCategory(cat)}
-                className={`btn-cartoon px-5 py-2 rounded-xl text-xs sm:text-sm font-black font-outfit transition-all flex items-center gap-1.5 ${
-                  topperCategory === cat
-                    ? 'bg-emerald-400 text-black border-2 border-black shadow-[2.5px_2.5px_0px_#000]'
-                    : 'bg-[#f0fdf4] hover:bg-[#dcfce7] text-neutral-700 border border-black/30'
-                }`}
-              >
-                {cat === 'All' ? (
-                  <>
-                    <Star className="w-3.5 h-3.5" />
-                    <span>All Toppers</span>
-                  </>
-                ) : cat === 'JEE' ? (
-                  <>
-                    <Zap className="w-3.5 h-3.5" />
-                    <span>JEE Main & Adv</span>
-                  </>
-                ) : cat === 'NEET' ? (
-                  <>
-                    <Stethoscope className="w-3.5 h-3.5" />
-                    <span>NEET Medical</span>
-                  </>
-                ) : (
-                  <>
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>CBSE & State Boards</span>
-                  </>
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Verified Testimonial Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Perspective Filter Tabs */}
+          <div className="flex items-center justify-center gap-2 mb-8 overflow-x-auto pb-2">
             {[
-              {
-                id: 1,
-                name: 'Ananya Verma',
-                exam: 'JEE Advanced',
-                score: 'AIR 142 (99.8%ile)',
-                college: 'IIT Bombay (CSE)',
-                category: 'JEE',
-                quote: 'The rigorous mock tests and 1-on-1 problem-solving sessions at Raven gave me the exact exam mindset required for JEE Advanced.',
-                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-              },
-              {
-                id: 2,
-                name: 'Rahul Kumar',
-                exam: 'NEET UG',
-                score: '692 / 720 Marks',
-                college: 'AIIMS Patna (MBBS)',
-                category: 'NEET',
-                quote: 'Biology NCERT line-by-line drills and daily DPPs cleared all my conceptual doubts. Raven faculty is truly top-tier in Patna.',
-                avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
-              },
-              {
-                id: 3,
-                name: 'Priya Singh',
-                exam: 'CBSE 12th Board',
-                score: '98.8% Aggregate',
-                college: 'Bihar State Rank 2',
-                category: 'Boards',
-                quote: 'Scoring 100 in Mathematics and 98 in Chemistry was only possible due to continuous weekly subjective tests and teacher feedback.',
-                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
-              },
-              {
-                id: 4,
-                name: 'Shivam Saurabh',
-                exam: 'JEE Main',
-                score: '99.64 Percentile',
-                college: 'NIT Trichy (ECE)',
-                category: 'JEE',
-                quote: 'Speed and accuracy strategies taught in the crash course helped me jump from 94%ile to 99.64%ile in my second attempt.',
-                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-              },
-              {
-                id: 5,
-                name: 'Sneha Kumari',
-                exam: 'NEET UG',
-                score: '675 / 720 Marks',
-                college: 'PMCH Patna',
-                category: 'NEET',
-                quote: 'The study material and test analysis graphs on the student portal showed me exactly where I was making negative markings.',
-                avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
-              },
-              {
-                id: 6,
-                name: 'Aditya Raj',
-                exam: 'CBSE 10th Board',
-                score: '98.4% Aggregate',
-                college: 'Foundation Topper',
-                category: 'Boards',
-                quote: 'Raven Tutorials made Science and Mathematics so fun with practical experiments. I secured a perfect 100/100 in Standard Maths!',
-                avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
-              },
-            ]
-              .filter((item) => topperCategory === 'All' || item.category === topperCategory)
-              .map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="testimonial-card bg-[#f0fdf4] hover:bg-[#e6f9ee] rounded-3xl p-7 transition-all duration-200 hover:-translate-y-1.5 border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[7px_7px_0px_#000] text-black flex flex-col justify-between"
+              { key: 'all', label: 'All Testimonials', count: 12, icon: Star },
+              { key: 'students', label: 'Student Stories', count: 6, icon: GraduationCap },
+              { key: 'parents', label: 'Parent Reviews', count: 6, icon: HeartHandshake },
+            ].map((tab) => {
+              const Icon = tab.icon;
+              const isActive = testimonialFilter === tab.key;
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => setTestimonialFilter(tab.key as 'all' | 'students' | 'parents')}
+                  className={`btn-cartoon px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black font-outfit transition-all flex items-center gap-2 cursor-pointer ${
+                    isActive
+                      ? 'bg-emerald-400 text-black border-2 border-black shadow-[3px_3px_0px_#000] translate-y-[-1px]'
+                      : 'bg-[#f0fdf4] hover:bg-[#dcfce7] text-neutral-700 border-2 border-black/40 shadow-[1px_1px_0px_#000]'
+                  }`}
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-2.5 py-0.5 bg-emerald-200 border border-black rounded-lg text-xs font-black font-space uppercase">
-                        {testimonial.exam}
-                      </span>
-                      <span className="font-mono font-black text-xs text-emerald-900 bg-white px-2 py-0.5 rounded border border-black">
-                        {testimonial.score}
-                      </span>
-                    </div>
-                    <p className="text-neutral-800 text-sm leading-relaxed mb-6 font-jakarta font-medium">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </p>
+                  <Icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                  <span
+                    className={`ml-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-black ${
+                      isActive ? 'bg-black text-emerald-300' : 'bg-black/10 text-black'
+                    }`}
+                  >
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── DUAL-ROW INFINITE MARQUEE CAROUSEL ────────────────────────── */}
+        {(() => {
+          const row1List = [
+            {
+              id: 's1',
+              type: 'student' as const,
+              name: 'Ananya Verma',
+              relationOrCollege: 'IIT Bombay (CSE) • AIR 142',
+              highlightBadge: 'JEE Adv 99.8%ile',
+              tag: 'Class 12 • JEE Adv',
+              rating: 5,
+              quote: 'Just go for it — best decision for JEE!',
+              avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+              location: 'Boring Road, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p1',
+              type: 'parent' as const,
+              name: 'Dr. Arvind Verma',
+              relationOrCollege: 'Father of Ananya (AIR 142)',
+              highlightBadge: 'Parent of JEE Topper',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Mentors treat your child like family.',
+              avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+              location: 'Boring Road, Patna',
+              verifiedLabel: 'Verified Parent',
+            },
+            {
+              id: 's2',
+              type: 'student' as const,
+              name: 'Rahul Kumar',
+              relationOrCollege: 'AIIMS Patna (MBBS) • 692/720',
+              highlightBadge: 'NEET UG Star',
+              tag: 'Class 12 • NEET UG',
+              rating: 5,
+              quote: 'Cracked AIIMS in my very first attempt!',
+              avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+              location: 'Kankarbagh, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p2',
+              type: 'parent' as const,
+              name: 'Sunita & Manoj Kumar',
+              relationOrCollege: 'Parents of Rahul (AIIMS Patna)',
+              highlightBadge: 'Parents of NEET Scholar',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Unmatched personal care & regular guidance.',
+              avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
+              location: 'Kankarbagh, Patna',
+              verifiedLabel: 'Verified Parents',
+            },
+            {
+              id: 's3',
+              type: 'student' as const,
+              name: 'Shivam Saurabh',
+              relationOrCollege: 'NIT Trichy (ECE) • 99.64%ile',
+              highlightBadge: 'JEE Main 99.64%ile',
+              tag: 'Class 12 • JEE Main',
+              rating: 5,
+              quote: 'Mock tests were an absolute game changer!',
+              avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80',
+              location: 'Bailey Road, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p3',
+              type: 'parent' as const,
+              name: 'Anita Sharma',
+              relationOrCollege: 'Mother of Shivam (NIT Trichy)',
+              highlightBadge: 'Parent of NIT Scholar',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Their discipline and positivity are contagious.',
+              avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+              location: 'Bailey Road, Patna',
+              verifiedLabel: 'Verified Parent',
+            },
+          ];
+
+          const row2List = [
+            {
+              id: 's4',
+              type: 'student' as const,
+              name: 'Priya Singh',
+              relationOrCollege: 'Bihar State Rank 2 • 98.8%',
+              highlightBadge: 'CBSE 12th Topper',
+              tag: 'Class 12 • CBSE Board',
+              rating: 5,
+              quote: 'Scored 100/100 in Maths — pure concept clarity!',
+              avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
+              location: 'Bailey Road, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p4',
+              type: 'parent' as const,
+              name: 'Rajeshwar Prasad',
+              relationOrCollege: 'Father of Ayush (Class 9)',
+              highlightBadge: 'Parent of Foundation',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Cultivated true love for science in my child.',
+              avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
+              location: 'Danapur, Patna',
+              verifiedLabel: 'Verified Parent',
+            },
+            {
+              id: 's5',
+              type: 'student' as const,
+              name: 'Aditya Raj',
+              relationOrCollege: 'Standard Maths 100/100 • 98.4%',
+              highlightBadge: 'Class 10 Foundation',
+              tag: 'Class 10 Board',
+              rating: 5,
+              quote: 'Zero exam fear, only rock-solid confidence!',
+              avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+              location: 'Rajendra Nagar, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p5',
+              type: 'parent' as const,
+              name: 'Dr. Meenakshi Jha',
+              relationOrCollege: 'Mother of Tanmay (CBSE 97.6%)',
+              highlightBadge: 'Parent of Board Topper',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Weekly reports gave us total peace of mind.',
+              avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+              location: 'Ashiana Nagar, Patna',
+              verifiedLabel: 'Verified Parent',
+            },
+            {
+              id: 's6',
+              type: 'student' as const,
+              name: 'Sneha Kumari',
+              relationOrCollege: 'PMCH Patna (MBBS) • 675 Marks',
+              highlightBadge: 'NEET UG 675/720',
+              tag: 'Class 12 • NEET UG',
+              rating: 5,
+              quote: '1-on-1 doubt clearing was key to my rank!',
+              avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+              location: 'Patliputra, Patna',
+              verifiedLabel: 'Verified Student',
+            },
+            {
+              id: 'p6',
+              type: 'parent' as const,
+              name: 'Vikramaditya Roy',
+              relationOrCollege: 'Father of Sneha (PMCH Patna)',
+              highlightBadge: 'Parent of Medical Student',
+              tag: 'Parent Review',
+              rating: 5,
+              quote: 'Hands down the most reliable mentors in Bihar.',
+              avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
+              location: 'Patliputra, Patna',
+              verifiedLabel: 'Verified Parent',
+            },
+          ];
+
+          const filtered1 = row1List.filter((item) =>
+            testimonialFilter === 'all' ? true : testimonialFilter === 'students' ? item.type === 'student' : item.type === 'parent'
+          );
+          const filtered2 = row2List.filter((item) =>
+            testimonialFilter === 'all' ? true : testimonialFilter === 'students' ? item.type === 'student' : item.type === 'parent'
+          );
+
+          // Duplicate items to ensure wide seamless infinite marquee loop
+          const row1Items = [...filtered1, ...filtered1, ...filtered1, ...filtered1];
+          const row2Items = [...filtered2, ...filtered2, ...filtered2, ...filtered2];
+
+          const renderCard = (item: typeof row1List[0], uniqueKey: string) => (
+            <div
+              key={uniqueKey}
+              className="w-[320px] sm:w-[360px] md:w-[380px] shrink-0 bg-[#f0fdf4] hover:bg-[#e6f9ee] rounded-3xl p-5 sm:p-6 border-2 sm:border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[7px_7px_0px_#000] hover:-translate-y-1 transition-all duration-200 text-black flex flex-col justify-between relative overflow-hidden group select-none cursor-default"
+            >
+              {/* Decorative Subtle Watermark Quote */}
+              <Quote className="absolute top-3 right-3 w-10 h-10 text-black/5 -rotate-12 pointer-events-none group-hover:scale-110 transition-transform" />
+
+              <div>
+                {/* Top Row: Role Badge & Highlight Tag */}
+                <div className="flex items-center justify-between gap-2 mb-3 relative z-10">
+                  {item.type === 'student' ? (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-200 border border-black rounded-lg text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                      <GraduationCap className="w-3.5 h-3.5 text-emerald-950" />
+                      <span>Student Story</span>
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-amber-200 border border-black rounded-lg text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                      <HeartHandshake className="w-3.5 h-3.5 text-amber-950" />
+                      <span>Parent Review</span>
+                    </span>
+                  )}
+                  <span className="font-mono font-black text-xs text-neutral-900 bg-white px-2.5 py-0.5 rounded border border-black shadow-[1.5px_1.5px_0px_#000]">
+                    {item.highlightBadge}
+                  </span>
+                </div>
+
+                {/* Star Rating & Category Pill */}
+                <div className="flex items-center justify-between gap-1 mb-2.5 pt-0.5">
+                  <div className="flex items-center gap-1">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-black stroke-[1.5]" />
+                    ))}
+                    <span className="text-xs font-black font-mono ml-1 text-neutral-800">5.0</span>
                   </div>
-                  <div className="flex items-center gap-3 pt-4 border-t-2 border-black/10">
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="w-11 h-11 rounded-full object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
-                    />
-                    <div>
-                      <p className="font-black text-black font-outfit text-sm">{testimonial.name}</p>
-                      <p className="text-xs text-emerald-800 font-bold font-jakarta">{testimonial.college}</p>
-                    </div>
+                  <span className="text-[11px] font-bold text-neutral-600 font-jakarta bg-black/5 px-2 py-0.5 rounded">
+                    {item.tag}
+                  </span>
+                </div>
+
+                {/* Single-Line Punchy Quote (As requested: e.g. "Go for it!") */}
+                <div className="my-2.5">
+                  <p className="text-black text-base sm:text-lg font-black font-outfit leading-tight tracking-tight line-clamp-1 relative z-10" title={item.quote}>
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              {/* Card Footer: Avatar, Name, Relationship & Location */}
+              <div className="flex items-center gap-3 pt-3 border-t-2 border-black/10 relative z-10 mt-1">
+                <img
+                  src={item.avatar}
+                  alt={item.name}
+                  className="w-11 h-11 rounded-full object-cover border-2 border-black shadow-[2px_2px_0px_#000] shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <p className="font-black text-black font-outfit text-sm truncate">{item.name}</p>
+                    <span className="inline-flex items-center text-emerald-700" title={item.verifiedLabel}>
+                      <CheckCircle2 className="w-3.5 h-3.5 fill-emerald-400 text-black stroke-[1.5]" />
+                    </span>
+                  </div>
+                  <p className="text-xs text-emerald-900 font-bold font-jakarta truncate">{item.relationOrCollege}</p>
+                  <div className="flex items-center gap-1 text-[11px] text-neutral-500 font-medium font-jakarta mt-0.5">
+                    <MapPin className="w-3 h-3 text-neutral-400 shrink-0" />
+                    <span className="truncate">{item.location}</span>
                   </div>
                 </div>
-              ))}
+              </div>
+            </div>
+          );
+
+          return (
+            <div className="relative w-full overflow-hidden py-3 space-y-6">
+              {/* Left & Right Subtle Fade Masks for Magazine-Quality Carousel */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-r from-[#f6fcf8] via-[#f6fcf8]/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-l from-[#f6fcf8] via-[#f6fcf8]/80 to-transparent z-20" />
+
+              {/* ROW 1: Moving to the RIGHT (upr wali line right) */}
+              <div className="marquee-track overflow-hidden py-1">
+                <div className="animate-marquee-right flex gap-5 sm:gap-6">
+                  {row1Items.map((item, idx) => renderCard(item, `r1-${item.id}-${idx}`))}
+                </div>
+              </div>
+
+              {/* ROW 2: Moving to the LEFT (second line left) */}
+              <div className="marquee-track overflow-hidden py-1">
+                <div className="animate-marquee-left flex gap-5 sm:gap-6">
+                  {row2Items.map((item, idx) => renderCard(item, `r2-${item.id}-${idx}`))}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Bottom Feedback Banner */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mt-12 bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="text-center sm:text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-200 border border-black rounded-full text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000] mb-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+                <span>Join Our Growing Family</span>
+              </span>
+              <h3 className="font-outfit font-black text-xl sm:text-2xl text-black">
+                Ready to begin your child’s success story?
+              </h3>
+              <p className="text-xs sm:text-sm font-jakarta text-neutral-600 font-bold mt-1">
+                Meet our academic mentors for a personalized diagnostic session and campus walkthrough in Patna.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0 font-outfit w-full sm:w-auto">
+              <Link
+                href="/admission"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+              >
+                <span>Apply for Admission</span>
+                <ArrowRight className="w-4 h-4 text-black" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-neutral-100 text-black font-black rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm active:translate-x-0.5 active:translate-y-0.5 transition-all font-jakarta cursor-pointer"
+              >
+                <span>Talk to Counselor</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* ── LATEST ARTICLES & INSIGHTS SECTION ────────────────────────── */}
+      <HomeArticlesSection />
 
       {/* ── CONVERSION CTA BANNER ────────────────────────── */}
       <section ref={ctaSectionRef} className="py-24 relative overflow-hidden border-t-3 border-black px-4 sm:px-6 lg:px-8">

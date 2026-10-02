@@ -298,8 +298,8 @@ export default function TeacherApplicationsPage() {
 
         {/* Detail Modal */}
         {selectedApplication && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4 overscroll-contain">
-            <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[8px_8px_0px_#000] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overscroll-contain">
+            <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
               <div className="sticky top-0 bg-[#86efac] p-5 border-b-3 border-black flex justify-between items-center">
                 <h2 className="text-xl font-outfit font-black text-black">Application Details</h2>
                 <button

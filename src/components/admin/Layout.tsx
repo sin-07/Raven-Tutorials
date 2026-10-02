@@ -5,9 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   Menu, X, BarChart3, Users, CheckSquare, FileText, 
-  BookOpen, Megaphone, Video, MessageSquare, Sparkles, CreditCard 
+  BookOpen, Megaphone, Video, MessageSquare, Sparkles, CreditCard, Newspaper 
 } from 'lucide-react';
-import Navbar from '../Navbar';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface AdminLayoutProps {
@@ -46,6 +45,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     { path: '/admin/fees', icon: CreditCard, label: 'Fee Management' },
     { path: '/admin/students', icon: Users, label: 'Students' },
     { path: '/admin/courses', icon: BookOpen, label: 'Courses' },
+    { path: '/admin/articles', icon: Newspaper, label: 'Articles' },
     { path: '/admin/attendance', icon: CheckSquare, label: 'Attendance' },
     { path: '/admin/tests', icon: FileText, label: 'Tests' },
     { path: '/admin/study-materials', icon: BookOpen, label: 'Study Materials' },
@@ -56,9 +56,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-[#f6fcf8] relative overflow-hidden selection:bg-emerald-300 selection:text-black">
-      {/* Regular Navbar - Hidden on mobile/tablet when sidebar is open */}
-      {!(sidebarOpen && !isDesktop) && <Navbar />}
-      
       {/* Mobile Menu Toggle Button */}
       <div className={`lg:hidden fixed top-20 right-4 z-30 transition-all duration-300 ${sidebarOpen && !isDesktop ? 'hidden' : ''}`}>
         <button

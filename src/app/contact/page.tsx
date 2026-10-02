@@ -15,6 +15,7 @@ import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 import { 
+  gsap,
   animateFromUp, 
   animateFromDown, 
   scrollFromLeft, 

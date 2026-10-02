@@ -22,7 +22,6 @@ import {
   XCircle,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
@@ -181,8 +180,6 @@ export default function RSATPage() {
 
   return (
     <div className="min-h-screen bg-[#f6fcf8] selection:bg-emerald-300 selection:text-black">
-      <Navbar />
-
       <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-28 pb-20">
         {/* ========================================================= */}
         {/* STEP 1: REGISTRATION & TEST RULES */}

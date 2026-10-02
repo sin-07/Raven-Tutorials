@@ -386,8 +386,8 @@ export default function AdminFeesPage() {
 
         {/* MODAL 1: BATCH GENERATE CLASS DUES */}
         {showBatchModal && (
-          <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-[8px_8px_0px_#000] cartoon-pop">
+          <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] cartoon-pop my-auto">
               <div className="flex items-center justify-between pb-4 border-b-2 border-black/15">
                 <h3 className="text-xl font-black font-outfit text-black">Generate Class Monthly Dues</h3>
                 <button
@@ -494,8 +494,8 @@ export default function AdminFeesPage() {
 
         {/* Record Payment Modal */}
         {showPayModal && (
-          <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 animate-in fade-in">
-            <div className="bg-white border-3 border-black rounded-3xl max-w-md w-full p-6 shadow-[8px_8px_0px_#000]">
+          <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
+            <div className="bg-white border-3 border-black rounded-3xl max-w-md w-full p-6 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] my-auto">
               <div className="flex items-center justify-between border-b-2 border-black/10 pb-3">
                 <div className="flex items-center gap-2">
                   <CreditCard className="w-5 h-5 text-emerald-700" />
@@ -570,8 +570,8 @@ export default function AdminFeesPage() {
 
         {/* MODAL 3: OFFICIAL PRINTABLE CARTOON FEE RECEIPT */}
         {receiptModalFee && (
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-[#f0fdf4] border-4 border-black rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-[10px_10px_0px_#000] cartoon-pop relative">
+          <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] cartoon-pop relative my-auto">
               <button
                 onClick={() => setReceiptModalFee(null)}
                 className="absolute top-4 right-4 p-2 rounded-xl border-2 border-black bg-white hover:bg-rose-200 transition"

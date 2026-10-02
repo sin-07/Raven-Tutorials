@@ -8,6 +8,7 @@ import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 import { 
+  gsap,
   animateFromUp, 
   animateFromDown, 
   scrollFromUp, 

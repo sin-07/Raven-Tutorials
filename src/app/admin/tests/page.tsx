@@ -533,8 +533,8 @@ const AdminTests: React.FC = () => {
 
         {/* Cartoon Create / Edit Test Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto overscroll-contain">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 max-w-3xl w-full my-6 max-h-[90vh] overflow-y-auto overscroll-contain">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overflow-y-auto overscroll-contain">
+            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] p-6 sm:p-8 max-w-3xl w-full my-auto max-h-[90vh] overflow-y-auto overscroll-contain">
               <div className="flex items-center justify-between pb-4 mb-4 border-b-2 border-black">
                 <div className="flex items-center gap-2">
                   <div className="p-2 bg-[#86efac] rounded-xl border border-black shadow-[1px_1px_0px_#000]">

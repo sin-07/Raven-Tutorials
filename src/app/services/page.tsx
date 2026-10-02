@@ -20,6 +20,7 @@ import {
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
 import { 
+  gsap,
   animateFromUp, 
   animateFromDown, 
   scrollFromUp, 

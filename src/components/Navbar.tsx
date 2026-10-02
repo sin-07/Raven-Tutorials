@@ -3,7 +3,18 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LogIn, User, LogOut, ArrowRight, ShieldCheck } from 'lucide-react';
+import {
+  LogIn,
+  User,
+  LogOut,
+  ArrowRight,
+  ShieldCheck,
+  ChevronDown,
+  Megaphone,
+  Sparkles,
+  Info,
+  Phone,
+} from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -12,6 +23,7 @@ import { gsap } from '@/lib/gsap';
 const Navbar: React.FC = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDrawerMounted, setIsDrawerMounted] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   // Freeze background when mobile menu is open
   useBodyScrollLock(isMenuOpen);
   const [isStudentLoggedIn, setIsStudentLoggedIn] = useState(false);
@@ -19,11 +31,33 @@ const Navbar: React.FC = React.memo(() => {
   const router = useRouter();
   const { admin, logout: adminLogout } = useAdmin();
 
-  // GSAP refs
+  // GSAP & DOM refs
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const moreDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [pathname]);
+
+  // Click outside listener for More dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        moreDropdownRef.current &&
+        !moreDropdownRef.current.contains(event.target as Node)
+      ) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Check if student session is active
   useEffect(() => {
@@ -47,18 +81,61 @@ const Navbar: React.FC = React.memo(() => {
 
   const isAdminLoggedIn = !!admin;
 
-  const navLinks = useMemo(() => [
+  // Primary links in the desktop pill dock
+  const primaryLinks = useMemo(() => [
     { path: '/', label: 'Home' },
     { path: '/courses', label: 'Courses' },
     { path: '/rsat', label: "RSAT '26" },
-    { path: '/services', label: 'Services' },
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
+    { path: '/articles', label: 'Articles' },
+  ], [isStudentLoggedIn]);
+
+  // Secondary items cleanly organized in the "More ▾" dropdown
+  const moreLinks = useMemo(() => [
+    {
+      path: '/notices',
+      label: 'Notices',
+      subtext: 'Circulars & updates',
+      icon: Megaphone,
+      badge: 'Live',
+    },
+    {
+      path: '/services',
+      label: 'Services',
+      subtext: 'Student mentorship & labs',
+      icon: Sparkles,
+    },
+    {
+      path: '/about',
+      label: 'About Us',
+      subtext: 'Patna campus & faculty',
+      icon: Info,
+    },
+    {
+      path: '/contact',
+      label: 'Contact',
+      subtext: 'Enquiries & location',
+      icon: Phone,
+    },
+  ], []);
+
+  // Complete list for mobile drawer
+  const allMobileLinks = useMemo(() => [
+    { path: '/', label: 'Home' },
+    { path: '/courses', label: 'Courses' },
+    { path: '/rsat', label: "RSAT '26" },
+    ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
+    { path: '/articles', label: 'Articles' },
     { path: '/notices', label: 'Notices' },
+    { path: '/services', label: 'Services' },
     { path: '/about', label: 'About Us' },
     { path: '/contact', label: 'Contact' },
   ], [isStudentLoggedIn]);
 
   const isActive = (path: string) => pathname === path;
+  const isMoreActive = useMemo(() => {
+    return moreLinks.some((item) => pathname === item.path);
+  }, [pathname, moreLinks]);
 
   const handleStudentLogout = async () => {
     try {
@@ -177,15 +254,15 @@ const Navbar: React.FC = React.memo(() => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
+        className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
       >
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Cartoon Capsule Navbar Container */}
-          <div className="relative flex items-center justify-between h-[66px] px-4 sm:px-6 rounded-full border-2 sm:border-[2.5px] border-black bg-[#f0fdf4]/95 backdrop-blur-xl shadow-[4px_4px_0px_#000000]">
+          <div className="relative flex items-center justify-between h-[66px] px-4 sm:px-6 rounded-full border-2 sm:border-[2.5px] border-black bg-[#f0fdf4]/95 backdrop-blur-xl shadow-[0px_4px_0px_#000,0px_8px_20px_rgba(0,0,0,0.06)]">
 
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="relative p-2 rounded-xl bg-emerald-300 border-2 border-black shadow-[2px_2px_0px_#000] group-hover:-translate-y-0.5 transition-transform">
+              <div className="relative p-2 rounded-xl bg-emerald-300 border-2 border-black shadow-[2px_2px_0px_#000] group-hover:-translate-y-0.5 transition-transform flex-shrink-0">
                 <img
                   src="/logo.png"
                   alt="RAVEN Logo"
@@ -194,30 +271,30 @@ const Navbar: React.FC = React.memo(() => {
                 <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-black" />
               </div>
               
-              <div className="flex flex-col">
+              <div className="flex flex-col flex-shrink-0">
                 <div className="flex items-center gap-1.5 leading-none">
-                  <span className="text-black font-black text-xl tracking-tight font-outfit">
+                  <span className="text-black font-black text-xl tracking-tight font-outfit whitespace-nowrap">
                     RAVEN
                   </span>
-                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-200 border border-black text-[10px] font-space font-extrabold uppercase tracking-widest text-black shadow-[1px_1px_0px_#000]">
+                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-200 border border-black text-[10px] font-space font-extrabold uppercase tracking-widest text-black shadow-[1px_1px_0px_#000] whitespace-nowrap">
                     Tutorials
                   </span>
                 </div>
-                <span className="text-[10px] font-space font-bold text-neutral-600 tracking-wider uppercase mt-0.5 hidden sm:block">
+                <span className="text-[10px] font-space font-bold text-neutral-600 tracking-wider uppercase mt-0.5 hidden sm:block whitespace-nowrap">
                   Patna Campus
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links Dock */}
-            <div ref={linksRef} className="hidden md:flex items-center space-x-1 bg-[#dcfce7] p-1 rounded-full border-2 border-black font-jakarta shadow-[2px_2px_0px_#000]">
-              {navLinks.map((link) => {
+            <div ref={linksRef} className="hidden lg:flex items-center space-x-1 bg-[#dcfce7] p-1 rounded-full border-2 border-black font-jakarta shadow-[2px_2px_0px_#000] flex-shrink-0">
+              {primaryLinks.map((link) => {
                 const active = isActive(link.path);
                 return (
                   <Link
                     key={link.path}
                     href={link.path}
-                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 ${
+                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
                       active
                         ? 'text-black bg-[#4ade80] border-2 border-black shadow-[2px_2px_0px_#000]'
                         : 'text-neutral-700 hover:text-black hover:bg-[#f0fdf4]'
@@ -230,22 +307,94 @@ const Navbar: React.FC = React.memo(() => {
                   </Link>
                 );
               })}
+
+              {/* More Dropdown */}
+              <div ref={moreDropdownRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setMoreOpen((prev) => !prev)}
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${
+                    isMoreActive || moreOpen
+                      ? 'text-black bg-[#4ade80] border-2 border-black shadow-[2px_2px_0px_#000]'
+                      : 'text-neutral-700 hover:text-black hover:bg-[#f0fdf4]'
+                  }`}
+                  aria-expanded={moreOpen}
+                  aria-haspopup="true"
+                >
+                  {isMoreActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                  )}
+                  <span>More</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      moreOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown Popover Card */}
+                {moreOpen && (
+                  <div className="absolute top-[calc(100%+10px)] right-0 w-60 p-2 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[4px_4px_0px_#000] z-50 animate-in fade-in zoom-in-95 duration-150 font-jakarta">
+                    <div className="space-y-1">
+                      {moreLinks.map((item) => {
+                        const active = isActive(item.path);
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.path}
+                            href={item.path}
+                            onClick={() => setMoreOpen(false)}
+                            className={`group flex items-center justify-between p-2.5 rounded-xl border-2 transition-all duration-150 ${
+                              active
+                                ? 'bg-[#4ade80] border-black shadow-[2px_2px_0px_#000] text-black'
+                                : 'bg-white hover:bg-emerald-100 border-transparent hover:border-black text-neutral-800 hover:text-black'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className={`p-1.5 rounded-lg border border-black ${
+                                  active ? 'bg-white' : 'bg-emerald-200 group-hover:bg-white'
+                                } transition-colors`}
+                              >
+                                <Icon className="w-3.5 h-3.5 text-black" />
+                              </div>
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs font-bold leading-tight whitespace-nowrap">
+                                  {item.label}
+                                </span>
+                                <span className="text-[10px] text-neutral-500 font-medium leading-none mt-0.5 whitespace-nowrap">
+                                  {item.subtext}
+                                </span>
+                              </div>
+                            </div>
+                            {item.badge && (
+                              <span className="px-1.5 py-0.5 rounded-md bg-emerald-300 border border-black text-[9px] font-extrabold uppercase tracking-wider text-black shadow-[1px_1px_0px_#000]">
+                                {item.badge}
+                              </span>
+                            )}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Action CTA Button (Right) */}
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
               {isAdminLoggedIn ? (
                 <div className="flex items-center gap-2">
                   <Link
                     href="/admin/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Admin Panel</span>
                   </Link>
                   <button
                     onClick={handleAdminLogout}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition whitespace-nowrap flex-shrink-0"
                     title="Logout Admin"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -255,14 +404,14 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <User className="w-3.5 h-3.5" />
                     <span>Student Portal</span>
                   </Link>
                   <button
                     onClick={handleStudentLogout}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition whitespace-nowrap flex-shrink-0"
                     title="Logout Student"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -271,7 +420,7 @@ const Navbar: React.FC = React.memo(() => {
               ) : (
                 <Link
                   href="/login"
-                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Portal Login</span>
@@ -280,10 +429,10 @@ const Navbar: React.FC = React.memo(() => {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile / Tablet Menu Button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
+              className="lg:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5 flex-shrink-0"
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
@@ -316,10 +465,10 @@ const Navbar: React.FC = React.memo(() => {
                 transformOrigin: 'top center',
                 willChange: 'transform, opacity',
               }}
-              className="md:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3"
+              className="lg:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3"
             >
               <div className="space-y-1.5 font-jakarta">
-                {navLinks.map((link) => {
+                {allMobileLinks.map((link) => {
                   const active = isActive(link.path);
                   return (
                     <Link
