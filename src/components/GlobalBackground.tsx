@@ -5,38 +5,42 @@ import React from 'react';
 export default function GlobalBackground() {
   return (
     <div 
-      className="fixed inset-0 pointer-events-none overflow-hidden select-none -z-10 bg-[#f6fcf8]"
+      className="fixed inset-0 pointer-events-none overflow-hidden select-none -z-10 bg-[#070908]"
       style={{ contain: 'strict' }}
       aria-hidden="true"
     >
-      {/* ── 1. SUBTLE PLAYFUL CARTOON POLKA-DOT GRID (MINT GREENISH TINT) ── */}
+      {/* ── 1. DARK MINERAL / STONE NOISE & SUBTLE GRID ── */}
       <div 
-        className="absolute inset-0 opacity-40" 
+        className="absolute inset-0 opacity-[0.18]" 
         style={{
-          backgroundImage: 'radial-gradient(#15803d 1.25px, transparent 1.25px)',
-          backgroundSize: '24px 24px',
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
         }}
       />
 
-      {/* ── 2. FRESH GREENISH ACCENT CORNER ELEMENTS (NO GRADIENTS) ────────── */}
-      {/* Top Left Pop Circle */}
+      {/* ── 2. HIGH-TECH EMERALD & CYAN AMBIENT LIGHT RADIALS ── */}
+      {/* Top Center Hero Glow */}
       <div 
-        className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-[#dcfce7] opacity-60 border-3 border-black pointer-events-none shadow-[4px_4px_0px_#000]"
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[140px] opacity-25 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, #22c55e 0%, #10b981 35%, transparent 70%)',
+        }}
       />
 
-      {/* Top Right Pop Pill */}
+      {/* Mid Left Emerald Aura */}
       <div 
-        className="absolute top-28 -right-16 w-60 h-60 rounded-full bg-[#bbf7d0] opacity-50 border-3 border-black pointer-events-none shadow-[4px_4px_0px_#000]"
+        className="absolute top-[35%] -left-40 w-[600px] h-[600px] rounded-full blur-[160px] opacity-15 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, #4ade80 0%, #059669 40%, transparent 70%)',
+        }}
       />
 
-      {/* Bottom Left Pop Square */}
+      {/* Bottom Right Cyber Glow */}
       <div 
-        className="absolute bottom-20 -left-12 w-52 h-52 rounded-3xl rotate-12 bg-[#86efac] opacity-45 border-3 border-black pointer-events-none shadow-[4px_4px_0px_#000]"
-      />
-
-      {/* Bottom Right Pop Circle */}
-      <div 
-        className="absolute -bottom-24 -right-16 w-80 h-80 rounded-full bg-[#d1fae5] opacity-50 border-3 border-black pointer-events-none shadow-[4px_4px_0px_#000]"
+        className="absolute top-[65%] -right-40 w-[650px] h-[650px] rounded-full blur-[160px] opacity-20 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, #10b981 0%, #064e3b 50%, transparent 70%)',
+        }}
       />
     </div>
   );

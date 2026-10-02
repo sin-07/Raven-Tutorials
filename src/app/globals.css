@@ -16,32 +16,23 @@
 }
 
 :root {
-  --bg-canvas: #f6fcf8;
-  --bg-card: #f0fdf4;
-  --bg-card-hover: #e6f9ee;
+  --bg-canvas: #070908;
+  --bg-card: #0e1410;
+  --bg-card-hover: #141c16;
   --color-black: #000000;
-  --color-yellow: #facc15;
-  --color-yellow-light: #fef08a;
-  --color-blue: #38bdf8;
-  --color-blue-light: #bae6fd;
-  --color-green: #4ade80;
-  --color-green-light: #bbf7d0;
-  --color-green-tint: #f0fdf4;
-  --color-green-border: #86efac;
-  --color-pink: #f472b6;
-  --color-pink-light: #fbcfe8;
-  --color-purple: #c084fc;
-  --color-purple-light: #ddd6fe;
-  --color-orange: #fb923c;
-  --color-orange-light: #fed7aa;
-  --shadow-cartoon: 4px 4px 0px #000000;
-  --shadow-cartoon-sm: 2px 2px 0px #000000;
-  --shadow-cartoon-lg: 6px 6px 0px #000000;
-  --shadow-cartoon-xl: 8px 8px 0px #000000;
+  --color-white: #ffffff;
+  --color-lime: #a3e635;
+  --color-emerald: #4ade80;
+  --color-emerald-deep: #16a34a;
+  --color-cyan: #22d3ee;
+  --color-slate: #0f172a;
+  --shadow-cyber: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(74, 222, 128, 0.25);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -54,17 +45,17 @@ body {
   font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f6fcf8;
-  color: #0f172a;
+  background-color: #070908;
+  color: #e2e8f0;
   min-height: 100vh;
 }
 
-/* Headings — Outfit for bold punchy cartoon presence */
+/* Headings — Outfit for crisp geometric display */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-outfit), sans-serif;
   font-weight: 800;
   letter-spacing: -0.025em;
-  color: #09090b;
+  color: #ffffff;
 }
 
 .font-display {
@@ -94,11 +85,116 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* ── STRICT ZERO-GRADIENT TEXT UTILITIES ────────────────────── */
-/* Mapped to solid bold cartoon pop colors (NO gradients) */
-.text-gradient-emerald,
-.text-gradient-mint {
-  color: #15803d !important;
+/* ── PHENOMENON STUDIO LUXURY DARK UTILITIES ──────────────── */
+.cyber-card {
+  background: linear-gradient(180deg, #111713 0%, #0a0e0b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+  border-color: rgba(74, 222, 128, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(74, 222, 128, 0.15);
+  transform: translateY(-4px);
+}
+
+.btn-lime {
+  background: #a3e635 !important;
+  background-color: #a3e635 !important;
+  background-image: none !important;
+  color: #050a06 !important;
+  font-weight: 800;
+  font-family: var(--font-outfit), sans-serif;
+  border-radius: 9999px;
+  box-shadow: 0 0 20px rgba(163, 230, 53, 0.28);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-lime:hover {
+  background: #bef264 !important;
+  background-color: #bef264 !important;
+  background-image: none !important;
+  box-shadow: 0 0 30px rgba(163, 230, 53, 0.48);
+  transform: scale(1.03);
+}
+
+.btn-lime:active {
+  background: #84cc16 !important;
+  background-color: #84cc16 !important;
+  background-image: none !important;
+  transform: scale(0.98);
+}
+
+.btn-dark-pill {
+  background: #121814;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btn-dark-pill:hover {
+  background: #1a231d;
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+}
+
+/* Corner Action Button (↗) */
+.circle-action-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background-color: #162019;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.circle-action-btn:hover,
+.group:hover .circle-action-btn {
+  background: #4ade80;
+  color: #050a06;
+  border-color: #4ade80;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+  transform: scale(1.08) rotate(45deg);
+}
+
+/* Animations for Cyber Orb HUD */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse-slow {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-reverse-slow 28s linear infinite;
+}
+
+.animate-levitate {
+  animation: levitate 4.5s ease-in-out infinite;
+}
+
+.text-gradient-emerald {
+  color: #4ade80 !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: initial !important;
@@ -443,8 +539,93 @@ body.popup-frozen {
 
 .marquee-track:hover .animate-marquee-left,
 .marquee-track:hover .animate-marquee-right,
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right,
+.marquee-container[data-has-active="true"] .animate-marquee-left,
+.marquee-container[data-has-active="true"] .animate-marquee-right,
 .animate-marquee-left:hover,
 .animate-marquee-right:hover {
   animation-play-state: paused !important;
 }
+
+/* ── MOVING CARDS INTERACTIVE BLUR EFFECT (HOVER & TAP) ───── */
+.marquee-container {
+  position: relative;
+  width: 100%;
+}
+
+.marquee-card {
+  transition: filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease,
+              box-shadow 0.3s ease;
+  will-change: filter, opacity, transform;
+  cursor: pointer;
+}
+
+/* When any moving card is hovered OR actively tapped:
+   Smoothly BLUR and dim all other background cards */
+.marquee-container:has(.marquee-card:hover) .marquee-card,
+.marquee-container[data-has-active="true"] .marquee-card {
+  filter: blur(5px) saturate(0.6);
+  opacity: 0.28;
+  transform: scale(0.95);
+  pointer-events: auto;
+}
+
+/* The hovered / tapped active card stays crystal sharp and pops out */
+.marquee-container .marquee-card:hover,
+.marquee-container .marquee-card:focus-visible,
+.marquee-container .marquee-card[data-active="true"] {
+  filter: blur(0px) saturate(1) !important;
+  opacity: 1 !important;
+  transform: scale(1.05) translateY(-6px) !important;
+  z-index: 50 !important;
+  border-color: #a3e635 !important;
+  background-color: #121c15 !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(163, 230, 53, 0.35) !important;
+}
+
+/* Hero section stacked floating cards blur effect */
+.hero-cards-stack {
+  transition: all 0.3s ease;
+}
+
+.hero-cards-stack .hero-card {
+  transition: filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s ease;
+  will-change: filter, opacity, transform;
+}
+
+.hero-cards-stack:has(.hero-card:hover) .hero-card,
+.hero-cards-stack[data-has-active="true"] .hero-card {
+  filter: blur(4px) saturate(0.65);
+  opacity: 0.35;
+  transform: scale(0.94);
+}
+
+.hero-cards-stack .hero-card:hover,
+.hero-cards-stack .hero-card[data-active="true"] {
+  filter: blur(0px) saturate(1) !important;
+  opacity: 1 !important;
+  transform: scale(1.08) translateY(-6px) !important;
+  z-index: 40 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* ── LIVE CLASSROOM SOUNDWAVE EQUALIZER ──────────────────── */
+@keyframes soundwave {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+
+.animate-soundwave-1 { animation: soundwave 0.8s ease-in-out infinite; }
+.animate-soundwave-2 { animation: soundwave 1.1s ease-in-out infinite 0.2s; }
+.animate-soundwave-3 { animation: soundwave 0.9s ease-in-out infinite 0.4s; }
+.animate-soundwave-4 { animation: soundwave 1.2s ease-in-out infinite 0.1s; }
+
 

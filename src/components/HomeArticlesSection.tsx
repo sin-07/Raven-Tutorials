@@ -48,21 +48,18 @@ export default function HomeArticlesSection() {
   }, []);
 
   return (
-    <section className="py-24 bg-transparent border-t-3 border-black relative z-10 content-auto">
+    <section className="py-24 bg-transparent border-t border-white/10 relative z-10 content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <span className="pill-badge mb-4">
-            <BookOpen className="w-3.5 h-3.5 inline mr-1 text-emerald-700" />
-            Knowledge Base, Nature & Stories
-          </span>
-          <WavyHeading
-            text="Latest Articles &"
-            gradientText="Stories"
-            as="h2"
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-outfit tracking-tight"
-          />
-          <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold max-w-2xl mx-auto font-jakarta">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#121814] border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-4 shadow-[0_0_20px_rgba(74,222,128,0.15)]">
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Knowledge Base, Nature & Stories</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
+            Latest Articles & <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300">Stories</span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-zinc-400 font-medium max-w-2xl mx-auto font-jakarta">
             Fascinating reads on wildlife, nature, science, student strategies, and educational insights.
           </p>
         </div>
@@ -70,8 +67,8 @@ export default function HomeArticlesSection() {
         {/* Articles Grid */}
         {loading ? (
           <div className="py-16 flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500 mb-3" />
-            <p className="font-outfit font-black text-sm text-neutral-700">Loading Latest Insights...</p>
+            <div className="animate-spin rounded-full h-10 w-10 border-2 border-white/10 border-t-lime-400 mb-3" />
+            <p className="font-outfit font-black text-sm text-zinc-400">Loading Latest Insights...</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -79,18 +76,18 @@ export default function HomeArticlesSection() {
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#f0fdf4] hover:bg-[#e6f9ee] border-2 sm:border-[2.5px] border-black rounded-3xl overflow-hidden shadow-[5px_5px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1.5 transition-all flex flex-col justify-between"
+                className="group bg-[#0e1410] hover:bg-[#121a15] border border-white/10 hover:border-emerald-400/40 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_45px_rgba(74,222,128,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Card Cover Thumbnail */}
-                  <div className="relative h-48 w-full bg-slate-200 border-b-2 border-black overflow-hidden">
+                  <div className="relative h-48 w-full bg-black/40 border-b border-white/10 overflow-hidden">
                     <img
                       src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
                       alt={art.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 bg-emerald-200 text-emerald-950 border border-black rounded-md text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                      <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-lime-400 border border-lime-400/30 rounded-full text-xs font-extrabold font-space uppercase">
                         {art.category}
                       </span>
                     </div>
@@ -98,17 +95,17 @@ export default function HomeArticlesSection() {
 
                   {/* Card Body */}
                   <div className="p-6">
-                    <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-500 mb-2.5">
-                      <Clock className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-zinc-500 mb-2.5">
+                      <Clock className="w-3.5 h-3.5 text-emerald-400" />
                       <span>{art.readTime || '4 min read'}</span>
                       <span>•</span>
                       <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
 
-                    <h3 className="font-outfit font-black text-xl text-black line-clamp-2 leading-snug mb-3 group-hover:text-emerald-800 transition-colors">
+                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-lime-300 transition-colors">
                       {art.title}
                     </h3>
-                    <p className="font-jakarta text-xs sm:text-sm text-neutral-600 line-clamp-3 font-medium leading-relaxed">
+                    <p className="font-jakarta text-xs sm:text-sm text-zinc-400 line-clamp-3 font-normal leading-relaxed">
                       {art.excerpt}
                     </p>
                   </div>
@@ -116,15 +113,15 @@ export default function HomeArticlesSection() {
 
                 {/* Card Footer */}
                 <div className="p-6 pt-0">
-                  <div className="border-t-2 border-black/10 pt-4 flex items-center justify-between">
+                  <div className="border-t border-white/10 pt-4 flex items-center justify-between">
                     <div>
-                      <p className="font-black text-black font-outfit text-xs">{art.author}</p>
-                      <p className="text-[10px] text-emerald-800 font-bold font-jakarta">{art.authorRole}</p>
+                      <p className="font-extrabold text-white font-outfit text-xs">{art.author}</p>
+                      <p className="text-[10px] text-emerald-400 font-semibold font-jakarta">{art.authorRole}</p>
                     </div>
 
-                    <span className="inline-flex items-center gap-1.5 text-xs font-black font-outfit text-black group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-black font-outfit text-lime-400 group-hover:translate-x-1 transition-transform">
                       <span>Read Guide</span>
-                      <ArrowRight className="w-4 h-4 text-emerald-600" />
+                      <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
@@ -137,7 +134,7 @@ export default function HomeArticlesSection() {
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/articles"
-            className="btn-cartoon px-8 py-3.5 bg-white hover:bg-neutral-100 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center gap-2"
+            className="btn-lime px-8 py-3.5 text-black font-extrabold font-outfit rounded-full text-sm flex items-center gap-2 shadow-[0_0_25px_rgba(163,230,53,0.35)] cursor-pointer"
           >
             <span>Explore All Educational Articles</span>
             <ArrowRight className="w-4 h-4 text-black" />
@@ -145,9 +142,9 @@ export default function HomeArticlesSection() {
 
           <Link
             href="/admin/articles"
-            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-black font-outfit text-neutral-600 hover:text-black hover:underline"
+            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-extrabold font-outfit text-zinc-400 hover:text-lime-400 transition-colors"
           >
-            <PenTool className="w-3.5 h-3.5" />
+            <PenTool className="w-3.5 h-3.5 text-emerald-400" />
             <span>Admin: Write an Article</span>
           </Link>
         </div>

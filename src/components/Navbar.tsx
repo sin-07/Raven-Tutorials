@@ -257,47 +257,47 @@ const Navbar: React.FC = React.memo(() => {
         className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4"
       >
         <div className="max-w-7xl mx-auto">
-          {/* Cartoon Capsule Navbar Container */}
-          <div className="relative flex items-center justify-between h-[66px] px-4 sm:px-6 rounded-full border-2 sm:border-[2.5px] border-black bg-[#f0fdf4]/95 backdrop-blur-xl shadow-[0px_4px_0px_#000,0px_8px_20px_rgba(0,0,0,0.06)]">
+          {/* Phenomenon Studio Floating Dark Luxury Capsule */}
+          <div className="relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full border border-white/12 bg-[#0c100d]/90 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
 
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="relative p-2 rounded-xl bg-emerald-300 border-2 border-black shadow-[2px_2px_0px_#000] group-hover:-translate-y-0.5 transition-transform flex-shrink-0">
+              <div className="relative p-2 rounded-xl bg-[#141b16] border border-white/15 shadow-inner group-hover:-translate-y-0.5 transition-transform flex-shrink-0">
                 <img
                   src="/logo.png"
                   alt="RAVEN Logo"
                   className="h-6 w-6 object-contain"
                 />
-                <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-black" />
+                <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]" />
               </div>
               
               <div className="flex flex-col flex-shrink-0">
                 <div className="flex items-center gap-1.5 leading-none">
-                  <span className="text-black font-black text-xl tracking-tight font-outfit whitespace-nowrap">
+                  <span className="text-white font-black text-xl tracking-tight font-outfit whitespace-nowrap">
                     RAVEN
                   </span>
-                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-200 border border-black text-[10px] font-space font-extrabold uppercase tracking-widest text-black shadow-[1px_1px_0px_#000] whitespace-nowrap">
+                  <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-[10px] font-space font-extrabold uppercase tracking-widest text-[#4ade80] whitespace-nowrap">
                     Tutorials
                   </span>
                 </div>
-                <span className="text-[10px] font-space font-bold text-neutral-600 tracking-wider uppercase mt-0.5 hidden sm:block whitespace-nowrap">
+                <span className="text-[10px] font-space font-bold text-zinc-400 tracking-wider uppercase mt-0.5 hidden sm:block whitespace-nowrap">
                   Patna Campus
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links Dock */}
-            <div ref={linksRef} className="hidden lg:flex items-center space-x-1 bg-[#dcfce7] p-1 rounded-full border-2 border-black font-jakarta shadow-[2px_2px_0px_#000] flex-shrink-0">
+            <div ref={linksRef} className="hidden lg:flex items-center space-x-1 bg-[#121814] p-1 rounded-full border border-white/10 font-jakarta flex-shrink-0">
               {primaryLinks.map((link) => {
                 const active = isActive(link.path);
                 return (
                   <Link
                     key={link.path}
                     href={link.path}
-                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
                       active
-                        ? 'text-black bg-[#4ade80] border-2 border-black shadow-[2px_2px_0px_#000]'
-                        : 'text-neutral-700 hover:text-black hover:bg-[#f0fdf4]'
+                        ? 'text-black bg-[#4ade80] shadow-[0_0_15px_rgba(74,222,128,0.4)]'
+                        : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     {active && (
@@ -313,10 +313,10 @@ const Navbar: React.FC = React.memo(() => {
                 <button
                   type="button"
                   onClick={() => setMoreOpen((prev) => !prev)}
-                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-150 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${
                     isMoreActive || moreOpen
-                      ? 'text-black bg-[#4ade80] border-2 border-black shadow-[2px_2px_0px_#000]'
-                      : 'text-neutral-700 hover:text-black hover:bg-[#f0fdf4]'
+                      ? 'text-black bg-[#4ade80] shadow-[0_0_15px_rgba(74,222,128,0.4)]'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
                   aria-expanded={moreOpen}
                   aria-haspopup="true"
@@ -334,7 +334,7 @@ const Navbar: React.FC = React.memo(() => {
 
                 {/* Dropdown Popover Card */}
                 {moreOpen && (
-                  <div className="absolute top-[calc(100%+10px)] right-0 w-60 p-2 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[4px_4px_0px_#000] z-50 animate-in fade-in zoom-in-95 duration-150 font-jakarta">
+                  <div className="absolute top-[calc(100%+12px)] right-0 w-64 p-2 rounded-2xl bg-[#0e1410] border border-white/12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 animate-in fade-in zoom-in-95 duration-150 font-jakarta">
                     <div className="space-y-1">
                       {moreLinks.map((item) => {
                         const active = isActive(item.path);
@@ -344,31 +344,33 @@ const Navbar: React.FC = React.memo(() => {
                             key={item.path}
                             href={item.path}
                             onClick={() => setMoreOpen(false)}
-                            className={`group flex items-center justify-between p-2.5 rounded-xl border-2 transition-all duration-150 ${
+                            className={`group flex items-center justify-between p-2.5 rounded-xl border transition-all duration-150 ${
                               active
-                                ? 'bg-[#4ade80] border-black shadow-[2px_2px_0px_#000] text-black'
-                                : 'bg-white hover:bg-emerald-100 border-transparent hover:border-black text-neutral-800 hover:text-black'
+                                ? 'bg-[#4ade80] border-[#4ade80] text-black shadow-[0_0_15px_rgba(74,222,128,0.3)]'
+                                : 'bg-[#141b16] hover:bg-[#1a241d] border-white/5 hover:border-emerald-500/30 text-zinc-300 hover:text-white'
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
                               <div
-                                className={`p-1.5 rounded-lg border border-black ${
-                                  active ? 'bg-white' : 'bg-emerald-200 group-hover:bg-white'
+                                className={`p-1.5 rounded-lg border ${
+                                  active
+                                    ? 'bg-black text-[#4ade80] border-black'
+                                    : 'bg-[#1c261f] border-white/10 text-emerald-400 group-hover:bg-[#223026]'
                                 } transition-colors`}
                               >
-                                <Icon className="w-3.5 h-3.5 text-black" />
+                                <Icon className="w-3.5 h-3.5" />
                               </div>
                               <div className="flex flex-col text-left">
                                 <span className="text-xs font-bold leading-tight whitespace-nowrap">
                                   {item.label}
                                 </span>
-                                <span className="text-[10px] text-neutral-500 font-medium leading-none mt-0.5 whitespace-nowrap">
+                                <span className="text-[10px] text-zinc-400 font-medium leading-none mt-0.5 whitespace-nowrap">
                                   {item.subtext}
                                 </span>
                               </div>
                             </div>
                             {item.badge && (
-                              <span className="px-1.5 py-0.5 rounded-md bg-emerald-300 border border-black text-[9px] font-extrabold uppercase tracking-wider text-black shadow-[1px_1px_0px_#000]">
+                              <span className="px-1.5 py-0.5 rounded-md bg-[#4ade80] text-black text-[9px] font-extrabold uppercase tracking-wider">
                                 {item.badge}
                               </span>
                             )}
@@ -387,14 +389,14 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/admin/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#162019] hover:bg-[#1e2c22] text-[#4ade80] border border-emerald-500/30 hover:border-emerald-500/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Admin Panel</span>
                   </Link>
                   <button
                     onClick={handleAdminLogout}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 rounded-full text-xs font-bold transition whitespace-nowrap flex-shrink-0"
                     title="Logout Admin"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -404,14 +406,14 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#162019] hover:bg-[#1e2c22] text-[#4ade80] border border-emerald-500/30 hover:border-emerald-500/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <User className="w-3.5 h-3.5" />
                     <span>Student Portal</span>
                   </Link>
                   <button
                     onClick={handleStudentLogout}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-200 hover:bg-rose-300 border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000] transition whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 rounded-full text-xs font-bold transition whitespace-nowrap flex-shrink-0"
                     title="Logout Student"
                   >
                     <LogOut className="w-3.5 h-3.5" />
@@ -420,11 +422,11 @@ const Navbar: React.FC = React.memo(() => {
               ) : (
                 <Link
                   href="/login"
-                  className="group relative flex items-center gap-2 px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap flex-shrink-0"
+                  className="btn-lime group relative flex items-center gap-2 px-5 py-2.5 text-black font-black text-xs font-outfit uppercase tracking-wider rounded-full transition-all whitespace-nowrap flex-shrink-0 cursor-pointer"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Portal Login</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               )}
             </div>
@@ -432,22 +434,22 @@ const Navbar: React.FC = React.memo(() => {
             {/* Mobile / Tablet Menu Button */}
             <button
               onClick={toggleMenu}
-              className="lg:hidden p-2.5 rounded-full bg-[#f0fdf4] hover:bg-[#dcfce7] border-2 border-black text-black shadow-[3px_3px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5 flex-shrink-0"
+              className="lg:hidden p-2.5 rounded-full bg-[#141b16] hover:bg-[#1d2720] border border-white/15 text-white transition active:scale-95 flex-shrink-0"
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
                 <span
-                  className={`w-full h-0.5 bg-black rounded-full transition-transform duration-300 ${
+                  className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 ${
                     isMenuOpen ? 'rotate-45 translate-y-1.5' : ''
                   }`}
                 />
                 <span
-                  className={`w-full h-0.5 bg-black rounded-full transition-opacity duration-300 ${
+                  className={`w-full h-0.5 bg-white rounded-full transition-opacity duration-300 ${
                     isMenuOpen ? 'opacity-0' : ''
                   }`}
                 />
                 <span
-                  className={`w-full h-0.5 bg-black rounded-full transition-transform duration-300 ${
+                  className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 ${
                     isMenuOpen ? '-rotate-45 -translate-y-2' : ''
                   }`}
                 />
@@ -465,7 +467,7 @@ const Navbar: React.FC = React.memo(() => {
                 transformOrigin: 'top center',
                 willChange: 'transform, opacity',
               }}
-              className="lg:hidden mt-3 p-5 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000000] space-y-3"
+              className="lg:hidden mt-3 p-5 rounded-3xl bg-[#0c100d]/95 backdrop-blur-2xl border border-white/12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-3"
             >
               <div className="space-y-1.5 font-jakarta">
                 {allMobileLinks.map((link) => {
@@ -475,10 +477,10 @@ const Navbar: React.FC = React.memo(() => {
                       key={link.path}
                       href={link.path}
                       onClick={closeMenu}
-                      className={`mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border-2 border-black transition-spring ${
+                      className={`mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border transition-all ${
                         active
-                          ? 'text-black bg-[#4ade80] shadow-[3px_3px_0px_#000]'
-                          : 'text-neutral-800 bg-white hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
+                          ? 'text-black bg-[#4ade80] border-[#4ade80] shadow-[0_0_15px_rgba(74,222,128,0.3)]'
+                          : 'text-zinc-200 bg-[#141b16] hover:bg-[#1a231d] border-white/5'
                       }`}
                     >
                       <span>{link.label}</span>

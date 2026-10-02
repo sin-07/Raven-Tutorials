@@ -354,68 +354,67 @@ export default function AdmissionSection() {
   return (
     <>
       {/* I Want to Learn Section */}
-      <section className="py-20 bg-transparent border-t-2 sm:border-t-3 border-black">
+      <section className="py-24 bg-transparent border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#dcfce7] text-emerald-900 rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border-2 border-black shadow-[2px_2px_0px_#000]">
+            <span className="inline-block px-4 py-1.5 bg-[#121814] text-emerald-400 rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border border-white/10 shadow-[0_0_20px_rgba(74,222,128,0.15)]">
               Start Your Journey
             </span>
-            <h2 className="text-3xl md:text-5xl font-black text-black font-outfit tracking-tight">
-              I Want to Learn
+            <h2 className="text-3xl md:text-5xl font-black text-white font-outfit tracking-tight">
+              I Want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300">Learn</span>
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium">
+            <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal">
               Take the first step towards your academic success. Join Raven Tutorials and unlock your potential with expert guidance.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
             {/* Left Side - Benefits */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6 font-jakarta"
+              className="space-y-5 font-jakarta"
             >
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-emerald-300 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform">
-                  <GraduationCap className="w-6 h-6 text-black" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-lime-400/10 border border-lime-400/30 text-lime-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Expert Faculty</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Learn from experienced educators who are passionate about teaching.</p>
+                  <h3 className="text-lg font-black text-white mb-1 font-outfit">Expert Faculty</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed font-normal">Learn from experienced educators who are passionate about teaching.</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform">
-                  <BookOpen className="w-6 h-6 text-black" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Comprehensive Curriculum</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Well-structured courses covering all subjects with detailed study materials.</p>
+                  <h3 className="text-lg font-black text-white mb-1 font-outfit">Comprehensive Curriculum</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed font-normal">Well-structured courses covering all subjects with detailed study materials.</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#f0fdf4] border-2 border-black shadow-[3px_3px_0px_#000]">
-                <div className="w-12 h-12 rounded-xl bg-emerald-200 border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#000]">
-                  <Shield className="w-6 h-6 text-black" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-teal-400/10 border border-teal-400/30 text-teal-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <Shield className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-black mb-1 font-outfit">Personalized Attention</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed font-medium">Small batch sizes ensure every student gets individual attention.</p>
+                  <h3 className="text-lg font-black text-white mb-1 font-outfit">Personalized Attention</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed font-normal">Small batch sizes ensure every student gets individual attention.</p>
                 </div>
               </div>
 
-              <div className="pt-2 font-outfit">
-                <p className="text-2xl font-black text-black">
-                  Admission Fee: <span className="text-emerald-700 bg-[#dcfce7] px-3 py-1 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">₹1,000</span>
-                </p>
-                <p className="text-neutral-600 text-xs font-jakarta mt-2 font-bold">One-time registration fee</p>
+              <div className="pt-2 font-outfit flex items-center gap-3">
+                <span className="text-xl font-bold text-zinc-300">Admission Fee:</span>
+                <span className="text-black bg-lime-400 font-extrabold px-3.5 py-1 rounded-full text-lg shadow-[0_0_20px_rgba(163,230,53,0.4)]">₹1,000</span>
+                <span className="text-zinc-500 text-xs font-jakarta font-medium">(One-time registration)</span>
               </div>
             </motion.div>
 
@@ -424,42 +423,42 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#f0fdf4] rounded-2xl border-3 border-black shadow-[6px_6px_0px_#000] p-8 font-jakarta"
+              className="bg-gradient-to-b from-[#111713] to-[#0a0e0b] rounded-3xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-8 sm:p-10 font-jakarta relative overflow-hidden"
             >
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
-                  <GraduationCap className="w-10 h-10 text-black" />
+              <div className="text-center relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-lime-400/10 border border-lime-400/30 text-lime-400 flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(163,230,53,0.2)]">
+                  <GraduationCap className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-black text-black mb-3 font-outfit">Ready to Join?</h3>
-                <p className="text-neutral-700 mb-6 font-jakarta text-sm sm:text-base font-medium">
+                <h3 className="text-2xl font-black text-white mb-2 font-outfit">Ready to Join?</h3>
+                <p className="text-zinc-400 mb-6 font-jakarta text-sm leading-relaxed">
                   Complete our simple admission process and start your learning journey today.
                 </p>
                 
-                <div className="space-y-3 text-left mb-8">
-                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                <div className="space-y-3 text-left mb-8 max-w-sm mx-auto">
+                  <div className="flex items-center gap-3 text-zinc-300 text-sm">
+                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
                     <span>Fill the admission form</span>
                   </div>
-                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 text-zinc-300 text-sm">
+                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
                     <span>Verify your email with OTP</span>
                   </div>
-                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 text-zinc-300 text-sm">
+                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
                     <span>Complete payment</span>
                   </div>
-                  <div className="flex items-center gap-3 text-neutral-800 font-bold text-sm">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 text-zinc-300 text-sm">
+                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
                     <span>Get your login credentials</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-base rounded-xl border-2 border-black transition-spring shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
+                  className="btn-lime w-full py-4 text-black font-extrabold text-sm rounded-full shadow-[0_0_30px_rgba(163,230,53,0.4)] flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
                 >
                   <GraduationCap className="w-5 h-5" />
-                  Take Admission Now
+                  <span>Take Admission Now</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
