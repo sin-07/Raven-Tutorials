@@ -104,9 +104,7 @@ export default function Home() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
-  const heroVisualRef = useRef<HTMLDivElement>(null);
-  const heroLeftWingRef = useRef<HTMLDivElement>(null);
-  const heroRightWingRef = useRef<HTMLDivElement>(null);
+  const heroCardsGridRef = useRef<HTMLDivElement>(null);
 
   const featuresSectionRef = useRef<HTMLElement>(null);
   const featuresTitleRef = useRef<HTMLHeadingElement>(null);
@@ -167,77 +165,27 @@ export default function Home() {
         if (buttons[1]) animateFromRight(buttons[1], 0.5, 40, 0.6);
       }
 
-      // Hero Left Wing: Stagger in from Left + smooth vertical levitation
-      if (heroLeftWingRef.current) {
-        gsap.from(heroLeftWingRef.current.children, {
-          x: -45,
+      // Hero Academic Feature Cards: Staggered entrance from bottom + subtle floating
+      if (heroCardsGridRef.current) {
+        gsap.from(heroCardsGridRef.current.children, {
+          y: 40,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.16,
+          stagger: 0.12,
           ease: 'power3.out',
-          delay: 0.25,
+          delay: 0.35,
         });
-        gsap.to(heroLeftWingRef.current, {
-          y: -8,
-          duration: 3.2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: 1,
-        });
-      }
-
-      // Hero Right Wing: Stagger in from Right + counter levitation
-      if (heroRightWingRef.current) {
-        gsap.from(heroRightWingRef.current.children, {
-          x: 45,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.16,
-          ease: 'power3.out',
-          delay: 0.3,
-        });
-        gsap.to(heroRightWingRef.current, {
-          y: 9,
-          duration: 3.6,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: 1.2,
-        });
-      }
-
-      // Hero Center: 3D Academic Portal + Floating Concept Pills
-      if (heroVisualRef.current) {
-        gsap.from(heroVisualRef.current, {
-          scale: 0.86,
-          opacity: 0,
-          duration: 1,
-          ease: 'back.out(1.5)',
-          delay: 0.2,
-        });
-        const orbitalPills = heroVisualRef.current.querySelectorAll('.orbital-concept-pill');
-        if (orbitalPills.length > 0) {
-          gsap.from(orbitalPills, {
-            scale: 0,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'back.out(2)',
-            delay: 0.7,
+        const cards = Array.from(heroCardsGridRef.current.children);
+        cards.forEach((card, idx) => {
+          gsap.to(card, {
+            y: idx % 2 === 0 ? -6 : 6,
+            duration: 3 + idx * 0.3,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: 1 + idx * 0.15,
           });
-          orbitalPills.forEach((pill, idx) => {
-            gsap.to(pill, {
-              y: idx % 2 === 0 ? -6 : 6,
-              x: idx % 2 === 0 ? 4 : -4,
-              duration: 2.8 + idx * 0.3,
-              repeat: -1,
-              yoyo: true,
-              ease: 'sine.inOut',
-              delay: 1 + idx * 0.2,
-            });
-          });
-        }
+        });
       }
 
       // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
@@ -340,13 +288,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ── HERO SHOWCASE GRID (LEFT WING + 3D ACADEMIC PORTAL + RIGHT WING) ── */}
-          <div className="relative my-8 sm:my-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center z-10">
-
-            {/* ── LEFT WING: LIVE CLASSROOM RADAR & SCHOLARSHIP DIAGNOSTIC ── */}
-            <div ref={heroLeftWingRef} className="lg:col-span-3 space-y-4 order-2 lg:order-1">
-              {/* Live Classroom Radar Card */}
-              <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all group">
+          {/* ── HERO ACADEMIC FEATURE CARDS GRID ── */}
+          <div 
+            ref={heroCardsGridRef}
+            className="relative my-8 sm:my-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 z-10"
+          >
+            {/* Card 1: Live Classroom Radar */}
+            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all group flex flex-col justify-between">
+              <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2.5 w-2.5">
@@ -360,93 +309,34 @@ export default function Home() {
                   </span>
                 </div>
 
-                <h4 className="font-outfit font-black text-white text-sm sm:text-base leading-snug group-hover:text-lime-300 transition-colors">
+                <h4 className="font-outfit font-black text-white text-base leading-snug group-hover:text-lime-300 transition-colors">
                   Rotational Dynamics &amp; Centre of Mass
                 </h4>
-                <p className="text-xs text-zinc-400 font-jakarta mt-1 flex items-center gap-1.5">
+                <p className="text-xs text-zinc-400 font-jakarta mt-1.5 flex items-center gap-1.5">
                   <GraduationCap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Er. Alok Sharma (IIT Kanpur Alum)</span>
                 </p>
-
-                {/* Live Audio Equalizer & Attending Count */}
-                <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-1 h-5 px-2 bg-black/40 rounded-lg">
-                    <span className="w-1 bg-lime-400 rounded-full animate-soundwave-1" />
-                    <span className="w-1 bg-emerald-400 rounded-full animate-soundwave-2" />
-                    <span className="w-1 bg-teal-400 rounded-full animate-soundwave-3" />
-                    <span className="w-1 bg-lime-300 rounded-full animate-soundwave-4" />
-                    <span className="text-[10px] font-mono text-zinc-400 ml-1.5 font-bold">Audio HD</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-[11px] font-bold text-zinc-300">
-                    <Users className="w-3 h-3 text-emerald-400" />
-                    <span>148 Students</span>
-                  </div>
-                </div>
               </div>
 
-              {/* RSAT Scholarship Quick-Card */}
-              <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-lime-400/40 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-[10px] font-space font-extrabold uppercase">
-                    <Zap className="w-3 h-3 fill-current" />
-                    <span>RSAT 2026-27</span>
-                  </span>
-                  <span className="text-[11px] font-mono font-black text-white">Up to 90% Off</span>
+              {/* Live Audio Equalizer & Attending Count */}
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-1 h-5 px-2 bg-black/40 rounded-lg">
+                  <span className="w-1 bg-lime-400 rounded-full animate-soundwave-1" />
+                  <span className="w-1 bg-emerald-400 rounded-full animate-soundwave-2" />
+                  <span className="w-1 bg-teal-400 rounded-full animate-soundwave-3" />
+                  <span className="w-1 bg-lime-300 rounded-full animate-soundwave-4" />
+                  <span className="text-[10px] font-mono text-zinc-400 ml-1.5 font-bold">Audio HD</span>
                 </div>
-                <p className="font-outfit font-extrabold text-white text-xs sm:text-sm">
-                  Raven Scholarship &amp; Aptitude Test
-                </p>
-                <p className="text-[11px] text-zinc-400 font-jakarta mt-0.5 leading-relaxed">
-                  15-min online diagnostic test. Instant rank analysis &amp; fee concessions.
-                </p>
-                <Link
-                  href="/rsat"
-                  className="mt-3 w-full py-2 bg-white/5 hover:bg-lime-400 hover:text-black border border-white/10 rounded-xl text-xs font-outfit font-extrabold flex items-center justify-center gap-1.5 transition-all text-white"
-                >
-                  <span>Take RSAT Test</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="flex items-center gap-1 text-[11px] font-bold text-zinc-300">
+                  <Users className="w-3 h-3 text-emerald-400" />
+                  <span>148 Students</span>
+                </div>
               </div>
             </div>
 
-            {/* ── CENTER: 3D ACADEMIC PORTAL WITH ORBITAL CONCEPT PILLS ── */}
-            <div ref={heroVisualRef} className="lg:col-span-6 relative flex flex-col items-center justify-center order-1 lg:order-2 my-4 lg:my-0">
-              {/* Concentric Rotating Glowing HUD Rings */}
-              <div className="absolute w-72 h-72 sm:w-[420px] sm:h-[420px] rounded-full border border-emerald-500/20 animate-spin-slow pointer-events-none" />
-              <div className="absolute w-80 h-80 sm:w-[490px] sm:h-[490px] rounded-full border border-dashed border-lime-400/25 animate-spin-reverse-slow pointer-events-none" />
-              <div className="absolute w-60 h-60 sm:w-72 sm:h-72 rounded-full border border-cyan-400/20 pointer-events-none" />
-
-              {/* Center 3D Academic Portal Image */}
-              <div className="relative z-10 animate-levitate max-w-[260px] sm:max-w-[340px] lg:max-w-[400px]">
-                <img
-                  src="/images/academic-core-portal.jpg"
-                  alt="Raven Academic Excellence & Learning Portal"
-                  className="w-full h-auto drop-shadow-[0_30px_70px_rgba(0,0,0,0.95)] rounded-3xl border border-white/10"
-                />
-              </div>
-
-              {/* 4 Floating Orbital Concept Badges around the Academic Emblem */}
-              <div className="orbital-concept-pill absolute -top-2 sm:top-2 -left-2 sm:left-4 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#0e1410]/95 backdrop-blur-md border border-emerald-400/30 rounded-full text-xs font-outfit font-black text-emerald-300 shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <span>⚛️ Quantum Physics</span>
-              </div>
-
-              <div className="orbital-concept-pill absolute -top-2 sm:top-2 -right-2 sm:right-4 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#0e1410]/95 backdrop-blur-md border border-lime-400/30 rounded-full text-xs font-outfit font-black text-lime-300 shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <span>🧬 Organic Chemistry</span>
-              </div>
-
-              <div className="orbital-concept-pill absolute -bottom-2 sm:bottom-2 -left-2 sm:left-4 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#0e1410]/95 backdrop-blur-md border border-cyan-400/30 rounded-full text-xs font-outfit font-black text-cyan-300 shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <span>📐 Differential Calculus</span>
-              </div>
-
-              <div className="orbital-concept-pill absolute -bottom-2 sm:bottom-2 -right-2 sm:right-4 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#0e1410]/95 backdrop-blur-md border border-amber-400/30 rounded-full text-xs font-outfit font-black text-amber-300 shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <span>🎯 JEE &amp; NEET AIR 1 Target</span>
-              </div>
-            </div>
-
-            {/* ── RIGHT WING: PATNA HALL OF FAME & 24/7 DOUBT ENGINE ── */}
-            <div ref={heroRightWingRef} className="lg:col-span-3 space-y-4 order-3">
-              {/* Hall of Fame & Selections Card */}
-              <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-amber-400/40 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all">
+            {/* Card 2: Patna Hall of Fame & Selections */}
+            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-amber-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
+              <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-[10px] font-space font-extrabold uppercase">
                     <Trophy className="w-3 h-3 text-amber-400" />
@@ -458,7 +348,7 @@ export default function Home() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-outfit font-black text-xs">
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-outfit font-black text-[10px]">
                         AIR
                       </div>
                       <div>
@@ -466,12 +356,12 @@ export default function Home() {
                         <p className="text-[10px] text-zinc-400 font-jakarta">Aarav Sinha (IIT Bombay)</p>
                       </div>
                     </div>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400 shrink-0" />
                   </div>
 
                   <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-outfit font-black text-xs">
+                      <div className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-outfit font-black text-[10px]">
                         AIR
                       </div>
                       <div>
@@ -479,17 +369,45 @@ export default function Home() {
                         <p className="text-[10px] text-zinc-400 font-jakarta">Priyanshu K. (AIIMS)</p>
                       </div>
                     </div>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400 shrink-0" />
                   </div>
                 </div>
-
-                <p className="text-[11px] font-bold text-lime-300 mt-2.5 text-center font-outfit">
-                  150+ Selections in IITs, NITs &amp; AIIMS
-                </p>
               </div>
 
-              {/* 24/7 Academic Edge & Doubt Engine Card */}
-              <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all">
+              <p className="text-[11px] font-bold text-lime-300 mt-3 text-center font-outfit pt-2 border-t border-white/10">
+                150+ Selections in IITs, NITs &amp; AIIMS
+              </p>
+            </div>
+
+            {/* Card 3: RSAT Scholarship Quick-Card */}
+            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-lime-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-[10px] font-space font-extrabold uppercase">
+                    <Zap className="w-3 h-3 fill-current" />
+                    <span>RSAT 2026-27</span>
+                  </span>
+                  <span className="text-[11px] font-mono font-black text-white">Up to 90% Off</span>
+                </div>
+                <p className="font-outfit font-extrabold text-white text-sm">
+                  Scholarship &amp; Diagnostic
+                </p>
+                <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                  15-min online concept diagnostic for Classes 8-12th. Instant ranking &amp; scholarship analysis.
+                </p>
+              </div>
+              <Link
+                href="/rsat"
+                className="mt-4 w-full py-2.5 bg-white/5 hover:bg-lime-400 hover:text-black border border-white/10 rounded-xl text-xs font-outfit font-extrabold flex items-center justify-center gap-1.5 transition-all text-white cursor-pointer"
+              >
+                <span>Take RSAT Test</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            {/* Card 4: 24/7 Academic Edge & Doubt Engine */}
+            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
+              <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <span className="text-[10px] font-space font-extrabold uppercase text-emerald-400 tracking-wider">
                     Academic Support
@@ -498,17 +416,20 @@ export default function Home() {
                     &lt; 4 Min Resolution
                   </span>
                 </div>
-                <p className="font-outfit font-black text-white text-xs sm:text-sm">
-                  24/7 AI &amp; Faculty Doubt Engine
+                <p className="font-outfit font-black text-white text-sm">
+                  24/7 Doubt Resolution Engine
                 </p>
-                <div className="mt-2.5 flex items-center justify-between text-xs text-zinc-400">
-                  <span>1:1 IITian Mentors</span>
-                  <div className="flex items-center gap-0.5 text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-amber-400" />
-                    ))}
-                    <span className="text-[10px] font-mono text-zinc-300 ml-1">4.95</span>
-                  </div>
+                <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                  Instant concept resolution with 1:1 subject specialists, DPP video solutions &amp; revision tests.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-zinc-400">
+                <span>1:1 IITian Mentors</span>
+                <div className="flex items-center gap-0.5 text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-amber-400" />
+                  ))}
+                  <span className="text-[10px] font-mono text-zinc-300 ml-1">4.95</span>
                 </div>
               </div>
             </div>
