@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import connectDB from '@/lib/database';
 import Article from '@/models/Article';
 
+export const dynamic = 'force-dynamic';
+
 // GET: Fetch a single article by slug or _id (public)
 export async function GET(
   request: Request,

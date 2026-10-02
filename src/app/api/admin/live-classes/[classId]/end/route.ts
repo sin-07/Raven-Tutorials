@@ -4,6 +4,8 @@ import LiveClass from '@/models/LiveClass';
 import { verifyAdminToken } from '@/lib/auth';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ classId: string }> }

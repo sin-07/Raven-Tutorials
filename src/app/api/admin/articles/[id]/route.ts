@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/database';
 import Article from '@/models/Article';
 
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 async function verifyAdmin() {

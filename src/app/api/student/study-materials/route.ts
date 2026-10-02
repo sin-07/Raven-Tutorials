@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import StudyMaterial from '@/models/StudyMaterial';
 import { authenticateStudent } from '@/lib/apiMiddleware';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const { student, error } = await authenticateStudent();

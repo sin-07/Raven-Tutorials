@@ -5,6 +5,8 @@ import connectDB from '@/lib/database';
 import LiveClass from '@/models/LiveClass';
 import Admission from '@/models/Admission';
 
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 interface DecodedToken {

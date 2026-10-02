@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/database';
 import Article from '@/models/Article';
 
+export const dynamic = 'force-dynamic';
+
 const SAMPLE_ARTICLES = [
   {
     title: 'Top 5 Strategies to Master JEE Advanced Physics in 6 Months',
