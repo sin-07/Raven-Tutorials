@@ -141,12 +141,12 @@ const Services: React.FC = () => {
 
   return (
     <>
-      <div ref={containerRef} className="min-h-screen bg-transparent text-neutral-900 selection:bg-emerald-300 selection:text-black relative overflow-hidden">
+      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
         <div className="relative z-10">
           {/* Header Section */}
           <section className="pt-36 pb-14 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
-              <Sparkles className="w-4 h-4 text-emerald-700" />
+            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
+              <Sparkles className="w-4 h-4 text-[#e8602e]" />
               <span>Comprehensive Academic Offerings</span>
             </div>
 
@@ -154,13 +154,13 @@ const Services: React.FC = () => {
               <WavyHeading
                 text="Academic"
                 gradientText="Services & Programs"
-                className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+                className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
               />
             </div>
 
             <p
               ref={heroSubRef}
-              className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium leading-relaxed text-center"
+              className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto font-jakarta font-medium leading-relaxed text-center"
             >
               Tailored classroom pedagogy, intensive mock testing series, and individualized doubt mentorship built to guarantee rank improvements.
             </p>
@@ -172,16 +172,16 @@ const Services: React.FC = () => {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className={`service-card ${serviceColors[index % serviceColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] p-7 sm:p-8 rounded-3xl transition-spring hover:-translate-y-1.5 hover:shadow-[8px_8px_0px_#000] flex flex-col justify-between group cursor-pointer`}
+                  className="bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] p-7 sm:p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group cursor-pointer"
                 >
                   <div>
-                    <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-6 shadow-[3px_3px_0px_#000] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`}>
+                    <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-6 shadow-[0_0_15px_rgba(232,96,46,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
                       <service.icon className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-black text-black mb-3 font-outfit">
+                    <h3 className="text-xl font-black text-white mb-3 font-outfit">
                       {service.title}
                     </h3>
-                    <p className="text-neutral-800 text-sm leading-relaxed font-jakarta font-medium">
+                    <p className="text-neutral-400 text-sm leading-relaxed font-jakarta font-medium">
                       {service.description}
                     </p>
                   </div>
@@ -191,7 +191,7 @@ const Services: React.FC = () => {
           </section>
 
           {/* Class, Batch & Subject Details */}
-          <section ref={detailsSectionRef} className="py-24 bg-transparent border-t-3 border-black px-4 sm:px-6 lg:px-8">
+          <section ref={detailsSectionRef} className="py-24 bg-transparent border-t border-white/10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div ref={detailsHeaderRef} className="text-center mb-14">
                 <span className="pill-badge mb-4">Batch Framework</span>
@@ -199,9 +199,9 @@ const Services: React.FC = () => {
                   text="Class & Subject"
                   gradientText="Structure"
                   as="h2"
-                  className="text-3xl sm:text-4xl md:text-5xl font-black text-black font-outfit tracking-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight"
                 />
-                <p className="mt-3 text-base text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium">
+                <p className="mt-3 text-base text-neutral-400 max-w-2xl mx-auto font-jakarta font-medium">
                   Explore curriculum tracks across foundational and senior secondary standards.
                 </p>
               </div>
@@ -209,38 +209,38 @@ const Services: React.FC = () => {
               {/* Class Cards Grid */}
               <div ref={classCardsRef} className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {/* Class XII */}
-                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
                         12
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-black font-outfit">Class XII</h3>
-                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Senior Secondary & Boards</p>
+                        <h3 className="text-2xl font-black text-white font-outfit">Class XII</h3>
+                        <p className="text-xs text-neutral-400 font-space font-bold uppercase">Senior Secondary & Boards</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
                         Annual Batch
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Physics (Theory + Numericals)</li>
                         <li>• Chemistry (Organic, Inorganic, Physical)</li>
                         <li>• Biology (Zoology & Botany)</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
                         Crash Course
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Rapid Board PYQ Solving</li>
                         <li>• High-Weightage Concept Blitz</li>
                         <li>• Proctored Sample Paper Series</li>
@@ -250,38 +250,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class XI */}
-                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
                         11
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-black font-outfit">Class XI</h3>
-                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Foundation for Competitive Exams</p>
+                        <h3 className="text-2xl font-black text-white font-outfit">Class XI</h3>
+                        <p className="text-xs text-neutral-400 font-space font-bold uppercase">Foundation for Competitive Exams</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
                         Annual Batch
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Physics (Mechanics & Waves)</li>
                         <li>• Chemistry (Fundamental Principles)</li>
                         <li>• Biology (Cell & Diversity)</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
                         Competitive Edge
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• JEE / NEET Problem Drills</li>
                         <li>• Advanced DPPs & Numerical Sets</li>
                         <li>• Continuous Speed Benchmarking</li>
@@ -291,38 +291,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class X */}
-                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
                         10
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-black font-outfit">Class X</h3>
-                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Board Target Batch</p>
+                        <h3 className="text-2xl font-black text-white font-outfit">Class X</h3>
+                        <p className="text-xs text-neutral-400 font-space font-bold uppercase">Board Target Batch</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
                         Comprehensive Batch
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Mathematics & Higher Geometry</li>
                         <li>• Science (Physics, Chem, Bio)</li>
                         <li>• Social Science & English</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
                         Pre-Board Crash Batch
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Full Mock Paper Simulations</li>
                         <li>• Answer Writing Optimization</li>
                         <li>• 100% Board Syllabus Review</li>
@@ -332,38 +332,38 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class IX */}
-                <div className="class-card p-8 rounded-3xl bg-[#f0fdf4] border-[2.5px] border-black shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center text-black font-black text-2xl font-outfit shadow-[3px_3px_0px_#000]">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
                         09
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-black font-outfit">Class IX</h3>
-                        <p className="text-xs text-neutral-800 font-space font-bold uppercase">Foundation Building</p>
+                        <h3 className="text-2xl font-black text-white font-outfit">Class IX</h3>
+                        <p className="text-xs text-neutral-400 font-space font-bold uppercase">Foundation Building</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#dcfce7] border-2 border-black text-black rounded-full text-xs font-bold shadow-[2px_2px_0px_#000]">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
                         Annual Program
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• Mathematics & Logical Reasoning</li>
                         <li>• General Science Foundations</li>
                         <li>• English & Social Studies</li>
                       </ul>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <p className="font-black text-black font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-black" />
+                    <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
+                      <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
+                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
                         Exam Revision
                       </p>
-                      <ul className="space-y-1.5 text-neutral-800 text-xs font-medium">
+                      <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
                         <li>• School Exam Question Banks</li>
                         <li>• Weekly Timed Tests</li>
                         <li>• Conceptual Doubt Resolution</li>
@@ -376,21 +376,21 @@ const Services: React.FC = () => {
           </section>
 
           {/* CTA Section */}
-          <section ref={ctaRef} className="py-20 border-t-3 border-black px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="max-w-4xl mx-auto p-10 sm:p-14 bg-[#dcfce7] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] space-y-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black font-outfit">
+          <section ref={ctaRef} className="py-20 border-t border-white/10 px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div className="max-w-4xl mx-auto p-10 sm:p-14 bg-gradient-to-r from-[#e8602e]/20 via-[#ff733d]/20 to-[#ffaa40]/20 border border-[#e8602e]/40 rounded-3xl shadow-[0_0_40px_rgba(232,96,46,0.2)] space-y-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit">
                 Ready to Join a Batch?
               </h2>
-              <p className="text-neutral-900 max-w-xl mx-auto font-jakarta text-base font-semibold">
+              <p className="text-neutral-300 max-w-xl mx-auto font-jakarta text-base font-medium">
                 Secure your admission today and start your journey toward academic distinction.
               </p>
               <div className="flex justify-center gap-4 pt-2">
                 <Link
                   href="/admission"
-                  className="btn-cartoon px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-2xl shadow-[4px_4px_0px_#000] border-2 border-black transition-all font-outfit inline-flex items-center gap-2 text-lg"
+                  className="btn-sheryians px-8 py-4 text-base font-outfit uppercase tracking-wider inline-flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.4)]"
                 >
                   <span>Apply for Admission</span>
-                  <ArrowRight className="w-5 h-5 text-black" />
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
