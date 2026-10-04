@@ -168,7 +168,6 @@ export default function Home() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
-  const heroCardsGridRef = useRef<HTMLDivElement>(null);
 
   const featuresSectionRef = useRef<HTMLElement>(null);
   const featuresTitleRef = useRef<HTMLHeadingElement>(null);
@@ -227,29 +226,6 @@ export default function Home() {
         const buttons = Array.from(heroCTARef.current.children);
         if (buttons[0]) animateFromLeft(buttons[0], 0.5, 40, 0.6);
         if (buttons[1]) animateFromRight(buttons[1], 0.5, 40, 0.6);
-      }
-
-      // Hero Academic Feature Cards: Staggered entrance from bottom + subtle floating
-      if (heroCardsGridRef.current) {
-        gsap.from(heroCardsGridRef.current.children, {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: 'power3.out',
-          delay: 0.35,
-        });
-        const cards = Array.from(heroCardsGridRef.current.children);
-        cards.forEach((card, idx) => {
-          gsap.to(card, {
-            y: idx % 2 === 0 ? -6 : 6,
-            duration: 3 + idx * 0.3,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: 1 + idx * 0.15,
-          });
-        });
       }
 
       // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
@@ -436,134 +412,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── HERO ACADEMIC BENTO CARDS (RAVEN SKELETON WITH SHERYIANS OBSIDIAN GLASS) ── */}
-        <div 
-          ref={heroCardsGridRef}
-          className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-        >
-          {/* Card 1: Live Classroom */}
-          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] text-[10px] font-space font-extrabold uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#e8602e] animate-ping" />
-                  Live Smart Class
-                </span>
-                <span className="text-[10px] font-mono font-bold text-zinc-400">Target JEE &apos;26</span>
-              </div>
-              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
-                Rotational Dynamics &amp; COM
-              </h3>
-              <p className="text-xs text-zinc-400 font-jakarta mt-2 flex items-center gap-1.5">
-                <GraduationCap className="w-3.5 h-3.5 text-[#e8602e] shrink-0" />
-                <span>Er. Alok Sharma (IIT Kanpur)</span>
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-[#ff7b47]">148 Students Live</span>
-              <Link 
-                href="/courses" 
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
-                title="View Course"
-              >
-                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 2: Patna Hall of Fame */}
-          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-amber-400/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(255,170,64,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-400/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-400/20 transition-colors" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-[10px] font-space font-extrabold uppercase">
-                  <Trophy className="w-3 h-3 text-amber-400" />
-                  Hall of Fame
-                </span>
-                <span className="text-[10px] font-mono font-bold text-zinc-400">Patna 2024</span>
-              </div>
-              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-amber-300 transition-colors">
-                AIR 24 &amp; AIR 78
-              </h3>
-              <p className="text-xs text-zinc-400 font-jakarta mt-2">
-                Aarav Sinha (IIT Bombay) &amp; Priyanshu (AIIMS)
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-amber-400">150+ Top Selections</span>
-              <Link 
-                href="/about" 
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-amber-500 border border-white/10 hover:border-amber-500 text-white flex items-center justify-center transition-colors"
-                title="View Rankers"
-              >
-                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 3: RSAT Diagnostic Test */}
-          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] text-[10px] font-space font-extrabold uppercase">
-                  <Zap className="w-3 h-3 text-[#e8602e]" />
-                  RSAT &apos;26 Test
-                </span>
-                <span className="text-[10px] font-mono font-bold text-white bg-[#e8602e]/20 px-2 py-0.5 rounded-full border border-[#e8602e]/30">
-                  Up to 100% Off
-                </span>
-              </div>
-              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
-                Instant Scholarship Engine
-              </h3>
-              <p className="text-xs text-zinc-400 font-jakarta mt-2">
-                20-MCQ timed diagnostic for Classes 8th-12th. Get ranking &amp; certificate instantly.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-[#ff7b47]">Free Online Mock</span>
-              <Link 
-                href="/rsat" 
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
-                title="Start Diagnostic"
-              >
-                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 4: 24/7 Doubt Engine & Patna Bajrangpuri Campus */}
-          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-space font-extrabold uppercase">
-                  <MapPin className="w-3 h-3 text-[#e8602e]" />
-                  Patna Center &amp; Home
-                </span>
-                <span className="text-[10px] font-mono font-bold text-[#ff7b47]">Bajrangpuri</span>
-              </div>
-              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
-                1:1 Home Mentorship &amp; Labs
-              </h3>
-              <p className="text-xs text-zinc-400 font-jakarta mt-2">
-                Personalized home tuition batches, dedicated doubt cells, and direct weekly progress reporting for parents.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-zinc-300">Home &amp; Center</span>
-              <Link 
-                href="/contact" 
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
-                title="View Campus"
-              >
-                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-              </Link>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ── ADVANCED LEADERSHIP & METHODOLOGY CARDS (IMAGE 2 & 3) ────────────── */}
