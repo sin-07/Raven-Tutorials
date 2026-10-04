@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from 'next/server';
 import Admission from '@/models/Admission';
 import { authenticateStudent } from '@/lib/apiMiddleware';
