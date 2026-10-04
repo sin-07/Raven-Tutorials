@@ -103,11 +103,11 @@ export default function CoursesPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-yellow-300 selection:text-black relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto space-y-5 flex flex-col items-center justify-center">
-          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
-            <Sparkles className="w-4 h-4 text-emerald-700" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
+            <Sparkles className="w-4 h-4 text-[#e8602e]" />
             <span>Curated Academic Curricula</span>
           </div>
 
@@ -115,29 +115,29 @@ export default function CoursesPage() {
             <WavyHeading
               text="Explore Our"
               gradientText="Courses"
-              className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+              className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
             />
           </div>
 
-          <p ref={subRef} className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium text-center">
+          <p ref={subRef} className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto font-jakarta font-medium text-center">
             Comprehensive foundation programs, board preparations, and competitive JEE & NEET batches taught by master educators.
           </p>
 
           {/* Search Bar */}
           <div ref={searchRef} className="max-w-2xl mx-auto pt-4 font-jakarta w-full">
             <div className="relative">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by subject (Physics, Math), standard (Class 10, 12), or topic..."
-                className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#f0fdf4] border-3 border-black text-black placeholder-neutral-500 shadow-[4px_4px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base font-jakarta transition"
+                className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 text-white placeholder-neutral-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm sm:text-base font-jakarta transition"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-black hover:text-neutral-600"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -154,10 +154,10 @@ export default function CoursesPage() {
             <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
               <button
                 onClick={() => setSelectedCategory('All')}
-                className={`btn-cartoon px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border-2 border-black ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
                   selectedCategory === 'All'
-                    ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
-                    : 'bg-[#f0fdf4] text-black hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
+                    ? 'btn-sheryians shadow-[0_0_20px_rgba(232,96,46,0.35)]'
+                    : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#e8602e]/40'
                 }`}
               >
                 All Courses
@@ -166,10 +166,10 @@ export default function CoursesPage() {
                 <button
                   key={cat.name}
                   onClick={() => setSelectedCategory(cat.name)}
-                  className={`btn-cartoon px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border-2 border-black ${
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
                     selectedCategory.toLowerCase() === cat.name.toLowerCase()
-                      ? 'bg-[#4ade80] text-black shadow-[3px_3px_0px_#000]'
-                      : 'bg-[#f0fdf4] text-black hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]'
+                      ? 'btn-sheryians shadow-[0_0_20px_rgba(232,96,46,0.35)]'
+                      : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#e8602e]/40'
                   }`}
                 >
                   {cat.name}
@@ -188,11 +188,11 @@ export default function CoursesPage() {
                 />
               </div>
 
-              <div className="hidden sm:flex items-center bg-[#f0fdf4] rounded-xl border-2 border-black p-1 shadow-[3px_3px_0px_#000]">
+              <div className="hidden sm:flex items-center bg-[#0f111a] rounded-xl border border-white/10 p-1 shadow-lg">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'grid' ? 'bg-[#4ade80] text-black font-black' : 'text-neutral-500'
+                    viewMode === 'grid' ? 'bg-[#e8602e] text-white font-black shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'text-neutral-400 hover:text-white'
                   }`}
                   aria-label="Grid view"
                 >
@@ -201,7 +201,7 @@ export default function CoursesPage() {
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'list' ? 'bg-[#4ade80] text-black font-black' : 'text-neutral-500'
+                    viewMode === 'list' ? 'bg-[#e8602e] text-white font-black shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'text-neutral-400 hover:text-white'
                   }`}
                   aria-label="List view"
                 >
@@ -213,10 +213,10 @@ export default function CoursesPage() {
 
           {/* Results Summary */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-xs sm:text-sm text-neutral-700 font-jakarta font-medium">
-              Showing <span className="font-black text-black">{sortedCourses.length}</span> programs
+            <p className="text-xs sm:text-sm text-neutral-400 font-jakarta font-medium">
+              Showing <span className="font-black text-white">{sortedCourses.length}</span> programs
               {selectedCategory !== 'All' && (
-                <span> in <span className="text-black bg-[#dcfce7] px-2 py-0.5 rounded-lg border border-black font-bold shadow-[1px_1px_0px_#000]">{selectedCategory}</span></span>
+                <span> in <span className="text-[#ff7b47] bg-[#161922] px-2.5 py-0.5 rounded-lg border border-[#e8602e]/30 font-bold">{selectedCategory}</span></span>
               )}
             </p>
           </div>
@@ -224,7 +224,7 @@ export default function CoursesPage() {
           {/* Courses Grid */}
           {loading ? (
             <div className="flex justify-center items-center py-24">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-emerald-500" />
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-[#e8602e]" />
             </div>
           ) : sortedCourses.length > 0 ? (
             <div className={`grid gap-6 sm:gap-8 ${
@@ -237,12 +237,12 @@ export default function CoursesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000] max-w-xl mx-auto p-8">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto mb-4 text-black shadow-[3px_3px_0px_#000]">
+            <div className="text-center py-16 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] max-w-xl mx-auto p-8">
+              <div className="w-16 h-16 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center mx-auto mb-4 text-[#ff7b47] shadow-[0_0_20px_rgba(232,96,46,0.25)]">
                 <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-black text-black font-outfit mb-2">No matching courses found</h3>
-              <p className="text-neutral-700 text-sm mb-6 font-jakarta font-medium">
+              <h3 className="text-xl font-black text-white font-outfit mb-2">No matching courses found</h3>
+              <p className="text-neutral-400 text-sm mb-6 font-jakarta font-medium">
                 Try adjusting your search keywords or switching category filters.
               </p>
               <button
@@ -251,7 +251,7 @@ export default function CoursesPage() {
                   setSelectedCategory('All');
                   setSelectedLevel('All Levels');
                 }}
-                className="btn-cartoon px-6 py-2.5 bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-emerald-300 transition"
+                className="btn-sheryians px-6 py-2.5 text-sm font-outfit"
               >
                 Reset Filters
               </button>
