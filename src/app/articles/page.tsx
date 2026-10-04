@@ -87,27 +87,27 @@ export default function ArticlesDirectoryPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f6fcf8] text-neutral-900 selection:bg-emerald-300 selection:text-black pt-28 pb-16">
+    <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white pt-28 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-black text-xs font-space font-black uppercase text-emerald-950 mb-3 shadow-[2px_2px_0px_#000]">
-            <Newspaper className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161922] border border-[#e8602e]/30 text-xs font-space font-bold uppercase text-[#ff7b47] mb-3 shadow-[0_0_15px_rgba(232,96,46,0.2)]">
+            <Newspaper className="w-3.5 h-3.5 text-[#e8602e]" />
             <span>Stories, Wildlife & Educational Insights</span>
           </div>
           <WavyHeading
             text="Articles & Editorial"
             gradientText="Stories"
             as="h1"
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-black font-outfit tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight"
           />
-          <p className="mt-4 text-base sm:text-lg text-neutral-600 font-bold font-jakarta">
+          <p className="mt-4 text-base sm:text-lg text-neutral-400 font-medium font-jakarta">
             Fascinating insights into nature, wildlife, biology, and student learning guides written by the Raven team.
           </p>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-3xl p-5 shadow-[4px_4px_0px_#000] mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-5 shadow-xl mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="relative w-full md:w-96">
             <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -115,20 +115,20 @@ export default function ArticlesDirectoryPage() {
               placeholder="Search articles by title, subject, or author..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 bg-white border-2 border-black rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+              className="w-full pl-9 pr-4 py-2.5 bg-[#08090d] border border-white/10 rounded-xl text-sm font-medium font-jakarta text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e]"
             />
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
-            <Filter className="w-4 h-4 text-neutral-500 shrink-0 hidden sm:block" />
+            <Filter className="w-4 h-4 text-neutral-400 shrink-0 hidden sm:block" />
             {availableCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-black font-outfit transition-all cursor-pointer border shrink-0 whitespace-nowrap ${
                   selectedCategory === cat
-                    ? 'bg-emerald-400 text-black border-black shadow-[2px_2px_0px_#000]'
-                    : 'bg-white text-neutral-700 border-black/40 hover:bg-[#dcfce7]'
+                    ? 'btn-sheryians shadow-[0_0_15px_rgba(232,96,46,0.35)]'
+                    : 'bg-[#08090d] text-neutral-300 border-white/10 hover:border-white/30 hover:text-white'
                 }`}
               >
                 {cat}
@@ -140,14 +140,14 @@ export default function ArticlesDirectoryPage() {
         {/* Articles Grid */}
         {loading ? (
           <div className="py-24 flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-emerald-500 mb-3" />
-            <p className="font-outfit font-black text-black">Loading Articles...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-[#e8602e] mb-3" />
+            <p className="font-outfit font-black text-white">Loading Articles...</p>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-12 text-center shadow-[6px_6px_0px_#000] max-w-lg mx-auto space-y-3">
-            <BookOpen className="w-12 h-12 text-neutral-400 mx-auto" />
-            <h3 className="font-outfit font-black text-xl text-black">No Articles Found</h3>
-            <p className="text-sm font-jakarta text-neutral-600 font-medium">
+          <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 text-center shadow-xl max-w-lg mx-auto space-y-3">
+            <BookOpen className="w-12 h-12 text-neutral-500 mx-auto" />
+            <h3 className="font-outfit font-black text-xl text-white">No Articles Found</h3>
+            <p className="text-sm font-jakarta text-neutral-400 font-medium">
               Try choosing a different category or clearing your search term.
             </p>
           </div>
@@ -157,18 +157,18 @@ export default function ArticlesDirectoryPage() {
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#f0fdf4] hover:bg-[#e6f9ee] border-2 sm:border-[2.5px] border-black rounded-3xl overflow-hidden shadow-[5px_5px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1.5 transition-all flex flex-col justify-between"
+                className="group bg-[#0f111a]/85 hover:bg-[#131622] border border-white/10 hover:border-[#e8602e]/50 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Thumbnail */}
-                  <div className="relative h-48 w-full bg-slate-200 border-b-2 border-black overflow-hidden">
+                  <div className="relative h-48 w-full bg-[#161922] border-b border-white/10 overflow-hidden">
                     <img
                       src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
                       alt={art.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 bg-emerald-200 text-emerald-950 border border-black rounded-md text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                      <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#ff7b47] border border-[#e8602e]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
                         {art.category}
                       </span>
                     </div>
@@ -176,17 +176,17 @@ export default function ArticlesDirectoryPage() {
 
                   {/* Body */}
                   <div className="p-6">
-                    <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-500 mb-2">
-                      <Clock className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-400 mb-2">
+                      <Clock className="w-3.5 h-3.5 text-[#ff7b47]" />
                       <span>{art.readTime}</span>
                       <span>•</span>
                       <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
 
-                    <h3 className="font-outfit font-black text-xl text-black line-clamp-2 leading-snug mb-3 group-hover:text-emerald-800 transition-colors">
+                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#ff7b47] transition-colors">
                       {art.title}
                     </h3>
-                    <p className="font-jakarta text-xs sm:text-sm text-neutral-600 line-clamp-3 font-medium leading-relaxed mb-4">
+                    <p className="font-jakarta text-xs sm:text-sm text-neutral-400 line-clamp-3 font-medium leading-relaxed mb-4">
                       {art.excerpt}
                     </p>
                   </div>
@@ -194,13 +194,13 @@ export default function ArticlesDirectoryPage() {
 
                 {/* Footer */}
                 <div className="p-6 pt-0">
-                  <div className="border-t-2 border-black/10 pt-3 flex items-center justify-between">
+                  <div className="border-t border-white/10 pt-3 flex items-center justify-between">
                     <div>
-                      <p className="font-black text-black font-outfit text-xs">{art.author}</p>
-                      <p className="text-[10px] text-emerald-800 font-bold font-jakarta">{art.authorRole}</p>
+                      <p className="font-black text-white font-outfit text-xs">{art.author}</p>
+                      <p className="text-[10px] text-[#ff7b47] font-bold font-jakarta">{art.authorRole}</p>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-black group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-[#ffaa40] group-hover:translate-x-1 transition-transform">
                       <span>Read</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>
