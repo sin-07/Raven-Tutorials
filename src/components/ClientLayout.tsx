@@ -87,11 +87,11 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   return (
     <>
-      {/* Top Route Progress Bar (Neon Emerald / Gold cartoon accent) */}
+      {/* Top Route Progress Bar (Sheryians Electric Orange accent) */}
       <div
         ref={progressBarRef}
         aria-hidden="true"
-        className="fixed top-0 left-0 right-0 h-[3.5px] z-[9999] pointer-events-none opacity-0 bg-gradient-to-r from-emerald-400 via-green-300 to-yellow-300 border-b border-black shadow-[0_2px_0px_#000]"
+        className="fixed top-0 left-0 right-0 h-[3px] z-[9999] pointer-events-none opacity-0 bg-gradient-to-r from-[#ff7a45] via-[#e8602e] to-[#ffaa40] border-b border-black/40 shadow-[0_2px_12px_rgba(232,96,46,0.6)]"
         style={{ width: '0%', transformOrigin: 'left center' }}
       />
 
