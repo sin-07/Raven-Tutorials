@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { seedDatabase, clearDatabase, getDatabaseStats } from '@/lib/seedData';
 import { connectDatabase } from '@/lib/database';
