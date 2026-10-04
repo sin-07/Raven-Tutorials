@@ -85,7 +85,6 @@ const Navbar: React.FC = React.memo(() => {
   const primaryLinks = useMemo(() => [
     { path: '/', label: 'Home' },
     { path: '/courses', label: 'Courses' },
-    { path: '/rsat', label: "RSAT '26" },
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
     { path: '/articles', label: 'Articles' },
   ], [isStudentLoggedIn]);
@@ -123,7 +122,6 @@ const Navbar: React.FC = React.memo(() => {
   const allMobileLinks = useMemo(() => [
     { path: '/', label: 'Home' },
     { path: '/courses', label: 'Courses' },
-    { path: '/rsat', label: "RSAT '26" },
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
     { path: '/articles', label: 'Articles' },
     { path: '/notices', label: 'Notices' },

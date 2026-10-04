@@ -39,7 +39,8 @@ import {
   Stethoscope,
   HeartHandshake,
   Quote,
-  MapPin
+  MapPin,
+  Phone
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
@@ -337,11 +338,11 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/rsat"
+              href="/contact"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#121420]/90 hover:bg-[#1a1d2e] text-white border border-white/15 hover:border-[#e8602e]/60 font-bold text-sm font-outfit transition-all duration-200 shadow-lg hover:shadow-[0_0_20px_rgba(232,96,46,0.2)] cursor-pointer"
             >
-              <Zap className="w-4 h-4 text-[#ff7b47]" />
-              <span>Take RSAT Scholarship Test</span>
+              <Phone className="w-4 h-4 text-[#ff7b47]" />
+              <span>Book Free Demo Class</span>
             </Link>
           </div>
 
@@ -874,45 +875,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── RSAT SCHOLARSHIP ADMISSION TEST PROMO CALLOUT ────────────────────────── */}
-      <section className="py-16 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-[#0d0f18] via-[#121524] to-[#090b10] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative overflow-hidden">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Raven Scholarship Admission Test (RSAT) 2026-27</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-black font-outfit text-white leading-tight">
-                Win Up To <span className="text-white bg-[#e8602e] px-3 py-0.5 rounded-xl font-black shadow-[0_0_20px_rgba(232,96,46,0.6)]">50% Tuition Waiver</span> in 15 Minutes!
-              </h2>
-              <p className="text-sm sm:text-base text-zinc-400 font-normal font-jakarta leading-relaxed">
-                Take our free 20-question online diagnostic test. Test your Physics, Chemistry, Maths, and Logical Reasoning concepts and get instant scholarship discount certificates for our Patna campus!
-              </p>
-              <div className="flex flex-wrap gap-4 text-xs font-semibold font-space uppercase pt-1 text-zinc-300">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> 100% Free Assessment</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> Instant Verified Certificate</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> Class 8th to 12th</span>
-              </div>
-            </div>
 
-            <div className="flex-shrink-0 flex flex-col gap-2.5">
-              <Link
-                href="/rsat"
-                className="btn-sheryians px-8 py-4 text-white font-extrabold font-outfit uppercase tracking-wider text-sm rounded-full shadow-[0_0_30px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 text-center cursor-pointer"
-              >
-                <Zap className="w-4 h-4 fill-current" />
-                <span>Take 15-Min RSAT Test</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <p className="text-[11px] font-medium text-center text-zinc-500 font-jakarta flex items-center justify-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#ff7b47]" />
-                <span>Instant online evaluation & certificate</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── ADMISSION FLOW COMPONENT ────────────────────────── */}
       <AdmissionSection />
