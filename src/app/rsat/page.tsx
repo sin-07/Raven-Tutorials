@@ -179,7 +179,7 @@ export default function RSATPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6fcf8] selection:bg-emerald-300 selection:text-black">
+    <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white">
       <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-28 pb-20">
         {/* ========================================================= */}
         {/* STEP 1: REGISTRATION & TEST RULES */}
@@ -188,56 +188,56 @@ export default function RSATPage() {
           <div className="space-y-8 cartoon-pop">
             {/* Hero Header */}
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#86efac] border-2 border-black font-space font-black text-xs uppercase tracking-wider shadow-[2px_2px_0px_#000]">
-                <Sparkles className="w-4 h-4 text-black" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 font-space font-bold text-xs uppercase tracking-wider text-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.2)]">
+                <Sparkles className="w-4 h-4 text-[#e8602e]" />
                 <span>Raven Scholarship Admission Test (RSAT) 2026-27</span>
               </div>
               <WavyHeading
                 text="Win Up To 50% Tuition Fee"
                 gradientText="Scholarship"
                 as="h1"
-                className="text-3xl sm:text-5xl font-black font-outfit text-black tracking-tight"
+                className="text-3xl sm:text-5xl font-black font-outfit text-white tracking-tight"
               />
-              <p className="text-neutral-700 font-bold max-w-2xl mx-auto text-sm sm:text-base font-jakarta">
+              <p className="text-neutral-400 font-medium max-w-2xl mx-auto text-sm sm:text-base font-jakarta">
                 Test your conceptual clarity in Physics, Chemistry, Maths, and Logical Reasoning. Receive an instant scholarship voucher for offline & online courses at Raven Tutorials Patna!
               </p>
             </div>
 
             {/* Test Highlights Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="p-4 rounded-2xl bg-[#dcfce7] border-2 border-black shadow-[3px_3px_0px_#000] text-center">
-                <p className="text-xs font-black font-space uppercase text-neutral-600">Questions</p>
-                <p className="text-2xl font-black font-mono text-black">20 MCQs</p>
+              <div className="p-4 rounded-2xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-center hover:border-[#e8602e]/40 transition-colors">
+                <p className="text-xs font-black font-space uppercase text-neutral-400">Questions</p>
+                <p className="text-2xl font-black font-mono text-white">20 MCQs</p>
               </div>
-              <div className="p-4 rounded-2xl bg-[#fed7aa] border-2 border-black shadow-[3px_3px_0px_#000] text-center">
-                <p className="text-xs font-black font-space uppercase text-neutral-600">Duration</p>
-                <p className="text-2xl font-black font-mono text-black">15 Mins</p>
+              <div className="p-4 rounded-2xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-center hover:border-[#e8602e]/40 transition-colors">
+                <p className="text-xs font-black font-space uppercase text-neutral-400">Duration</p>
+                <p className="text-2xl font-black font-mono text-white">15 Mins</p>
               </div>
-              <div className="p-4 rounded-2xl bg-[#bbf7d0] border-2 border-black shadow-[3px_3px_0px_#000] text-center">
-                <p className="text-xs font-black font-space uppercase text-neutral-600">Fee</p>
-                <p className="text-2xl font-black font-mono text-emerald-800">100% FREE</p>
+              <div className="p-4 rounded-2xl bg-[#0f111a]/80 backdrop-blur-xl border border-[#e8602e]/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-center">
+                <p className="text-xs font-black font-space uppercase text-neutral-400">Fee</p>
+                <p className="text-2xl font-black font-mono text-[#ff7b47]">100% FREE</p>
               </div>
-              <div className="p-4 rounded-2xl bg-[#fbcfe8] border-2 border-black shadow-[3px_3px_0px_#000] text-center">
-                <p className="text-xs font-black font-space uppercase text-neutral-600">Max Waiver</p>
-                <p className="text-2xl font-black font-mono text-rose-800">50% OFF</p>
+              <div className="p-4 rounded-2xl bg-[#0f111a]/80 backdrop-blur-xl border border-[#ffaa40]/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-center">
+                <p className="text-xs font-black font-space uppercase text-neutral-400">Max Waiver</p>
+                <p className="text-2xl font-black font-mono text-[#ffaa40]">50% OFF</p>
               </div>
             </div>
 
             {/* Registration Card */}
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000]">
-              <div className="flex items-center gap-3 pb-6 border-b-2 border-black/15">
-                <div className="p-3 bg-emerald-300 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
-                  <GraduationCap className="w-6 h-6 text-black" />
+            <div className="bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+              <div className="flex items-center gap-3 pb-6 border-b border-white/10">
+                <div className="p-3 bg-[#161922] rounded-2xl border border-[#e8602e]/30 text-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.2)]">
+                  <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black font-outfit text-black">Student Entry Details</h2>
-                  <p className="text-xs text-neutral-600 font-bold font-jakarta">Fill once to start your instant timed scholarship assessment</p>
+                  <h2 className="text-xl font-black font-outfit text-white">Student Entry Details</h2>
+                  <p className="text-xs text-neutral-400 font-medium font-jakarta">Fill once to start your instant timed scholarship assessment</p>
                 </div>
               </div>
 
               <form onSubmit={handleStartTest} className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-black font-space uppercase text-black mb-1.5">
+                  <label className="block text-xs font-black font-space uppercase text-neutral-300 mb-1.5">
                     Student Full Name *
                   </label>
                   <input
@@ -246,12 +246,12 @@ export default function RSATPage() {
                     placeholder="e.g. Aryan Kumar"
                     value={formData.studentName}
                     onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-black font-bold font-jakarta shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm"
+                    className="w-full px-4 py-3 bg-[#08090d] border border-white/10 rounded-xl text-white placeholder-neutral-500 font-bold font-jakarta focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black font-space uppercase text-black mb-1.5">
+                  <label className="block text-xs font-black font-space uppercase text-neutral-300 mb-1.5">
                     WhatsApp / Phone Number *
                   </label>
                   <input
@@ -261,12 +261,12 @@ export default function RSATPage() {
                     placeholder="10-digit mobile number"
                     value={formData.phoneNumber}
                     onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-black font-bold font-jakarta shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm"
+                    className="w-full px-4 py-3 bg-[#08090d] border border-white/10 rounded-xl text-white placeholder-neutral-500 font-bold font-jakarta focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black font-space uppercase text-black mb-1.5">
+                  <label className="block text-xs font-black font-space uppercase text-neutral-300 mb-1.5">
                     Email Address *
                   </label>
                   <input
@@ -275,12 +275,12 @@ export default function RSATPage() {
                     placeholder="name@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-black font-bold font-jakarta shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm"
+                    className="w-full px-4 py-3 bg-[#08090d] border border-white/10 rounded-xl text-white placeholder-neutral-500 font-bold font-jakarta focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black font-space uppercase text-black mb-1.5">
+                  <label className="block text-xs font-black font-space uppercase text-neutral-300 mb-1.5">
                     Current Class / Standard *
                   </label>
                   <CartoonDropdown
@@ -297,7 +297,7 @@ export default function RSATPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black font-space uppercase text-black mb-1.5">
+                  <label className="block text-xs font-black font-space uppercase text-neutral-300 mb-1.5">
                     Target Exam Focus *
                   </label>
                   <CartoonDropdown
@@ -319,14 +319,14 @@ export default function RSATPage() {
                   <button
                     type="submit"
                     disabled={loadingQuestions}
-                    className="w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit uppercase tracking-wider text-base rounded-2xl border-3 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center gap-3 transition-all active:translate-x-0.5 active:translate-y-0.5"
+                    className="btn-sheryians w-full py-4 text-base font-outfit uppercase tracking-wider flex items-center justify-center gap-3 shadow-[0_0_25px_rgba(232,96,46,0.35)]"
                   >
                     <Zap className="w-5 h-5 fill-current" />
                     <span>{loadingQuestions ? 'Loading Test Engine...' : 'Start Scholarship Test Now (15 Mins)'}</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
-                  <p className="text-center text-xs font-bold text-neutral-500 mt-2 flex items-center justify-center gap-1">
-                    <Lock className="w-3.5 h-3.5 text-neutral-700 inline" />
+                  <p className="text-center text-xs font-medium text-neutral-400 mt-3 flex items-center justify-center gap-1.5">
+                    <Lock className="w-3.5 h-3.5 text-[#ff7b47] inline" />
                     <span>No negative marking. Free instant online evaluation.</span>
                   </p>
                 </div>
@@ -341,20 +341,22 @@ export default function RSATPage() {
         {step === 'test' && questions.length > 0 && (
           <div className="space-y-6">
             {/* Top Bar: Timer & Progress */}
-            <div className="flex flex-wrap items-center justify-between gap-4 bg-[#f0fdf4] border-3 border-black rounded-2xl p-4 shadow-[4px_4px_0px_#000]">
+            <div className="flex flex-wrap items-center justify-between gap-4 bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-emerald-300 rounded-xl border-2 border-black">
-                  <BookOpen className="w-5 h-5 text-black" />
+                <div className="p-2.5 bg-[#161922] rounded-xl border border-[#e8602e]/30 text-[#ff7b47]">
+                  <BookOpen className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-black font-space uppercase text-neutral-600">Candidate</p>
-                  <p className="font-black text-black font-outfit text-sm">{formData.studentName} (Class {formData.standard})</p>
+                  <p className="text-xs font-black font-space uppercase text-neutral-400">Candidate</p>
+                  <p className="font-black text-white font-outfit text-sm">{formData.studentName} (Class {formData.standard})</p>
                 </div>
               </div>
 
               {/* Countdown Clock */}
-              <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-black text-base ${
-                timeLeft < 180 ? 'bg-rose-300 text-rose-950 animate-pulse' : 'bg-amber-200 text-black'
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border font-mono font-black text-base ${
+                timeLeft < 180 
+                  ? 'bg-rose-950/70 border-rose-500/50 text-rose-300 animate-pulse shadow-[0_0_15px_rgba(244,63,94,0.3)]' 
+                  : 'bg-[#161922] border-[#e8602e]/40 text-[#ffaa40] shadow-[0_0_15px_rgba(232,96,46,0.2)]'
               }`}>
                 <Clock className="w-4 h-4" />
                 <span>{formatTimer(timeLeft)}</span>
@@ -364,15 +366,15 @@ export default function RSATPage() {
               <button
                 onClick={handleSubmitTest}
                 disabled={submitting}
-                className="px-4 py-2 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
+                className="btn-sheryians px-4 py-2 text-xs font-outfit uppercase tracking-wider"
               >
                 {submitting ? 'Evaluating...' : 'Submit Test & Get Score'}
               </button>
             </div>
 
             {/* Question Palette (1 - 20) */}
-            <div className="bg-white border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
-              <p className="text-xs font-black font-space uppercase text-neutral-600 mb-2">Question Navigation</p>
+            <div className="bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl">
+              <p className="text-xs font-black font-space uppercase text-neutral-400 mb-2">Question Navigation</p>
               <div className="flex flex-wrap gap-2">
                 {questions.map((q, idx) => {
                   const isAnswered = !!answers[q.id];
@@ -381,12 +383,12 @@ export default function RSATPage() {
                     <button
                       key={q.id}
                       onClick={() => setCurrentQIndex(idx)}
-                      className={`w-8 h-8 rounded-lg font-mono font-black text-xs border-2 border-black transition-all ${
+                      className={`w-8 h-8 rounded-lg font-mono font-black text-xs border transition-all ${
                         isCurrent
-                          ? 'bg-black text-white shadow-[2px_2px_0px_#000] -translate-y-0.5'
+                          ? 'bg-[#e8602e] text-white border-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.6)] -translate-y-0.5'
                           : isAnswered
-                          ? 'bg-emerald-300 text-black shadow-[1px_1px_0px_#000]'
-                          : 'bg-[#f0fdf4] text-neutral-700 hover:bg-neutral-200'
+                          ? 'bg-[#161922] text-[#ff7b47] border-[#e8602e]/40'
+                          : 'bg-[#08090d] text-neutral-400 border-white/10 hover:border-white/30'
                       }`}
                     >
                       {idx + 1}
@@ -398,17 +400,17 @@ export default function RSATPage() {
 
             {/* Current Question Card */}
             {questions[currentQIndex] && (
-              <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
-                <div className="flex items-center justify-between pb-4 border-b-2 border-black/15 mb-6">
-                  <span className="px-3 py-1 bg-white rounded-lg border-2 border-black text-xs font-black font-space uppercase shadow-[1px_1px_0px_#000]">
+              <div className="bg-[#0f111a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                  <span className="px-3 py-1 bg-[#161922] rounded-lg border border-white/10 text-xs font-black font-space uppercase text-neutral-300">
                     Question {currentQIndex + 1} of {questions.length}
                   </span>
-                  <span className="px-3 py-1 bg-emerald-200 rounded-lg border border-black text-xs font-black font-space uppercase">
+                  <span className="px-3 py-1 bg-[#161922] rounded-lg border border-[#e8602e]/30 text-xs font-black font-space uppercase text-[#ff7b47]">
                     {questions[currentQIndex].subject}
                   </span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-black font-outfit text-black mb-6 leading-snug">
+                <h3 className="text-lg sm:text-xl font-black font-outfit text-white mb-6 leading-snug">
                   {questions[currentQIndex].question}
                 </h3>
 
@@ -422,43 +424,45 @@ export default function RSATPage() {
                       <button
                         key={opt}
                         onClick={() => handleSelectOption(opt)}
-                        className={`w-full text-left p-4 rounded-2xl border-2 border-black transition-spring flex items-center gap-4 cursor-pointer ${
+                        className={`w-full text-left p-4 rounded-2xl border transition-all flex items-center gap-4 cursor-pointer ${
                           isSelected
-                            ? 'bg-[#86efac] font-black text-black shadow-[3px_3px_0px_#000] translate-x-1'
-                            : 'bg-white hover:bg-[#dcfce7] hover:shadow-[4px_4px_0px_#000] hover:-translate-y-0.5 font-bold text-neutral-800 shadow-[2px_2px_0px_#000]'
+                            ? 'bg-[#1a1412] border-[#e8602e] text-white shadow-[0_0_20px_rgba(232,96,46,0.25)] translate-x-1'
+                            : 'bg-[#08090d] hover:bg-[#12141c] hover:border-white/20 border-white/10 text-neutral-300'
                         }`}
                       >
-                        <span className={`w-8 h-8 rounded-xl border-2 border-black flex items-center justify-center font-mono font-black text-xs ${
-                          isSelected ? 'bg-black text-white' : 'bg-[#f0fdf4] text-black'
+                        <span className={`w-8 h-8 rounded-xl border flex items-center justify-center font-mono font-black text-xs ${
+                          isSelected 
+                            ? 'bg-[#e8602e] text-white border-[#ff7b47]' 
+                            : 'bg-[#161922] text-neutral-400 border-white/10'
                         }`}>
                           {letter}
                         </span>
                         <span className="text-sm font-jakarta flex-1">{opt}</span>
-                        {isSelected && <CheckCircle className="w-5 h-5 text-black" />}
+                        {isSelected && <CheckCircle className="w-5 h-5 text-[#e8602e]" />}
                       </button>
                     );
                   })}
                 </div>
 
                 {/* Question Footer Nav */}
-                <div className="flex items-center justify-between mt-8 pt-6 border-t-2 border-black/15">
+                <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
                   <button
                     onClick={() => setCurrentQIndex((prev) => Math.max(0, prev - 1))}
                     disabled={currentQIndex === 0}
-                    className="px-4 py-2 bg-white hover:bg-neutral-100 disabled:opacity-40 text-black font-bold text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 transition-spring flex items-center gap-1.5 cursor-pointer"
+                    className="px-4 py-2 bg-[#08090d] hover:bg-[#12141c] disabled:opacity-40 text-neutral-300 hover:text-white font-bold text-xs rounded-xl border border-white/10 transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     <span>Previous</span>
                   </button>
 
-                  <div className="text-xs font-bold font-space text-neutral-600">
-                    Answered: {Object.keys(answers).length} / {questions.length}
+                  <div className="text-xs font-bold font-space text-neutral-400">
+                    Answered: <span className="text-white font-black">{Object.keys(answers).length}</span> / {questions.length}
                   </div>
 
                   {currentQIndex < questions.length - 1 ? (
                     <button
                       onClick={() => setCurrentQIndex((prev) => Math.min(questions.length - 1, prev + 1))}
-                      className="px-4 py-2 bg-emerald-300 hover:bg-emerald-400 text-black font-black text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 transition-spring flex items-center gap-1.5 cursor-pointer"
+                      className="btn-sheryians px-4 py-2 text-xs font-outfit flex items-center gap-1.5 cursor-pointer"
                     >
                       <span>Next</span>
                       <ChevronRight className="w-4 h-4" />
@@ -467,7 +471,7 @@ export default function RSATPage() {
                     <button
                       onClick={handleSubmitTest}
                       disabled={submitting}
-                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-y-0.5 transition-spring cursor-pointer"
+                      className="btn-sheryians px-5 py-2.5 text-xs font-outfit uppercase tracking-wider cursor-pointer shadow-[0_0_20px_rgba(232,96,46,0.4)]"
                     >
                       {submitting ? 'Submitting...' : 'Finish & Submit'}
                     </button>
@@ -484,81 +488,81 @@ export default function RSATPage() {
         {step === 'result' && result && (
           <div className="space-y-8 cartoon-pop">
             {/* Top Congratulatory Banner */}
-            <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-[6px_6px_0px_#000]">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-black text-xs font-black font-space uppercase shadow-[2px_2px_0px_#000]">
-                <Sparkles className="w-4 h-4 text-emerald-800" />
+            <div className="bg-gradient-to-r from-[#e8602e]/20 via-[#ff733d]/20 to-[#ffaa40]/20 border border-[#e8602e]/40 rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-[0_0_35px_rgba(232,96,46,0.2)]">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-xs font-black font-space uppercase text-[#ff7b47]">
+                <Sparkles className="w-4 h-4 text-[#e8602e]" />
                 <span>Scholarship Assessment Result Verified</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black font-outfit text-black tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black font-outfit text-white tracking-tight">
                 Congratulations, {result.studentName}!
               </h2>
-              <p className="text-base font-bold text-neutral-800 font-jakarta max-w-xl mx-auto">
+              <p className="text-base font-medium text-neutral-300 font-jakarta max-w-xl mx-auto">
                 You have qualified for an official tuition fee scholarship at Raven Tutorials Patna!
               </p>
             </div>
 
             {/* Certificate of Scholarship Card */}
-            <div className="relative bg-[#f0fdf4] border-4 border-black rounded-3xl p-6 sm:p-12 shadow-[8px_8px_0px_#000] overflow-hidden">
+            <div className="relative bg-[#0f111a]/95 backdrop-blur-xl border border-white/15 rounded-3xl p-6 sm:p-12 shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden">
               {/* Corner Watermark */}
               <div className="absolute top-4 right-4 text-right">
-                <span className="px-3 py-1 bg-white border-2 border-black rounded-lg text-[11px] font-black font-mono shadow-[1.5px_1.5px_0px_#000]">
+                <span className="px-3 py-1 bg-[#161922] border border-white/10 rounded-lg text-[11px] font-black font-mono text-[#ff7b47]">
                   CERT-ID: {result.id.slice(-8).toUpperCase()}
                 </span>
               </div>
 
-              <div className="text-center space-y-4 max-w-2xl mx-auto border-b-2 border-dashed border-black pb-8 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-emerald-300 border-3 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center mx-auto">
-                  <Award className="w-8 h-8 text-black" />
+              <div className="text-center space-y-4 max-w-2xl mx-auto border-b border-white/10 pb-8 mb-8">
+                <div className="w-16 h-16 rounded-2xl bg-[#161922] border border-[#e8602e]/40 shadow-[0_0_20px_rgba(232,96,46,0.3)] flex items-center justify-center mx-auto text-[#e8602e]">
+                  <Award className="w-8 h-8" />
                 </div>
-                <h3 className="text-xs font-black font-space uppercase tracking-widest text-emerald-900">
+                <h3 className="text-xs font-black font-space uppercase tracking-widest text-[#ff7b47]">
                   RAVEN TUTORIALS PATNA CAMPUS
                 </h3>
-                <h4 className="text-2xl sm:text-3xl font-black font-outfit text-black">
+                <h4 className="text-2xl sm:text-3xl font-black font-outfit text-white">
                   Official Certificate of Scholarship
                 </h4>
-                <p className="text-xs sm:text-sm font-bold text-neutral-700 font-jakarta">
-                  This certifies that <span className="underline font-black text-black">{result.studentName}</span> of Class <span className="underline font-black text-black">{result.standard}</span> took the Raven Scholarship Admission Test (RSAT) and achieved:
+                <p className="text-xs sm:text-sm font-medium text-neutral-300 font-jakarta">
+                  This certifies that <span className="underline font-black text-white">{result.studentName}</span> of Class <span className="underline font-black text-white">{result.standard}</span> took the Raven Scholarship Admission Test (RSAT) and achieved:
                 </p>
               </div>
 
               {/* Performance Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                <div className="p-4 bg-white rounded-2xl border-2 border-black text-center shadow-[2px_2px_0px_#000]">
-                  <p className="text-[11px] font-black font-space uppercase text-neutral-500">Score</p>
-                  <p className="text-2xl font-black font-mono text-black">{result.score} / {result.totalQuestions}</p>
+                <div className="p-4 bg-[#08090d] rounded-2xl border border-white/10 text-center shadow-lg">
+                  <p className="text-[11px] font-black font-space uppercase text-neutral-400">Score</p>
+                  <p className="text-2xl font-black font-mono text-white">{result.score} / {result.totalQuestions}</p>
                 </div>
-                <div className="p-4 bg-white rounded-2xl border-2 border-black text-center shadow-[2px_2px_0px_#000]">
-                  <p className="text-[11px] font-black font-space uppercase text-neutral-500">Accuracy</p>
-                  <p className="text-2xl font-black font-mono text-black">{result.percentage}%</p>
+                <div className="p-4 bg-[#08090d] rounded-2xl border border-white/10 text-center shadow-lg">
+                  <p className="text-[11px] font-black font-space uppercase text-neutral-400">Accuracy</p>
+                  <p className="text-2xl font-black font-mono text-white">{result.percentage}%</p>
                 </div>
-                <div className="p-4 bg-[#bbf7d0] rounded-2xl border-2 border-black text-center shadow-[2px_2px_0px_#000]">
-                  <p className="text-[11px] font-black font-space uppercase text-neutral-600">Fee Waiver</p>
-                  <p className="text-2xl font-black font-mono text-emerald-900">{result.discountPercent}% OFF</p>
+                <div className="p-4 bg-[#14120e] rounded-2xl border border-[#e8602e]/30 text-center shadow-lg">
+                  <p className="text-[11px] font-black font-space uppercase text-neutral-400">Fee Waiver</p>
+                  <p className="text-2xl font-black font-mono text-[#ff7b47]">{result.discountPercent}% OFF</p>
                 </div>
-                <div className="p-4 bg-[#fed7aa] rounded-2xl border-2 border-black text-center shadow-[2px_2px_0px_#000]">
-                  <p className="text-[11px] font-black font-space uppercase text-neutral-600">Tier</p>
-                  <p className="text-sm font-black font-outfit text-black mt-1 leading-tight">{result.scholarshipTier}</p>
+                <div className="p-4 bg-[#14120e] rounded-2xl border border-[#ffaa40]/30 text-center shadow-lg">
+                  <p className="text-[11px] font-black font-space uppercase text-neutral-400">Tier</p>
+                  <p className="text-sm font-black font-outfit text-[#ffaa40] mt-1 leading-tight">{result.scholarshipTier}</p>
                 </div>
               </div>
 
               {/* Coupon Box */}
-              <div className="bg-[#fef9c3] border-3 border-black rounded-2xl p-6 text-center space-y-3 shadow-[4px_4px_0px_#000]">
-                <p className="text-xs font-black font-space uppercase tracking-wider text-black">
+              <div className="bg-[#14120e] border border-[#ffaa40]/30 rounded-2xl p-6 text-center space-y-3 shadow-xl">
+                <p className="text-xs font-black font-space uppercase tracking-wider text-[#ffaa40]">
                   Your Exclusive Admission Scholarship Voucher
                 </p>
-                <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
-                  <span className="font-mono font-black text-xl sm:text-2xl tracking-widest text-black">
+                <div className="inline-flex items-center gap-3 bg-[#08090d] px-6 py-3 rounded-xl border border-white/10">
+                  <span className="font-mono font-black text-xl sm:text-2xl tracking-widest text-[#ffaa40]">
                     {result.couponCode}
                   </span>
                   <button
                     onClick={copyCouponCode}
-                    className="p-2 bg-emerald-300 hover:bg-emerald-400 rounded-lg border border-black transition"
+                    className="p-2 bg-[#161922] hover:bg-[#202535] rounded-lg border border-white/10 text-neutral-300 hover:text-white transition-colors"
                     title="Copy Code"
                   >
-                    {copied ? <Check className="w-4 h-4 text-black" /> : <Copy className="w-4 h-4 text-black" />}
+                    {copied ? <Check className="w-4 h-4 text-[#e8602e]" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
-                <p className="text-xs font-bold text-neutral-700 font-jakarta">
+                <p className="text-xs font-medium text-neutral-400 font-jakarta">
                   Apply this voucher code during online admission or bring it to our Patna Campus to claim your {result.discountPercent}% fee waiver!
                 </p>
               </div>
@@ -567,7 +571,7 @@ export default function RSATPage() {
               <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
                 <Link
                   href={`/admission?coupon=${result.couponCode}`}
-                  className="px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-3 border-black shadow-[3px_3px_0px_#000] flex items-center gap-2 text-sm active:translate-x-0.5 active:translate-y-0.5"
+                  className="btn-sheryians px-6 py-3.5 text-sm font-outfit uppercase tracking-wider flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.35)]"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Claim Scholarship & Apply for Admission</span>
@@ -576,7 +580,7 @@ export default function RSATPage() {
 
                 <button
                   onClick={() => window.print()}
-                  className="px-5 py-3.5 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center gap-2 text-sm active:translate-x-0.5 active:translate-y-0.5"
+                  className="px-5 py-3.5 bg-[#08090d] hover:bg-[#12141c] text-white font-bold font-outfit uppercase tracking-wider rounded-xl border border-white/10 transition-colors flex items-center gap-2 text-sm"
                 >
                   <Printer className="w-4 h-4" />
                   <span>Print Certificate</span>
@@ -585,42 +589,42 @@ export default function RSATPage() {
             </div>
 
             {/* Question Review Section */}
-            <div className="bg-white border-3 border-black rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
-              <h3 className="text-xl font-black font-outfit text-black mb-4 flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-emerald-700" />
+            <div className="bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+              <h3 className="text-xl font-black font-outfit text-white mb-4 flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-[#e8602e]" />
                 Detailed Solutions & Answer Key
               </h3>
-              <div className="space-y-4 divide-y divide-black/10">
+              <div className="space-y-4 divide-y divide-white/10">
                 {result.review.map((r, idx) => (
                   <div key={r.questionId} className="pt-4 first:pt-0">
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className="text-xs font-black font-space uppercase text-neutral-500">
+                      <span className="text-xs font-black font-space uppercase text-neutral-400">
                         Q{idx + 1} ({r.subject})
                       </span>
                       <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black font-space uppercase border ${
                         r.isCorrect
-                          ? 'bg-emerald-200 border-emerald-800 text-emerald-950'
-                          : 'bg-rose-200 border-rose-800 text-rose-950'
+                          ? 'bg-[#161922] border-[#e8602e]/40 text-[#ff7b47]'
+                          : 'bg-rose-950/60 border-rose-500/40 text-rose-300'
                       }`}>
                         {r.isCorrect ? (
                           <>
-                            <Check className="w-3 h-3 text-emerald-950 stroke-[3]" />
+                            <Check className="w-3 h-3 text-[#ff7b47] stroke-[3]" />
                             <span>Correct</span>
                           </>
                         ) : (
                           <>
-                            <XCircle className="w-3 h-3 text-rose-950 stroke-[2.5]" />
+                            <XCircle className="w-3 h-3 text-rose-300 stroke-[2.5]" />
                             <span>Incorrect</span>
                           </>
                         )}
                       </span>
                     </div>
-                    <p className="text-sm font-bold text-black font-jakarta">
-                      Your Answer: <span className={r.isCorrect ? 'text-emerald-700 font-black' : 'text-rose-700 line-through'}>{r.selectedAnswer}</span>
+                    <p className="text-sm font-medium text-neutral-300 font-jakarta">
+                      Your Answer: <span className={r.isCorrect ? 'text-[#ff7b47] font-black' : 'text-rose-400 line-through'}>{r.selectedAnswer}</span>
                     </p>
                     {!r.isCorrect && (
-                      <p className="text-sm font-bold text-emerald-800 font-jakarta mt-0.5">
-                        Correct Answer: <span className="font-black">{r.correctAnswer}</span>
+                      <p className="text-sm font-medium text-neutral-300 font-jakarta mt-0.5">
+                        Correct Answer: <span className="font-black text-[#ff7b47]">{r.correctAnswer}</span>
                       </p>
                     )}
                   </div>
