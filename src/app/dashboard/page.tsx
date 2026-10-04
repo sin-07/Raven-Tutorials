@@ -372,17 +372,27 @@ Status           : ACTIVE & VERIFIED
   const hasLowAttendance = attendance.some(s => s.percentage < 75);
 
   return (
-    <div className="min-h-screen bg-transparent relative overflow-hidden pt-24 pb-16 selection:bg-emerald-300 selection:text-black">
+    <div className="min-h-screen bg-transparent relative overflow-hidden pt-24 pb-16 selection:bg-[#e8602e] selection:text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         
-        {/* Cartoon Welcome Banner with Student Profile Photo */}
-        <div className="bg-[#86efac] border-3 sm:border border-white/15 rounded-3xl p-6 sm:p-8 text-black mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative overflow-hidden ">
+        {/* Luxury Cyber Command Header */}
+        <div className="relative bg-[#090b12]/90 border border-white/10 hover:border-white/20 rounded-3xl p-6 sm:p-8 text-white mb-8 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_50px_rgba(232,96,46,0.12)] overflow-hidden backdrop-blur-2xl transition-all duration-300">
+          {/* Top highlight line */}
+          <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
+          {/* Ambient subtle aura */}
+          <div 
+            className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-25"
+            style={{ background: 'radial-gradient(circle, #e8602e 0%, transparent 70%)' }}
+            aria-hidden="true"
+          />
+
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             {/* Left: Avatar + Details */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               {/* Student Profile Picture Card */}
               <div className="relative flex-shrink-0 group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-3xl bg-white border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center relative transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl bg-[#121522] border-2 border-[#e8602e]/40 shadow-[0_0_25px_rgba(232,96,46,0.3)] overflow-hidden flex items-center justify-center relative transition-transform duration-200 group-hover:scale-105">
                   {student.photo ? (
                     <img
                       src={student.photo}
@@ -390,45 +400,45 @@ Status           : ACTIVE & VERIFIED
                       className="w-full h-full object-cover object-top"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#dcfce7] flex flex-col items-center justify-center font-black font-outfit text-3xl sm:text-4xl text-emerald-950">
+                    <div className="w-full h-full bg-[#121522] flex flex-col items-center justify-center font-black font-outfit text-3xl sm:text-4xl text-[#ffaa40]">
                       <span>{student.studentName.charAt(0)}</span>
                     </div>
                   )}
                 </div>
                 {/* Verified Active Badge */}
                 <div
-                  className="absolute -bottom-1 -right-1 p-1 sm:p-1.5 bg-emerald-400 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                  className="absolute -bottom-1 -right-1 p-1.5 bg-[#e8602e] border-2 border-[#090b12] rounded-xl shadow-[0_0_12px_rgba(232,96,46,0.6)]"
                   title="Verified Enrolled Student"
                 >
-                  <ShieldCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-black" />
+                  <ShieldCheck className="w-4 h-4 text-white" />
                 </div>
               </div>
 
               {/* Student Identification & Salutation */}
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-[11px] font-black font-space uppercase shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121522] border border-[#e8602e]/40 text-[#ffaa40] text-[10px] sm:text-[11px] font-bold font-space uppercase tracking-wider shadow-[0_0_12px_rgba(232,96,46,0.25)]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#e8602e]" />
                     <span>Student Academic Portal</span>
                   </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#dcfce7] border border-black text-[10px] font-black font-space uppercase text-emerald-950">
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold font-space uppercase text-zinc-300">
                     Active Session 2026-27
                   </span>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight text-black flex items-center gap-2 flex-wrap">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight text-white flex items-center gap-2 flex-wrap">
                   <span>Welcome, {student.studentName}!</span>
-                  <Sparkles className="w-6 h-6 text-amber-500 inline-block" />
+                  <span className="text-[#e8602e]">✨</span>
                 </h1>
 
-                <div className="flex flex-wrap items-center gap-2 text-xs font-bold font-jakarta text-neutral-800 pt-0.5">
-                  <span className="px-2.5 py-1 bg-white border border-black rounded-lg shadow-sm font-space font-black uppercase text-[11px]">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-jakarta pt-0.5">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-zinc-200 font-space font-bold uppercase text-[11px]">
                     Class {student.standard}
                   </span>
-                  <span className="font-mono bg-black text-emerald-300 px-2.5 py-1 rounded-lg border border-black shadow-sm text-xs font-bold">
+                  <span className="font-mono bg-[#121522] text-[#ffaa40] px-3 py-1 rounded-lg border border-[#e8602e]/30 text-xs font-bold shadow-sm">
                     Reg ID: {student.registrationId}
                   </span>
-                  <span className="px-2 py-1 bg-emerald-200 border border-black rounded-lg text-[11px] font-bold font-space uppercase text-emerald-900 hidden sm:inline">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold font-space uppercase text-zinc-400 hidden sm:inline">
                     Patna Campus
                   </span>
                 </div>
@@ -439,15 +449,15 @@ Status           : ACTIVE & VERIFIED
             <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
               <button
                 onClick={handleDownloadReceipt}
-                className="btn-sheryians px-4 py-2.5 bg-white hover:bg-neutral-100 text-black rounded-xl border border-white/10 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5"
+                className="px-4 py-3 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white rounded-xl border border-white/10 hover:border-white/20 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md cursor-pointer"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 text-[#ffaa40]" />
                 <span>Admission Receipt</span>
               </button>
 
               <button
                 onClick={handlePrintIDCard}
-                className="btn-sheryians px-4 py-2.5 bg-[#fef08a] hover:bg-[#fde047] text-black rounded-xl border border-white/10 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5"
+                className="btn-sheryians px-5 py-3 text-white rounded-xl font-black font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Student Card</span>
@@ -457,36 +467,36 @@ Status           : ACTIVE & VERIFIED
         </div>
 
         {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
           {/* Card 1: Attendance */}
           <div
             onClick={() => setActiveTab('attendance')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+            className="bg-[#090b12]/90 hover:border-[#e8602e]/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(232,96,46,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Overall Attendance</p>
-                <p className="text-3xl font-black text-black font-mono mt-1">{overallAttendance}%</p>
+                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Overall Attendance</p>
+                <p className="text-3xl font-black text-white font-mono mt-1">{overallAttendance}%</p>
               </div>
-              <div className="p-3 bg-[#86efac] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                <Calendar className="w-6 h-6 text-black" />
+              <div className="p-3 bg-[#e8602e]/10 border border-[#e8602e]/30 rounded-xl shadow-[0_0_15px_rgba(232,96,46,0.2)]">
+                <Calendar className="w-6 h-6 text-[#ff7a45]" />
               </div>
             </div>
-            <div className="mt-4 w-full bg-white rounded-full h-3 border border-white/10 overflow-hidden shadow-sm">
+            <div className="mt-4 w-full bg-white/10 rounded-full h-2.5 overflow-hidden shadow-inner">
               <div
                 className={`h-full transition-all duration-500 ${
-                  overallAttendance >= 75 ? 'bg-emerald-400' : 'bg-rose-400'
+                  overallAttendance >= 75 ? 'bg-gradient-to-r from-emerald-500 to-[#10b981]' : 'bg-gradient-to-r from-rose-500 to-rose-600'
                 }`}
                 style={{ width: `${overallAttendance}%` }}
               />
             </div>
-            <p className="text-[11px] font-bold text-neutral-600 mt-2 flex items-center justify-between font-jakarta">
+            <p className="text-[11px] font-bold text-zinc-400 mt-2 flex items-center justify-between font-jakarta">
               <span>Req: 75%</span>
-              <span className={overallAttendance >= 75 ? 'text-emerald-800 font-bold inline-flex items-center gap-1' : 'text-rose-700 font-black inline-flex items-center gap-1'}>
+              <span className={overallAttendance >= 75 ? 'text-emerald-400 font-bold inline-flex items-center gap-1' : 'text-rose-400 font-black inline-flex items-center gap-1'}>
                 {overallAttendance >= 75 ? (
-                  <>Regular <Check className="w-3.5 h-3.5 text-emerald-700 stroke-[3]" /></>
+                  <>Regular <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" /></>
                 ) : (
-                  <>Below 75% <AlertTriangle className="w-3.5 h-3.5 text-rose-600" /></>
+                  <>Below 75% <AlertTriangle className="w-3.5 h-3.5 text-rose-400" /></>
                 )}
               </span>
             </p>
@@ -495,20 +505,20 @@ Status           : ACTIVE & VERIFIED
           {/* Card 2: Tests Completed */}
           <div
             onClick={() => setActiveTab('marks')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#fef9c3] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+            className="bg-[#090b12]/90 hover:border-amber-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(245,158,11,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Tests Evaluated</p>
-                <p className="text-3xl font-black text-black font-mono mt-1">{testResults.length}</p>
+                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Tests Evaluated</p>
+                <p className="text-3xl font-black text-white font-mono mt-1">{testResults.length}</p>
               </div>
-              <div className="p-3 bg-[#fef08a] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                <Award className="w-6 h-6 text-black" />
+              <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                <Award className="w-6 h-6 text-amber-400" />
               </div>
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold text-neutral-700">
-              <span className="text-[11px] text-neutral-600">Completed tests</span>
-              <span className="text-amber-900 font-space font-black uppercase text-[10px]">
+            <div className="mt-4 flex items-center justify-between text-xs font-bold">
+              <span className="text-[11px] text-zinc-400">Completed tests</span>
+              <span className="text-[#ffaa40] font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
                 Marks →
               </span>
             </div>
@@ -517,20 +527,20 @@ Status           : ACTIVE & VERIFIED
           {/* Card 3: Upcoming Tests */}
           <div
             onClick={() => setActiveTab('tests')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#e0f2fe] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+            className="bg-[#090b12]/90 hover:border-cyan-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(6,182,212,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Available Tests</p>
-                <p className="text-3xl font-black text-black font-mono mt-1">{upcomingTests.length}</p>
+                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Available Tests</p>
+                <p className="text-3xl font-black text-white font-mono mt-1">{upcomingTests.length}</p>
               </div>
-              <div className="p-3 bg-[#bae6fd] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                <Clock className="w-6 h-6 text-black" />
+              <div className="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                <Clock className="w-6 h-6 text-cyan-400" />
               </div>
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold text-neutral-700">
-              <span className="text-[11px] text-neutral-600">Active mock tests</span>
-              <span className="text-sky-900 font-space font-black uppercase text-[10px]">
+            <div className="mt-4 flex items-center justify-between text-xs font-bold">
+              <span className="text-[11px] text-zinc-400">Active mock tests</span>
+              <span className="text-cyan-400 font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
                 Take Test →
               </span>
             </div>
@@ -539,20 +549,20 @@ Status           : ACTIVE & VERIFIED
           {/* Card 4: Study Materials */}
           <div
             onClick={() => setActiveTab('materials')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+            className="bg-[#090b12]/90 hover:border-emerald-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(16,185,129,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Study Notes</p>
-                <p className="text-3xl font-black text-black font-mono mt-1">{studyMaterials.length}</p>
+                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Study Notes</p>
+                <p className="text-3xl font-black text-white font-mono mt-1">{studyMaterials.length}</p>
               </div>
-              <div className="p-3 bg-[#bbf7d0] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                <BookOpen className="w-6 h-6 text-black" />
+              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <BookOpen className="w-6 h-6 text-emerald-400" />
               </div>
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold text-neutral-700">
-              <span className="text-[11px] text-neutral-600">Class notes & DPPs</span>
-              <span className="text-emerald-900 font-space font-black uppercase text-[10px]">
+            <div className="mt-4 flex items-center justify-between text-xs font-bold">
+              <span className="text-[11px] text-zinc-400">Class notes & DPPs</span>
+              <span className="text-emerald-400 font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
                 Notes →
               </span>
             </div>
@@ -561,21 +571,21 @@ Status           : ACTIVE & VERIFIED
 
         {/* Low Attendance Warning */}
         {hasLowAttendance && (
-          <div className="bg-[#fef2f2] border border-white/10 rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[0_10px_25px_rgba(0,0,0,0.5)] ">
-            <div className="p-2.5 bg-rose-200 rounded-xl border border-white/10 flex-shrink-0 shadow-sm">
-              <AlertCircle className="w-6 h-6 text-rose-800" />
+          <div className="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[0_10px_30px_rgba(244,63,94,0.15)] backdrop-blur-xl">
+            <div className="p-2.5 bg-rose-500/20 rounded-xl border border-rose-500/30 flex-shrink-0 shadow-sm text-rose-400">
+              <AlertCircle className="w-6 h-6" />
             </div>
             <div>
-              <p className="font-black text-black text-base font-outfit">Attendance Advisory</p>
-              <p className="text-xs sm:text-sm text-neutral-700 font-semibold font-jakarta mt-0.5">
+              <p className="font-black text-white text-base font-outfit">Attendance Advisory</p>
+              <p className="text-xs sm:text-sm text-zinc-300 font-medium font-jakarta mt-0.5 leading-relaxed">
                 Your attendance in some subjects is currently below 75%. Please ensure regular attendance to maintain test eligibility.
               </p>
             </div>
           </div>
         )}
 
-        {/* Cartoon Tab Navigation */}
-        <div className="bg-[#f0fdf4] rounded-2xl p-1.5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] mb-8 overflow-x-auto flex gap-2">
+        {/* Cyber Tab Navigation */}
+        <div className="bg-[#090b12]/90 rounded-2xl p-1.5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] mb-8 overflow-x-auto flex gap-2 backdrop-blur-xl">
           {[
             { id: 'overview', label: 'OVERVIEW', icon: null },
             { id: 'leaderboard', label: 'LEADERBOARD & BADGES', icon: Trophy },
@@ -587,17 +597,18 @@ Status           : ACTIVE & VERIFIED
             { id: 'profile', label: 'PROFILE', icon: null },
           ].map(tab => {
             const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`btn-sheryians flex-shrink-0 px-4 sm:px-6 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 ${
-                  activeTab === tab.id
-                    ? 'bg-emerald-400 text-black border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]'
-                    : 'text-neutral-700 hover:text-black hover:bg-[#dcfce7] border border-transparent font-bold'
+                className={`flex-shrink-0 px-4 sm:px-5 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer ${
+                  isActive
+                    ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]'
+                    : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent font-bold'
                 }`}
               >
-                {Icon && <Icon className="w-4 h-4 text-black" />}
+                {Icon && <Icon className="w-4 h-4" />}
                 <span>{tab.label}</span>
               </button>
             );
@@ -605,34 +616,35 @@ Status           : ACTIVE & VERIFIED
         </div>
 
         {/* Tab Content Panels */}
-        <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 border border-white/10">
+        <div className="bg-[#090b12]/90 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.08)] p-6 sm:p-8 border border-white/10 backdrop-blur-2xl text-white">
           
           {/* 1. Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              <div className="bg-white border border-white/10 rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-                <h3 className="font-black text-black mb-3 flex items-center gap-2 text-lg font-outfit">
-                  <CheckCircle className="w-5 h-5 text-emerald-600" />
+              <div className="bg-[#0e111a] border border-white/10 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+                <h3 className="font-black text-white mb-2 flex items-center gap-2 text-lg font-outfit">
+                  <CheckCircle className="w-5 h-5 text-[#e8602e]" />
                   Quick Academic Shortcuts
                 </h3>
-                <p className="text-sm text-neutral-700 font-medium font-jakarta mb-5">
+                <p className="text-sm text-zinc-400 font-medium font-jakarta mb-5 leading-relaxed">
                   Welcome to your student control center. Access your official admission fee invoice, test schedule, and syllabus notes.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={handleDownloadReceipt}
                     disabled={downloading}
-                    className="btn-sheryians px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                    className="btn-sheryians px-5 py-3 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.35)] flex items-center gap-2 text-xs sm:text-sm cursor-pointer"
                   >
-                    <Download className="w-4 h-4 text-black" />
+                    <Download className="w-4 h-4 text-white" />
                     <span>Download Admission Receipt (.txt)</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('tests')}
-                    className="btn-sheryians px-5 py-3 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                    className="px-5 py-3 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white font-black font-outfit uppercase tracking-wider rounded-xl border border-white/10 hover:border-white/20 flex items-center gap-2 text-xs sm:text-sm transition-all cursor-pointer"
                   >
-                    <Clock className="w-4 h-4 text-black" />
+                    <Clock className="w-4 h-4 text-[#ffaa40]" />
                     <span>View Scheduled Tests ({upcomingTests.length})</span>
                   </button>
                 </div>
@@ -640,18 +652,18 @@ Status           : ACTIVE & VERIFIED
 
               {/* Student Details Mini Card */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Registered Class</span>
-                  <span className="text-base font-black text-black font-outfit">{student.standard}</span>
+                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
+                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Registered Class</span>
+                  <span className="text-base font-black text-white font-outfit">{student.standard}</span>
                 </div>
-                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Roll / Reg Number</span>
-                  <span className="text-base font-mono font-black text-black">{student.registrationId}</span>
+                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
+                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Roll / Reg Number</span>
+                  <span className="text-base font-mono font-bold text-[#ffaa40]">{student.registrationId}</span>
                 </div>
-                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                  <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Admission Status</span>
-                  <span className="text-base font-black text-emerald-800 flex items-center gap-1 font-outfit">
-                    <ShieldCheck className="w-4 h-4" /> Active & Verified
+                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
+                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Admission Status</span>
+                  <span className="text-base font-black text-emerald-400 flex items-center gap-1.5 font-outfit">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" /> Active & Verified
                   </span>
                 </div>
               </div>
@@ -661,41 +673,41 @@ Status           : ACTIVE & VERIFIED
           {/* 2. Attendance Tab */}
           {activeTab === 'attendance' && (
             <div>
-              <h3 className="text-xl font-black text-black font-outfit mb-4">Subject-wise Attendance</h3>
+              <h3 className="text-xl font-black text-white font-outfit mb-5">Subject-wise Attendance</h3>
               {attendance.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {attendance.map(subject => (
-                    <div key={subject.subject} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+                    <div key={subject.subject} className="p-5 border border-white/10 hover:border-white/20 rounded-2xl bg-[#0e111a] shadow-xl transition-all">
                       <div className="flex justify-between items-center mb-3">
-                        <h4 className="font-black text-black font-outfit text-base">{subject.subject}</h4>
-                        <span className={`px-2.5 py-1 rounded-lg border border-black font-mono font-black text-sm ${
-                          subject.percentage >= 75 ? 'bg-[#dcfce7] text-emerald-950' : 'bg-rose-100 text-rose-950'
+                        <h4 className="font-black text-white font-outfit text-base">{subject.subject}</h4>
+                        <span className={`px-2.5 py-1 rounded-lg border font-mono font-bold text-sm ${
+                          subject.percentage >= 75 ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400' : 'bg-rose-500/15 border-rose-500/40 text-rose-400'
                         }`}>
                           {subject.percentage}%
                         </span>
                       </div>
                       <div className="mb-2">
-                        <div className="flex justify-between text-xs font-bold font-jakarta mb-1.5 text-neutral-600">
+                        <div className="flex justify-between text-xs font-bold font-jakarta mb-1.5 text-zinc-400">
                           <span>Classes Attended</span>
-                          <span className="font-mono text-black">{subject.present} / {subject.total}</span>
+                          <span className="font-mono text-white">{subject.present} / {subject.total}</span>
                         </div>
-                        <div className="w-full bg-neutral-100 rounded-full h-3 border border-black overflow-hidden">
+                        <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden shadow-inner">
                           <div
-                            className={`h-full ${subject.percentage >= 75 ? 'bg-emerald-400' : 'bg-rose-400'}`}
+                            className={`h-full ${subject.percentage >= 75 ? 'bg-gradient-to-r from-emerald-500 to-[#10b981]' : 'bg-gradient-to-r from-rose-500 to-rose-600'}`}
                             style={{ width: `${subject.percentage}%` }}
                           />
                         </div>
                       </div>
-                      <p className="text-xs font-bold mt-2 text-neutral-600 flex items-center gap-1.5">
+                      <p className="text-xs font-bold mt-2 text-zinc-400 flex items-center gap-1.5">
                         {subject.percentage >= 75 ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-emerald-700 stroke-[3]" />
-                            <span>On track (Above 75%)</span>
+                            <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
+                            <span className="text-emerald-400">On track (Above 75%)</span>
                           </>
                         ) : (
                           <>
-                            <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
-                            <span>Action required (Below 75%)</span>
+                            <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
+                            <span className="text-rose-400">Action required (Below 75%)</span>
                           </>
                         )}
                       </p>
@@ -703,8 +715,8 @@ Status           : ACTIVE & VERIFIED
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
-                  <p className="text-neutral-500 font-bold font-jakarta">No subject attendance recorded yet.</p>
+                <div className="text-center py-12 bg-[#0e111a] rounded-2xl border border-white/10">
+                  <p className="text-zinc-400 font-bold font-jakarta">No subject attendance recorded yet.</p>
                 </div>
               )}
             </div>
@@ -713,11 +725,11 @@ Status           : ACTIVE & VERIFIED
           {/* 3. Marks Tab */}
           {activeTab === 'marks' && (
             <div>
-              <h3 className="text-xl font-black text-black font-outfit mb-4">Completed Test Results</h3>
+              <h3 className="text-xl font-black text-white font-outfit mb-5">Completed Test Results</h3>
               {testResults.length > 0 ? (
-                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] bg-white">
+                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl bg-[#0e111a]">
                   <table className="w-full text-xs sm:text-sm font-jakarta">
-                    <thead className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
+                    <thead className="bg-[#121522] border-b border-white/10 font-space font-bold uppercase text-zinc-400">
                       <tr>
                         <th className="px-4 py-3 text-left">Test Name</th>
                         <th className="px-4 py-3 text-left">Subject</th>
@@ -726,30 +738,30 @@ Status           : ACTIVE & VERIFIED
                         <th className="px-4 py-3 text-center">Result</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-neutral-200">
+                    <tbody className="divide-y divide-white/5">
                       {testResults.map((test, idx) => {
                         const percentage = ((test.marksObtained / test.totalMarks) * 100).toFixed(1);
                         const passed = test.marksObtained >= test.passingMarks;
                         return (
-                          <tr key={idx} className="hover:bg-[#f0fdf4] transition-colors">
-                            <td className="px-4 py-3.5 font-bold text-black">{test.title}</td>
-                            <td className="px-4 py-3.5 text-neutral-700">{test.subject}</td>
-                            <td className="px-4 py-3.5 text-center font-mono font-black text-black">
+                          <tr key={idx} className="hover:bg-white/5 transition-colors">
+                            <td className="px-4 py-3.5 font-bold text-white">{test.title}</td>
+                            <td className="px-4 py-3.5 text-zinc-300">{test.subject}</td>
+                            <td className="px-4 py-3.5 text-center font-mono font-bold text-white">
                               {test.marksObtained} / {test.totalMarks}
                             </td>
-                            <td className="px-4 py-3.5 text-center font-mono font-bold">{percentage}%</td>
+                            <td className="px-4 py-3.5 text-center font-mono font-bold text-zinc-200">{percentage}%</td>
                             <td className="px-4 py-3.5 text-center">
-                              <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg border border-black text-xs font-black uppercase ${
-                                passed ? 'bg-[#86efac] text-black' : 'bg-rose-200 text-black'
+                              <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg border text-xs font-bold uppercase ${
+                                passed ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400' : 'bg-rose-500/15 border-rose-500/40 text-rose-400'
                               }`}>
                                 {passed ? (
                                   <>
-                                    <Check className="w-3 h-3 text-black stroke-[3]" />
+                                    <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />
                                     <span>PASS</span>
                                   </>
                                 ) : (
                                   <>
-                                    <X className="w-3 h-3 text-black stroke-[3]" />
+                                    <X className="w-3 h-3 text-rose-400 stroke-[3]" />
                                     <span>FAIL</span>
                                   </>
                                 )}
@@ -762,8 +774,8 @@ Status           : ACTIVE & VERIFIED
                   </table>
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
-                  <p className="text-neutral-500 font-bold font-jakarta">No test evaluations found yet.</p>
+                <div className="text-center py-12 bg-[#0e111a] rounded-2xl border border-white/10">
+                  <p className="text-zinc-400 font-bold font-jakarta">No test evaluations found yet.</p>
                 </div>
               )}
             </div>
@@ -772,45 +784,45 @@ Status           : ACTIVE & VERIFIED
           {/* 4. Upcoming Tests Tab */}
           {activeTab === 'tests' && (
             <div>
-              <h3 className="text-xl font-black text-black font-outfit mb-4">Available Mock Tests</h3>
+              <h3 className="text-xl font-black text-white font-outfit mb-5">Available Mock Tests</h3>
               {upcomingTests.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {upcomingTests.map((test, idx) => (
-                    <div key={idx} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between">
+                    <div key={idx} className="p-5 border border-white/10 hover:border-[#e8602e]/40 rounded-2xl bg-[#0e111a] shadow-xl flex flex-col justify-between transition-all">
                       <div>
                         <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-black text-black font-outfit text-base">{test.title}</h4>
-                          <span className="px-2.5 py-0.5 bg-[#dcfce7] border border-black rounded-md text-[10px] font-black uppercase font-space">
+                          <h4 className="font-black text-white font-outfit text-base">{test.title}</h4>
+                          <span className="px-2.5 py-0.5 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ffaa40] rounded-md text-[10px] font-bold uppercase font-space">
                             ACTIVE
                           </span>
                         </div>
-                        <p className="text-xs font-bold text-neutral-600 mb-4">{test.subject}</p>
+                        <p className="text-xs font-bold text-zinc-400 mb-4">{test.subject}</p>
 
-                        <div className="grid grid-cols-2 gap-2 text-xs font-jakarta mb-4 bg-[#f0fdf4] p-3 rounded-xl border border-black">
+                        <div className="grid grid-cols-2 gap-2 text-xs font-jakarta mb-4 bg-[#06080e] p-3 rounded-xl border border-white/10">
                           <div>
-                            <span className="text-neutral-500 block text-[10px]">Duration:</span>
-                            <span className="font-bold text-black">{test.duration} Minutes</span>
+                            <span className="text-zinc-500 block text-[10px]">Duration:</span>
+                            <span className="font-bold text-white">{test.duration} Minutes</span>
                           </div>
                           <div>
-                            <span className="text-neutral-500 block text-[10px]">Total Marks:</span>
-                            <span className="font-bold text-black">{test.totalMarks}</span>
+                            <span className="text-zinc-500 block text-[10px]">Total Marks:</span>
+                            <span className="font-bold text-white">{test.totalMarks}</span>
                           </div>
                         </div>
                       </div>
 
                       <button
                         onClick={() => router.push(`/test/${test._id}`)}
-                        className="btn-sheryians w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center gap-1.5"
+                        className="btn-sheryians w-full py-3 text-white font-black font-outfit text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.35)] flex items-center justify-center gap-1.5 cursor-pointer"
                       >
                         <span>Start Online Test</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-black" />
+                        <ArrowRight className="w-3.5 h-3.5 text-white" />
                       </button>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
-                  <p className="text-neutral-500 font-bold font-jakarta">No active assessments scheduled right now.</p>
+                <div className="text-center py-12 bg-[#0e111a] rounded-2xl border border-white/10">
+                  <p className="text-zinc-400 font-bold font-jakarta">No active assessments scheduled right now.</p>
                 </div>
               )}
             </div>
@@ -819,39 +831,39 @@ Status           : ACTIVE & VERIFIED
           {/* 5. Study Materials Tab */}
           {activeTab === 'materials' && (
             <div>
-              <h3 className="text-xl font-black text-black font-outfit mb-4">Class Study Materials & PDFs</h3>
+              <h3 className="text-xl font-black text-white font-outfit mb-5">Class Study Materials & PDFs</h3>
               {studyMaterials.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {studyMaterials.map((material, idx) => (
-                    <div key={idx} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between">
+                    <div key={idx} className="p-5 border border-white/10 hover:border-white/20 rounded-2xl bg-[#0e111a] shadow-xl flex flex-col justify-between transition-all">
                       <div>
                         <div className="flex gap-3 mb-3">
-                          <div className="p-2.5 bg-[#86efac] border border-black rounded-xl h-fit">
-                            <FileText className="w-5 h-5 text-black" />
+                          <div className="p-2.5 bg-[#e8602e]/10 border border-[#e8602e]/30 rounded-xl h-fit text-[#ff7a45]">
+                            <FileText className="w-5 h-5" />
                           </div>
                           <div>
-                            <h4 className="font-black text-black font-outfit text-sm">{material.title}</h4>
-                            <p className="text-[11px] font-bold text-neutral-600">{material.subject}</p>
+                            <h4 className="font-black text-white font-outfit text-sm">{material.title}</h4>
+                            <p className="text-[11px] font-bold text-zinc-400">{material.subject}</p>
                           </div>
                         </div>
-                        <p className="text-xs text-neutral-600 line-clamp-2 font-medium mb-4">{material.description}</p>
+                        <p className="text-xs text-zinc-400 line-clamp-2 font-medium mb-4">{material.description}</p>
                       </div>
 
                       <a
                         href={material.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-sheryians w-full py-2 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-center flex items-center justify-center gap-1.5"
+                        className="w-full py-2.5 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white font-black font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 hover:border-[#e8602e]/40 transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
                       >
-                        <Download className="w-3.5 h-3.5 text-black" />
+                        <Download className="w-3.5 h-3.5 text-[#ffaa40]" />
                         <span>Download Material</span>
                       </a>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
-                  <p className="text-neutral-500 font-bold font-jakarta">No study files uploaded for this standard yet.</p>
+                <div className="text-center py-12 bg-[#0e111a] rounded-2xl border border-white/10">
+                  <p className="text-zinc-400 font-bold font-jakarta">No study files uploaded for this standard yet.</p>
                 </div>
               )}
             </div>
@@ -859,67 +871,67 @@ Status           : ACTIVE & VERIFIED
 
           {/* 6. Profile Tab */}
           {activeTab === 'profile' && (
-            <div className="bg-white rounded-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-              <div className="border-b border-white/10/15 pb-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="bg-[#0e111a] rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl">
+              <div className="border-b border-white/10 pb-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-[#dcfce7] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] overflow-hidden flex items-center justify-center flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-[#121522] border border-[#e8602e]/40 shadow-[0_0_20px_rgba(232,96,46,0.25)] overflow-hidden flex items-center justify-center flex-shrink-0">
                     {student.photo ? (
                       <img src={student.photo} alt={student.studentName} className="w-full h-full object-cover object-top" />
                     ) : (
-                      <div className="font-black font-outfit text-2xl text-emerald-950">
+                      <div className="font-black font-outfit text-2xl text-[#ffaa40]">
                         {student.studentName.charAt(0)}
                       </div>
                     )}
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-black font-outfit">{student.studentName}</h3>
-                    <p className="text-xs text-neutral-600 font-bold font-jakarta mt-0.5">
-                      Registration ID: <span className="font-mono font-bold text-black">{student.registrationId}</span> • Class {student.standard}
+                    <h3 className="text-xl font-black text-white font-outfit">{student.studentName}</h3>
+                    <p className="text-xs text-zinc-400 font-medium font-jakarta mt-0.5">
+                      Registration ID: <span className="font-mono font-bold text-[#ffaa40]">{student.registrationId}</span> • Class {student.standard}
                     </p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border border-black text-xs font-black font-space uppercase text-emerald-950 self-start sm:self-center shadow-sm">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-950" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold font-space uppercase text-zinc-300 self-start sm:self-center shadow-sm">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                   <span>Official Record</span>
                 </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm font-jakarta">
                 <div className="space-y-4">
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Student Full Name</span>
-                    <span className="font-bold text-black text-base">{student.studentName}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Student Full Name</span>
+                    <span className="font-bold text-white text-base">{student.studentName}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Father&apos;s / Guardian Name</span>
-                    <span className="font-bold text-black">{student.fatherName}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Father&apos;s / Guardian Name</span>
+                    <span className="font-bold text-white">{student.fatherName}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Mother&apos;s Name</span>
-                    <span className="font-bold text-black">{student.motherName}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Mother&apos;s Name</span>
+                    <span className="font-bold text-white">{student.motherName}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Gender & Blood Group</span>
-                    <span className="font-bold text-black">{student.gender} • {student.bloodGroup || 'N/A'}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Gender & Blood Group</span>
+                    <span className="font-bold text-white">{student.gender} • {student.bloodGroup || 'N/A'}</span>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Registered Email</span>
-                    <span className="font-bold text-black break-all">{student.email}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Registered Email</span>
+                    <span className="font-bold text-white break-all">{student.email}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Contact Phone Number</span>
-                    <span className="font-bold text-black">{student.phoneNumber}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Contact Phone Number</span>
+                    <span className="font-bold text-white">{student.phoneNumber}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Residential Address</span>
-                    <span className="font-bold text-black">{student.address}, {student.city}</span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Residential Address</span>
+                    <span className="font-bold text-white">{student.address}, {student.city}</span>
                   </div>
-                  <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-black">
-                    <span className="text-[10px] font-black uppercase text-neutral-500 block">Registered Class & Reg ID</span>
-                    <span className="font-bold text-black">{student.standard} • <span className="font-mono">{student.registrationId}</span></span>
+                  <div className="p-4 bg-[#06080e] rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">Registered Class & Reg ID</span>
+                    <span className="font-bold text-white">{student.standard} • <span className="font-mono text-[#ffaa40]">{student.registrationId}</span></span>
                   </div>
                 </div>
               </div>
@@ -930,19 +942,19 @@ Status           : ACTIVE & VERIFIED
           {activeTab === 'leaderboard' && (
             <div className="space-y-8">
               {/* Header & Standard Filter */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#0e111a] border border-white/10 rounded-2xl p-5 shadow-xl">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fef08a] border border-black text-xs font-black font-space uppercase mb-1 shadow-sm">
-                    <Trophy className="w-3.5 h-3.5 text-black" />
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8602e]/15 border border-[#e8602e]/40 text-[#ffaa40] text-xs font-bold font-space uppercase mb-1 shadow-sm">
+                    <Trophy className="w-3.5 h-3.5 text-[#e8602e]" />
                     <span>Hall of Fame & Achievements</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black font-outfit text-black">
+                  <h3 className="text-xl sm:text-2xl font-black font-outfit text-white">
                     Institute Academic Leaderboard
                   </h3>
                 </div>
 
                 <div className="flex items-center gap-2 min-w-[170px]">
-                  <span className="text-xs font-black font-space uppercase text-neutral-500 whitespace-nowrap">Class:</span>
+                  <span className="text-xs font-bold font-space uppercase text-zinc-400 whitespace-nowrap">Class:</span>
                   <CartoonDropdown
                     size="sm"
                     value={leaderboardStd}
@@ -964,25 +976,25 @@ Status           : ACTIVE & VERIFIED
 
               {/* Student's Personal Ranking Bar (if ranked) */}
               {myRankStats && (
-                <div className="bg-[#86efac] border border-white/10 rounded-2xl p-5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex flex-wrap items-center justify-between gap-4">
+                <div className="bg-gradient-to-r from-[#121522] via-[#1a1529] to-[#121522] border border-[#e8602e]/40 rounded-2xl p-5 shadow-[0_0_25px_rgba(232,96,46,0.15)] flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center font-outfit font-black text-xl text-black">
+                    <div className="w-12 h-12 rounded-2xl bg-[#090b12] border border-[#e8602e]/40 shadow-[0_0_12px_rgba(232,96,46,0.3)] flex items-center justify-center font-outfit font-black text-xl text-[#ffaa40]">
                       #{myRankStats.rank}
                     </div>
                     <div>
-                      <p className="text-xs font-black font-space uppercase text-emerald-950">Your Standing</p>
-                      <p className="text-lg font-black font-outfit text-black">
+                      <p className="text-xs font-bold font-space uppercase text-[#ffaa40]">Your Standing</p>
+                      <p className="text-lg font-black font-outfit text-white">
                         Rank #{myRankStats.rank} • Top {100 - myRankStats.percentile}% of students
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs font-mono font-black">
-                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-sm">
-                      Points: {myRankStats.points} pts
+                  <div className="flex items-center gap-4 text-xs font-mono font-bold">
+                    <div className="px-3 py-1.5 bg-[#090b12] rounded-xl border border-white/10 text-zinc-200 shadow-sm">
+                      Points: <span className="text-[#ffaa40] font-black">{myRankStats.points} pts</span>
                     </div>
-                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-sm">
-                      Avg: {myRankStats.avgScore}%
+                    <div className="px-3 py-1.5 bg-[#090b12] rounded-xl border border-white/10 text-zinc-200 shadow-sm">
+                      Avg: <span className="text-emerald-400 font-black">{myRankStats.avgScore}%</span>
                     </div>
                   </div>
                 </div>
@@ -990,8 +1002,8 @@ Status           : ACTIVE & VERIFIED
 
               {/* Badges Showcase Grid */}
               <div>
-                <h4 className="text-base font-black font-outfit text-black uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-emerald-700" />
+                <h4 className="text-base font-black font-outfit text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-[#ffaa40]" />
                   Earned Achievement Badges ({myBadges.filter(b => b.unlocked).length} / {myBadges.length || 6})
                 </h4>
 
@@ -1006,24 +1018,24 @@ Status           : ACTIVE & VERIFIED
                   ]).map((badge) => (
                     <div
                       key={badge.id}
-                      className={`card-cartoon rounded-2xl p-4 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all ${
+                      className={`rounded-2xl p-5 border transition-all ${
                         badge.unlocked
-                          ? 'bg-[#dcfce7] border-black'
-                          : 'bg-white opacity-80'
+                          ? 'bg-[#121522] border-[#ffaa40]/50 shadow-[0_0_20px_rgba(255,170,64,0.15)]'
+                          : 'bg-[#0e111a] border-white/10 opacity-75'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <div className="p-2.5 bg-[#f0fdf4] rounded-xl border border-black shadow-sm flex items-center justify-center">
+                        <div className="p-2.5 bg-[#090b12] rounded-xl border border-white/10 shadow-sm flex items-center justify-center">
                           {renderBadgeIcon(badge.icon)}
                         </div>
-                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black font-space uppercase border ${
+                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-space uppercase border ${
                           badge.unlocked
-                            ? 'bg-emerald-300 border-emerald-800 text-emerald-950'
-                            : 'bg-neutral-100 border-neutral-400 text-neutral-600'
+                            ? 'bg-[#ffaa40]/15 border-[#ffaa40]/40 text-[#ffaa40]'
+                            : 'bg-white/5 border-white/10 text-zinc-400'
                         }`}>
                           {badge.unlocked ? (
                             <>
-                              Unlocked <Check className="w-3 h-3 text-emerald-800 stroke-[3]" />
+                              Unlocked <Check className="w-3 h-3 text-[#ffaa40] stroke-[3]" />
                             </>
                           ) : (
                             'In Progress'
@@ -1031,18 +1043,18 @@ Status           : ACTIVE & VERIFIED
                         </span>
                       </div>
 
-                      <h5 className="font-black font-outfit text-black text-sm mt-3">{badge.title}</h5>
-                      <p className="text-xs text-neutral-600 font-medium font-jakarta mt-1">{badge.description}</p>
+                      <h5 className="font-black font-outfit text-white text-sm mt-3">{badge.title}</h5>
+                      <p className="text-xs text-zinc-400 font-medium font-jakarta mt-1 leading-relaxed">{badge.description}</p>
 
                       {!badge.unlocked && (
                         <div className="mt-3">
-                          <div className="w-full bg-neutral-200 rounded-full h-2 border border-black/40 overflow-hidden">
+                          <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
                             <div
-                              className="h-full bg-emerald-400"
+                              className="h-full bg-gradient-to-r from-[#e8602e] to-[#ffaa40]"
                               style={{ width: `${badge.progress}%` }}
                             />
                           </div>
-                          <span className="text-[10px] text-neutral-500 font-bold font-mono mt-0.5 block text-right">
+                          <span className="text-[10px] text-zinc-400 font-bold font-mono mt-1 block text-right">
                             {badge.progress}%
                           </span>
                         </div>
@@ -1052,10 +1064,10 @@ Status           : ACTIVE & VERIFIED
                 </div>
               </div>
 
-              {/* 3D-Style Cartoon Podium */}
+              {/* 3D-Style Cyber Podium */}
               {podium.some(p => p !== null) && (
-                <div className="bg-white border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-                  <h4 className="text-center text-xs font-black font-space uppercase tracking-widest text-neutral-500 mb-6">
+                <div className="bg-[#0e111a] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+                  <h4 className="text-center text-xs font-bold font-space uppercase tracking-widest text-zinc-400 mb-6">
                     Top 3 Rankers of the Term
                   </h4>
 
@@ -1063,12 +1075,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 2 - Left */}
                     {podium[1] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 rounded-xl bg-slate-200 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
-                          <Medal className="w-5 h-5 text-slate-700" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-500/20 border border-slate-400/40 text-slate-200 shadow-md flex items-center justify-center mb-2">
+                          <Medal className="w-5 h-5" />
                         </div>
-                        <p className="font-black text-black text-xs font-outfit text-center truncate max-w-[90px]">{podium[1].studentName}</p>
-                        <p className="text-[10px] font-bold text-neutral-500 font-mono">{podium[1].points} pts</p>
-                        <div className="w-full h-28 bg-[#e2e8f0] border border-white/10 rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-2xl text-slate-700 mt-2">
+                        <p className="font-black text-white text-xs font-outfit text-center truncate max-w-[90px]">{podium[1].studentName}</p>
+                        <p className="text-[10px] font-bold text-zinc-400 font-mono">{podium[1].points} pts</p>
+                        <div className="w-full h-28 bg-gradient-to-t from-slate-700/30 to-slate-600/20 border-t-2 border-slate-300 rounded-t-2xl shadow-md flex items-center justify-center font-black font-outfit text-2xl text-slate-200 mt-2">
                           2nd
                         </div>
                       </div>
@@ -1077,12 +1089,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 1 - Center */}
                     {podium[0] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-12 h-12 rounded-xl bg-amber-300 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
-                          <Crown className="w-6 h-6 text-amber-900" />
+                        <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] flex items-center justify-center mb-2">
+                          <Crown className="w-6 h-6 text-amber-300" />
                         </div>
-                        <p className="font-black text-black text-sm font-outfit text-center truncate max-w-[100px]">{podium[0].studentName}</p>
-                        <p className="text-xs font-black text-amber-900 font-mono">{podium[0].points} pts</p>
-                        <div className="w-full h-36 bg-[#fde047] border border-white/10 rounded-t-2xl shadow-lg flex items-center justify-center font-black font-outfit text-3xl text-amber-950 mt-2">
+                        <p className="font-black text-white text-sm font-outfit text-center truncate max-w-[100px]">{podium[0].studentName}</p>
+                        <p className="text-xs font-black text-[#ffaa40] font-mono">{podium[0].points} pts</p>
+                        <div className="w-full h-36 bg-gradient-to-t from-amber-600/30 to-amber-500/20 border-t-2 border-amber-400 rounded-t-2xl shadow-lg flex items-center justify-center font-black font-outfit text-3xl text-amber-300 mt-2">
                           1st
                         </div>
                       </div>
@@ -1091,12 +1103,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 3 - Right */}
                     {podium[2] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 rounded-xl bg-amber-100 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
-                          <Award className="w-5 h-5 text-amber-800" />
+                        <div className="w-10 h-10 rounded-xl bg-amber-700/20 border border-amber-600/40 text-amber-400 shadow-md flex items-center justify-center mb-2">
+                          <Award className="w-5 h-5" />
                         </div>
-                        <p className="font-black text-black text-xs font-outfit text-center truncate max-w-[90px]">{podium[2].studentName}</p>
-                        <p className="text-[10px] font-bold text-neutral-500 font-mono">{podium[2].points} pts</p>
-                        <div className="w-full h-20 bg-[#fed7aa] border border-white/10 rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-xl text-amber-900 mt-2">
+                        <p className="font-black text-white text-xs font-outfit text-center truncate max-w-[90px]">{podium[2].studentName}</p>
+                        <p className="text-[10px] font-bold text-zinc-400 font-mono">{podium[2].points} pts</p>
+                        <div className="w-full h-20 bg-gradient-to-t from-amber-800/30 to-amber-700/20 border-t-2 border-amber-600 rounded-t-2xl shadow-md flex items-center justify-center font-black font-outfit text-xl text-amber-400 mt-2">
                           3rd
                         </div>
                       </div>
@@ -1106,49 +1118,49 @@ Status           : ACTIVE & VERIFIED
               )}
 
               {/* Full Standings Table */}
-              <div className="bg-white border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-                <div className="p-4 bg-[#dcfce7] border-b border-white/10 flex items-center justify-between">
-                  <h4 className="font-black font-outfit text-black text-sm">Full Batch Standings</h4>
-                  <span className="text-xs font-bold font-mono text-neutral-600">{rankings.length} Students Evaluated</span>
+              <div className="bg-[#0e111a] border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+                <div className="p-4 bg-[#121522] border-b border-white/10 flex items-center justify-between">
+                  <h4 className="font-black font-outfit text-white text-sm">Full Batch Standings</h4>
+                  <span className="text-xs font-bold font-mono text-zinc-400">{rankings.length} Students Evaluated</span>
                 </div>
 
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
                     <thead>
-                      <tr className="border-b border-black/20 font-space font-black uppercase text-neutral-600">
-                        <th className="p-3">Rank</th>
-                        <th className="p-3">Student Name</th>
-                        <th className="p-3">Class</th>
-                        <th className="p-3">Tests</th>
-                        <th className="p-3">Avg Accuracy</th>
-                        <th className="p-3 text-right">Points</th>
+                      <tr className="border-b border-white/10 font-space font-bold uppercase text-zinc-400">
+                        <th className="p-3.5">Rank</th>
+                        <th className="p-3.5">Student Name</th>
+                        <th className="p-3.5">Class</th>
+                        <th className="p-3.5">Tests</th>
+                        <th className="p-3.5">Avg Accuracy</th>
+                        <th className="p-3.5 text-right">Points</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-black/10 font-jakarta">
+                    <tbody className="divide-y divide-white/5 font-jakarta">
                       {rankings.map((r) => {
                         const isMe = r.studentId === student._id;
                         return (
-                          <tr key={r.studentId} className={`hover:bg-neutral-50 ${isMe ? 'bg-[#dcfce7] font-black' : ''}`}>
-                            <td className="p-3 font-mono font-bold">
+                          <tr key={r.studentId} className={`hover:bg-white/5 transition-colors ${isMe ? 'bg-[#e8602e]/10 font-bold border-l-2 border-[#e8602e]' : ''}`}>
+                            <td className="p-3.5 font-mono font-bold">
                               <div className="flex items-center gap-1.5">
                                 {r.rank === 1 ? (
-                                  <Crown className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                                  <Crown className="w-4 h-4 text-amber-400 flex-shrink-0" />
                                 ) : r.rank === 2 ? (
-                                  <Medal className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                                  <Medal className="w-4 h-4 text-slate-300 flex-shrink-0" />
                                 ) : r.rank === 3 ? (
-                                  <Award className="w-4 h-4 text-amber-700 flex-shrink-0" />
+                                  <Award className="w-4 h-4 text-amber-500 flex-shrink-0" />
                                 ) : null}
-                                <span>#{r.rank}</span>
+                                <span className={isMe ? 'text-[#ffaa40]' : 'text-zinc-300'}>#{r.rank}</span>
                               </div>
                             </td>
-                            <td className="p-3">
-                              <span className="font-outfit font-bold text-black">{r.studentName}</span>
-                              {isMe && <span className="ml-2 px-1.5 py-0.5 bg-black text-white text-[9px] rounded font-space">YOU</span>}
+                            <td className="p-3.5">
+                              <span className={`font-outfit ${isMe ? 'text-[#ffaa40] font-black' : 'text-white'}`}>{r.studentName}</span>
+                              {isMe && <span className="ml-2 px-1.5 py-0.5 bg-[#e8602e] text-white text-[9px] rounded font-space font-bold">YOU</span>}
                             </td>
-                            <td className="p-3 font-medium">{r.standard}</td>
-                            <td className="p-3 font-mono">{r.testsAttempted}</td>
-                            <td className="p-3 font-mono">{r.avgScore}%</td>
-                            <td className="p-3 font-mono text-right font-black text-black">{r.points}</td>
+                            <td className="p-3.5 text-zinc-400">{r.standard}</td>
+                            <td className="p-3.5 font-mono text-zinc-300">{r.testsAttempted}</td>
+                            <td className="p-3.5 font-mono text-emerald-400 font-bold">{r.avgScore}%</td>
+                            <td className="p-3.5 font-mono text-right font-black text-[#ffaa40]">{r.points}</td>
                           </tr>
                         );
                       })}
@@ -1164,39 +1176,39 @@ Status           : ACTIVE & VERIFIED
             <div className="space-y-8">
               {/* Top Banner / Dues Overview */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="card-cartoon bg-white rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-                  <p className="text-xs font-black font-space uppercase text-neutral-500">Pending Dues</p>
-                  <p className="text-3xl font-black font-mono text-amber-900 mt-1">₹{feeSummary.totalPendingAmount}</p>
-                  <p className="text-xs font-bold text-neutral-600 mt-2">{feeSummary.pendingCount} unpaid invoice(s)</p>
+                <div className="bg-[#0e111a] rounded-2xl p-5 border border-white/10 shadow-lg">
+                  <p className="text-xs font-bold font-space uppercase text-zinc-400">Pending Dues</p>
+                  <p className="text-3xl font-black font-mono text-[#ffaa40] mt-1">₹{feeSummary.totalPendingAmount}</p>
+                  <p className="text-xs font-medium text-zinc-400 mt-2">{feeSummary.pendingCount} unpaid invoice(s)</p>
                 </div>
 
-                <div className="card-cartoon bg-white rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-                  <p className="text-xs font-black font-space uppercase text-neutral-500">Total Fees Paid</p>
-                  <p className="text-3xl font-black font-mono text-emerald-900 mt-1">₹{feeSummary.totalPaidAmount}</p>
-                  <p className="text-xs font-bold text-emerald-700 mt-2">All verified by Accounts Office</p>
+                <div className="bg-[#0e111a] rounded-2xl p-5 border border-white/10 shadow-lg">
+                  <p className="text-xs font-bold font-space uppercase text-zinc-400">Total Fees Paid</p>
+                  <p className="text-3xl font-black font-mono text-emerald-400 mt-1">₹{feeSummary.totalPaidAmount}</p>
+                  <p className="text-xs font-medium text-emerald-400/80 mt-2">All verified by Accounts Office</p>
                 </div>
 
-                <div className="card-cartoon bg-[#dcfce7] rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-                  <p className="text-xs font-black font-space uppercase text-neutral-600">Fee Status</p>
-                  <p className="text-2xl font-black font-outfit text-black mt-1">
+                <div className="bg-[#121522] rounded-2xl p-5 border border-[#e8602e]/30 shadow-[0_0_20px_rgba(232,96,46,0.1)]">
+                  <p className="text-xs font-bold font-space uppercase text-zinc-400">Fee Status</p>
+                  <p className="text-2xl font-black font-outfit text-white mt-1">
                     {feeSummary.hasOverdue ? 'Overdue Due Date' : feeSummary.pendingCount > 0 ? 'Pending Payment' : 'All Clear'}
                   </p>
-                  <p className="text-xs font-bold text-neutral-700 mt-2">Class {student.standard} Session 2026-27</p>
+                  <p className="text-xs font-medium text-zinc-400 mt-2">Class {student.standard} Session 2026-27</p>
                 </div>
               </div>
 
               {/* Pending Dues Section */}
               <div>
-                <h4 className="text-base font-black font-outfit text-black uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-amber-700" />
+                <h4 className="text-base font-black font-outfit text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-[#ffaa40]" />
                   Active Invoices & Pending Dues
                 </h4>
 
                 {fees.filter(f => f.status === 'pending' || f.status === 'overdue').length === 0 ? (
-                  <div className="p-6 bg-white rounded-2xl border border-white/10 text-center shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                    <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                    <p className="font-black text-black text-base font-outfit">No Pending Dues!</p>
-                    <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">
+                  <div className="p-8 bg-[#0e111a] rounded-2xl border border-white/10 text-center shadow-lg">
+                    <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+                    <p className="font-black text-white text-base font-outfit">No Pending Dues!</p>
+                    <p className="text-xs text-zinc-400 font-medium font-jakarta mt-1">
                       You have cleared all academic tuition fees up to this month.
                     </p>
                   </div>
@@ -1205,34 +1217,34 @@ Status           : ACTIVE & VERIFIED
                     {fees.filter(f => f.status === 'pending' || f.status === 'overdue').map((fee) => (
                       <div
                         key={fee._id}
-                        className="bg-white border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between"
+                        className="bg-[#0e111a] border border-white/10 hover:border-white/20 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2 mb-2">
-                            <span className="px-2.5 py-0.5 bg-[#fef9c3] border border-black rounded-lg text-xs font-black font-space uppercase">
+                            <span className="px-2.5 py-0.5 bg-[#121522] border border-[#e8602e]/30 text-[#ffaa40] rounded-lg text-xs font-bold font-space uppercase">
                               {fee.month}
                             </span>
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-black font-space uppercase border ${
-                              fee.status === 'overdue' ? 'bg-rose-200 border-rose-800 text-rose-950' : 'bg-amber-100 border-amber-800 text-amber-950'
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold font-space uppercase border ${
+                              fee.status === 'overdue' ? 'bg-rose-500/15 border-rose-500/40 text-rose-400' : 'bg-amber-500/15 border-amber-500/40 text-amber-400'
                             }`}>
                               {fee.status === 'overdue' ? 'Overdue' : 'Due Soon'}
                             </span>
                           </div>
 
-                          <p className="text-2xl font-black font-mono text-black mt-2">₹{fee.totalAmount}</p>
-                          <div className="text-xs text-neutral-600 font-medium space-y-0.5 mt-2">
+                          <p className="text-2xl font-black font-mono text-white mt-2">₹{fee.totalAmount}</p>
+                          <div className="text-xs text-zinc-400 font-medium space-y-0.5 mt-2">
                             <p>Tuition Fee: ₹{fee.tuitionFee}</p>
                             {fee.labFee > 0 && <p>Computer / Lab: ₹{fee.labFee}</p>}
                             {fee.examFee > 0 && <p>Exam Fee: ₹{fee.examFee}</p>}
-                            <p className="font-mono text-neutral-500 mt-1">Due Date: {new Date(fee.dueDate).toLocaleDateString('en-GB')}</p>
+                            <p className="font-mono text-zinc-500 mt-1">Due Date: {new Date(fee.dueDate).toLocaleDateString('en-GB')}</p>
                           </div>
                         </div>
 
-                        <div className="pt-4 mt-4 border-t border-black/10">
+                        <div className="pt-4 mt-4 border-t border-white/10">
                           <button
                             onClick={() => handlePayFee(fee._id)}
                             disabled={payingFeeId === fee._id}
-                            className="w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2"
+                            className="btn-sheryians w-full py-3 text-white font-black font-outfit uppercase tracking-wider text-xs rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.35)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                           >
                             <CreditCard className="w-4 h-4" />
                             <span>{payingFeeId === fee._id ? 'Processing UPI Payment...' : 'Pay Online Now (Instant Receipt)'}</span>
@@ -1246,16 +1258,16 @@ Status           : ACTIVE & VERIFIED
 
               {/* Paid Receipts History */}
               <div>
-                <h4 className="text-base font-black font-outfit text-black uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Printer className="w-5 h-5 text-emerald-800" />
+                <h4 className="text-base font-black font-outfit text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Printer className="w-5 h-5 text-[#ffaa40]" />
                   Official Fee Receipts History
                 </h4>
 
-                <div className="bg-white border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+                <div className="bg-[#0e111a] border border-white/10 rounded-2xl overflow-hidden shadow-xl">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs">
                       <thead>
-                        <tr className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
+                        <tr className="bg-[#121522] border-b border-white/10 font-space font-bold uppercase text-zinc-400">
                           <th className="p-3.5">Receipt No</th>
                           <th className="p-3.5">Billing Month</th>
                           <th className="p-3.5">Amount Paid</th>
@@ -1264,29 +1276,29 @@ Status           : ACTIVE & VERIFIED
                           <th className="p-3.5 text-right">Receipt Action</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-black/10 font-jakarta">
+                      <tbody className="divide-y divide-white/5 font-jakarta">
                         {fees.filter(f => f.status === 'paid').length === 0 ? (
                           <tr>
-                            <td colSpan={6} className="p-6 text-center text-neutral-500 font-bold">
+                            <td colSpan={6} className="p-8 text-center text-zinc-400 font-medium">
                               No payment receipts recorded yet.
                             </td>
                           </tr>
                         ) : (
                           fees.filter(f => f.status === 'paid').map((fee) => (
-                            <tr key={fee._id} className="hover:bg-[#f0fdf4]">
-                              <td className="p-3.5 font-mono font-bold text-black">{fee.receiptNumber}</td>
-                              <td className="p-3.5 font-bold text-neutral-800">{fee.month}</td>
-                              <td className="p-3.5 font-mono font-black text-emerald-900">₹{fee.totalAmount}</td>
-                              <td className="p-3.5 font-mono text-neutral-600">
+                            <tr key={fee._id} className="hover:bg-white/5 transition-colors">
+                              <td className="p-3.5 font-mono font-bold text-white">{fee.receiptNumber}</td>
+                              <td className="p-3.5 font-bold text-zinc-200">{fee.month}</td>
+                              <td className="p-3.5 font-mono font-black text-emerald-400">₹{fee.totalAmount}</td>
+                              <td className="p-3.5 font-mono text-zinc-400">
                                 {fee.paidDate ? new Date(fee.paidDate).toLocaleDateString('en-GB') : '—'}
                               </td>
-                              <td className="p-3.5 font-bold text-emerald-800">{fee.paymentMode || 'Online'}</td>
+                              <td className="p-3.5 font-bold text-zinc-300">{fee.paymentMode || 'Online'}</td>
                               <td className="p-3.5 text-right">
                                 <button
                                   onClick={() => setReceiptModalFee(fee)}
-                                  className="btn-sheryians px-3 py-1.5 bg-[#86efac] hover:bg-emerald-300 border border-black text-black font-black text-xs rounded-xl shadow-sm inline-flex items-center gap-1.5"
+                                  className="px-3 py-1.5 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white border border-white/10 hover:border-[#e8602e]/40 rounded-xl font-bold text-xs inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
                                 >
-                                  <Printer className="w-3.5 h-3.5" />
+                                  <Printer className="w-3.5 h-3.5 text-[#ffaa40]" />
                                   <span>Print / Download</span>
                                 </button>
                               </td>
@@ -1301,91 +1313,91 @@ Status           : ACTIVE & VERIFIED
             </div>
           )}
 
-          {/* OFFICIAL CARTOON FEE RECEIPT POPUP */}
+          {/* OFFICIAL CYBER FEE RECEIPT POPUP */}
           {receiptModalFee && (
-            <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-              <div className="bg-[#f0fdf4] border border-white/15 rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-[10px_10px_0px_#000]  relative">
+            <div className="fixed inset-0 z-50 bg-[#030407]/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+              <div className="bg-[#090b12] border border-white/15 rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_50px_rgba(232,96,46,0.15)] relative text-white">
                 <button
                   onClick={() => setReceiptModalFee(null)}
-                  className="absolute top-4 right-4 p-2 rounded-xl border border-white/10 bg-white hover:bg-rose-200 transition"
+                  className="absolute top-4 right-4 p-2 rounded-xl border border-white/10 bg-[#121522] hover:bg-rose-500/20 text-zinc-400 hover:text-white transition cursor-pointer"
                 >
-                  <X className="w-5 h-5 text-black" />
+                  <X className="w-5 h-5" />
                 </button>
 
-                <div className="space-y-6 text-black">
+                <div className="space-y-6">
                   {/* Header */}
-                  <div className="text-center pb-4 border-b-2 border-dashed border-black">
-                    <span className="text-xl font-black font-outfit text-black">RAVEN TUTORIALS</span>
-                    <p className="text-[10px] font-black font-space uppercase text-emerald-900 tracking-wider">Patna Campus • Official Receipt</p>
-                    <p className="text-xs font-mono font-bold text-neutral-600 mt-1">Receipt #{receiptModalFee.receiptNumber}</p>
+                  <div className="text-center pb-4 border-b border-white/10">
+                    <span className="text-xl font-black font-outfit text-white tracking-tight">RAVEN TUTORIALS</span>
+                    <p className="text-[10px] font-bold font-space uppercase text-[#ffaa40] tracking-wider mt-0.5">Patna Campus • Official Receipt</p>
+                    <p className="text-xs font-mono text-zinc-400 mt-1">Receipt #{receiptModalFee.receiptNumber}</p>
                   </div>
 
                   {/* Metadata */}
                   <div className="grid grid-cols-2 gap-3 text-xs font-jakarta">
                     <div>
-                      <p className="text-[10px] font-black uppercase text-neutral-500">Student Name</p>
-                      <p className="font-black text-black">{student.studentName}</p>
+                      <p className="text-[10px] font-bold uppercase text-zinc-500">Student Name</p>
+                      <p className="font-bold text-white">{student.studentName}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[10px] font-black uppercase text-neutral-500">Registration ID</p>
-                      <p className="font-mono font-bold text-black">{student.registrationId}</p>
+                      <p className="text-[10px] font-bold uppercase text-zinc-500">Registration ID</p>
+                      <p className="font-mono font-bold text-[#ffaa40]">{student.registrationId}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] font-black uppercase text-neutral-500">Class & Month</p>
-                      <p className="font-bold text-black">{student.standard} • {receiptModalFee.month}</p>
+                      <p className="text-[10px] font-bold uppercase text-zinc-500">Class & Month</p>
+                      <p className="font-bold text-white">{student.standard} • {receiptModalFee.month}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[10px] font-black uppercase text-neutral-500">Date Paid</p>
-                      <p className="font-mono text-black">
+                      <p className="text-[10px] font-bold uppercase text-zinc-500">Date Paid</p>
+                      <p className="font-mono text-white">
                         {receiptModalFee.paidDate ? new Date(receiptModalFee.paidDate).toLocaleDateString('en-GB') : new Date().toLocaleDateString('en-GB')}
                       </p>
                     </div>
                   </div>
 
                   {/* Table */}
-                  <div className="border border-white/10 rounded-xl overflow-hidden bg-white text-xs">
-                    <div className="p-2.5 bg-[#dcfce7] border-b border-black font-black font-space uppercase flex justify-between">
+                  <div className="border border-white/10 rounded-xl overflow-hidden bg-[#0e111a] text-xs">
+                    <div className="p-2.5 bg-[#121522] border-b border-white/10 font-bold font-space uppercase text-zinc-400 flex justify-between">
                       <span>Description</span>
                       <span>Amount</span>
                     </div>
-                    <div className="p-2.5 flex justify-between border-b border-neutral-200">
+                    <div className="p-2.5 flex justify-between border-b border-white/5 text-zinc-300">
                       <span>Tuition Fee ({receiptModalFee.month})</span>
-                      <span className="font-mono font-bold">₹{receiptModalFee.tuitionFee}</span>
+                      <span className="font-mono font-bold text-white">₹{receiptModalFee.tuitionFee}</span>
                     </div>
                     {receiptModalFee.labFee > 0 && (
-                      <div className="p-2.5 flex justify-between border-b border-neutral-200">
+                      <div className="p-2.5 flex justify-between border-b border-white/5 text-zinc-300">
                         <span>Lab & Resource Fee</span>
-                        <span className="font-mono font-bold">₹{receiptModalFee.labFee}</span>
+                        <span className="font-mono font-bold text-white">₹{receiptModalFee.labFee}</span>
                       </div>
                     )}
                     {receiptModalFee.examFee > 0 && (
-                      <div className="p-2.5 flex justify-between border-b border-neutral-200">
+                      <div className="p-2.5 flex justify-between border-b border-white/5 text-zinc-300">
                         <span>Mock Test & Assessment Fee</span>
-                        <span className="font-mono font-bold">₹{receiptModalFee.examFee}</span>
+                        <span className="font-mono font-bold text-white">₹{receiptModalFee.examFee}</span>
                       </div>
                     )}
-                    <div className="p-3 bg-[#f0fdf4] font-black flex justify-between border-t border-white/10 text-sm">
-                      <span>TOTAL PAID</span>
-                      <span className="font-mono text-emerald-950">₹{receiptModalFee.totalAmount}</span>
+                    <div className="p-3 bg-[#121522] font-black flex justify-between border-t border-white/10 text-sm">
+                      <span className="text-white">TOTAL PAID</span>
+                      <span className="font-mono text-emerald-400 text-base">₹{receiptModalFee.totalAmount}</span>
                     </div>
                   </div>
 
                   {/* Stamp */}
                   <div className="flex items-center justify-between pt-2">
-                    <div className="border-2 border-emerald-600 rounded-lg px-2.5 py-1 text-center bg-emerald-50 rotate-[-4deg]">
-                      <p className="text-[9px] font-black uppercase text-emerald-800">PAID & VERIFIED</p>
-                      <p className="text-[8px] font-mono text-emerald-700">RAVEN ACCOUNTS</p>
+                    <div className="border border-emerald-500/40 rounded-lg px-2.5 py-1 text-center bg-emerald-500/10 rotate-[-4deg]">
+                      <p className="text-[9px] font-bold uppercase text-emerald-400">PAID & VERIFIED</p>
+                      <p className="text-[8px] font-mono text-emerald-300">RAVEN ACCOUNTS</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[10px] font-black font-outfit text-black">Raven Tutorials Patna</p>
-                      <p className="text-[8px] text-neutral-500 font-jakarta">Computer Generated Receipt</p>
+                      <p className="text-[10px] font-bold font-outfit text-white">Raven Tutorials Patna</p>
+                      <p className="text-[8px] text-zinc-500 font-jakarta">Computer Generated Receipt</p>
                     </div>
                   </div>
 
                   <div className="flex justify-center pt-2">
                     <button
                       onClick={() => window.print()}
-                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2"
+                      className="btn-sheryians px-6 py-2.5 text-white font-black font-outfit text-xs uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.35)] flex items-center gap-2 cursor-pointer"
                     >
                       <Printer className="w-4 h-4" />
                       <span>Print Receipt</span>
