@@ -230,24 +230,24 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
         onClick={toggleDropdown}
         className={`w-full ${
           size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2.5 text-sm sm:text-base'
-        } bg-white border-2 text-left rounded-xl font-jakarta font-bold flex items-center justify-between shadow-[2px_2px_0px_#000] hover:shadow-[3.5px_3.5px_0px_#000] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black transition-spring ${
-          disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:translate-x-0.5 active:translate-y-0.5'
+        } bg-[#121522] border border-white/15 text-left rounded-xl font-jakarta font-medium flex items-center justify-between hover:border-[#e8602e]/60 focus:outline-none focus:ring-2 focus:ring-[#e8602e] transition-all ${
+          disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         } ${
           error
-            ? 'border-rose-500 bg-rose-50/70 text-rose-950'
-            : 'border-black text-black'
+            ? 'border-rose-500/80 bg-rose-950/20 text-rose-300'
+            : 'text-white'
         } ${buttonClassName}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className={`truncate ${selectedOption ? 'text-black font-semibold' : 'text-neutral-400'}`}>
+        <span className={`truncate ${selectedOption ? 'text-white font-medium' : 'text-zinc-500'}`}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
 
         {/* Chevron Icon - rotated purely via GSAP for buttery 60fps response */}
         <ChevronDown
           ref={chevronRef}
-          className={`${size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'} text-black flex-shrink-0 ml-2`}
+          className={`${size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'} text-zinc-400 flex-shrink-0 ml-2`}
         />
       </button>
 
@@ -261,7 +261,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
             transformOrigin: 'top center',
             willChange: 'transform, opacity',
           }}
-          className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#f0fdf4] border-3 border-black rounded-2xl shadow-[6px_6px_0px_#000] overflow-hidden p-2"
+          className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#0c0e17] border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.15)] overflow-hidden p-2 backdrop-blur-xl"
         >
           <div
             ref={listRef}
@@ -276,16 +276,16 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(opt.value)}
-                  className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-bold flex items-center justify-between cursor-pointer border transition-spring ${
+                  className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-semibold flex items-center justify-between cursor-pointer border transition-colors ${
                     isSelected
-                      ? 'bg-emerald-300 text-black border-2 border-black shadow-[2px_2px_0px_#000]'
-                      : 'bg-white text-black border-transparent hover:bg-[#dcfce7] hover:border-black hover:shadow-[1.5px_1.5px_0px_#000] hover:translate-x-0.5'
-                  } active:translate-x-1 active:translate-y-0.5`}
+                      ? 'bg-[#e8602e] text-white border-transparent shadow-[0_0_15px_rgba(232,96,46,0.5)]'
+                      : 'bg-transparent text-zinc-300 border-transparent hover:bg-white/10 hover:text-white'
+                  }`}
                 >
                   <span className="truncate">{opt.label}</span>
                   {isSelected && (
-                    <span className="w-5 h-5 rounded-md bg-emerald-400 border border-black flex items-center justify-center flex-shrink-0 ml-2">
-                      <Check className="w-3.5 h-3.5 text-black stroke-[3]" />
+                    <span className="w-5 h-5 rounded-md bg-white/20 flex items-center justify-center flex-shrink-0 ml-2">
+                      <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
                     </span>
                   )}
                 </div>
