@@ -53,7 +53,7 @@ export default function HomeArticlesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e8602e]/10 border border-[#e8602e]/30 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-4 shadow-[0_0_20px_rgba(232,96,46,0.15)]">
+          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Knowledge Base, Nature & Stories</span>
           </div>

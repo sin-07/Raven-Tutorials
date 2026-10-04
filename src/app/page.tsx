@@ -165,7 +165,6 @@ export default function Home() {
 
   // GSAP animation refs
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroBadgeRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
@@ -209,19 +208,8 @@ export default function Home() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero: Badge from Up with smooth continuous float, Title & Subtitle from Down, Buttons from Left & Right
-      if (heroBadgeRef.current) {
-        animateFromUp(heroBadgeRef.current, 0.1, 35, 0.65);
-        gsap.to(heroBadgeRef.current, {
-          y: -5,
-          duration: 2.4,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: 0.8,
-        });
-      }
-      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.25, 45, 0.7);
+      // 1. Hero: Title & Subtitle from Down, Buttons from Left & Right
+      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.15, 45, 0.7);
       if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.4, 35, 0.65);
       if (heroCTARef.current) {
         const buttons = Array.from(heroCTARef.current.children);
@@ -293,17 +281,7 @@ export default function Home() {
         <div className="absolute top-60 left-1/4 w-[350px] h-[350px] bg-[#e8602e]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
 
         {/* Hero Top Content: Centered editorial headline & actions */}
-        <div className="text-center max-w-5xl mx-auto">
-          {/* Floating Pill Badge */}
-          <div 
-            ref={heroBadgeRef}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121420] border border-[#e8602e]/40 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-6 shadow-[0_0_20px_rgba(232,96,46,0.2)]"
-          >
-            <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse shadow-[0_0_8px_#e8602e]" />
-            <span>Admissions Open 2026-27 &bull; Patna</span>
-            <span className="hidden sm:inline text-zinc-500">|</span>
-            <span className="hidden sm:inline text-zinc-300 font-semibold">Home-Based Tuition &bull; 1:1 Personal Mentorship</span>
-          </div>
+        <div className="text-center max-w-5xl mx-auto pt-4 sm:pt-6">
 
           {/* Majestic Sheryians Headline */}
           <h1 
@@ -418,7 +396,7 @@ export default function Home() {
       {/* ── ADVANCED LEADERSHIP & METHODOLOGY CARDS (IMAGE 2 & 3) ────────────── */}
       <section ref={featuresSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
@@ -589,7 +567,7 @@ export default function Home() {
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
       <section ref={methodologySectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Target className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
@@ -652,7 +630,7 @@ export default function Home() {
       <section ref={coursesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
               <BookOpen className="w-3.5 h-3.5" />
               <span>Academic Catalog</span>
             </div>
@@ -840,7 +818,7 @@ export default function Home() {
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
       <section ref={categoriesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Microscope className="w-3.5 h-3.5" />
             <span>Curriculum Disciplines</span>
           </div>
@@ -886,7 +864,7 @@ export default function Home() {
           {/* Section Header: Image 4 Title & Action */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Real Voices & Authentic Experiences</span>
               </div>
