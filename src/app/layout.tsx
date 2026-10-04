@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     default: 'Raven Tutorials - Learn Smarter, Achieve More',
     template: '%s | Raven Tutorials',
   },
-  description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship for JEE, NEET, and Board exams.',
+  description: 'Master competitive exams with India\'s top educators. Access expert courses, live classes, and personalized mentorship for JEE, NEET, and Board exams.',
   keywords: ['online courses', 'JEE preparation', 'NEET coaching', 'board exams', 'competitive exams', 'online learning', 'Raven Tutorials', 'coaching classes', 'Bihar coaching', 'Patna coaching'],
   authors: [{ name: 'Raven Tutorials' }],
   creator: 'Raven Tutorials',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     url: 'https://raventutorials.com',
     siteName: 'Raven Tutorials',
     title: 'Raven Tutorials - Learn Smarter, Achieve More',
-    description: 'Master competitive exams with India\'s top educators. Access 150+ expert courses, live classes, and personalized mentorship.',
+    description: 'Master competitive exams with India\'s top educators. Access expert courses, live classes, and personalized mentorship.',
     images: [
       {
         url: '/logo.png',
@@ -115,7 +115,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${plusJakarta.className} font-sans antialiased selection:bg-emerald-500 selection:text-white`}>
+      <body className={`${plusJakarta.className} font-sans antialiased selection:bg-[#e8602e] selection:text-white bg-[#050507] text-[#e2e8f0]`}>
         <AdminProvider>
           <ClientLayout>
             {children}
