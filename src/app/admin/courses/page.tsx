@@ -268,10 +268,10 @@ export default function CoursesPage() {
     <AdminLayout>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <BookOpen className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Curriculum Management</span>
               </div>
@@ -284,7 +284,7 @@ export default function CoursesPage() {
             </div>
             <button
               onClick={openCreateModal}
-              className="btn-cartoon flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm font-outfit"
+              className="btn-sheryians flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm font-outfit"
             >
               <Plus size={18} className="text-black" />
               <span>Add New Course</span>
@@ -300,43 +300,43 @@ export default function CoursesPage() {
             placeholder="Search courses by title, instructor, category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white border-2 border-black rounded-2xl text-black placeholder-neutral-500 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[3px_3px_0px_#000]"
+            className="w-full pl-12 pr-4 py-3 bg-white border border-white/10 rounded-2xl text-black placeholder-neutral-500 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
           />
         </div>
 
         {/* Courses Grid */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 shadow-[6px_6px_0px_#000] text-center max-w-xs w-full">
-              <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500 mx-auto mb-2"></div>
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-xs w-full">
+              <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-emerald-500 mx-auto mb-2"></div>
               <p className="font-outfit font-black text-black">Loading courses...</p>
             </div>
           </div>
         ) : filteredCourses.length === 0 ? (
-          <div className="text-center py-16 bg-white border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000] p-8">
-            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border-2 border-black flex items-center justify-center mx-auto mb-3 shadow-[2px_2px_0px_#000]">
+          <div className="text-center py-16 bg-white border border-white/10 rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
+            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border border-white/10 flex items-center justify-center mx-auto mb-3 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <BookOpen className="w-8 h-8 text-black" />
             </div>
             <p className="text-black font-black text-xl font-outfit">No courses found</p>
             <p className="text-neutral-600 text-sm font-jakarta mt-1 mb-4">Start by creating your first academic course</p>
             <button
               onClick={openCreateModal}
-              className="btn-cartoon px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] inline-flex items-center gap-2 text-sm"
+              className="btn-sheryians px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] inline-flex items-center gap-2 text-sm"
             >
               <Plus size={16} />
               <span>Create Your First Course</span>
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 cartoon-stagger">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {filteredCourses.map((course) => (
               <div
                 key={course._id}
-                className="card-cartoon bg-[#f0fdf4] rounded-3xl overflow-hidden border-3 border-black shadow-[6px_6px_0px_#000] flex flex-col justify-between transition-all"
+                className="card-cartoon bg-[#f0fdf4] rounded-3xl overflow-hidden border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between transition-all"
               >
                 <div>
                   {/* Thumbnail */}
-                  <div className="relative h-44 bg-[#dcfce7] border-b-2 border-black">
+                  <div className="relative h-44 bg-[#dcfce7] border-b border-white/10">
                     {course.thumbnail ? (
                       <img
                         src={course.thumbnail}
@@ -349,7 +349,7 @@ export default function CoursesPage() {
                         <span className="text-xs font-bold font-space uppercase">No Thumbnail</span>
                       </div>
                     )}
-                    <div className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg border border-black text-xs font-black font-space uppercase shadow-[2px_2px_0px_#000] ${
+                    <div className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg border border-black text-xs font-black font-space uppercase shadow-[0_4px_12px_rgba(0,0,0,0.3)] ${
                       course.isPublished ? 'bg-[#86efac] text-black' : 'bg-amber-200 text-black'
                     }`}>
                       {course.isPublished ? 'Published' : 'Draft'}
@@ -359,7 +359,7 @@ export default function CoursesPage() {
                   {/* Content */}
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-0.5 rounded-md bg-white border border-black text-[10px] font-black uppercase font-space text-black shadow-[1px_1px_0px_#000]">
+                      <span className="px-2 py-0.5 rounded-md bg-white border border-black text-[10px] font-black uppercase font-space text-black shadow-sm">
                         {course.category}
                       </span>
                       <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black text-[10px] font-black uppercase font-space text-black">
@@ -416,7 +416,7 @@ export default function CoursesPage() {
                 <div className="p-4 pt-0 flex gap-2">
                   <button
                     onClick={() => togglePublish(course)}
-                    className={`btn-cartoon flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-black font-outfit border-2 border-black shadow-[2px_2px_0px_#000] transition-colors ${
+                    className={`btn-sheryians flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-black font-outfit border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-colors ${
                       course.isPublished
                         ? 'bg-amber-100 hover:bg-amber-200 text-amber-950'
                         : 'bg-emerald-400 hover:bg-emerald-300 text-black'
@@ -427,14 +427,14 @@ export default function CoursesPage() {
                   </button>
                   <button
                     onClick={() => handleEdit(course)}
-                    className="btn-cartoon p-2 bg-white hover:bg-sky-100 text-black rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition-colors"
+                    className="btn-sheryians p-2 bg-white hover:bg-sky-100 text-black rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-colors"
                     title="Edit course"
                   >
                     <Edit2 size={16} />
                   </button>
                   <button
                     onClick={() => handleDelete(course._id)}
-                    className="btn-cartoon p-2 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition-colors"
+                    className="btn-sheryians p-2 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-colors"
                     title="Delete course"
                   >
                     <Trash2 size={16} />
@@ -448,10 +448,10 @@ export default function CoursesPage() {
         {/* Cartoon Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overscroll-contain">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
-              <div className="sticky top-0 bg-[#86efac] p-5 border-b-2 border-black flex justify-between items-center z-10">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
+              <div className="sticky top-0 bg-[#86efac] p-5 border-b border-white/10 flex justify-between items-center z-10">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-white rounded-lg border border-black shadow-[1px_1px_0px_#000]">
+                  <div className="p-1.5 bg-white rounded-lg border border-black shadow-sm">
                     <BookOpen size={18} className="text-black" />
                   </div>
                   <h2 className="text-xl font-black font-outfit text-black">
@@ -460,7 +460,7 @@ export default function CoursesPage() {
                 </div>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="btn-cartoon p-1.5 rounded-lg bg-white border border-black hover:bg-rose-100 text-black transition-colors"
+                  className="btn-sheryians p-1.5 rounded-lg bg-white border border-black hover:bg-rose-100 text-black transition-colors"
                 >
                   <X size={18} />
                 </button>
@@ -476,7 +476,7 @@ export default function CoursesPage() {
                     value={formData.title}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                    className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     placeholder="e.g. Class 10 Foundation Physics"
                   />
                 </div>
@@ -490,7 +490,7 @@ export default function CoursesPage() {
                     onChange={handleInputChange}
                     required
                     rows={3}
-                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                    className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     placeholder="Detailed overview of syllabus, targets, and objectives..."
                   />
                 </div>
@@ -505,7 +505,7 @@ export default function CoursesPage() {
                       value={formData.instructor}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="e.g., Er. Aniket Singh"
                     />
                   </div>
@@ -516,7 +516,7 @@ export default function CoursesPage() {
                       name="instructorQualification"
                       value={formData.instructorQualification}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="e.g., B.Tech, 8+ Yrs Exp"
                     />
                   </div>
@@ -535,7 +535,7 @@ export default function CoursesPage() {
                     />
                     <label
                       htmlFor="avatar-upload"
-                      className="btn-cartoon flex items-center gap-2 px-4 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-xs cursor-pointer hover:bg-[#dcfce7] shadow-[2px_2px_0px_#000]"
+                      className="btn-sheryians flex items-center gap-2 px-4 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-xs cursor-pointer hover:bg-[#dcfce7] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     >
                       <Upload size={16} />
                       Upload Photo
@@ -569,7 +569,7 @@ export default function CoursesPage() {
                       value={formData.duration}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="e.g., 6 Months"
                     />
                   </div>
@@ -593,7 +593,7 @@ export default function CoursesPage() {
                       value={formData.category}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="e.g., Class 10 Foundation"
                     />
                   </div>
@@ -610,7 +610,7 @@ export default function CoursesPage() {
                       onChange={handleInputChange}
                       required
                       min="0"
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="0"
                     />
                   </div>
@@ -622,7 +622,7 @@ export default function CoursesPage() {
                       value={formData.originalPrice}
                       onChange={handleInputChange}
                       min="0"
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       placeholder="0"
                     />
                   </div>
@@ -636,7 +636,7 @@ export default function CoursesPage() {
                     name="thumbnail"
                     value={formData.thumbnail}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                    className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
@@ -650,7 +650,7 @@ export default function CoursesPage() {
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('syllabus', index, e.target.value)}
-                        className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        className="flex-1 px-3.5 py-2 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                         placeholder={`Module ${index + 1} Title`}
                       />
                       {formData.syllabus.length > 1 && (
@@ -682,7 +682,7 @@ export default function CoursesPage() {
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('features', index, e.target.value)}
-                        className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        className="flex-1 px-3.5 py-2 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                         placeholder={`Highlight ${index + 1}`}
                       />
                       {formData.features.length > 1 && (
@@ -706,18 +706,18 @@ export default function CoursesPage() {
                 </div>
 
                 {/* Submit Buttons */}
-                <div className="flex gap-3 pt-4 border-t-2 border-black/10">
+                <div className="flex gap-3 pt-4 border-t border-white/10/10">
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="btn-cartoon flex-1 py-2.5 px-4 bg-white hover:bg-neutral-100 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]"
+                    className="btn-sheryians flex-1 py-2.5 px-4 bg-white hover:bg-neutral-100 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-cartoon flex-1 py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] disabled:opacity-50"
+                    className="btn-sheryians flex-1 py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] disabled:opacity-50"
                   >
                     {submitting ? 'Saving...' : editingCourse ? 'Update Course' : 'Create Course'}
                   </button>

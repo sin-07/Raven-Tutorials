@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   Menu, X, BarChart3, Users, CheckSquare, FileText, 
-  BookOpen, Megaphone, Video, MessageSquare, Sparkles, CreditCard, Newspaper 
+  BookOpen, Megaphone, Video, MessageSquare, CreditCard, Newspaper 
 } from 'lucide-react';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
@@ -18,7 +18,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // Handle window resize for responsive behavior
   useEffect(() => {
     const handleResize = () => {
       const newIsDesktop = window.innerWidth >= 1024;
@@ -30,14 +29,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       }
     };
 
-    // Initialize on mount
     handleResize();
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Freeze background when sidebar is open on mobile
   useBodyScrollLock(sidebarOpen && !isDesktop);
 
   const menuItems = [
@@ -55,18 +51,18 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6fcf8] relative overflow-hidden selection:bg-emerald-300 selection:text-black">
+    <div className="min-h-screen bg-[#06080f] text-white relative overflow-hidden">
       {/* Mobile Menu Toggle Button */}
       <div className={`lg:hidden fixed top-20 right-4 z-30 transition-all duration-300 ${sidebarOpen && !isDesktop ? 'hidden' : ''}`}>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="btn-cartoon p-2.5 rounded-xl bg-white border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-[#dcfce7] transition-all active:translate-x-0.5 active:translate-y-0.5"
+          className="p-2.5 rounded-xl bg-[#121522] border border-white/15 text-white shadow-lg hover:border-white/30 transition-all cursor-pointer"
           aria-label="Toggle sidebar"
         >
           {sidebarOpen ? (
-            <X size={20} className="text-black" />
+            <X size={20} />
           ) : (
-            <Menu size={20} className="text-black" />
+            <Menu size={20} />
           )}
         </button>
       </div>
@@ -74,36 +70,36 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && !isDesktop && (
         <div
-          className="fixed inset-0 bg-black/40 z-20 lg:hidden backdrop-blur-xs"
+          className="fixed inset-0 bg-black/70 z-20 lg:hidden backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <div className={`flex pt-16 ${sidebarOpen && !isDesktop ? 'max-h-screen overflow-hidden' : ''}`}>
-        {/* Cartoon Sidebar */}
+        {/* Sidebar */}
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-          } fixed w-64 bg-[#f0fdf4] border-r-3 border-black shadow-[4px_0px_0px_#000] transition-transform duration-300 ease-out z-20 ${
+          } fixed w-64 bg-[#0a0c14] border-r border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out z-20 ${
             sidebarOpen && !isDesktop ? 'top-0' : 'top-16'
           } left-0 bottom-0 overflow-y-auto flex flex-col justify-between`}
         >
           <div>
             {/* Sidebar Brand Header */}
-            <div className="p-4 sm:p-5 border-b-2 border-black/15 flex items-center justify-between">
+            <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-[#0e101a]">
               <Link href="/admin/dashboard" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white border-2 border-black shadow-[1.5px_1.5px_0px_#000] flex items-center justify-center p-1.5 flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/15 flex items-center justify-center p-1.5 flex-shrink-0">
                   <img 
                     src="/logo.png" 
                     alt="RAVEN Logo" 
-                    className="h-full w-full object-contain filter invert-0"
+                    className="h-full w-full object-contain"
                   />
                 </div>
                 <div>
-                  <div className="text-base font-black text-black font-outfit leading-tight tracking-tight">
+                  <div className="text-base font-black text-white font-outfit leading-tight tracking-tight">
                     RAVEN
                   </div>
-                  <span className="text-[10px] font-black uppercase font-space px-1.5 py-0.2 bg-[#86efac] border border-black rounded text-black">
+                  <span className="text-[10px] font-bold uppercase font-space px-2 py-0.5 bg-[#e8602e]/20 border border-[#e8602e]/40 rounded-full text-[#ff7b47]">
                     ADMIN
                   </span>
                 </div>
@@ -113,9 +109,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               {!isDesktop && (
                 <button
                   onClick={() => setSidebarOpen(false)}
-                  className="p-1 rounded-lg border border-black hover:bg-rose-100"
+                  className="p-1 rounded-lg border border-white/15 text-white hover:bg-white/10 cursor-pointer"
                 >
-                  <X size={18} className="text-black" />
+                  <X size={18} />
                 </button>
               )}
             </div>
@@ -131,28 +127,24 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     onClick={() => !isDesktop && setSidebarOpen(false)}
                     className={`flex items-center px-3.5 py-2.5 rounded-xl font-outfit text-sm transition-all duration-150 gap-3 ${
                       isActive
-                        ? 'bg-emerald-400 text-black font-black border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
-                        : 'text-neutral-700 hover:text-black hover:bg-[#dcfce7] font-bold border border-transparent'
+                        ? 'bg-[#e8602e] text-white font-bold shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                        : 'text-zinc-400 hover:text-white hover:bg-white/5 font-medium'
                     }`}
                   >
-                    <item.icon size={18} className="flex-shrink-0 text-black" />
+                    <item.icon size={18} className="flex-shrink-0" />
                     <span>{item.label}</span>
                   </Link>
                 );
               })}
 
               {/* Post Notice Quick Action */}
-              <div className="pt-3 mt-3 border-t-2 border-black/10">
+              <div className="pt-3 mt-3 border-t border-white/10">
                 <Link
                   href="/admin/notices"
                   onClick={() => !isDesktop && setSidebarOpen(false)}
-                  className={`btn-cartoon flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border-2 border-black text-sm font-black font-outfit transition-all shadow-[2px_2px_0px_#000] ${
-                    pathname === '/admin/notices'
-                      ? 'bg-emerald-400 text-black'
-                      : 'bg-[#86efac] hover:bg-[#4ade80] text-black'
-                  }`}
+                  className={`btn-sheryians flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold font-outfit transition-all text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]`}
                 >
-                  <Megaphone size={16} className="text-black" />
+                  <Megaphone size={16} />
                   <span>Post Notice</span>
                 </Link>
               </div>
@@ -160,11 +152,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           </div>
 
           {/* Sidebar Footer Badge */}
-          <div className="p-4 border-t-2 border-black/15 bg-[#dcfce7] text-center">
-            <p className="text-[11px] font-space font-black text-black uppercase">
+          <div className="p-4 border-t border-white/10 bg-[#0e101a] text-center">
+            <p className="text-[11px] font-space font-bold text-[#ff814e] uppercase">
               Academic Control v2.0
             </p>
-            <p className="text-[10px] text-neutral-600 font-medium font-jakarta mt-0.5">
+            <p className="text-[10px] text-zinc-500 font-medium font-jakarta mt-0.5">
               Raven Tutorials Administration
             </p>
           </div>

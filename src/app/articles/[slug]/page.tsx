@@ -85,7 +85,7 @@ export default function ArticleDetailPage() {
       }
       if (trimmed.startsWith('## ')) {
         return (
-          <h2 key={idx} className="font-outfit font-black text-2xl sm:text-3xl text-black mt-8 mb-4 border-b-2 border-black/15 pb-2">
+          <h2 key={idx} className="font-outfit font-black text-2xl sm:text-3xl text-black mt-8 mb-4 border-b border-white/10/15 pb-2">
             {trimmed.replace('## ', '')}
           </h2>
         );
@@ -111,7 +111,7 @@ export default function ArticleDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex flex-col justify-center items-center py-32">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-emerald-500 mb-4" />
+        <div className="animate-spin rounded-full h-12 w-12 border border-white/15 border-t-emerald-500 mb-4" />
         <p className="font-outfit font-black text-black">Loading Article...</p>
       </div>
     );
@@ -120,7 +120,7 @@ export default function ArticleDetailPage() {
   if (!article) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex flex-col justify-center items-center py-32 px-4 text-center">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 max-w-md shadow-[6px_6px_0px_#000]">
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 max-w-md shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
           <BookOpen className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
           <h2 className="font-outfit font-black text-2xl text-black mb-2">Article Not Found</h2>
           <p className="font-jakarta text-sm text-neutral-600 mb-6">
@@ -128,7 +128,7 @@ export default function ArticleDetailPage() {
           </p>
           <Link
             href="/"
-            className="btn-cartoon inline-flex items-center gap-2 px-6 py-3 bg-emerald-400 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000]"
+            className="btn-sheryians inline-flex items-center gap-2 px-6 py-3 bg-emerald-400 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Home</span>
@@ -153,7 +153,7 @@ export default function ArticleDetailPage() {
 
           <button
             onClick={handleShare}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-emerald-100 border-2 border-black rounded-xl text-xs font-black font-outfit shadow-[2px_2px_0px_#000] cursor-pointer active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-emerald-100 border border-white/10 rounded-xl text-xs font-black font-outfit shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer active:translate-x-0.5 active:translate-y-0.5 transition-all"
           >
             <Share2 className="w-3.5 h-3.5" />
             <span>Share Article</span>
@@ -161,20 +161,20 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Article Header Card */}
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-10 shadow-[8px_8px_0px_#000] mb-8">
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-8">
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="px-3 py-1 bg-emerald-300 border border-black rounded-lg text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+            <span className="px-3 py-1 bg-emerald-300 border border-black rounded-lg text-xs font-black font-space uppercase shadow-sm">
               {article.category}
             </span>
-            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-[1px_1px_0px_#000]">
+            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-sm">
               <Clock className="w-3.5 h-3.5" />
               <span>{article.readTime}</span>
             </div>
-            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-[1px_1px_0px_#000]">
+            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-sm">
               <Calendar className="w-3.5 h-3.5" />
               <span>{new Date(article.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
             </div>
-            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-[1px_1px_0px_#000]">
+            <div className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-600 bg-white border border-black px-2.5 py-1 rounded-md shadow-sm">
               <Eye className="w-3.5 h-3.5" />
               <span>{article.views || 1} views</span>
             </div>
@@ -189,11 +189,11 @@ export default function ArticleDetailPage() {
           </p>
 
           {/* Author Badge */}
-          <div className="flex items-center gap-3 pt-6 border-t-2 border-black/10">
+          <div className="flex items-center gap-3 pt-6 border-t border-white/10/10">
             <img
               src={article.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'}
               alt={article.author}
-              className="w-12 h-12 rounded-full object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
+              className="w-12 h-12 rounded-full object-cover border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
             />
             <div>
               <div className="flex items-center gap-1.5">
@@ -207,7 +207,7 @@ export default function ArticleDetailPage() {
 
         {/* Cover Image */}
         {article.coverImage && (
-          <div className="rounded-3xl border-3 border-black overflow-hidden shadow-[8px_8px_0px_#000] mb-10 h-72 sm:h-96 w-full bg-slate-100">
+          <div className="rounded-3xl border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 h-72 sm:h-96 w-full bg-slate-100">
             <img
               src={article.coverImage}
               alt={article.title}
@@ -217,18 +217,18 @@ export default function ArticleDetailPage() {
         )}
 
         {/* Article Body Content */}
-        <article className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-12 shadow-[8px_8px_0px_#000] mb-12">
+        <article className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-12">
           <div className="prose max-w-none text-neutral-900 font-jakarta">
             {renderFormattedContent(article.content)}
           </div>
 
           {/* Tags */}
           {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 pt-8 mt-8 border-t-2 border-black/15">
+            <div className="flex flex-wrap gap-2 pt-8 mt-8 border-t border-white/10/15">
               {article.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 bg-white border border-black rounded-lg text-xs font-mono font-bold text-neutral-800 shadow-[1.5px_1.5px_0px_#000]"
+                  className="px-3 py-1 bg-white border border-black rounded-lg text-xs font-mono font-bold text-neutral-800 shadow-sm"
                 >
                   #{tag}
                 </span>
@@ -248,7 +248,7 @@ export default function ArticleDetailPage() {
                 <Link
                   key={rel._id}
                   href={`/articles/${rel.slug}`}
-                  className="bg-[#f0fdf4] hover:bg-[#e6f9ee] border-2 border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all flex flex-col justify-between"
+                  className="bg-[#f0fdf4] hover:bg-[#e6f9ee] border border-white/10 rounded-2xl p-5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:-translate-y-1 transition-all flex flex-col justify-between"
                 >
                   <div>
                     <span className="inline-block px-2 py-0.5 bg-emerald-200 border border-black rounded text-[10px] font-space font-black uppercase mb-2">
@@ -272,7 +272,7 @@ export default function ArticleDetailPage() {
         )}
 
         {/* Admission Callout Banner */}
-        <div className="bg-[#dcfce7] border-3 border-black rounded-3xl p-8 sm:p-10 shadow-[8px_8px_0px_#000] text-center space-y-4">
+        <div className="bg-[#dcfce7] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-emerald-300 rounded-full text-xs font-black font-space uppercase border border-black">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Join Raven Mentorship</span>
@@ -286,7 +286,7 @@ export default function ArticleDetailPage() {
           <div className="pt-2">
             <Link
               href="/admission"
-              className="btn-cartoon inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm"
+              className="btn-sheryians inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black font-outfit rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm"
             >
               <span>Apply for Admission</span>
               <ArrowRight className="w-4 h-4 text-black" />

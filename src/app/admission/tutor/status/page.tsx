@@ -62,21 +62,21 @@ export default function StatusCheckPage() {
     switch (status) {
       case 'approved':
         return (
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-300 border border-white/10 font-black font-space text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <CheckCircle className="w-5 h-5 text-black" />
             <span>APPROVED</span>
           </div>
         );
       case 'rejected':
         return (
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-300 border border-white/10 font-black font-space text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <XCircle className="w-5 h-5 text-black" />
             <span>NOT PROCEEDING</span>
           </div>
         );
       default:
         return (
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-300 border-2 border-black font-black font-space text-black shadow-[2px_2px_0px_#000]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-300 border border-white/10 font-black font-space text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <Clock className="w-5 h-5 text-black" />
             <span>UNDER REVIEW</span>
           </div>
@@ -101,7 +101,7 @@ export default function StatusCheckPage() {
         <div className="max-w-lg mx-auto relative z-10">
           {/* Header */}
           <div className="text-center mb-8 flex flex-col items-center justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border border-white/10 text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-4">
               <Sparkles className="w-4 h-4 text-emerald-700" />
               <span>Recruitment Tracker</span>
             </div>
@@ -120,7 +120,7 @@ export default function StatusCheckPage() {
           {/* Search Card */}
           <form
             onSubmit={handleCheck}
-            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border-3 border-black shadow-[8px_8px_0px_#000] mb-6 space-y-4"
+            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-6 space-y-4"
           >
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-black font-space mb-2">
@@ -136,14 +136,14 @@ export default function StatusCheckPage() {
                     setError('');
                   }}
                   placeholder="name@example.com"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
                   required
                 />
               </div>
             </div>
 
             {error && (
-              <div className="p-3.5 bg-rose-100 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] flex items-center gap-2.5">
+              <div className="p-3.5 bg-rose-100 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2.5">
                 <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />
                 <p className="text-rose-900 text-xs font-jakarta font-bold">{error}</p>
               </div>
@@ -152,7 +152,7 @@ export default function StatusCheckPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-sheryians w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
@@ -170,7 +170,7 @@ export default function StatusCheckPage() {
 
           {/* Status Result Card */}
           {application && (
-            <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border-3 border-black shadow-[8px_8px_0px_#000] text-center space-y-4 mb-6">
+            <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center space-y-4 mb-6">
               <div>
                 {getStatusBadge(application.status)}
               </div>
@@ -183,7 +183,7 @@ export default function StatusCheckPage() {
                 {getStatusMessage(application.status)}
               </p>
 
-              <div className="pt-3 border-t-2 border-black/10 text-xs text-neutral-600 font-jakarta">
+              <div className="pt-3 border-t border-white/10/10 text-xs text-neutral-600 font-jakarta">
                 Application Submitted: {new Date(application.submittedAt).toLocaleDateString()}
               </div>
             </div>

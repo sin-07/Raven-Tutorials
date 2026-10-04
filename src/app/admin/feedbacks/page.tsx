@@ -188,8 +188,8 @@ const Feedbacks: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000]">
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-2 shadow-[2px_2px_0px_#000]">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <MessageSquare size={14} className="text-black" />
             <span>Community Voice</span>
           </div>
@@ -203,49 +203,49 @@ const Feedbacks: React.FC = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          <div className="bg-white rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-white rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-space font-black uppercase text-black/60">Total Feedback</p>
                 <p className="text-3xl font-outfit font-black text-black mt-1">{stats.total}</p>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-neutral-100 border-2 border-black flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-neutral-100 border border-white/10 flex items-center justify-center">
                 <MessageSquare className="w-5 h-5 text-black" />
               </div>
             </div>
           </div>
           
-          <div className="bg-[#fef08a] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#fef08a] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-space font-black uppercase text-black/70">New / Unread</p>
                 <p className="text-3xl font-outfit font-black text-black mt-1">{stats.new}</p>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-white border border-white/10 flex items-center justify-center">
                 <AlertCircle className="w-5 h-5 text-black" />
               </div>
             </div>
           </div>
 
-          <div className="bg-[#bfdbfe] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#bfdbfe] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-space font-black uppercase text-black/70">Reviewed</p>
                 <p className="text-3xl font-outfit font-black text-black mt-1">{stats.reviewed}</p>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-white border border-white/10 flex items-center justify-center">
                 <Eye className="w-5 h-5 text-black" />
               </div>
             </div>
           </div>
 
-          <div className="bg-[#86efac] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#86efac] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-space font-black uppercase text-black/70">Resolved</p>
                 <p className="text-3xl font-outfit font-black text-black mt-1">{stats.resolved}</p>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-white border border-white/10 flex items-center justify-center">
                 <CheckCircle className="w-5 h-5 text-black" />
               </div>
             </div>
@@ -253,7 +253,7 @@ const Feedbacks: React.FC = () => {
         </div>
 
         {/* Filters Card */}
-        <div className="bg-white rounded-3xl p-5 border-3 border-black shadow-[5px_5px_0px_#000]">
+        <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-black/50" />
@@ -262,11 +262,11 @@ const Feedbacks: React.FC = () => {
                 placeholder="Search feedback by subject, name, or content..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400 text-sm"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shrink-0">
                 <Filter className="w-4 h-4 text-black" />
               </div>
               <CartoonDropdown
@@ -288,8 +288,8 @@ const Feedbacks: React.FC = () => {
         {/* Feedback List & Detail Split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* List Panel */}
-          <div className="lg:col-span-5 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden flex flex-col">
-            <div className="p-4 md:p-5 bg-[#86efac] border-b-3 border-black">
+          <div className="lg:col-span-5 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden flex flex-col">
+            <div className="p-4 md:p-5 bg-[#86efac] border-b border-white/10">
               <h2 className="text-xl font-outfit font-black text-black">Feedback Submissions</h2>
               <p className="text-xs font-space font-bold uppercase text-black/70">Click any feedback to read & reply</p>
             </div>
@@ -355,11 +355,11 @@ const Feedbacks: React.FC = () => {
             
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="p-4 border-t-2 border-black bg-neutral-50 flex items-center justify-between">
+              <div className="p-4 border-t border-white/10 bg-neutral-50 flex items-center justify-between">
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="px-3 py-1.5 bg-white border-2 border-black rounded-lg text-xs font-outfit font-black shadow-[2px_2px_0px_#000] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+                  className="px-3 py-1.5 bg-white border border-white/10 rounded-lg text-xs font-outfit font-black shadow-[0_4px_12px_rgba(0,0,0,0.3)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
                 >
                   Previous
                 </button>
@@ -369,7 +369,7 @@ const Feedbacks: React.FC = () => {
                 <button
                   onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="px-3 py-1.5 bg-white border-2 border-black rounded-lg text-xs font-outfit font-black shadow-[2px_2px_0px_#000] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+                  className="px-3 py-1.5 bg-white border border-white/10 rounded-lg text-xs font-outfit font-black shadow-[0_4px_12px_rgba(0,0,0,0.3)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
                 >
                   Next
                 </button>
@@ -378,21 +378,21 @@ const Feedbacks: React.FC = () => {
           </div>
 
           {/* Details & Reply Panel */}
-          <div className="lg:col-span-7 bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-6 md:p-8 flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-[#f0fdf4] rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-6 md:p-8 flex flex-col justify-between">
             {selectedFeedback ? (
               <div className="space-y-6">
-                <div className="flex items-start justify-between gap-4 pb-4 border-b-2 border-black">
+                <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10">
                   <div>
                     <h2 className="text-2xl font-outfit font-black text-black">{selectedFeedback.subject}</h2>
                     <div className="flex gap-2 flex-wrap mt-2">
-                      <span className={`px-3 py-1 rounded-lg text-xs font-space font-black uppercase border-2 border-black ${getCategoryColor(selectedFeedback.category)}`}>
+                      <span className={`px-3 py-1 rounded-lg text-xs font-space font-black uppercase border border-white/10 ${getCategoryColor(selectedFeedback.category)}`}>
                         {selectedFeedback.category?.replace(/_/g, ' ')}
                       </span>
                       {(() => {
                         const StatusBadge = getStatusBadge(selectedFeedback.status);
                         const StatusIcon = StatusBadge.icon;
                         return (
-                          <span className={`px-3 py-1 rounded-lg text-xs font-space font-black uppercase border-2 border-black flex items-center gap-1.5 ${StatusBadge.color}`}>
+                          <span className={`px-3 py-1 rounded-lg text-xs font-space font-black uppercase border border-white/10 flex items-center gap-1.5 ${StatusBadge.color}`}>
                             <StatusIcon className="w-3.5 h-3.5" />
                             {StatusBadge.label}
                           </span>
@@ -402,7 +402,7 @@ const Feedbacks: React.FC = () => {
                   </div>
                   <button
                     onClick={() => handleDeleteFeedback(selectedFeedback._id)}
-                    className="p-2.5 bg-rose-100 text-rose-700 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+                    className="p-2.5 bg-rose-100 text-rose-700 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
                     title="Delete feedback"
                   >
                     <Trash2 className="w-5 h-5" />
@@ -411,7 +411,7 @@ const Feedbacks: React.FC = () => {
 
                 {/* Rating Card if present */}
                 {selectedFeedback.rating && (
-                  <div className="bg-white border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000] flex items-center justify-between">
+                  <div className="bg-white border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-between">
                     <span className="text-xs font-space font-black uppercase text-black">Student Rating:</span>
                     <div className="flex gap-1 items-center">
                       {[...Array(5)].map((_, i) => (
@@ -425,7 +425,7 @@ const Feedbacks: React.FC = () => {
                 )}
 
                 {/* Submitted By Box */}
-                <div className="bg-white border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+                <div className="bg-white border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <p className="text-xs font-space font-black uppercase text-black/60 mb-1">Submitted By</p>
                   <p className="font-outfit font-black text-lg text-black">
                     {selectedFeedback.studentId?.studentName || selectedFeedback.guestName || 'Anonymous Student'}
@@ -441,7 +441,7 @@ const Feedbacks: React.FC = () => {
                 {/* Feedback Message */}
                 <div>
                   <p className="text-xs font-space font-black uppercase text-black mb-2">Message</p>
-                  <div className="bg-white border-2 border-black rounded-2xl p-5 shadow-[3px_3px_0px_#000]">
+                  <div className="bg-white border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                     <p className="font-jakarta font-medium text-black whitespace-pre-wrap leading-relaxed">
                       {selectedFeedback.message}
                     </p>
@@ -452,7 +452,7 @@ const Feedbacks: React.FC = () => {
                 <div className="pt-2">
                   <p className="text-xs font-space font-black uppercase text-black mb-2">Admin Response</p>
                   {selectedFeedback.adminResponse ? (
-                    <div className="bg-[#86efac] border-2 border-black rounded-2xl p-5 shadow-[3px_3px_0px_#000]">
+                    <div className="bg-[#86efac] border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                       <p className="font-jakarta font-bold text-black whitespace-pre-wrap mb-2">
                         {selectedFeedback.adminResponse}
                       </p>
@@ -468,12 +468,12 @@ const Feedbacks: React.FC = () => {
                         onChange={(e) => setAdminResponse(e.target.value)}
                         placeholder="Type your official response to the student..."
                         rows={4}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-2xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[3px_3px_0px_#000] placeholder-neutral-400 text-sm"
+                        className="w-full px-4 py-3 bg-white border border-white/10 rounded-2xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_8px_20px_rgba(0,0,0,0.4)] placeholder-neutral-400 text-sm"
                       />
                       <button
                         onClick={handleSubmitResponse}
                         disabled={submitting || !adminResponse.trim()}
-                        className="w-full px-6 py-3.5 bg-[#86efac] text-black border-2 border-black rounded-xl font-outfit font-black text-base shadow-[4px_4px_0px_#000] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full px-6 py-3.5 bg-[#86efac] text-black border border-white/10 rounded-xl font-outfit font-black text-base shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send className="w-4 h-4" />
                         {submitting ? 'Sending Response...' : 'Send Official Response'}
@@ -484,7 +484,7 @@ const Feedbacks: React.FC = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[450px] text-center p-8 bg-white border-2 border-dashed border-black/30 rounded-2xl">
-                <div className="w-16 h-16 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center mb-4 shadow-[3px_3px_0px_#000]">
+                <div className="w-16 h-16 rounded-2xl bg-[#86efac] border border-white/10 flex items-center justify-center mb-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <Eye className="w-8 h-8 text-black" />
                 </div>
                 <h3 className="font-outfit font-black text-xl text-black">No Feedback Selected</h3>

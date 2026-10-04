@@ -142,8 +142,8 @@ export default function VerifyOTPPage() {
   if (!tempAdmission) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-          <div className="w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
+          <div className="w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
           <p className="text-black font-black text-xl font-outfit">Loading Verification...</p>
           <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Validating admission session</p>
         </div>
@@ -160,10 +160,10 @@ export default function VerifyOTPPage() {
         <div className="relative z-10 max-w-md w-full">
           {/* Cartoon Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-emerald-300 rounded-2xl border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#000]">
+            <div className="w-16 h-16 bg-emerald-300 rounded-2xl border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <Mail className="w-8 h-8 text-black" />
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
               <span>Step 2 of 3</span>
             </div>
@@ -176,7 +176,7 @@ export default function VerifyOTPPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-rose-100 border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000] flex items-start gap-3">
+            <div className="mb-6 p-4 bg-rose-100 border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-rose-600 mt-0.5 flex-shrink-0" />
               <p className="text-rose-900 text-sm font-jakarta font-bold">{error}</p>
             </div>
@@ -184,14 +184,14 @@ export default function VerifyOTPPage() {
 
           {/* Success Message */}
           {success && (
-            <div className="mb-6 p-4 bg-emerald-100 border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000] flex items-start gap-3">
+            <div className="mb-6 p-4 bg-emerald-100 border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-emerald-700 mt-0.5 flex-shrink-0" />
               <p className="text-emerald-950 text-sm font-jakarta font-bold">{success}</p>
             </div>
           )}
 
           {/* Cartoon Card */}
-          <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 border-3 border-black">
+          <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 border border-white/10">
             <div className="flex justify-center gap-2 sm:gap-3 mb-6">
               {otp.map((digit, index) => (
                 <input
@@ -204,7 +204,7 @@ export default function VerifyOTPPage() {
                   onChange={(e) => handleOtpChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
                   onPaste={index === 0 ? handlePaste : undefined}
-                  className="w-11 h-14 sm:w-12 sm:h-14 text-center text-2xl font-black font-outfit bg-white border-2 border-black text-black rounded-xl shadow-[3px_3px_0px_#000] focus:ring-2 focus:ring-emerald-400 focus:border-black outline-none transition"
+                  className="w-11 h-14 sm:w-12 sm:h-14 text-center text-2xl font-black font-outfit bg-white border border-white/10 text-black rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] focus:ring-2 focus:ring-emerald-400 focus:border-black outline-none transition"
                 />
               ))}
             </div>
@@ -227,7 +227,7 @@ export default function VerifyOTPPage() {
             <button
               onClick={handleVerifyOTP}
               disabled={loading || countdown === 0}
-              className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
+              className="btn-sheryians w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
             >
               {loading ? (
                 <>
@@ -260,7 +260,7 @@ export default function VerifyOTPPage() {
           </div>
 
           {/* Student Info Card */}
-          <div className="mt-6 p-4 rounded-2xl bg-[#dcfce7] border-2 border-black shadow-[3px_3px_0px_#000] text-center space-y-1">
+          <div className="mt-6 p-4 rounded-2xl bg-[#dcfce7] border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-center space-y-1">
             <p className="text-xs text-neutral-700 font-jakarta font-medium">
               Student: <span className="font-bold text-black">{tempAdmission.studentName}</span> • Standard: <span className="font-bold text-black">{tempAdmission.standard}</span>
             </p>

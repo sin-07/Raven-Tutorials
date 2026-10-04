@@ -354,8 +354,8 @@ Status           : ACTIVE & VERIFIED
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-          <div className="animate-spin w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-4"></div>
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
+          <div className="animate-spin w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-4"></div>
           <p className="text-black font-black text-xl font-outfit">Loading Student Portal...</p>
           <p className="text-neutral-600 text-sm font-medium mt-1">Preparing your dashboard</p>
         </div>
@@ -376,13 +376,13 @@ Status           : ACTIVE & VERIFIED
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         
         {/* Cartoon Welcome Banner with Student Profile Photo */}
-        <div className="bg-[#86efac] border-3 sm:border-4 border-black rounded-3xl p-6 sm:p-8 text-black mb-8 shadow-[8px_8px_0px_#000] relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border-3 sm:border border-white/15 rounded-3xl p-6 sm:p-8 text-black mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative overflow-hidden ">
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             {/* Left: Avatar + Details */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               {/* Student Profile Picture Card */}
               <div className="relative flex-shrink-0 group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-3xl bg-white border-3 border-black shadow-[4px_4px_0px_#000] overflow-hidden flex items-center justify-center relative transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[6px_6px_0px_#000]">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-3xl bg-white border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center relative transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                   {student.photo ? (
                     <img
                       src={student.photo}
@@ -397,7 +397,7 @@ Status           : ACTIVE & VERIFIED
                 </div>
                 {/* Verified Active Badge */}
                 <div
-                  className="absolute -bottom-1 -right-1 p-1 sm:p-1.5 bg-emerald-400 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000]"
+                  className="absolute -bottom-1 -right-1 p-1 sm:p-1.5 bg-emerald-400 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                   title="Verified Enrolled Student"
                 >
                   <ShieldCheck className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-black" />
@@ -407,7 +407,7 @@ Status           : ACTIVE & VERIFIED
               {/* Student Identification & Salutation */}
               <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-[11px] font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-[11px] font-black font-space uppercase shadow-sm">
                     <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
                     <span>Student Academic Portal</span>
                   </div>
@@ -422,10 +422,10 @@ Status           : ACTIVE & VERIFIED
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-2 text-xs font-bold font-jakarta text-neutral-800 pt-0.5">
-                  <span className="px-2.5 py-1 bg-white border border-black rounded-lg shadow-[1px_1px_0px_#000] font-space font-black uppercase text-[11px]">
+                  <span className="px-2.5 py-1 bg-white border border-black rounded-lg shadow-sm font-space font-black uppercase text-[11px]">
                     Class {student.standard}
                   </span>
-                  <span className="font-mono bg-black text-emerald-300 px-2.5 py-1 rounded-lg border border-black shadow-[1px_1px_0px_#000] text-xs font-bold">
+                  <span className="font-mono bg-black text-emerald-300 px-2.5 py-1 rounded-lg border border-black shadow-sm text-xs font-bold">
                     Reg ID: {student.registrationId}
                   </span>
                   <span className="px-2 py-1 bg-emerald-200 border border-black rounded-lg text-[11px] font-bold font-space uppercase text-emerald-900 hidden sm:inline">
@@ -439,7 +439,7 @@ Status           : ACTIVE & VERIFIED
             <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
               <button
                 onClick={handleDownloadReceipt}
-                className="btn-cartoon px-4 py-2.5 bg-white hover:bg-neutral-100 text-black rounded-xl border-2 border-black font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5"
+                className="btn-sheryians px-4 py-2.5 bg-white hover:bg-neutral-100 text-black rounded-xl border border-white/10 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5"
               >
                 <Download className="w-4 h-4" />
                 <span>Admission Receipt</span>
@@ -447,7 +447,7 @@ Status           : ACTIVE & VERIFIED
 
               <button
                 onClick={handlePrintIDCard}
-                className="btn-cartoon px-4 py-2.5 bg-[#fef08a] hover:bg-[#fde047] text-black rounded-xl border-2 border-black font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5"
+                className="btn-sheryians px-4 py-2.5 bg-[#fef08a] hover:bg-[#fde047] text-black rounded-xl border border-white/10 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Student Card</span>
@@ -457,22 +457,22 @@ Status           : ACTIVE & VERIFIED
         </div>
 
         {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8 cartoon-stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8 ">
           {/* Card 1: Attendance */}
           <div
             onClick={() => setActiveTab('attendance')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Overall Attendance</p>
                 <p className="text-3xl font-black text-black font-mono mt-1">{overallAttendance}%</p>
               </div>
-              <div className="p-3 bg-[#86efac] rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3 bg-[#86efac] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <Calendar className="w-6 h-6 text-black" />
               </div>
             </div>
-            <div className="mt-4 w-full bg-white rounded-full h-3 border-2 border-black overflow-hidden shadow-[1px_1px_0px_#000]">
+            <div className="mt-4 w-full bg-white rounded-full h-3 border border-white/10 overflow-hidden shadow-sm">
               <div
                 className={`h-full transition-all duration-500 ${
                   overallAttendance >= 75 ? 'bg-emerald-400' : 'bg-rose-400'
@@ -495,14 +495,14 @@ Status           : ACTIVE & VERIFIED
           {/* Card 2: Tests Completed */}
           <div
             onClick={() => setActiveTab('marks')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#fef9c3] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#fef9c3] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Tests Evaluated</p>
                 <p className="text-3xl font-black text-black font-mono mt-1">{testResults.length}</p>
               </div>
-              <div className="p-3 bg-[#fef08a] rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3 bg-[#fef08a] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <Award className="w-6 h-6 text-black" />
               </div>
             </div>
@@ -517,14 +517,14 @@ Status           : ACTIVE & VERIFIED
           {/* Card 3: Upcoming Tests */}
           <div
             onClick={() => setActiveTab('tests')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#e0f2fe] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#e0f2fe] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Available Tests</p>
                 <p className="text-3xl font-black text-black font-mono mt-1">{upcomingTests.length}</p>
               </div>
-              <div className="p-3 bg-[#bae6fd] rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3 bg-[#bae6fd] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <Clock className="w-6 h-6 text-black" />
               </div>
             </div>
@@ -539,14 +539,14 @@ Status           : ACTIVE & VERIFIED
           {/* Card 4: Study Materials */}
           <div
             onClick={() => setActiveTab('materials')}
-            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000]"
+            className="card-cartoon bg-[#f0fdf4] hover:bg-[#dcfce7] cursor-pointer rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Study Notes</p>
                 <p className="text-3xl font-black text-black font-mono mt-1">{studyMaterials.length}</p>
               </div>
-              <div className="p-3 bg-[#bbf7d0] rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3 bg-[#bbf7d0] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <BookOpen className="w-6 h-6 text-black" />
               </div>
             </div>
@@ -561,8 +561,8 @@ Status           : ACTIVE & VERIFIED
 
         {/* Low Attendance Warning */}
         {hasLowAttendance && (
-          <div className="bg-[#fef2f2] border-3 border-black rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[4px_4px_0px_#000] cartoon-pop">
-            <div className="p-2.5 bg-rose-200 rounded-xl border-2 border-black flex-shrink-0 shadow-[1.5px_1.5px_0px_#000]">
+          <div className="bg-[#fef2f2] border border-white/10 rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[0_10px_25px_rgba(0,0,0,0.5)] ">
+            <div className="p-2.5 bg-rose-200 rounded-xl border border-white/10 flex-shrink-0 shadow-sm">
               <AlertCircle className="w-6 h-6 text-rose-800" />
             </div>
             <div>
@@ -575,7 +575,7 @@ Status           : ACTIVE & VERIFIED
         )}
 
         {/* Cartoon Tab Navigation */}
-        <div className="bg-[#f0fdf4] rounded-2xl p-1.5 border-3 border-black shadow-[4px_4px_0px_#000] mb-8 overflow-x-auto flex gap-2">
+        <div className="bg-[#f0fdf4] rounded-2xl p-1.5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] mb-8 overflow-x-auto flex gap-2">
           {[
             { id: 'overview', label: 'OVERVIEW', icon: null },
             { id: 'leaderboard', label: 'LEADERBOARD & BADGES', icon: Trophy },
@@ -591,9 +591,9 @@ Status           : ACTIVE & VERIFIED
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`btn-cartoon flex-shrink-0 px-4 sm:px-6 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 ${
+                className={`btn-sheryians flex-shrink-0 px-4 sm:px-6 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 ${
                   activeTab === tab.id
-                    ? 'bg-emerald-400 text-black border-2 border-black shadow-[2px_2px_0px_#000]'
+                    ? 'bg-emerald-400 text-black border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]'
                     : 'text-neutral-700 hover:text-black hover:bg-[#dcfce7] border border-transparent font-bold'
                 }`}
               >
@@ -605,12 +605,12 @@ Status           : ACTIVE & VERIFIED
         </div>
 
         {/* Tab Content Panels */}
-        <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 border-3 border-black">
+        <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 border border-white/10">
           
           {/* 1. Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-[3px_3px_0px_#000]">
+              <div className="bg-white border border-white/10 rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                 <h3 className="font-black text-black mb-3 flex items-center gap-2 text-lg font-outfit">
                   <CheckCircle className="w-5 h-5 text-emerald-600" />
                   Quick Academic Shortcuts
@@ -622,7 +622,7 @@ Status           : ACTIVE & VERIFIED
                   <button
                     onClick={handleDownloadReceipt}
                     disabled={downloading}
-                    className="btn-cartoon px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                    className="btn-sheryians px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
                   >
                     <Download className="w-4 h-4 text-black" />
                     <span>Download Admission Receipt (.txt)</span>
@@ -630,7 +630,7 @@ Status           : ACTIVE & VERIFIED
 
                   <button
                     onClick={() => setActiveTab('tests')}
-                    className="btn-cartoon px-5 py-3 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
+                    className="btn-sheryians px-5 py-3 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] flex items-center gap-2 text-sm"
                   >
                     <Clock className="w-4 h-4 text-black" />
                     <span>View Scheduled Tests ({upcomingTests.length})</span>
@@ -640,15 +640,15 @@ Status           : ACTIVE & VERIFIED
 
               {/* Student Details Mini Card */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Registered Class</span>
                   <span className="text-base font-black text-black font-outfit">{student.standard}</span>
                 </div>
-                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Roll / Reg Number</span>
                   <span className="text-base font-mono font-black text-black">{student.registrationId}</span>
                 </div>
-                <div className="p-4 bg-white rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="p-4 bg-white rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Admission Status</span>
                   <span className="text-base font-black text-emerald-800 flex items-center gap-1 font-outfit">
                     <ShieldCheck className="w-4 h-4" /> Active & Verified
@@ -665,7 +665,7 @@ Status           : ACTIVE & VERIFIED
               {attendance.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {attendance.map(subject => (
-                    <div key={subject.subject} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000]">
+                    <div key={subject.subject} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                       <div className="flex justify-between items-center mb-3">
                         <h4 className="font-black text-black font-outfit text-base">{subject.subject}</h4>
                         <span className={`px-2.5 py-1 rounded-lg border border-black font-mono font-black text-sm ${
@@ -703,7 +703,7 @@ Status           : ACTIVE & VERIFIED
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
                   <p className="text-neutral-500 font-bold font-jakarta">No subject attendance recorded yet.</p>
                 </div>
               )}
@@ -715,9 +715,9 @@ Status           : ACTIVE & VERIFIED
             <div>
               <h3 className="text-xl font-black text-black font-outfit mb-4">Completed Test Results</h3>
               {testResults.length > 0 ? (
-                <div className="overflow-x-auto rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] bg-white">
+                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] bg-white">
                   <table className="w-full text-xs sm:text-sm font-jakarta">
-                    <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                    <thead className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
                       <tr>
                         <th className="px-4 py-3 text-left">Test Name</th>
                         <th className="px-4 py-3 text-left">Subject</th>
@@ -762,7 +762,7 @@ Status           : ACTIVE & VERIFIED
                   </table>
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
                   <p className="text-neutral-500 font-bold font-jakarta">No test evaluations found yet.</p>
                 </div>
               )}
@@ -776,7 +776,7 @@ Status           : ACTIVE & VERIFIED
               {upcomingTests.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {upcomingTests.map((test, idx) => (
-                    <div key={idx} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000] flex flex-col justify-between">
+                    <div key={idx} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-start mb-2">
                           <h4 className="font-black text-black font-outfit text-base">{test.title}</h4>
@@ -800,7 +800,7 @@ Status           : ACTIVE & VERIFIED
 
                       <button
                         onClick={() => router.push(`/test/${test._id}`)}
-                        className="btn-cartoon w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center gap-1.5"
+                        className="btn-sheryians w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center gap-1.5"
                       >
                         <span>Start Online Test</span>
                         <ArrowRight className="w-3.5 h-3.5 text-black" />
@@ -809,7 +809,7 @@ Status           : ACTIVE & VERIFIED
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
                   <p className="text-neutral-500 font-bold font-jakarta">No active assessments scheduled right now.</p>
                 </div>
               )}
@@ -823,7 +823,7 @@ Status           : ACTIVE & VERIFIED
               {studyMaterials.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {studyMaterials.map((material, idx) => (
-                    <div key={idx} className="p-5 border-2 border-black rounded-2xl bg-white shadow-[3px_3px_0px_#000] flex flex-col justify-between">
+                    <div key={idx} className="p-5 border border-white/10 rounded-2xl bg-white shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between">
                       <div>
                         <div className="flex gap-3 mb-3">
                           <div className="p-2.5 bg-[#86efac] border border-black rounded-xl h-fit">
@@ -841,7 +841,7 @@ Status           : ACTIVE & VERIFIED
                         href={material.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-cartoon w-full py-2 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-xs rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] text-center flex items-center justify-center gap-1.5"
+                        className="btn-sheryians w-full py-2 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-center flex items-center justify-center gap-1.5"
                       >
                         <Download className="w-3.5 h-3.5 text-black" />
                         <span>Download Material</span>
@@ -850,7 +850,7 @@ Status           : ACTIVE & VERIFIED
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10 bg-white rounded-2xl border-2 border-black">
+                <div className="text-center py-10 bg-white rounded-2xl border border-white/10">
                   <p className="text-neutral-500 font-bold font-jakarta">No study files uploaded for this standard yet.</p>
                 </div>
               )}
@@ -859,10 +859,10 @@ Status           : ACTIVE & VERIFIED
 
           {/* 6. Profile Tab */}
           {activeTab === 'profile' && (
-            <div className="bg-white rounded-2xl border-2 border-black p-6 sm:p-8 shadow-[3px_3px_0px_#000]">
-              <div className="border-b-2 border-black/15 pb-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="bg-white rounded-2xl border border-white/10 p-6 sm:p-8 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+              <div className="border-b border-white/10/15 pb-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-[#dcfce7] border-2 border-black shadow-[2px_2px_0px_#000] overflow-hidden flex items-center justify-center flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-[#dcfce7] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] overflow-hidden flex items-center justify-center flex-shrink-0">
                     {student.photo ? (
                       <img src={student.photo} alt={student.studentName} className="w-full h-full object-cover object-top" />
                     ) : (
@@ -878,7 +878,7 @@ Status           : ACTIVE & VERIFIED
                     </p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border border-black text-xs font-black font-space uppercase text-emerald-950 self-start sm:self-center shadow-[1px_1px_0px_#000]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border border-black text-xs font-black font-space uppercase text-emerald-950 self-start sm:self-center shadow-sm">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-950" />
                   <span>Official Record</span>
                 </span>
@@ -930,9 +930,9 @@ Status           : ACTIVE & VERIFIED
           {activeTab === 'leaderboard' && (
             <div className="space-y-8">
               {/* Header & Standard Filter */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border-2 border-black rounded-2xl p-5 shadow-[3px_3px_0px_#000]">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fef08a] border border-black text-xs font-black font-space uppercase mb-1 shadow-[1px_1px_0px_#000]">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fef08a] border border-black text-xs font-black font-space uppercase mb-1 shadow-sm">
                     <Trophy className="w-3.5 h-3.5 text-black" />
                     <span>Hall of Fame & Achievements</span>
                   </div>
@@ -964,9 +964,9 @@ Status           : ACTIVE & VERIFIED
 
               {/* Student's Personal Ranking Bar (if ranked) */}
               {myRankStats && (
-                <div className="bg-[#86efac] border-3 border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-wrap items-center justify-between gap-4">
+                <div className="bg-[#86efac] border border-white/10 rounded-2xl p-5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-white border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center font-outfit font-black text-xl text-black">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center font-outfit font-black text-xl text-black">
                       #{myRankStats.rank}
                     </div>
                     <div>
@@ -978,10 +978,10 @@ Status           : ACTIVE & VERIFIED
                   </div>
 
                   <div className="flex items-center gap-4 text-xs font-mono font-black">
-                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-sm">
                       Points: {myRankStats.points} pts
                     </div>
-                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                    <div className="px-3 py-1.5 bg-white rounded-xl border border-black shadow-sm">
                       Avg: {myRankStats.avgScore}%
                     </div>
                   </div>
@@ -1006,14 +1006,14 @@ Status           : ACTIVE & VERIFIED
                   ]).map((badge) => (
                     <div
                       key={badge.id}
-                      className={`card-cartoon rounded-2xl p-4 border-2 border-black shadow-[3px_3px_0px_#000] transition-all ${
+                      className={`card-cartoon rounded-2xl p-4 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all ${
                         badge.unlocked
                           ? 'bg-[#dcfce7] border-black'
                           : 'bg-white opacity-80'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <div className="p-2.5 bg-[#f0fdf4] rounded-xl border border-black shadow-[1px_1px_0px_#000] flex items-center justify-center">
+                        <div className="p-2.5 bg-[#f0fdf4] rounded-xl border border-black shadow-sm flex items-center justify-center">
                           {renderBadgeIcon(badge.icon)}
                         </div>
                         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black font-space uppercase border ${
@@ -1054,7 +1054,7 @@ Status           : ACTIVE & VERIFIED
 
               {/* 3D-Style Cartoon Podium */}
               {podium.some(p => p !== null) && (
-                <div className="bg-white border-3 border-black rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
+                <div className="bg-white border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                   <h4 className="text-center text-xs font-black font-space uppercase tracking-widest text-neutral-500 mb-6">
                     Top 3 Rankers of the Term
                   </h4>
@@ -1063,12 +1063,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 2 - Left */}
                     {podium[1] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 rounded-xl bg-slate-200 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center mb-2">
+                        <div className="w-10 h-10 rounded-xl bg-slate-200 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
                           <Medal className="w-5 h-5 text-slate-700" />
                         </div>
                         <p className="font-black text-black text-xs font-outfit text-center truncate max-w-[90px]">{podium[1].studentName}</p>
                         <p className="text-[10px] font-bold text-neutral-500 font-mono">{podium[1].points} pts</p>
-                        <div className="w-full h-28 bg-[#e2e8f0] border-2 border-black rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-2xl text-slate-700 mt-2">
+                        <div className="w-full h-28 bg-[#e2e8f0] border border-white/10 rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-2xl text-slate-700 mt-2">
                           2nd
                         </div>
                       </div>
@@ -1077,12 +1077,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 1 - Center */}
                     {podium[0] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-12 h-12 rounded-xl bg-amber-300 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center mb-2">
+                        <div className="w-12 h-12 rounded-xl bg-amber-300 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
                           <Crown className="w-6 h-6 text-amber-900" />
                         </div>
                         <p className="font-black text-black text-sm font-outfit text-center truncate max-w-[100px]">{podium[0].studentName}</p>
                         <p className="text-xs font-black text-amber-900 font-mono">{podium[0].points} pts</p>
-                        <div className="w-full h-36 bg-[#fde047] border-2 border-black rounded-t-2xl shadow-[4px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-3xl text-amber-950 mt-2">
+                        <div className="w-full h-36 bg-[#fde047] border border-white/10 rounded-t-2xl shadow-lg flex items-center justify-center font-black font-outfit text-3xl text-amber-950 mt-2">
                           1st
                         </div>
                       </div>
@@ -1091,12 +1091,12 @@ Status           : ACTIVE & VERIFIED
                     {/* Rank 3 - Right */}
                     {podium[2] && (
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 rounded-xl bg-amber-100 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center mb-2">
+                        <div className="w-10 h-10 rounded-xl bg-amber-100 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center mb-2">
                           <Award className="w-5 h-5 text-amber-800" />
                         </div>
                         <p className="font-black text-black text-xs font-outfit text-center truncate max-w-[90px]">{podium[2].studentName}</p>
                         <p className="text-[10px] font-bold text-neutral-500 font-mono">{podium[2].points} pts</p>
-                        <div className="w-full h-20 bg-[#fed7aa] border-2 border-black rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-xl text-amber-900 mt-2">
+                        <div className="w-full h-20 bg-[#fed7aa] border border-white/10 rounded-t-2xl shadow-[3px_0px_0px_#000] flex items-center justify-center font-black font-outfit text-xl text-amber-900 mt-2">
                           3rd
                         </div>
                       </div>
@@ -1106,8 +1106,8 @@ Status           : ACTIVE & VERIFIED
               )}
 
               {/* Full Standings Table */}
-              <div className="bg-white border-2 border-black rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000]">
-                <div className="p-4 bg-[#dcfce7] border-b-2 border-black flex items-center justify-between">
+              <div className="bg-white border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+                <div className="p-4 bg-[#dcfce7] border-b border-white/10 flex items-center justify-between">
                   <h4 className="font-black font-outfit text-black text-sm">Full Batch Standings</h4>
                   <span className="text-xs font-bold font-mono text-neutral-600">{rankings.length} Students Evaluated</span>
                 </div>
@@ -1164,19 +1164,19 @@ Status           : ACTIVE & VERIFIED
             <div className="space-y-8">
               {/* Top Banner / Dues Overview */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="card-cartoon bg-white rounded-2xl p-5 border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="card-cartoon bg-white rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <p className="text-xs font-black font-space uppercase text-neutral-500">Pending Dues</p>
                   <p className="text-3xl font-black font-mono text-amber-900 mt-1">₹{feeSummary.totalPendingAmount}</p>
                   <p className="text-xs font-bold text-neutral-600 mt-2">{feeSummary.pendingCount} unpaid invoice(s)</p>
                 </div>
 
-                <div className="card-cartoon bg-white rounded-2xl p-5 border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="card-cartoon bg-white rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <p className="text-xs font-black font-space uppercase text-neutral-500">Total Fees Paid</p>
                   <p className="text-3xl font-black font-mono text-emerald-900 mt-1">₹{feeSummary.totalPaidAmount}</p>
                   <p className="text-xs font-bold text-emerald-700 mt-2">All verified by Accounts Office</p>
                 </div>
 
-                <div className="card-cartoon bg-[#dcfce7] rounded-2xl p-5 border-2 border-black shadow-[3px_3px_0px_#000]">
+                <div className="card-cartoon bg-[#dcfce7] rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <p className="text-xs font-black font-space uppercase text-neutral-600">Fee Status</p>
                   <p className="text-2xl font-black font-outfit text-black mt-1">
                     {feeSummary.hasOverdue ? 'Overdue Due Date' : feeSummary.pendingCount > 0 ? 'Pending Payment' : 'All Clear'}
@@ -1193,7 +1193,7 @@ Status           : ACTIVE & VERIFIED
                 </h4>
 
                 {fees.filter(f => f.status === 'pending' || f.status === 'overdue').length === 0 ? (
-                  <div className="p-6 bg-white rounded-2xl border-2 border-black text-center shadow-[2px_2px_0px_#000]">
+                  <div className="p-6 bg-white rounded-2xl border border-white/10 text-center shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                     <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
                     <p className="font-black text-black text-base font-outfit">No Pending Dues!</p>
                     <p className="text-xs text-neutral-600 font-bold font-jakarta mt-1">
@@ -1205,7 +1205,7 @@ Status           : ACTIVE & VERIFIED
                     {fees.filter(f => f.status === 'pending' || f.status === 'overdue').map((fee) => (
                       <div
                         key={fee._id}
-                        className="bg-white border-2 border-black rounded-2xl p-5 shadow-[3px_3px_0px_#000] flex flex-col justify-between"
+                        className="bg-white border border-white/10 rounded-2xl p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col justify-between"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2 mb-2">
@@ -1232,7 +1232,7 @@ Status           : ACTIVE & VERIFIED
                           <button
                             onClick={() => handlePayFee(fee._id)}
                             disabled={payingFeeId === fee._id}
-                            className="w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2"
+                            className="w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2"
                           >
                             <CreditCard className="w-4 h-4" />
                             <span>{payingFeeId === fee._id ? 'Processing UPI Payment...' : 'Pay Online Now (Instant Receipt)'}</span>
@@ -1251,11 +1251,11 @@ Status           : ACTIVE & VERIFIED
                   Official Fee Receipts History
                 </h4>
 
-                <div className="bg-white border-2 border-black rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000]">
+                <div className="bg-white border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs">
                       <thead>
-                        <tr className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                        <tr className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
                           <th className="p-3.5">Receipt No</th>
                           <th className="p-3.5">Billing Month</th>
                           <th className="p-3.5">Amount Paid</th>
@@ -1284,7 +1284,7 @@ Status           : ACTIVE & VERIFIED
                               <td className="p-3.5 text-right">
                                 <button
                                   onClick={() => setReceiptModalFee(fee)}
-                                  className="btn-cartoon px-3 py-1.5 bg-[#86efac] hover:bg-emerald-300 border border-black text-black font-black text-xs rounded-xl shadow-[1.5px_1.5px_0px_#000] inline-flex items-center gap-1.5"
+                                  className="btn-sheryians px-3 py-1.5 bg-[#86efac] hover:bg-emerald-300 border border-black text-black font-black text-xs rounded-xl shadow-sm inline-flex items-center gap-1.5"
                                 >
                                   <Printer className="w-3.5 h-3.5" />
                                   <span>Print / Download</span>
@@ -1304,10 +1304,10 @@ Status           : ACTIVE & VERIFIED
           {/* OFFICIAL CARTOON FEE RECEIPT POPUP */}
           {receiptModalFee && (
             <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-              <div className="bg-[#f0fdf4] border-4 border-black rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-[10px_10px_0px_#000] cartoon-pop relative">
+              <div className="bg-[#f0fdf4] border border-white/15 rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-[10px_10px_0px_#000]  relative">
                 <button
                   onClick={() => setReceiptModalFee(null)}
-                  className="absolute top-4 right-4 p-2 rounded-xl border-2 border-black bg-white hover:bg-rose-200 transition"
+                  className="absolute top-4 right-4 p-2 rounded-xl border border-white/10 bg-white hover:bg-rose-200 transition"
                 >
                   <X className="w-5 h-5 text-black" />
                 </button>
@@ -1343,7 +1343,7 @@ Status           : ACTIVE & VERIFIED
                   </div>
 
                   {/* Table */}
-                  <div className="border-2 border-black rounded-xl overflow-hidden bg-white text-xs">
+                  <div className="border border-white/10 rounded-xl overflow-hidden bg-white text-xs">
                     <div className="p-2.5 bg-[#dcfce7] border-b border-black font-black font-space uppercase flex justify-between">
                       <span>Description</span>
                       <span>Amount</span>
@@ -1364,7 +1364,7 @@ Status           : ACTIVE & VERIFIED
                         <span className="font-mono font-bold">₹{receiptModalFee.examFee}</span>
                       </div>
                     )}
-                    <div className="p-3 bg-[#f0fdf4] font-black flex justify-between border-t-2 border-black text-sm">
+                    <div className="p-3 bg-[#f0fdf4] font-black flex justify-between border-t border-white/10 text-sm">
                       <span>TOTAL PAID</span>
                       <span className="font-mono text-emerald-950">₹{receiptModalFee.totalAmount}</span>
                     </div>
@@ -1385,7 +1385,7 @@ Status           : ACTIVE & VERIFIED
                   <div className="flex justify-center pt-2">
                     <button
                       onClick={() => window.print()}
-                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-2"
+                      className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2"
                     >
                       <Printer className="w-4 h-4" />
                       <span>Print Receipt</span>

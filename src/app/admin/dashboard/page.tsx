@@ -83,8 +83,8 @@ const AdminDashboard: React.FC = () => {
     return (
       <AdminLayout>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
-            <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-3"></div>
+          <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full">
+            <div className="animate-spin w-10 h-10 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-3"></div>
             <p className="text-black font-black font-outfit text-lg">Loading Admin Overview...</p>
           </div>
         </div>
@@ -97,10 +97,10 @@ const AdminDashboard: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Executive Command Center</span>
               </div>
@@ -113,7 +113,7 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3.5 py-1.5 rounded-xl bg-white border-2 border-black font-mono font-black text-xs shadow-[2px_2px_0px_#000]">
+              <span className="px-3.5 py-1.5 rounded-xl bg-white border border-white/10 font-mono font-black text-xs shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 LIVE SYSTEM
               </span>
             </div>
@@ -121,9 +121,9 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* 3 Core Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 cartoon-stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ">
           {/* Card 1: Total Students */}
-          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Total Enrolled</p>
@@ -132,14 +132,14 @@ const AdminDashboard: React.FC = () => {
                 </p>
                 <p className="text-xs font-bold text-neutral-600 mt-1">Verified students</p>
               </div>
-              <div className="p-3.5 bg-emerald-400 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3.5 bg-emerald-400 rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <Users className="text-black" size={24} />
               </div>
             </div>
           </div>
 
           {/* Card 2: Total Tests */}
-          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] transition-all">
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Total Tests</p>
@@ -148,14 +148,14 @@ const AdminDashboard: React.FC = () => {
                 </p>
                 <p className="text-xs font-bold text-neutral-600 mt-1">Active assessments</p>
               </div>
-              <div className="p-3.5 bg-amber-200 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3.5 bg-amber-200 rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <FileText className="text-black" size={24} />
               </div>
             </div>
           </div>
 
           {/* Card 3: Recent Admissions */}
-          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border-3 border-black shadow-[4px_4px_0px_#000] sm:col-span-2 lg:col-span-1 transition-all">
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-6 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] sm:col-span-2 lg:col-span-1 transition-all">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-neutral-600 text-xs font-black uppercase font-space tracking-wider">Recent Admissions</p>
@@ -164,7 +164,7 @@ const AdminDashboard: React.FC = () => {
                 </p>
                 <p className="text-xs font-bold text-neutral-600 mt-1">Enrolled in last 7 days</p>
               </div>
-              <div className="p-3.5 bg-sky-200 rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3.5 bg-sky-200 rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <UserPlus className="text-black" size={24} />
               </div>
             </div>
@@ -172,10 +172,10 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Teacher Applications Panel */}
-        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
-          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b-2 border-black flex items-center justify-between">
+        <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
+          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+              <div className="p-2 bg-white rounded-xl border border-black shadow-sm">
                 <GraduationCap className="text-black" size={20} />
               </div>
               <div>
@@ -185,7 +185,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <button
               onClick={() => router.push('/admin/teacher-applications')}
-              className="btn-cartoon text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1"
+              className="btn-sheryians text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-1"
             >
               <span>View All</span>
               <ArrowRight size={14} className="text-black" />
@@ -195,25 +195,25 @@ const AdminDashboard: React.FC = () => {
           <div className="p-5 sm:p-6 bg-[#f0fdf4]">
             {/* 4 Mini Status Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-              <div className="bg-white rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="bg-white rounded-xl p-3.5 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <span className="text-[10px] font-black uppercase text-neutral-500 font-space block">Total Applied</span>
                 <p className="text-xl sm:text-2xl font-black text-black font-mono mt-0.5">
                   {stats?.stats?.totalTeacherApplications || 0}
                 </p>
               </div>
-              <div className="bg-amber-50 rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="bg-amber-50 rounded-xl p-3.5 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <span className="text-[10px] font-black uppercase text-amber-800 font-space block">Pending Review</span>
                 <p className="text-xl sm:text-2xl font-black text-amber-950 font-mono mt-0.5">
                   {stats?.stats?.pendingTeacherApplications || 0}
                 </p>
               </div>
-              <div className="bg-[#dcfce7] rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="bg-[#dcfce7] rounded-xl p-3.5 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <span className="text-[10px] font-black uppercase text-emerald-800 font-space block">Approved</span>
                 <p className="text-xl sm:text-2xl font-black text-emerald-950 font-mono mt-0.5">
                   {stats?.stats?.approvedTeacherApplications || 0}
                 </p>
               </div>
-              <div className="bg-rose-50 rounded-xl p-3.5 border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="bg-rose-50 rounded-xl p-3.5 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <span className="text-[10px] font-black uppercase text-rose-800 font-space block">Rejected</span>
                 <p className="text-xl sm:text-2xl font-black text-rose-950 font-mono mt-0.5">
                   {stats?.stats?.rejectedTeacherApplications || 0}
@@ -223,9 +223,9 @@ const AdminDashboard: React.FC = () => {
 
             {/* Applications Table */}
             {stats?.recentTeacherApplications && stats.recentTeacherApplications.length > 0 ? (
-              <div className="overflow-x-auto rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] bg-white">
+              <div className="overflow-x-auto rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] bg-white">
                 <table className="w-full text-xs font-jakarta">
-                  <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                  <thead className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
                     <tr>
                       <th className="px-3.5 py-2.5 text-left">Applicant Name</th>
                       <th className="px-3.5 py-2.5 text-left">Contact Info</th>
@@ -279,10 +279,10 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Upcoming Assessments Panel */}
-        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
-          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b-2 border-black flex items-center justify-between">
+        <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
+          <div className="px-5 sm:px-6 py-4 bg-[#86efac] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 bg-white rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+              <div className="p-2 bg-white rounded-xl border border-black shadow-sm">
                 <Calendar className="text-black" size={20} />
               </div>
               <div>
@@ -292,7 +292,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <button
               onClick={() => router.push('/admin/tests')}
-              className="btn-cartoon text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1"
+              className="btn-sheryians text-xs font-black font-outfit bg-white hover:bg-[#dcfce7] text-black px-3.5 py-1.5 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-1"
             >
               <span>Manage Tests</span>
               <ArrowRight size={14} className="text-black" />
@@ -301,9 +301,9 @@ const AdminDashboard: React.FC = () => {
 
           <div className="p-5 sm:p-6 bg-[#f0fdf4]">
             {stats?.upcomingTests && stats.upcomingTests.length > 0 ? (
-              <div className="overflow-x-auto rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] bg-white">
+              <div className="overflow-x-auto rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] bg-white">
                 <table className="w-full text-xs font-jakarta">
-                  <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black">
+                  <thead className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black">
                     <tr>
                       <th className="px-3.5 py-2.5 text-left">Test Title</th>
                       <th className="px-3.5 py-2.5 text-left">Class</th>

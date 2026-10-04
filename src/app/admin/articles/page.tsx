@@ -236,7 +236,7 @@ export default function AdminArticlesPage() {
           {/* Header & Stats */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-black text-xs font-space font-black uppercase text-emerald-950 mb-2 shadow-[2px_2px_0px_#000]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-black text-xs font-space font-black uppercase text-emerald-950 mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <Newspaper className="w-3.5 h-3.5" />
                 <span>Knowledge Base & Insights</span>
               </div>
@@ -250,7 +250,7 @@ export default function AdminArticlesPage() {
 
             <button
               onClick={openCreateModal}
-              className="btn-cartoon px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 cursor-pointer active:translate-x-0.5 active:translate-y-0.5 transition-all self-start md:self-auto"
+              className="btn-sheryians px-6 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2 cursor-pointer active:translate-x-0.5 active:translate-y-0.5 transition-all self-start md:self-auto"
             >
               <Plus className="w-5 h-5 text-black" />
               <span>Write New Article</span>
@@ -259,26 +259,26 @@ export default function AdminArticlesPage() {
 
           {/* Quick Stats Ribbon */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="bg-[#f0fdf4] border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <p className="text-xs font-bold text-neutral-600 font-jakarta">Total Articles</p>
               <p className="text-2xl font-black text-black font-outfit mt-1">{articles.length}</p>
             </div>
-            <div className="bg-[#f0fdf4] border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <p className="text-xs font-bold text-neutral-600 font-jakarta">Published Live</p>
               <p className="text-2xl font-black text-emerald-700 font-outfit mt-1">{totalPublished}</p>
             </div>
-            <div className="bg-[#f0fdf4] border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <p className="text-xs font-bold text-neutral-600 font-jakarta">Drafts</p>
               <p className="text-2xl font-black text-amber-700 font-outfit mt-1">{articles.length - totalPublished}</p>
             </div>
-            <div className="bg-[#f0fdf4] border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <p className="text-xs font-bold text-neutral-600 font-jakarta">Total Reads / Views</p>
               <p className="text-2xl font-black text-slate-800 font-outfit mt-1">{totalViews}</p>
             </div>
           </div>
 
           {/* Search & Category Filter Controls */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f0fdf4] border-2 border-black rounded-2xl p-4 shadow-[3px_3px_0px_#000]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
             <div className="relative w-full sm:w-80">
               <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -286,7 +286,7 @@ export default function AdminArticlesPage() {
                 placeholder="Search title, summary, author..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-white border-2 border-black rounded-xl text-sm font-medium font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                className="w-full pl-9 pr-4 py-2 bg-white border border-white/10 rounded-xl text-sm font-medium font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
               />
             </div>
 
@@ -298,7 +298,7 @@ export default function AdminArticlesPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-black font-outfit transition-all cursor-pointer border whitespace-nowrap shrink-0 ${
                     selectedCategory === cat
-                      ? 'bg-emerald-400 text-black border-black shadow-[2px_2px_0px_#000]'
+                      ? 'bg-emerald-400 text-black border-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]'
                       : 'bg-white text-neutral-700 border-black/40 hover:bg-[#dcfce7]'
                   }`}
                 >
@@ -311,11 +311,11 @@ export default function AdminArticlesPage() {
           {/* Articles List / Grid */}
           {loading ? (
             <div className="py-20 flex flex-col items-center justify-center">
-              <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500 mb-3" />
+              <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-emerald-500 mb-3" />
               <p className="font-outfit font-black text-sm text-neutral-600">Loading articles...</p>
             </div>
           ) : filteredArticles.length === 0 ? (
-            <div className="bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-3xl p-10 text-center shadow-[4px_4px_0px_#000] max-w-xl mx-auto space-y-4">
+            <div className="bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-3xl p-10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)] max-w-xl mx-auto space-y-4">
               <BookOpen className="w-12 h-12 text-emerald-600 mx-auto" />
               <h3 className="font-outfit font-black text-xl text-black">No Articles Found</h3>
               <p className="text-sm font-jakarta text-neutral-600 font-medium">
@@ -323,7 +323,7 @@ export default function AdminArticlesPage() {
               </p>
               <button
                 onClick={openCreateModal}
-                className="btn-cartoon px-5 py-2.5 bg-emerald-400 text-black font-black rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm cursor-pointer"
+                className="btn-sheryians px-5 py-2.5 bg-emerald-400 text-black font-black rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm cursor-pointer"
               >
                 Write First Article
               </button>
@@ -333,22 +333,22 @@ export default function AdminArticlesPage() {
               {filteredArticles.map((art) => (
                 <div
                   key={art._id}
-                  className="bg-[#f0fdf4] hover:bg-[#e6f9ee] border-2 sm:border-[2.5px] border-black rounded-3xl overflow-hidden shadow-[4px_4px_0px_#000] hover:shadow-[7px_7px_0px_#000] transition-all flex flex-col justify-between"
+                  className="bg-[#f0fdf4] hover:bg-[#e6f9ee] border-2 sm:border-[2.5px] border-black rounded-3xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.75)] transition-all flex flex-col justify-between"
                 >
                   {/* Article Card Top Cover */}
                   <div>
-                    <div className="relative h-44 w-full bg-slate-200 border-b-2 border-black overflow-hidden">
+                    <div className="relative h-44 w-full bg-slate-200 border-b border-white/10 overflow-hidden">
                       <img
                         src={art.coverImage || QUICK_COVERS[0].url}
                         alt={art.title}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-3 left-3 flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 bg-emerald-200 text-emerald-950 border border-black rounded-md text-xs font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                        <span className="px-2.5 py-0.5 bg-emerald-200 text-emerald-950 border border-black rounded-md text-xs font-black font-space uppercase shadow-sm">
                           {art.category}
                         </span>
                         {art.featured && (
-                          <span className="px-2 py-0.5 bg-amber-300 text-amber-950 border border-black rounded-md text-[10px] font-black font-space uppercase shadow-[1.5px_1.5px_0px_#000]">
+                          <span className="px-2 py-0.5 bg-amber-300 text-amber-950 border border-black rounded-md text-[10px] font-black font-space uppercase shadow-sm">
                             Featured
                           </span>
                         )}
@@ -357,7 +357,7 @@ export default function AdminArticlesPage() {
                       <div className="absolute top-3 right-3">
                         <button
                           onClick={() => handleTogglePublish(art)}
-                          className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-black border shadow-[1.5px_1.5px_0px_#000] cursor-pointer transition-all ${
+                          className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-black border shadow-sm cursor-pointer transition-all ${
                             art.isPublished
                               ? 'bg-emerald-400 text-black border-black'
                               : 'bg-neutral-200 text-neutral-800 border-black'
@@ -389,7 +389,7 @@ export default function AdminArticlesPage() {
 
                   {/* Card Bottom Actions */}
                   <div className="p-5 pt-0">
-                    <div className="border-t-2 border-black/10 pt-3 flex items-center justify-between">
+                    <div className="border-t border-white/10/10 pt-3 flex items-center justify-between">
                       <div className="flex items-center gap-1 text-xs font-mono text-neutral-600 font-bold">
                         <Eye className="w-3.5 h-3.5 text-neutral-500" />
                         <span>{art.views || 0} reads</span>
@@ -400,7 +400,7 @@ export default function AdminArticlesPage() {
                           <Link
                             href={`/articles/${art.slug}`}
                             target="_blank"
-                            className="p-2 bg-white hover:bg-neutral-100 border border-black rounded-lg text-black shadow-[1.5px_1.5px_0px_#000] transition-all"
+                            className="p-2 bg-white hover:bg-neutral-100 border border-black rounded-lg text-black shadow-sm transition-all"
                             title="Preview Public Page"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
@@ -408,14 +408,14 @@ export default function AdminArticlesPage() {
                         )}
                         <button
                           onClick={() => openEditModal(art)}
-                          className="p-2 bg-amber-300 hover:bg-amber-200 border border-black rounded-lg text-black shadow-[1.5px_1.5px_0px_#000] cursor-pointer transition-all"
+                          className="p-2 bg-amber-300 hover:bg-amber-200 border border-black rounded-lg text-black shadow-sm cursor-pointer transition-all"
                           title="Edit Article"
                         >
                           <Edit3 className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDelete(art._id, art.title)}
-                          className="p-2 bg-rose-200 hover:bg-rose-300 border border-black rounded-lg text-rose-950 shadow-[1.5px_1.5px_0px_#000] cursor-pointer transition-all"
+                          className="p-2 bg-rose-200 hover:bg-rose-300 border border-black rounded-lg text-rose-950 shadow-sm cursor-pointer transition-all"
                           title="Delete Article"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -431,9 +431,9 @@ export default function AdminArticlesPage() {
           {/* ── WRITE / EDIT ARTICLE MODAL ── */}
           {isModalOpen && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-              <div className="bg-[#f6fcf8] border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] max-w-3xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative my-auto">
+              <div className="bg-[#f6fcf8] border border-white/10 rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] max-w-3xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative my-auto">
                 {/* Modal Header */}
-                <div className="flex items-center justify-between pb-4 border-b-2 border-black/15 mb-6">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10/15 mb-6">
                   <div>
                     <h2 className="font-outfit font-black text-2xl text-black">
                       {editingId ? 'Edit Article' : 'Write New Article'}
@@ -444,7 +444,7 @@ export default function AdminArticlesPage() {
                   </div>
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="p-2 bg-white hover:bg-neutral-100 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] cursor-pointer"
+                    className="p-2 bg-white hover:bg-neutral-100 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer"
                   >
                     <X className="w-5 h-5 text-black" />
                   </button>
@@ -463,7 +463,7 @@ export default function AdminArticlesPage() {
                       placeholder="e.g. Master NCERT Biology: Strategy from AIIMS Mentors"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                   </div>
 
@@ -479,7 +479,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Wildlife, Nature, Ecology, Animals..."
                         value={formData.category}
                         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-bold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-bold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       />
                       {/* Quick fill tags */}
                       <div className="flex flex-wrap items-center gap-1.5 mt-2">
@@ -489,7 +489,7 @@ export default function AdminArticlesPage() {
                             key={tag}
                             type="button"
                             onClick={() => setFormData({ ...formData, category: tag })}
-                            className={`text-[10px] font-bold px-2 py-0.5 rounded-md border border-black cursor-pointer shadow-[1px_1px_0px_#000] transition active:translate-y-0.5 ${
+                            className={`text-[10px] font-bold px-2 py-0.5 rounded-md border border-black cursor-pointer shadow-sm transition active:translate-y-0.5 ${
                               formData.category === tag
                                 ? 'bg-emerald-400 text-black font-black'
                                 : 'bg-emerald-100 hover:bg-emerald-200 text-black'
@@ -510,7 +510,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. 4 min read"
                         value={formData.readTime}
                         onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       />
                     </div>
                   </div>
@@ -526,7 +526,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Er. Sandeep Verma"
                         value={formData.author}
                         onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       />
                     </div>
 
@@ -539,7 +539,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Head of Physics (IIT Alumni)"
                         value={formData.authorRole}
                         onChange={(e) => setFormData({ ...formData, authorRole: e.target.value })}
-                        className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-semibold font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                       />
                     </div>
                   </div>
@@ -554,7 +554,7 @@ export default function AdminArticlesPage() {
                       placeholder="Paste image URL or pick one below"
                       value={formData.coverImage}
                       onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-semibold font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] mb-2"
+                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-semibold font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-2"
                     />
 
                     <div className="flex items-center gap-2 overflow-x-auto pb-1">
@@ -587,7 +587,7 @@ export default function AdminArticlesPage() {
                       placeholder="Brief 1-2 sentence hook highlighting the main takeaway..."
                       value={formData.excerpt}
                       onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-medium font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-medium font-jakarta focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                   </div>
 
@@ -605,7 +605,7 @@ export default function AdminArticlesPage() {
                       placeholder="Write your article body here. You can use ## for section headings and - for bullet points."
                       value={formData.content}
                       onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl text-sm font-medium font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl text-sm font-medium font-mono focus:outline-hidden focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                   </div>
 
@@ -633,22 +633,22 @@ export default function AdminArticlesPage() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex items-center justify-end gap-3 pt-4 border-t-2 border-black/15">
+                  <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10/15">
                     <button
                       type="button"
                       onClick={() => setIsModalOpen(false)}
-                      className="px-5 py-2.5 rounded-xl border-2 border-black font-black text-sm bg-white hover:bg-neutral-100 shadow-[2px_2px_0px_#000] cursor-pointer"
+                      className="px-5 py-2.5 rounded-xl border border-white/10 font-black text-sm bg-white hover:bg-neutral-100 shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="btn-cartoon px-7 py-2.5 rounded-xl border-2 border-black font-black text-sm bg-emerald-400 hover:bg-emerald-300 text-black shadow-[3px_3px_0px_#000] cursor-pointer flex items-center gap-2"
+                      className="btn-sheryians px-7 py-2.5 rounded-xl border border-white/10 font-black text-sm bg-emerald-400 hover:bg-emerald-300 text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] cursor-pointer flex items-center gap-2"
                     >
                       {submitting ? (
                         <>
-                          <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                          <div className="w-4 h-4 border border-white/10 border-t-transparent rounded-full animate-spin" />
                           <span>Saving...</span>
                         </>
                       ) : (

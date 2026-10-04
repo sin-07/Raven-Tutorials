@@ -3,9 +3,8 @@
 import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-import AmbientGlow from '@/components/AmbientGlow';
+import GlobalBackground from '@/components/GlobalBackground';
 import { 
-  initCartoonAnimations, 
   initDirectionalAnimations, 
   animatePageEnter, 
   cleanupScrollTriggers, 
@@ -73,12 +72,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     // 2. Smooth GSAP Page Entrance Transition
     if (pageRef.current) {
       animatePageEnter(pageRef.current, () => {
-        // Initialize cartoon and directional scroll animations on newly mounted DOM
-        initCartoonAnimations(pageRef.current);
         initDirectionalAnimations(pageRef.current);
       });
     } else {
-      initCartoonAnimations();
       initDirectionalAnimations();
     }
 
@@ -95,7 +91,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         style={{ width: '0%', transformOrigin: 'left center' }}
       />
 
-      <AmbientGlow />
+      <GlobalBackground />
       {!hideNavbar && <Navbar />}
 
       {/* Main Page Transition Container */}

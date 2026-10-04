@@ -29,8 +29,8 @@ const Loader: React.FC<LoaderProps> = ({
   const spinnerContent = (
     <div className="flex flex-col items-center justify-center gap-3">
       <div className="relative flex items-center justify-center">
-        {/* Animated cartoon ring */}
-        <div className={`${sizeClasses[size]} border-black border-t-[#86efac] border-r-[#fef08a] rounded-full animate-spin`} />
+        {/* Animated luxury glow ring */}
+        <div className={`${sizeClasses[size]} border-white/15 border-t-[#e8602e] border-r-[#ff814e] rounded-full animate-spin`} />
         
         {/* Logo in center if large */}
         {size === 'lg' && (
@@ -44,7 +44,7 @@ const Loader: React.FC<LoaderProps> = ({
         )}
       </div>
       {text && (
-        <p className={`font-outfit font-black text-black ${textSizes[size]} tracking-tight`}>
+        <p className={`font-outfit font-bold text-white ${textSizes[size]} tracking-tight`}>
           {text}
         </p>
       )}
@@ -53,8 +53,8 @@ const Loader: React.FC<LoaderProps> = ({
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 bg-[#f6fcf8]/85 backdrop-blur-xs flex items-center justify-center z-[150] p-4">
-        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-xs w-full flex flex-col items-center justify-center cartoon-pop">
+      <div className="fixed inset-0 bg-[#06080f]/85 backdrop-blur-md flex items-center justify-center z-[150] p-4">
+        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.2)] text-center max-w-xs w-full flex flex-col items-center justify-center">
           {spinnerContent}
         </div>
       </div>
@@ -70,7 +70,7 @@ const Loader: React.FC<LoaderProps> = ({
 
 // Simple inline loader for buttons
 export const ButtonLoader: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <Loader2 className={`w-4 h-4 animate-spin text-black ${className}`} />
+  <Loader2 className={`w-4 h-4 animate-spin text-white ${className}`} />
 );
 
 export default Loader;

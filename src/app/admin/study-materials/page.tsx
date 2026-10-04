@@ -156,9 +156,9 @@ const StudyMaterials: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000] flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-2 shadow-[2px_2px_0px_#000]">
+            <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <BookOpen size={14} className="text-black" />
               <span>Resources & Notes</span>
             </div>
@@ -171,7 +171,7 @@ const StudyMaterials: React.FC = () => {
           </div>
           <button
             onClick={() => setShowUploadForm(!showUploadForm)}
-            className="inline-flex items-center justify-center gap-2 bg-[#fef08a] text-black border-2 border-black px-6 py-3 rounded-2xl font-outfit font-black text-base shadow-[4px_4px_0px_#000] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 bg-[#fef08a] text-black border border-white/10 px-6 py-3 rounded-2xl font-outfit font-black text-base shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
           >
             {showUploadForm ? <X size={20} /> : <Upload size={20} />}
             {showUploadForm ? 'Close Form' : 'Upload Material'}
@@ -180,10 +180,10 @@ const StudyMaterials: React.FC = () => {
 
         {/* Upload Form Card */}
         {showUploadForm && (
-          <div className="bg-[#f0fdf4] rounded-3xl shadow-[6px_6px_0px_#000] p-6 md:p-8 border-3 border-black">
-            <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
+          <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-6 md:p-8 border border-white/10">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_#000]">
+                <div className="w-10 h-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <Upload size={20} className="text-black" />
                 </div>
                 <div>
@@ -194,7 +194,7 @@ const StudyMaterials: React.FC = () => {
               <button 
                 type="button"
                 onClick={() => setShowUploadForm(false)}
-                className="w-8 h-8 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold hover:bg-neutral-100"
+                className="w-8 h-8 rounded-full bg-white border border-white/10 flex items-center justify-center font-bold hover:bg-neutral-100"
               >
                 ✕
               </button>
@@ -211,7 +211,7 @@ const StudyMaterials: React.FC = () => {
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+                    className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
                     placeholder="e.g., Chapter 5 - Quadratic Equations"
                     required
                   />
@@ -255,7 +255,7 @@ const StudyMaterials: React.FC = () => {
                     type="file"
                     accept=".pdf"
                     onChange={handleFileChange}
-                    className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-semibold text-black file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-2 file:border-black file:text-xs file:font-outfit file:font-black file:bg-[#fef08a] file:cursor-pointer shadow-[2px_2px_0px_#000]"
+                    className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-semibold text-black file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-2 file:border-black file:text-xs file:font-outfit file:font-black file:bg-[#fef08a] file:cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     required
                   />
                   {formData.file && (
@@ -276,7 +276,7 @@ const StudyMaterials: React.FC = () => {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 bg-white border-2 border-black rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+                  className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
                   placeholder="Brief description of the material, key topics covered, or instructions for students..."
                 />
               </div>
@@ -285,14 +285,14 @@ const StudyMaterials: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#86efac] text-black border-2 border-black px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
+                  className="bg-[#86efac] text-black border border-white/10 px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
                 >
                   {loading ? 'Uploading PDF...' : 'Upload Material'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowUploadForm(false)}
-                  className="bg-white text-black border-2 border-black px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                  className="bg-white text-black border border-white/10 px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -302,9 +302,9 @@ const StudyMaterials: React.FC = () => {
         )}
 
         {/* Filter Controls Card */}
-        <div className="bg-white rounded-3xl p-5 border-3 border-black shadow-[5px_5px_0px_#000]">
+        <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-[#86efac] border-2 border-black flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#86efac] border border-white/10 flex items-center justify-center">
               <Filter size={16} className="text-black" />
             </div>
             <h3 className="font-outfit font-black text-lg text-black">Filter Study Materials</h3>
@@ -339,8 +339,8 @@ const StudyMaterials: React.FC = () => {
         </div>
 
         {/* Materials Container */}
-        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
-          <div className="p-4 md:p-5 bg-[#86efac] border-b-3 border-black flex justify-between items-center">
+        <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
+          <div className="p-4 md:p-5 bg-[#86efac] border-b border-white/10 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Sparkles size={20} className="text-black" />
               <h3 className="font-outfit font-black text-xl text-black">
@@ -364,10 +364,10 @@ const StudyMaterials: React.FC = () => {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="bg-[#dcfce7] border-2 border-black text-black px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase">
+                        <span className="bg-[#dcfce7] border border-white/10 text-black px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase">
                           {material.class}
                         </span>
-                        <span className="bg-[#fef08a] border-2 border-black text-black px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase">
+                        <span className="bg-[#fef08a] border border-white/10 text-black px-2.5 py-0.5 rounded-lg text-xs font-space font-black uppercase">
                           {material.subject}
                         </span>
                         <span className="bg-neutral-100 border border-black text-black font-mono text-xs px-2 py-0.5 rounded-md">
@@ -392,7 +392,7 @@ const StudyMaterials: React.FC = () => {
                         href={material.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-[#86efac] text-black border-2 border-black px-3.5 py-2 rounded-xl font-outfit font-black text-sm shadow-[2px_2px_0px_#000] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                        className="inline-flex items-center gap-1.5 bg-[#86efac] text-black border border-white/10 px-3.5 py-2 rounded-xl font-outfit font-black text-sm shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                         title="Download PDF"
                       >
                         <Download size={16} />
@@ -400,7 +400,7 @@ const StudyMaterials: React.FC = () => {
                       </a>
                       <button
                         onClick={() => handleDelete(material._id)}
-                        className="inline-flex items-center justify-center p-2 bg-rose-100 text-rose-700 border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                        className="inline-flex items-center justify-center p-2 bg-rose-100 text-rose-700 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                         title="Delete Material"
                       >
                         <Trash2 size={18} />

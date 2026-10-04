@@ -33,7 +33,7 @@ export default function SheryiansSplash() {
       />
 
       <div className="relative z-10 flex flex-col items-center gap-5">
-        {/* Raven Emblem with Sheryians Orange Glow */}
+        {/* Raven Emblem with Orange Glow */}
         <div className="relative w-20 h-20 rounded-2xl bg-[#110e0c] border border-[#e8602e]/40 p-3 shadow-[0_0_35px_rgba(232,96,46,0.4)] flex items-center justify-center animate-bounce">
           <img 
             src="/logo.png" 

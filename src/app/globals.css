@@ -313,45 +313,30 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, #151722 0%, #0d0f17 100%) !important;
 }
 
-/* Cartoon Pop Color Cards */
-.card-yellow {
-  background-color: #fef08a !important;
-}
-.card-blue {
-  background-color: #bae6fd !important;
-}
-.card-green {
-  background-color: #bbf7d0 !important;
-}
-.card-pink {
-  background-color: #fbcfe8 !important;
-}
-.card-purple {
-  background-color: #ddd6fe !important;
-}
-.card-orange {
-  background-color: #fed7aa !important;
-}
 
-/* ── CARTOON BUTTONS & TACTILE CLICKS ──────────────────────── */
-.btn-cartoon {
-  border: 2.5px solid #000000;
-  box-shadow: 4px 4px 0px #000000;
-  border-radius: 0.875rem;
-  font-weight: 800;
-  font-family: var(--font-outfit), sans-serif;
+/* ── MODERN LUXURY BUTTONS & TACTILE CLICKS ──────────────────────── */
+.btn-cartoon,
+.btn-sheryians {
+  background: linear-gradient(135deg, #ff733d 0%, #e8602e 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 130, 80, 0.4) !important;
+  box-shadow: 0 0 25px rgba(232, 96, 46, 0.45) !important;
+  border-radius: 9999px !important;
+  font-weight: 800 !important;
+  font-family: var(--font-outfit), sans-serif !important;
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.btn-cartoon:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #000000;
+.btn-cartoon:hover,
+.btn-sheryians:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 0 35px rgba(232, 96, 46, 0.65) !important;
 }
 
-.btn-cartoon:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #000000;
+.btn-cartoon:active,
+.btn-sheryians:active {
+  transform: translateY(0) scale(0.98) !important;
 }
 
 .btn-cartoon-yellow,
@@ -429,7 +414,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px) !important;
 }
 
-/* ── SHERYIANS STICKERS & PILLS ──────────────────────────────── */
+/* ── MODERN STICKERS & PILLS ──────────────────────────────── */
 .pill-badge {
   display: inline-flex;
   align-items: center;
@@ -452,26 +437,14 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.75rem;
-  border-radius: 0.6rem;
-  border: 2px solid #000000;
-  box-shadow: 2px 2px 0px #000000;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 96, 46, 0.35);
+  background-color: rgba(232, 96, 46, 0.12);
+  box-shadow: 0 0 12px rgba(232, 96, 46, 0.15);
   font-size: 0.75rem;
   font-weight: 800;
   font-family: var(--font-space), sans-serif;
-  color: #000000;
-}
-
-/* Cartoon Dot Grid Background */
-.cartoon-bg-dots {
-  background-size: 28px 28px;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px);
-}
-
-.cartoon-bg-grid {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  color: #ff7b47;
 }
 
 /* Hide scrollbars */
@@ -529,18 +502,18 @@ body.popup-frozen {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #dcfce7;
+  background: #0d0f18;
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #86efac;
-  border: 1px solid #000000;
+  background: #1e2235;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #4ade80;
+  background: #e8602e;
 }
 
 /* ── SMOOTH HARDWARE ACCELERATION & SPRING TRANSITIONS ─────── */

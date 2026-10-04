@@ -120,19 +120,19 @@ export default function TeacherApplicationsPage() {
     switch (status) {
       case 'approved':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#86efac] text-emerald-950 border-2 border-black shadow-[1px_1px_0px_#000]">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#86efac] text-emerald-950 border border-white/10 shadow-sm">
             <CheckCircle size={12} /> Approved
           </span>
         );
       case 'rejected':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-rose-200 text-rose-900 border-2 border-black shadow-[1px_1px_0px_#000]">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-rose-200 text-rose-900 border border-white/10 shadow-sm">
             <XCircle size={12} /> Rejected
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#fef08a] text-amber-950 border-2 border-black shadow-[1px_1px_0px_#000]">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#fef08a] text-amber-950 border border-white/10 shadow-sm">
             <Clock size={12} /> Pending
           </span>
         );
@@ -143,8 +143,8 @@ export default function TeacherApplicationsPage() {
     <AdminLayout>
       <div className="space-y-6">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000]">
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-2 shadow-[2px_2px_0px_#000]">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <UserCheck size={14} className="text-black" />
             <span>Faculty Recruitment</span>
           </div>
@@ -158,23 +158,23 @@ export default function TeacherApplicationsPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          <div className="bg-white rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-white rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-space font-black uppercase text-black/60">Total Applicants</p>
             <p className="text-3xl font-outfit font-black text-black mt-1">{applications.length}</p>
           </div>
-          <div className="bg-[#fef08a] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#fef08a] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-space font-black uppercase text-black/70">Pending Review</p>
             <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'pending').length}
             </p>
           </div>
-          <div className="bg-[#86efac] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#86efac] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-space font-black uppercase text-black/70">Approved</p>
             <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'approved').length}
             </p>
           </div>
-          <div className="bg-rose-200 rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="bg-rose-200 rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-space font-black uppercase text-black/70">Rejected</p>
             <p className="text-3xl font-outfit font-black text-black mt-1">
               {applications.filter(a => a.status === 'rejected').length}
@@ -183,7 +183,7 @@ export default function TeacherApplicationsPage() {
         </div>
 
         {/* Search & Filter Card */}
-        <div className="bg-white rounded-3xl p-5 border-3 border-black shadow-[5px_5px_0px_#000]">
+        <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Search */}
             <div className="relative flex-1">
@@ -193,13 +193,13 @@ export default function TeacherApplicationsPage() {
                 placeholder="Search by teacher name, email or contact number..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border-2 border-black rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border border-white/10 rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
               />
             </div>
 
             {/* Status Filter */}
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shrink-0">
                 <Filter size={18} className="text-black" />
               </div>
               <CartoonDropdown
@@ -220,20 +220,20 @@ export default function TeacherApplicationsPage() {
 
         {/* Applications Table Card */}
         {loading ? (
-          <div className="flex justify-center items-center h-64 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000]">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-[#86efac]"></div>
+          <div className="flex justify-center items-center h-64 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+            <div className="animate-spin rounded-full h-12 w-12 border border-white/15 border-t-[#86efac]"></div>
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
+          <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
             <UserCheck className="w-12 h-12 text-black/30 mx-auto mb-3" />
             <p className="font-outfit font-black text-xl text-black">No applications found</p>
             <p className="text-sm font-jakarta font-medium text-black/60 mt-1">Try switching filters or search terms.</p>
           </div>
         ) : (
-          <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+          <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-[#86efac] border-b-3 border-black">
+                <thead className="bg-[#86efac] border-b border-white/10">
                   <tr>
                     <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Teacher Name</th>
                     <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Contact Details</th>
@@ -282,7 +282,7 @@ export default function TeacherApplicationsPage() {
                             setSelectedApplication(app);
                             setAdminNotes(app.adminNotes || '');
                           }}
-                          className="p-2.5 bg-[#fef08a] text-black border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="p-2.5 bg-[#fef08a] text-black border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                           title="View Application Details"
                         >
                           <Eye size={16} />
@@ -299,12 +299,12 @@ export default function TeacherApplicationsPage() {
         {/* Detail Modal */}
         {selectedApplication && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overscroll-contain">
-            <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
-              <div className="sticky top-0 bg-[#86efac] p-5 border-b-3 border-black flex justify-between items-center">
+            <div className="bg-[#f0fdf4] rounded-3xl border border-white/10 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
+              <div className="sticky top-0 bg-[#86efac] p-5 border-b border-white/10 flex justify-between items-center">
                 <h2 className="text-xl font-outfit font-black text-black">Application Details</h2>
                 <button
                   onClick={() => setSelectedApplication(null)}
-                  className="w-8 h-8 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold hover:bg-neutral-100 cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white border border-white/10 flex items-center justify-center font-bold hover:bg-neutral-100 cursor-pointer"
                 >
                   <X size={18} />
                 </button>
@@ -317,8 +317,8 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 {/* Name */}
-                <div className="flex items-center gap-3 bg-white border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]">
-                  <div className="w-12 h-12 bg-[#86efac] border-2 border-black rounded-2xl flex items-center justify-center shadow-[1px_1px_0px_#000]">
+                <div className="flex items-center gap-3 bg-white border border-white/10 rounded-2xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+                  <div className="w-12 h-12 bg-[#86efac] border border-white/10 rounded-2xl flex items-center justify-center shadow-sm">
                     <span className="text-xl font-outfit font-black text-black">
                       {selectedApplication.name.charAt(0)}
                     </span>
@@ -331,18 +331,18 @@ export default function TeacherApplicationsPage() {
 
                 {/* Contact */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2 bg-white border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                  <div className="flex items-center gap-2 bg-white border border-white/10 rounded-xl p-3 shadow-sm">
                     <Mail size={16} className="text-black shrink-0" />
                     <span className="text-black font-mono font-bold text-xs truncate">{selectedApplication.email}</span>
                   </div>
-                  <div className="flex items-center gap-2 bg-white border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                  <div className="flex items-center gap-2 bg-white border border-white/10 rounded-xl p-3 shadow-sm">
                     <Phone size={16} className="text-black shrink-0" />
                     <span className="text-black font-mono font-bold text-xs">{selectedApplication.phone}</span>
                   </div>
                 </div>
 
                 {/* Qualification */}
-                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000] flex items-start gap-3">
+                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm flex items-start gap-3">
                   <GraduationCap size={18} className="text-black mt-0.5 shrink-0" />
                   <div>
                     <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.qualification}</p>
@@ -351,7 +351,7 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 {/* Experience */}
-                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000] flex items-start gap-3">
+                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm flex items-start gap-3">
                   <Briefcase size={18} className="text-black mt-0.5 shrink-0" />
                   <div>
                     <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.experience}</p>
@@ -360,7 +360,7 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 {/* Subjects */}
-                <div className="bg-white border-2 border-black rounded-xl p-3.5 shadow-[1px_1px_0px_#000]">
+                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm">
                   <div className="flex items-start gap-2">
                     <BookOpen size={18} className="text-black mt-0.5 shrink-0" />
                     <div>
@@ -386,7 +386,7 @@ export default function TeacherApplicationsPage() {
                       value={adminNotes}
                       onChange={(e) => setAdminNotes(e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400"
+                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
                       placeholder="Add any internal assessment or interview remarks..."
                     />
                   </div>
@@ -394,7 +394,7 @@ export default function TeacherApplicationsPage() {
 
                 {/* Show existing notes if already reviewed */}
                 {selectedApplication.adminNotes && selectedApplication.status !== 'pending' && (
-                  <div className="p-3.5 bg-[#86efac] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000]">
+                  <div className="p-3.5 bg-[#86efac] border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                     <p className="text-black/70 text-xs font-space font-black uppercase mb-1">Admin Notes:</p>
                     <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.adminNotes}</p>
                   </div>
@@ -406,7 +406,7 @@ export default function TeacherApplicationsPage() {
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'approved')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
+                      className="flex-1 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
                     >
                       <CheckCircle size={18} />
                       Approve Educator
@@ -414,7 +414,7 @@ export default function TeacherApplicationsPage() {
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'rejected')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-rose-200 hover:bg-rose-300 text-rose-950 font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
+                      className="flex-1 py-3 bg-rose-200 hover:bg-rose-300 text-rose-950 font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
                     >
                       <XCircle size={18} />
                       Reject

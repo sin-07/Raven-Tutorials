@@ -1,42 +1,53 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, AlertCircle, CheckCircle, Star } from 'lucide-react';
+import { Send, Star, AlertCircle, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
 interface FeedbackFormProps {
   studentId?: string;
+  studentName?: string;
+  studentEmail?: string;
+  studentStandard?: string;
+  isAuthenticated?: boolean;
+  onSuccess?: () => void;
   onSubmitSuccess?: () => void;
 }
 
-const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess }) => {
+const categories = [
+  { value: 'Teaching Quality', label: 'Teaching Quality' },
+  { value: 'Course Content', label: 'Course Content' },
+  { value: 'Doubt Resolution', label: 'Doubt Resolution' },
+  { value: 'App/Platform Experience', label: 'App/Platform Experience' },
+  { value: 'Study Materials', label: 'Study Materials' },
+  { value: 'Test & Assessments', label: 'Test & Assessments' },
+  { value: 'General Suggestion', label: 'General Suggestion' },
+];
+
+export const FeedbackForm: React.FC<FeedbackFormProps> = ({
+  studentId,
+  studentName,
+  studentEmail,
+  studentStandard,
+  isAuthenticated = !!studentId,
+  onSuccess,
+  onSubmitSuccess
+}) => {
   const [formData, setFormData] = useState({
-    category: 'general',
+    category: 'Teaching Quality',
+    rating: 5,
     subject: '',
-    message: '',
-    rating: 5
+    message: ''
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const isAuthenticated = !!studentId;
-
-  const categories = [
-    { value: 'general', label: 'General Feedback' },
-    { value: 'course_content', label: 'Course Content' },
-    { value: 'teaching_method', label: 'Teaching Method' },
-    { value: 'study_materials', label: 'Study Materials' },
-    { value: 'online_classes', label: 'Online Classes' },
-    { value: 'test_system', label: 'Test System' },
-    { value: 'complaint', label: 'Complaint' }
-  ];
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'rating' ? parseInt(value) : value
+      [name]: value
     }));
   };
 
@@ -44,53 +55,54 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
     e.preventDefault();
 
     if (!isAuthenticated) {
-      toast.error('Please login to submit feedback');
+      toast.error('Please login as a student to submit feedback');
       return;
     }
 
-    if (!formData.subject.trim() || !formData.message.trim()) {
-      toast.error('Please fill in all fields');
+    if (!formData.subject.trim()) {
+      toast.error('Please enter a feedback subject');
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      toast.error('Please write your feedback message');
       return;
     }
 
     setLoading(true);
 
     try {
-      const payload = {
-        category: formData.category,
-        subject: formData.subject,
-        message: formData.message,
-        rating: formData.rating
-      };
-
-      const response = await fetch('/api/feedback', {
+      const res = await fetch('/api/feedback', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          studentId,
+          studentName,
+          studentEmail,
+          studentStandard
+        })
       });
 
-      if (!response.ok) {
-        const data = await response.json();
+      const data = await res.json();
+
+      if (!res.ok) {
         throw new Error(data.message || 'Failed to submit feedback');
       }
 
-      toast.success('Thank you! Your feedback has been received.');
+      toast.success('Feedback submitted successfully! Thank you.');
       setSubmitted(true);
       setFormData({
-        category: 'general',
+        category: 'Teaching Quality',
+        rating: 5,
         subject: '',
-        message: '',
-        rating: 5
+        message: ''
       });
 
-      if (onSubmitSuccess) {
-        setTimeout(() => onSubmitSuccess(), 1500);
-      }
+      if (onSuccess) onSuccess();
+      if (onSubmitSuccess) onSubmitSuccess();
 
-      setTimeout(() => setSubmitted(false), 3000);
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (err: any) {
       console.error('Feedback error:', err);
       toast.error(err.message || 'Failed to submit feedback');
@@ -100,34 +112,34 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
   };
 
   return (
-    <div className="bg-[#f0fdf4] rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-6">
-      <div className="flex items-center gap-2.5 mb-2">
-        <div className="w-8 h-8 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
-          <Send className="w-4 h-4 text-black" />
+    <div className="bg-[#0f111a] rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-6 sm:p-8">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-9 h-9 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47]">
+          <Send className="w-4 h-4" />
         </div>
-        <h3 className="text-xl font-outfit font-black text-black">
+        <h3 className="text-xl font-outfit font-bold text-white">
           {isAuthenticated ? 'Share Your Feedback' : 'Send Feedback'}
         </h3>
       </div>
-      <p className="text-xs font-jakarta font-medium text-black/70 mb-5">
+      <p className="text-xs font-jakarta font-medium text-zinc-400 mb-6">
         Help us improve by sharing your honest thoughts and academic suggestions
       </p>
 
       {submitted && (
-        <div className="mb-5 p-3.5 bg-[#86efac] border-2 border-black rounded-xl flex items-center gap-2.5 shadow-[2px_2px_0px_#000] cartoon-pop">
-          <CheckCircle className="w-5 h-5 text-black shrink-0" />
-          <p className="text-black text-xs font-jakarta font-bold">Thank you! Your feedback has been safely submitted.</p>
+        <div className="mb-5 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-center gap-2.5 text-emerald-400">
+          <CheckCircle className="w-5 h-5 shrink-0" />
+          <p className="text-xs font-jakarta font-semibold">Thank you! Your feedback has been safely submitted.</p>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Authentication Notice */}
         {!isAuthenticated && (
-          <div className="bg-[#fef08a] border-2 border-black rounded-xl p-3.5 shadow-[2px_2px_0px_#000]">
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-black shrink-0" />
-              <p className="text-xs font-jakarta font-bold text-black">
-                Please <a href="/login" className="underline font-black hover:text-neutral-800">login</a> to submit student feedback.
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5">
+            <div className="flex items-center gap-2 text-amber-300">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <p className="text-xs font-jakarta font-medium">
+                Please <a href="/login" className="underline font-bold hover:text-white">login</a> to submit student feedback.
               </p>
             </div>
           </div>
@@ -135,7 +147,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Category Selection */}
         <div>
-          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+          <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1.5">
             Category
           </label>
           <CartoonDropdown
@@ -152,7 +164,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Subject */}
         <div>
-          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+          <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1.5">
             Subject
           </label>
           <input
@@ -162,27 +174,27 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             onChange={handleChange}
             disabled={!isAuthenticated}
             placeholder="Brief topic of your feedback"
-            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] placeholder-neutral-400 text-sm disabled:opacity-50"
+            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] placeholder-zinc-500 text-sm disabled:opacity-50 transition"
             maxLength={100}
           />
-          <p className="text-[10px] font-mono font-bold text-black/50 mt-1">{formData.subject.length}/100</p>
+          <p className="text-[10px] font-mono font-medium text-zinc-500 mt-1">{formData.subject.length}/100</p>
         </div>
 
         {/* Rating */}
         <div>
-          <label className="block text-xs font-space font-black uppercase text-black mb-1">
+          <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1">
             Overall Rating
           </label>
-          <div className="flex gap-2 bg-white border-2 border-black rounded-xl p-2.5 w-fit shadow-[2px_2px_0px_#000]">
+          <div className="flex gap-2 bg-[#121522] border border-white/10 rounded-xl p-2.5 w-fit">
             {[1, 2, 3, 4, 5].map(star => (
               <button
                 key={star}
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
                 disabled={!isAuthenticated}
-                className="transition-spring hover:scale-125 active:scale-90 disabled:cursor-not-allowed p-0.5 cursor-pointer"
+                className="hover:scale-110 active:scale-95 disabled:cursor-not-allowed p-0.5 cursor-pointer transition"
               >
-                <Star className={`w-6 h-6 transition-all duration-200 ${star <= formData.rating ? 'text-amber-500 fill-amber-500 scale-105' : 'text-neutral-300'}`} />
+                <Star className={`w-5 h-5 transition-colors ${star <= formData.rating ? 'text-amber-400 fill-amber-400' : 'text-zinc-600'}`} />
               </button>
             ))}
           </div>
@@ -190,7 +202,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
 
         {/* Message */}
         <div>
-          <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+          <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1.5">
             Your Feedback Message
           </label>
           <textarea
@@ -200,17 +212,17 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ studentId, onSubmitSuccess 
             disabled={!isAuthenticated}
             placeholder="Share your detailed thoughts, suggestions, or concerns..."
             rows={4}
-            className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[2px_2px_0px_#000] resize-none placeholder-neutral-400 text-sm disabled:opacity-50"
+            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] resize-none placeholder-zinc-500 text-sm disabled:opacity-50 transition"
             maxLength={1000}
           />
-          <p className="text-[10px] font-mono font-bold text-black/50 mt-1">{formData.message.length}/1000</p>
+          <p className="text-[10px] font-mono font-medium text-zinc-500 mt-1">{formData.message.length}/1000</p>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
           disabled={loading || !isAuthenticated}
-          className="w-full px-6 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 transition-spring flex items-center justify-center gap-2 cursor-pointer"
+          className="btn-sheryians w-full py-3 text-white rounded-xl font-outfit font-bold text-sm shadow-[0_0_20px_rgba(232,96,46,0.35)] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer transition"
         >
           <Send className="w-4 h-4" />
           <span>{loading ? 'Submitting...' : 'Submit Feedback'}</span>

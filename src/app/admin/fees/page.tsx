@@ -179,7 +179,7 @@ export default function AdminFeesPage() {
         {/* Header Title & Actions */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border border-black text-xs font-black font-space uppercase mb-2 shadow-[1px_1px_0px_#000]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border border-black text-xs font-black font-space uppercase mb-2 shadow-sm">
               <CreditCard className="w-3.5 h-3.5 text-black" />
               <span>Accounts & Billing Desk</span>
             </div>
@@ -194,7 +194,7 @@ export default function AdminFeesPage() {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setShowBatchModal(true)}
-              className="btn-cartoon px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] flex items-center gap-2"
+              className="btn-sheryians px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs sm:text-sm rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
               <span>Generate Monthly Class Dues</span>
@@ -204,7 +204,7 @@ export default function AdminFeesPage() {
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="card-cartoon bg-[#f0fdf4] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-black font-space uppercase text-neutral-600">Total Collected</p>
             <p className="text-3xl font-black font-mono text-emerald-900 mt-1">₹{metrics.totalCollected.toLocaleString('en-IN')}</p>
             <p className="text-xs font-bold text-emerald-700 mt-2 flex items-center gap-1">
@@ -212,7 +212,7 @@ export default function AdminFeesPage() {
             </p>
           </div>
 
-          <div className="card-cartoon bg-[#fef9c3] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="card-cartoon bg-[#fef9c3] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-black font-space uppercase text-neutral-600">Pending Dues</p>
             <p className="text-3xl font-black font-mono text-amber-900 mt-1">₹{metrics.totalPending.toLocaleString('en-IN')}</p>
             <p className="text-xs font-bold text-amber-800 mt-2 flex items-center gap-1">
@@ -220,7 +220,7 @@ export default function AdminFeesPage() {
             </p>
           </div>
 
-          <div className="card-cartoon bg-[#fee2e2] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="card-cartoon bg-[#fee2e2] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-black font-space uppercase text-neutral-600">Overdue Invoices</p>
             <p className="text-3xl font-black font-mono text-rose-900 mt-1">{metrics.overdueCount}</p>
             <p className="text-xs font-bold text-rose-800 mt-2 flex items-center gap-1">
@@ -228,7 +228,7 @@ export default function AdminFeesPage() {
             </p>
           </div>
 
-          <div className="card-cartoon bg-[#dcfce7] rounded-2xl p-5 border-3 border-black shadow-[4px_4px_0px_#000]">
+          <div className="card-cartoon bg-[#dcfce7] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <p className="text-xs font-black font-space uppercase text-neutral-600">Total Invoices</p>
             <p className="text-3xl font-black font-mono text-black mt-1">{metrics.totalRecords}</p>
             <p className="text-xs font-bold text-neutral-700 mt-2 flex items-center gap-1">
@@ -238,7 +238,7 @@ export default function AdminFeesPage() {
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-2xl p-4 sm:p-5 shadow-[4px_4px_0px_#000] flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <form onSubmit={handleSearchSubmit} className="flex-1 flex items-center gap-2">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -247,7 +247,7 @@ export default function AdminFeesPage() {
                 placeholder="Search by student name, Reg ID, or Receipt #..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white border-2 border-black rounded-xl text-black font-bold font-jakarta text-xs sm:text-sm shadow-[1.5px_1.5px_0px_#000] focus:outline-none"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-white/10 rounded-xl text-black font-bold font-jakarta text-xs sm:text-sm shadow-sm focus:outline-none"
               />
             </div>
             <button
@@ -297,11 +297,11 @@ export default function AdminFeesPage() {
         </div>
 
         {/* Fees Table */}
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000] overflow-hidden">
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b-3 border-black bg-[#dcfce7]">
+                <tr className="border-b border-white/10 bg-[#dcfce7]">
                   <th className="p-4 font-black font-space uppercase text-xs">Student</th>
                   <th className="p-4 font-black font-space uppercase text-xs">Standard</th>
                   <th className="p-4 font-black font-space uppercase text-xs">Month</th>
@@ -359,7 +359,7 @@ export default function AdminFeesPage() {
                         {fee.status === 'paid' ? (
                           <button
                             onClick={() => setReceiptModalFee(fee)}
-                            className="btn-cartoon px-3 py-1.5 bg-white hover:bg-emerald-200 border border-black rounded-xl text-xs font-bold text-black shadow-[1.5px_1.5px_0px_#000] inline-flex items-center gap-1.5"
+                            className="btn-sheryians px-3 py-1.5 bg-white hover:bg-emerald-200 border border-black rounded-xl text-xs font-bold text-black shadow-sm inline-flex items-center gap-1.5"
                           >
                             <Printer className="w-3.5 h-3.5" />
                             <span>Receipt</span>
@@ -370,7 +370,7 @@ export default function AdminFeesPage() {
                               setSelectedFee(fee);
                               setShowPayModal(true);
                             }}
-                            className="btn-cartoon px-3 py-1.5 bg-emerald-400 hover:bg-emerald-300 border-2 border-black rounded-xl text-xs font-black text-black shadow-[2px_2px_0px_#000]"
+                            className="btn-sheryians px-3 py-1.5 bg-emerald-400 hover:bg-emerald-300 border border-white/10 rounded-xl text-xs font-black text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                           >
                             Record Pay
                           </button>
@@ -387,8 +387,8 @@ export default function AdminFeesPage() {
         {/* MODAL 1: BATCH GENERATE CLASS DUES */}
         {showBatchModal && (
           <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] cartoon-pop my-auto">
-              <div className="flex items-center justify-between pb-4 border-b-2 border-black/15">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)]  my-auto">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10/15">
                 <h3 className="text-xl font-black font-outfit text-black">Generate Class Monthly Dues</h3>
                 <button
                   onClick={() => setShowBatchModal(false)}
@@ -422,7 +422,7 @@ export default function AdminFeesPage() {
                     placeholder="e.g. May 2026"
                     value={batchForm.month}
                     onChange={(e) => setBatchForm({ ...batchForm, month: e.target.value })}
-                    className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                    className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                   />
                 </div>
 
@@ -435,7 +435,7 @@ export default function AdminFeesPage() {
                       min={0}
                       value={batchForm.tuitionFee}
                       onChange={(e) => setBatchForm({ ...batchForm, tuitionFee: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                      className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                     />
                   </div>
                   <div>
@@ -445,7 +445,7 @@ export default function AdminFeesPage() {
                       min={0}
                       value={batchForm.examFee}
                       onChange={(e) => setBatchForm({ ...batchForm, examFee: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                      className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                     />
                   </div>
                   <div>
@@ -455,7 +455,7 @@ export default function AdminFeesPage() {
                       min={0}
                       value={batchForm.labFee}
                       onChange={(e) => setBatchForm({ ...batchForm, labFee: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                      className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                     />
                   </div>
                 </div>
@@ -467,7 +467,7 @@ export default function AdminFeesPage() {
                     required
                     value={batchForm.dueDate}
                     onChange={(e) => setBatchForm({ ...batchForm, dueDate: e.target.value })}
-                    className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                    className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                   />
                 </div>
 
@@ -475,14 +475,14 @@ export default function AdminFeesPage() {
                   <button
                     type="button"
                     onClick={() => setShowBatchModal(false)}
-                    className="flex-1 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-black font-bold text-xs rounded-xl border-2 border-black"
+                    className="flex-1 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-black font-bold text-xs rounded-xl border border-white/10"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={creatingBatch}
-                    className="flex-1 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5"
+                    className="flex-1 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5"
                   >
                     {creatingBatch ? 'Generating...' : 'Generate Invoices'}
                   </button>
@@ -495,8 +495,8 @@ export default function AdminFeesPage() {
         {/* Record Payment Modal */}
         {showPayModal && (
           <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
-            <div className="bg-white border-3 border-black rounded-3xl max-w-md w-full p-6 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] my-auto">
-              <div className="flex items-center justify-between border-b-2 border-black/10 pb-3">
+            <div className="bg-white border border-white/10 rounded-3xl max-w-md w-full p-6 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] my-auto">
+              <div className="flex items-center justify-between border-b border-white/10/10 pb-3">
                 <div className="flex items-center gap-2">
                   <CreditCard className="w-5 h-5 text-emerald-700" />
                   <h3 className="font-black font-outfit text-lg text-black">Collect Student Fee</h3>
@@ -534,7 +534,7 @@ export default function AdminFeesPage() {
                     placeholder="e.g. UPI-984920231 or Cash Slip #21"
                     value={paymentForm.transactionId}
                     onChange={(e) => setPaymentForm({ ...paymentForm, transactionId: e.target.value })}
-                    className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                    className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                   />
                 </div>
 
@@ -544,7 +544,7 @@ export default function AdminFeesPage() {
                     type="text"
                     value={paymentForm.remarks}
                     onChange={(e) => setPaymentForm({ ...paymentForm, remarks: e.target.value })}
-                    className="w-full px-3 py-2 bg-white border-2 border-black rounded-xl text-black font-bold text-sm shadow-[1.5px_1.5px_0px_#000]"
+                    className="w-full px-3 py-2 bg-white border border-white/10 rounded-xl text-black font-bold text-sm shadow-sm"
                   />
                 </div>
 
@@ -552,13 +552,13 @@ export default function AdminFeesPage() {
                   <button
                     type="button"
                     onClick={() => setShowPayModal(false)}
-                    className="px-4 py-2.5 bg-white border-2 border-black text-black font-bold text-xs rounded-xl"
+                    className="px-4 py-2.5 bg-white border border-white/10 text-black font-bold text-xs rounded-xl"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]"
+                    className="px-5 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                   >
                     Confirm & Generate Receipt
                   </button>
@@ -571,10 +571,10 @@ export default function AdminFeesPage() {
         {/* MODAL 3: OFFICIAL PRINTABLE CARTOON FEE RECEIPT */}
         {receiptModalFee && (
           <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] cartoon-pop relative my-auto">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)]  relative my-auto">
               <button
                 onClick={() => setReceiptModalFee(null)}
-                className="absolute top-4 right-4 p-2 rounded-xl border-2 border-black bg-white hover:bg-rose-200 transition"
+                className="absolute top-4 right-4 p-2 rounded-xl border border-white/10 bg-white hover:bg-rose-200 transition"
               >
                 <X className="w-5 h-5 text-black" />
               </button>
@@ -631,7 +631,7 @@ export default function AdminFeesPage() {
                 </div>
 
                 {/* Fee Breakdown Table */}
-                <div className="border-2 border-black rounded-xl overflow-hidden bg-white">
+                <div className="border border-white/10 rounded-xl overflow-hidden bg-white">
                   <table className="w-full text-xs">
                     <thead>
                       <tr className="bg-[#dcfce7] border-b border-black font-black font-space uppercase">
@@ -656,7 +656,7 @@ export default function AdminFeesPage() {
                           <td className="p-2.5 text-right font-mono font-bold">₹{receiptModalFee.examFee}</td>
                         </tr>
                       )}
-                      <tr className="bg-[#f0fdf4] font-black border-t-2 border-black">
+                      <tr className="bg-[#f0fdf4] font-black border-t border-white/10">
                         <td className="p-3 font-outfit text-sm">TOTAL AMOUNT PAID</td>
                         <td className="p-3 text-right font-mono text-base text-emerald-900">₹{receiptModalFee.totalAmount}</td>
                       </tr>
@@ -678,10 +678,10 @@ export default function AdminFeesPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center justify-center gap-3 pt-4 border-t-2 border-black/10">
+                <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/10/10">
                   <button
                     onClick={() => window.print()}
-                    className="px-6 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-2"
+                    className="px-6 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-xs uppercase rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2"
                   >
                     <Printer className="w-4 h-4" />
                     <span>Print Official Receipt</span>

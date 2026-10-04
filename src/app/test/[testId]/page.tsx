@@ -357,8 +357,8 @@ function TakeTestPage() {
   if (!test) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f6fcf8] p-4">
-        <div className="bg-white border-3 border-black rounded-3xl p-8 sm:p-10 shadow-[8px_8px_0px_#000] text-center max-w-md w-full">
-          <div className="w-16 h-16 rounded-2xl bg-rose-200 border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#000]">
+        <div className="bg-white border border-white/10 rounded-3xl p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-md w-full">
+          <div className="w-16 h-16 rounded-2xl bg-rose-200 border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
             <XCircle className="w-8 h-8 text-rose-900" />
           </div>
           <h2 className="text-2xl font-outfit font-black text-black mb-2">
@@ -369,7 +369,7 @@ function TakeTestPage() {
           </p>
           <button
             onClick={() => router.push('/dashboard')}
-            className="w-full bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+            className="w-full bg-[#86efac] hover:bg-[#4ade80] text-black border border-white/10 px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
           >
             ← Back to Student Dashboard
           </button>
@@ -382,10 +382,10 @@ function TakeTestPage() {
   if (!testStarted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f6fcf8] px-4 py-12 sm:py-16">
-        <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] w-full max-w-4xl p-6 sm:p-10 md:p-12 border-3 border-black">
+        <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-full max-w-4xl p-6 sm:p-10 md:p-12 border border-white/10">
           {/* RAVEN Badge */}
           <div className="flex items-center justify-center mb-6">
-            <div className="inline-flex items-center gap-2.5 bg-[#86efac] text-black border-2 border-black rounded-2xl px-6 py-2.5 font-outfit font-black text-xl shadow-[3px_3px_0px_#000]">
+            <div className="inline-flex items-center gap-2.5 bg-[#86efac] text-black border border-white/10 rounded-2xl px-6 py-2.5 font-outfit font-black text-xl shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <img
                 src="/logo.png"
                 alt="RAVEN"
@@ -400,7 +400,7 @@ function TakeTestPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-outfit font-black text-black tracking-tight mb-3">
               {test.title}
             </h1>
-            <div className="inline-flex items-center gap-2 bg-[#fef08a] border-2 border-black px-4 py-1.5 rounded-full text-xs font-space font-black uppercase text-black shadow-[2px_2px_0px_#000]">
+            <div className="inline-flex items-center gap-2 bg-[#fef08a] border border-white/10 px-4 py-1.5 rounded-full text-xs font-space font-black uppercase text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <Sparkles size={14} className="text-black" />
               <span>{test.subject} • Class {test.standard}</span>
             </div>
@@ -413,8 +413,8 @@ function TakeTestPage() {
 
           {/* Test Info Cards Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white p-5 rounded-2xl border-3 border-black text-center shadow-[4px_4px_0px_#000]">
-              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+            <div className="bg-white p-5 rounded-2xl border border-white/10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shadow-sm">
                 <Clock className="w-5 h-5 text-black" />
               </div>
               <p className="text-[11px] font-space font-black uppercase text-black/60 tracking-wider">Duration</p>
@@ -423,8 +423,8 @@ function TakeTestPage() {
               </p>
             </div>
 
-            <div className="bg-[#dcfce7] p-5 rounded-2xl border-3 border-black text-center shadow-[4px_4px_0px_#000]">
-              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+            <div className="bg-[#dcfce7] p-5 rounded-2xl border border-white/10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border border-white/10 flex items-center justify-center shadow-sm">
                 <Award className="w-5 h-5 text-black" />
               </div>
               <p className="text-[11px] font-space font-black uppercase text-black/60 tracking-wider">Total Marks</p>
@@ -433,8 +433,8 @@ function TakeTestPage() {
               </p>
             </div>
 
-            <div className="bg-[#bfdbfe] p-5 rounded-2xl border-3 border-black text-center shadow-[4px_4px_0px_#000]">
-              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+            <div className="bg-[#bfdbfe] p-5 rounded-2xl border border-white/10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border border-white/10 flex items-center justify-center shadow-sm">
                 <HelpCircle className="w-5 h-5 text-black" />
               </div>
               <p className="text-[11px] font-space font-black uppercase text-black/60 tracking-wider">Questions</p>
@@ -443,8 +443,8 @@ function TakeTestPage() {
               </p>
             </div>
 
-            <div className="bg-[#fef08a] p-5 rounded-2xl border-3 border-black text-center shadow-[4px_4px_0px_#000]">
-              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+            <div className="bg-[#fef08a] p-5 rounded-2xl border border-white/10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-white border border-white/10 flex items-center justify-center shadow-sm">
                 <CheckCircle className="w-5 h-5 text-black" />
               </div>
               <p className="text-[11px] font-space font-black uppercase text-black/60 tracking-wider">Pass Mark</p>
@@ -455,9 +455,9 @@ function TakeTestPage() {
           </div>
 
           {/* Anti-Cheating Rules Notice Card */}
-          <div className="bg-[#fef08a] border-3 border-black rounded-2xl p-5 sm:p-6 mb-8 shadow-[4px_4px_0px_#000]">
+          <div className="bg-[#fef08a] border border-white/10 rounded-2xl p-5 sm:p-6 mb-8 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
             <div className="flex items-start gap-3 sm:gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center shrink-0 shadow-[1px_1px_0px_#000]">
+              <div className="w-10 h-10 rounded-xl bg-white border border-white/10 flex items-center justify-center shrink-0 shadow-sm">
                 <ShieldAlert className="w-6 h-6 text-black" />
               </div>
               <div className="flex-1">
@@ -478,7 +478,7 @@ function TakeTestPage() {
           {/* Start Test Tactile Button */}
           <button
             onClick={enterFullscreen}
-            className="w-full bg-[#86efac] hover:bg-[#4ade80] text-black border-3 border-black py-4 sm:py-5 rounded-2xl font-outfit font-black text-xl shadow-[5px_5px_0px_#000] active:translate-x-1 active:translate-y-1 hover:shadow-[3px_3px_0px_#000] transition-all flex items-center justify-center gap-3 cursor-pointer"
+            className="w-full bg-[#86efac] hover:bg-[#4ade80] text-black border border-white/10 py-4 sm:py-5 rounded-2xl font-outfit font-black text-xl shadow-[0_12px_30px_rgba(0,0,0,0.6)] active:translate-x-1 active:translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all flex items-center justify-center gap-3 cursor-pointer"
           >
             <span>Start Test Now</span>
             <ArrowRight className="w-6 h-6 text-black" />
@@ -512,7 +512,7 @@ function TakeTestPage() {
     <div ref={testContainerRef} className="min-h-screen bg-[#f6fcf8] text-black flex flex-col">
       {/* Security Warning Banner */}
       {showWarning && (
-        <div className="bg-rose-500 text-white py-3 px-4 z-50 border-b-3 border-black shadow-[0px_4px_0px_#000] animate-bounce sticky top-0">
+        <div className="bg-rose-500 text-white py-3 px-4 z-50 border-b border-white/10 shadow-md animate-bounce sticky top-0">
           <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
             <AlertCircle size={22} className="shrink-0" />
             <span className="font-outfit font-black text-sm sm:text-base tracking-wide">
@@ -523,10 +523,10 @@ function TakeTestPage() {
       )}
 
       {/* Examination Top Header */}
-      <header className="bg-white border-b-3 border-black px-4 sm:px-6 py-3.5 shadow-[0px_4px_0px_#000] sticky top-0 z-40">
+      <header className="bg-white border-b border-white/10 px-4 sm:px-6 py-3.5 shadow-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-[#86efac] text-black border-2 border-black rounded-xl px-3 py-1 font-outfit font-black text-base shadow-[2px_2px_0px_#000]">
+            <div className="flex items-center gap-2 bg-[#86efac] text-black border border-white/10 rounded-xl px-3 py-1 font-outfit font-black text-base shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <img
                 src="/logo.png"
                 alt="RAVEN"
@@ -546,7 +546,7 @@ function TakeTestPage() {
 
           <div className="flex items-center gap-3 self-end sm:self-auto">
             {/* Countdown Timer */}
-            <div className={`flex items-center gap-2 border-2 border-black px-4 py-1.5 rounded-xl shadow-[2px_2px_0px_#000] transition-colors ${
+            <div className={`flex items-center gap-2 border border-white/10 px-4 py-1.5 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-colors ${
               timeRemaining < 300 
                 ? 'bg-rose-200 text-rose-950 animate-pulse' 
                 : 'bg-[#fef08a] text-black'
@@ -558,7 +558,7 @@ function TakeTestPage() {
             </div>
 
             {/* Question Counter */}
-            <div className="bg-white border-2 border-black px-3.5 py-1.5 rounded-xl shadow-[2px_2px_0px_#000]">
+            <div className="bg-white border border-white/10 px-3.5 py-1.5 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <span className="text-xs font-space font-bold uppercase text-black/60 block leading-none">Question</span>
               <span className="font-mono font-black text-sm text-black">
                 {currentQuestion + 1} / {test.questions.length}
@@ -573,8 +573,8 @@ function TakeTestPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Question Navigator & Progress */}
           <aside className="lg:col-span-4 xl:col-span-3 order-2 lg:order-1">
-            <div className="bg-white rounded-3xl p-5 border-3 border-black shadow-[6px_6px_0px_#000] sticky top-24">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b-2 border-black">
+            <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] sticky top-24">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                 <h3 className="font-outfit font-black text-lg text-black">Question Palette</h3>
                 <span className="text-xs font-mono font-bold bg-[#dcfce7] border border-black px-2 py-0.5 rounded-md">
                   {Object.keys(answers).length}/{test.questions.length} Done
@@ -590,11 +590,11 @@ function TakeTestPage() {
                     <button
                       key={index}
                       onClick={() => handleQuestionJump(index)}
-                      className={`w-10 h-10 rounded-xl font-mono font-black text-sm border-2 border-black transition-all cursor-pointer flex items-center justify-center ${
+                      className={`w-10 h-10 rounded-xl font-mono font-black text-sm border border-white/10 transition-all cursor-pointer flex items-center justify-center ${
                         isCurrent
-                          ? 'bg-[#fef08a] text-black shadow-[3px_3px_0px_#000] scale-105 ring-2 ring-black'
+                          ? 'bg-[#fef08a] text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] scale-105 ring-2 ring-black'
                           : isAnsweredQ
-                          ? 'bg-[#86efac] text-black shadow-[2px_2px_0px_#000]'
+                          ? 'bg-[#86efac] text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)]'
                           : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                       }`}
                     >
@@ -605,28 +605,28 @@ function TakeTestPage() {
               </div>
 
               {/* Palette Legend */}
-              <div className="space-y-2 text-xs font-jakarta font-bold pt-3 border-t-2 border-black">
+              <div className="space-y-2 text-xs font-jakarta font-bold pt-3 border-t border-white/10">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#fef08a] border-2 border-black rounded-md"></div>
+                  <div className="w-4 h-4 bg-[#fef08a] border border-white/10 rounded-md"></div>
                   <span className="text-black/80">Active Question</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#86efac] border-2 border-black rounded-md"></div>
+                  <div className="w-4 h-4 bg-[#86efac] border border-white/10 rounded-md"></div>
                   <span className="text-black/80">Answered ({Object.keys(answers).length})</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-neutral-100 border-2 border-black rounded-md"></div>
+                  <div className="w-4 h-4 bg-neutral-100 border border-white/10 rounded-md"></div>
                   <span className="text-black/80">Unanswered ({test.questions.length - Object.keys(answers).length})</span>
                 </div>
               </div>
 
               {/* Progress Bar */}
-              <div className="mt-5 pt-4 border-t-2 border-black">
+              <div className="mt-5 pt-4 border-t border-white/10">
                 <div className="flex justify-between items-center text-xs font-mono font-bold mb-1.5">
                   <span className="font-space uppercase text-black/70">Completion</span>
                   <span className="text-black">{Math.round((Object.keys(answers).length / test.questions.length) * 100)}%</span>
                 </div>
-                <div className="w-full bg-neutral-100 border-2 border-black rounded-full h-3.5 p-0.5 overflow-hidden">
+                <div className="w-full bg-neutral-100 border border-white/10 rounded-full h-3.5 p-0.5 overflow-hidden">
                   <div
                     className="bg-[#86efac] h-full rounded-full transition-all duration-300 border-r border-black"
                     style={{
@@ -641,7 +641,7 @@ function TakeTestPage() {
                 <button
                   onClick={() => handleSubmit(false)}
                   disabled={submitting}
-                  className="w-full py-2.5 bg-[#fef08a] hover:bg-[#fde047] text-black border-2 border-black rounded-xl font-outfit font-black text-xs uppercase shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                  className="w-full py-2.5 bg-[#fef08a] hover:bg-[#fde047] text-black border border-white/10 rounded-xl font-outfit font-black text-xs uppercase shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
                 >
                   Review & Finish Test
                 </button>
@@ -651,18 +651,18 @@ function TakeTestPage() {
 
           {/* Right Column: Question Content & Options */}
           <section className="lg:col-span-8 xl:col-span-9 order-1 lg:order-2 space-y-6">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 border-3 border-black shadow-[6px_6px_0px_#000]">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
               {/* Question Header */}
-              <div className="flex justify-between items-center mb-6 pb-4 border-b-2 border-black">
+              <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-9 h-9 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center font-outfit font-black text-base shadow-[1px_1px_0px_#000]">
+                  <span className="w-9 h-9 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center font-outfit font-black text-base shadow-sm">
                     Q{currentQuestion + 1}
                   </span>
                   <span className="text-sm font-space font-bold uppercase text-black/60">
                     Type: <strong className="text-black">{question.questionType}</strong>
                   </span>
                 </div>
-                <span className="bg-[#dcfce7] text-black border-2 border-black px-3.5 py-1 rounded-full text-xs font-space font-black uppercase shadow-[1px_1px_0px_#000]">
+                <span className="bg-[#dcfce7] text-black border border-white/10 px-3.5 py-1 rounded-full text-xs font-space font-black uppercase shadow-sm">
                   {question.marks} {question.marks === 1 ? 'Mark' : 'Marks'}
                 </span>
               </div>
@@ -684,7 +684,7 @@ function TakeTestPage() {
                       <label
                         key={index}
                         onClick={() => handleAnswerChange(currentQuestion, option)}
-                        className={`flex items-center p-4 sm:p-5 border-3 border-black rounded-2xl cursor-pointer transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 ${
+                        className={`flex items-center p-4 sm:p-5 border border-white/10 rounded-2xl cursor-pointer transition-all shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 ${
                           isSelected
                             ? 'bg-[#86efac] ring-2 ring-black transform -translate-y-0.5'
                             : 'bg-[#f0fdf4] hover:bg-[#dcfce7]'
@@ -698,7 +698,7 @@ function TakeTestPage() {
                           onChange={() => {}}
                           className="sr-only"
                         />
-                        <span className={`w-8 h-8 rounded-xl border-2 border-black flex items-center justify-center font-outfit font-black text-sm shrink-0 shadow-[1px_1px_0px_#000] ${
+                        <span className={`w-8 h-8 rounded-xl border border-white/10 flex items-center justify-center font-outfit font-black text-sm shrink-0 shadow-sm ${
                           isSelected ? 'bg-[#fef08a] text-black' : 'bg-white text-black'
                         }`}>
                           {optionLetter}
@@ -725,7 +725,7 @@ function TakeTestPage() {
                         key={option}
                         type="button"
                         onClick={() => handleAnswerChange(currentQuestion, option)}
-                        className={`p-6 border-3 border-black rounded-2xl font-outfit font-black text-xl shadow-[4px_4px_0px_#000] cursor-pointer transition-all flex items-center justify-center gap-3 active:translate-x-0.5 active:translate-y-0.5 ${
+                        className={`p-6 border border-white/10 rounded-2xl font-outfit font-black text-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] cursor-pointer transition-all flex items-center justify-center gap-3 active:translate-x-0.5 active:translate-y-0.5 ${
                           isSelected
                             ? option === 'True'
                               ? 'bg-[#86efac] text-black ring-2 ring-black transform -translate-y-0.5'
@@ -749,7 +749,7 @@ function TakeTestPage() {
                     onChange={(e) =>
                       handleAnswerChange(currentQuestion, e.target.value)
                     }
-                    className="w-full p-4 sm:p-5 bg-[#f0fdf4] border-3 border-black rounded-2xl focus:outline-none focus:ring-3 focus:ring-[#86efac] font-jakarta font-bold text-black placeholder-neutral-400 text-base shadow-[3px_3px_0px_#000]"
+                    className="w-full p-4 sm:p-5 bg-[#f0fdf4] border border-white/10 rounded-2xl focus:outline-none focus:ring-3 focus:ring-[#86efac] font-jakarta font-bold text-black placeholder-neutral-400 text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
                     rows={5}
                     placeholder="Type your precise explanation or formula here..."
                   />
@@ -761,11 +761,11 @@ function TakeTestPage() {
             </div>
 
             {/* Bottom Question Navigation Controls */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 sm:p-5 rounded-3xl border-3 border-black shadow-[4px_4px_0px_#000]">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 sm:p-5 rounded-3xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className="w-full sm:w-auto px-6 py-3 bg-white text-black border-2 border-black rounded-xl font-outfit font-black shadow-[3px_3px_0px_#000] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3 bg-white text-black border border-white/10 rounded-xl font-outfit font-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-100 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ArrowLeft size={18} />
                 <span>Previous</span>
@@ -776,7 +776,7 @@ function TakeTestPage() {
                   <button
                     onClick={() => handleSubmit(false)}
                     disabled={submitting}
-                    className="w-full sm:w-auto px-8 py-3 bg-[#fef08a] hover:bg-[#fde047] text-black border-3 border-black rounded-2xl font-outfit font-black text-base shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full sm:w-auto px-8 py-3 bg-[#fef08a] hover:bg-[#fde047] text-black border border-white/10 rounded-2xl font-outfit font-black text-base shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Finish & Submit Test</span>
                     <Send className="w-4 h-4 text-black" />
@@ -784,7 +784,7 @@ function TakeTestPage() {
                 ) : (
                   <button
                     onClick={handleNext}
-                    className="w-full sm:w-auto px-8 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black rounded-xl font-outfit font-black text-base shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full sm:w-auto px-8 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black border border-white/10 rounded-xl font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Next Question</span>
                     <ArrowRight size={18} />
@@ -799,9 +799,9 @@ function TakeTestPage() {
       {/* Submit Confirmation Modal */}
       {showSubmitModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-[10000] p-4 overscroll-contain">
-          <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] max-w-md w-full p-6 sm:p-8 border-3 border-black text-center overscroll-contain">
+          <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] max-w-md w-full p-6 sm:p-8 border border-white/10 text-center overscroll-contain">
             {/* RAVEN Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#86efac] text-black border-2 border-black rounded-xl px-4 py-1.5 font-outfit font-black text-sm mb-4 shadow-[2px_2px_0px_#000]">
+            <div className="inline-flex items-center gap-2 bg-[#86efac] text-black border border-white/10 rounded-xl px-4 py-1.5 font-outfit font-black text-sm mb-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <img
                 src="/logo.png"
                 alt="RAVEN"
@@ -810,7 +810,7 @@ function TakeTestPage() {
               <span>SUBMISSION REVIEW</span>
             </div>
 
-            <div className="w-16 h-16 rounded-2xl bg-[#fef08a] border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#000]">
+            <div className="w-16 h-16 rounded-2xl bg-[#fef08a] border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <AlertCircle className="w-8 h-8 text-black" />
             </div>
 
@@ -823,7 +823,7 @@ function TakeTestPage() {
 
             {/* Answered Stat Breakdown */}
             <div className="space-y-3 mb-6">
-              <div className="bg-white border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]">
+              <div className="bg-white border border-white/10 rounded-2xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <p className="text-xs font-space font-black uppercase text-black/60 mb-0.5">
                   Answer Progress
                 </p>
@@ -833,13 +833,13 @@ function TakeTestPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-[#dcfce7] border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                <div className="bg-[#dcfce7] border border-white/10 rounded-xl p-3 shadow-sm">
                   <p className="text-[10px] font-space font-black uppercase text-black/60">Answered</p>
                   <p className="text-xl font-outfit font-black text-emerald-950">
                     {Object.keys(answers).length}
                   </p>
                 </div>
-                <div className="bg-rose-100 border-2 border-black rounded-xl p-3 shadow-[1px_1px_0px_#000]">
+                <div className="bg-rose-100 border border-white/10 rounded-xl p-3 shadow-sm">
                   <p className="text-[10px] font-space font-black uppercase text-black/60">Unanswered</p>
                   <p className="text-xl font-outfit font-black text-rose-950">
                     {test.questions.length - Object.keys(answers).length}
@@ -849,12 +849,12 @@ function TakeTestPage() {
             </div>
 
             {Object.keys(answers).length < test.questions.length ? (
-              <div className="bg-[#fef08a] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
+              <div className="bg-[#fef08a] border border-white/10 rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-black flex-shrink-0" />
                 <span>You have {test.questions.length - Object.keys(answers).length} unanswered question(s). You can still submit or go back to complete them.</span>
               </div>
             ) : (
-              <div className="bg-[#dcfce7] border-2 border-black rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-emerald-950 shadow-[2px_2px_0px_#000] flex items-center gap-2">
+              <div className="bg-[#dcfce7] border border-white/10 rounded-xl p-3 mb-6 text-xs font-jakarta font-bold text-emerald-950 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-800 flex-shrink-0" />
                 <span>Great job! All questions have been answered.</span>
               </div>
@@ -865,14 +865,14 @@ function TakeTestPage() {
               <button
                 onClick={() => setShowSubmitModal(false)}
                 disabled={submitting}
-                className="flex-1 bg-white hover:bg-neutral-100 text-black border-2 border-black py-3 rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                className="flex-1 bg-white hover:bg-neutral-100 text-black border border-white/10 py-3 rounded-xl font-outfit font-black text-sm shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
               >
                 Go Back
               </button>
               <button
                 onClick={confirmSubmit}
                 disabled={submitting}
-                className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black py-3 rounded-xl font-outfit font-black text-sm shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5"
+                className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black border border-white/10 py-3 rounded-xl font-outfit font-black text-sm shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <span>{submitting ? 'Submitting...' : 'Yes, Submit Test'}</span>
                 {!submitting && <Send className="w-4 h-4" />}

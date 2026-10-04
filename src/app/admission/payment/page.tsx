@@ -114,8 +114,8 @@ export default function AdmissionPaymentPage() {
   if (!paymentData) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-          <div className="w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
+          <div className="w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
           <p className="text-black font-black text-xl font-outfit">Loading Payment...</p>
           <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Preparing secure fee gateway</p>
         </div>
@@ -134,10 +134,10 @@ export default function AdmissionPaymentPage() {
         <div className="relative z-10 max-w-md w-full">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-emerald-300 rounded-2xl border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#000]">
+            <div className="w-16 h-16 bg-emerald-300 rounded-2xl border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <CreditCard className="w-8 h-8 text-black" />
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
               <span>Step 3 of 3 • Final Step</span>
             </div>
@@ -149,26 +149,26 @@ export default function AdmissionPaymentPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-rose-100 border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000] flex items-start gap-3">
+            <div className="mb-6 p-4 bg-rose-100 border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-rose-600 mt-0.5 flex-shrink-0" />
               <p className="text-rose-900 text-sm font-jakarta font-bold">{error}</p>
             </div>
           )}
 
           {/* Payment Details Card */}
-          <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 mb-6 border-3 border-black">
-            <div className="bg-white rounded-2xl p-5 border-2 border-black shadow-[3px_3px_0px_#000] space-y-3 mb-6">
-              <div className="flex justify-between py-2 border-b-2 border-black/10">
+          <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 mb-6 border border-white/10">
+            <div className="bg-white rounded-2xl p-5 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] space-y-3 mb-6">
+              <div className="flex justify-between py-2 border-b border-white/10/10">
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-600 font-space">Student</span>
                 <span className="font-bold text-black font-outfit">{paymentData.studentName}</span>
               </div>
               
-              <div className="flex justify-between py-2 border-b-2 border-black/10">
+              <div className="flex justify-between py-2 border-b border-white/10/10">
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-600 font-space">Email</span>
                 <span className="font-medium text-black text-xs sm:text-sm font-jakarta">{paymentData.email}</span>
               </div>
               
-              <div className="flex justify-between py-2 border-b-2 border-black/10">
+              <div className="flex justify-between py-2 border-b border-white/10/10">
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-600 font-space">Standard</span>
                 <span className="font-bold text-black font-outfit">{paymentData.standard}</span>
               </div>
@@ -180,7 +180,7 @@ export default function AdmissionPaymentPage() {
             </div>
 
             {/* Security Badge */}
-            <div className="flex items-center gap-2.5 p-3.5 bg-[#dcfce7] border-2 border-black rounded-2xl mb-6 shadow-[2px_2px_0px_#000]">
+            <div className="flex items-center gap-2.5 p-3.5 bg-[#dcfce7] border border-white/10 rounded-2xl mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <ShieldCheck className="w-5 h-5 text-black flex-shrink-0" />
               <p className="text-xs text-black font-jakarta font-semibold">
                 Secured by Razorpay • 100% Encrypted & Safe Gateway
@@ -191,7 +191,7 @@ export default function AdmissionPaymentPage() {
             <button
               onClick={handlePayment}
               disabled={loading}
-              className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="btn-sheryians w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

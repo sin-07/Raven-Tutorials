@@ -87,8 +87,8 @@ export default function CourseDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-          <div className="animate-spin w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-4" />
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
+          <div className="animate-spin w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-4" />
           <p className="text-black font-black text-xl font-outfit">Loading Course Details...</p>
           <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Preparing syllabus and resources</p>
         </div>
@@ -103,7 +103,7 @@ export default function CourseDetailPage() {
         <p className="text-neutral-700 mb-6 font-medium font-jakarta">{error || 'The course you are looking for does not exist.'}</p>
         <Link
           href="/courses"
-          className="btn-cartoon px-8 py-3.5 bg-yellow-300 text-black border-2 border-black font-black rounded-2xl shadow-[4px_4px_0px_#000] font-outfit"
+          className="btn-sheryians px-8 py-3.5 bg-yellow-300 text-black border border-white/10 font-black rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] font-outfit"
         >
           Browse Courses
         </Link>
@@ -131,28 +131,28 @@ export default function CourseDetailPage() {
   return (
     <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-emerald-300 selection:text-black relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative z-10 pt-28 pb-12 bg-[#f0fdf4] border-b-3 border-black">
+      <section className="relative z-10 pt-28 pb-12 bg-[#f0fdf4] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-2">
               <Link 
                 href="/courses" 
-                className="btn-cartoon inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#dcfce7] border-2 border-black font-bold text-xs text-black shadow-[2px_2px_0px_#000] mb-6 hover:bg-[#bbf7d0] transition"
+                className="btn-sheryians inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#dcfce7] border border-white/10 font-bold text-xs text-black shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-6 hover:bg-[#bbf7d0] transition"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Courses</span>
               </Link>
 
               <div className="flex items-center gap-2 mb-4 flex-wrap">
-                <span className="px-3.5 py-1 bg-emerald-300 text-black rounded-full text-xs font-bold font-space uppercase border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="px-3.5 py-1 bg-emerald-300 text-black rounded-full text-xs font-bold font-space uppercase border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   {course.category}
                 </span>
-                <span className="px-3.5 py-1 bg-[#bbf7d0] text-black rounded-full text-xs font-bold font-space uppercase border-2 border-black shadow-[2px_2px_0px_#000]">
+                <span className="px-3.5 py-1 bg-[#bbf7d0] text-black rounded-full text-xs font-bold font-space uppercase border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   {course.level}
                 </span>
                 {course.isPopular && (
-                  <span className="px-3.5 py-1 bg-emerald-400 text-black rounded-full text-xs font-bold font-space uppercase border-2 border-black shadow-[2px_2px_0px_#000]">
+                  <span className="px-3.5 py-1 bg-emerald-400 text-black rounded-full text-xs font-bold font-space uppercase border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                     Bestseller
                   </span>
                 )}
@@ -168,27 +168,27 @@ export default function CourseDetailPage() {
 
               {/* Stats */}
               <div className="flex flex-wrap items-center gap-6 text-neutral-800 font-jakarta font-bold text-sm mb-6">
-                <div className="flex items-center gap-1.5 bg-[#dcfce7] px-3 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="flex items-center gap-1.5 bg-[#dcfce7] px-3 py-1.5 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                   <span className="font-black text-black">{course.rating}</span>
                   <span className="text-neutral-600">({course.totalRatings} ratings)</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#bbf7d0] px-3 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="flex items-center gap-1.5 bg-[#bbf7d0] px-3 py-1.5 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <Users className="w-4 h-4 text-black" />
                   <span>{course.totalStudents.toLocaleString()} students</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#d1fae5] px-3 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="flex items-center gap-1.5 bg-[#d1fae5] px-3 py-1.5 rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <Clock className="w-4 h-4 text-black" />
                   <span>{course.duration}</span>
                 </div>
               </div>
 
               {/* Instructor */}
-              <div className="flex items-center gap-4 bg-[#dcfce7] p-4 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] inline-flex">
+              <div className="flex items-center gap-4 bg-[#dcfce7] p-4 rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] inline-flex">
                 <img
                   src={course.instructor.avatar}
                   alt={course.instructor.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
+                  className="w-12 h-12 rounded-full object-cover border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                 />
                 <div>
                   <p className="text-neutral-600 text-xs font-medium font-jakarta">Course Instructor</p>
@@ -202,17 +202,17 @@ export default function CourseDetailPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="sticky top-28 bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] overflow-hidden border-3 border-black"
+                className="sticky top-28 bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden border border-white/10"
               >
                 {/* Video Preview */}
-                <div className="relative aspect-video bg-neutral-100 border-b-3 border-black">
+                <div className="relative aspect-video bg-neutral-100 border-b border-white/10">
                   <img
                     src={course.thumbnail}
                     alt={course.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <button className="w-16 h-16 rounded-full bg-emerald-300 border-2 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] hover:scale-105 transition-transform">
+                    <button className="w-16 h-16 rounded-full bg-emerald-300 border border-white/10 flex items-center justify-center shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform">
                       <PlayCircle className="w-8 h-8 text-black ml-0.5" />
                     </button>
                   </div>
@@ -234,7 +234,7 @@ export default function CourseDetailPage() {
                           </p>
                         )}
                         {course.originalPrice && (
-                          <span className="px-2 py-0.5 bg-emerald-200 text-black border border-black text-xs font-bold rounded-lg shadow-[1px_1px_0px_#000]">
+                          <span className="px-2 py-0.5 bg-emerald-200 text-black border border-black text-xs font-bold rounded-lg shadow-sm">
                             {Math.round((1 - course.price / course.originalPrice) * 100)}% OFF
                           </span>
                         )}
@@ -244,18 +244,18 @@ export default function CourseDetailPage() {
 
                   {/* CTA Buttons */}
                   <div className="space-y-3">
-                    <button className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black transition-all shadow-[4px_4px_0px_#000] font-outfit text-base active:translate-x-1 active:translate-y-1">
+                    <button className="btn-sheryians w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border border-white/10 transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] font-outfit text-base active:translate-x-1 active:translate-y-1">
                       {course.isFree ? 'Enroll Now - Free' : 'Buy Now'}
                     </button>
                     {!course.isFree && (
-                      <button className="btn-cartoon w-full py-3.5 bg-white hover:bg-[#dcfce7] text-black font-bold rounded-2xl border-2 border-black transition-all shadow-[3px_3px_0px_#000] active:translate-x-1 active:translate-y-1">
+                      <button className="btn-sheryians w-full py-3.5 bg-white hover:bg-[#dcfce7] text-black font-bold rounded-2xl border border-white/10 transition-all shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-1 active:translate-y-1">
                         Add to Cart
                       </button>
                     )}
                   </div>
 
                   {/* Wishlist & Share */}
-                  <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t-2 border-black font-bold">
+                  <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-white/10 font-bold">
                     <button 
                       onClick={() => setIsWishlisted(!isWishlisted)}
                       className="flex items-center gap-2 text-neutral-700 hover:text-black transition-colors"
@@ -270,7 +270,7 @@ export default function CourseDetailPage() {
                   </div>
 
                   {/* Features */}
-                  <div className="mt-6 pt-6 border-t-2 border-black space-y-3">
+                  <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
                     <h4 className="font-black text-black font-outfit">This course includes:</h4>
                     {features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-3 text-sm text-neutral-800 font-medium">
@@ -287,7 +287,7 @@ export default function CourseDetailPage() {
       </section>
 
       {/* Mobile Price Card */}
-      <div className="lg:hidden sticky top-20 z-40 bg-[#f0fdf4] border-b-2 border-black px-4 py-4 shadow-[0_4px_0_#000]">
+      <div className="lg:hidden sticky top-20 z-40 bg-[#f0fdf4] border-b border-white/10 px-4 py-4 shadow-[0_4px_0_#000]">
         <div className="flex items-center justify-between">
           <div>
             {course.isFree ? (
@@ -301,7 +301,7 @@ export default function CourseDetailPage() {
               </div>
             )}
           </div>
-          <button className="btn-cartoon px-6 py-2.5 bg-emerald-400 text-black font-black border-2 border-black rounded-xl shadow-[3px_3px_0px_#000]">
+          <button className="btn-sheryians px-6 py-2.5 bg-emerald-400 text-black font-black border border-white/10 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
             {course.isFree ? 'Enroll Free' : 'Buy Now'}
           </button>
         </div>
@@ -313,7 +313,7 @@ export default function CourseDetailPage() {
           <div className="lg:max-w-2xl">
             {/* What you'll learn */}
             {course.features.length > 0 && (
-              <div className="mb-12 p-8 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[6px_6px_0px_#000]">
+              <div className="mb-12 p-8 rounded-3xl bg-[#f0fdf4] border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                 <h2 className="text-2xl font-black text-black font-outfit mb-6">What you&apos;ll learn</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {course.features.map((item, index) => (
@@ -336,9 +336,9 @@ export default function CourseDetailPage() {
                   </p>
                 </div>
 
-                <div className="border-3 border-black rounded-3xl overflow-hidden shadow-[6px_6px_0px_#000] bg-[#f0fdf4]">
+                <div className="border border-white/10 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.7)] bg-[#f0fdf4]">
                   {sections.map((section, sectionIndex) => (
-                    <div key={sectionIndex} className="border-b-2 border-black last:border-b-0">
+                    <div key={sectionIndex} className="border-b border-white/10 last:border-b-0">
                       <button
                         onClick={() => setExpandedSection(expandedSection === sectionIndex ? -1 : sectionIndex)}
                         className="w-full flex items-center justify-between p-5 hover:bg-[#e6f9ee] transition-colors"
@@ -382,12 +382,12 @@ export default function CourseDetailPage() {
             {/* Instructor */}
             <div className="mb-12">
               <h2 className="text-2xl font-black text-black font-outfit mb-6">Your Instructor</h2>
-              <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border-3 border-black shadow-[6px_6px_0px_#000]">
+              <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                 <div className="flex items-start gap-4 flex-col sm:flex-row">
                   <img
                     src={course.instructor.avatar}
                     alt={course.instructor.name}
-                    className="w-20 h-20 rounded-full object-cover border-3 border-black shadow-[3px_3px_0px_#000]"
+                    className="w-20 h-20 rounded-full object-cover border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
                   />
                   <div>
                     <h3 className="text-2xl font-black text-black font-outfit">{course.instructor.name}</h3>

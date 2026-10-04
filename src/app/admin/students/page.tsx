@@ -81,8 +81,8 @@ const AdminStudents: React.FC = () => {
     return (
       <AdminLayout>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-            <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-3"></div>
+          <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full ">
+            <div className="animate-spin w-10 h-10 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-3"></div>
             <p className="text-black font-black font-outfit text-lg">Loading Student Directory...</p>
           </div>
         </div>
@@ -94,10 +94,10 @@ const AdminStudents: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <Users className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Student Records</span>
               </div>
@@ -110,7 +110,7 @@ const AdminStudents: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-4 py-2 rounded-2xl bg-white border-2 border-black font-mono font-black text-sm shadow-[2px_2px_0px_#000]">
+              <span className="px-4 py-2 rounded-2xl bg-white border border-white/10 font-mono font-black text-sm shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 {students.length} Total Enrolled
               </span>
             </div>
@@ -118,7 +118,7 @@ const AdminStudents: React.FC = () => {
         </div>
 
         {/* Cartoon Filters */}
-        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border-3 border-black shadow-[6px_6px_0px_#000]">
+        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div className="md:col-span-2">
               <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
@@ -132,7 +132,7 @@ const AdminStudents: React.FC = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && fetchStudents()}
                   placeholder="Search by name, email, or registration ID..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-black rounded-xl text-black placeholder-neutral-400 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-white/10 rounded-xl text-black placeholder-neutral-400 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                 />
               </div>
             </div>
@@ -158,7 +158,7 @@ const AdminStudents: React.FC = () => {
             <div className="flex items-end">
               <button
                 onClick={fetchStudents}
-                className="btn-cartoon w-full py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-2"
+                className="btn-sheryians w-full py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm flex items-center justify-center gap-2"
               >
                 <Filter size={16} />
                 <span>Apply Filter</span>
@@ -168,10 +168,10 @@ const AdminStudents: React.FC = () => {
         </div>
 
         {/* Cartoon Students Table */}
-        <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+        <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y-2 divide-black">
-              <thead className="bg-[#86efac] border-b-2 border-black font-space font-black uppercase text-black text-xs">
+              <thead className="bg-[#86efac] border-b border-white/10 font-space font-black uppercase text-black text-xs">
                 <tr>
                   <th className="px-4 py-3.5 text-left">Photo</th>
                   <th className="px-4 py-3.5 text-left">Student Name</th>
@@ -190,10 +190,10 @@ const AdminStudents: React.FC = () => {
                         <img
                           src={student.photo}
                           alt={student.studentName}
-                          className="h-10 w-10 rounded-xl object-cover border-2 border-black shadow-[1px_1px_0px_#000]"
+                          className="h-10 w-10 rounded-xl object-cover border border-white/10 shadow-sm"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center text-black font-black text-sm shadow-[1px_1px_0px_#000]">
+                        <div className="h-10 w-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center text-black font-black text-sm shadow-sm">
                           {student.studentName?.charAt(0)}
                         </div>
                       )}
@@ -202,7 +202,7 @@ const AdminStudents: React.FC = () => {
                       {student.studentName}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-[1px_1px_0px_#000]">
+                      <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-sm">
                         {student.registrationId}
                       </span>
                     </td>
@@ -220,7 +220,7 @@ const AdminStudents: React.FC = () => {
                     <td className="px-4 py-3 text-center">
                       <button
                         onClick={() => handleDelete(student._id)}
-                        className="btn-cartoon px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black text-xs font-black font-outfit shadow-[1.5px_1.5px_0px_#000] inline-flex items-center gap-1"
+                        className="btn-sheryians px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black text-xs font-black font-outfit shadow-sm inline-flex items-center gap-1"
                       >
                         <Trash2 size={13} />
                         <span>Delete</span>

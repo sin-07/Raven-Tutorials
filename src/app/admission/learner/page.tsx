@@ -57,7 +57,7 @@ export default function LearnerAdmissionPage() {
   });
 
   const getInputClassName = (fieldName: string) => {
-    const baseClass = "w-full px-4 py-3 bg-white border-2 text-black font-jakarta font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black shadow-[2px_2px_0px_#000] placeholder-neutral-400 transition-all text-sm sm:text-base";
+    const baseClass = "w-full px-4 py-3 bg-white border-2 text-black font-jakarta font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-black shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400 transition-all text-sm sm:text-base";
     const errorClass = fieldErrors[fieldName] ? "border-rose-500 bg-rose-50/70" : "border-black";
     return `${baseClass} ${errorClass}`;
   };
@@ -245,7 +245,7 @@ export default function LearnerAdmissionPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
           {/* Header */}
           <div className="text-center mb-10 flex flex-col items-center justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border border-white/10 text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-4">
               <Sparkles className="w-4 h-4 text-emerald-700" />
               <span>Offline & Hybrid Classroom Enrollment</span>
             </div>
@@ -263,7 +263,7 @@ export default function LearnerAdmissionPage() {
 
           {/* Error Alert Box */}
           {error && (
-            <div className="mb-8 p-4 sm:p-5 bg-rose-100 border-3 border-black rounded-2xl shadow-[4px_4px_0px_#000] flex items-start gap-3 text-black">
+            <div className="mb-8 p-4 sm:p-5 bg-rose-100 border border-white/10 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex items-start gap-3 text-black">
               <AlertCircle className="w-5 h-5 text-rose-600 mt-0.5 flex-shrink-0" />
               <p className="text-sm sm:text-base font-jakarta font-bold text-rose-900">{error}</p>
             </div>
@@ -272,11 +272,11 @@ export default function LearnerAdmissionPage() {
           {/* Cartoonish Main Form Card */}
           <form 
             onSubmit={handleSubmit} 
-            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-10 border-3 border-black shadow-[8px_8px_0px_#000] space-y-10"
+            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-10"
           >
             {/* Section 1: Personal Information */}
             <div>
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border-2 border-black rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[3px_3px_0px_#000] mb-6">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border border-white/10 rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] mb-6">
                 <User className="w-5 h-5 text-black" />
                 <span>1. Student Profile & Bio</span>
               </div>
@@ -391,8 +391,8 @@ export default function LearnerAdmissionPage() {
             </div>
 
             {/* Section 2: Contact Information */}
-            <div className="pt-6 border-t-2 border-black/15">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#bbf7d0] border-2 border-black rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[3px_3px_0px_#000] mb-6">
+            <div className="pt-6 border-t border-white/10/15">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#bbf7d0] border border-white/10 rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] mb-6">
                 <Phone className="w-5 h-5 text-black" />
                 <span>2. Contact & Address Details</span>
               </div>
@@ -515,8 +515,8 @@ export default function LearnerAdmissionPage() {
             </div>
 
             {/* Section 3: Educational Information */}
-            <div className="pt-6 border-t-2 border-black/15">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border-2 border-black rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[3px_3px_0px_#000] mb-6">
+            <div className="pt-6 border-t border-white/10/15">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border border-white/10 rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] mb-6">
                 <BookOpen className="w-5 h-5 text-black" />
                 <span>3. Academic & Prior Schooling</span>
               </div>
@@ -562,15 +562,15 @@ export default function LearnerAdmissionPage() {
             </div>
 
             {/* Section 4: Photo Upload */}
-            <div className="pt-6 border-t-2 border-black/15">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#bbf7d0] border-2 border-black rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[3px_3px_0px_#000] mb-6">
+            <div className="pt-6 border-t border-white/10/15">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#bbf7d0] border border-white/10 rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] mb-6">
                 <Upload className="w-5 h-5 text-black" />
                 <span>4. Passport Size Photograph</span>
               </div>
               
               <div className="flex flex-col items-center justify-center">
                 {photoPreview ? (
-                  <div className="relative group p-2 bg-white border-3 border-black rounded-2xl shadow-[6px_6px_0px_#000]">
+                  <div className="relative group p-2 bg-white border border-white/10 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                     <img 
                       src={photoPreview} 
                       alt="Student Preview" 
@@ -582,17 +582,17 @@ export default function LearnerAdmissionPage() {
                         setPhotoPreview(null);
                         setFormData(prev => ({ ...prev, photo: null }));
                       }}
-                      className="absolute -top-3 -right-3 w-9 h-9 bg-rose-400 hover:bg-rose-500 text-black font-black rounded-full border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center text-lg active:translate-x-0.5 active:translate-y-0.5 transition"
+                      className="absolute -top-3 -right-3 w-9 h-9 bg-rose-400 hover:bg-rose-500 text-black font-black rounded-full border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center text-lg active:translate-x-0.5 active:translate-y-0.5 transition"
                       title="Remove Photo"
                     >
                       ×
                     </button>
                   </div>
                 ) : (
-                  <label className={`w-full max-w-lg border-3 border-dashed rounded-2xl p-8 text-center cursor-pointer bg-white hover:bg-[#dcfce7] transition shadow-[4px_4px_0px_#000] group flex flex-col items-center justify-center ${
+                  <label className={`w-full max-w-lg border-3 border-dashed rounded-2xl p-8 text-center cursor-pointer bg-white hover:bg-[#dcfce7] transition shadow-[0_10px_25px_rgba(0,0,0,0.5)] group flex flex-col items-center justify-center ${
                     fieldErrors.photo ? 'border-rose-500 bg-rose-50/50' : 'border-black'
                   }`}>
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black mb-3 shadow-[2px_2px_0px_#000] group-hover:scale-105 transition-transform">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-300 border border-white/10 flex items-center justify-center text-black mb-3 shadow-[0_4px_12px_rgba(0,0,0,0.3)] group-hover:scale-105 transition-transform">
                       <Upload className="w-6 h-6 text-black" />
                     </div>
                     <p className="text-black font-black font-outfit text-base mb-1">
@@ -613,8 +613,8 @@ export default function LearnerAdmissionPage() {
             </div>
 
             {/* Section 5: Code of Conduct */}
-            <div className="pt-6 border-t-2 border-black/15">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border-2 border-black rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[3px_3px_0px_#000] mb-4">
+            <div className="pt-6 border-t border-white/10/15">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#86efac] border border-white/10 rounded-xl font-outfit font-black text-base sm:text-lg text-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] mb-4">
                 <FileText className="w-5 h-5 text-black" />
                 <span>5. Institute Code of Conduct</span>
               </div>
@@ -623,7 +623,7 @@ export default function LearnerAdmissionPage() {
                 <button
                   type="button"
                   onClick={() => setShowCodeOfConduct(!showCodeOfConduct)}
-                  className="w-full flex items-center justify-between p-4 bg-[#dcfce7] hover:bg-[#bbf7d0] border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full flex items-center justify-between p-4 bg-[#dcfce7] hover:bg-[#bbf7d0] border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition active:translate-x-0.5 active:translate-y-0.5"
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-sm sm:text-base font-black font-outfit text-black">
@@ -641,18 +641,18 @@ export default function LearnerAdmissionPage() {
                 </button>
 
                 {showCodeOfConduct && (
-                  <div className="bg-white border-2 border-black rounded-2xl p-5 sm:p-6 shadow-[3px_3px_0px_#000] space-y-4">
+                  <div className="bg-white border border-white/10 rounded-2xl p-5 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)] space-y-4">
                     <p className="text-xs sm:text-sm font-jakarta text-neutral-700 font-semibold">
                       Please scroll through the guidelines below to activate agreement:
                     </p>
 
                     <div 
-                      className="max-h-72 overflow-y-auto p-3 space-y-3 border-2 border-black rounded-xl bg-[#f6fcf8]"
+                      className="max-h-72 overflow-y-auto p-3 space-y-3 border border-white/10 rounded-xl bg-[#f6fcf8]"
                       onScroll={handleConductScroll}
                     >
                       {conductRules.map(rule => (
-                        <div key={rule.num} className="p-3 rounded-xl bg-[#f0fdf4] border-2 border-black shadow-[2px_2px_0px_#000] flex gap-3 items-start">
-                          <span className="w-7 h-7 rounded-lg bg-[#86efac] border border-black flex items-center justify-center font-black font-space text-xs text-black flex-shrink-0 shadow-[1px_1px_0px_#000]">
+                        <div key={rule.num} className="p-3 rounded-xl bg-[#f0fdf4] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex gap-3 items-start">
+                          <span className="w-7 h-7 rounded-lg bg-[#86efac] border border-black flex items-center justify-center font-black font-space text-xs text-black flex-shrink-0 shadow-sm">
                             {rule.num}
                           </span>
                           <div className="text-xs sm:text-sm font-jakarta text-neutral-800 font-medium">
@@ -672,7 +672,7 @@ export default function LearnerAdmissionPage() {
                 )}
 
                 {/* Agreement Checkbox */}
-                <div className="p-4 bg-[#dcfce7] border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000]">
+                <div className="p-4 bg-[#dcfce7] border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                   <label className="flex items-start gap-3.5 cursor-pointer select-none">
                     <div className="relative flex items-center justify-center mt-0.5">
                       <input
@@ -680,7 +680,7 @@ export default function LearnerAdmissionPage() {
                         checked={agreedToConduct}
                         onChange={(e) => setAgreedToConduct(e.target.checked)}
                         disabled={!hasScrolledToBottom}
-                        className="w-5 h-5 rounded-lg border-2 border-black bg-white checked:bg-emerald-400 checked:border-black disabled:opacity-50 disabled:cursor-not-allowed transition cursor-pointer"
+                        className="w-5 h-5 rounded-lg border border-white/10 bg-white checked:bg-emerald-400 checked:border-black disabled:opacity-50 disabled:cursor-not-allowed transition cursor-pointer"
                       />
                     </div>
                     <div className="flex-1">
@@ -699,11 +699,11 @@ export default function LearnerAdmissionPage() {
             </div>
 
             {/* Form Submit & Back Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t-2 border-black">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10">
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="btn-cartoon sm:w-1/3 py-4 px-6 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="btn-sheryians sm:w-1/3 py-4 px-6 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black font-outfit text-base rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="w-4 h-4 text-black" />
                 <span>Return Back</span>
@@ -712,7 +712,7 @@ export default function LearnerAdmissionPage() {
               <button
                 type="submit"
                 disabled={loading || !agreedToConduct}
-                className="btn-cartoon flex-1 py-4 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="btn-sheryians flex-1 py-4 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

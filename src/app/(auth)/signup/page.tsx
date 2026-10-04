@@ -9,8 +9,8 @@ export default function SignupPage() {
     <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4 py-16 sm:py-20">
       <div className="max-w-4xl w-full space-y-8">
         {/* Cartoon Header */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center">
-          <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1 rounded-full border-2 border-black text-xs font-space font-black uppercase mb-3 shadow-[2px_2px_0px_#000]">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center">
+          <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-3 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <GraduationCap size={14} className="text-black" />
             <span>Join Raven Tutorials</span>
           </div>
@@ -25,9 +25,9 @@ export default function SignupPage() {
         {/* Admission Options */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Learner Admission Card */}
-          <div className="bg-white rounded-3xl p-8 border-3 border-black shadow-[6px_6px_0px_#000] hover:shadow-[8px_8px_0px_#000] transition-all flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-8 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-16 h-16 rounded-2xl bg-[#86efac] border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+              <div className="w-16 h-16 rounded-2xl bg-[#86efac] border border-white/10 flex items-center justify-center mx-auto mb-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                 <GraduationCap className="w-9 h-9 text-black" />
               </div>
               
@@ -60,7 +60,7 @@ export default function SignupPage() {
             
             <Link
               href="/admission"
-              className="w-full py-3.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
             >
               <span>Apply as a Student</span>
               <ArrowRight size={18} />
@@ -68,9 +68,9 @@ export default function SignupPage() {
           </div>
 
           {/* Tutor Admission Card */}
-          <div className="bg-white rounded-3xl p-8 border-3 border-black shadow-[6px_6px_0px_#000] hover:shadow-[8px_8px_0px_#000] transition-all flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-8 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-16 h-16 rounded-2xl bg-[#fef08a] border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+              <div className="w-16 h-16 rounded-2xl bg-[#fef08a] border border-white/10 flex items-center justify-center mx-auto mb-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                 <UserCircle className="w-9 h-9 text-black" />
               </div>
               
@@ -103,7 +103,7 @@ export default function SignupPage() {
             
             <Link
               href="/admission?role=tutor"
-              className="w-full py-3.5 bg-[#fef08a] hover:bg-[#fde047] text-black font-outfit font-black text-base rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#fef08a] hover:bg-[#fde047] text-black font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
             >
               <span>Apply as a Teacher</span>
               <ArrowRight size={18} />

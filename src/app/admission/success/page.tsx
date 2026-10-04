@@ -128,8 +128,8 @@ IMPORTANT NOTES
   if (!successData) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[8px_8px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-          <div className="animate-spin w-12 h-12 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-4" />
+        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
+          <div className="animate-spin w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-4" />
           <p className="text-black font-black text-xl font-outfit">Loading Admission Slip...</p>
           <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Confirming student registration</p>
         </div>
@@ -174,11 +174,11 @@ IMPORTANT NOTES
           
           {/* Header */}
           <div className="text-center mb-8 no-print">
-            <div className="w-20 h-20 bg-emerald-300 rounded-3xl border-3 border-black flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_#000] rotate-2">
+            <div className="w-20 h-20 bg-emerald-300 rounded-3xl border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_10px_25px_rgba(0,0,0,0.5)] rotate-2">
               <CheckCircle className="w-12 h-12 text-black" />
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-3 shadow-[1.5px_1.5px_0px_#000]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] border border-black text-black text-xs font-bold font-space uppercase mb-3 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
               <span>Enrollment Complete</span>
             </div>
@@ -194,10 +194,10 @@ IMPORTANT NOTES
           {/* ======================================================== */}
           {/* CARTOON OFFICIAL ADMISSION BILL / RECEIPT CARD */}
           {/* ======================================================== */}
-          <div className="printable-bill bg-white rounded-3xl shadow-[8px_8px_0px_#000] border-3 border-black p-6 sm:p-8 mb-6 relative overflow-hidden">
+          <div className="printable-bill bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10 p-6 sm:p-8 mb-6 relative overflow-hidden">
             
             {/* Top Comic Receipt Header */}
-            <div className="bg-[#86efac] border-2 border-black rounded-2xl p-4 sm:p-5 mb-5 shadow-[3px_3px_0px_#000] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div className="bg-[#86efac] border border-white/10 rounded-2xl p-4 sm:p-5 mb-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
               <div>
                 <div className="inline-block bg-black text-white text-[10px] font-black uppercase font-space px-2.5 py-0.5 rounded-full mb-1 tracking-wider">
                   OFFICIAL ADMISSION RECEIPT
@@ -211,7 +211,7 @@ IMPORTANT NOTES
               </div>
 
               <div className="flex flex-col items-center sm:items-end flex-shrink-0">
-                <span className="text-[11px] font-mono font-black px-2.5 py-1 bg-white border border-black rounded-lg shadow-[1px_1px_0px_#000]">
+                <span className="text-[11px] font-mono font-black px-2.5 py-1 bg-white border border-black rounded-lg shadow-sm">
                   {receiptNumber}
                 </span>
                 <span className="text-[11px] font-space font-bold text-neutral-700 mt-1 flex items-center gap-1">
@@ -222,7 +222,7 @@ IMPORTANT NOTES
             </div>
 
             {/* Student & Enrollment Info Grid */}
-            <div className="bg-[#f0fdf4] rounded-2xl border-2 border-black p-4 sm:p-5 shadow-[2px_2px_0px_#000] mb-5">
+            <div className="bg-[#f0fdf4] rounded-2xl border border-white/10 p-4 sm:p-5 shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-5">
               <div className="text-[10px] font-black uppercase tracking-wider text-emerald-900 font-space mb-2 pb-1 border-b border-black/20 flex items-center justify-between">
                 <span>STUDENT ENROLLMENT DETAILS</span>
                 <span className="text-emerald-700 font-bold">SESSION 2026-27</span>
@@ -257,13 +257,13 @@ IMPORTANT NOTES
             {/* Comic Coupon Dashed Divider with Cutout Circles */}
             <div className="relative my-6">
               <div className="border-b-2 border-dashed border-black"></div>
-              <div className="absolute -left-10 -top-3 w-6 h-6 rounded-full bg-[#f6fcf8] border-r-2 border-black"></div>
+              <div className="absolute -left-10 -top-3 w-6 h-6 rounded-full bg-[#f6fcf8] border-r border-white/10"></div>
               <div className="absolute -right-10 -top-3 w-6 h-6 rounded-full bg-[#f6fcf8] border-l-2 border-black"></div>
             </div>
 
             {/* Itemized Fee Breakdown Table */}
-            <div className="rounded-xl border-2 border-black overflow-hidden shadow-[2px_2px_0px_#000] mb-5 font-jakarta text-xs">
-              <div className="grid grid-cols-3 bg-[#dcfce7] p-2.5 font-space font-black uppercase text-black border-b-2 border-black">
+            <div className="rounded-xl border border-white/10 overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-5 font-jakarta text-xs">
+              <div className="grid grid-cols-3 bg-[#dcfce7] p-2.5 font-space font-black uppercase text-black border-b border-white/10">
                 <span className="col-span-2">Fee Particulars</span>
                 <span className="text-right">Amount</span>
               </div>
@@ -297,7 +297,7 @@ IMPORTANT NOTES
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 p-3.5 bg-[#f0fdf4] border-t-2 border-black font-black text-sm">
+                <div className="grid grid-cols-3 p-3.5 bg-[#f0fdf4] border-t border-white/10 font-black text-sm">
                   <span className="col-span-2 text-black font-outfit uppercase">Total Amount Paid</span>
                   <span className="text-right text-emerald-950 font-outfit text-base">₹{feeAmount}</span>
                 </div>
@@ -305,7 +305,7 @@ IMPORTANT NOTES
             </div>
 
             {/* Payment Verification & Official Stamp */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#f0fdf4] rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000]">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#f0fdf4] rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <div className="text-xs space-y-1 w-full sm:w-auto">
                 <div className="flex items-center gap-1.5 text-neutral-700">
                   <CreditCard className="w-3.5 h-3.5 text-black" />
@@ -324,7 +324,7 @@ IMPORTANT NOTES
 
               {/* Official Stamp Badge */}
               <div className="flex-shrink-0 text-center">
-                <div className="px-4 py-2 bg-[#86efac] border-2 border-black rounded-xl shadow-[2px_2px_0px_#000] -rotate-2">
+                <div className="px-4 py-2 bg-[#86efac] border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] -rotate-2">
                   <div className="text-[9px] font-black uppercase tracking-wider text-black font-space">
                     RAVEN TUTORIALS
                   </div>
@@ -337,10 +337,10 @@ IMPORTANT NOTES
             </div>
 
             {/* Bill Actions (Print / Download) */}
-            <div className="mt-5 pt-4 border-t-2 border-black/10 flex flex-col sm:flex-row gap-2.5 no-print">
+            <div className="mt-5 pt-4 border-t border-white/10/10 flex flex-col sm:flex-row gap-2.5 no-print">
               <button
                 onClick={handlePrint}
-                className="btn-cartoon flex-1 py-3 bg-[#4ade80] hover:bg-[#22c55e] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                className="btn-sheryians flex-1 py-3 bg-[#4ade80] hover:bg-[#22c55e] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2"
               >
                 <Printer className="w-4 h-4 text-black" />
                 <span>Print / Save Official Bill (PDF)</span>
@@ -348,7 +348,7 @@ IMPORTANT NOTES
 
               <button
                 onClick={handleDownloadCredentials}
-                className="btn-cartoon py-3 px-4 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                className="btn-sheryians py-3 px-4 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[2.5px_2.5px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-4 h-4 text-black" />
                 <span>Download (.txt)</span>
@@ -359,9 +359,9 @@ IMPORTANT NOTES
           {/* ======================================================== */}
           {/* CARTOON CREDENTIALS CARD */}
           {/* ======================================================== */}
-          <div className="bg-[#f0fdf4] rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 mb-6 border-3 border-black no-print">
-            <div className="bg-[#86efac] border-2 border-black rounded-2xl p-4 mb-6 shadow-[3px_3px_0px_#000] flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-xl border border-black flex items-center justify-center flex-shrink-0 shadow-[1px_1px_0px_#000]">
+          <div className="bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 mb-6 border border-white/10 no-print">
+            <div className="bg-[#86efac] border border-white/10 rounded-2xl p-4 mb-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center gap-3">
+              <div className="w-10 h-10 bg-white rounded-xl border border-black flex items-center justify-center flex-shrink-0 shadow-sm">
                 <Lock className="w-5 h-5 text-black" />
               </div>
               <div>
@@ -370,9 +370,9 @@ IMPORTANT NOTES
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border-2 border-black p-5 shadow-[3px_3px_0px_#000] space-y-4 mb-5">
+            <div className="bg-white rounded-2xl border border-white/10 p-5 shadow-[0_8px_20px_rgba(0,0,0,0.4)] space-y-4 mb-5">
               {/* Registration ID */}
-              <div className="p-3.5 bg-[#f0fdf4] rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <div className="flex items-center gap-2 mb-1">
                   <User className="w-4 h-4 text-emerald-800" />
                   <label className="text-[10px] font-black uppercase tracking-wider text-neutral-700 font-space">
@@ -385,7 +385,7 @@ IMPORTANT NOTES
                   </span>
                   <button
                     onClick={() => handleCopy(successData.registrationId, 'regId')}
-                    className="btn-cartoon p-2 bg-white hover:bg-[#dcfce7] rounded-lg border border-black shadow-[1.5px_1.5px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
+                    className="btn-sheryians p-2 bg-white hover:bg-[#dcfce7] rounded-lg border border-black shadow-sm transition active:translate-x-0.5 active:translate-y-0.5"
                     title="Copy Registration ID"
                   >
                     {copied.regId ? (
@@ -398,7 +398,7 @@ IMPORTANT NOTES
               </div>
 
               {/* Password */}
-              <div className="p-3.5 bg-[#f0fdf4] rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+              <div className="p-3.5 bg-[#f0fdf4] rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 <div className="flex items-center gap-2 mb-1">
                   <Lock className="w-4 h-4 text-emerald-800" />
                   <label className="text-[10px] font-black uppercase tracking-wider text-neutral-700 font-space">
@@ -411,7 +411,7 @@ IMPORTANT NOTES
                   </span>
                   <button
                     onClick={() => handleCopy(successData.password, 'password')}
-                    className="btn-cartoon p-2 bg-white hover:bg-[#dcfce7] rounded-lg border border-black shadow-[1.5px_1.5px_0px_#000] transition active:translate-x-0.5 active:translate-y-0.5"
+                    className="btn-sheryians p-2 bg-white hover:bg-[#dcfce7] rounded-lg border border-black shadow-sm transition active:translate-x-0.5 active:translate-y-0.5"
                     title="Copy Password"
                   >
                     {copied.password ? (
@@ -425,7 +425,7 @@ IMPORTANT NOTES
             </div>
 
             {/* Confirmation Note */}
-            <div className="p-3.5 bg-[#ecfdf5] border-2 border-black rounded-xl text-center">
+            <div className="p-3.5 bg-[#ecfdf5] border border-white/10 rounded-xl text-center">
               <p className="text-xs text-black font-jakarta font-semibold flex items-center justify-center gap-1.5">
                 <Mail className="w-4 h-4 text-emerald-700 flex-shrink-0" />
                 <span>Confirmation copy & cartoon fee bill sent to <strong>{successData.email}</strong></span>
@@ -437,14 +437,14 @@ IMPORTANT NOTES
           <div className="flex flex-col sm:flex-row gap-4 no-print">
             <Link
               href="/login"
-              className="btn-cartoon flex-1 py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all text-center flex items-center justify-center gap-2"
+              className="btn-sheryians flex-1 py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all text-center flex items-center justify-center gap-2"
             >
               <span>Login to Student Portal</span>
               <ArrowRight className="w-4 h-4 text-black" />
             </Link>
             <Link
               href="/"
-              className="btn-cartoon sm:w-1/3 py-4 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit text-base rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all text-center flex items-center justify-center gap-2"
+              className="btn-sheryians sm:w-1/3 py-4 bg-white hover:bg-[#dcfce7] text-black font-black font-outfit text-base rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all text-center flex items-center justify-center gap-2"
             >
               <Home className="w-4 h-4 text-black" />
               <span>Home</span>

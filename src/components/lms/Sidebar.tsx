@@ -80,15 +80,15 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 h-full w-64 bg-[#f0fdf4] border-r-3 border-black z-50
-        shadow-[6px_0px_0px_#000]
+        fixed top-0 left-0 h-full w-64 bg-[#0a0c14] border-r border-white/10 z-50
+        shadow-[0_20px_50px_rgba(0,0,0,0.8)]
         transform transition-transform duration-300 ease-in-out
         lg:translate-x-0 lg:static lg:h-screen
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b-2 border-black bg-white">
+          <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0e101a]">
             <Link href="/" className="flex items-center gap-2.5">
               <img 
                 src="/logo.png" 
@@ -97,21 +97,21 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
               />
 
               <div className="flex items-baseline gap-1 font-outfit">
-                <span className="text-base font-black text-black">RAVEN</span>
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">Tutorials</span>
+                <span className="text-base font-black text-white">RAVEN</span>
+                <span className="text-xs font-bold text-[#ff814e] uppercase tracking-wider">Tutorials</span>
               </div>
             </Link>
             <button 
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-neutral-100 hover:bg-rose-200 border border-black lg:hidden transition"
+              className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-white lg:hidden transition cursor-pointer"
             >
-              <X className="w-4 h-4 text-black" />
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
 
           {/* Navigation */}
           <nav className="flex-1 overflow-y-auto p-4">
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               {items.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
                 return (
@@ -119,13 +119,13 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
                     <Link
                       href={item.href}
                       onClick={onClose}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold font-outfit transition-all border-2 ${
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold font-outfit transition-all ${
                         isActive 
-                          ? 'bg-[#4ade80] text-black border-black shadow-[3px_3px_0px_#000]' 
-                          : 'bg-white text-neutral-800 border-transparent hover:border-black hover:bg-[#dcfce7]'
+                          ? 'bg-[#e8602e] text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]' 
+                          : 'text-zinc-400 hover:text-white hover:bg-white/5'
                       }`}
                     >
-                      <item.icon className="w-5 h-5 text-black" />
+                      <item.icon className="w-5 h-5" />
                       {item.label}
                     </Link>
                   </li>
@@ -135,9 +135,9 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t-2 border-black bg-white">
-            <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-bold font-outfit bg-rose-100 hover:bg-rose-200 border-2 border-black text-rose-800 shadow-[2px_2px_0px_#000] transition">
-              <LogOut className="w-5 h-5 text-rose-800" />
+          <div className="p-4 border-t border-white/10 bg-[#0e101a]">
+            <button className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl text-sm font-bold font-outfit bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/25 text-rose-300 transition cursor-pointer">
+              <LogOut className="w-5 h-5 text-rose-400" />
               Logout
             </button>
           </div>

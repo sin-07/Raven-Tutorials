@@ -292,8 +292,8 @@ function LiveClassPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-white border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-black border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
+        <div className="bg-white border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full">
+          <div className="w-12 h-12 border border-white/15 border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
           <h3 className="font-outfit font-black text-xl text-black">Entering Classroom</h3>
           <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Connecting to live broadcast stream...</p>
         </div>
@@ -304,15 +304,15 @@ function LiveClassPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] rounded-3xl p-8 max-w-md w-full text-center border-3 border-black shadow-[6px_6px_0px_#000]">
-          <div className="w-14 h-14 rounded-2xl bg-rose-200 border-2 border-black flex items-center justify-center mx-auto mb-4 shadow-[2px_2px_0px_#000]">
+        <div className="bg-[#f0fdf4] rounded-3xl p-8 max-w-md w-full text-center border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+          <div className="w-14 h-14 rounded-2xl bg-rose-200 border border-white/10 flex items-center justify-center mx-auto mb-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <AlertCircle className="w-7 h-7 text-rose-900" />
           </div>
           <h2 className="text-2xl font-outfit font-black text-black mb-2">Unable to Load Class</h2>
           <p className="text-sm font-jakarta font-medium text-black/70 mb-6">{error}</p>
           <button
             onClick={() => router.push(isModerator ? '/admin/dashboard' : '/dashboard')}
-            className="bg-[#86efac] hover:bg-[#4ade80] text-black border-2 border-black px-6 py-2.5 rounded-xl font-outfit font-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+            className="bg-[#86efac] hover:bg-[#4ade80] text-black border border-white/10 px-6 py-2.5 rounded-xl font-outfit font-black shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
           >
             Go Back to Dashboard
           </button>
@@ -324,10 +324,10 @@ function LiveClassPage() {
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden">
       {/* Header Bar */}
-      <div className="absolute top-0 left-0 right-0 bg-white text-black p-3.5 z-10 border-b-3 border-black shadow-[0_3px_0px_#000]">
+      <div className="absolute top-0 left-0 right-0 bg-white text-black p-3.5 z-10 border-b border-white/10 shadow-[0_3px_0px_#000]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#86efac] border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+            <div className="w-9 h-9 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shadow-sm">
               <Video className="w-5 h-5 text-black" />
             </div>
             <div>
@@ -338,7 +338,7 @@ function LiveClassPage() {
             </div>
           </div>
           {isModerator && (
-            <span className="bg-[#fef08a] border-2 border-black text-black px-3 py-1 rounded-full text-xs font-space font-black uppercase shadow-[1px_1px_0px_#000]">
+            <span className="bg-[#fef08a] border border-white/10 text-black px-3 py-1 rounded-full text-xs font-space font-black uppercase shadow-sm">
               Moderator
             </span>
           )}

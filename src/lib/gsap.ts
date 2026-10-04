@@ -562,59 +562,7 @@ export const cartoonStagger = (
  * - Buttons have tactile cartoon click feedback
  * - Badges settle with a slight playful tilt
  */
-export const initCartoonAnimations = (scope?: HTMLElement | null) => {
-  if (typeof window === 'undefined') return;
-  const root = scope || document;
-
-  // Pop-in elements
-  const popEls = root.querySelectorAll('.cartoon-pop, [data-cartoon="pop"]');
-  popEls.forEach((el, i) => {
-    gsap.fromTo(
-      el,
-      { opacity: 0, scale: 0.9, y: 16 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.4,
-        delay: i * 0.04,
-        ease: 'back.out(2)',
-        clearProps: 'transform,opacity',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 92%',
-          once: true,
-        },
-      }
-    );
-  });
-
-  // Stagger grids
-  const staggerGrids = root.querySelectorAll('.cartoon-stagger, [data-cartoon="stagger"]');
-  staggerGrids.forEach((grid) => {
-    const children = Array.from(grid.children);
-    if (children.length) {
-      gsap.fromTo(
-        children,
-        { opacity: 0, scale: 0.9, y: 16 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.38,
-          stagger: 0.06,
-          ease: 'back.out(1.8)',
-          clearProps: 'transform,opacity',
-          scrollTrigger: {
-            trigger: grid,
-            start: 'top 90%',
-            once: true,
-          },
-        }
-      );
-    }
-  });
-};
+export const initCartoonAnimations = (_scope?: HTMLElement | null) => {};
 
 // ─── 5. GLOBAL PAGE ROUTE TRANSITION ───────────────────────────────────────
 

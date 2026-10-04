@@ -115,11 +115,11 @@ const LoginPage: React.FC = () => {
             }`}
           >
             {/* Card Container */}
-            <div ref={cardRef} className="relative bg-[#f0fdf4] border-3 border-black rounded-3xl p-7 sm:p-9 shadow-[8px_8px_0px_#000] text-black">
+            <div ref={cardRef} className="relative bg-[#f0fdf4] border border-white/10 rounded-3xl p-7 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-black">
               {/* Form Header */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="p-3 rounded-2xl bg-emerald-300 border-2 border-black shadow-[3px_3px_0px_#000]">
+                  <div className="p-3 rounded-2xl bg-emerald-300 border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                     <img
                       src="/logo.png"
                       alt="Raven Tutorials Logo"
@@ -159,7 +159,7 @@ const LoginPage: React.FC = () => {
                       placeholder="name@example.com"
                       required
                       autoComplete="email"
-                      className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[3px_3px_0px_#000] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[2px_2px_0px_#000]"
+                      className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_8px_20px_rgba(0,0,0,0.4)] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                   </div>
                 </div>
@@ -183,7 +183,7 @@ const LoginPage: React.FC = () => {
                       placeholder="Enter your password"
                       required
                       autoComplete="current-password"
-                      className="w-full pl-12 pr-12 py-3.5 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[3px_3px_0px_#000] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[2px_2px_0px_#000]"
+                      className="w-full pl-12 pr-12 py-3.5 bg-white border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_8px_20px_rgba(0,0,0,0.4)] focus:-translate-y-0.5 transition-spring text-black placeholder-neutral-400 text-sm font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                     <button
                       type="button"
@@ -204,11 +204,11 @@ const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-cartoon w-full mt-2 py-3.5 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-spring disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-outfit cursor-pointer"
+                  className="btn-sheryians w-full mt-2 py-3.5 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-spring disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-outfit cursor-pointer"
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border border-white/10 border-t-transparent rounded-full animate-spin" />
                       <span>Verifying credentials...</span>
                     </>
                   ) : (
@@ -221,7 +221,7 @@ const LoginPage: React.FC = () => {
               </form>
 
               {/* Footer Links */}
-              <div className="mt-8 pt-6 border-t-2 border-black text-center space-y-3">
+              <div className="mt-8 pt-6 border-t border-white/10 text-center space-y-3">
                 <p className="text-xs text-neutral-700 font-jakarta">
                   New student to RAVEN?{' '}
                   <Link

@@ -114,8 +114,8 @@ export default function TeacherAdmissionPage() {
     return (
       <>
         <div className="min-h-screen bg-transparent pt-36 pb-20 px-4 flex items-center justify-center">
-          <div className="max-w-md w-full text-center bg-[#f0fdf4] rounded-3xl p-8 sm:p-10 border-3 border-black shadow-[8px_8px_0px_#000]">
-            <div className="w-20 h-20 bg-emerald-300 rounded-2xl border-2 border-black flex items-center justify-center mx-auto mb-6 shadow-[3px_3px_0px_#000]">
+          <div className="max-w-md w-full text-center bg-[#f0fdf4] rounded-3xl p-8 sm:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+            <div className="w-20 h-20 bg-emerald-300 rounded-2xl border border-white/10 flex items-center justify-center mx-auto mb-6 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
               <CheckCircle className="w-10 h-10 text-black" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-black font-outfit mb-3">
@@ -127,13 +127,13 @@ export default function TeacherAdmissionPage() {
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setSuccess(false)}
-                className="btn-cartoon w-full py-3.5 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition font-outfit"
+                className="btn-sheryians w-full py-3.5 bg-[#dcfce7] hover:bg-[#bbf7d0] text-black font-black rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition font-outfit"
               >
                 Submit Another Application
               </button>
               <Link
                 href="/"
-                className="btn-cartoon w-full py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition font-outfit"
+                className="btn-sheryians w-full py-3.5 bg-emerald-400 hover:bg-emerald-300 text-black font-black rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition font-outfit"
               >
                 Return to Homepage
               </Link>
@@ -151,7 +151,7 @@ export default function TeacherAdmissionPage() {
         <div className="max-w-2xl mx-auto relative z-10">
           {/* Header */}
           <div className="text-center mb-10 flex flex-col items-center justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border border-white/10 text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-4">
               <Sparkles className="w-4 h-4 text-emerald-700" />
               <span>Teaching Faculty Recruitment</span>
             </div>
@@ -170,11 +170,11 @@ export default function TeacherAdmissionPage() {
           {/* Cartoonish Form Container */}
           <form
             onSubmit={handleSubmit}
-            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-10 border-3 border-black shadow-[8px_8px_0px_#000] space-y-6"
+            className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-6"
           >
             {/* Error Message */}
             {error && (
-              <div className="p-4 bg-rose-100 border-2 border-black rounded-2xl shadow-[3px_3px_0px_#000] flex items-center gap-3">
+              <div className="p-4 bg-rose-100 border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center gap-3">
                 <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0" />
                 <p className="text-rose-900 text-sm font-jakarta font-bold">{error}</p>
               </div>
@@ -193,7 +193,7 @@ export default function TeacherAdmissionPage() {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="e.g. Dr. Priya Sharma"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
                   required
                 />
               </div>
@@ -212,7 +212,7 @@ export default function TeacherAdmissionPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="priya@example.com"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
                   required
                 />
               </div>
@@ -232,7 +232,7 @@ export default function TeacherAdmissionPage() {
                   onChange={handleInputChange}
                   placeholder="10-digit mobile number"
                   maxLength={10}
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
                   required
                 />
               </div>
@@ -251,7 +251,7 @@ export default function TeacherAdmissionPage() {
                   value={formData.qualification}
                   onChange={handleInputChange}
                   placeholder="e.g. M.Sc. Physics (IIT Kharagpur) / B.Tech"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-black rounded-xl text-black font-jakarta font-medium shadow-[2px_2px_0px_#000] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium shadow-[0_4px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder-neutral-400"
                   required
                 />
               </div>
@@ -284,7 +284,7 @@ export default function TeacherAdmissionPage() {
                       key={subject}
                       type="button"
                       onClick={() => handleSubjectToggle(subject)}
-                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold font-space border-2 border-black transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center gap-1.5 ${
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold font-space border border-white/10 transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:translate-x-0.5 active:translate-y-0.5 flex items-center gap-1.5 ${
                         isSelected
                           ? 'bg-emerald-300 text-black scale-105'
                           : 'bg-white text-black hover:bg-[#dcfce7]'
@@ -307,7 +307,7 @@ export default function TeacherAdmissionPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-cartoon w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border-3 border-black shadow-[4px_4px_0px_#000] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+              className="btn-sheryians w-full py-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit text-base sm:text-lg rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
             >
               {loading ? (
                 <>

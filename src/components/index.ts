@@ -1,6 +1,6 @@
 // Main components
 export { default as Navbar } from './Navbar';
-export { default as Footer } from './Footer';
+export { default as Footer } from './lms/Footer';
 export { default as Loader, ButtonLoader } from './Loader';
 export { default as SessionExpiryHandler } from './SessionExpiryHandler';
 export { default as FeedbackForm } from './FeedbackForm';

@@ -91,7 +91,6 @@ const articleSchema = new Schema<IArticle>(
   }
 );
 
-articleSchema.index({ slug: 1 });
 articleSchema.index({ isPublished: 1, createdAt: -1 });
 articleSchema.index({ category: 1 });
 

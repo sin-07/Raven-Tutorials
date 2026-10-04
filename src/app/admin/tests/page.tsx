@@ -314,8 +314,8 @@ const AdminTests: React.FC = () => {
     return (
       <AdminLayout>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl p-8 shadow-[6px_6px_0px_#000] text-center max-w-sm w-full cartoon-pop">
-            <div className="animate-spin w-10 h-10 border-4 border-black border-t-emerald-500 rounded-full mx-auto mb-3"></div>
+          <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full ">
+            <div className="animate-spin w-10 h-10 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-3"></div>
             <p className="text-black font-black font-outfit text-lg">Loading Assessments...</p>
           </div>
         </div>
@@ -327,10 +327,10 @@ const AdminTests: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <FileText className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Examinations & Assessments</span>
               </div>
@@ -343,7 +343,7 @@ const AdminTests: React.FC = () => {
             </div>
             <button
               onClick={() => setShowModal(true)}
-              className="btn-cartoon flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm font-outfit"
+              className="btn-sheryians flex items-center gap-2 bg-white hover:bg-[#dcfce7] text-black font-black px-4 py-2.5 rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm font-outfit"
             >
               <Plus size={18} className="text-black" />
               <span>Create New Test</span>
@@ -352,18 +352,18 @@ const AdminTests: React.FC = () => {
         </div>
 
         {/* Status Legend */}
-        <div className="bg-[#f0fdf4] rounded-2xl p-4 border-2 border-black shadow-[4px_4px_0px_#000] flex flex-wrap items-center justify-between gap-3">
+        <div className="bg-[#f0fdf4] rounded-2xl p-4 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex flex-wrap items-center justify-between gap-3">
           <span className="text-xs font-black uppercase font-space text-black">Status Guide:</span>
           <div className="flex flex-wrap gap-2 text-xs font-space font-bold">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-200 border border-black text-black shadow-[1px_1px_0px_#000]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-200 border border-black text-black shadow-sm">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span>
               DRAFT (Hidden)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#86efac] border border-black text-black shadow-[1px_1px_0px_#000]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#86efac] border border-black text-black shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-700"></span>
               PUBLISHED (Live)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-rose-200 border border-black text-rose-950 shadow-[1px_1px_0px_#000]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-rose-200 border border-black text-rose-950 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-rose-600"></span>
               EXPIRED (Archived)
             </span>
@@ -371,9 +371,9 @@ const AdminTests: React.FC = () => {
         </div>
 
         {/* Desktop Table View */}
-        <div className="hidden lg:block bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+        <div className="hidden lg:block bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
           <table className="w-full">
-            <thead className="bg-[#86efac] border-b-2 border-black font-space font-black uppercase text-black text-xs">
+            <thead className="bg-[#86efac] border-b border-white/10 font-space font-black uppercase text-black text-xs">
               <tr>
                 <th className="px-5 py-3.5 text-left">Test ID</th>
                 <th className="px-5 py-3.5 text-left">Title</th>
@@ -403,7 +403,7 @@ const AdminTests: React.FC = () => {
                   <td className="px-5 py-3.5 text-center font-mono font-bold">{test.questions?.length || 0}</td>
                   <td className="px-5 py-3.5 text-center font-mono font-bold">{test.totalMarks}</td>
                   <td className="px-5 py-3.5 text-center">
-                    <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-black font-space uppercase shadow-[1px_1px_0px_#000] ${getStatusBadge(test.status)}`}>
+                    <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-black font-space uppercase shadow-sm ${getStatusBadge(test.status)}`}>
                       {test.status}
                     </span>
                   </td>
@@ -413,7 +413,7 @@ const AdminTests: React.FC = () => {
                         <>
                           <button
                             onClick={() => handleEdit(test)}
-                            className="btn-cartoon p-1.5 bg-white hover:bg-sky-100 text-black rounded-lg border border-black shadow-[1px_1px_0px_#000]"
+                            className="btn-sheryians p-1.5 bg-white hover:bg-sky-100 text-black rounded-lg border border-black shadow-sm"
                             title="Edit Assessment"
                           >
                             <Edit2 size={14} />
@@ -421,7 +421,7 @@ const AdminTests: React.FC = () => {
                           <button
                             onClick={() => handlePublish(test._id)}
                             disabled={publishingId === test._id}
-                            className="btn-cartoon px-2.5 py-1 bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs rounded-lg border border-black shadow-[1px_1px_0px_#000] flex items-center gap-1"
+                            className="btn-sheryians px-2.5 py-1 bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs rounded-lg border border-black shadow-sm flex items-center gap-1"
                             title="Publish Test"
                           >
                             <Send size={12} />
@@ -433,7 +433,7 @@ const AdminTests: React.FC = () => {
                         <button
                           onClick={() => handleUnpublish(test._id)}
                           disabled={publishingId === test._id}
-                          className="btn-cartoon px-2.5 py-1 bg-amber-200 hover:bg-amber-300 text-black font-bold text-xs rounded-lg border border-black shadow-[1px_1px_0px_#000] flex items-center gap-1"
+                          className="btn-sheryians px-2.5 py-1 bg-amber-200 hover:bg-amber-300 text-black font-bold text-xs rounded-lg border border-black shadow-sm flex items-center gap-1"
                           title="Unpublish to Draft"
                         >
                           <Lock size={12} />
@@ -442,7 +442,7 @@ const AdminTests: React.FC = () => {
                       )}
                       <button
                         onClick={() => handleDelete(test._id)}
-                        className="btn-cartoon p-1.5 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black shadow-[1px_1px_0px_#000]"
+                        className="btn-sheryians p-1.5 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black shadow-sm"
                         title="Delete Assessment"
                       >
                         <Trash2 size={14} />
@@ -464,13 +464,13 @@ const AdminTests: React.FC = () => {
         {/* Mobile Card View */}
         <div className="lg:hidden space-y-4">
           {tests.map((test) => (
-            <div key={test._id} className="bg-[#f0fdf4] rounded-2xl p-4 border-2 border-black shadow-[4px_4px_0px_#000]">
+            <div key={test._id} className="bg-[#f0fdf4] rounded-2xl p-4 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
               <div className="flex justify-between items-start mb-2">
                 <div>
                   <p className="text-[10px] text-neutral-500 font-mono font-bold mb-0.5">{test.testId}</p>
                   <h3 className="font-black text-black text-base font-outfit">{test.title}</h3>
                 </div>
-                <span className={`px-2 py-0.5 rounded-md text-[10px] font-black font-space uppercase shadow-[1px_1px_0px_#000] ${getStatusBadge(test.status)}`}>
+                <span className={`px-2 py-0.5 rounded-md text-[10px] font-black font-space uppercase shadow-sm ${getStatusBadge(test.status)}`}>
                   {test.status}
                 </span>
               </div>
@@ -492,14 +492,14 @@ const AdminTests: React.FC = () => {
                   <>
                     <button
                       onClick={() => handleEdit(test)}
-                      className="btn-cartoon px-3 py-1.5 bg-white text-black font-bold text-xs rounded-xl border border-black"
+                      className="btn-sheryians px-3 py-1.5 bg-white text-black font-bold text-xs rounded-xl border border-black"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handlePublish(test._id)}
                       disabled={publishingId === test._id}
-                      className="btn-cartoon px-3 py-1.5 bg-emerald-400 text-black font-bold text-xs rounded-xl border border-black"
+                      className="btn-sheryians px-3 py-1.5 bg-emerald-400 text-black font-bold text-xs rounded-xl border border-black"
                     >
                       Publish
                     </button>
@@ -509,14 +509,14 @@ const AdminTests: React.FC = () => {
                   <button
                     onClick={() => handleUnpublish(test._id)}
                     disabled={publishingId === test._id}
-                    className="btn-cartoon px-3 py-1.5 bg-amber-200 text-black font-bold text-xs rounded-xl border border-black"
+                    className="btn-sheryians px-3 py-1.5 bg-amber-200 text-black font-bold text-xs rounded-xl border border-black"
                   >
                     Unpublish
                   </button>
                 )}
                 <button
                   onClick={() => handleDelete(test._id)}
-                  className="btn-cartoon px-3 py-1.5 bg-rose-100 text-rose-900 font-bold text-xs rounded-xl border border-black"
+                  className="btn-sheryians px-3 py-1.5 bg-rose-100 text-rose-900 font-bold text-xs rounded-xl border border-black"
                 >
                   Delete
                 </button>
@@ -525,7 +525,7 @@ const AdminTests: React.FC = () => {
           ))}
 
           {tests.length === 0 && (
-            <div className="bg-white rounded-2xl p-8 text-center border-2 border-black">
+            <div className="bg-white rounded-2xl p-8 text-center border border-white/10">
               <p className="text-neutral-500 font-bold text-sm">No tests created yet.</p>
             </div>
           )}
@@ -534,10 +534,10 @@ const AdminTests: React.FC = () => {
         {/* Cartoon Create / Edit Test Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overflow-y-auto overscroll-contain">
-            <div className="bg-[#f0fdf4] border-3 border-black rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] p-6 sm:p-8 max-w-3xl w-full my-auto max-h-[90vh] overflow-y-auto overscroll-contain">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b-2 border-black">
+            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] p-6 sm:p-8 max-w-3xl w-full my-auto max-h-[90vh] overflow-y-auto overscroll-contain">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <div className="p-2 bg-[#86efac] rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+                  <div className="p-2 bg-[#86efac] rounded-xl border border-black shadow-sm">
                     <FileText size={20} className="text-black" />
                   </div>
                   <div>
@@ -551,14 +551,14 @@ const AdminTests: React.FC = () => {
                 </div>
                 <button
                   onClick={resetModal}
-                  className="btn-cartoon p-1.5 rounded-xl bg-white border border-black hover:bg-rose-100"
+                  className="btn-sheryians p-1.5 rounded-xl bg-white border border-black hover:bg-rose-100"
                 >
                   <X size={18} className="text-black" />
                 </button>
               </div>
               
               {!editingTestId && (
-                <div className="bg-amber-100 border-2 border-black rounded-xl p-3 mb-4 shadow-[2px_2px_0px_#000]">
+                <div className="bg-amber-100 border border-white/10 rounded-xl p-3 mb-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                   <p className="text-amber-950 text-xs font-bold font-jakarta flex items-center gap-1.5">
                     <Info className="w-4 h-4 inline shrink-0 text-amber-900" />
                     <span>New tests will initially be saved as <strong>DRAFT</strong>. Students will only see the assessment once you hit Publish.</span>
@@ -575,7 +575,7 @@ const AdminTests: React.FC = () => {
                         type="text"
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         placeholder="e.g. Unit Test 2 - Electrostatics"
                         required
                       />
@@ -600,7 +600,7 @@ const AdminTests: React.FC = () => {
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         placeholder="e.g. Physics"
                         required
                       />
@@ -612,7 +612,7 @@ const AdminTests: React.FC = () => {
                         type="date"
                         value={formData.startDate}
                         onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-3.5 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         required
                       />
                     </div>
@@ -624,7 +624,7 @@ const AdminTests: React.FC = () => {
                         value={formData.endDate}
                         onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                         min={formData.startDate}
-                        className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-3.5 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         required
                       />
                     </div>
@@ -635,7 +635,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={formData.duration}
                         onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         placeholder="60"
                         required
                       />
@@ -647,7 +647,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={formData.passingMarks}
                         onChange={(e) => setFormData({ ...formData, passingMarks: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         placeholder="40"
                         required
                       />
@@ -658,17 +658,17 @@ const AdminTests: React.FC = () => {
                       <textarea
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                         rows={3}
                         placeholder="Instructions for students taking this test..."
                       />
                     </div>
                   </div>
 
-                  <div className="flex gap-3 pt-4 border-t-2 border-black/10">
+                  <div className="flex gap-3 pt-4 border-t border-white/10/10">
                     <button
                       type="submit"
-                      className="btn-cartoon flex-1 py-3 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-2"
+                      className="btn-sheryians flex-1 py-3 px-6 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm flex items-center justify-center gap-2"
                     >
                       <span>Next: Add Questions</span>
                       <ArrowRight size={16} />
@@ -676,7 +676,7 @@ const AdminTests: React.FC = () => {
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="btn-cartoon py-3 px-6 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm"
+                      className="btn-sheryians py-3 px-6 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                     >
                       Cancel
                     </button>
@@ -686,7 +686,7 @@ const AdminTests: React.FC = () => {
                 <div className="space-y-6">
                   {/* Added Questions List */}
                   {formData.questions.length > 0 && (
-                    <div className="bg-white p-4 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000]">
+                    <div className="bg-white p-4 rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
                       <h4 className="font-outfit font-black text-black text-sm mb-3">
                         Added Questions ({formData.questions.length}) • Total Calculated Marks: {calculateTotalMarks()}
                       </h4>
@@ -701,7 +701,7 @@ const AdminTests: React.FC = () => {
                             </div>
                             <button
                               onClick={() => handleRemoveQuestion(index)}
-                              className="btn-cartoon p-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg border border-black ml-2"
+                              className="btn-sheryians p-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg border border-black ml-2"
                             >
                               <X size={14} />
                             </button>
@@ -712,7 +712,7 @@ const AdminTests: React.FC = () => {
                   )}
 
                   {/* Add New Question Form */}
-                  <div className="bg-white p-5 rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] space-y-4">
+                  <div className="bg-white p-5 rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] space-y-4">
                     <h4 className="font-outfit font-black text-black text-sm">Add New Question</h4>
                     
                     <div>
@@ -734,7 +734,7 @@ const AdminTests: React.FC = () => {
                       <textarea
                         value={currentQuestion.questionText}
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-medium focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                         rows={3}
                         placeholder="Type question content here..."
                       />
@@ -754,7 +754,7 @@ const AdminTests: React.FC = () => {
                                 newOptions[idx] = e.target.value;
                                 setCurrentQuestion({ ...currentQuestion, options: newOptions });
                               }}
-                              className="flex-1 px-3.5 py-2 bg-white border-2 border-black rounded-xl text-black font-medium text-xs focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[1px_1px_0px_#000]"
+                              className="flex-1 px-3.5 py-2 bg-white border border-white/10 rounded-xl text-black font-medium text-xs focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-sm"
                               placeholder={`Option ${String.fromCharCode(65 + idx)}`}
                             />
                             <label className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-black bg-[#dcfce7] cursor-pointer">
@@ -777,7 +777,7 @@ const AdminTests: React.FC = () => {
                       <div>
                         <label className="block text-xs font-black uppercase font-space text-black mb-1.5">Correct Answer *</label>
                         <div className="flex gap-4">
-                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-black cursor-pointer">
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-white/10 cursor-pointer">
                             <input
                               type="radio"
                               name="trueFalse"
@@ -788,7 +788,7 @@ const AdminTests: React.FC = () => {
                             />
                             <span className="font-black font-outfit text-sm">True</span>
                           </label>
-                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-black cursor-pointer">
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-white/10 cursor-pointer">
                             <input
                               type="radio"
                               name="trueFalse"
@@ -809,7 +809,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={currentQuestion.marks}
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
-                        className="w-full px-4 py-2 bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                        className="w-full px-4 py-2 bg-white border border-white/10 rounded-xl text-black font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                         placeholder="e.g. 5"
                         min="1"
                       />
@@ -818,7 +818,7 @@ const AdminTests: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleAddQuestion}
-                      className="btn-cartoon w-full py-2.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-2"
+                      className="btn-sheryians w-full py-2.5 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm flex items-center justify-center gap-2"
                     >
                       <Plus size={16} />
                       <span>Add This Question</span>
@@ -826,11 +826,11 @@ const AdminTests: React.FC = () => {
                   </div>
 
                   {/* Modal Footer Controls */}
-                  <div className="flex gap-3 pt-4 border-t-2 border-black/10">
+                  <div className="flex gap-3 pt-4 border-t border-white/10/10">
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="btn-cartoon py-3 px-5 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm flex items-center gap-1.5"
+                      className="btn-sheryians py-3 px-5 bg-white hover:bg-neutral-100 text-black font-bold font-outfit rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm flex items-center gap-1.5"
                     >
                       <ArrowLeft size={16} />
                       <span>Back to Step 1</span>
@@ -839,14 +839,14 @@ const AdminTests: React.FC = () => {
                       type="button"
                       onClick={handleSubmit}
                       disabled={formData.questions.length === 0}
-                      className="btn-cartoon flex-1 py-3 px-5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-sm disabled:opacity-50"
+                      className="btn-sheryians flex-1 py-3 px-5 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] text-sm disabled:opacity-50"
                     >
                       {editingTestId ? 'Update Test' : 'Save as Draft'} ({formData.questions.length} Questions, {calculateTotalMarks()} Marks)
                     </button>
                     <button
                       type="button"
                       onClick={resetModal}
-                      className="btn-cartoon py-3 px-5 bg-rose-100 hover:bg-rose-200 text-rose-950 font-bold font-outfit rounded-2xl border-2 border-black shadow-[2px_2px_0px_#000] text-sm"
+                      className="btn-sheryians py-3 px-5 bg-rose-100 hover:bg-rose-200 text-rose-950 font-bold font-outfit rounded-2xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
                     >
                       Cancel
                     </button>

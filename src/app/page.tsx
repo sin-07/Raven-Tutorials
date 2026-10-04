@@ -40,7 +40,7 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
-import SheryiansSplash from '@/components/sheryians/SheryiansSplash';
+import SheryiansSplash from '@/components/SheryiansSplash';
 import {
   gsap,
   scrollFromLeft,
@@ -60,7 +60,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
   ssr: false,
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-[#e8602e]" />
+      <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-[#e8602e]" />
     </div>
   ),
 });
@@ -68,7 +68,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
 const HomeArticlesSection = dynamic(() => import('@/components/HomeArticlesSection'), {
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-[#e8602e]" />
+      <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-[#e8602e]" />
     </div>
   ),
 });

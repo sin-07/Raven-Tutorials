@@ -185,7 +185,7 @@ export default function RSATPage() {
         {/* STEP 1: REGISTRATION & TEST RULES */}
         {/* ========================================================= */}
         {step === 'register' && (
-          <div className="space-y-8 cartoon-pop">
+          <div className="space-y-8 ">
             {/* Hero Header */}
             <div className="text-center space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 font-space font-bold text-xs uppercase tracking-wider text-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.2)]">
@@ -486,7 +486,7 @@ export default function RSATPage() {
         {/* STEP 3: OFFICIAL SCHOLARSHIP CERTIFICATE & COUPON */}
         {/* ========================================================= */}
         {step === 'result' && result && (
-          <div className="space-y-8 cartoon-pop">
+          <div className="space-y-8 ">
             {/* Top Congratulatory Banner */}
             <div className="bg-gradient-to-r from-[#e8602e]/20 via-[#ff733d]/20 to-[#ffaa40]/20 border border-[#e8602e]/40 rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-[0_0_35px_rgba(232,96,46,0.2)]">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-xs font-black font-space uppercase text-[#ff7b47]">

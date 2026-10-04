@@ -29,10 +29,10 @@ const AttendanceButtons = memo(({
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Present')}
-        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
+        className={`btn-sheryians px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
           currentStatus === 'Present'
-            ? 'bg-[#86efac] text-black border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
-            : 'bg-white text-neutral-500 hover:text-black hover:bg-neutral-100 hover:border-black border-2 border-black/30 shadow-none'
+            ? 'bg-[#86efac] text-black border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] translate-x-0.5'
+            : 'bg-white text-neutral-500 hover:text-black hover:bg-neutral-100 hover:border-black border border-white/10/30 shadow-none'
         }`}
       >
         Present
@@ -40,10 +40,10 @@ const AttendanceButtons = memo(({
       <button
         type="button"
         onClick={() => onStatusChange(studentId, 'Absent')}
-        className={`btn-cartoon px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
+        className={`btn-sheryians px-3.5 py-1.5 rounded-xl text-xs font-black font-space uppercase transition-all duration-150 active:translate-y-0.5 ${
           currentStatus === 'Absent'
-            ? 'bg-rose-200 text-rose-950 border-2 border-black shadow-[2px_2px_0px_#000] translate-x-0.5'
-            : 'bg-white text-neutral-500 hover:text-rose-900 hover:bg-rose-50 hover:border-black border-2 border-black/30 shadow-none'
+            ? 'bg-rose-200 text-rose-950 border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)] translate-x-0.5'
+            : 'bg-white text-neutral-500 hover:text-rose-900 hover:bg-rose-50 hover:border-black border border-white/10/30 shadow-none'
         }`}
       >
         Absent
@@ -230,10 +230,10 @@ const AdminAttendance: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border-3 border-black rounded-3xl shadow-[8px_8px_0px_#000] p-6 sm:p-8 text-black relative overflow-hidden cartoon-pop">
+        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-[1.5px_1.5px_0px_#000]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <CheckSquare className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Attendance Registry</span>
               </div>
@@ -246,7 +246,7 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-4 py-2 rounded-2xl bg-white border-2 border-black font-mono font-black text-sm shadow-[2px_2px_0px_#000]">
+              <span className="px-4 py-2 rounded-2xl bg-white border border-white/10 font-mono font-black text-sm shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                 {new Date(selectedDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
             </div>
@@ -254,7 +254,7 @@ const AdminAttendance: React.FC = () => {
         </div>
 
         {/* Cartoon Controls & Filters Panel */}
-        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border-3 border-black shadow-[6px_6px_0px_#000]">
+        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
@@ -301,7 +301,7 @@ const AdminAttendance: React.FC = () => {
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-white border-2 border-black rounded-xl text-black font-bold font-mono focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[2px_2px_0px_#000] text-sm"
+                className="w-full px-3.5 py-2.5 bg-white border border-white/10 rounded-xl text-black font-bold font-mono focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
               />
             </div>
 
@@ -309,7 +309,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={markAllPresent}
                 disabled={!selectedClass || !selectedSubject || students.length === 0}
-                className="btn-cartoon w-full py-2.5 px-4 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] text-sm flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="btn-sheryians w-full py-2.5 px-4 bg-[#86efac] hover:bg-[#4ade80] text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 <Check size={16} />
                 <span>Mark All Present</span>
@@ -320,9 +320,9 @@ const AdminAttendance: React.FC = () => {
 
         {/* Status Notification Banner */}
         {selectedClass && selectedSubject && isMarked && (
-          <div className="bg-[#dcfce7] border-2 border-black p-4 rounded-2xl shadow-[4px_4px_0px_#000] flex items-center justify-between cartoon-pop">
+          <div className="bg-[#dcfce7] border border-white/10 p-4 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] flex items-center justify-between ">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-emerald-400 rounded-xl border border-black shadow-[1px_1px_0px_#000]">
+              <div className="p-2 bg-emerald-400 rounded-xl border border-black shadow-sm">
                 <CheckCircle2 className="w-5 h-5 text-black" />
               </div>
               <div>
@@ -334,7 +334,7 @@ const AdminAttendance: React.FC = () => {
                 </p>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-lg bg-white border border-black text-xs font-black font-space uppercase shadow-[1px_1px_0px_#000]">
+            <span className="px-3 py-1 rounded-lg bg-white border border-black text-xs font-black font-space uppercase shadow-sm">
               Status: Logged
             </span>
           </div>
@@ -342,9 +342,9 @@ const AdminAttendance: React.FC = () => {
 
         {/* Attendance Table */}
         {selectedClass && selectedSubject && students.length > 0 && (
-          <div className="bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] overflow-hidden">
+          <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
             {/* Table Header / Stats Bar */}
-            <div className="p-5 bg-[#86efac] border-b-2 border-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="p-5 bg-[#86efac] border-b border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div>
                 <h3 className="text-xl font-black font-outfit text-black">
                   {isMarked ? 'Update Attendance Record' : 'Take Attendance'}
@@ -356,11 +356,11 @@ const AdminAttendance: React.FC = () => {
 
               {/* Attendance Mini Counter */}
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-emerald-700 flex items-center gap-1">
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-sm text-emerald-700 flex items-center gap-1">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                   {presentCount} Present
                 </span>
-                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-[1px_1px_0px_#000] text-rose-700 flex items-center gap-1">
+                <span className="px-3 py-1 rounded-xl bg-white border border-black text-xs font-black font-space shadow-sm text-rose-700 flex items-center gap-1">
                   <X className="w-3.5 h-3.5 stroke-[3]" />
                   {absentCount} Absent
                 </span>
@@ -369,7 +369,7 @@ const AdminAttendance: React.FC = () => {
 
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y-2 divide-black">
-                <thead className="bg-[#dcfce7] border-b-2 border-black font-space font-black uppercase text-black text-xs">
+                <thead className="bg-[#dcfce7] border-b border-white/10 font-space font-black uppercase text-black text-xs">
                   <tr>
                     <th className="px-5 py-3.5 text-left">#</th>
                     <th className="px-5 py-3.5 text-left">Student Name</th>
@@ -388,7 +388,7 @@ const AdminAttendance: React.FC = () => {
                         <span className="text-[11px] text-neutral-500 font-mono sm:hidden">{student.registrationId}</span>
                       </td>
                       <td className="px-5 py-3.5 hidden md:table-cell">
-                        <span className="px-2.5 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-[1px_1px_0px_#000]">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-sm">
                           {student.registrationId}
                         </span>
                       </td>
@@ -406,14 +406,14 @@ const AdminAttendance: React.FC = () => {
             </div>
 
             {/* Bottom Save Action Bar */}
-            <div className="p-5 bg-[#f0fdf4] border-t-2 border-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="p-5 bg-[#f0fdf4] border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="text-xs font-jakarta font-medium text-neutral-600">
                 Ensure all students are marked before submitting. Absentees will be logged in the academic history.
               </div>
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="btn-cartoon px-8 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000] text-sm sm:text-base disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                className="btn-sheryians px-8 py-3 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-2xl border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)] text-sm sm:text-base disabled:opacity-50 transition-all flex items-center justify-center gap-2"
               >
                 <CheckSquare size={18} />
                 <span>{loading ? 'Saving...' : isMarked ? 'Update Attendance' : 'Save Attendance'}</span>
@@ -423,7 +423,7 @@ const AdminAttendance: React.FC = () => {
         )}
 
         {selectedClass && selectedSubject && students.length === 0 && (
-          <div className="text-center py-16 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
+          <div className="text-center py-16 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
             <Users className="w-12 h-12 text-neutral-300 mx-auto mb-2" />
             <p className="text-black font-black text-lg font-outfit">No Enrolled Students</p>
             <p className="text-neutral-500 text-xs font-jakarta mt-1">No students are currently enrolled in Class {selectedClass}</p>
@@ -431,8 +431,8 @@ const AdminAttendance: React.FC = () => {
         )}
 
         {(!selectedClass || !selectedSubject) && (
-          <div className="text-center py-16 bg-white rounded-3xl border-3 border-black shadow-[6px_6px_0px_#000] p-8">
-            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border-2 border-black flex items-center justify-center mx-auto mb-3 shadow-[2px_2px_0px_#000]">
+          <div className="text-center py-16 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
+            <div className="w-16 h-16 rounded-2xl bg-[#f0fdf4] border border-white/10 flex items-center justify-center mx-auto mb-3 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <Calendar className="w-8 h-8 text-black" />
             </div>
             <p className="text-black font-black text-lg font-outfit">Select Class & Subject</p>

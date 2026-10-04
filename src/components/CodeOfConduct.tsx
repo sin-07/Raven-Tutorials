@@ -89,25 +89,25 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overscroll-contain">
-      <div ref={modalRef} className="bg-[#f0fdf4] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border-3 border-black text-black shadow-[8px_8px_0px_#000000] overflow-hidden overscroll-contain">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 overscroll-contain">
+      <div ref={modalRef} className="bg-[#0c0e17] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-white/10 text-white shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.15)] overflow-hidden overscroll-contain">
         {/* Header */}
-        <div ref={headerRef} className="bg-[#86efac] p-6 sm:p-7 relative border-b-3 border-black text-black">
+        <div ref={headerRef} className="bg-gradient-to-r from-[#121422] to-[#181c2e] p-6 sm:p-7 relative border-b border-white/10 text-white">
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 bg-white text-black hover:bg-rose-300 rounded-full p-2 border-2 border-black shadow-[2px_2px_0px_#000] transition-all duration-150"
+            className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 border border-white/15 transition cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
           <div className="text-center">
-            <div className="inline-block bg-black text-[#86efac] border-2 border-black px-4 py-1 rounded-full mb-2 shadow-[2px_2px_0px_#000]">
-              <span className="text-xs font-black tracking-wider font-space">OFFICIAL ACADEMIC CODE</span>
+            <div className="inline-block bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 px-4 py-1 rounded-full mb-2">
+              <span className="text-xs font-bold tracking-wider font-space uppercase">OFFICIAL ACADEMIC CODE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-black mb-1 tracking-tight font-outfit">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight font-outfit">
               RAVEN CODE OF CONDUCT
             </h2>
-            <p className="text-neutral-800 text-xs sm:text-sm font-jakarta font-bold">
+            <p className="text-zinc-400 text-xs sm:text-sm font-jakarta font-medium">
               Core Principles & Ethical Values for RAVEN Members
             </p>
           </div>
@@ -115,19 +115,19 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
         {/* Scrollable Content with Preamble */}
         <div 
-          className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4 font-jakarta bg-[#f0fdf4]"
+          className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4 font-jakarta bg-[#0c0e17]"
           onScroll={handleScroll}
         >
           {/* Preamble inside scrollable area */}
-          <div ref={preambleRef} className="bg-[#dcfce7] rounded-2xl p-5 border-2 border-black shadow-[3px_3px_0px_#000] text-black">
+          <div ref={preambleRef} className="bg-[#121422] rounded-2xl p-5 border border-white/10 text-zinc-300">
             <div className="flex items-start gap-3">
-              <div className="w-2 h-full bg-black rounded-full flex-shrink-0 self-stretch"></div>
+              <div className="w-1.5 h-full bg-[#e8602e] rounded-full flex-shrink-0 self-stretch"></div>
               <div>
-                <h3 className="text-base font-black text-black mb-2 flex items-center gap-2 font-outfit">
-                  <FileText className="w-5 h-5 text-black" />
+                <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2 font-outfit">
+                  <FileText className="w-5 h-5 text-[#e8602e]" />
                   <span>Preamble</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-900 leading-relaxed text-justify font-bold">
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed text-justify font-medium">
                   THE FOLLOWING DRAFT CONTAINS CERTAIN CODES OF CONDUCT FOR RAVEN LLC. 
                   IN CASE OF CERTAIN CEREBRAL CONFLICTS, THE SAME MUST BE BROUGHT OUT 
                   INTO THE CORDIAL MEETING DECIDING THE COUNSEL MEMBER ATTENDANCE OF 
@@ -140,38 +140,27 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
           {/* Code of Conduct Points */}
           <div ref={pointsRef} className="space-y-3">
-            {codeOfConductPoints.map((point, index) => {
-              const greenishPastels = [
-                'bg-[#f0fdf4]',
-                'bg-[#dcfce7]',
-                'bg-[#bbf7d0]',
-                'bg-[#ecfdf5]',
-                'bg-[#e6f9ee]',
-              ];
-              const cardColor = greenishPastels[index % greenishPastels.length];
-
-              return (
-                <div 
-                  key={index}
-                  className={`${cardColor} flex gap-3.5 p-4 rounded-xl border-2 border-black shadow-[3px_3px_0px_#000000] transition-transform duration-150 hover:-translate-x-0.5`}
-                >
-                  <div className="flex-shrink-0">
-                    <div className="w-7 h-7 bg-black text-white rounded-lg flex items-center justify-center font-black text-xs font-space border border-black shadow-[1px_1px_0px_#000]">
-                      {index + 1}
-                    </div>
+            {codeOfConductPoints.map((point, index) => (
+              <div 
+                key={index}
+                className="bg-[#121422] flex gap-3.5 p-4 rounded-xl border border-white/10 hover:border-[#e8602e]/40 transition"
+              >
+                <div className="flex-shrink-0">
+                  <div className="w-7 h-7 bg-[#e8602e]/15 text-[#ff7b47] rounded-lg flex items-center justify-center font-bold text-xs font-space border border-[#e8602e]/30">
+                    {index + 1}
                   </div>
-                  <p className="text-neutral-950 leading-relaxed font-bold text-xs sm:text-sm pt-0.5">
-                    {point}
-                  </p>
                 </div>
-              );
-            })}
+                <p className="text-zinc-200 leading-relaxed font-medium text-xs sm:text-sm pt-0.5">
+                  {point}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Scroll indicator */}
           {!hasScrolledToBottom && (
-            <div className="sticky bottom-0 left-0 right-0 bg-[#bbf7d0] border-2 border-black rounded-xl py-2 px-4 text-center shadow-[2px_2px_0px_#000]">
-              <p className="text-xs text-black font-black font-space">
+            <div className="sticky bottom-0 left-0 right-0 bg-[#121422]/95 backdrop-blur-md border border-[#e8602e]/30 rounded-xl py-2 px-4 text-center">
+              <p className="text-xs text-[#ff814e] font-semibold font-space">
                 ↓ Please scroll down to read all points to enable acceptance ↓
               </p>
             </div>
@@ -179,7 +168,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
         </div>
 
         {/* Footer with checkbox and buttons */}
-        <div ref={footerRef} className="border-t-3 border-black p-5 sm:p-6 bg-[#f0fdf4] rounded-b-3xl font-jakarta text-black">
+        <div ref={footerRef} className="border-t border-white/10 p-5 sm:p-6 bg-[#090b12] rounded-b-3xl font-jakarta text-white">
           {/* Agreement checkbox */}
           <div className="mb-4">
             <label className="flex items-start gap-3 cursor-pointer group">
@@ -188,10 +177,10 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
                 disabled={!hasScrolledToBottom}
-                className="mt-1 w-4 h-4 text-black border-2 border-black rounded focus:ring-black disabled:opacity-40 disabled:cursor-not-allowed"
+                className="mt-1 w-4 h-4 text-[#e8602e] border-white/20 rounded focus:ring-[#e8602e] disabled:opacity-40 disabled:cursor-not-allowed"
               />
-              <span className={`text-xs sm:text-sm font-bold leading-relaxed ${!hasScrolledToBottom ? 'text-neutral-400' : 'text-neutral-900'}`}>
-                I have read and understood the <strong className="text-black underline">RAVEN Code of Conduct</strong>. 
+              <span className={`text-xs sm:text-sm font-medium leading-relaxed ${!hasScrolledToBottom ? 'text-zinc-500' : 'text-zinc-300'}`}>
+                I have read and understood the <strong className="text-white underline">RAVEN Code of Conduct</strong>. 
                 I agree to abide by these principles and uphold the dignity of the institution.
               </span>
             </label>
@@ -199,18 +188,18 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
           {/* Warning message */}
           {!hasScrolledToBottom && (
-            <div className="mb-4 p-3 bg-[#dcfce7] border-2 border-black rounded-xl flex items-start gap-2 shadow-[2px_2px_0px_#000]">
-              <AlertCircle className="w-4 h-4 text-black flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-black font-bold">
+            <div className="mb-4 p-3 bg-amber-500/10 border border-amber-500/25 rounded-xl flex items-start gap-2 text-amber-300">
+              <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <p className="text-xs font-medium">
                 <strong>You must scroll to the bottom</strong> and read all points before accepting.
               </p>
             </div>
           )}
 
           {!agreedToTerms && hasScrolledToBottom && (
-            <div className="mb-4 p-3 bg-emerald-200 border-2 border-black rounded-xl flex items-start gap-2 shadow-[2px_2px_0px_#000]">
-              <AlertCircle className="w-4 h-4 text-black flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-black font-bold">
+            <div className="mb-4 p-3 bg-[#e8602e]/10 border border-[#e8602e]/30 rounded-xl flex items-start gap-2 text-[#ff814e]">
+              <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <p className="text-xs font-medium">
                 <strong>Check the box above</strong> to proceed with enrollment.
               </p>
             </div>
@@ -221,10 +210,10 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             <button
               onClick={handleAccept}
               disabled={!agreedToTerms}
-              className={`flex-1 py-3 px-6 rounded-xl font-black font-outfit text-sm transition-all duration-150 flex items-center justify-center gap-2 border-2 border-black ${
+              className={`flex-1 py-3 px-6 rounded-xl font-bold font-outfit text-sm transition-all flex items-center justify-center gap-2 ${
                 agreedToTerms
-                  ? 'bg-[#4ade80] hover:bg-[#86efac] text-black shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5'
-                  : 'bg-neutral-200 text-neutral-400 cursor-not-allowed'
+                  ? 'btn-sheryians text-white cursor-pointer shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  : 'bg-white/5 text-zinc-600 border border-white/10 cursor-not-allowed'
               }`}
             >
               <CheckCircle2 className="w-4 h-4" />
@@ -232,7 +221,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-3 bg-white hover:bg-[#dcfce7] text-black rounded-xl font-bold font-outfit text-sm border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+              className="px-6 py-3 bg-[#121422] hover:bg-white/10 text-white rounded-xl font-medium font-outfit text-sm border border-white/15 transition cursor-pointer"
             >
               Cancel
             </button>

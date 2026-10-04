@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface CardProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   hoverable?: boolean;
@@ -21,9 +21,9 @@ export const Card: React.FC<CardProps> = ({
   hoverable = false,
 }) => (
   <div 
-    className={`bg-[#f0fdf4] rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] text-black ${
+    className={`bg-gradient-to-b from-[#10121d] to-[#0a0c14] rounded-2xl border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.7)] text-white ${
       hoverable
-        ? 'transition-all duration-200 hover:-translate-y-1 hover:shadow-[5px_5px_0px_#000]'
+        ? 'transition-all duration-300 hover:-translate-y-1.5 hover:border-[#e8602e]/50 hover:shadow-[0_25px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(232,96,46,0.2)]'
         : ''
     } ${paddingClasses[padding]} ${className}`}
   >
