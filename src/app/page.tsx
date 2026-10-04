@@ -40,6 +40,7 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
+import SheryiansSplash from '@/components/sheryians/SheryiansSplash';
 import {
   gsap,
   scrollFromLeft,
@@ -59,7 +60,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
   ssr: false,
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500" />
+      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-[#e8602e]" />
     </div>
   ),
 });
@@ -67,7 +68,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
 const HomeArticlesSection = dynamic(() => import('@/components/HomeArticlesSection'), {
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-emerald-500" />
+      <div className="animate-spin rounded-full h-10 w-10 border-4 border-black border-t-[#e8602e]" />
     </div>
   ),
 });
@@ -242,265 +243,215 @@ export default function Home() {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-lime-400 selection:text-black relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+      <SheryiansSplash />
 
-      {/* ── HERO SECTION (PHENOMENON STUDIO CYBER-MINIMALIST) ────────────────── */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-12 max-w-7xl mx-auto">
-        <div className="bg-[#0c100d] border border-white/10 rounded-[32px] sm:rounded-[44px] p-6 sm:p-12 shadow-[0_30px_80px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between min-h-[620px] lg:min-h-[700px]">
-          
-          {/* Subtle Ambient Glow behind Core Orb */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-br from-emerald-500/10 via-lime-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* ── HERO SECTION (SHERYIANS LUXURY OBSIDIAN & ORANGE THEME) ────────────────── */}
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-40 pb-16 max-w-7xl mx-auto">
+        {/* Ambient Radial Background Glows */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[450px] bg-gradient-to-b from-[#e8602e]/20 via-[#ff733d]/8 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
+        <div className="absolute top-60 left-1/4 w-[350px] h-[350px] bg-[#e8602e]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-          {/* Top Bar inside Card */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
-            {/* Top Left: Headline & Badge */}
-            <div ref={heroTitleRef} className="max-w-xl space-y-2">
-              <div ref={heroBadgeRef} className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-1 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Premier Coaching Institute • Patna</span>
-              </div>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-outfit tracking-tight leading-[1.05]">
-                Keep Learning <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">On Track</span>
-              </h1>
-            </div>
-
-            {/* Top Right: Subtitle & Start Now Action */}
-            <div className="max-w-xs space-y-4 text-left lg:text-right flex flex-col lg:items-end">
-              <p ref={heroSubRef} className="text-xs sm:text-sm text-zinc-400 font-jakarta leading-relaxed">
-                Elevate your academic potential with our cutting-edge coaching. Join Raven Batches for Comprehensive Learning.
-              </p>
-              <div ref={heroCTARef} className="flex items-center gap-3">
-                <Link
-                  href="/admission"
-                  className="btn-lime inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-black font-extrabold text-sm shadow-[0_0_25px_rgba(163,230,53,0.4)] cursor-pointer"
-                >
-                  <span>Start Now</span>
-                  <ArrowRight className="w-4 h-4 text-black" />
-                </Link>
-                <Link
-                  href="/courses"
-                  className="btn-dark-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm cursor-pointer"
-                >
-                  <span>Explore</span>
-                </Link>
-              </div>
-            </div>
+        {/* Hero Top Content: Centered editorial headline & actions */}
+        <div className="text-center max-w-5xl mx-auto">
+          {/* Floating Pill Badge */}
+          <div 
+            ref={heroBadgeRef}
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121420] border border-[#e8602e]/40 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-6 shadow-[0_0_20px_rgba(232,96,46,0.2)]"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse shadow-[0_0_8px_#e8602e]" />
+            <span>Admissions Open 2026-27 • Patna Campus</span>
+            <span className="hidden sm:inline text-zinc-500">|</span>
+            <span className="hidden sm:inline text-zinc-300 font-semibold">IIT-JEE • NEET • Foundations</span>
           </div>
 
-          {/* ── HERO ACADEMIC FEATURE CARDS GRID ── */}
-          <div 
-            ref={heroCardsGridRef}
-            className="relative my-8 sm:my-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 z-10"
+          {/* Majestic Sheryians Headline */}
+          <h1 
+            ref={heroTitleRef}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06]"
           >
-            {/* Card 1: Live Classroom Radar */}
-            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all group flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500" />
-                    </span>
-                    <span className="text-[11px] font-space font-extrabold uppercase tracking-wider text-rose-300">Live Smart Class</span>
-                  </div>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300">
-                    Target JEE &apos;26
-                  </span>
-                </div>
+            India&apos;s Premier Coaching for <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40] drop-shadow-[0_0_35px_rgba(232,96,46,0.35)]">
+              JEE, NEET &amp; Boards.
+            </span>
+          </h1>
 
-                <h4 className="font-outfit font-black text-white text-base leading-snug group-hover:text-lime-300 transition-colors">
-                  Rotational Dynamics &amp; Centre of Mass
-                </h4>
-                <p className="text-xs text-zinc-400 font-jakarta mt-1.5 flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Er. Alok Sharma (IIT Kanpur Alum)</span>
-                </p>
-              </div>
+          {/* Subheading */}
+          <p 
+            ref={heroSubRef}
+            className="mt-6 text-sm sm:text-base md:text-lg text-zinc-400 font-jakarta max-w-2xl mx-auto leading-relaxed font-normal"
+          >
+            Elevate your academic rank with Patna&apos;s top master educators. Strict 1:15 batch attention, daily test series, IITian mentors, and up to 100% scholarship through RSAT.
+          </p>
 
-              {/* Live Audio Equalizer & Attending Count */}
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-1 h-5 px-2 bg-black/40 rounded-lg">
-                  <span className="w-1 bg-lime-400 rounded-full animate-soundwave-1" />
-                  <span className="w-1 bg-emerald-400 rounded-full animate-soundwave-2" />
-                  <span className="w-1 bg-teal-400 rounded-full animate-soundwave-3" />
-                  <span className="w-1 bg-lime-300 rounded-full animate-soundwave-4" />
-                  <span className="text-[10px] font-mono text-zinc-400 ml-1.5 font-bold">Audio HD</span>
-                </div>
-                <div className="flex items-center gap-1 text-[11px] font-bold text-zinc-300">
-                  <Users className="w-3 h-3 text-emerald-400" />
-                  <span>148 Students</span>
-                </div>
-              </div>
+          {/* Sheryians Dual CTA Buttons */}
+          <div 
+            ref={heroCTARef}
+            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <Link
+              href="/courses"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#e8602e] hover:bg-[#ff733d] text-white font-black text-sm font-outfit uppercase tracking-wider shadow-[0_0_30px_rgba(232,96,46,0.45)] hover:shadow-[0_0_40px_rgba(232,96,46,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+            >
+              <span>Explore All Batches</span>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </Link>
+
+            <Link
+              href="/rsat"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#121420]/90 hover:bg-[#1a1d2e] text-white border border-white/15 hover:border-[#e8602e]/60 font-bold text-sm font-outfit transition-all duration-200 shadow-lg hover:shadow-[0_0_20px_rgba(232,96,46,0.2)] cursor-pointer"
+            >
+              <Zap className="w-4 h-4 text-[#ff7b47]" />
+              <span>Take RSAT Scholarship Test</span>
+            </Link>
+          </div>
+
+          {/* Key Metrics Strip / Trust Badges */}
+          <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center max-w-4xl mx-auto">
+            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
+              <p className="font-outfit font-black text-2xl sm:text-3xl text-white">12,000+</p>
+              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Students Mentored</p>
             </div>
+            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
+              <p className="font-outfit font-black text-2xl sm:text-3xl text-[#ff7b47]">150+</p>
+              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">IIT &amp; AIIMS Selections</p>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
+              <p className="font-outfit font-black text-2xl sm:text-3xl text-white">1:15</p>
+              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Strict Batch Ratio</p>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
+              <p className="font-outfit font-black text-2xl sm:text-3xl text-[#ffaa40]">100%</p>
+              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Max RSAT Scholarship</p>
+            </div>
+          </div>
+        </div>
 
-            {/* Card 2: Patna Hall of Fame & Selections */}
-            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-amber-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-[10px] font-space font-extrabold uppercase">
-                    <Trophy className="w-3 h-3 text-amber-400" />
-                    <span>Hall of Fame</span>
-                  </span>
-                  <span className="text-[10px] font-mono font-bold text-zinc-400">Patna 2024</span>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-outfit font-black text-[10px]">
-                        AIR
-                      </div>
-                      <div>
-                        <p className="font-outfit font-extrabold text-white text-xs">AIR 24 • JEE Adv</p>
-                        <p className="text-[10px] text-zinc-400 font-jakarta">Aarav Sinha (IIT Bombay)</p>
-                      </div>
-                    </div>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400 shrink-0" />
-                  </div>
-
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-outfit font-black text-[10px]">
-                        AIR
-                      </div>
-                      <div>
-                        <p className="font-outfit font-extrabold text-white text-xs">AIR 78 • NEET 705</p>
-                        <p className="text-[10px] text-zinc-400 font-jakarta">Priyanshu K. (AIIMS)</p>
-                      </div>
-                    </div>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-lime-400 shrink-0" />
-                  </div>
-                </div>
+        {/* ── HERO ACADEMIC BENTO CARDS (RAVEN SKELETON WITH SHERYIANS OBSIDIAN GLASS) ── */}
+        <div 
+          ref={heroCardsGridRef}
+          className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
+          {/* Card 1: Live Classroom */}
+          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] text-[10px] font-space font-extrabold uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#e8602e] animate-ping" />
+                  Live Smart Class
+                </span>
+                <span className="text-[10px] font-mono font-bold text-zinc-400">Target JEE &apos;26</span>
               </div>
-
-              <p className="text-[11px] font-bold text-lime-300 mt-3 text-center font-outfit pt-2 border-t border-white/10">
-                150+ Selections in IITs, NITs &amp; AIIMS
+              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
+                Rotational Dynamics &amp; COM
+              </h3>
+              <p className="text-xs text-zinc-400 font-jakarta mt-2 flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5 text-[#e8602e] shrink-0" />
+                <span>Er. Alok Sharma (IIT Kanpur)</span>
               </p>
             </div>
-
-            {/* Card 3: RSAT Scholarship Quick-Card */}
-            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-lime-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-[10px] font-space font-extrabold uppercase">
-                    <Zap className="w-3 h-3 fill-current" />
-                    <span>RSAT 2026-27</span>
-                  </span>
-                  <span className="text-[11px] font-mono font-black text-white">Up to 90% Off</span>
-                </div>
-                <p className="font-outfit font-extrabold text-white text-sm">
-                  Scholarship &amp; Diagnostic
-                </p>
-                <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
-                  15-min online concept diagnostic for Classes 8-12th. Instant ranking &amp; scholarship analysis.
-                </p>
-              </div>
-              <Link
-                href="/rsat"
-                className="mt-4 w-full py-2.5 bg-white/5 hover:bg-lime-400 hover:text-black border border-white/10 rounded-xl text-xs font-outfit font-extrabold flex items-center justify-center gap-1.5 transition-all text-white cursor-pointer"
+            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono font-bold text-[#ff7b47]">148 Students Live</span>
+              <Link 
+                href="/courses" 
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
+                title="View Course"
               >
-                <span>Take RSAT Test</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
               </Link>
             </div>
+          </div>
 
-            {/* Card 4: 24/7 Academic Edge & Doubt Engine */}
-            <div className="bg-[#0e1410]/90 backdrop-blur-xl border border-white/10 hover:border-emerald-400/40 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-space font-extrabold uppercase text-emerald-400 tracking-wider">
-                    Academic Support
-                  </span>
-                  <span className="text-[10px] font-mono font-bold text-lime-400 bg-black/60 px-2 py-0.5 rounded-full border border-white/10">
-                    &lt; 4 Min Resolution
-                  </span>
-                </div>
-                <p className="font-outfit font-black text-white text-sm">
-                  24/7 Doubt Resolution Engine
-                </p>
-                <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
-                  Instant concept resolution with 1:1 subject specialists, DPP video solutions &amp; revision tests.
-                </p>
+          {/* Card 2: Patna Hall of Fame */}
+          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-amber-400/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(255,170,64,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-400/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-400/20 transition-colors" />
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-[10px] font-space font-extrabold uppercase">
+                  <Trophy className="w-3 h-3 text-amber-400" />
+                  Hall of Fame
+                </span>
+                <span className="text-[10px] font-mono font-bold text-zinc-400">Patna 2024</span>
               </div>
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-zinc-400">
-                <span>1:1 IITian Mentors</span>
-                <div className="flex items-center gap-0.5 text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-amber-400" />
-                  ))}
-                  <span className="text-[10px] font-mono text-zinc-300 ml-1">4.95</span>
-                </div>
-              </div>
+              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-amber-300 transition-colors">
+                AIR 24 &amp; AIR 78
+              </h3>
+              <p className="text-xs text-zinc-400 font-jakarta mt-2">
+                Aarav Sinha (IIT Bombay) &amp; Priyanshu (AIIMS)
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono font-bold text-amber-400">150+ Top Selections</span>
+              <Link 
+                href="/about" 
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-amber-500 border border-white/10 hover:border-amber-500 text-white flex items-center justify-center transition-colors"
+                title="View Rankers"
+              >
+                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
+              </Link>
             </div>
           </div>
 
-          {/* Bottom Bar inside Card: Left Stacked Colorful Cards & Right 12K+ Metrics */}
-          <div className="flex flex-col md:flex-row items-end justify-between gap-6 relative z-10 pt-4">
-            {/* Bottom-Left: 3 Stacked Colorful Cards + Action Badge */}
-            <div 
-              className="hero-cards-stack flex items-center -space-x-4 sm:-space-x-6 relative"
-              data-has-active={activeHeroCard !== null ? "true" : "false"}
-            >
-              {/* Card 1: Coral / Rose (JEE Adv) */}
-              <div 
-                onClick={() => setActiveHeroCard(prev => prev === 1 ? null : 1)}
-                data-active={activeHeroCard === 1 ? "true" : "false"}
-                className="hero-card w-36 sm:w-44 p-3.5 sm:p-4 rounded-2xl bg-[#ef4444] text-white shadow-xl -rotate-6 transform hover:rotate-0 transition-transform cursor-pointer"
-              >
-                <span className="text-[10px] font-space font-extrabold uppercase tracking-wider block text-rose-100">JEE Advanced</span>
-                <p className="font-outfit font-black text-xs sm:text-sm mt-0.5 leading-tight">Physics & Maths</p>
-                <span className="text-[9px] font-medium text-rose-100 line-clamp-1 mt-1">Concept mastery</span>
+          {/* Card 3: RSAT Diagnostic Test */}
+          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] text-[10px] font-space font-extrabold uppercase">
+                  <Zap className="w-3 h-3 text-[#e8602e]" />
+                  RSAT &apos;26 Test
+                </span>
+                <span className="text-[10px] font-mono font-bold text-white bg-[#e8602e]/20 px-2 py-0.5 rounded-full border border-[#e8602e]/30">
+                  Up to 100% Off
+                </span>
               </div>
-
-              {/* Card 2: Mint / Cyan (NEET) */}
-              <div 
-                onClick={() => setActiveHeroCard(prev => prev === 2 ? null : 2)}
-                data-active={activeHeroCard === 2 ? "true" : "false"}
-                className="hero-card w-36 sm:w-44 p-3.5 sm:p-4 rounded-2xl bg-[#0d9488] text-white shadow-xl -rotate-2 transform hover:rotate-0 transition-transform z-10 cursor-pointer"
-              >
-                <span className="text-[10px] font-space font-extrabold uppercase tracking-wider block text-teal-100">Medical NEET</span>
-                <p className="font-outfit font-black text-xs sm:text-sm mt-0.5 leading-tight">Biology Mastery</p>
-                <span className="text-[9px] font-medium text-teal-100 line-clamp-1 mt-1">AIR rank series</span>
-              </div>
-
-              {/* Card 3: White/Silver (Foundation) + Action Badge */}
-              <div 
-                onClick={() => setActiveHeroCard(prev => prev === 3 ? null : 3)}
-                data-active={activeHeroCard === 3 ? "true" : "false"}
-                className="hero-card w-36 sm:w-44 p-3.5 sm:p-4 rounded-2xl bg-white text-zinc-950 shadow-2xl rotate-3 transform hover:rotate-0 transition-transform z-20 relative cursor-pointer"
-              >
-                <span className="text-[10px] font-space font-extrabold uppercase tracking-wider block text-emerald-800">Foundations</span>
-                <p className="font-outfit font-black text-xs sm:text-sm mt-0.5 leading-tight">Class 8th - 10th</p>
-                <span className="text-[9px] font-bold text-zinc-500 line-clamp-1 mt-1">RSAT Scholarship</span>
-
-                {/* Circular Action Badge */}
-                <Link
-                  href="/courses"
-                  onClick={(e) => e.stopPropagation()}
-                  className="absolute -bottom-3 -right-3 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black text-white flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-transform cursor-pointer"
-                  title="Explore All Courses"
-                >
-                  <ArrowRight className="w-4 h-4 rotate-45 text-lime-400" />
-                </Link>
-              </div>
+              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
+                Instant Scholarship Engine
+              </h3>
+              <p className="text-xs text-zinc-400 font-jakarta mt-2">
+                20-MCQ timed diagnostic for Classes 8th-12th. Get ranking &amp; certificate instantly.
+              </p>
             </div>
+            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono font-bold text-[#ff7b47]">Free Online Mock</span>
+              <Link 
+                href="/rsat" 
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
+                title="Start Diagnostic"
+              >
+                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
+              </Link>
+            </div>
+          </div>
 
-            {/* Bottom-Right: 12K+ Metrics and User Avatars */}
-            <div className="flex flex-col items-start md:items-end space-y-1">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl sm:text-5xl font-black text-white font-outfit tracking-tight">12K+</span>
-                {/* Overlapping User Avatars */}
-                <div className="flex -space-x-2 overflow-hidden">
-                  <img className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0c100d] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Student" />
-                  <img className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0c100d] object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Student" />
-                  <img className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0c100d] object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Student" />
-                </div>
+          {/* Card 4: 24/7 Doubt Engine & Patna Bajrangpuri Campus */}
+          <div className="group p-6 rounded-3xl bg-[#0c0e17] border border-white/10 hover:border-[#e8602e]/60 shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#e8602e]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e8602e]/20 transition-colors" />
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-space font-extrabold uppercase">
+                  <MapPin className="w-3 h-3 text-[#e8602e]" />
+                  Patna Campus
+                </span>
+                <span className="text-[10px] font-mono font-bold text-[#ff7b47]">Bajrangpuri</span>
               </div>
-              <div className="flex items-center gap-2 text-xs font-jakarta text-zinc-400 font-medium">
-                <span className="w-2 h-2 rounded-full bg-lime-400 shadow-[0_0_10px_rgba(163,230,53,0.8)] animate-pulse" />
-                <span>Total students mentored & completed training</span>
-              </div>
+              <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
+                1:1 Mentorship &amp; Labs
+              </h3>
+              <p className="text-xs text-zinc-400 font-jakarta mt-2">
+                AC digital smart classrooms, dedicated doubt cells, and direct parent weekly progress reporting.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono font-bold text-zinc-300">Offline &amp; Hybrid</span>
+              <Link 
+                href="/contact" 
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
+                title="View Campus"
+              >
+                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
+              </Link>
             </div>
           </div>
         </div>
@@ -509,12 +460,12 @@ export default function Home() {
       {/* ── ADVANCED LEADERSHIP & METHODOLOGY CARDS (IMAGE 2 & 3) ────────────── */}
       <section ref={featuresSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white font-outfit tracking-tight">
-            Advanced Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">Strategies</span>
+            Advanced Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Strategies</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal">
             Explore case studies and real-world examples that illustrate the application of advanced learning strategies. Enhance your decision-making and problem-solving skills.
@@ -524,10 +475,10 @@ export default function Home() {
         {/* 3 Dark Notched Cards with Recessed Corner Arrow Buttons */}
         <div ref={featuresGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {/* Card 1 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#101713] to-[#0a0e0b] border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(74,222,128,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-lime-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -535,23 +486,23 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-lime-300 transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
                 Adaptive Learning Framework
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Learn to navigate and lead through complex and rapidly changing competitive exam patterns with deep concept retention.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-emerald-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
               <span>Class 8 - 12 & Droppers</span>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#131f17] to-[#0a0e0b] border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(74,222,128,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-emerald-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
                   <Zap className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -559,23 +510,23 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-lime-300 transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
                 Transformational Coaching Techniques
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Discover powerful problem-solving strategies to inspire and drive positive academic change and top percentile ranks.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-lime-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
               <span>AIR Rank Acceleration</span>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#101713] to-[#0a0e0b] border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(74,222,128,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-teal-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
                   <Target className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -583,31 +534,31 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-lime-300 transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
                 Influential Problem-Solving Mastery
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Develop advanced speed, mental calculation, and precision to effectively solve multi-concept questions in JEE & NEET.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-teal-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
               <span>National Benchmarking</span>
             </div>
           </div>
         </div>
 
         {/* Foundational Courses Syllabus Table (Image 2) */}
-        <div className="bg-[#0c100d] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+        <div className="bg-[#090b10] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
             <div>
-              <span className="text-xs font-space uppercase text-lime-400 font-extrabold tracking-wider">Curriculum Roadmap</span>
+              <span className="text-xs font-space uppercase text-[#ff7b47] font-extrabold tracking-wider">Curriculum Roadmap</span>
               <h3 className="text-2xl sm:text-3xl font-black text-white font-outfit mt-1">
                 Foundational Courses: Transformational Learning Techniques
               </h3>
             </div>
             <Link
               href="/courses"
-              className="btn-lime px-5 py-2.5 rounded-full text-black font-extrabold text-xs inline-flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+              className="btn-sheryians px-5 py-2.5 rounded-full text-white font-extrabold text-xs inline-flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-[0_0_20px_rgba(232,96,46,0.4)]"
             >
               <span>Show All</span>
               <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
@@ -638,14 +589,14 @@ export default function Home() {
             ].map((module, mIdx) => (
               <div
                 key={mIdx}
-                className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-lime-400/30 transition-all hover:bg-white/[0.07] group"
+                className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#e8602e]/40 transition-all hover:bg-white/[0.06] group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-lime-400/10 border border-lime-400/20 text-lime-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center shrink-0 mt-0.5">
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-outfit font-black text-lg text-white group-hover:text-lime-300 transition-colors">
+                    <h4 className="font-outfit font-black text-lg text-white group-hover:text-[#ff7b47] transition-colors">
                       {module.title}
                     </h4>
                     <p className="text-xs sm:text-sm text-zinc-400 font-jakarta mt-0.5">
@@ -665,7 +616,7 @@ export default function Home() {
                   <span className="text-xs font-mono text-zinc-500 hidden sm:inline-block">{module.date}</span>
                   <Link
                     href="/courses"
-                    className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-lime-400 hover:text-black text-white text-xs font-extrabold font-outfit transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-[#e8602e] hover:text-white text-white text-xs font-extrabold font-outfit transition-all flex items-center gap-1 hover:shadow-[0_0_15px_rgba(232,96,46,0.4)]"
                   >
                     <span>Explore</span>
                     <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
@@ -680,12 +631,12 @@ export default function Home() {
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
       <section ref={methodologySectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
             <Target className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white font-outfit tracking-tight">
-            The 4-Step Road to <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">Rank 1</span>
+            The 4-Step Road to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Rank 1</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-jakarta">
             A scientifically proven preparation model that leaves zero knowledge gaps.
@@ -693,9 +644,9 @@ export default function Home() {
         </div>
 
         <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="methodology-step bg-[#0e1410] hover:bg-[#121a15] p-7 rounded-3xl border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.5)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-lime-400/10 text-lime-400 border border-lime-400/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">01</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-lime-400 mb-5">
+          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
+            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">01</span>
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
               <BookOpen className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-black text-white mb-2 font-outfit">Concept Mastery</h3>
@@ -704,9 +655,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="methodology-step bg-[#0e1410] hover:bg-[#121a15] p-7 rounded-3xl border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.5)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-emerald-400/10 text-emerald-400 border border-emerald-400/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">02</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 mb-5">
+          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
+            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">02</span>
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
               <Zap className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-black text-white mb-2 font-outfit">Targeted Practice</h3>
@@ -715,9 +666,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="methodology-step bg-[#0e1410] hover:bg-[#121a15] p-7 rounded-3xl border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.5)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-teal-400/10 text-teal-400 border border-teal-400/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">03</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-teal-400 mb-5">
+          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
+            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">03</span>
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
               <MessageCircle className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-black text-white mb-2 font-outfit">1-on-1 Doubt Relief</h3>
@@ -726,9 +677,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="methodology-step bg-[#0e1410] hover:bg-[#121a15] p-7 rounded-3xl border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.5)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-cyan-400/10 text-cyan-400 border border-cyan-400/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">04</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-5">
+          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
+            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">04</span>
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
               <Target className="w-6 h-6" />
             </div>
             <h3 className="text-lg font-black text-white mb-2 font-outfit">Real-Time Testing</h3>
@@ -743,12 +694,12 @@ export default function Home() {
       <section ref={coursesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
               <BookOpen className="w-3.5 h-3.5" />
               <span>Academic Catalog</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight !text-left">
-              Featured Programs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">Batches</span>
+              Featured Programs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Batches</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-xl font-jakarta">
               Choose the specialized batch aligned with your academic year and competitive target.
@@ -760,7 +711,7 @@ export default function Home() {
               onClick={() => setActiveTab('all')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'all'
-                  ? 'btn-lime text-black shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -770,7 +721,7 @@ export default function Home() {
               onClick={() => setActiveTab('foundation')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'foundation'
-                  ? 'btn-lime text-black shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -780,7 +731,7 @@ export default function Home() {
               onClick={() => setActiveTab('science')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'science'
-                  ? 'btn-lime text-black shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -790,7 +741,7 @@ export default function Home() {
               onClick={() => setActiveTab('competitive')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'competitive'
-                  ? 'btn-lime text-black shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -803,10 +754,10 @@ export default function Home() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
             <div className="col-span-full flex justify-center items-center py-16">
-              <div className="animate-spin rounded-full h-12 w-12 border-2 border-white/10 border-t-lime-400" />
+              <div className="animate-spin rounded-full h-12 w-12 border-2 border-white/10 border-t-[#e8602e]" />
             </div>
           ) : filteredCourses.length === 0 ? (
-            <div className="col-span-full text-center py-16 bg-[#0e1410] border border-white/10 rounded-3xl p-8">
+            <div className="col-span-full text-center py-16 bg-[#0f111a] border border-white/10 rounded-3xl p-8">
               <p className="text-zinc-400 font-jakarta">No courses currently found in this category.</p>
             </div>
           ) : (
@@ -819,7 +770,7 @@ export default function Home() {
 
       {/* ── WATCH THE FREE LESSONS (IMAGE 4) ────────────────────────── */}
       <section className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#0c100d] border border-white/10 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] relative overflow-hidden">
+        <div className="bg-[#090b10] border border-white/10 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] relative overflow-hidden">
           
           {/* Top Row: Title, Subtitle, Chrome Prism Asset & Nav Arrows */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/10 relative z-10">
@@ -885,7 +836,7 @@ export default function Home() {
             ].map((lesson, idx) => (
               <div
                 key={idx}
-                className="group bg-[#111713] hover:bg-[#151f18] rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-400/40 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                className="group bg-[#0f111a] hover:bg-[#131622] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e8602e]/50 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   {/* Thumbnail with Play Icon */}
@@ -896,14 +847,14 @@ export default function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                      <div className="w-12 h-12 rounded-full bg-lime-400 text-black flex items-center justify-center shadow-[0_0_20px_rgba(163,230,53,0.6)] group-hover:scale-110 transition-transform">
-                        <PlayCircle className="w-7 h-7 fill-black text-lime-400 ml-0.5" />
+                      <div className="w-12 h-12 rounded-full bg-[#e8602e] text-white flex items-center justify-center shadow-[0_0_20px_rgba(232,96,46,0.6)] group-hover:scale-110 transition-transform">
+                        <PlayCircle className="w-7 h-7 fill-white text-[#e8602e] ml-0.5" />
                       </div>
                     </div>
                   </div>
 
                   <div className="p-5">
-                    <h3 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-lime-300 transition-colors line-clamp-2">
+                    <h3 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-[#ff7b47] transition-colors line-clamp-2">
                       {lesson.title}
                     </h3>
                     <p className="font-jakarta text-xs text-zinc-400 mt-2 line-clamp-2 leading-relaxed">
@@ -914,7 +865,7 @@ export default function Home() {
 
                 <div className="p-5 pt-0">
                   <div className="pt-3 border-t border-white/5 flex items-center gap-3 text-[11px] font-mono font-medium text-zinc-400">
-                    <span className="flex items-center gap-1 text-emerald-400">
+                    <span className="flex items-center gap-1 text-[#ff7b47]">
                       <Clock className="w-3.5 h-3.5" />
                       {lesson.duration}
                     </span>
@@ -931,12 +882,12 @@ export default function Home() {
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
       <section ref={categoriesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
             <Microscope className="w-3.5 h-3.5" />
             <span>Curriculum Disciplines</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-            Browse by Subject <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">Focus</span>
+            Browse by Subject <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Focus</span>
           </h2>
         </div>
 
@@ -948,12 +899,12 @@ export default function Home() {
               <div key={category.name} className="cat-card">
                 <Link
                   href={`/courses?category=${category.name.toLowerCase()}`}
-                  className="block p-6 rounded-3xl bg-[#0e1410] hover:bg-[#121a15] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group transition-all duration-300 text-center hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(74,222,128,0.15)]"
+                  className="block p-6 rounded-3xl bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group transition-all duration-300 text-center hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(232,96,46,0.2)]"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-lime-400 group-hover:scale-110 group-hover:bg-lime-400/10 transition-transform">
+                  <div className="w-12 h-12 mx-auto mb-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] group-hover:scale-110 group-hover:bg-[#e8602e]/15 transition-transform">
                     <CategoryIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-black text-white font-outfit text-sm sm:text-base group-hover:text-lime-300 transition-colors">
+                  <h3 className="font-black text-white font-outfit text-sm sm:text-base group-hover:text-[#ff7b47] transition-colors">
                     {category.name}
                   </h3>
                   <p className="text-xs text-zinc-400 font-semibold mt-1 font-jakarta">
@@ -968,37 +919,37 @@ export default function Home() {
 
       {/* ── RSAT SCHOLARSHIP ADMISSION TEST PROMO CALLOUT ────────────────────────── */}
       <section className="py-16 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-[#0c140e] via-[#101b13] to-[#0a100b] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#0d0f18] via-[#121524] to-[#090b10] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative overflow-hidden">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
             <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-lime-400/10 border border-lime-400/30 text-lime-400 rounded-full text-xs font-extrabold font-space uppercase">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Raven Scholarship Admission Test (RSAT) 2026-27</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black font-outfit text-white leading-tight">
-                Win Up To <span className="text-black bg-lime-400 px-3 py-0.5 rounded-xl font-black shadow-[0_0_20px_rgba(163,230,53,0.5)]">50% Tuition Waiver</span> in 15 Minutes!
+                Win Up To <span className="text-white bg-[#e8602e] px-3 py-0.5 rounded-xl font-black shadow-[0_0_20px_rgba(232,96,46,0.6)]">50% Tuition Waiver</span> in 15 Minutes!
               </h2>
               <p className="text-sm sm:text-base text-zinc-400 font-normal font-jakarta leading-relaxed">
                 Take our free 20-question online diagnostic test. Test your Physics, Chemistry, Maths, and Logical Reasoning concepts and get instant scholarship discount certificates for our Patna campus!
               </p>
-              <div className="flex flex-wrap gap-4 text-xs font-semibold font-space uppercase pt-1 text-emerald-300">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-lime-400" /> 100% Free Assessment</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-lime-400" /> Instant Verified Certificate</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-lime-400" /> Class 8th to 12th</span>
+              <div className="flex flex-wrap gap-4 text-xs font-semibold font-space uppercase pt-1 text-zinc-300">
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> 100% Free Assessment</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> Instant Verified Certificate</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#ff7b47]" /> Class 8th to 12th</span>
               </div>
             </div>
 
             <div className="flex-shrink-0 flex flex-col gap-2.5">
               <Link
                 href="/rsat"
-                className="btn-lime px-8 py-4 text-black font-extrabold font-outfit uppercase tracking-wider text-sm rounded-full shadow-[0_0_30px_rgba(163,230,53,0.4)] flex items-center justify-center gap-2 text-center cursor-pointer"
+                className="btn-sheryians px-8 py-4 text-white font-extrabold font-outfit uppercase tracking-wider text-sm rounded-full shadow-[0_0_30px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 text-center cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-current" />
                 <span>Take 15-Min RSAT Test</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <p className="text-[11px] font-medium text-center text-zinc-500 font-jakarta flex items-center justify-center gap-1">
-                <Sparkles className="w-3 h-3 text-emerald-400" />
+                <Sparkles className="w-3 h-3 text-[#ff7b47]" />
                 <span>Instant online evaluation & certificate</span>
               </p>
             </div>
@@ -1015,19 +966,19 @@ export default function Home() {
           {/* Section Header: Image 4 Title & Action */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-space font-extrabold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Real Voices & Authentic Experiences</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
                 What our students are <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">saying about us:</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">saying about us:</span>
               </h2>
             </div>
 
             <Link
               href="/admission"
-              className="btn-lime px-6 py-2.5 rounded-full text-black font-extrabold text-sm self-start md:self-auto inline-flex items-center gap-2 shadow-[0_0_25px_rgba(163,230,53,0.35)] cursor-pointer"
+              className="btn-sheryians px-6 py-2.5 rounded-full text-white font-extrabold text-sm self-start md:self-auto inline-flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.35)] cursor-pointer"
             >
               <span>Leave Feedback</span>
               <ArrowRight className="w-4 h-4 -rotate-45" />
@@ -1036,7 +987,7 @@ export default function Home() {
 
           {/* Trust & Satisfaction Metrics Ribbon */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-10">
-            <div className="testimonial-stat-card bg-[#0e1410] border border-white/10 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
               <div className="flex items-center justify-center gap-0.5 text-amber-400 mb-1.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
@@ -1044,34 +995,34 @@ export default function Home() {
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">4.9 / 5.0</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Average Review Rating</p>
-              <span className="text-[10px] font-mono font-bold text-lime-300 bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 rounded-full mt-1.5">1,400+ Verified Reviews</span>
+              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">1,400+ Verified Reviews</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0e1410] border border-white/10 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center">
-              <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-1.5 text-emerald-400">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
                 <GraduationCap className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">98.4%</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Target Score Growth</p>
-              <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-full mt-1.5">Board & Competitive</span>
+              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Board & Competitive</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0e1410] border border-white/10 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center">
-              <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-1.5 text-lime-400">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
                 <HeartHandshake className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">99.1%</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Parent Recommendation</p>
-              <span className="text-[10px] font-mono font-bold text-lime-300 bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 rounded-full mt-1.5">Transparent Mentorship</span>
+              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Transparent Mentorship</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0e1410] border border-white/10 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center">
-              <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-1.5 text-teal-400">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
                 <Users className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">1 : 15</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Optimal Batch Ratio</p>
-              <span className="text-[10px] font-mono font-bold text-teal-300 bg-teal-400/10 border border-teal-400/20 px-2 py-0.5 rounded-full mt-1.5">Personal Attention</span>
+              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Personal Attention</span>
             </div>
           </div>
 
@@ -1090,7 +1041,7 @@ export default function Home() {
                   onClick={() => setTestimonialFilter(tab.key as 'all' | 'students' | 'parents')}
                   className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold font-outfit transition-all flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'btn-lime text-black shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                      ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
                       : 'btn-dark-pill text-zinc-400'
                   }`}
                 >
@@ -1098,7 +1049,7 @@ export default function Home() {
                   <span>{tab.label}</span>
                   <span
                     className={`ml-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-black ${
-                      isActive ? 'bg-black text-lime-400' : 'bg-white/10 text-white'
+                      isActive ? 'bg-black/60 text-[#ffaa40]' : 'bg-white/10 text-white'
                     }`}
                   >
                     {tab.count}
@@ -1294,10 +1245,10 @@ export default function Home() {
                   setActiveMarqueeCard(prev => prev === uniqueKey ? null : uniqueKey);
                 }}
                 data-active={isSelected ? "true" : "false"}
-                className={`marquee-card w-[320px] sm:w-[360px] md:w-[380px] shrink-0 bg-[#0e1410] rounded-3xl p-6 border text-white select-none relative overflow-hidden group ${
+                className={`marquee-card w-[320px] sm:w-[360px] md:w-[380px] shrink-0 bg-[#0f111a] rounded-3xl p-6 border text-white select-none relative overflow-hidden group transition-all ${
                   isSelected 
-                    ? 'border-lime-400 bg-[#121c15] shadow-[0_25px_60px_rgba(0,0,0,0.95)]' 
-                    : 'border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)]'
+                    ? 'border-[#e8602e] bg-[#141724] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(232,96,46,0.3)]' 
+                    : 'border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.12)]'
                 }`}
               >
                 {/* Decorative Subtle Watermark Quote */}
@@ -1307,8 +1258,8 @@ export default function Home() {
                   {/* Top Row: Role Badge & Highlight Tag */}
                   <div className="flex items-center justify-between gap-2 mb-3 relative z-10">
                     {item.type === 'student' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 rounded-full text-xs font-extrabold font-space uppercase">
-                        <GraduationCap className="w-3.5 h-3.5 text-lime-400" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase">
+                        <GraduationCap className="w-3.5 h-3.5 text-[#ff7b47]" />
                         <span>Student Story</span>
                       </span>
                     ) : (
@@ -1317,7 +1268,7 @@ export default function Home() {
                         <span>Parent Review</span>
                       </span>
                     )}
-                    <span className="font-mono font-bold text-xs text-lime-400 bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">
+                    <span className="font-mono font-bold text-xs text-[#ffaa40] bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">
                       {item.highlightBadge}
                     </span>
                   </div>
@@ -1353,11 +1304,11 @@ export default function Home() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5">
                       <p className="font-extrabold text-white font-outfit text-sm truncate">{item.name}</p>
-                      <span className="inline-flex items-center text-lime-400" title={item.verifiedLabel}>
-                        <CheckCircle2 className="w-3.5 h-3.5 fill-black text-lime-400" />
+                      <span className="inline-flex items-center text-[#e8602e]" title={item.verifiedLabel}>
+                        <CheckCircle2 className="w-3.5 h-3.5 fill-black text-[#e8602e]" />
                       </span>
                     </div>
-                    <p className="text-xs text-emerald-400 font-medium font-jakarta truncate">{item.relationOrCollege}</p>
+                    <p className="text-xs text-[#ff814e] font-medium font-jakarta truncate">{item.relationOrCollege}</p>
                     <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium font-jakarta mt-0.5">
                       <MapPin className="w-3 h-3 text-zinc-500 shrink-0" />
                       <span className="truncate">{item.location}</span>
@@ -1375,8 +1326,8 @@ export default function Home() {
               onClick={() => setActiveMarqueeCard(null)}
             >
               {/* Left & Right Subtle Fade Masks for Magazine-Quality Carousel */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-r from-[#070908] via-[#070908]/80 to-transparent z-20" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-l from-[#070908] via-[#070908]/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-r from-[#050507] via-[#050507]/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-l from-[#050507] via-[#050507]/80 to-transparent z-20" />
 
               {/* ROW 1: Moving to the RIGHT (upr wali line right) */}
               <div className="marquee-track overflow-hidden py-2">
@@ -1397,9 +1348,9 @@ export default function Home() {
 
         {/* Bottom Feedback Banner */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mt-12 bg-gradient-to-r from-[#0c140e] to-[#121c15] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-12 bg-gradient-to-r from-[#0d0f18] to-[#141726] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-lime-400/10 border border-lime-400/30 text-lime-400 rounded-full text-xs font-extrabold font-space uppercase mb-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase mb-2">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Join Our Growing Family</span>
               </span>
@@ -1413,10 +1364,10 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 shrink-0 font-outfit w-full sm:w-auto">
               <Link
                 href="/admission"
-                className="btn-lime inline-flex items-center justify-center gap-2 px-6 py-3.5 text-black font-extrabold rounded-full text-sm shadow-[0_0_20px_rgba(163,230,53,0.35)] cursor-pointer"
+                className="btn-sheryians inline-flex items-center justify-center gap-2 px-6 py-3.5 text-white font-extrabold rounded-full text-sm shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer"
               >
                 <span>Apply for Admission</span>
-                <ArrowRight className="w-4 h-4 text-black" />
+                <ArrowRight className="w-4 h-4 text-white" />
               </Link>
               <Link
                 href="/contact"
@@ -1434,14 +1385,14 @@ export default function Home() {
 
       {/* ── CONVERSION CTA BANNER ────────────────────────── */}
       <section ref={ctaSectionRef} className="py-24 relative overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative bg-gradient-to-b from-[#111713] to-[#0a0e0b] border border-white/10 rounded-3xl p-8 sm:p-14 text-center space-y-6 shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-emerald-400 text-xs uppercase tracking-wider font-space font-extrabold border border-white/10 shadow-sm">
+        <div className="relative bg-gradient-to-b from-[#121422] to-[#08090f] border border-[#e8602e]/30 rounded-3xl p-8 sm:p-14 text-center space-y-6 shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(232,96,46,0.15)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#ff7b47] text-xs uppercase tracking-wider font-space font-extrabold border border-white/10 shadow-sm">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>Admissions for 2026-27 Academic Session Now Open</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight">
-            Ready to Accelerate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-teal-300">Learning?</span>
+            Ready to Accelerate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Learning?</span>
           </h2>
 
           <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal leading-relaxed">
@@ -1451,10 +1402,10 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2 font-outfit">
             <Link
               href="/admission"
-              className="btn-lime inline-flex items-center justify-center gap-2 px-9 py-4 text-black font-extrabold rounded-full text-base shadow-[0_0_30px_rgba(163,230,53,0.4)] cursor-pointer"
+              className="btn-sheryians inline-flex items-center justify-center gap-2 px-9 py-4 text-white font-extrabold rounded-full text-base shadow-[0_0_30px_rgba(232,96,46,0.5)] cursor-pointer"
             >
               <span>Apply Online Now</span>
-              <ArrowRight className="w-5 h-5 text-black" />
+              <ArrowRight className="w-5 h-5 text-white" />
             </Link>
             <Link
               href="/contact"
