@@ -307,25 +307,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Key Metrics Strip / Trust Badges */}
-          <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center max-w-4xl mx-auto">
-            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
-              <p className="font-outfit font-black text-2xl sm:text-3xl text-white">12,000+</p>
-              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Students Mentored</p>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
-              <p className="font-outfit font-black text-2xl sm:text-3xl text-[#ff7b47]">150+</p>
-              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">IIT &amp; AIIMS Selections</p>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
-              <p className="font-outfit font-black text-2xl sm:text-3xl text-white">1:15</p>
-              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Strict Batch Ratio</p>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-[#0f111a]/70 border border-white/5">
-              <p className="font-outfit font-black text-2xl sm:text-3xl text-[#ffaa40]">100%</p>
-              <p className="text-xs text-zinc-400 font-jakarta mt-0.5">Max RSAT Scholarship</p>
-            </div>
-          </div>
+
         </div>
 
         {/* ── HERO ACADEMIC BENTO CARDS (RAVEN SKELETON WITH SHERYIANS OBSIDIAN GLASS) ── */}
