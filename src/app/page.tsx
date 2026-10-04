@@ -13,6 +13,7 @@ import {
   BarChart, 
   Award,
   ArrowRight,
+  ArrowUpRight,
   Star,
   Users,
   BookOpen,
@@ -21,6 +22,10 @@ import {
   Sparkles,
   Microscope,
   Calculator,
+  Atom,
+  FlaskConical,
+  Dna,
+  Languages,
   Monitor,
   BookMarked,
   TrendingUp,
@@ -91,6 +96,63 @@ const categoryIconMap: { [key: string]: React.ComponentType<{ className?: string
   TrendingUp,
   Palette,
 };
+
+const heroSubjects = [
+  {
+    name: 'Maths',
+    fullName: 'Mathematics',
+    tag: 'JEE & Boards',
+    desc: 'Calculus & Algebra',
+    icon: Calculator,
+    accentColor: '#ffaa40',
+    href: '/courses?search=Mathematics',
+  },
+  {
+    name: 'Physics',
+    fullName: 'Physics',
+    tag: 'JEE & NEET',
+    desc: 'Mechanics & Optics',
+    icon: Atom,
+    accentColor: '#e8602e',
+    href: '/courses?search=Physics',
+  },
+  {
+    name: 'Chemistry',
+    fullName: 'Chemistry',
+    tag: 'Organic & Physical',
+    desc: 'Structure & Reactions',
+    icon: FlaskConical,
+    accentColor: '#38bdf8',
+    href: '/courses?search=Chemistry',
+  },
+  {
+    name: 'Biology',
+    fullName: 'Biology',
+    tag: 'Target NEET',
+    desc: 'Botany & Zoology',
+    icon: Dna,
+    accentColor: '#34d399',
+    href: '/courses?search=Biology',
+  },
+  {
+    name: 'English',
+    fullName: 'English',
+    tag: 'CBSE & ICSE',
+    desc: 'Grammar & Literature',
+    icon: BookOpen,
+    accentColor: '#c084fc',
+    href: '/courses?search=English',
+  },
+  {
+    name: 'Hindi',
+    fullName: 'Hindi',
+    tag: 'Sahitya & Vyakaran',
+    desc: 'Vyakaran & Rachna',
+    icon: Languages,
+    accentColor: '#fb7185',
+    href: '/courses?search=Hindi',
+  },
+];
 
 export default function Home() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -307,7 +369,71 @@ export default function Home() {
             </Link>
           </div>
 
+          {/* ── SUBJECT SPECIALIZATION CARDS (MATHS, PHYSICS, CHEMISTRY, BIOLOGY, ENGLISH, HINDI) ── */}
+          <div className="mt-12 pt-8 border-t border-white/10 w-full max-w-5xl mx-auto">
+            <div className="flex items-center justify-between mb-4 px-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse" />
+                <span className="text-[11px] font-space font-extrabold uppercase tracking-widest text-zinc-400">
+                  Select Your Subject &bull; Dedicated Master Batches
+                </span>
+              </div>
+              <Link 
+                href="/courses" 
+                className="text-[11px] font-space font-bold uppercase tracking-wider text-[#ff7b47] hover:text-white transition-colors flex items-center gap-1 group"
+              >
+                <span>All Subjects</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
 
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-3.5">
+              {heroSubjects.map((sub, idx) => {
+                const IconComponent = sub.icon;
+                return (
+                  <Link
+                    key={idx}
+                    href={sub.href}
+                    className="group relative p-3.5 sm:p-4 rounded-2xl bg-[#0d0f18]/80 hover:bg-[#121522] border border-white/10 hover:border-[#e8602e]/50 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_15px_35px_rgba(232,96,46,0.15)]"
+                  >
+                    {/* Hover Radial Glow */}
+                    <div 
+                      className="absolute -top-10 -right-10 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{ background: sub.accentColor }}
+                    />
+
+                    {/* Top Row: Icon & Mini Arrow */}
+                    <div className="relative z-10 flex items-center justify-between mb-3">
+                      <div 
+                        className="w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105"
+                        style={{
+                          backgroundColor: `${sub.accentColor}18`,
+                          borderColor: `${sub.accentColor}35`,
+                          color: sub.accentColor,
+                        }}
+                      >
+                        <IconComponent className="w-4 h-4" />
+                      </div>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+
+                    {/* Subject Info */}
+                    <div className="relative z-10">
+                      <div className="text-[9px] font-space font-extrabold uppercase tracking-wider text-zinc-400 mb-0.5">
+                        {sub.tag}
+                      </div>
+                      <h4 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-[#ff7b47] transition-colors leading-tight">
+                        {sub.name}
+                      </h4>
+                      <p className="text-[11px] text-zinc-400 font-jakarta mt-1 line-clamp-1 leading-snug">
+                        {sub.desc}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* ── HERO ACADEMIC BENTO CARDS (RAVEN SKELETON WITH SHERYIANS OBSIDIAN GLASS) ── */}
