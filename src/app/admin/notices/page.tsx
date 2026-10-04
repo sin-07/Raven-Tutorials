@@ -6,6 +6,7 @@ import { Megaphone, User, Trash2, FileText, Send, Sparkles } from 'lucide-react'
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
+import Loader from '@/components/Loader';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
 import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
@@ -219,9 +220,8 @@ function AdminNoticesPage() {
           </div>
 
           {loading ? (
-            <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-              <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-[#86efac] mx-auto"></div>
-              <p className="font-outfit font-bold text-black mt-3">Loading notices...</p>
+            <div className="py-16">
+              <Loader size="lg" text="Loading Notices..." subtitle="Syncing official announcements" />
             </div>
           ) : notices.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">

@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 import Link from 'next/link';
-import { Loader2, AlertCircle, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
+import { AlertCircle, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import Loader, { ButtonLoader } from '@/components/Loader';
 
 declare global {
   interface Window {
@@ -113,13 +114,12 @@ export default function AdmissionPaymentPage() {
 
   if (!paymentData) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
-          <div className="w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-black font-black text-xl font-outfit">Loading Payment...</p>
-          <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Preparing secure fee gateway</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Payment..."
+        subtitle="Preparing secure fee gateway"
+      />
     );
   }
 
@@ -195,7 +195,7 @@ export default function AdmissionPaymentPage() {
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin text-black" />
+                  <ButtonLoader size={20} />
                   <span>Connecting to Gateway...</span>
                 </>
               ) : (

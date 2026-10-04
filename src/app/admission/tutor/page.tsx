@@ -13,13 +13,13 @@ import {
   Send, 
   CheckCircle, 
   AlertCircle, 
-  Loader2,
-  Sparkles,
-  ArrowLeft,
-  Check
+  Sparkles, 
+  ArrowLeft, 
+  Check 
 } from 'lucide-react';
 import WavyHeading from '@/components/WavyHeading';
 import { LMSFooter } from '@/components/lms';
+import { ButtonLoader } from '@/components/Loader';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
 const subjectOptions = [
@@ -311,7 +311,7 @@ export default function TeacherAdmissionPage() {
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin text-black" />
+                  <ButtonLoader size={20} />
                   <span>Submitting Application...</span>
                 </>
               ) : (

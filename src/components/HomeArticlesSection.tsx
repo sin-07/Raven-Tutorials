@@ -11,6 +11,7 @@ import {
   PenTool
 } from 'lucide-react';
 import WavyHeading from '@/components/WavyHeading';
+import Loader from '@/components/Loader';
 
 interface ArticleItem {
   _id: string;
@@ -67,8 +68,7 @@ export default function HomeArticlesSection() {
         {/* Articles Grid */}
         {loading ? (
           <div className="py-16 flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-10 w-10 border-2 border-white/10 border-t-[#e8602e] mb-3" />
-            <p className="font-outfit font-black text-sm text-zinc-400">Loading Latest Insights...</p>
+            <Loader size="md" text="Loading Latest Insights..." subtitle="Curating expert articles" />
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

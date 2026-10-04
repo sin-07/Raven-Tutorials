@@ -21,6 +21,7 @@ import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
 import { animateFromUp, animateFromDown, scrollFromDown } from '@/lib/gsap';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
+import Loader from '@/components/Loader';
 
 const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
 const sortOptions = ['Most Popular', 'Highest Rated', 'Newest', 'Price: Low to High', 'Price: High to Low'];
@@ -224,7 +225,7 @@ export default function CoursesPage() {
           {/* Courses Grid */}
           {loading ? (
             <div className="flex justify-center items-center py-24">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-[#e8602e]" />
+              <Loader size="lg" text="Loading Courses..." subtitle="Retrieving academic programs" />
             </div>
           ) : sortedCourses.length > 0 ? (
             <div className={`grid gap-6 sm:gap-8 ${

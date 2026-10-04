@@ -1,72 +1,69 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 interface AdminProtectedRouteProps {
   children: React.ReactNode;
 }
 
 interface AdminData {
-  id: string;
-  email: string;
+  _id: string;
   name: string;
+  email: string;
   role: string;
 }
 
 const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
-  const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [admin, setAdmin] = useState<AdminData | null>(null);
 
-  const verifyAuth = useCallback(async () => {
+  const verifyAuth = useCallback(async (isInitial = false) => {
+    if (isInitial) {
+      setLoading(true);
+    }
     try {
       const res = await fetch('/api/admin/verify', {
         method: 'GET',
         credentials: 'include',
-        cache: 'no-store',
+        cache: 'no-store'
       });
 
       if (!res.ok) {
         setIsAuthenticated(false);
         setAdmin(null);
-
-        if (pathname !== '/login') {
-          toast.error('Admin session expired or access unauthorized.');
-        }
-
-        router.replace('/login');
+        router.replace('/admin/login');
         return;
       }
 
       const data = await res.json();
-
-      if (data.success && data.data?.admin) {
+      
+      if (data.success && data.admin) {
         setIsAuthenticated(true);
-        setAdmin(data.data.admin);
+        setAdmin(data.admin);
       } else {
         setIsAuthenticated(false);
         setAdmin(null);
-        router.replace('/login');
+        router.replace('/admin/login');
       }
     } catch (error) {
-      console.error('[ADMIN AUTH ERROR] Failed to verify admin:', error);
+      console.error('[AUTH ERROR] Failed to verify admin:', error);
       setIsAuthenticated(false);
       setAdmin(null);
-      router.replace('/login');
+      router.replace('/admin/login');
     } finally {
       setLoading(false);
     }
-  }, [router, pathname]);
+  }, [router]);
 
   useEffect(() => {
-    verifyAuth();
+    verifyAuth(true);
   }, [verifyAuth]);
 
-  // Re-verify on window focus
+  // Silently re-verify on window focus
   useEffect(() => {
     const handleFocus = () => {
       verifyAuth();
@@ -78,25 +75,23 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#05060a] flex items-center justify-center p-4">
-        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.15)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/15 border-t-[#e8602e] rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-white font-bold text-lg font-outfit">Verifying Admin Access...</p>
-          <p className="text-zinc-400 text-xs font-medium font-jakarta mt-1">Securing control session</p>
-        </div>
-      </div>
+      <Loader 
+        fullScreen 
+        size="lg" 
+        text="Verifying Admin Access" 
+        subtitle="Securing control console session..." 
+      />
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#05060a] flex items-center justify-center p-4">
-        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/15 border-t-rose-500 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-white font-bold text-lg font-outfit">Redirecting to Login...</p>
-          <p className="text-zinc-400 text-xs font-medium font-jakarta mt-1">Authentication required</p>
-        </div>
-      </div>
+      <Loader 
+        fullScreen 
+        size="lg" 
+        text="Redirecting to Login" 
+        subtitle="Admin authentication required..." 
+      />
     );
   }
 
@@ -104,5 +99,3 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
 };
 
 export default AdminProtectedRoute;
-
-

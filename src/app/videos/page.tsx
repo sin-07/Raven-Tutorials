@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Video, Clock, Eye, Filter, Play, X } from 'lucide-react';
 import StudentProtectedRoute from '@/components/StudentProtectedRoute';
+import Loader from '@/components/Loader';
 
 interface VideoItem {
   _id: string;
@@ -93,13 +94,12 @@ function VideosPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#06080f] flex items-center justify-center p-4">
-        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/15 border-t-[#e8602e] rounded-full animate-spin mx-auto mb-4" />
-          <h3 className="font-outfit font-bold text-xl text-white">Loading Video Vault</h3>
-          <p className="font-jakarta font-medium text-zinc-400 text-sm mt-1">Preparing your class playlist...</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Video Vault"
+        subtitle="Preparing your class playlist..."
+      />
     );
   }
 

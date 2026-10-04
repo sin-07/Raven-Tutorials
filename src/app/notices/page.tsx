@@ -6,6 +6,7 @@ import { Megaphone, User, Clock, Download, Eye, AlertCircle, Sparkles, X, FileTe
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import Loader from '@/components/Loader';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 interface NoticeData {
@@ -99,7 +100,7 @@ const Notice: React.FC = () => {
           {/* Notices List */}
           {loading ? (
             <div className="flex justify-center items-center py-24">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-[#e8602e]" />
+              <Loader size="lg" text="Loading Notices..." subtitle="Syncing official circulars" />
             </div>
           ) : notices.length === 0 ? (
             <div className="text-center py-20 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 p-8 max-w-md mx-auto shadow-xl">

@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Video, AlertCircle, Loader as LoaderIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute } from '@/components';
+import Loader from '@/components/Loader';
 
 declare global {
   interface Window {
@@ -291,13 +292,12 @@ function LiveClassPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-white border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border border-white/15 border-t-[#86efac] rounded-full animate-spin mx-auto mb-4" />
-          <h3 className="font-outfit font-black text-xl text-black">Entering Classroom</h3>
-          <p className="font-jakarta font-medium text-black/60 text-sm mt-1">Connecting to live broadcast stream...</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Entering Classroom"
+        subtitle="Connecting to live interactive stream..."
+      />
     );
   }
 

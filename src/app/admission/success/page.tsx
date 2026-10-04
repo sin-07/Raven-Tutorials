@@ -21,6 +21,7 @@ import {
   CreditCard
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
+import Loader from '@/components/Loader';
 
 export default function AdmissionSuccessPage() {
   const router = useRouter();
@@ -127,13 +128,12 @@ IMPORTANT NOTES
 
   if (!successData) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
-          <div className="animate-spin w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-4" />
-          <p className="text-black font-black text-xl font-outfit">Loading Admission Slip...</p>
-          <p className="text-neutral-600 text-sm font-medium font-jakarta mt-1">Confirming student registration</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Admission Slip..."
+        subtitle="Confirming student registration details"
+      />
     );
   }
 

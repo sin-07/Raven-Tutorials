@@ -22,6 +22,7 @@ import {
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
+import Loader, { ButtonLoader } from '@/components/Loader';
 
 interface ArticleItem {
   _id: string;
@@ -311,8 +312,7 @@ export default function AdminArticlesPage() {
           {/* Articles List / Grid */}
           {loading ? (
             <div className="py-20 flex flex-col items-center justify-center">
-              <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-emerald-500 mb-3" />
-              <p className="font-outfit font-black text-sm text-neutral-600">Loading articles...</p>
+              <Loader size="lg" text="Loading Articles..." subtitle="Fetching editorial catalogue" />
             </div>
           ) : filteredArticles.length === 0 ? (
             <div className="bg-[#f0fdf4] border-2 sm:border-[2.5px] border-black rounded-3xl p-10 text-center shadow-[0_10px_25px_rgba(0,0,0,0.5)] max-w-xl mx-auto space-y-4">
@@ -648,7 +648,7 @@ export default function AdminArticlesPage() {
                     >
                       {submitting ? (
                         <>
-                          <div className="w-4 h-4 border border-white/10 border-t-transparent rounded-full animate-spin" />
+                          <ButtonLoader size={16} />
                           <span>Saving...</span>
                         </>
                       ) : (

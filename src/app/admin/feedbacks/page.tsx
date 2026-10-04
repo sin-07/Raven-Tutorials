@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Loader, Search, Filter, Eye, Send, Trash2, CheckCircle, Clock, AlertCircle, Sparkles, Star, Check } from 'lucide-react';
+import { MessageSquare, Search, Filter, Eye, Send, Trash2, CheckCircle, Clock, AlertCircle, Sparkles, Star, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
+import Loader from '@/components/Loader';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
 import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
@@ -177,8 +178,8 @@ const Feedbacks: React.FC = () => {
   if (loading) {
     return (
       <AdminLayout>
-        <div className="flex items-center justify-center h-64">
-          <Loader className="w-8 h-8 animate-spin text-black" />
+        <div className="flex items-center justify-center py-20">
+          <Loader size="lg" text="Loading Feedbacks..." subtitle="Syncing feedback reports" />
         </div>
       </AdminLayout>
     );

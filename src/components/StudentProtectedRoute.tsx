@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import toast from 'react-hot-toast';
+import Loader from '@/components/Loader';
 
 interface StudentProtectedRouteProps {
   children: React.ReactNode;
@@ -82,26 +83,24 @@ const StudentProtectedRoute: React.FC<StudentProtectedRouteProps> = ({ children 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#05060a] flex items-center justify-center p-4">
-        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.15)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/15 border-t-[#e8602e] rounded-full animate-spin mx-auto mb-4" />
-          <h3 className="font-outfit font-bold text-xl text-white">Verifying Student Access</h3>
-          <p className="font-jakarta font-medium text-zinc-400 text-sm mt-1">Please hold on a moment...</p>
-        </div>
-      </div>
+      <Loader 
+        fullScreen 
+        size="lg" 
+        text="Verifying Student Access" 
+        subtitle="Authenticating academic session..." 
+      />
     );
   }
 
   // Not authenticated - will redirect
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#05060a] flex items-center justify-center p-4">
-        <div className="bg-[#0f111a] border border-white/10 rounded-3xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/15 border-t-rose-500 rounded-full animate-spin mx-auto mb-4" />
-          <h3 className="font-outfit font-bold text-xl text-white">Redirecting to Login</h3>
-          <p className="font-jakarta font-medium text-zinc-400 text-sm mt-1">Please sign in to continue</p>
-        </div>
-      </div>
+      <Loader 
+        fullScreen 
+        size="lg" 
+        text="Redirecting to Login" 
+        subtitle="Please sign in to continue..." 
+      />
     );
   }
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Plus, Edit2, Trash2, Eye, EyeOff, Search, X, Upload, BookOpen, Sparkles, Clock, Users } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import Loader from '@/components/Loader';
 import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
@@ -306,11 +307,8 @@ export default function CoursesPage() {
 
         {/* Courses Grid */}
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-6 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-xs w-full">
-              <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-emerald-500 mx-auto mb-2"></div>
-              <p className="font-outfit font-black text-black">Loading courses...</p>
-            </div>
+          <div className="flex justify-center items-center py-20">
+            <Loader size="lg" text="Loading Courses..." subtitle="Fetching active curriculum" />
           </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-16 bg-white border border-white/10 rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
+import Loader from '@/components/Loader';
 import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
@@ -220,8 +221,8 @@ export default function TeacherApplicationsPage() {
 
         {/* Applications Table Card */}
         {loading ? (
-          <div className="flex justify-center items-center h-64 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-            <div className="animate-spin rounded-full h-12 w-12 border border-white/15 border-t-[#86efac]"></div>
+          <div className="py-20 flex justify-center items-center">
+            <Loader size="lg" text="Loading Applications..." subtitle="Retrieving faculty candidate submissions" />
           </div>
         ) : filteredApplications.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">

@@ -41,6 +41,7 @@ import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
 import SheryiansSplash from '@/components/SheryiansSplash';
+import Loader from '@/components/Loader';
 import {
   gsap,
   scrollFromLeft,
@@ -60,7 +61,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
   ssr: false,
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-[#e8602e]" />
+      <Loader size="md" text="Loading Admissions Portal..." />
     </div>
   ),
 });
@@ -68,7 +69,7 @@ const AdmissionSection = dynamic(() => import('@/components/AdmissionSection'), 
 const HomeArticlesSection = dynamic(() => import('@/components/HomeArticlesSection'), {
   loading: () => (
     <div className="py-24 flex justify-center items-center">
-      <div className="animate-spin rounded-full h-10 w-10 border border-white/15 border-t-[#e8602e]" />
+      <Loader size="md" text="Loading Editorial..." />
     </div>
   ),
 });
@@ -754,7 +755,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
             <div className="col-span-full flex justify-center items-center py-16">
-              <div className="animate-spin rounded-full h-12 w-12 border-2 border-white/10 border-t-[#e8602e]" />
+              <Loader size="lg" text="Loading Courses..." subtitle="Retrieving curriculum" />
             </div>
           ) : filteredCourses.length === 0 ? (
             <div className="col-span-full text-center py-16 bg-[#0f111a] border border-white/10 rounded-3xl p-8">

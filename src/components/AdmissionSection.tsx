@@ -13,7 +13,6 @@ import {
   Send,
   CreditCard,
   CheckCircle,
-  Loader,
   Key,
   X,
   ArrowRight,
@@ -27,6 +26,7 @@ import { STANDARDS } from '@/constants/classes';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 import CartoonDatePicker from '@/components/ui/CartoonDatePicker';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
+import { ButtonLoader } from '@/components/Loader';
 
 declare global {
   interface Window {
@@ -744,7 +744,7 @@ export default function AdmissionSection() {
                     >
                       {loading ? (
                         <>
-                          <Loader className="w-5 h-5 animate-spin" />
+                          <ButtonLoader size={20} />
                           Submitting...
                         </>
                       ) : (
@@ -788,7 +788,7 @@ export default function AdmissionSection() {
                     >
                       {loading ? (
                         <>
-                          <Loader className="w-5 h-5 animate-spin" />
+                          <ButtonLoader size={20} />
                           Verifying...
                         </>
                       ) : (
@@ -841,7 +841,7 @@ export default function AdmissionSection() {
                     >
                       {loading ? (
                         <>
-                          <Loader className="w-5 h-5 animate-spin" />
+                          <ButtonLoader size={20} />
                           Processing...
                         </>
                       ) : (

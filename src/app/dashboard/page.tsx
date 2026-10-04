@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute } from '@/components';
+import Loader from '@/components/Loader';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
 interface StudentData {
@@ -353,13 +354,12 @@ Status           : ACTIVE & VERIFIED
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex items-center justify-center p-4">
-        <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-center max-w-sm w-full ">
-          <div className="animate-spin w-12 h-12 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-4"></div>
-          <p className="text-black font-black text-xl font-outfit">Loading Student Portal...</p>
-          <p className="text-neutral-600 text-sm font-medium mt-1">Preparing your dashboard</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Student Portal..."
+        subtitle="Preparing your academic dashboard"
+      />
     );
   }
 

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { 
   Upload, 
-  Loader2, 
   AlertCircle, 
   FileText, 
   ChevronDown, 
@@ -23,6 +22,7 @@ import {
 } from 'lucide-react';
 import WavyHeading from '@/components/WavyHeading';
 import { LMSFooter } from '@/components/lms';
+import { ButtonLoader } from '@/components/Loader';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 import CartoonDatePicker from '@/components/ui/CartoonDatePicker';
 
@@ -716,7 +716,7 @@ export default function LearnerAdmissionPage() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-5 h-5 animate-spin text-black" />
+                    <ButtonLoader size={20} />
                     <span>Processing Enrollment...</span>
                   </>
                 ) : (

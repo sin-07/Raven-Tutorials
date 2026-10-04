@@ -6,6 +6,7 @@ import { MessageSquare, AlertCircle, Trash2, Eye, Sparkles, CheckCircle, Star } 
 import toast from 'react-hot-toast';
 import FeedbackForm from '@/components/FeedbackForm';
 import { StudentProtectedRoute } from '@/components';
+import Loader from '@/components/Loader';
 
 interface Feedback {
   _id: string;
@@ -116,13 +117,12 @@ function FeedbackPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-transparent text-white flex items-center justify-center p-4">
-        <div className="bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl text-center max-w-sm w-full">
-          <div className="w-12 h-12 border-4 border-white/10 border-t-[#e8602e] rounded-full animate-spin mx-auto mb-4" />
-          <h3 className="font-outfit font-black text-xl text-white">Loading Feedback</h3>
-          <p className="font-jakarta font-medium text-neutral-400 text-sm mt-1">Fetching your ticket history...</p>
-        </div>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Feedback"
+        subtitle="Fetching your ticket history..."
+      />
     );
   }
 

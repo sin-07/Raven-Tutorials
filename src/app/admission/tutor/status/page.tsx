@@ -9,12 +9,12 @@ import {
   Clock, 
   XCircle, 
   AlertCircle, 
-  Loader2,
-  Sparkles,
+  Sparkles, 
   ArrowLeft
 } from 'lucide-react';
 import WavyHeading from '@/components/WavyHeading';
 import { LMSFooter } from '@/components/lms';
+import { ButtonLoader } from '@/components/Loader';
 
 interface ApplicationStatus {
   name: string;
@@ -156,7 +156,7 @@ export default function StatusCheckPage() {
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin text-black" />
+                  <ButtonLoader size={20} />
                   <span>Checking Records...</span>
                 </>
               ) : (

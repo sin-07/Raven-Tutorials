@@ -22,6 +22,7 @@ import {
   scrollFromRight, 
   scrollStaggerDirectional 
 } from '@/lib/gsap';
+import { ButtonLoader } from '@/components/Loader';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -270,7 +271,7 @@ export default function ContactPage() {
                     className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(232,96,46,0.35)]"
                   >
                     {isSubmitting ? (
-                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                      <ButtonLoader size={20} />
                     ) : (
                       <>
                         <span>Submit Inquiry</span>

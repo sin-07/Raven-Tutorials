@@ -350,7 +350,7 @@ function TakeTestPage() {
   };
 
   if (loading) {
-    return <Loader />;
+    return <Loader fullScreen size="lg" text="Loading Examination..." subtitle="Preparing secure test environment" />;
   }
 
   // Not Found State

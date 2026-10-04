@@ -83,10 +83,7 @@ const AdminDashboard: React.FC = () => {
     return (
       <AdminLayout>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="bg-[#f0fdf4] border border-white/10 rounded-3xl p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-center max-w-sm w-full">
-            <div className="animate-spin w-10 h-10 border border-white/15 border-t-emerald-500 rounded-full mx-auto mb-3"></div>
-            <p className="text-black font-black font-outfit text-lg">Loading Admin Overview...</p>
-          </div>
+          <Loader size="lg" text="Loading Admin Overview..." subtitle="Compiling platform metrics" />
         </div>
       </AdminLayout>
     );

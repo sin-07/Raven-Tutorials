@@ -18,6 +18,7 @@ import {
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import Loader from '@/components/Loader';
 
 interface ArticleData {
   _id: string;
@@ -110,10 +111,12 @@ export default function ArticleDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f6fcf8] flex flex-col justify-center items-center py-32">
-        <div className="animate-spin rounded-full h-12 w-12 border border-white/15 border-t-emerald-500 mb-4" />
-        <p className="font-outfit font-black text-black">Loading Article...</p>
-      </div>
+      <Loader
+        fullScreen
+        size="lg"
+        text="Loading Article..."
+        subtitle="Retrieving academic analysis"
+      />
     );
   }
 

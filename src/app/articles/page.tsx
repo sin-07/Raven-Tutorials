@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import WavyHeading from '@/components/WavyHeading';
+import Loader from '@/components/Loader';
 
 interface ArticleItem {
   _id: string;
@@ -140,8 +141,7 @@ export default function ArticlesDirectoryPage() {
         {/* Articles Grid */}
         {loading ? (
           <div className="py-24 flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-[#e8602e] mb-3" />
-            <p className="font-outfit font-black text-white">Loading Articles...</p>
+            <Loader size="lg" text="Loading Articles..." subtitle="Fetching educational publications" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 text-center shadow-xl max-w-lg mx-auto space-y-3">

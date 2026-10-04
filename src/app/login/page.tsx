@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
+import { ButtonLoader } from '@/components/Loader';
 import { animateShake } from '@/lib/gsap';
 
 const LoginPage: React.FC = () => {
@@ -208,7 +209,7 @@ const LoginPage: React.FC = () => {
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border border-white/10 border-t-transparent rounded-full animate-spin" />
+                      <ButtonLoader size={18} />
                       <span>Verifying credentials...</span>
                     </>
                   ) : (
