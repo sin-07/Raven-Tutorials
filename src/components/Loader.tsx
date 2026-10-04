@@ -67,10 +67,10 @@ export const Loader: React.FC<LoaderProps> = ({
         {/* Inner Counter-Rotating Ring (Amber Gold Glow) */}
         {size !== 'xs' && (
           <div 
-            className="absolute inset-1.5 sm:inset-2 rounded-full border-2 border-transparent border-b-[#ffaa40] border-l-[#ff6a3d]"
+            className="absolute inset-1.5 sm:inset-2 rounded-full border-2 border-transparent border-b-[#ffaa40] border-l-[#ff7a45] animate-spin-reverse"
             style={{ 
-              animation: 'spin-reverse 1.3s linear infinite',
-              filter: 'drop-shadow(0 0 6px rgba(255,170,64,0.5))' 
+              animation: 'raven-spin-reverse 1.2s linear infinite',
+              filter: 'drop-shadow(0 0 8px rgba(255,170,64,0.6))' 
             }}
           />
         )}
@@ -117,33 +117,33 @@ export const Loader: React.FC<LoaderProps> = ({
           {size !== 'xs' && size !== 'sm' && (
             <div className="w-20 h-0.5 bg-white/10 rounded-full overflow-hidden mt-1.5">
               <div 
-                className="h-full bg-gradient-to-r from-transparent via-[#e8602e] to-transparent w-full"
-                style={{ animation: 'beam 1.4s ease-in-out infinite' }}
+                className="h-full bg-gradient-to-r from-transparent via-[#e8602e] to-transparent w-full animate-loader-beam"
+                style={{ animation: 'raven-beam 1.4s ease-in-out infinite' }}
               />
             </div>
           )}
         </div>
       )}
 
-      {/* Embedded Keyframes for smooth cross-browser isolation */}
-      <style jsx>{`
-        @keyframes spin-reverse {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
-        }
-        @keyframes beam {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
+      {/* Fallback inline keyframes for universal browser compatibility */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes raven-spin-reverse {
+              0% { transform: rotate(360deg); }
+              100% { transform: rotate(0deg); }
+            }
+            @keyframes spin-reverse {
+              0% { transform: rotate(360deg); }
+              100% { transform: rotate(0deg); }
+            }
+            @keyframes raven-beam {
+              0% { transform: translateX(-100%); }
+              100% { transform: translateX(100%); }
+            }
+          `,
+        }}
+      />
     </div>
   );
 

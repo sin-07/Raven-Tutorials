@@ -111,8 +111,13 @@ module.exports = {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'fade-in-up': 'fade-in-up 0.8s ease-out',
         'scale-in': 'scale-in 0.5s ease-out',
+        'spin-reverse': 'spin-reverse 1.2s linear infinite',
       },
       keyframes: {
+        'spin-reverse': {
+          '0%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(0deg)' }
+        },
         'gradient-x': {
           '0%, 100%': {
             'background-size': '200% 200%',

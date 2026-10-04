@@ -237,6 +237,41 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateY(-12px); }
 }
 
+@keyframes raven-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes raven-beam {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-spin-reverse {
+  animation: raven-spin-reverse 1.2s linear infinite !important;
+}
+
+.animate-loader-beam {
+  animation: raven-beam 1.4s ease-in-out infinite !important;
+}
+
 .animate-spin-slow {
   animation: spin-slow 22s linear infinite;
 }
