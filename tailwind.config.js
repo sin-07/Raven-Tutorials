@@ -33,6 +33,22 @@ module.exports = {
         sans: ['var(--font-jakarta)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
+        // Sheryians Signature Electric Orange Theme
+        sheryians: {
+          50: '#fff5f0',
+          100: '#ffe6db',
+          200: '#ffceb8',
+          300: '#ffa985',
+          400: '#ff7547',
+          500: '#e8602e', // Sheryians core brand orange
+          600: '#d44719',
+          700: '#b03310',
+          800: '#8d2b12',
+          900: '#722613',
+          950: '#3d1006',
+          orange: '#e8602e',
+          glow: 'rgba(232, 96, 46, 0.4)',
+        },
         // Deep Black - Primary Dark Theme
         primary: {
           50: '#f7f7f7',
@@ -49,16 +65,16 @@ module.exports = {
         },
         // Emerald Green - Accent Color
         accent: {
-          50: '#ecfdf5',
-          100: '#d1fae5',
-          200: '#a7f3d0',
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
+          50: '#fff5f0',
+          100: '#ffe6db',
+          200: '#ffceb8',
+          300: '#ffa985',
+          400: '#ff7547',
+          500: '#e8602e',
+          600: '#d44719',
+          700: '#b03310',
+          800: '#8d2b12',
+          900: '#722613',
         },
         // Pure Black shades
         dark: {
