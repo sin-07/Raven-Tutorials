@@ -16,18 +16,22 @@
 }
 
 :root {
-  --bg-canvas: #070908;
-  --bg-card: #0e1410;
-  --bg-card-hover: #141c16;
+  --bg-canvas: #050507;
+  --bg-card: #0a0b0f;
+  --bg-card-hover: #12131a;
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-lime: #a3e635;
-  --color-emerald: #4ade80;
-  --color-emerald-deep: #16a34a;
-  --color-cyan: #22d3ee;
+  --color-sheryians: #e8602e;
+  --color-sheryians-glow: rgba(232, 96, 46, 0.35);
+  --color-sheryians-orange: #e8602e;
+  --color-sheryians-amber: #ffaa40;
+  --color-lime: #e8602e;
+  --color-emerald: #ff733d;
+  --color-emerald-deep: #e8602e;
+  --color-cyan: #ffaa40;
   --color-slate: #0f172a;
-  --shadow-cyber: 0 20px 50px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(74, 222, 128, 0.25);
+  --shadow-cyber: 0 20px 50px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 35px rgba(232, 96, 46, 0.3);
 }
 
 html {
@@ -45,7 +49,7 @@ body {
   font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #070908;
+  background-color: #06070a;
   color: #e2e8f0;
   min-height: 100vh;
 }
@@ -85,50 +89,101 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* ── PHENOMENON STUDIO LUXURY DARK UTILITIES ──────────────── */
+/* ── SHERYIANS LUXURY DARK UTILITIES ──────────────── */
 .cyber-card {
-  background: linear-gradient(180deg, #111713 0%, #0a0e0b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #12131b 0%, #0a0b10 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
   border-radius: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cyber-card:hover {
-  border-color: rgba(74, 222, 128, 0.4);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(74, 222, 128, 0.15);
+  border-color: rgba(232, 96, 46, 0.5);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 96, 46, 0.25);
+  transform: translateY(-4px);
+}
+
+.btn-sheryians {
+  background: linear-gradient(135deg, #ff6a3d 0%, #e8602e 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800;
+  font-family: var(--font-outfit), sans-serif;
+  border-radius: 9999px;
+  box-shadow: 0 0 25px rgba(232, 96, 46, 0.45);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 130, 80, 0.3);
+}
+
+.btn-sheryians:hover {
+  background: linear-gradient(135deg, #ff7a4f 0%, #ff5216 100%) !important;
+  box-shadow: 0 0 35px rgba(232, 96, 46, 0.65), 0 4px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-sheryians:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-sheryians-outline {
+  background: rgba(16, 17, 24, 0.8) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-family: var(--font-outfit), sans-serif;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-sheryians-outline:hover {
+  border-color: rgba(232, 96, 46, 0.6);
+  background: rgba(232, 96, 46, 0.1) !important;
+  box-shadow: 0 0 25px rgba(232, 96, 46, 0.25);
+  transform: translateY(-2px);
+}
+
+.sheryians-card {
+  background: linear-gradient(180deg, #111219 0%, #08090d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  border-radius: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sheryians-card:hover {
+  border-color: rgba(232, 96, 46, 0.5);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 96, 46, 0.2);
   transform: translateY(-4px);
 }
 
 .btn-lime {
-  background: #a3e635 !important;
-  background-color: #a3e635 !important;
-  background-image: none !important;
-  color: #050a06 !important;
+  background: linear-gradient(135deg, #ff6a3d 0%, #e8602e 100%) !important;
+  background-color: #e8602e !important;
+  background-image: linear-gradient(135deg, #ff6a3d 0%, #e8602e 100%) !important;
+  color: #ffffff !important;
   font-weight: 800;
   font-family: var(--font-outfit), sans-serif;
   border-radius: 9999px;
-  box-shadow: 0 0 20px rgba(163, 230, 53, 0.28);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 25px rgba(232, 96, 46, 0.45);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 130, 80, 0.3) !important;
 }
 
 .btn-lime:hover {
-  background: #bef264 !important;
-  background-color: #bef264 !important;
-  background-image: none !important;
-  box-shadow: 0 0 30px rgba(163, 230, 53, 0.48);
+  background: linear-gradient(135deg, #ff7a4f 0%, #ff5216 100%) !important;
+  background-color: #ff5216 !important;
+  background-image: linear-gradient(135deg, #ff7a4f 0%, #ff5216 100%) !important;
+  box-shadow: 0 0 35px rgba(232, 96, 46, 0.65), 0 4px 20px rgba(0, 0, 0, 0.4);
   transform: scale(1.03);
 }
 
 .btn-lime:active {
-  background: #84cc16 !important;
-  background-color: #84cc16 !important;
-  background-image: none !important;
+  background: #d44719 !important;
   transform: scale(0.98);
 }
 
 .btn-dark-pill {
-  background: #121814;
+  background: #11131c;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-weight: 700;
@@ -137,9 +192,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-dark-pill:hover {
-  background: #1a231d;
-  border-color: rgba(74, 222, 128, 0.4);
-  color: #4ade80;
+  background: #191c28;
+  border-color: rgba(232, 96, 46, 0.5);
+  color: #ff7b47;
+  box-shadow: 0 0 20px rgba(232, 96, 46, 0.2);
 }
 
 /* Corner Action Button (↗) */
@@ -147,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 9999px;
-  background-color: #162019;
+  background-color: #141622;
   border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
@@ -158,10 +214,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .circle-action-btn:hover,
 .group:hover .circle-action-btn {
-  background: #4ade80;
-  color: #050a06;
-  border-color: #4ade80;
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+  background: #e8602e;
+  color: #ffffff;
+  border-color: #e8602e;
+  box-shadow: 0 0 20px rgba(232, 96, 46, 0.5);
   transform: scale(1.08) rotate(45deg);
 }
 
@@ -194,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient-emerald {
-  color: #4ade80 !important;
+  color: #e8602e !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: initial !important;
@@ -202,7 +258,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient-white {
-  color: #09090b !important;
+  color: #ffffff !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: initial !important;
@@ -211,16 +267,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Solid Pop Highlight Marker */
 .cartoon-highlight {
-  background-color: #86efac;
-  color: #000000;
+  background-color: #e8602e;
+  color: #ffffff;
   padding: 0.1rem 0.5rem;
   border-radius: 0.5rem;
-  border: 2px solid #000000;
-  box-shadow: 2px 2px 0px #000000;
+  border: 1px solid #ff7b47;
+  box-shadow: 0 0 15px rgba(232, 96, 46, 0.4);
   display: inline-block;
 }
 
-/* ── CARTOON CARDS & CONTAINERS WITH FRESH GREENISH EFFECT ─── */
+/* ── SHERYIANS LUXURY DARK CARDS & CONTAINERS ─── */
 .card-cartoon,
 .card-green-gradient,
 .glass-card,
@@ -232,12 +288,12 @@ h1, h2, h3, h4, h5, h6 {
 .cat-card > a,
 .testimonial-card,
 .course-card-box {
-  background-color: #f0fdf4 !important; /* Fresh light greenish effect on every card */
-  border: 2.5px solid #000000 !important;
-  box-shadow: 4px 4px 0px #000000 !important;
-  border-radius: 1.25rem !important;
-  color: #0f172a !important;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
+  background: linear-gradient(180deg, #10121a 0%, #08090f 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7) !important;
+  border-radius: 1.5rem !important;
+  color: #ffffff !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
 }
 
 .card-cartoon:hover,
@@ -251,9 +307,10 @@ h1, h2, h3, h4, h5, h6 {
 .cat-card > a:hover,
 .testimonial-card:hover,
 .course-card-box:hover {
-  transform: translate(-2px, -2px) !important;
-  box-shadow: 7px 7px 0px #000000 !important;
-  background-color: #e6f9ee !important; /* Richer mint green tint on hover */
+  transform: translateY(-4px) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(232, 96, 46, 0.2) !important;
+  border-color: rgba(232, 96, 46, 0.5) !important;
+  background: linear-gradient(180deg, #151722 0%, #0d0f17 100%) !important;
 }
 
 /* Cartoon Pop Color Cards */
@@ -299,91 +356,90 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-cartoon-yellow,
 .btn-emerald {
-  background-color: #facc15 !important;
-  color: #000000 !important;
-  border: 2.5px solid #000000 !important;
-  box-shadow: 4px 4px 0px #000000 !important;
-  border-radius: 0.875rem !important;
+  background: linear-gradient(135deg, #ff6a3d 0%, #e8602e 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 130, 80, 0.4) !important;
+  box-shadow: 0 0 25px rgba(232, 96, 46, 0.45) !important;
+  border-radius: 9999px !important;
   font-weight: 800 !important;
+  font-family: var(--font-outfit), sans-serif !important;
 }
 
 .btn-cartoon-yellow:hover,
 .btn-emerald:hover {
-  background-color: #fde047 !important;
-  transform: translate(-2px, -2px) !important;
-  box-shadow: 6px 6px 0px #000000 !important;
+  background: linear-gradient(135deg, #ff7a4f 0%, #ff5216 100%) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 0 35px rgba(232, 96, 46, 0.65) !important;
 }
 
 .btn-cartoon-yellow:active,
 .btn-emerald:active {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 2px 2px 0px #000000 !important;
+  transform: translateY(0) scale(0.98) !important;
 }
 
 .btn-cartoon-white,
 .btn-glass {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2.5px solid #000000 !important;
-  box-shadow: 4px 4px 0px #000000 !important;
-  border-radius: 0.875rem !important;
+  background-color: #161824 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 9999px !important;
   font-weight: 800 !important;
 }
 
 .btn-cartoon-white:hover,
 .btn-glass:hover {
-  background-color: #f8fafc !important;
-  transform: translate(-2px, -2px) !important;
-  box-shadow: 6px 6px 0px #000000 !important;
+  background-color: #1f2233 !important;
+  border-color: rgba(232, 96, 46, 0.4) !important;
+  color: #ff7b47 !important;
+  transform: translateY(-2px) !important;
 }
 
 .btn-cartoon-white:active,
 .btn-glass:active {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 2px 2px 0px #000000 !important;
+  transform: translateY(0) scale(0.98) !important;
 }
 
 .btn-cartoon-green {
-  background-color: #4ade80 !important;
-  color: #000000 !important;
-  border: 2.5px solid #000000 !important;
-  box-shadow: 4px 4px 0px #000000 !important;
-  border-radius: 0.875rem !important;
+  background: linear-gradient(135deg, #ff733d 0%, #e8602e 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 130, 80, 0.3) !important;
+  box-shadow: 0 0 20px rgba(232, 96, 46, 0.4) !important;
+  border-radius: 9999px !important;
   font-weight: 800 !important;
 }
 
 .btn-cartoon-green:hover {
-  background-color: #86efac !important;
-  transform: translate(-2px, -2px) !important;
-  box-shadow: 6px 6px 0px #000000 !important;
+  background: linear-gradient(135deg, #ff824f 0%, #ff4500 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 30px rgba(232, 96, 46, 0.6) !important;
 }
 
 .btn-cartoon-sky {
-  background-color: #38bdf8 !important;
-  color: #000000 !important;
-  border: 2.5px solid #000000 !important;
-  box-shadow: 4px 4px 0px #000000 !important;
-  border-radius: 0.875rem !important;
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 9999px !important;
   font-weight: 800 !important;
 }
 
 .btn-cartoon-sky:hover {
-  background-color: #7dd3fc !important;
-  transform: translate(-2px, -2px) !important;
-  box-shadow: 6px 6px 0px #000000 !important;
+  background-color: #0369a1 !important;
+  transform: translateY(-2px) !important;
 }
 
-/* ── CARTOON STICKERS & PILLS ──────────────────────────────── */
+/* ── SHERYIANS STICKERS & PILLS ──────────────────────────────── */
 .pill-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 1rem;
   border-radius: 9999px;
-  background-color: #dcfce7 !important;
-  border: 2px solid #000000 !important;
-  box-shadow: 3px 3px 0px #000000 !important;
-  color: #14532d !important;
+  background-color: rgba(232, 96, 46, 0.12) !important;
+  border: 1px solid rgba(232, 96, 46, 0.35) !important;
+  box-shadow: 0 0 15px rgba(232, 96, 46, 0.15) !important;
+  color: #ff7b47 !important;
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.025em;
