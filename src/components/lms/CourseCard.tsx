@@ -14,7 +14,7 @@ export default function CourseCard({ course }: CourseCardProps) {
   return (
     <div className="h-full">
       <Link href={`/courses/${course.id}`}>
-        <div className="group bg-[#0e1410] hover:bg-[#121a15] rounded-3xl overflow-hidden border border-white/10 hover:border-emerald-400/40 shadow-[0_15px_35px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_45px_rgba(74,222,128,0.15)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col cursor-pointer">
+        <div className="group bg-[#0f111a] hover:bg-[#131622] rounded-3xl overflow-hidden border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col cursor-pointer">
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden border-b border-white/10 bg-black/40">
             <img
@@ -25,20 +25,20 @@ export default function CourseCard({ course }: CourseCardProps) {
 
             {/* Play Button Icon */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-              <div className="w-14 h-14 rounded-full bg-lime-400 text-black flex items-center justify-center shadow-[0_0_25px_rgba(163,230,53,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
-                <PlayCircle className="w-8 h-8 fill-black text-lime-400 ml-0.5" />
+              <div className="w-14 h-14 rounded-full bg-[#e8602e] text-white flex items-center justify-center shadow-[0_0_25px_rgba(232,96,46,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
+                <PlayCircle className="w-8 h-8 fill-white text-[#e8602e] ml-0.5" />
               </div>
             </div>
 
             {/* Badges */}
             <div className="absolute top-3 left-3 flex gap-1.5">
               {course.isPopular && (
-                <span className="px-2.5 py-0.5 bg-lime-400 text-black text-xs font-black font-space rounded-full shadow-[0_0_15px_rgba(163,230,53,0.4)]">
+                <span className="px-2.5 py-0.5 bg-[#e8602e] text-white text-xs font-black font-space rounded-full shadow-[0_0_15px_rgba(232,96,46,0.4)]">
                   HOT
                 </span>
               )}
               {course.isFree && (
-                <span className="px-2.5 py-0.5 bg-emerald-500 text-black text-xs font-black font-space rounded-full">
+                <span className="px-2.5 py-0.5 bg-emerald-500 text-white text-xs font-black font-space rounded-full">
                   FREE
                 </span>
               )}
@@ -46,7 +46,7 @@ export default function CourseCard({ course }: CourseCardProps) {
 
             {/* Level Badge */}
             <div className="absolute top-3 right-3">
-              <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md text-emerald-300 border border-white/10 text-xs font-bold font-space rounded-full">
+              <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md text-[#ffaa40] border border-white/10 text-xs font-bold font-space rounded-full">
                 {course.level}
               </span>
             </div>
@@ -55,12 +55,12 @@ export default function CourseCard({ course }: CourseCardProps) {
           {/* Content */}
           <div className="p-6 flex-1 flex flex-col font-jakarta">
             {/* Category */}
-            <span className="text-xs font-space font-extrabold text-lime-400 uppercase tracking-wider">
+            <span className="text-xs font-space font-extrabold text-[#ff7b47] uppercase tracking-wider">
               {course.category}
             </span>
 
             {/* Title */}
-            <h3 className="mt-2 text-lg font-black text-white group-hover:text-lime-300 transition-colors line-clamp-2 font-outfit">
+            <h3 className="mt-2 text-lg font-black text-white group-hover:text-[#ff7b47] transition-colors line-clamp-2 font-outfit">
               {course.title}
             </h3>
 
@@ -72,11 +72,11 @@ export default function CourseCard({ course }: CourseCardProps) {
             {/* Stats */}
             <div className="mt-4 flex items-center gap-4 text-xs font-semibold text-zinc-400">
               <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-emerald-400" />
+                <Clock className="w-4 h-4 text-[#ff7b47]" />
                 <span>{course.duration}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <BookOpen className="w-4 h-4 text-emerald-400" />
+                <BookOpen className="w-4 h-4 text-[#ff7b47]" />
                 <span>{course.totalLessons} lessons</span>
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                 </div>
                 <div>
                   {course.isFree ? (
-                    <span className="px-3 py-1 bg-lime-400 text-black font-extrabold text-xs rounded-full shadow-[0_0_15px_rgba(163,230,53,0.3)]">
+                    <span className="px-3 py-1 bg-[#e8602e] text-white font-extrabold text-xs rounded-full shadow-[0_0_15px_rgba(232,96,46,0.3)]">
                       FREE
                     </span>
                   ) : (
@@ -123,7 +123,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                           ₹{course.originalPrice.toLocaleString()}
                         </span>
                       )}
-                      <span className="px-2.5 py-1 bg-lime-400 text-black font-extrabold text-xs rounded-full shadow-[0_0_15px_rgba(163,230,53,0.3)]">
+                      <span className="px-2.5 py-1 bg-[#e8602e] text-white font-extrabold text-xs rounded-full shadow-[0_0_15px_rgba(232,96,46,0.3)]">
                         ₹{course.price.toLocaleString()}
                       </span>
                     </div>
