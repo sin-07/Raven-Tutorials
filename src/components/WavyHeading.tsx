@@ -17,17 +17,17 @@ export default function WavyHeading({
   text,
   gradientText,
   gradientClassName,
-  className = 'text-4xl sm:text-6xl font-black text-neutral-950 font-outfit tracking-tight leading-[1.1]',
+  className = 'text-4xl sm:text-6xl font-black text-white font-outfit tracking-tight leading-[1.1]',
   as: Component = 'h1',
 }: WavyHeadingProps) {
   return (
     <Component className={`relative text-center ${className}`}>
-      {text && <span className="text-neutral-950">{text} </span>}
+      {text && <span className="text-white drop-shadow-sm">{text} </span>}
       {gradientText && (
         <span 
           className={
             gradientClassName || 
-            `inline-block bg-[#86efac] text-black px-3 py-0.5 rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] -rotate-1 hover:rotate-1 hover:scale-105 hover:shadow-[5px_5px_0px_#000] transition-spring cursor-default mx-1.5 align-middle font-black will-change-transform relative group`
+            `inline-block bg-gradient-to-r from-[#ff6b3d] to-[#e8602e] text-white px-3.5 py-0.5 rounded-2xl border border-white/20 shadow-[0_0_25px_rgba(232,96,46,0.5)] -rotate-1 hover:rotate-1 hover:scale-105 transition-all duration-300 cursor-default mx-1.5 align-middle font-black will-change-transform relative group`
           }
         >
           {gradientText}
