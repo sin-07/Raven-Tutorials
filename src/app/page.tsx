@@ -46,7 +46,6 @@ import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
-import SheryiansSplash from '@/components/SheryiansSplash';
 import Loader from '@/components/Loader';
 import {
   gsap,
@@ -272,8 +271,6 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
-      <SheryiansSplash />
-
       {/* ── HERO SECTION (SHERYIANS LUXURY OBSIDIAN & ORANGE THEME) ────────────────── */}
       <section className="relative px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-40 pb-16 max-w-7xl mx-auto">
         {/* Ambient Radial Background Glows */}
