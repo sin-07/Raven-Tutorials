@@ -109,16 +109,13 @@ export default function ContactPage() {
     },
   ];
 
-  const cardColors = ['bg-[#f0fdf4]', 'bg-[#dcfce7]', 'bg-[#bbf7d0]', 'bg-[#ecfdf5]'];
-  const iconColors = ['bg-emerald-300', 'bg-[#86efac]', 'bg-emerald-200', 'bg-emerald-300'];
-
   return (
     <>
-      <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-emerald-300 selection:text-black relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dcfce7] border-2 border-black text-emerald-950 text-xs sm:text-sm font-space font-bold shadow-[2px_2px_0px_#000] mx-auto">
-            <Sparkles className="w-4 h-4 text-emerald-700" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
+            <Sparkles className="w-4 h-4 text-[#e8602e]" />
             <span>Connect with our Patna Faculty</span>
           </div>
 
@@ -126,11 +123,11 @@ export default function ContactPage() {
             <WavyHeading
               text="Get in"
               gradientText="Touch"
-              className="text-4xl sm:text-6xl md:text-7xl font-black text-black font-outfit tracking-tight leading-[1.1] text-center w-full"
+              className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-outfit tracking-tight leading-[1.1] text-center w-full"
             />
           </div>
 
-          <p ref={subtitleRef} className="text-base sm:text-lg text-neutral-700 max-w-2xl mx-auto font-jakarta font-medium text-center">
+          <p ref={subtitleRef} className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto font-jakarta font-medium text-center">
             Have questions regarding batch schedules, course fees, or scholarship tests? Send us a message or visit our campus.
           </p>
         </section>
@@ -141,14 +138,14 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-3xl ${cardColors[index % cardColors.length]} border-[2.5px] border-black shadow-[5px_5px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1.5 text-center flex flex-col items-center justify-center transition-spring group cursor-pointer`}
+                className="p-6 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] hover:-translate-y-1.5 text-center flex flex-col items-center justify-center transition-all duration-300 group cursor-pointer"
               >
-                <div className={`w-14 h-14 rounded-2xl ${iconColors[index % iconColors.length]} border-2 border-black flex items-center justify-center text-black mb-4 shadow-[3px_3px_0px_#000] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`}>
+                <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-4 shadow-[0_0_15px_rgba(232,96,46,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
                   <info.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-lg font-black text-black mb-2 font-outfit">{info.title}</h3>
+                <h3 className="text-lg font-black text-white mb-2 font-outfit">{info.title}</h3>
                 {info.details.map((detail, i) => (
-                  <p key={i} className="text-neutral-800 text-xs sm:text-sm font-jakarta font-semibold">{detail}</p>
+                  <p key={i} className="text-neutral-400 text-xs sm:text-sm font-jakarta font-medium">{detail}</p>
                 ))}
               </div>
             ))}
@@ -157,29 +154,29 @@ export default function ContactPage() {
           {/* Form & Map Section */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-20">
             {/* Contact Form */}
-            <div ref={formRef} className="p-8 sm:p-10 rounded-3xl bg-[#f0fdf4] border-3 border-black shadow-[8px_8px_0px_#000]">
+            <div ref={formRef} className="p-8 sm:p-10 rounded-3xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center text-black shadow-[3px_3px_0px_#000]">
+                <div className="w-12 h-12 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.2)]">
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-black font-outfit">Send an Inquiry</h2>
-                  <p className="text-neutral-700 text-xs sm:text-sm font-jakarta font-medium">We typically reply within 24 hours</p>
+                  <h2 className="text-2xl font-black text-white font-outfit">Send an Inquiry</h2>
+                  <p className="text-neutral-400 text-xs sm:text-sm font-jakarta font-medium">We typically reply within 24 hours</p>
                 </div>
               </div>
 
               {isSubmitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-16 h-16 bg-[#bbf7d0] border-2 border-black rounded-full flex items-center justify-center mx-auto text-black shadow-[3px_3px_0px_#000]">
-                    <CheckCircle2 className="w-8 h-8 text-black" />
+                  <div className="w-16 h-16 bg-[#161922] border border-[#e8602e]/40 rounded-full flex items-center justify-center mx-auto text-[#e8602e] shadow-[0_0_20px_rgba(232,96,46,0.3)]">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black text-black font-outfit">Inquiry Received!</h3>
-                  <p className="text-neutral-800 text-sm font-jakarta font-medium max-w-sm mx-auto">
+                  <h3 className="text-2xl font-black text-white font-outfit">Inquiry Received!</h3>
+                  <p className="text-neutral-300 text-sm font-jakarta font-medium max-w-sm mx-auto">
                     Thank you for reaching out. Our academic counselors will get in touch with you shortly.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="btn-cartoon px-6 py-2.5 bg-emerald-400 text-black border-2 border-black font-black text-sm font-outfit rounded-xl shadow-[3px_3px_0px_#000] hover:bg-emerald-300 transition"
+                    className="btn-sheryians px-6 py-2.5 text-sm font-outfit"
                   >
                     Send Another Message
                   </button>
@@ -188,7 +185,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-5 font-jakarta">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-300 mb-2 font-space">
                         Student / Parent Name
                       </label>
                       <input
@@ -197,12 +194,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Aniket Singh"
-                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-300 mb-2 font-space">
                         Email Address
                       </label>
                       <input
@@ -211,7 +208,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="example@gmail.com"
-                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
                         required
                       />
                     </div>
@@ -219,7 +216,7 @@ export default function ContactPage() {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-300 mb-2 font-space">
                         Phone Number
                       </label>
                       <input
@@ -228,12 +225,12 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 8618281816"
-                        className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
+                      <label className="block text-xs font-bold uppercase text-neutral-300 mb-2 font-space">
                         Interested Track
                       </label>
                       <CartoonDropdown
@@ -253,7 +250,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase text-neutral-800 mb-2 font-space">
+                    <label className="block text-xs font-bold uppercase text-neutral-300 mb-2 font-space">
                       Message / Question
                     </label>
                     <textarea
@@ -262,7 +259,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Share details about current academic standard or specific questions..."
                       rows={4}
-                      className="w-full px-4 py-3.5 rounded-xl bg-white border-2 border-black text-black placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm resize-none shadow-[2px_2px_0px_#000]"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm resize-none"
                       required
                     />
                   </div>
@@ -270,14 +267,14 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-cartoon w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-xl text-sm font-outfit shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-0.5 border-2 border-black transition-spring flex items-center justify-center gap-2 active:translate-x-1 active:translate-y-1 cursor-pointer"
+                    className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(232,96,46,0.35)]"
                   >
                     {isSubmitting ? (
-                      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                     ) : (
                       <>
                         <span>Submit Inquiry</span>
-                        <Send className="w-4 h-4 text-black" />
+                        <Send className="w-4 h-4 text-white" />
                       </>
                     )}
                   </button>
@@ -286,7 +283,7 @@ export default function ContactPage() {
             </div>
 
             {/* Patna Location Map */}
-            <div ref={mapRef} className="rounded-3xl overflow-hidden border-3 border-black bg-white shadow-[8px_8px_0px_#000] relative min-h-[450px]">
+            <div ref={mapRef} className="rounded-3xl overflow-hidden border border-white/15 bg-[#08090d] shadow-[0_20px_50px_rgba(0,0,0,0.7)] relative min-h-[450px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14392.544773820253!2d85.1843236!3d25.6004944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed58c148fa7949%3A0x6b4f74d6c4eef888!2sBajrangpuri%2C%20Patna%2C%20Bihar%20800007!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%"
