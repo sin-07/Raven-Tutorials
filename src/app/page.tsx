@@ -323,9 +323,9 @@ export default function Home() {
             className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121420] border border-[#e8602e]/40 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-wider mb-6 shadow-[0_0_20px_rgba(232,96,46,0.2)]"
           >
             <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse shadow-[0_0_8px_#e8602e]" />
-            <span>Admissions Open 2026-27 • Patna Campus</span>
+            <span>Admissions Open 2026-27 &bull; Patna</span>
             <span className="hidden sm:inline text-zinc-500">|</span>
-            <span className="hidden sm:inline text-zinc-300 font-semibold">IIT-JEE • NEET • Foundations</span>
+            <span className="hidden sm:inline text-zinc-300 font-semibold">Home-Based Tuition &bull; 1:1 Personal Mentorship</span>
           </div>
 
           {/* Majestic Sheryians Headline */}
@@ -333,18 +333,18 @@ export default function Home() {
             ref={heroTitleRef}
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06]"
           >
-            India&apos;s Premier Coaching for <br className="hidden sm:inline" />
+            Personalized Home Tuition with <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40] drop-shadow-[0_0_35px_rgba(232,96,46,0.35)]">
-              JEE, NEET &amp; Boards.
+              Exceptional Teaching &amp; Results.
             </span>
           </h1>
 
           {/* Subheading */}
           <p 
             ref={heroSubRef}
-            className="mt-6 text-sm sm:text-base md:text-lg text-zinc-400 font-jakarta max-w-2xl mx-auto leading-relaxed font-normal"
+            className="mt-6 text-sm sm:text-base md:text-lg text-zinc-300 font-jakarta max-w-3xl mx-auto leading-relaxed font-normal"
           >
-            Elevate your academic rank with Patna&apos;s top master educators. Strict 1:15 batch attention, daily test series, IITian mentors, and up to 100% scholarship through RSAT.
+            Raven Tutorials is Patna&apos;s premier home-based tuition academy where passionate educators teach with unmatched dedication. We turn complex subjects into crystal-clear concepts through dedicated 1-on-1 attention, daily doubt solving, and structured practice sheets—helping students from Classes 8th to 12th excel in CBSE, ICSE, JEE, and NEET with confidence.
           </p>
 
           {/* Sheryians Dual CTA Buttons */}
@@ -541,19 +541,19 @@ export default function Home() {
               <div className="flex items-center justify-between mb-4">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-space font-extrabold uppercase">
                   <MapPin className="w-3 h-3 text-[#e8602e]" />
-                  Patna Campus
+                  Patna Center &amp; Home
                 </span>
                 <span className="text-[10px] font-mono font-bold text-[#ff7b47]">Bajrangpuri</span>
               </div>
               <h3 className="text-lg font-black text-white font-outfit leading-snug group-hover:text-[#ff7b47] transition-colors">
-                1:1 Mentorship &amp; Labs
+                1:1 Home Mentorship &amp; Labs
               </h3>
               <p className="text-xs text-zinc-400 font-jakarta mt-2">
-                AC digital smart classrooms, dedicated doubt cells, and direct parent weekly progress reporting.
+                Personalized home tuition batches, dedicated doubt cells, and direct weekly progress reporting for parents.
               </p>
             </div>
             <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-zinc-300">Offline &amp; Hybrid</span>
+              <span className="text-xs font-mono font-bold text-zinc-300">Home &amp; Center</span>
               <Link 
                 href="/contact" 
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-[#e8602e] text-white flex items-center justify-center transition-colors"
