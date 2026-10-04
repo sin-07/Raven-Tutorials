@@ -362,11 +362,11 @@ export default function AdmissionSection() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#121814] text-emerald-400 rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border border-white/10 shadow-[0_0_20px_rgba(74,222,128,0.15)]">
+            <span className="inline-block px-4 py-1.5 bg-[#e8602e]/10 text-[#ff7b47] rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border border-[#e8602e]/30 shadow-[0_0_20px_rgba(232,96,46,0.15)]">
               Start Your Journey
             </span>
             <h2 className="text-3xl md:text-5xl font-black text-white font-outfit tracking-tight">
-              I Want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300">Learn</span>
+              I Want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Learn</span>
             </h2>
             <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal">
               Take the first step towards your academic success. Join Raven Tutorials and unlock your potential with expert guidance.
@@ -381,8 +381,8 @@ export default function AdmissionSection() {
               viewport={{ once: true }}
               className="space-y-5 font-jakarta"
             >
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-lime-400/10 border border-lime-400/30 text-lime-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
@@ -391,8 +391,8 @@ export default function AdmissionSection() {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
@@ -401,8 +401,8 @@ export default function AdmissionSection() {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0e1410] border border-white/10 hover:border-emerald-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-teal-400/10 border border-teal-400/30 text-teal-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <Shield className="w-6 h-6" />
                 </div>
                 <div>
@@ -413,7 +413,7 @@ export default function AdmissionSection() {
 
               <div className="pt-2 font-outfit flex items-center gap-3">
                 <span className="text-xl font-bold text-zinc-300">Admission Fee:</span>
-                <span className="text-black bg-lime-400 font-extrabold px-3.5 py-1 rounded-full text-lg shadow-[0_0_20px_rgba(163,230,53,0.4)]">₹1,000</span>
+                <span className="text-white bg-[#e8602e] font-extrabold px-3.5 py-1 rounded-full text-lg shadow-[0_0_20px_rgba(232,96,46,0.5)]">₹1,000</span>
                 <span className="text-zinc-500 text-xs font-jakarta font-medium">(One-time registration)</span>
               </div>
             </motion.div>
@@ -423,10 +423,10 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-b from-[#111713] to-[#0a0e0b] rounded-3xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-8 sm:p-10 font-jakarta relative overflow-hidden"
+              className="bg-gradient-to-b from-[#121422] to-[#08090f] rounded-3xl border border-[#e8602e]/30 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(232,96,46,0.12)] p-8 sm:p-10 font-jakarta relative overflow-hidden"
             >
               <div className="text-center relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-lime-400/10 border border-lime-400/30 text-lime-400 flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(163,230,53,0.2)]">
+                <div className="w-16 h-16 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(232,96,46,0.3)]">
                   <GraduationCap className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-black text-white mb-2 font-outfit">Ready to Join?</h3>
@@ -436,26 +436,26 @@ export default function AdmissionSection() {
                 
                 <div className="space-y-3 text-left mb-8 max-w-sm mx-auto">
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
                     <span>Fill the admission form</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
                     <span>Verify your email with OTP</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
                     <span>Complete payment</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
                     <span>Get your login credentials</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn-lime w-full py-4 text-black font-extrabold text-sm rounded-full shadow-[0_0_30px_rgba(163,230,53,0.4)] flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
+                  className="btn-sheryians w-full py-4 text-white font-extrabold text-sm rounded-full shadow-[0_0_30px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
                 >
                   <GraduationCap className="w-5 h-5" />
                   <span>Take Admission Now</span>
@@ -474,40 +474,39 @@ export default function AdmissionSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto overscroll-contain"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto overscroll-contain"
             onClick={(e) => e.target === e.currentTarget && step !== 4 && closeModal()}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#f0fdf4] border-3 border-black text-black relative w-full max-w-2xl rounded-3xl shadow-[8px_8px_0px_#000] my-8 max-h-[90vh] overflow-y-auto overscroll-contain"
+              className="bg-[#0b0d14] border border-white/15 text-white relative w-full max-w-2xl rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.95),0_0_50px_rgba(232,96,46,0.2)] my-8 max-h-[90vh] overflow-y-auto overscroll-contain"
             >
               {/* Close Button */}
               {step !== 4 && (
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white hover:bg-rose-200 border-2 border-black shadow-[2px_2px_0px_#000] transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-colors z-10"
                 >
-                  <X className="w-5 h-5 text-black" />
+                  <X className="w-5 h-5" />
                 </button>
               )}
 
               {/* Step Indicator */}
-              <div className="p-6 border-b-2 border-black bg-[#dcfce7] rounded-t-3xl">
+              <div className="p-6 border-b border-white/10 bg-[#07090e] rounded-t-3xl">
                 <div className="flex items-center justify-between max-w-md mx-auto">
                   {['Form', 'OTP', 'Payment', 'Success'].map((label, index) => (
                     <div key={label} className="flex items-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black font-space border-2 border-black ${
-                        step > index + 1 ? 'bg-emerald-400 text-black shadow-[2px_2px_0px_#000]' :
-                        step === index + 1 ? 'bg-emerald-400 text-black shadow-[2px_2px_0px_#000]' :
-                        'bg-white text-neutral-500'
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black font-space ${
+                        step >= index + 1 ? 'bg-[#e8602e] text-white shadow-[0_0_15px_rgba(232,96,46,0.5)]' :
+                        'bg-white/10 text-zinc-500 border border-white/10'
                       }`}>
                         {step > index + 1 ? <CheckCircle className="w-4 h-4" /> : index + 1}
                       </div>
                       {index < 3 && (
-                        <div className={`w-12 sm:w-16 h-1 mx-1 border-y border-black ${
-                          step > index + 1 ? 'bg-emerald-500' : 'bg-neutral-300'
+                        <div className={`w-12 sm:w-16 h-1 mx-1 rounded-full ${
+                          step > index + 1 ? 'bg-[#e8602e]' : 'bg-white/10'
                         }`} />
                       )}
                     </div>
@@ -519,60 +518,60 @@ export default function AdmissionSection() {
                 {/* Step 1: Form */}
                 {step === 1 && (
                   <form onSubmit={handleSubmitForm} className="space-y-6">
-                    <h3 className="text-xl font-black text-black mb-6 font-outfit">Admission Form</h3>
+                    <h3 className="text-xl font-black text-white mb-6 font-outfit">Admission Form</h3>
                     
                     {/* Photo Upload */}
                     <div className="flex justify-center mb-6">
                       <label className="cursor-pointer">
-                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-emerald-600' : 'border-black'} flex items-center justify-center overflow-hidden bg-white hover:bg-[#dcfce7] transition-colors shadow-[2px_2px_0px_#000]`}>
+                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-[#e8602e]' : 'border-white/20'} flex items-center justify-center overflow-hidden bg-[#121522] hover:bg-[#181c2e] transition-colors`}>
                           {photoPreview ? (
                             <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
                           ) : (
-                            <Upload className="w-8 h-8 text-neutral-600" />
+                            <Upload className="w-8 h-8 text-zinc-400" />
                           )}
                         </div>
                         <input type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" />
-                        <p className="text-xs text-neutral-700 font-bold text-center mt-2">Upload Photo*</p>
+                        <p className="text-xs text-zinc-400 font-bold text-center mt-2">Upload Photo*</p>
                       </label>
                     </div>
 
                     {/* Personal Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Student Name*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Student Name*</label>
                         <input
                           type="text"
                           name="studentName"
                           value={formData.studentName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Father&apos;s Name*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Father&apos;s Name*</label>
                         <input
                           type="text"
                           name="fatherName"
                           value={formData.fatherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Mother&apos;s Name*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Mother&apos;s Name*</label>
                         <input
                           type="text"
                           name="motherName"
                           value={formData.motherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Date of Birth*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Date of Birth*</label>
                         <CartoonDatePicker
                           name="dateOfBirth"
                           value={formData.dateOfBirth}
@@ -582,7 +581,7 @@ export default function AdmissionSection() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Gender*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Gender*</label>
                         <CartoonDropdown
                           name="gender"
                           value={formData.gender}
@@ -596,7 +595,7 @@ export default function AdmissionSection() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Blood Group*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Blood Group*</label>
                         <CartoonDropdown
                           name="bloodGroup"
                           value={formData.bloodGroup}
@@ -606,7 +605,7 @@ export default function AdmissionSection() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Category*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Category*</label>
                         <CartoonDropdown
                           name="category"
                           value={formData.category}
@@ -616,7 +615,7 @@ export default function AdmissionSection() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Standard*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Standard*</label>
                         <CartoonDropdown
                           name="standard"
                           value={formData.standard}
@@ -630,96 +629,96 @@ export default function AdmissionSection() {
                     {/* Contact Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Email*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Email*</label>
                         <input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Phone Number*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Phone Number*</label>
                         <input
                           type="tel"
                           name="phoneNumber"
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Alternate Phone</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Alternate Phone</label>
                         <input
                           type="tel"
                           name="alternatePhoneNumber"
                           value={formData.alternatePhoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                         />
                       </div>
                     </div>
 
                     {/* Address */}
                     <div>
-                      <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Address*</label>
+                      <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Address*</label>
                       <textarea
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
                         rows={2}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                         required
                       />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">City*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">City*</label>
                         <input
                           type="text"
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">State*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">State*</label>
                         <input
                           type="text"
                           name="state"
                           value={formData.state}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Pincode*</label>
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Pincode*</label>
                         <input
                           type="text"
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                           required
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1 font-space">Previous School*</label>
+                      <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1 font-space">Previous School*</label>
                       <input
                         type="text"
                         name="previousSchool"
                         value={formData.previousSchool}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 bg-white border-2 border-black rounded-xl text-black font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
                         required
                       />
                     </div>
@@ -731,9 +730,9 @@ export default function AdmissionSection() {
                         id="terms"
                         checked={acceptedTerms}
                         onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-emerald-600 bg-white border-2 border-black rounded focus:ring-emerald-400"
+                        className="mt-1 w-4 h-4 text-[#e8602e] bg-[#121522] border border-white/20 rounded focus:ring-[#e8602e]"
                       />
-                      <label htmlFor="terms" className="text-xs text-neutral-700 font-bold leading-relaxed">
+                      <label htmlFor="terms" className="text-xs text-zinc-400 font-medium leading-relaxed">
                         I agree to the terms and conditions and understand that my data will be stored securely.
                       </label>
                     </div>
@@ -741,7 +740,7 @@ export default function AdmissionSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="btn-sheryians w-full py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -761,13 +760,13 @@ export default function AdmissionSection() {
                 {/* Step 2: OTP Verification */}
                 {step === 2 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
-                      <Mail className="w-10 h-10 text-black" />
+                    <div className="w-20 h-20 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(232,96,46,0.3)]">
+                      <Mail className="w-10 h-10 text-[#ff7b47]" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black text-black mb-2 font-outfit">Verify Your Email</h3>
-                      <p className="text-neutral-700 font-medium text-sm">
-                        We&apos;ve sent a 6-digit OTP to <span className="font-black text-emerald-800 underline">{formData.email}</span>
+                      <h3 className="text-xl font-black text-white mb-2 font-outfit">Verify Your Email</h3>
+                      <p className="text-zinc-400 font-medium text-sm">
+                        We&apos;ve sent a 6-digit OTP to <span className="font-black text-[#ffaa40] underline">{formData.email}</span>
                       </p>
                     </div>
 
@@ -777,7 +776,7 @@ export default function AdmissionSection() {
                         value={otp}
                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                         placeholder="000000"
-                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-white border-2 border-black rounded-xl text-black font-mono font-bold focus:ring-2 focus:ring-emerald-400 focus:outline-none shadow-[2px_2px_0px_#000]"
+                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-[#121522] border border-white/20 rounded-xl text-white font-mono font-bold focus:ring-2 focus:ring-[#e8602e] focus:outline-none"
                         maxLength={6}
                       />
                     </div>
@@ -785,7 +784,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handleVerifyOTP}
                       disabled={loading || otp.length !== 6}
-                      className="w-full max-w-xs mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="btn-sheryians w-full max-w-xs mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -802,7 +801,7 @@ export default function AdmissionSection() {
 
                     <button
                       onClick={() => setStep(1)}
-                      className="text-neutral-600 hover:text-black font-bold text-sm flex items-center gap-1 mx-auto"
+                      className="text-zinc-400 hover:text-white font-bold text-sm flex items-center gap-1 mx-auto transition-colors cursor-pointer"
                     >
                       <ArrowLeft className="w-4 h-4" />
                       Back to Form
@@ -812,23 +811,23 @@ export default function AdmissionSection() {
 
                 {/* Step 3: Payment */}
                 {step === 3 && (
-                  <div className="text-center space-y-6 cartoon-pop">
-                    <div className="w-20 h-20 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
-                      <CreditCard className="w-10 h-10 text-black" />
+                  <div className="text-center space-y-6">
+                    <div className="w-20 h-20 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(232,96,46,0.3)]">
+                      <CreditCard className="w-10 h-10 text-[#ff7b47]" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black text-black mb-2 font-outfit">Complete Payment</h3>
-                      <p className="text-neutral-700 font-medium text-sm">
+                      <h3 className="text-xl font-black text-white mb-2 font-outfit">Complete Payment</h3>
+                      <p className="text-zinc-400 font-medium text-sm">
                         Pay the admission fee to complete your registration
                       </p>
                     </div>
 
-                    <div className="bg-[#dcfce7] rounded-2xl p-6 max-w-sm mx-auto border-2 border-black shadow-[3px_3px_0px_#000]">
+                    <div className="bg-[#121522] rounded-2xl p-6 max-w-sm mx-auto border border-white/10 shadow-lg">
                       <div className="flex justify-between items-center mb-4">
-                        <span className="text-neutral-800 font-bold">Admission Fee</span>
-                        <span className="text-2xl font-black text-black font-outfit">₹{paymentAmount}</span>
+                        <span className="text-zinc-300 font-bold">Admission Fee</span>
+                        <span className="text-2xl font-black text-[#ffaa40] font-outfit">₹{paymentAmount}</span>
                       </div>
-                      <div className="text-left text-xs text-neutral-700 font-medium space-y-1">
+                      <div className="text-left text-xs text-zinc-400 font-medium space-y-1">
                         <p>• Secure payment via Razorpay</p>
                         <p>• Instant confirmation</p>
                         <p>• Get login credentials after payment</p>
@@ -838,7 +837,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handlePayment}
                       disabled={loading}
-                      className="w-full max-w-sm mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -857,53 +856,53 @@ export default function AdmissionSection() {
 
                 {/* Step 4: Success */}
                 {step === 4 && (
-                  <div className="text-center space-y-6 cartoon-pop">
+                  <div className="text-center space-y-6">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-24 h-24 rounded-2xl bg-emerald-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]"
+                      className="w-24 h-24 rounded-2xl bg-[#e8602e]/20 border border-[#e8602e]/40 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(232,96,46,0.4)]"
                     >
-                      <CheckCircle className="w-12 h-12 text-black" />
+                      <CheckCircle className="w-12 h-12 text-[#ff7b47]" />
                     </motion.div>
                     
                     <div>
-                      <h3 className="text-2xl font-black text-emerald-900 mb-2 font-outfit">Registration Successful!</h3>
-                      <p className="text-neutral-700 font-medium text-sm">
+                      <h3 className="text-2xl font-black text-white mb-2 font-outfit">Registration Successful!</h3>
+                      <p className="text-zinc-400 font-medium text-sm">
                         Welcome to Raven Tutorials! Your account has been created.
                       </p>
                     </div>
 
-                    <div className="bg-[#dcfce7] rounded-2xl p-6 max-w-sm mx-auto text-left border-2 border-black shadow-[3px_3px_0px_#000]">
-                      <h4 className="font-black text-black mb-4 text-center font-outfit">Your Login Credentials</h4>
+                    <div className="bg-[#121522] rounded-2xl p-6 max-w-sm mx-auto text-left border border-white/10 shadow-lg">
+                      <h4 className="font-black text-white mb-4 text-center font-outfit">Your Login Credentials</h4>
                       
                       <div className="space-y-3">
-                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
-                          <Key className="w-5 h-5 text-emerald-700" />
+                        <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
+                          <Key className="w-5 h-5 text-[#ff7b47]" />
                           <div>
-                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Registration ID</p>
-                            <p className="font-mono font-black text-black">{credentials.registrationId}</p>
+                            <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Registration ID</p>
+                            <p className="font-mono font-black text-white">{credentials.registrationId}</p>
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
-                          <Mail className="w-5 h-5 text-emerald-700" />
+                        <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
+                          <Mail className="w-5 h-5 text-[#ff7b47]" />
                           <div>
-                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Email</p>
-                            <p className="font-bold text-black text-sm">{credentials.email}</p>
+                            <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Email</p>
+                            <p className="font-bold text-white text-sm">{credentials.email}</p>
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-black shadow-[1px_1px_0px_#000]">
-                          <Shield className="w-5 h-5 text-emerald-700" />
+                        <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
+                          <Shield className="w-5 h-5 text-[#ff7b47]" />
                           <div>
-                            <p className="text-[10px] uppercase font-bold text-neutral-600 font-space">Password</p>
-                            <p className="font-mono font-black text-black">{credentials.password}</p>
+                            <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Password</p>
+                            <p className="font-mono font-black text-white">{credentials.password}</p>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-xs text-rose-700 font-bold mt-4 text-center flex items-center justify-center gap-1.5">
-                        <AlertTriangle className="w-4 h-4 text-rose-700 inline flex-shrink-0" />
+                      <p className="text-xs text-rose-400 font-medium mt-4 text-center flex items-center justify-center gap-1.5">
+                        <AlertTriangle className="w-4 h-4 text-rose-400 inline flex-shrink-0" />
                         <span>Please save these credentials. You&apos;ll need them to login.</span>
                       </p>
                     </div>
@@ -914,7 +913,7 @@ export default function AdmissionSection() {
                         setShowModal(false);
                         window.location.href = '/login';
                       }}
-                      className="w-full max-w-sm mx-auto py-3.5 bg-emerald-400 text-black font-black font-outfit uppercase tracking-wider rounded-xl border-2 border-black hover:bg-emerald-300 transition-all shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 flex items-center justify-center gap-2"
+                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 cursor-pointer"
                     >
                       Go to Login
                       <ArrowRight className="w-5 h-5" />
