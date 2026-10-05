@@ -365,3 +365,4 @@ webVitalMetrics.push({ metricId: 'wv_2026_10_01_2', date: '2026-10-01', ttfbMs: 
 webVitalMetrics.push({ metricId: 'wv_2026_10_02_2', date: '2026-10-02', ttfbMs: 40, lcpMs: 301, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2026_10_03_2', date: '2026-10-03', ttfbMs: 35, lcpMs: 295, clsScore: 0.01 });
 webVitalMetrics.push({ metricId: 'wv_2026_10_04_2', date: '2026-10-04', ttfbMs: 55, lcpMs: 289, clsScore: 0.01 });
+webVitalMetrics.push({ metricId: 'wv_2026_10_05_2', date: '2026-10-05', ttfbMs: 50, lcpMs: 283, clsScore: 0.01 });
