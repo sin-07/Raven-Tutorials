@@ -304,3 +304,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] docs(leaderboard): outline leaderboard scoring calculation logic
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
