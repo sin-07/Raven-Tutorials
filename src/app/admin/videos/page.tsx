@@ -12,17 +12,21 @@ const Videos: React.FC = () => {
     <AdminLayout>
       <div className="space-y-6">
         {/* Header Banner */}
-        <div className="bg-gradient-to-r from-[#121422] to-[#181c2e] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
-          <div className="inline-flex items-center gap-2 bg-[#e8602e]/15 border border-[#e8602e]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase mb-2 text-[#ff7b47]">
-            <Video size={14} />
-            <span>Media Center</span>
+        <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <Video size={14} />
+              <span>Media Center</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
+              Video Management
+            </h2>
+            <p className="text-zinc-400 font-jakarta font-medium text-xs sm:text-sm mt-1">
+              Manage educational video lectures, live recordings, and class highlights
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-outfit font-black text-white tracking-tight">
-            Video Management
-          </h2>
-          <p className="text-zinc-400 font-jakarta font-medium mt-1">
-            Manage educational video lectures, live recordings, and class highlights
-          </p>
         </div>
 
         {/* Coming Soon Hero Card */}

@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { 
   Menu, X, BarChart3, Users, CheckSquare, FileText, 
   BookOpen, Megaphone, Video, MessageSquare, CreditCard, Newspaper,
-  ExternalLink, LogOut, Radio
+  ExternalLink, LogOut, Radio, UserCheck
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
@@ -59,6 +59,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     { path: '/admin/dashboard', icon: BarChart3, label: 'Dashboard' },
     { path: '/admin/fees', icon: CreditCard, label: 'Fee Management' },
     { path: '/admin/students', icon: Users, label: 'Students' },
+    { path: '/admin/teacher-applications', icon: UserCheck, label: 'Teacher Apps' },
     { path: '/admin/courses', icon: BookOpen, label: 'Courses' },
     { path: '/admin/articles', icon: Newspaper, label: 'Articles' },
     { path: '/admin/attendance', icon: CheckSquare, label: 'Attendance' },
@@ -144,7 +145,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               <Link
                 href="/admin/notices"
                 onClick={() => !isDesktop && setSidebarOpen(false)}
-                className="btn-sheryians flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold font-outfit transition-all text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]"
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold font-outfit transition-all text-white bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] shadow-[0_4px_16px_rgba(232,96,46,0.35)] active:scale-[0.98]"
               >
                 <Megaphone size={16} />
                 <span>Post Notice</span>

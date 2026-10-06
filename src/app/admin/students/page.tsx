@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import { Users, Search, Trash2, Sparkles, Filter } from 'lucide-react';
 import { Loader } from '@/components';
 import { STANDARDS, STANDARD_LABELS } from '@/constants/classes';
-import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
 
 interface StudentData {
   _id: string;
@@ -56,7 +55,7 @@ const AdminStudents: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you sure you want to delete this student?')) return;
+    if (!window.confirm('Are you sure you want to delete this student record?')) return;
 
     try {
       const res = await fetch(`/api/admin/students/${id}`, {
@@ -81,7 +80,7 @@ const AdminStudents: React.FC = () => {
     return (
       <AdminLayout>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <Loader size="lg" text="Loading Student Directory..." subtitle="Fetching enrolled students" />
+          <Loader size="lg" text="Loading Student Directory..." subtitle="Fetching verified student records" />
         </div>
       </AdminLayout>
     );
@@ -90,72 +89,75 @@ const AdminStudents: React.FC = () => {
   return (
     <AdminLayout>
       <div className="space-y-6 max-w-7xl mx-auto">
-        {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 text-black relative overflow-hidden ">
+        {/* Executive Header Banner */}
+        <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black text-black text-xs font-bold font-space uppercase mb-2 shadow-sm">
-                <Users className="w-3.5 h-3.5 text-emerald-800" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <Users className="w-3.5 h-3.5 text-[#ff7a45]" />
                 <span>Student Records</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight">
-                Students Directory
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
+                Students <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Directory</span>
               </h1>
-              <p className="text-neutral-900 font-bold font-jakarta text-xs sm:text-sm mt-1">
-                Manage verified admissions, view registration profiles, and filter by standard
+              <p className="text-zinc-400 font-jakarta text-xs sm:text-sm mt-1 max-w-xl">
+                Manage verified admissions, view registration profiles, and filter by enrolled class standard.
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-4 py-2 rounded-2xl bg-white border border-white/10 font-mono font-black text-sm shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                {students.length} Total Enrolled
+              <span className="px-4 py-2 rounded-2xl bg-white/5 border border-white/10 font-mono font-bold text-xs text-zinc-300 shadow-inner">
+                {students.length} Verified Enrolled
               </span>
             </div>
           </div>
         </div>
 
-        {/* Cartoon Filters */}
-        <div className="bg-[#f0fdf4] rounded-3xl p-5 sm:p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
+        {/* Filters Card */}
+        <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 sm:p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div className="md:col-span-2">
-              <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
+              <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1.5">
                 Search Students
               </label>
               <div className="relative">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 w-4 h-4" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && fetchStudents()}
+                  onKeyDown={(e) => e.key === 'Enter' && fetchStudents()}
                   placeholder="Search by name, email, or registration ID..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-white/10 rounded-xl text-black placeholder-neutral-400 font-medium font-jakarta focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta focus:outline-none focus:border-[#ff7a45] text-sm transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-black uppercase font-space text-black mb-1.5">
+              <label className="block text-xs font-space font-bold uppercase text-zinc-400 mb-1.5">
                 Filter by Class
               </label>
-              <CartoonDropdown
+              <select
                 value={filterClass}
-                onChange={(val) => setFilterClass(val)}
-                placeholder="All Classes"
-                options={[
-                  { value: '', label: 'All Classes' },
-                  ...STANDARDS.map((std) => ({
-                    value: std,
-                    label: STANDARD_LABELS[std] || std,
-                  }))
-                ]}
-              />
+                onChange={(e) => setFilterClass(e.target.value)}
+                className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] transition-colors cursor-pointer"
+              >
+                <option value="" className="bg-[#070914] text-white">All Classes</option>
+                {STANDARDS.map((std) => (
+                  <option key={std} value={std} className="bg-[#070914] text-white">
+                    {STANDARD_LABELS[std] || `Class ${std}`}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="flex items-end">
               <button
                 onClick={fetchStudents}
-                className="btn-sheryians w-full py-2.5 px-4 bg-emerald-400 hover:bg-emerald-300 text-black font-black font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] text-sm flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98]"
               >
                 <Filter size={16} />
                 <span>Apply Filter</span>
@@ -164,11 +166,11 @@ const AdminStudents: React.FC = () => {
           </div>
         </div>
 
-        {/* Cartoon Students Table */}
-        <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
+        {/* Students Table */}
+        <div className="bg-[#0b0e1a]/90 rounded-2xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y-2 divide-black">
-              <thead className="bg-[#86efac] border-b border-white/10 font-space font-black uppercase text-black text-xs">
+            <table className="min-w-full divide-y divide-white/[0.06]">
+              <thead className="bg-[#0f1222] border-b border-white/10 font-space font-bold uppercase text-zinc-400 text-xs">
                 <tr>
                   <th className="px-4 py-3.5 text-left">Photo</th>
                   <th className="px-4 py-3.5 text-left">Student Name</th>
@@ -179,9 +181,9 @@ const AdminStudents: React.FC = () => {
                   <th className="px-4 py-3.5 text-center">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-200 font-jakarta text-sm">
+              <tbody className="divide-y divide-white/[0.06] font-jakarta text-sm">
                 {students.map((student) => (
-                  <tr key={student._id} className="hover:bg-[#f0fdf4] transition-colors">
+                  <tr key={student._id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="px-4 py-3">
                       {student.photo ? (
                         <img
@@ -190,34 +192,34 @@ const AdminStudents: React.FC = () => {
                           className="h-10 w-10 rounded-xl object-cover border border-white/10 shadow-sm"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center text-black font-black text-sm shadow-sm">
+                        <div className="h-10 w-10 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center text-[#ffaa40] font-bold text-sm shadow-sm">
                           {student.studentName?.charAt(0)}
                         </div>
                       )}
                     </td>
-                    <td className="px-4 py-3 font-bold text-black">
+                    <td className="px-4 py-3 font-bold text-white">
                       {student.studentName}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded-md bg-[#dcfce7] border border-black font-mono font-bold text-xs text-black shadow-sm">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#ff7a45]/10 border border-[#ff7a45]/25 font-mono font-bold text-xs text-[#ffaa40]">
                         {student.registrationId}
                       </span>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded-md bg-white border border-black font-space font-bold text-xs text-black">
+                      <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 font-space font-medium text-xs text-zinc-300">
                         Class {student.standard}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-neutral-600 hidden md:table-cell text-xs font-medium">
+                    <td className="px-4 py-3 text-zinc-400 hidden md:table-cell text-xs font-medium">
                       {student.email}
                     </td>
-                    <td className="px-4 py-3 text-neutral-600 font-mono hidden md:table-cell text-xs">
+                    <td className="px-4 py-3 text-zinc-400 font-mono hidden md:table-cell text-xs">
                       {student.phoneNumber}
                     </td>
                     <td className="px-4 py-3 text-center">
                       <button
                         onClick={() => handleDelete(student._id)}
-                        className="btn-sheryians px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-lg border border-black text-xs font-black font-outfit shadow-sm inline-flex items-center gap-1"
+                        className="px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 rounded-lg border border-rose-500/20 text-xs font-outfit font-medium transition-colors inline-flex items-center gap-1 cursor-pointer"
                       >
                         <Trash2 size={13} />
                         <span>Delete</span>
@@ -230,10 +232,10 @@ const AdminStudents: React.FC = () => {
           </div>
 
           {students.length === 0 && (
-            <div className="text-center py-12 bg-white">
-              <Users className="w-12 h-12 text-neutral-300 mx-auto mb-2" />
-              <p className="text-black font-black text-lg font-outfit">No students found</p>
-              <p className="text-neutral-500 text-xs font-jakarta mt-0.5">Try adjusting your search query or class filter</p>
+            <div className="text-center py-16 bg-[#070914]/60">
+              <Users className="w-12 h-12 text-zinc-600 mx-auto mb-2" />
+              <p className="text-white font-bold text-base font-outfit">No students found</p>
+              <p className="text-zinc-500 text-xs font-jakarta mt-0.5">Try adjusting your search query or class filter</p>
             </div>
           )}
         </div>
@@ -250,4 +252,3 @@ const ProtectedAdminStudents = () => (
 );
 
 export default ProtectedAdminStudents;
-

@@ -110,37 +110,41 @@ function AdminNoticesPage() {
 
   return (
     <AdminLayout>
-      <div className="space-y-6">
-        {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-            <Megaphone size={14} className="text-black" />
-            <span>Official Announcements</span>
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Executive Header Banner */}
+        <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <Megaphone size={14} />
+              <span>Official Announcements</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
+              Notice Board
+            </h1>
+            <p className="text-zinc-400 font-jakarta font-medium text-xs sm:text-sm mt-1">
+              Broadcast institute circulars, holiday announcements, and exam schedules
+            </p>
           </div>
-          <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-            Notice Board
-          </h1>
-          <p className="text-black/80 font-jakarta font-semibold mt-1">
-            Broadcast institute circulars, holiday announcements, and exam schedules
-          </p>
         </div>
 
         {/* Post Notice Card */}
-        <div className="bg-[#f0fdf4] rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-6 md:p-8">
+        <div className="bg-[#0c0f1c] rounded-3xl border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] p-6 md:p-8 text-white">
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-            <div className="w-10 h-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-              <Sparkles size={20} className="text-black" />
+            <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40] shadow-sm">
+              <Sparkles size={20} />
             </div>
             <div>
-              <h2 className="text-2xl font-outfit font-black text-black">Post a New Notice</h2>
-              <p className="text-xs font-space font-bold uppercase text-black/60">Broadcast to all or target classes</p>
+              <h2 className="text-xl sm:text-2xl font-black font-outfit text-white">Post a New Notice</h2>
+              <p className="text-xs font-space font-bold uppercase text-zinc-400">Broadcast to all or target classes</p>
             </div>
           </div>
 
           <form onSubmit={handlePost} className="space-y-4" encType="multipart/form-data">
             <div>
-              <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                Notice Title <span className="text-rose-600">*</span>
+              <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                Notice Title <span className="text-[#ff7a45]">*</span>
               </label>
               <input
                 type="text"
@@ -148,21 +152,21 @@ function AdminNoticesPage() {
                 value={form.title}
                 onChange={handleChange}
                 placeholder="e.g., Mid-Term Examination Schedule Announcement"
-                className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400 text-sm"
+                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                Notice Message <span className="text-rose-600">*</span>
+              <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                Notice Message <span className="text-[#ff7a45]">*</span>
               </label>
               <textarea
                 name="message"
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Write full announcement details, instructions, or exam timings..."
-                className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400 text-sm"
+                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
                 rows={4}
                 required
               />
@@ -170,7 +174,7 @@ function AdminNoticesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+                <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
                   Attachment Document (Optional)
                 </label>
                 <input
@@ -178,12 +182,12 @@ function AdminNoticesPage() {
                   name="document"
                   accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-2 file:border-black file:text-xs file:font-outfit file:font-black file:bg-[#fef08a] file:cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.3)] text-sm"
+                  className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border file:border-white/10 file:text-xs file:font-outfit file:font-bold file:bg-[#ff7a45]/20 file:text-[#ffaa40] file:cursor-pointer text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
+                <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
                   Target Class / Standard
                 </label>
                 <CartoonDropdown
@@ -204,9 +208,9 @@ function AdminNoticesPage() {
               <button
                 type="submit"
                 disabled={posting}
-                className="bg-[#86efac] text-black border border-white/10 px-6 py-3 rounded-xl font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                className="bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-6 py-3 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
               >
-                <Send size={18} />
+                <Send size={16} />
                 <span>{posting ? 'Broadcasting Notice...' : 'Broadcast Notice'}</span>
               </button>
             </div>
@@ -216,7 +220,7 @@ function AdminNoticesPage() {
         {/* Notice Board Feed */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-outfit font-black text-black">Active Notices Feed ({notices.length})</h3>
+            <h3 className="text-xl font-outfit font-bold text-white">Active Notices Feed ({notices.length})</h3>
           </div>
 
           {loading ? (
@@ -224,10 +228,10 @@ function AdminNoticesPage() {
               <Loader size="lg" text="Loading Notices..." subtitle="Syncing official announcements" />
             </div>
           ) : notices.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
-              <Megaphone size={40} className="text-black/30 mx-auto mb-2" />
-              <p className="font-outfit font-black text-xl text-black">No notices published yet</p>
-              <p className="text-sm font-jakarta font-medium text-black/60 mt-1">
+            <div className="text-center py-12 bg-[#0b0e1a]/90 rounded-2xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] p-8">
+              <Megaphone size={40} className="text-zinc-600 mx-auto mb-2" />
+              <p className="font-outfit font-bold text-xl text-white">No notices published yet</p>
+              <p className="text-sm font-jakarta font-medium text-zinc-400 mt-1">
                 Use the form above to publish your first institute notice.
               </p>
             </div>
@@ -235,43 +239,43 @@ function AdminNoticesPage() {
             notices.map(notice => (
               <div 
                 key={notice._id} 
-                className="bg-white rounded-3xl p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all"
+                className="bg-[#0b0e1a]/90 rounded-2xl p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:border-white/20 transition-all text-white"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10 mb-3">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <div className="flex items-center gap-1.5 bg-[#dcfce7] border border-white/10 px-3 py-1 rounded-full text-xs font-space font-black uppercase shadow-sm">
-                      <User size={12} className="text-black" />
+                    <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs font-space font-medium uppercase text-zinc-300">
+                      <User size={12} className="text-[#ffaa40]" />
                       <span>{notice.postedBy}</span>
                     </div>
-                    <span className="bg-[#fef08a] border border-white/10 px-3 py-1 rounded-full text-xs font-space font-black uppercase text-black shadow-sm inline-flex items-center gap-1">
-                      <Megaphone size={12} className="text-black" />
+                    <span className="bg-[#ff7a45]/15 border border-[#ff7a45]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase text-[#ffaa40] inline-flex items-center gap-1">
+                      <Megaphone size={12} />
                       <span>{notice.class === 'All' ? 'All Classes' : `Class ${notice.class}`}</span>
                     </span>
-                    <span className="text-xs font-mono font-bold text-black/60 ml-1">
+                    <span className="text-xs font-mono font-medium text-zinc-400 ml-1">
                       {new Date(notice.createdAt).toLocaleString()}
                     </span>
                   </div>
                   <button
                     onClick={() => handleDelete(notice._id)}
-                    className="self-end sm:self-auto p-2 bg-rose-100 text-rose-700 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+                    className="self-end sm:self-auto p-2 bg-rose-500/15 text-rose-400 border border-rose-500/30 rounded-xl hover:bg-rose-500/25 transition-colors cursor-pointer"
                     title="Delete Notice"
                   >
                     <Trash2 size={16} />
                   </button>
                 </div>
 
-                <h3 className="text-2xl font-outfit font-black text-black mb-2">{notice.title}</h3>
-                <p className="text-black/80 font-jakarta font-medium text-sm whitespace-pre-line leading-relaxed">
+                <h3 className="text-xl sm:text-2xl font-outfit font-bold text-white mb-2">{notice.title}</h3>
+                <p className="text-zinc-300 font-jakarta font-medium text-sm whitespace-pre-line leading-relaxed">
                   {notice.message}
                 </p>
 
                 {notice.documentUrl && (
-                  <div className="mt-4 pt-3 border-t-2 border-dashed border-black/20">
+                  <div className="mt-4 pt-3 border-t border-white/10">
                     <a
                       href={notice.documentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-[#86efac] text-black border border-white/10 rounded-xl font-outfit font-black text-xs shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 rounded-xl font-outfit font-bold text-xs shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer"
                     >
                       <FileText size={14} />
                       <span>{notice.documentName || 'Download Attachment Document'}</span>

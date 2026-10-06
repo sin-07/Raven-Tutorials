@@ -1,32 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  Search, 
-  Filter,
-  CheckCircle,
-  XCircle,
-  Clock,
-  Eye,
-  X,
-  Mail,
-  Phone,
-  GraduationCap,
-  Briefcase,
-  BookOpen,
-  UserCheck
-} from 'lucide-react';
-import toast from 'react-hot-toast';
+import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/Layout';
-import Loader from '@/components/Loader';
-import { CartoonDropdown } from '@/components/ui/CartoonDropdown';
-import useBodyScrollLock from '@/hooks/useBodyScrollLock';
-
-/**
- * Admin Teacher Applications Page
- * --------------------------------
- * Manage teacher applications: view, approve, reject with cartoonish interface
- */
+import toast from 'react-hot-toast';
+import { 
+  UserCheck, Search, Filter, CheckCircle, XCircle, 
+  Mail, Phone, GraduationCap, Briefcase, BookOpen, 
+  Clock, Eye, X, Sparkles 
+} from 'lucide-react';
+import { Loader } from '@/components';
 
 interface TeacherApplication {
   _id: string;
@@ -36,105 +18,101 @@ interface TeacherApplication {
   qualification: string;
   experience: string;
   subjects: string[];
+  resumeUrl?: string;
   status: 'pending' | 'approved' | 'rejected';
   adminNotes?: string;
-  reviewedBy?: string;
-  reviewedAt?: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 export default function TeacherApplicationsPage() {
   const [applications, setApplications] = useState<TeacherApplication[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
   const [selectedApplication, setSelectedApplication] = useState<TeacherApplication | null>(null);
-
-  // Freeze background when detail modal is open
-  useBodyScrollLock(!!selectedApplication);
-
   const [adminNotes, setAdminNotes] = useState('');
   const [updating, setUpdating] = useState(false);
 
-  const fetchApplications = useCallback(async () => {
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+
+  const fetchApplications = async () => {
     try {
       setLoading(true);
-      const statusParam = filter !== 'all' ? `?status=${filter}` : '';
-      const response = await fetch(`/api/admin/teacher-applications${statusParam}`);
-      const data = await response.json();
-      
+      const res = await fetch('/api/teacher-application');
+      const data = await res.json();
       if (data.success) {
-        setApplications(data.applications);
+        setApplications(data.data);
       } else {
-        toast.error(data.message || 'Failed to fetch applications');
+        toast.error('Failed to load teacher applications');
       }
     } catch (error) {
-      console.error('Error fetching applications:', error);
-      toast.error('Failed to fetch applications');
+      console.error('Error fetching teacher applications:', error);
+      toast.error('Network error loading applications');
     } finally {
       setLoading(false);
     }
-  }, [filter]);
+  };
 
-  useEffect(() => {
-    fetchApplications();
-  }, [fetchApplications]);
-
-  const handleStatusUpdate = async (applicationId: string, status: 'approved' | 'rejected') => {
-    setUpdating(true);
+  const handleStatusUpdate = async (id: string, newStatus: 'approved' | 'rejected') => {
     try {
-      const response = await fetch('/api/admin/teacher-applications', {
+      setUpdating(true);
+      const res = await fetch(`/api/teacher-application/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          applicationId,
-          status,
-          adminNotes,
-        }),
+        body: JSON.stringify({ status: newStatus, adminNotes }),
       });
 
-      const data = await response.json();
-
+      const data = await res.json();
       if (data.success) {
-        toast.success(`Application ${status} successfully`);
+        toast.success(`Application marked as ${newStatus}`);
+        setApplications(prev =>
+          prev.map(app => (app._id === id ? { ...app, status: newStatus, adminNotes } : app))
+        );
         setSelectedApplication(null);
-        setAdminNotes('');
-        fetchApplications();
       } else {
-        toast.error(data.message || 'Failed to update application');
+        toast.error(data.message || 'Failed to update status');
       }
     } catch (error) {
-      console.error('Error updating application:', error);
-      toast.error('Failed to update application');
+      console.error('Error updating status:', error);
+      toast.error('Network error');
     } finally {
       setUpdating(false);
     }
   };
 
-  const filteredApplications = applications.filter(app =>
-    app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    app.phone.includes(searchTerm)
-  );
+  const filteredApplications = applications.filter(app => {
+    const matchesFilter = filter === 'all' || app.status === filter;
+    const matchesSearch =
+      app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.phone.includes(searchTerm);
+    return matchesFilter && matchesSearch;
+  });
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'approved':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#86efac] text-emerald-950 border border-white/10 shadow-sm">
-            <CheckCircle size={12} /> Approved
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-extrabold uppercase bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+            <CheckCircle size={12} />
+            <span>Approved</span>
           </span>
         );
       case 'rejected':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-rose-200 text-rose-900 border border-white/10 shadow-sm">
-            <XCircle size={12} /> Rejected
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-extrabold uppercase bg-rose-500/15 text-rose-400 border border-rose-500/30">
+            <XCircle size={12} />
+            <span>Rejected</span>
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-black uppercase bg-[#fef08a] text-amber-950 border border-white/10 shadow-sm">
-            <Clock size={12} /> Pending
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-space font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            <Clock size={12} />
+            <span>Pending</span>
           </span>
         );
     }
@@ -142,79 +120,82 @@ export default function TeacherApplicationsPage() {
 
   return (
     <AdminLayout>
-      <div className="space-y-6">
-        {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-            <UserCheck size={14} className="text-black" />
-            <span>Faculty Recruitment</span>
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Executive Header Banner */}
+        <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <UserCheck size={14} className="text-[#ff7a45]" />
+                <span>Faculty Recruitment</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
+                Teacher <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Applications</span>
+              </h1>
+              <p className="text-zinc-400 font-jakarta text-xs sm:text-sm mt-1 max-w-xl">
+                Review applicant qualifications, teaching credentials, and approve new educators for Raven Tutorials.
+              </p>
+            </div>
           </div>
-          <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-            Teacher Applications
-          </h1>
-          <p className="text-black/80 font-jakarta font-semibold mt-1">
-            Review applicant qualifications, teaching credentials, and approve new educators
-          </p>
         </div>
 
-        {/* Stats Cards */}
+        {/* 4 Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          <div className="bg-white rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-            <p className="text-xs font-space font-black uppercase text-black/60">Total Applicants</p>
-            <p className="text-3xl font-outfit font-black text-black mt-1">{applications.length}</p>
+          <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+            <p className="text-xs font-space font-bold uppercase text-zinc-400">Total Applicants</p>
+            <p className="text-3xl font-outfit font-black text-white mt-1">{applications.length}</p>
           </div>
-          <div className="bg-[#fef08a] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-            <p className="text-xs font-space font-black uppercase text-black/70">Pending Review</p>
-            <p className="text-3xl font-outfit font-black text-black mt-1">
+          <div className="bg-[#1c1614] rounded-2xl p-5 border border-amber-500/20 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+            <p className="text-xs font-space font-bold uppercase text-amber-400">Pending Review</p>
+            <p className="text-3xl font-outfit font-black text-amber-300 mt-1">
               {applications.filter(a => a.status === 'pending').length}
             </p>
           </div>
-          <div className="bg-[#86efac] rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-            <p className="text-xs font-space font-black uppercase text-black/70">Approved</p>
-            <p className="text-3xl font-outfit font-black text-black mt-1">
+          <div className="bg-[#0e1a18] rounded-2xl p-5 border border-emerald-500/20 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+            <p className="text-xs font-space font-bold uppercase text-emerald-400">Approved</p>
+            <p className="text-3xl font-outfit font-black text-emerald-300 mt-1">
               {applications.filter(a => a.status === 'approved').length}
             </p>
           </div>
-          <div className="bg-rose-200 rounded-2xl p-5 border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
-            <p className="text-xs font-space font-black uppercase text-black/70">Rejected</p>
-            <p className="text-3xl font-outfit font-black text-black mt-1">
+          <div className="bg-[#1c0f14] rounded-2xl p-5 border border-rose-500/20 shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
+            <p className="text-xs font-space font-bold uppercase text-rose-400">Rejected</p>
+            <p className="text-3xl font-outfit font-black text-rose-300 mt-1">
               {applications.filter(a => a.status === 'rejected').length}
             </p>
           </div>
         </div>
 
         {/* Search & Filter Card */}
-        <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
+        <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-black/50" size={18} />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
               <input
                 type="text"
                 placeholder="Search by teacher name, email or contact number..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#f0fdf4] border border-white/10 rounded-xl text-black font-jakarta font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta font-medium text-sm focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 transition-colors"
               />
             </div>
 
-            {/* Status Filter */}
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shrink-0">
-                <Filter size={18} className="text-black" />
+              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-zinc-400">
+                <Filter size={18} />
               </div>
-              <CartoonDropdown
-                size="sm"
+              <select
                 value={filter}
-                onChange={(val) => setFilter(val as typeof filter)}
-                className="min-w-[160px]"
-                options={[
-                  { value: 'all', label: 'All Applications' },
-                  { value: 'pending', label: 'Pending' },
-                  { value: 'approved', label: 'Approved' },
-                  { value: 'rejected', label: 'Rejected' },
-                ]}
-              />
+                onChange={(e) => setFilter(e.target.value as typeof filter)}
+                className="px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] cursor-pointer"
+              >
+                <option value="all">All Applications</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
             </div>
           </div>
         </div>
@@ -225,57 +206,57 @@ export default function TeacherApplicationsPage() {
             <Loader size="lg" text="Loading Applications..." subtitle="Retrieving faculty candidate submissions" />
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] p-8">
-            <UserCheck className="w-12 h-12 text-black/30 mx-auto mb-3" />
-            <p className="font-outfit font-black text-xl text-black">No applications found</p>
-            <p className="text-sm font-jakarta font-medium text-black/60 mt-1">Try switching filters or search terms.</p>
+          <div className="text-center py-16 bg-[#070914]/60 rounded-2xl border border-white/10 p-8">
+            <UserCheck className="w-12 h-12 text-zinc-600 mx-auto mb-3" />
+            <p className="font-outfit font-black text-xl text-white">No applications found</p>
+            <p className="text-sm font-jakarta font-medium text-zinc-400 mt-1">Try switching filters or search terms.</p>
           </div>
         ) : (
-          <div className="bg-white rounded-3xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
+          <div className="bg-[#0b0e1a]/90 rounded-2xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-[#86efac] border-b border-white/10">
+                <thead className="bg-[#0f1222] border-b border-white/10">
                   <tr>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Teacher Name</th>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Contact Details</th>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Qualification</th>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Subjects</th>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Status</th>
-                    <th className="px-5 py-4 text-left text-xs font-space font-black uppercase text-black">Applied Date</th>
-                    <th className="px-5 py-4 text-center text-xs font-space font-black uppercase text-black">Review</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Teacher Name</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Contact Details</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Qualification</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Subjects</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Status</th>
+                    <th className="px-5 py-4 text-left text-xs font-space font-bold uppercase text-zinc-400">Applied Date</th>
+                    <th className="px-5 py-4 text-center text-xs font-space font-bold uppercase text-zinc-400">Review</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y-2 divide-black">
+                <tbody className="divide-y divide-white/[0.06]">
                   {filteredApplications.map((app) => (
-                    <tr key={app._id} className="hover:bg-[#f0fdf4] transition-colors">
+                    <tr key={app._id} className="hover:bg-white/[0.02] transition-colors">
                       <td className="px-5 py-4">
-                        <p className="font-outfit font-black text-black text-base">{app.name}</p>
+                        <p className="font-outfit font-bold text-white text-base">{app.name}</p>
                       </td>
                       <td className="px-5 py-4">
-                        <p className="font-mono font-bold text-black text-xs">{app.email}</p>
-                        <p className="font-mono font-medium text-black/60 text-xs mt-0.5">{app.phone}</p>
+                        <p className="font-mono text-zinc-300 text-xs">{app.email}</p>
+                        <p className="font-mono text-zinc-500 text-xs mt-0.5">{app.phone}</p>
                       </td>
                       <td className="px-5 py-4">
-                        <p className="font-jakarta font-bold text-black text-sm">{app.qualification}</p>
-                        <p className="font-mono font-medium text-black/60 text-xs mt-0.5">{app.experience}</p>
+                        <p className="font-jakarta font-medium text-zinc-200 text-sm">{app.qualification}</p>
+                        <p className="font-mono text-zinc-500 text-xs mt-0.5">{app.experience}</p>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex flex-wrap gap-1 max-w-[220px]">
                           {app.subjects.slice(0, 3).map((subject, i) => (
-                            <span key={i} className="px-2 py-0.5 bg-[#dcfce7] text-black font-space font-bold text-[10px] rounded border border-black uppercase">
+                            <span key={i} className="px-2 py-0.5 bg-white/5 text-zinc-300 font-space font-medium text-[10px] rounded border border-white/10 uppercase">
                               {subject}
                             </span>
                           ))}
                           {app.subjects.length > 3 && (
-                            <span className="text-black/60 font-mono font-bold text-xs self-center">+{app.subjects.length - 3}</span>
+                            <span className="text-zinc-500 font-mono text-xs self-center">+{app.subjects.length - 3}</span>
                           )}
                         </div>
                       </td>
                       <td className="px-5 py-4">
                         {getStatusBadge(app.status)}
                       </td>
-                      <td className="px-5 py-4 font-mono font-bold text-black/70 text-xs">
-                        {new Date(app.createdAt).toLocaleDateString('en-IN')}
+                      <td className="px-5 py-4 font-mono text-zinc-400 text-xs">
+                        {new Date(app.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </td>
                       <td className="px-5 py-4 text-center">
                         <button
@@ -283,7 +264,7 @@ export default function TeacherApplicationsPage() {
                             setSelectedApplication(app);
                             setAdminNotes(app.adminNotes || '');
                           }}
-                          className="p-2.5 bg-[#fef08a] text-black border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="p-2.5 bg-white/5 hover:bg-[#e8602e] text-zinc-300 hover:text-white border border-white/10 hover:border-transparent rounded-xl transition-all cursor-pointer"
                           title="View Application Details"
                         >
                           <Eye size={16} />
@@ -299,115 +280,104 @@ export default function TeacherApplicationsPage() {
 
         {/* Detail Modal */}
         {selectedApplication && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 overscroll-contain">
-            <div className="bg-[#f0fdf4] rounded-3xl border border-white/10 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain my-auto">
-              <div className="sticky top-0 bg-[#86efac] p-5 border-b border-white/10 flex justify-between items-center">
-                <h2 className="text-xl font-outfit font-black text-black">Application Details</h2>
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[100] p-4 overscroll-contain">
+            <div className="bg-[#0c0f1c] rounded-3xl border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain my-auto text-white">
+              <div className="sticky top-0 bg-[#0e1224] p-5 border-b border-white/10 flex justify-between items-center z-10">
+                <h2 className="text-xl font-outfit font-black text-white">Application Details</h2>
                 <button
                   onClick={() => setSelectedApplication(null)}
-                  className="w-8 h-8 rounded-full bg-white border border-white/10 flex items-center justify-center font-bold hover:bg-neutral-100 cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-white/10 cursor-pointer"
                 >
                   <X size={18} />
                 </button>
               </div>
 
               <div className="p-6 space-y-4">
-                {/* Status Badge */}
                 <div className="flex justify-center">
                   {getStatusBadge(selectedApplication.status)}
                 </div>
 
-                {/* Name */}
-                <div className="flex items-center gap-3 bg-white border border-white/10 rounded-2xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                  <div className="w-12 h-12 bg-[#86efac] border border-white/10 rounded-2xl flex items-center justify-center shadow-sm">
-                    <span className="text-xl font-outfit font-black text-black">
-                      {selectedApplication.name.charAt(0)}
-                    </span>
+                <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
+                  <div className="w-12 h-12 bg-[#ff7a45]/15 border border-[#ff7a45]/30 rounded-2xl flex items-center justify-center text-[#ffaa40] font-black text-xl">
+                    {selectedApplication.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-black font-outfit font-black text-xl">{selectedApplication.name}</p>
-                    <p className="text-black/60 font-space font-bold text-xs uppercase">Teacher Candidate</p>
+                    <p className="text-white font-outfit font-bold text-xl">{selectedApplication.name}</p>
+                    <p className="text-zinc-400 font-space text-xs uppercase">Teacher Candidate</p>
                   </div>
                 </div>
 
-                {/* Contact */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2 bg-white border border-white/10 rounded-xl p-3 shadow-sm">
-                    <Mail size={16} className="text-black shrink-0" />
-                    <span className="text-black font-mono font-bold text-xs truncate">{selectedApplication.email}</span>
+                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-3">
+                    <Mail size={16} className="text-[#ff7a45] shrink-0" />
+                    <span className="text-zinc-200 font-mono text-xs truncate">{selectedApplication.email}</span>
                   </div>
-                  <div className="flex items-center gap-2 bg-white border border-white/10 rounded-xl p-3 shadow-sm">
-                    <Phone size={16} className="text-black shrink-0" />
-                    <span className="text-black font-mono font-bold text-xs">{selectedApplication.phone}</span>
+                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-3">
+                    <Phone size={16} className="text-[#ff7a45] shrink-0" />
+                    <span className="text-zinc-200 font-mono text-xs">{selectedApplication.phone}</span>
                   </div>
                 </div>
 
-                {/* Qualification */}
-                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm flex items-start gap-3">
-                  <GraduationCap size={18} className="text-black mt-0.5 shrink-0" />
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
+                  <GraduationCap size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.qualification}</p>
-                    <p className="text-black/60 text-xs font-space font-bold uppercase">Qualification</p>
+                    <p className="text-white font-jakarta font-medium text-sm">{selectedApplication.qualification}</p>
+                    <p className="text-zinc-500 text-xs font-space uppercase">Qualification</p>
                   </div>
                 </div>
 
-                {/* Experience */}
-                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm flex items-start gap-3">
-                  <Briefcase size={18} className="text-black mt-0.5 shrink-0" />
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
+                  <Briefcase size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.experience}</p>
-                    <p className="text-black/60 text-xs font-space font-bold uppercase">Experience</p>
+                    <p className="text-white font-jakarta font-medium text-sm">{selectedApplication.experience}</p>
+                    <p className="text-zinc-500 text-xs font-space uppercase">Experience</p>
                   </div>
                 </div>
 
-                {/* Subjects */}
-                <div className="bg-white border border-white/10 rounded-xl p-3.5 shadow-sm">
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3.5">
                   <div className="flex items-start gap-2">
-                    <BookOpen size={18} className="text-black mt-0.5 shrink-0" />
+                    <BookOpen size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
                     <div>
                       <div className="flex flex-wrap gap-1.5 mt-0.5">
                         {selectedApplication.subjects.map((subject, i) => (
-                          <span key={i} className="px-2.5 py-1 bg-[#dcfce7] text-black text-xs font-space font-black uppercase rounded-lg border border-black">
+                          <span key={i} className="px-2.5 py-1 bg-white/10 text-white text-xs font-space font-medium uppercase rounded-lg border border-white/10">
                             {subject}
                           </span>
                         ))}
                       </div>
-                      <p className="text-black/60 text-xs font-space font-bold uppercase mt-2">Subjects Eligible To Teach</p>
+                      <p className="text-zinc-500 text-xs font-space uppercase mt-2">Subjects Eligible To Teach</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Admin Notes */}
                 {selectedApplication.status === 'pending' && (
                   <div>
-                    <label className="block text-black text-xs font-space font-black uppercase mb-1.5">
+                    <label className="block text-zinc-300 text-xs font-space font-bold uppercase mb-1.5">
                       Admin Evaluation Notes (Optional)
                     </label>
                     <textarea
                       value={adminNotes}
                       onChange={(e) => setAdminNotes(e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl text-black font-jakarta font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)] placeholder-neutral-400"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500"
                       placeholder="Add any internal assessment or interview remarks..."
                     />
                   </div>
                 )}
 
-                {/* Show existing notes if already reviewed */}
                 {selectedApplication.adminNotes && selectedApplication.status !== 'pending' && (
-                  <div className="p-3.5 bg-[#86efac] border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                    <p className="text-black/70 text-xs font-space font-black uppercase mb-1">Admin Notes:</p>
-                    <p className="text-black font-jakarta font-bold text-sm">{selectedApplication.adminNotes}</p>
+                  <div className="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+                    <p className="text-zinc-400 text-xs font-space uppercase mb-1">Admin Notes:</p>
+                    <p className="text-zinc-200 font-jakarta text-sm">{selectedApplication.adminNotes}</p>
                   </div>
                 )}
 
-                {/* Action Buttons */}
                 {selectedApplication.status === 'pending' && (
                   <div className="flex gap-3 pt-2">
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'approved')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-[#86efac] hover:bg-[#4ade80] text-black font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
+                      className="flex-1 py-3 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-outfit font-bold text-sm rounded-xl border border-emerald-500/30 flex items-center justify-center gap-2 cursor-pointer transition-colors"
                     >
                       <CheckCircle size={18} />
                       Approve Educator
@@ -415,7 +385,7 @@ export default function TeacherApplicationsPage() {
                     <button
                       onClick={() => handleStatusUpdate(selectedApplication._id, 'rejected')}
                       disabled={updating}
-                      className="flex-1 py-3 bg-rose-200 hover:bg-rose-300 text-rose-950 font-outfit font-black text-base rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 cursor-pointer"
+                      className="flex-1 py-3 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-outfit font-bold text-sm rounded-xl border border-rose-500/30 flex items-center justify-center gap-2 cursor-pointer transition-colors"
                     >
                       <XCircle size={18} />
                       Reject

@@ -246,16 +246,16 @@ const AdminLiveClasses: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const config: Record<string, { bg: string; text: string; label: string }> = {
-      Scheduled: { bg: 'bg-[#bfdbfe]', text: 'text-blue-900', label: 'Scheduled' },
-      Live: { bg: 'bg-rose-500 text-white animate-pulse', text: 'text-white', label: 'Live Now' },
-      Completed: { bg: 'bg-neutral-200', text: 'text-neutral-800', label: 'Completed' },
-      Cancelled: { bg: 'bg-rose-200', text: 'text-rose-900', label: 'Cancelled' }
+      Scheduled: { bg: 'bg-amber-500/15 border border-amber-500/30', text: 'text-amber-300', label: 'Scheduled' },
+      Live: { bg: 'bg-rose-500/20 border border-rose-500/40 animate-pulse', text: 'text-rose-400', label: 'Live Now' },
+      Completed: { bg: 'bg-emerald-500/15 border border-emerald-500/30', text: 'text-emerald-400', label: 'Completed' },
+      Cancelled: { bg: 'bg-white/5 border border-white/10', text: 'text-zinc-400', label: 'Cancelled' }
     };
 
-    const current = config[status] || { bg: 'bg-neutral-200', text: 'text-black', label: status };
+    const current = config[status] || { bg: 'bg-white/5 border border-white/10', text: 'text-zinc-300', label: status };
 
     return (
-      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-space font-black uppercase border border-white/10 shadow-sm ${current.bg} ${current.text}`}>
+      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-space font-bold uppercase shadow-sm ${current.bg} ${current.text}`}>
         {current.label}
       </span>
     );
@@ -265,41 +265,45 @@ const AdminLiveClasses: React.FC = () => {
 
   return (
     <AdminLayout>
-      <div className="space-y-6">
-        {/* Cartoon Header Banner */}
-        <div className="bg-[#86efac] border border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-white/10 text-xs font-space font-black uppercase mb-2 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-              <Radio size={14} className="text-black animate-pulse" />
-              <span>Broadcast Center</span>
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Executive Header Banner */}
+        <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <Radio size={14} className="animate-pulse" />
+                <span>Broadcast Center</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
+                Live Classes
+              </h1>
+              <p className="text-zinc-400 font-jakarta font-medium text-xs sm:text-sm mt-1">
+                Host and manage real-time online classes powered by Jitsi Meet
+              </p>
             </div>
-            <h1 className="text-3xl md:text-4xl font-outfit font-black text-black tracking-tight">
-              Live Classes
-            </h1>
-            <p className="text-black/80 font-jakarta font-semibold mt-1">
-              Host and manage real-time online classes powered by Jitsi Meet
-            </p>
+            <button
+              onClick={() => { resetForm(); setShowModal(true); }}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm transition-all cursor-pointer"
+            >
+              <Plus className="w-5 h-5" />
+              <span>Schedule Live Class</span>
+            </button>
           </div>
-          <button
-            onClick={() => { resetForm(); setShowModal(true); }}
-            className="inline-flex items-center justify-center gap-2 bg-[#fef08a] text-black border border-white/10 px-6 py-3 rounded-2xl font-outfit font-black text-base shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
-          >
-            <Plus className="w-5 h-5" />
-            Schedule Live Class
-          </button>
         </div>
 
         {/* Filter Controls Card */}
-        <div className="bg-white rounded-3xl p-5 border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.6)]">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-[#86efac] border border-white/10 flex items-center justify-center">
-              <Filter className="w-4 h-4 text-black" />
+        <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
+          <div className="flex items-center gap-2.5 mb-3">
+            <div className="w-8 h-8 rounded-lg bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40]">
+              <Filter className="w-4 h-4" />
             </div>
-            <h3 className="font-outfit font-black text-lg text-black">Filter Classes</h3>
+            <h3 className="font-outfit font-bold text-lg text-white">Filter Classes</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-space font-black uppercase text-black mb-1">Class Status</label>
+              <label className="block text-xs font-bold uppercase font-space text-zinc-400 mb-1">Class Status</label>
               <CartoonDropdown
                 value={filterStatus}
                 onChange={(val) => setFilterStatus(val)}
@@ -314,7 +318,7 @@ const AdminLiveClasses: React.FC = () => {
               />
             </div>
             <div>
-              <label className="block text-xs font-space font-black uppercase text-black mb-1">Standard / Grade</label>
+              <label className="block text-xs font-bold uppercase font-space text-zinc-400 mb-1">Standard / Grade</label>
               <CartoonDropdown
                 value={filterClass}
                 onChange={(val) => setFilterClass(val)}
@@ -332,10 +336,10 @@ const AdminLiveClasses: React.FC = () => {
         {/* Live Classes Grid */}
         <div className="grid gap-5">
           {liveClasses.length === 0 ? (
-            <div className="bg-white rounded-3xl p-12 text-center border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
-              <Video className="w-16 h-16 text-black/30 mx-auto mb-3" />
-              <p className="font-outfit font-black text-xl text-black">No live classes found</p>
-              <p className="text-sm font-jakarta font-medium text-black/60 mt-1">
+            <div className="bg-[#0b0e1a]/90 rounded-2xl p-12 text-center border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
+              <Video className="w-16 h-16 text-zinc-600 mx-auto mb-3" />
+              <p className="font-outfit font-bold text-xl text-white">No live classes found</p>
+              <p className="text-sm font-jakarta font-medium text-zinc-400 mt-1">
                 Schedule a class to start teaching in real-time with high quality video.
               </p>
             </div>
@@ -343,46 +347,46 @@ const AdminLiveClasses: React.FC = () => {
             liveClasses.map(liveClass => (
               <div 
                 key={liveClass._id} 
-                className="bg-[#f0fdf4] rounded-3xl p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all"
+                className="bg-[#0b0e1a]/90 rounded-2xl p-6 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:border-white/20 transition-all text-white"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <h3 className="text-2xl font-outfit font-black text-black">{liveClass.title}</h3>
+                      <h3 className="text-xl sm:text-2xl font-outfit font-bold text-white">{liveClass.title}</h3>
                       {getStatusBadge(liveClass.status)}
                     </div>
                     {liveClass.description && (
-                      <p className="text-black/75 font-jakarta font-medium text-sm mb-4">{liveClass.description}</p>
+                      <p className="text-zinc-300 font-jakarta font-medium text-sm mb-4">{liveClass.description}</p>
                     )}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-                      <div className="flex items-center gap-2 bg-white border border-white/10 px-3 py-2 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                        <Calendar className="w-4 h-4 text-black shrink-0" />
-                        <span className="font-mono font-bold text-black text-xs">
+                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
+                        <Calendar className="w-4 h-4 text-[#ffaa40] shrink-0" />
+                        <span className="font-mono font-medium text-zinc-200 text-xs">
                           {new Date(liveClass.scheduledDate).toLocaleDateString('en-GB')}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 bg-white border border-white/10 px-3 py-2 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                        <Clock className="w-4 h-4 text-black shrink-0" />
-                        <span className="font-mono font-bold text-black text-xs">
+                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
+                        <Clock className="w-4 h-4 text-[#ffaa40] shrink-0" />
+                        <span className="font-mono font-medium text-zinc-200 text-xs">
                           {liveClass.startTime} - {liveClass.endTime}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 bg-white border border-white/10 px-3 py-2 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                        <Users className="w-4 h-4 text-black shrink-0" />
-                        <span className="font-jakarta font-bold text-black text-xs">
+                      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
+                        <Users className="w-4 h-4 text-[#ffaa40] shrink-0" />
+                        <span className="font-jakarta font-medium text-zinc-200 text-xs">
                           {liveClass.participants?.length || 0} enrolled
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 bg-[#dcfce7] border border-white/10 px-3 py-2 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                        <span className="font-space font-black uppercase text-xs text-black truncate">
+                      <div className="flex items-center gap-2 bg-[#ff7a45]/15 border border-[#ff7a45]/30 px-3 py-2 rounded-xl">
+                        <span className="font-space font-bold uppercase text-xs text-[#ffaa40] truncate">
                           {liveClass.subject}
                         </span>
                       </div>
                     </div>
-                    <div className="mt-3 flex items-center gap-3 text-xs font-mono font-bold text-black/70">
-                      <span>Standard: <strong className="text-black">{liveClass.class}</strong></span>
+                    <div className="mt-3 flex items-center gap-3 text-xs font-mono font-medium text-zinc-400">
+                      <span>Standard: <strong className="text-white">{liveClass.class}</strong></span>
                       <span>•</span>
-                      <span>Duration: <strong className="text-black">{liveClass.duration} mins</strong></span>
+                      <span>Duration: <strong className="text-white">{liveClass.duration} mins</strong></span>
                     </div>
                   </div>
 
@@ -391,15 +395,15 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleStartClass(liveClass.classId)}
-                          className="inline-flex items-center gap-1.5 bg-[#86efac] text-black border border-white/10 px-3.5 py-2 rounded-xl font-outfit font-black text-sm shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-3.5 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer"
                           title="Start Live Class"
                         >
-                          <Play className="w-4 h-4 fill-black" />
+                          <Play className="w-4 h-4 fill-white" />
                           <span>Start</span>
                         </button>
                         <button
                           onClick={() => handleEdit(liveClass)}
-                          className="inline-flex items-center justify-center p-2 bg-[#fef08a] text-black border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-[#fde047] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="inline-flex items-center justify-center p-2 bg-white/5 text-zinc-300 hover:text-white border border-white/10 rounded-xl hover:bg-white/10 transition-colors cursor-pointer"
                           title="Edit Class"
                         >
                           <Edit className="w-4 h-4" />
@@ -410,14 +414,14 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleJoinClass(liveClass.classId)}
-                          className="inline-flex items-center gap-2 bg-[#86efac] text-black border border-white/10 px-4 py-2 rounded-xl font-outfit font-black text-sm shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-[#4ade80] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-4 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all cursor-pointer"
                         >
                           <Video className="w-4 h-4" />
                           <span>Join Classroom</span>
                         </button>
                         <button
                           onClick={() => handleEndClass(liveClass.classId)}
-                          className="inline-flex items-center justify-center p-2 bg-rose-500 text-white border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-rose-600 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                          className="inline-flex items-center justify-center p-2 bg-rose-500/20 text-rose-300 border border-rose-500/40 rounded-xl hover:bg-rose-500/30 transition-colors cursor-pointer"
                           title="End Class Now"
                         >
                           <Square className="w-4 h-4" />
@@ -426,7 +430,7 @@ const AdminLiveClasses: React.FC = () => {
                     )}
                     <button
                       onClick={() => handleDelete(liveClass.classId)}
-                      className="inline-flex items-center justify-center p-2 bg-rose-100 text-rose-700 border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:bg-rose-200 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                      className="inline-flex items-center justify-center p-2 bg-rose-500/15 text-rose-400 border border-rose-500/30 rounded-xl hover:bg-rose-500/25 transition-colors cursor-pointer"
                       title="Delete Class"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -440,25 +444,25 @@ const AdminLiveClasses: React.FC = () => {
 
         {/* Create/Edit Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-[100] overscroll-contain">
-            <div className="bg-[#f0fdf4] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-white/10 shadow-[6px_6px_0px_#000,0_20px_50px_rgba(0,0,0,0.25)] my-auto">
+          <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 z-[100] overscroll-contain">
+            <div className="bg-[#0c0f1c] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] my-auto text-white">
               <div className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#86efac] border border-white/10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                      <Video className="w-5 h-5 text-black" />
+                    <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40] shadow-sm">
+                      <Video className="w-5 h-5" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-outfit font-black text-black">
+                      <h2 className="text-xl sm:text-2xl font-outfit font-black text-white">
                         {editingClassId ? 'Edit Live Class' : 'Schedule Live Class'}
                       </h2>
-                      <p className="text-xs font-space font-bold text-black/60 uppercase">Configure schedule & meeting options</p>
+                      <p className="text-xs font-space font-bold text-zinc-400 uppercase">Configure schedule & meeting options</p>
                     </div>
                   </div>
                   <button 
                     type="button"
                     onClick={() => { setShowModal(false); resetForm(); }}
-                    className="w-8 h-8 rounded-full bg-white border border-white/10 flex items-center justify-center font-bold hover:bg-neutral-100 cursor-pointer"
+                    className="p-2 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                   >
                     <X size={16} />
                   </button>
@@ -466,36 +470,36 @@ const AdminLiveClasses: React.FC = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                      Class Title <span className="text-rose-600">*</span>
+                    <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                      Class Title <span className="text-[#ff7a45]">*</span>
                     </label>
                     <input
                       type="text"
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
                       placeholder="e.g. Physics Wave Optics Masterclass"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-space font-black uppercase text-black mb-1.5">Description / Agenda</label>
+                    <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">Description / Agenda</label>
                     <textarea
                       name="description"
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 bg-white border border-white/10 rounded-xl font-jakarta font-medium text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
                       placeholder="Enter session summary, prerequisites, or topics to be covered..."
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                        Subject <span className="text-rose-600">*</span>
+                      <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                        Subject <span className="text-[#ff7a45]">*</span>
                       </label>
                       <CartoonDropdown
                         value={formData.subject}
@@ -509,8 +513,8 @@ const AdminLiveClasses: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                        Target Standard <span className="text-rose-600">*</span>
+                      <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                        Target Standard <span className="text-[#ff7a45]">*</span>
                       </label>
                       <CartoonDropdown
                         value={formData.class}
@@ -527,8 +531,8 @@ const AdminLiveClasses: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                        Date <span className="text-rose-600">*</span>
+                      <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                        Date <span className="text-[#ff7a45]">*</span>
                       </label>
                       <input
                         type="date"
@@ -536,51 +540,51 @@ const AdminLiveClasses: React.FC = () => {
                         value={formData.scheduledDate}
                         onChange={handleInputChange}
                         min={new Date().toISOString().split('T')[0]}
-                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                        className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-mono font-bold text-white focus:outline-none focus:border-[#ff7a45] text-sm"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                        Start Time <span className="text-rose-600">*</span>
+                      <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                        Start Time <span className="text-[#ff7a45]">*</span>
                       </label>
                       <input
                         type="time"
                         name="startTime"
                         value={formData.startTime}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                        className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-mono font-bold text-white focus:outline-none focus:border-[#ff7a45] text-sm"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-space font-black uppercase text-black mb-1.5">
-                        End Time <span className="text-rose-600">*</span>
+                      <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                        End Time <span className="text-[#ff7a45]">*</span>
                       </label>
                       <input
                         type="time"
                         name="endTime"
                         value={formData.endTime}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                        className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-mono font-bold text-white focus:outline-none focus:border-[#ff7a45] text-sm"
                         required
                       />
                     </div>
                   </div>
 
                   {Number(formData.duration) > 0 && (
-                    <div className="bg-[#86efac] border border-white/10 p-3.5 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-                      <p className="text-xs font-mono font-black text-black flex items-center gap-1.5">
-                        <Zap className="w-3.5 h-3.5 text-black inline" />
+                    <div className="bg-[#ff7a45]/15 border border-[#ff7a45]/30 p-3.5 rounded-xl shadow-sm">
+                      <p className="text-xs font-mono font-bold text-[#ffaa40] flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 inline" />
                         <span>DURATION: {formData.duration} minutes ({Math.floor(Number(formData.duration) / 60)}h {Number(formData.duration) % 60}m)</span>
                       </p>
                     </div>
                   )}
 
                   <div>
-                    <label className="block text-xs font-space font-black uppercase text-black mb-1.5">Max Participants</label>
+                    <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">Max Participants</label>
                     <input
                       type="number"
                       name="maxParticipants"
@@ -588,20 +592,20 @@ const AdminLiveClasses: React.FC = () => {
                       onChange={handleInputChange}
                       min="1"
                       max="500"
-                      className="w-full px-4 py-2.5 bg-white border border-white/10 rounded-xl font-jakarta font-bold text-black focus:outline-none focus:ring-2 focus:ring-[#86efac] shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                      className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-mono font-bold text-white focus:outline-none focus:border-[#ff7a45] text-sm"
                     />
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-white border border-white/10 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+                  <div className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-xl">
                     <input
                       type="checkbox"
                       id="isRecordingEnabled"
                       name="isRecordingEnabled"
                       checked={formData.isRecordingEnabled}
                       onChange={handleInputChange}
-                      className="w-5 h-5 accent-[#86efac] border border-white/10 rounded cursor-pointer"
+                      className="w-5 h-5 accent-[#ff7a45] border border-white/10 rounded cursor-pointer"
                     />
-                    <label htmlFor="isRecordingEnabled" className="text-sm font-jakarta font-bold text-black cursor-pointer">
+                    <label htmlFor="isRecordingEnabled" className="text-sm font-jakarta font-medium text-zinc-200 cursor-pointer">
                       Enable Cloud Recording (Optional)
                     </label>
                   </div>
@@ -609,14 +613,14 @@ const AdminLiveClasses: React.FC = () => {
                   <div className="flex gap-3 pt-3">
                     <button
                       type="submit"
-                      className="flex-1 bg-[#86efac] hover:bg-[#4ade80] text-black py-3 px-4 rounded-xl border border-white/10 font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                      className="flex-1 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white py-3 px-4 rounded-xl border border-white/10 font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all cursor-pointer"
                     >
                       {editingClassId ? 'Update Class' : 'Schedule Live Class'}
                     </button>
                     <button
                       type="button"
                       onClick={() => { setShowModal(false); resetForm(); }}
-                      className="bg-white hover:bg-neutral-100 text-black py-3 px-6 rounded-xl border border-white/10 font-outfit font-black text-base shadow-[0_8px_20px_rgba(0,0,0,0.4)] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                      className="bg-white/5 hover:bg-white/10 text-zinc-300 py-3 px-6 rounded-xl border border-white/10 font-outfit font-bold text-sm transition-colors cursor-pointer"
                     >
                       Cancel
                     </button>
