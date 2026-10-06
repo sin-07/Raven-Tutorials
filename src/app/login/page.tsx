@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
 import { ButtonLoader } from '@/components/Loader';
+import { AnimatedEyeToggle } from '@/components';
 import { animateShake } from '@/lib/gsap';
 
 const LoginPage: React.FC = () => {
@@ -203,15 +204,13 @@ const LoginPage: React.FC = () => {
                       autoComplete="current-password"
                       className="w-full pl-12 pr-12 py-3.5 bg-[#0e111a] border border-white/10 hover:border-white/20 focus:border-[#e8602e] focus:ring-2 focus:ring-[#e8602e]/30 rounded-xl text-white placeholder-zinc-500 text-sm font-jakarta font-medium shadow-inner outline-none transition-all"
                     />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors focus:outline-none cursor-pointer"
-                      tabIndex={-1}
-                      aria-label={showPassword ? 'Hide password' : 'Show password'}
-                    >
-                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
+                    <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
+                      <AnimatedEyeToggle
+                        isVisible={showPassword}
+                        onToggle={() => setShowPassword(!showPassword)}
+                        size={19}
+                      />
+                    </div>
                   </div>
                   <p className="text-[11px] text-zinc-400 leading-relaxed font-jakarta">
                     Students: Use your account password or Date of Birth (DDMMYYYY).
