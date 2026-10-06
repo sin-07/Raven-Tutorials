@@ -260,3 +260,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] feat(notes): integrate study vault resource link handlers
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
