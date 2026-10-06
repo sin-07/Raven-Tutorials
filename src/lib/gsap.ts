@@ -9,10 +9,8 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
 // Observer and Draggable use ts-ignore due to known GSAP Windows casing issue
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Observer } from 'gsap/Observer';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Draggable } from 'gsap/Draggable';
 

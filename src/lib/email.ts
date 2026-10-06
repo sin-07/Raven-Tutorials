@@ -4,7 +4,6 @@ try {
   dns.setDefaultResultOrder?.('ipv4first');
 } catch {}
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import nodemailer from 'nodemailer';
 

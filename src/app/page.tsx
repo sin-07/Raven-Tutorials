@@ -435,7 +435,7 @@ export default function Home() {
                             </div>
                             <div>
                               <span className="font-mono text-[10px] font-bold text-zinc-500 block leading-none mb-1">
-                                {sub.num} // DISCIPLINE
+                                {`${sub.num} // DISCIPLINE`}
                               </span>
                               <span 
                                 className="text-[10px] font-space font-extrabold uppercase px-2 py-0.5 rounded-md border"
