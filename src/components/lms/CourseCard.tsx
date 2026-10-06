@@ -14,7 +14,9 @@ export default function CourseCard({ course }: CourseCardProps) {
   return (
     <div className="h-full">
       <Link href={`/courses/${course.id}`}>
-        <div className="group bg-[#0f111a] hover:bg-[#131622] rounded-3xl overflow-hidden border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col cursor-pointer">
+        <div className="group bg-[#0f111a] hover:bg-[#131622] rounded-3xl overflow-hidden border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.18)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col cursor-pointer relative">
+          {/* Top ambient orange laser accent */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500 z-20" />
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden border-b border-white/10 bg-black/40">
             <img

@@ -133,7 +133,7 @@ const heroSubjects = [
     desc: 'Structure, Reactions & Periodic Trends',
     topics: ['Organic Synthesis', 'Physical Chem', 'Inorganic'],
     icon: FlaskConical,
-    accentColor: '#38bdf8',
+    accentColor: '#ff7a45',
     href: '/courses?search=Chemistry',
     badge: 'Reaction Mechanisms',
   },
@@ -146,7 +146,7 @@ const heroSubjects = [
     desc: 'Botany, Zoology & Genetics Mastery',
     topics: ['Human Physiology', 'Genetics', 'Botany'],
     icon: Dna,
-    accentColor: '#34d399',
+    accentColor: '#f97316',
     href: '/courses?search=Biology',
     badge: 'NCERT Centric',
   },
@@ -159,7 +159,7 @@ const heroSubjects = [
     desc: 'Grammar, Creative Writing & Literature',
     topics: ['Grammar Essentials', 'Literature', 'Comprehension'],
     icon: BookOpen,
-    accentColor: '#c084fc',
+    accentColor: '#fb923c',
     href: '/courses?search=English',
     badge: 'Board Scoring',
   },
@@ -172,7 +172,7 @@ const heroSubjects = [
     desc: 'Vyakaran Bodh, Rachna & Kavya Khand',
     topics: ['Vyakaran', 'Kavya Khand', 'Nibandh'],
     icon: Languages,
-    accentColor: '#fb7185',
+    accentColor: '#ea580c',
     href: '/courses?search=Hindi',
     badge: 'Board Excellence',
   },
@@ -417,31 +417,37 @@ export default function Home() {
                     <Link
                       key={sub.name}
                       href={sub.href}
-                      className="group relative rounded-3xl p-6 bg-[#0b0e18]/90 hover:bg-[#111524] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-left"
+                      className="group relative rounded-3xl p-6 bg-gradient-to-b from-[#111422] to-[#090b14] hover:from-[#151a2e] hover:to-[#0c0f1c] border border-white/10 hover:border-[#ff7a45]/45 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.18)] text-left"
                     >
+                      {/* Top ambient orange laser accent */}
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+                      
+                      {/* Top subtle radial orange glow reflection */}
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+
                       {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
-                      <div>
+                      <div className="relative z-10">
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-3">
                             <div 
                               className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105 shadow-md"
                               style={{
-                                backgroundColor: `${sub.accentColor}15`,
-                                borderColor: `${sub.accentColor}35`,
+                                backgroundColor: `${sub.accentColor}18`,
+                                borderColor: `${sub.accentColor}40`,
                                 color: sub.accentColor,
                               }}
                             >
                               <IconComponent className="w-5 h-5" />
                             </div>
                             <div>
-                              <span className="font-mono text-[10px] font-bold text-zinc-500 block leading-none mb-1">
+                              <span className="font-mono text-[10px] font-bold text-zinc-500 group-hover:text-[#ffaa40]/80 transition-colors block leading-none mb-1">
                                 {`${sub.num} // DISCIPLINE`}
                               </span>
                               <span 
                                 className="text-[10px] font-space font-extrabold uppercase px-2 py-0.5 rounded-md border"
                                 style={{
-                                  backgroundColor: `${sub.accentColor}10`,
-                                  borderColor: `${sub.accentColor}30`,
+                                  backgroundColor: `${sub.accentColor}14`,
+                                  borderColor: `${sub.accentColor}35`,
                                   color: sub.accentColor,
                                 }}
                               >
@@ -451,7 +457,7 @@ export default function Home() {
                           </div>
 
                           {/* Recessed Corner Action Button (↗) */}
-                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-white/10 border border-white/10 text-zinc-400 group-hover:text-white flex items-center justify-center transition-all group-hover:scale-105">
+                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#ff7a45]/40 text-zinc-400 group-hover:text-[#ff7a45] flex items-center justify-center transition-all group-hover:scale-105 shadow-sm">
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           </div>
                         </div>
@@ -469,7 +475,7 @@ export default function Home() {
                           {sub.topics.map((topic, i) => (
                             <span 
                               key={i}
-                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08]"
+                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] group-hover:border-[#ff7a45]/20 transition-colors"
                             >
                               {topic}
                             </span>
@@ -478,7 +484,7 @@ export default function Home() {
                       </div>
 
                       {/* Footer Micro-Bar */}
-                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta">
+                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] group-hover:border-[#ff7a45]/20 flex items-center justify-between text-xs font-jakarta relative z-10 transition-colors">
                         <span className="text-[11px] text-zinc-400 font-medium">
                           {sub.badge}
                         </span>
@@ -514,10 +520,12 @@ export default function Home() {
         {/* 3 Dark Notched Cards with Recessed Corner Arrow Buttons */}
         <div ref={featuresGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {/* Card 1 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div>
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -532,16 +540,18 @@ export default function Home() {
                 Learn to navigate and lead through complex and rapidly changing competitive exam patterns with deep concept retention.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
               <span>Class 8 - 12 & Droppers</span>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div>
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <Zap className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -556,16 +566,18 @@ export default function Home() {
                 Discover powerful problem-solving strategies to inspire and drive positive academic change and top percentile ranks.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
               <span>AIR Rank Acceleration</span>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.15)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div>
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <Target className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -580,7 +592,7 @@ export default function Home() {
                 Develop advanced speed, mental calculation, and precision to effectively solve multi-concept questions in JEE & NEET.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
               <span>National Benchmarking</span>
             </div>
           </div>
@@ -683,48 +695,64 @@ export default function Home() {
         </div>
 
         <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">01</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
-              <BookOpen className="w-6 h-6" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
+              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">01</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+                <BookOpen className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Concept Mastery</h3>
+              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+                Deep theoretical breakdown with visualization, live demonstrations, and intuitive understanding.
+              </p>
             </div>
-            <h3 className="text-lg font-black text-white mb-2 font-outfit">Concept Mastery</h3>
-            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
-              Deep theoretical breakdown with visualization, live demonstrations, and intuitive understanding.
-            </p>
           </div>
 
-          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">02</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
-              <Zap className="w-6 h-6" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
+              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">02</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Targeted Practice</h3>
+              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+                Graded Daily Practice Papers (DPPs) ranging from foundational boards to high-difficulty competitive questions.
+              </p>
             </div>
-            <h3 className="text-lg font-black text-white mb-2 font-outfit">Targeted Practice</h3>
-            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
-              Graded Daily Practice Papers (DPPs) ranging from foundational boards to high-difficulty competitive questions.
-            </p>
           </div>
 
-          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">03</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
-              <MessageCircle className="w-6 h-6" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
+              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">03</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+                <MessageCircle className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">1-on-1 Doubt Relief</h3>
+              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+                Dedicated daily doubt clearing clinics ensuring no student leaves the classroom with unresolved questions.
+              </p>
             </div>
-            <h3 className="text-lg font-black text-white mb-2 font-outfit">1-on-1 Doubt Relief</h3>
-            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
-              Dedicated daily doubt clearing clinics ensuring no student leaves the classroom with unresolved questions.
-            </p>
           </div>
 
-          <div className="methodology-step bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.15)] relative transition-all duration-300 hover:-translate-y-1">
-            <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-6 right-6">04</span>
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] mb-5">
-              <Target className="w-6 h-6" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <div className="relative z-10">
+              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">04</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+                <Target className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Real-Time Testing</h3>
+              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
+                National level mock tests with instant graphical AI analysis, speed benchmarking, and rank prediction.
+              </p>
             </div>
-            <h3 className="text-lg font-black text-white mb-2 font-outfit">Real-Time Testing</h3>
-            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
-              National level mock tests with instant graphical AI analysis, speed benchmarking, and rank prediction.
-            </p>
           </div>
         </div>
       </section>
