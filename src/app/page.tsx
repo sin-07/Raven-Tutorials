@@ -99,58 +99,82 @@ const categoryIconMap: { [key: string]: React.ComponentType<{ className?: string
 
 const heroSubjects = [
   {
+    num: '01',
     name: 'Maths',
     fullName: 'Mathematics',
     tag: 'JEE & Boards',
-    desc: 'Calculus & Algebra',
+    category: 'stem',
+    desc: 'Calculus, Algebra & Vectors',
+    topics: ['Calculus', 'Algebra', 'Trigonometry'],
     icon: Calculator,
     accentColor: '#ffaa40',
     href: '/courses?search=Mathematics',
+    badge: 'Flagship Faculty',
   },
   {
+    num: '02',
     name: 'Physics',
     fullName: 'Physics',
     tag: 'JEE & NEET',
-    desc: 'Mechanics & Optics',
+    category: 'stem',
+    desc: 'Mechanics, Optics & Electromagnetism',
+    topics: ['Mechanics', 'Electrodynamics', 'Optics'],
     icon: Atom,
     accentColor: '#e8602e',
     href: '/courses?search=Physics',
+    badge: 'Concept & Numericals',
   },
   {
+    num: '03',
     name: 'Chemistry',
     fullName: 'Chemistry',
     tag: 'Organic & Physical',
-    desc: 'Structure & Reactions',
+    category: 'stem',
+    desc: 'Structure, Reactions & Periodic Trends',
+    topics: ['Organic Synthesis', 'Physical Chem', 'Inorganic'],
     icon: FlaskConical,
     accentColor: '#38bdf8',
     href: '/courses?search=Chemistry',
+    badge: 'Reaction Mechanisms',
   },
   {
+    num: '04',
     name: 'Biology',
     fullName: 'Biology',
     tag: 'Target NEET',
-    desc: 'Botany & Zoology',
+    category: 'stem',
+    desc: 'Botany, Zoology & Genetics Mastery',
+    topics: ['Human Physiology', 'Genetics', 'Botany'],
     icon: Dna,
     accentColor: '#34d399',
     href: '/courses?search=Biology',
+    badge: 'NCERT Centric',
   },
   {
+    num: '05',
     name: 'English',
     fullName: 'English',
     tag: 'CBSE & ICSE',
-    desc: 'Grammar & Literature',
+    category: 'language',
+    desc: 'Grammar, Creative Writing & Literature',
+    topics: ['Grammar Essentials', 'Literature', 'Comprehension'],
     icon: BookOpen,
     accentColor: '#c084fc',
     href: '/courses?search=English',
+    badge: 'Board Scoring',
   },
   {
+    num: '06',
     name: 'Hindi',
     fullName: 'Hindi',
     tag: 'Sahitya & Vyakaran',
-    desc: 'Vyakaran & Rachna',
+    category: 'language',
+    desc: 'Vyakaran Bodh, Rachna & Kavya Khand',
+    topics: ['Vyakaran', 'Kavya Khand', 'Nibandh'],
     icon: Languages,
     accentColor: '#fb7185',
     href: '/courses?search=Hindi',
+    badge: 'Board Excellence',
   },
 ];
 
@@ -158,6 +182,7 @@ export default function Home() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
+  const [subjectFilter, setSubjectFilter] = useState<'all' | 'stem' | 'language'>('all');
   const [testimonialFilter, setTestimonialFilter] = useState<'all' | 'students' | 'parents'>('all');
   const [activeMarqueeCard, setActiveMarqueeCard] = useState<string | null>(null);
   const [activeHeroCard, setActiveHeroCard] = useState<number | null>(null);
@@ -321,69 +346,150 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* ── SUBJECT SPECIALIZATION CARDS (MATHS, PHYSICS, CHEMISTRY, BIOLOGY, ENGLISH, HINDI) ── */}
-          <div className="mt-12 pt-8 border-t border-white/10 w-full max-w-5xl mx-auto">
-            <div className="flex items-center justify-between mb-4 px-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse" />
-                <span className="text-[11px] font-space font-extrabold uppercase tracking-widest text-zinc-400">
-                  Select Your Subject &bull; Dedicated Master Batches
-                </span>
+          {/* ── NEW SKELETON: ACADEMIC FACULTY & SUBJECT MASTERY HUB ── */}
+          <div className="mt-14 pt-10 border-t border-white/10 w-full max-w-6xl mx-auto">
+            {/* Header Control Bar */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 px-1">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse" />
+                  <span className="text-[11px] font-space font-extrabold uppercase tracking-widest text-zinc-400">
+                    ACADEMIC SPECIALIZATIONS &bull; DEDICATED MASTER BATCHES
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black font-outfit text-white">
+                  Select Your <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Subject Focus</span>
+                </h3>
               </div>
-              <Link 
-                href="/courses" 
-                className="text-[11px] font-space font-bold uppercase tracking-wider text-[#ff7b47] hover:text-white transition-colors flex items-center gap-1 group"
-              >
-                <span>All Subjects</span>
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
+
+              {/* Segmented Filter Pills & All Subjects Link */}
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center p-1 rounded-xl bg-[#0b0e18] border border-white/10">
+                  <button
+                    onClick={() => setSubjectFilter('all')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
+                      subjectFilter === 'all'
+                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    All Batches (6)
+                  </button>
+                  <button
+                    onClick={() => setSubjectFilter('stem')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
+                      subjectFilter === 'stem'
+                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    🔬 STEM & NEET (4)
+                  </button>
+                  <button
+                    onClick={() => setSubjectFilter('language')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
+                      subjectFilter === 'language'
+                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    📖 Languages (2)
+                  </button>
+                </div>
+
+                <Link 
+                  href="/courses" 
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-space font-bold uppercase tracking-wider text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition group"
+                >
+                  <span>All Courses</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#ff7b47] group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-3.5">
-              {heroSubjects.map((sub, idx) => {
-                const IconComponent = sub.icon;
-                return (
-                  <Link
-                    key={idx}
-                    href={sub.href}
-                    className="group relative p-3.5 sm:p-4 rounded-2xl bg-[#0d0f18]/80 hover:bg-[#121522] border border-white/10 hover:border-[#e8602e]/50 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_15px_35px_rgba(232,96,46,0.15)]"
-                  >
-                    {/* Hover Radial Glow */}
-                    <div 
-                      className="absolute -top-10 -right-10 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                      style={{ background: sub.accentColor }}
-                    />
+            {/* 3-Column Bento Deck */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4.5">
+              {heroSubjects
+                .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
+                .map((sub) => {
+                  const IconComponent = sub.icon;
+                  return (
+                    <Link
+                      key={sub.name}
+                      href={sub.href}
+                      className="group relative rounded-2xl p-5 bg-[#0b0e18]/90 hover:bg-[#111524] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-[0_12px_35px_rgba(0,0,0,0.7)] text-left"
+                    >
+                      {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <div 
+                              className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105 shadow-md"
+                              style={{
+                                backgroundColor: `${sub.accentColor}15`,
+                                borderColor: `${sub.accentColor}35`,
+                                color: sub.accentColor,
+                              }}
+                            >
+                              <IconComponent className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <span className="font-mono text-[10px] font-bold text-zinc-500 block leading-none mb-1">
+                                {sub.num} // DISCIPLINE
+                              </span>
+                              <span 
+                                className="text-[10px] font-space font-extrabold uppercase px-2 py-0.5 rounded-md border"
+                                style={{
+                                  backgroundColor: `${sub.accentColor}10`,
+                                  borderColor: `${sub.accentColor}30`,
+                                  color: sub.accentColor,
+                                }}
+                              >
+                                {sub.tag}
+                              </span>
+                            </div>
+                          </div>
 
-                    {/* Top Row: Icon & Mini Arrow */}
-                    <div className="relative z-10 flex items-center justify-between mb-3">
-                      <div 
-                        className="w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105"
-                        style={{
-                          backgroundColor: `${sub.accentColor}18`,
-                          borderColor: `${sub.accentColor}35`,
-                          color: sub.accentColor,
-                        }}
-                      >
-                        <IconComponent className="w-4 h-4" />
-                      </div>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
+                          {/* Recessed Corner Action Button (↗) */}
+                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-white/10 border border-white/10 text-zinc-400 group-hover:text-white flex items-center justify-center transition-all group-hover:scale-105">
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </div>
+                        </div>
 
-                    {/* Subject Info */}
-                    <div className="relative z-10">
-                      <div className="text-[9px] font-space font-extrabold uppercase tracking-wider text-zinc-400 mb-0.5">
-                        {sub.tag}
+                        {/* Subject Name & Description */}
+                        <h4 className="text-xl font-black font-outfit text-white group-hover:text-[#ffaa40] transition-colors">
+                          {sub.fullName}
+                        </h4>
+                        <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                          {sub.desc}
+                        </p>
+
+                        {/* Curriculum Focus Tag Chips */}
+                        <div className="flex flex-wrap gap-1.5 mt-3.5">
+                          {sub.topics.map((topic, i) => (
+                            <span 
+                              key={i}
+                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08]"
+                            >
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <h4 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-[#ff7b47] transition-colors leading-tight">
-                        {sub.name}
-                      </h4>
-                      <p className="text-[11px] text-zinc-400 font-jakarta mt-1 line-clamp-1 leading-snug">
-                        {sub.desc}
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
+
+                      {/* Footer Micro-Bar */}
+                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta">
+                        <span className="text-[11px] text-zinc-400 font-medium">
+                          {sub.badge}
+                        </span>
+                        <span className="text-[11px] font-space font-bold uppercase text-[#ff7b47] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                          <span>View Batches</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
             </div>
           </div>
         </div>
