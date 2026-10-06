@@ -6,6 +6,7 @@ export { default as SessionExpiryHandler } from './SessionExpiryHandler';
 export { default as FeedbackForm } from './FeedbackForm';
 export { default as CodeOfConduct } from './CodeOfConduct';
 export { default as StudentProtectedRoute } from './StudentProtectedRoute';
+export { default as StudentIDCardModal } from './StudentIDCardModal';
 
 // Admin components
 export { default as AdminLayout } from './admin/Layout';
