@@ -248,3 +248,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] fix(fees): prevent receipt download trigger when payment status is pending
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
