@@ -208,7 +208,7 @@ const LoginPage: React.FC = () => {
                       <AnimatedEyeToggle
                         isVisible={showPassword}
                         onToggle={() => setShowPassword(!showPassword)}
-                        size={19}
+                        size={21}
                       />
                     </div>
                   </div>
