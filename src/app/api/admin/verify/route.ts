@@ -16,6 +16,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
+      admin: auth.admin,
       data: {
         admin: auth.admin,
       },
@@ -28,4 +29,3 @@ export async function GET() {
     );
   }
 }
-

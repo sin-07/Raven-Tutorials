@@ -42,7 +42,7 @@ export async function verifyAdminToken(token?: string): Promise<AdminAuthResult>
 
     if (!authToken) {
       const cookieStore = cookies();
-      authToken = cookieStore.get('adminToken')?.value;
+      authToken = cookieStore.get('adminToken')?.value || cookieStore.get('token')?.value;
     }
 
     if (!authToken) {
@@ -50,24 +50,47 @@ export async function verifyAdminToken(token?: string): Promise<AdminAuthResult>
     }
 
     const decoded = jwt.verify(authToken, JWT_SECRET) as JWTPayload;
+    const envAdminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 
     await connectDatabase();
-    const admin = await Admin.findById(decoded.id).select('-password').lean() as (IAdmin & { _id: any }) | null;
+    let admin: (IAdmin & { _id: any }) | null = null;
 
-    if (!admin || !admin.isActive) {
-      return { success: false };
+    if (decoded.id && /^[0-9a-fA-F]{24}$/.test(decoded.id)) {
+      admin = (await Admin.findById(decoded.id).select('-password').lean()) as any;
     }
 
-    return {
-      success: true,
-      admin: {
-        _id: admin._id.toString(),
-        email: admin.email,
-        name: admin.name,
-        role: admin.role,
-      },
-    };
-  } catch {
+    if (!admin && decoded.email) {
+      admin = (await Admin.findOne({ email: decoded.email.toLowerCase() }).select('-password').lean()) as any;
+    }
+
+    if (admin && admin.isActive) {
+      return {
+        success: true,
+        admin: {
+          _id: admin._id.toString(),
+          email: admin.email,
+          name: admin.name || 'Admin',
+          role: admin.role || 'admin',
+        },
+      };
+    }
+
+    // Fallback if env super admin credentials match decoded email
+    if (decoded.email && envAdminEmail && decoded.email.toLowerCase() === envAdminEmail) {
+      return {
+        success: true,
+        admin: {
+          _id: admin && admin._id ? admin._id.toString() : decoded.id || 'admin_primary',
+          email: envAdminEmail,
+          name: 'Admin',
+          role: 'admin',
+        },
+      };
+    }
+
+    return { success: false };
+  } catch (err) {
+    console.error('[AUTH ERROR] verifyAdminToken failed:', err);
     return { success: false };
   }
 }
@@ -125,14 +148,13 @@ export function generateStudentToken(studentId: string, email: string, registrat
 }
 
 export function setAdminCookie(token: string) {
-  const sameSiteMode: 'none' | 'lax' = process.env.NODE_ENV === 'production' ? 'none' : 'lax';
   return {
     name: 'adminToken',
     value: token,
     options: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: sameSiteMode,
+      sameSite: 'lax' as const,
       maxAge: 7 * 24 * 60 * 60, // 7 days
       path: '/',
     },
@@ -140,14 +162,13 @@ export function setAdminCookie(token: string) {
 }
 
 export function setStudentCookie(token: string) {
-  const sameSiteMode: 'none' | 'lax' = process.env.NODE_ENV === 'production' ? 'none' : 'lax';
   return {
     name: 'token',
     value: token,
     options: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: sameSiteMode,
+      sameSite: 'lax' as const,
       maxAge: 7 * 24 * 60 * 60, // 7 days
       path: '/',
     },

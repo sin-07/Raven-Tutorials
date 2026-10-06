@@ -19,7 +19,7 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [admin, setAdmin] = useState<AdminData | null>(null);
+  const [, setAdmin] = useState<AdminData | null>(null);
 
   const verifyAuth = useCallback(async (isInitial = false) => {
     if (isInitial) {
@@ -29,31 +29,32 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ children }) =
       const res = await fetch('/api/admin/verify', {
         method: 'GET',
         credentials: 'include',
-        cache: 'no-store'
+        cache: 'no-store',
       });
 
       if (!res.ok) {
         setIsAuthenticated(false);
         setAdmin(null);
-        router.replace('/admin/login');
+        router.replace('/login');
         return;
       }
 
       const data = await res.json();
-      
-      if (data.success && data.admin) {
+      const adminData = data.admin || data.data?.admin;
+
+      if (data.success && adminData) {
         setIsAuthenticated(true);
-        setAdmin(data.admin);
+        setAdmin(adminData);
       } else {
         setIsAuthenticated(false);
         setAdmin(null);
-        router.replace('/admin/login');
+        router.replace('/login');
       }
     } catch (error) {
       console.error('[AUTH ERROR] Failed to verify admin:', error);
       setIsAuthenticated(false);
       setAdmin(null);
-      router.replace('/admin/login');
+      router.replace('/login');
     } finally {
       setLoading(false);
     }
