@@ -364,3 +364,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] fix(responsive): prevent horizontal scroll overflow on compact mobile view
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
