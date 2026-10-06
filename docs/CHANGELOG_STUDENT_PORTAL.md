@@ -244,3 +244,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] refactor(fees): standardize fee installment breakdown schema
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
