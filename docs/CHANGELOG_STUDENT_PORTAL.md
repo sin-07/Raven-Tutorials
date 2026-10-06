@@ -344,3 +344,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] fix(profile): handle null guardian phone number with clean placeholder
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
