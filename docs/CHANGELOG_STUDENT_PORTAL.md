@@ -328,3 +328,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] feat(profile): add blood group indicator badge to student profile header
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
