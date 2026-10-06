@@ -407,8 +407,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 3-Column Bento Deck */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4.5">
+            {/* 3-Column Bento Deck with Generous Spacing */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
               {heroSubjects
                 .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
                 .map((sub) => {
@@ -417,7 +417,7 @@ export default function Home() {
                     <Link
                       key={sub.name}
                       href={sub.href}
-                      className="group relative rounded-2xl p-5 bg-[#0b0e18]/90 hover:bg-[#111524] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-[0_12px_35px_rgba(0,0,0,0.7)] text-left"
+                      className="group relative rounded-3xl p-6 bg-[#0b0e18]/90 hover:bg-[#111524] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-[0_15px_35px_rgba(0,0,0,0.7)] text-left"
                     >
                       {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
                       <div>
