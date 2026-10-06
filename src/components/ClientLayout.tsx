@@ -22,8 +22,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
-  // Hide navbar on test pages
-  const hideNavbar = pathname?.startsWith('/test/');
+  // Hide navbar on test and admin pages
+  const hideNavbar = pathname?.startsWith('/test/') || pathname?.startsWith('/admin');
 
   // GSAP Smooth Route Transition and Top Progress Bar
   useEffect(() => {
