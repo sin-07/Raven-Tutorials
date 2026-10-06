@@ -7,7 +7,7 @@ import {
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
   Download, Printer, Sparkles, LogOut, ArrowRight, ShieldCheck,
   CreditCard, Trophy, Zap, Crown, X, Check, Medal, Target, Flame, Shield, AlertTriangle,
-  GraduationCap, MapPin, ChevronRight
+  GraduationCap, MapPin, ChevronRight, Copy
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute, StudentIDCardModal } from '@/components';
@@ -741,63 +741,238 @@ Status           : ACTIVE & VERIFIED
         {/* Tab Content Panels */}
         <div className="rounded-3xl p-6 sm:p-8 border backdrop-blur-2xl text-white transition-all bg-[#0a0d18]/90 border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.06)]">
           
-          {/* 1. Overview Tab */}
+          {/* 1. Overview Tab: Re-Architected Command & Credential Deck */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              <div className="bg-[#0e111a] border border-white/10 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-                <h3 className="font-black text-white mb-2 flex items-center gap-2 text-lg font-outfit">
-                  <CheckCircle className="w-5 h-5 text-[#e8602e]" />
-                  Quick Academic Shortcuts
-                </h3>
-                <p className="text-sm text-zinc-400 font-medium font-jakarta mb-5 leading-relaxed">
-                  Welcome to your student control center. Access your official admission fee invoice, test schedule, and syllabus notes.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    onClick={handleDownloadReceipt}
-                    disabled={downloading}
-                    className="btn-sheryians px-5 py-3 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.35)] flex items-center gap-2 text-xs sm:text-sm cursor-pointer"
-                  >
-                    <Download className="w-4 h-4 text-white" />
-                    <span>Download Admission Receipt (.txt)</span>
-                  </button>
 
-                  <button
-                    onClick={handlePrintIDCard}
-                    className="px-5 py-3 bg-[#15192c] hover:bg-[#1d223a] text-zinc-100 hover:text-white font-black font-outfit uppercase tracking-wider rounded-xl border border-white/10 hover:border-white/20 flex items-center gap-2 text-xs sm:text-sm transition-all cursor-pointer shadow-md"
-                  >
-                    <Printer className="w-4 h-4 text-[#ff7a45]" />
-                    <span>Print Student ID Card</span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveTab('tests')}
-                    className="px-5 py-3 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white font-black font-outfit uppercase tracking-wider rounded-xl border border-white/10 hover:border-white/20 flex items-center gap-2 text-xs sm:text-sm transition-all cursor-pointer"
-                  >
-                    <Clock className="w-4 h-4 text-[#ffaa40]" />
-                    <span>View Scheduled Tests ({upcomingTests.length})</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Student Details Mini Card */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
-                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Registered Class</span>
-                  <span className="text-base font-black text-white font-outfit">{student.standard}</span>
-                </div>
-                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
-                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Roll / Reg Number</span>
-                  <span className="text-base font-mono font-bold text-[#ffaa40]">{student.registrationId}</span>
-                </div>
-                <div className="p-4 bg-[#0e111a] rounded-2xl border border-white/10 shadow-md">
-                  <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block mb-1">Admission Status</span>
-                  <span className="text-base font-black text-emerald-400 flex items-center gap-1.5 font-outfit">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" /> Active & Verified
+              {/* SECTION A: FAST ACTION DECK (3 Bento Interactive Cards) */}
+              <div>
+                <div className="flex items-center justify-between mb-3.5">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-[#ff7a45]" />
+                    <span className="text-xs font-black uppercase tracking-wider font-space text-zinc-300">
+                      Primary Student Operations
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-space text-zinc-500 hidden sm:inline-block">
+                    INSTITUTIONAL QUICK ACCESS
                   </span>
                 </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Action 1: Admission Receipt */}
+                  <div className="group rounded-2xl p-5 border border-white/10 hover:border-white/25 bg-[#0c0f1a] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="p-2.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-[#ff7a45]">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-white/5 border border-white/10 text-zinc-400">
+                          Fee Clearance
+                        </span>
+                      </div>
+                      <h4 className="text-base font-black font-outfit text-white group-hover:text-[#ff7a45] transition-colors">
+                        Admission Receipt
+                      </h4>
+                      <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                        Official verified fee ledger, payment breakdown, and enrollment certificate (.txt).
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={handleDownloadReceipt}
+                      disabled={downloading}
+                      className="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#14192b] hover:bg-[#1a2139] border border-white/10 hover:border-white/20 text-white font-black font-outfit text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+                    >
+                      <Download className="w-3.5 h-3.5 text-[#ff7a45]" />
+                      <span>{downloading ? 'Generating...' : 'Download Receipt'}</span>
+                    </button>
+                  </div>
+
+                  {/* Action 2: Physical PVC ID Card */}
+                  <div className="group rounded-2xl p-5 border border-white/10 hover:border-white/25 bg-[#0c0f1a] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                          <Printer className="w-5 h-5" />
+                        </div>
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-white/5 border border-white/10 text-zinc-400">
+                          CR80 PVC
+                        </span>
+                      </div>
+                      <h4 className="text-base font-black font-outfit text-white group-hover:text-blue-400 transition-colors">
+                        Student ID Pass
+                      </h4>
+                      <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                        Physical identity pass with high-density scannable QR verification and lanyard guides.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={handlePrintIDCard}
+                      className="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#14192b] hover:bg-[#1a2139] border border-white/10 hover:border-white/20 text-white font-black font-outfit text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    >
+                      <Printer className="w-3.5 h-3.5 text-blue-400" />
+                      <span>Print Student Card</span>
+                    </button>
+                  </div>
+
+                  {/* Action 3: Scheduled Tests */}
+                  <div className="group rounded-2xl p-5 border border-white/10 hover:border-white/25 bg-[#0c0f1a] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                          <Clock className="w-5 h-5" />
+                        </div>
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-white/5 border border-white/10 text-zinc-400">
+                          {upcomingTests.length} Live Available
+                        </span>
+                      </div>
+                      <h4 className="text-base font-black font-outfit text-white group-hover:text-emerald-400 transition-colors">
+                        Scheduled Mocks
+                      </h4>
+                      <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                        Targeted mock test series, timed practice sheets, and question banks.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setActiveTab('tests')}
+                      className="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#14192b] hover:bg-[#1a2139] border border-white/10 hover:border-white/20 text-white font-black font-outfit text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    >
+                      <ArrowRight className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Take Practice Tests</span>
+                    </button>
+                  </div>
+                </div>
               </div>
+
+              {/* SECTION B: INSTITUTIONAL CREDENTIAL & CLEARANCE MATRIX */}
+              <div>
+                <div className="flex items-center justify-between mb-3.5">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <span className="text-xs font-black uppercase tracking-wider font-space text-zinc-300">
+                      Institutional Identity & Verification Clearance
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-space font-bold uppercase text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded-full inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Official Record
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {/* Tile 1: Registered Class */}
+                  <div className="p-4 rounded-2xl bg-[#0c0f1a] border border-white/10 hover:border-white/20 transition-all flex items-center gap-3.5 shadow-md">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 flex-shrink-0">
+                      <GraduationCap className="w-5 h-5 text-orange-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block leading-none mb-1">
+                        Registered Class
+                      </span>
+                      <span className="text-base font-black text-white font-outfit block truncate">
+                        Class {student.standard}
+                      </span>
+                      <span className="text-[10px] text-zinc-500 font-space">Batch 2026-27</span>
+                    </div>
+                  </div>
+
+                  {/* Tile 2: Registration ID with Copy */}
+                  <div className="p-4 rounded-2xl bg-[#0c0f1a] border border-white/10 hover:border-white/20 transition-all flex items-center justify-between gap-2 shadow-md">
+                    <div className="flex items-center gap-3.5 min-w-0">
+                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 flex-shrink-0">
+                        <Award className="w-5 h-5 text-amber-400" />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block leading-none mb-1">
+                          Registration ID
+                        </span>
+                        <span className="text-base font-mono font-black text-[#ffaa40] block truncate">
+                          {student.registrationId}
+                        </span>
+                        <span className="text-[10px] text-zinc-500 font-space">Unique UID</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(student.registrationId);
+                        toast.success('Registration ID copied to clipboard!');
+                      }}
+                      title="Copy Registration ID"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white transition cursor-pointer flex-shrink-0"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Tile 3: Admission Status */}
+                  <div className="p-4 rounded-2xl bg-[#0c0f1a] border border-white/10 hover:border-white/20 transition-all flex items-center gap-3.5 shadow-md">
+                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block leading-none mb-1">
+                        Admission Status
+                      </span>
+                      <span className="text-base font-black text-emerald-400 font-outfit block truncate">
+                        Active & Verified
+                      </span>
+                      <span className="text-[10px] text-emerald-500/80 font-space">All Dues Cleared</span>
+                    </div>
+                  </div>
+
+                  {/* Tile 4: Campus Center */}
+                  <div className="p-4 rounded-2xl bg-[#0c0f1a] border border-white/10 hover:border-white/20 transition-all flex items-center gap-3.5 shadow-md">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-sky-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-bold uppercase text-zinc-400 font-space block leading-none mb-1">
+                        Assigned Campus
+                      </span>
+                      <span className="text-base font-black text-white font-outfit block truncate">
+                        {student.city || 'Darbhanga'} Center
+                      </span>
+                      <span className="text-[10px] text-zinc-500 font-space">Offline Classroom</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION C: ACADEMIC HEALTH PULSE STRIP */}
+              <div className="rounded-2xl p-4 sm:p-5 border border-white/10 bg-[#0c0f1a] backdrop-blur-xl flex flex-wrap items-center justify-between gap-4 shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff6a3d]/20 to-[#e8602e]/10 border border-[#ff6a3d]/30 flex items-center justify-center text-[#ffaa40]">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="text-sm font-black font-outfit text-white">
+                      Academic Health & Progression Pulse
+                    </h5>
+                    <p className="text-xs text-zinc-400 font-jakarta">
+                      Overall attendance is at <span className={overallAttendance >= 75 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>{overallAttendance}%</span> • {testResults.length} test(s) evaluated • {studyMaterials.length} study vault material(s) unlocked
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveTab('attendance')}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold font-space uppercase text-zinc-300 hover:text-white transition cursor-pointer"
+                  >
+                    View Attendance
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('marks')}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold font-space uppercase text-zinc-300 hover:text-white transition cursor-pointer"
+                  >
+                    View Scorecards
+                  </button>
+                </div>
+              </div>
+
             </div>
           )}
 
