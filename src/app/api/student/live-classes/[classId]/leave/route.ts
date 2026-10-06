@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/database';
 import LiveClass from '@/models/LiveClass';
@@ -14,7 +15,13 @@ interface DecodedToken {
   role: string;
 }
 
-// Helper function to verify student token
+function buildQuery(classId: string) {
+  const isObjectId = mongoose.isValidObjectId(classId);
+  return isObjectId
+    ? { $or: [{ classId }, { _id: classId }, { roomName: classId }] }
+    : { $or: [{ classId }, { roomName: classId }] };
+}
+
 async function verifyStudentToken(): Promise<string | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get('studentToken')?.value;
@@ -36,37 +43,27 @@ export async function POST(
 ) {
   try {
     const studentId = await verifyStudentToken();
-    
-    if (!studentId) {
-      return NextResponse.json(
-        { success: false, message: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
-    
     const { classId } = await params;
-    
     await connectDB();
-    
-    const liveClass = await LiveClass.findById(classId);
-    
+
+    const liveClass = await LiveClass.findOne(buildQuery(classId));
     if (!liveClass) {
       return NextResponse.json(
         { success: false, message: 'Live class not found' },
         { status: 404 }
       );
     }
-    
-    // Find participant and update left time
-    const participant = liveClass.participants?.find(
-      (p: any) => p.participantId && p.participantId.toString() === studentId.toString() && !p.leftAt
-    );
-    
-    if (participant) {
-      participant.leftAt = new Date();
-      await liveClass.save();
+
+    if (studentId && liveClass.participants) {
+      const participant = liveClass.participants.find(
+        (p: any) => p.participantId && p.participantId.toString() === studentId.toString() && !p.leftAt
+      );
+      if (participant) {
+        participant.leftAt = new Date();
+        await liveClass.save();
+      }
     }
-    
+
     return NextResponse.json({
       success: true,
       message: 'Left live class successfully'

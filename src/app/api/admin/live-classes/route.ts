@@ -33,12 +33,12 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const className = searchParams.get('class');
 
-    const query: { status?: string; class?: string } = {};
+    const query: Record<string, any> = {};
     
     if (status) query.status = status;
     if (className) query.class = className;
 
-    const liveClasses = await LiveClass.find(query).sort({ scheduledDate: -1, startTime: -1 });
+    const liveClasses = await LiveClass.find(query).sort({ scheduledDate: -1, createdAt: -1 });
 
     return NextResponse.json({
       success: true,
@@ -77,7 +77,19 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const body = await request.json();
-    const { title, description, subject, class: className, scheduledDate, startTime, endTime, duration, maxParticipants, isRecordingEnabled } = body;
+    const { 
+      title, 
+      description, 
+      subject, 
+      class: className, 
+      teacherName,
+      scheduledDate, 
+      startTime, 
+      endTime, 
+      duration, 
+      maxParticipants, 
+      isRecordingEnabled 
+    } = body;
 
     if (!title || !subject || !className || !scheduledDate || !startTime || !endTime) {
       return NextResponse.json({
@@ -86,22 +98,31 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Generate unique class ID for Jitsi
+    // Generate unique class ID and safe room name for Jitsi Meet
     const classId = uuidv4();
+    const cleanTitleSlug = title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').slice(0, 25);
+    const roomName = `raven-live-${cleanTitleSlug}-${classId.slice(0, 8)}`;
+
+    const dateObj = new Date(scheduledDate);
 
     const liveClass = await LiveClass.create({
       classId,
+      roomName,
       title,
-      description,
+      description: description || '',
       subject,
       class: className,
-      scheduledDate: new Date(scheduledDate),
+      teacherName: teacherName || (decoded.admin as any)?.name || 'Raven Senior Faculty',
+      teacherEmail: (decoded.admin as any)?.email || '',
+      scheduledDate: dateObj,
+      scheduledAt: dateObj,
       startTime,
       endTime,
-      duration,
-      maxParticipants: maxParticipants || 100,
-      isRecordingEnabled: isRecordingEnabled || false,
-      status: 'Scheduled'
+      duration: Number(duration) || 60,
+      maxParticipants: Number(maxParticipants) || 100,
+      isRecordingEnabled: Boolean(isRecordingEnabled),
+      status: 'Scheduled',
+      participants: []
     });
 
     return NextResponse.json({

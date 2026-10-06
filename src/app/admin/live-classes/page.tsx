@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Video, Plus, Edit, Trash2, Play, Square, Calendar, Clock, Users, Filter, Radio, X, Zap } from 'lucide-react';
+import { Video, Plus, Edit, Trash2, Play, Square, Calendar, Clock, Users, Filter, Radio, X, Zap, Copy, Check, ExternalLink } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminLayout from '@/components/admin/Layout';
 import AdminProtectedRoute from '@/components/admin/ProtectedRoute';
@@ -17,6 +17,7 @@ interface LiveClassData {
   description: string;
   subject: string;
   class: string;
+  teacherName?: string;
   scheduledDate: string;
   startTime: string;
   endTime: string;
@@ -32,6 +33,7 @@ interface FormData {
   description: string;
   subject: string;
   class: string;
+  teacherName: string;
   scheduledDate: string;
   startTime: string;
   endTime: string;
@@ -44,6 +46,7 @@ const AdminLiveClasses: React.FC = () => {
   const [liveClasses, setLiveClasses] = useState<LiveClassData[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Freeze background when modal is open
   useBodyScrollLock(showModal);
@@ -56,6 +59,7 @@ const AdminLiveClasses: React.FC = () => {
     description: '',
     subject: '',
     class: '',
+    teacherName: 'Er. Sandeep Verma',
     scheduledDate: '',
     startTime: '',
     endTime: '',
@@ -159,6 +163,7 @@ const AdminLiveClasses: React.FC = () => {
       description: liveClass.description || '',
       subject: liveClass.subject,
       class: liveClass.class,
+      teacherName: liveClass.teacherName || 'Er. Sandeep Verma',
       scheduledDate: new Date(liveClass.scheduledDate).toISOString().split('T')[0],
       startTime: liveClass.startTime,
       endTime: liveClass.endTime,
@@ -167,6 +172,16 @@ const AdminLiveClasses: React.FC = () => {
       isRecordingEnabled: liveClass.isRecordingEnabled
     });
     setShowModal(true);
+  };
+
+  const handleCopyInviteLink = (classId: string) => {
+    if (typeof window !== 'undefined') {
+      const url = `${window.location.origin}/live-class/${classId}`;
+      navigator.clipboard.writeText(url);
+      setCopiedId(classId);
+      toast.success('Live class invite link copied!');
+      setTimeout(() => setCopiedId(null), 2500);
+    }
   };
 
   const handleDelete = async (classId: string) => {
@@ -197,7 +212,7 @@ const AdminLiveClasses: React.FC = () => {
       });
       const data = await res.json();
       if (data.success) {
-        toast.success('Live class started');
+        toast.success('Live class started! Launching Faculty Classroom...');
         fetchLiveClasses();
         window.open(`/live-class/${classId}`, '_blank');
       }
@@ -235,6 +250,7 @@ const AdminLiveClasses: React.FC = () => {
       description: '',
       subject: '',
       class: '',
+      teacherName: 'Er. Sandeep Verma',
       scheduledDate: '',
       startTime: '',
       endTime: '',
@@ -383,23 +399,35 @@ const AdminLiveClasses: React.FC = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="mt-3 flex items-center gap-3 text-xs font-mono font-medium text-zinc-400">
+                    <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-mono font-medium text-zinc-400">
                       <span>Standard: <strong className="text-white">{liveClass.class}</strong></span>
+                      <span>•</span>
+                      <span>Faculty: <strong className="text-[#ffaa40]">{liveClass.teacherName || 'Raven Faculty'}</strong></span>
                       <span>•</span>
                       <span>Duration: <strong className="text-white">{liveClass.duration} mins</strong></span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2 self-end md:self-start">
+                    {/* Copy Student Invite Link button */}
+                    <button
+                      onClick={() => handleCopyInviteLink(liveClass.classId)}
+                      className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-zinc-200 border border-white/10 px-3 py-2 rounded-xl font-jakarta text-xs transition-all cursor-pointer"
+                      title="Copy student invite link"
+                    >
+                      {copiedId === liveClass.classId ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-[#ff7a45]" />}
+                      <span>{copiedId === liveClass.classId ? 'Copied' : 'Invite'}</span>
+                    </button>
+
                     {liveClass.status === 'Scheduled' && (
                       <>
                         <button
                           onClick={() => handleStartClass(liveClass.classId)}
-                          className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-3.5 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer"
-                          title="Start Live Class"
+                          className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-3.5 py-2 rounded-xl font-outfit font-bold text-xs sm:text-sm shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer active:scale-95"
+                          title="Start Live Class and Host as Teacher"
                         >
                           <Play className="w-4 h-4 fill-white" />
-                          <span>Start</span>
+                          <span>Teach Now</span>
                         </button>
                         <button
                           onClick={() => handleEdit(liveClass)}
@@ -414,10 +442,10 @@ const AdminLiveClasses: React.FC = () => {
                       <>
                         <button
                           onClick={() => handleJoinClass(liveClass.classId)}
-                          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-4 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all cursor-pointer"
+                          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-4 py-2 rounded-xl font-outfit font-bold text-xs sm:text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all cursor-pointer"
                         >
                           <Video className="w-4 h-4" />
-                          <span>Join Classroom</span>
+                          <span>Enter as Host</span>
                         </button>
                         <button
                           onClick={() => handleEndClass(liveClass.classId)}
@@ -480,6 +508,21 @@ const AdminLiveClasses: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
                       placeholder="e.g. Physics Wave Optics Masterclass"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
+                      Faculty / Teacher Name <span className="text-[#ff7a45]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="teacherName"
+                      value={formData.teacherName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                      placeholder="e.g. Er. Sandeep Verma (IIT Alumni)"
                       required
                     />
                   </div>

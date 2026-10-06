@@ -14,6 +14,7 @@ import {
   Sparkles,
   Info,
   Phone,
+  Radio,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAdmin } from '@/context/AdminContext';
@@ -92,11 +93,17 @@ const Navbar: React.FC = React.memo(() => {
   // Secondary items cleanly organized in the "More ▾" dropdown
   const moreLinks = useMemo(() => [
     {
+      path: '/live-class',
+      label: 'Live Classes',
+      subtext: 'Virtual lecture rooms',
+      icon: Radio,
+      badge: 'Live',
+    },
+    {
       path: '/notices',
       label: 'Notices',
       subtext: 'Circulars & updates',
       icon: Megaphone,
-      badge: 'Live',
     },
     {
       path: '/services',
@@ -123,6 +130,7 @@ const Navbar: React.FC = React.memo(() => {
     { path: '/', label: 'Home' },
     { path: '/courses', label: 'Courses' },
     ...(!isStudentLoggedIn ? [{ path: '/admission', label: 'Admission' }] : []),
+    { path: '/live-class', label: 'Live Classes' },
     { path: '/articles', label: 'Articles' },
     { path: '/notices', label: 'Notices' },
     { path: '/services', label: 'Services' },

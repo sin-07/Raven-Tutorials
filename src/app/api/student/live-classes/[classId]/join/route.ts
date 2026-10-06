@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/database';
 import LiveClass from '@/models/LiveClass';
@@ -15,7 +16,13 @@ interface DecodedToken {
   role: string;
 }
 
-// Helper function to verify student token
+function buildQuery(classId: string) {
+  const isObjectId = mongoose.isValidObjectId(classId);
+  return isObjectId
+    ? { $or: [{ classId }, { _id: classId }, { roomName: classId }] }
+    : { $or: [{ classId }, { roomName: classId }] };
+}
+
 async function verifyStudentToken(): Promise<string | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get('studentToken')?.value;
@@ -37,70 +44,48 @@ export async function POST(
 ) {
   try {
     const studentId = await verifyStudentToken();
-    
-    if (!studentId) {
-      return NextResponse.json(
-        { success: false, message: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
-    
     const { classId } = await params;
-    
     await connectDB();
-    
-    // Get student info
-    const student = await Admission.findById(studentId).select('standard name').lean();
-    if (!student) {
-      return NextResponse.json(
-        { success: false, message: 'Student not found' },
-        { status: 404 }
-      );
-    }
-    
-    const liveClass = await LiveClass.findOne({ classId });
-    
+
+    const liveClass = await LiveClass.findOne(buildQuery(classId));
     if (!liveClass) {
       return NextResponse.json(
         { success: false, message: 'Live class not found' },
         { status: 404 }
       );
     }
-    
-    // Check if student's class matches
-    const studentStandard = (student as any).standard;
-    const classStandard = liveClass.class;
-    
-    if (classStandard !== 'All' && classStandard !== studentStandard) {
-      return NextResponse.json(
-        { success: false, message: 'You are not authorized to join this class' },
-        { status: 403 }
-      );
-    }
-    
-    // Check if already joined
-    const alreadyJoined = liveClass.participants?.some(
-      (p: any) => p.participantId && p.participantId.toString() === studentId.toString()
-    );
-    
-    if (!alreadyJoined) {
-      // Add participant
-      if (!liveClass.participants) {
-        liveClass.participants = [];
+
+    if (studentId) {
+      const student = await Admission.findById(studentId).select('standard studentName email').lean();
+      if (student) {
+        const studentName = (student as any).studentName || 'Student';
+        const studentEmail = (student as any).email || '';
+
+        if (!liveClass.participants) {
+          liveClass.participants = [];
+        }
+
+        const alreadyJoined = liveClass.participants.some(
+          (p: any) => p.participantId && p.participantId.toString() === studentId.toString()
+        );
+
+        if (!alreadyJoined) {
+          liveClass.participants.push({
+            participantId: studentId as any,
+            studentName,
+            studentEmail,
+            joinedAt: new Date()
+          });
+          await liveClass.save();
+        }
       }
-      liveClass.participants.push({
-        participantId: studentId as any,
-        joinedAt: new Date()
-      });
-      
-      await liveClass.save();
     }
-    
+
     return NextResponse.json({
       success: true,
       message: 'Joined live class successfully',
       data: {
-        classId: liveClass._id,
+        classId: liveClass.classId,
         roomName: liveClass.roomName,
         subject: liveClass.subject,
         title: liveClass.title

@@ -7,7 +7,7 @@ import {
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
   Download, Printer, Sparkles, LogOut, ArrowRight, ShieldCheck,
   CreditCard, Trophy, Zap, Crown, X, Check, Medal, Target, Flame, Shield, AlertTriangle,
-  GraduationCap, MapPin, ChevronRight, Copy
+  GraduationCap, MapPin, ChevronRight, Copy, Radio, Video, ExternalLink
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { StudentProtectedRoute, StudentIDCardModal } from '@/components';
@@ -64,6 +64,21 @@ interface StudyMaterial {
   subject: string;
   description: string;
   fileUrl: string;
+}
+
+interface LiveClassItem {
+  _id: string;
+  classId: string;
+  title: string;
+  description?: string;
+  subject: string;
+  class: string;
+  teacherName?: string;
+  scheduledDate?: string;
+  startTime?: string;
+  endTime?: string;
+  duration?: number;
+  status: 'Scheduled' | 'Live' | 'Completed' | string;
 }
 
 interface LeaderboardBadge {
@@ -149,6 +164,9 @@ const Dashboard: React.FC = () => {
   const [payingFeeId, setPayingFeeId] = useState<string | null>(null);
   const [receiptModalFee, setReceiptModalFee] = useState<FeeItem | null>(null);
 
+  // Live classes state
+  const [liveClasses, setLiveClasses] = useState<LiveClassItem[]>([]);
+
   useEffect(() => {
     initializeDashboard();
   }, []);
@@ -180,7 +198,8 @@ const Dashboard: React.FC = () => {
         fetchUpcomingTests(),
         fetchStudyMaterials(),
         fetchLeaderboard('All'),
-        fetchFees()
+        fetchFees(),
+        fetchLiveClasses()
       ]);
     } catch (err) {
       console.error('Dashboard init error:', err);
@@ -188,6 +207,18 @@ const Dashboard: React.FC = () => {
       router.push('/login');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchLiveClasses = async () => {
+    try {
+      const res = await fetch('/api/student/live-classes', { credentials: 'include' });
+      const data = await res.json();
+      if (data.success) {
+        setLiveClasses(data.data || []);
+      }
+    } catch (err) {
+      console.error('Live classes fetch error:', err);
     }
   };
 
@@ -711,6 +742,7 @@ Status           : ACTIVE & VERIFIED
         <div className="rounded-2xl p-1.5 border backdrop-blur-2xl mb-8 overflow-x-auto flex gap-2 transition-all bg-[#0d101d]/90 border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
           {[
             { id: 'overview', label: 'OVERVIEW', icon: null },
+            { id: 'live', label: 'LIVE CLASSES', icon: Radio },
             { id: 'leaderboard', label: 'LEADERBOARD & BADGES', icon: Trophy },
             { id: 'fees', label: 'FEES & DUES', icon: CreditCard },
             { id: 'attendance', label: 'ATTENDANCE', icon: null },
@@ -721,6 +753,7 @@ Status           : ACTIVE & VERIFIED
           ].map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
+            const isLiveNow = tab.id === 'live' && liveClasses.some(c => c.status === 'Live' || c.status === 'live');
             return (
               <button
                 key={tab.id}
@@ -731,8 +764,11 @@ Status           : ACTIVE & VERIFIED
                     : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent font-bold'
                 }`}
               >
-                {Icon && <Icon className="w-4 h-4" />}
+                {Icon && <Icon className={`w-4 h-4 ${isLiveNow ? 'text-rose-400 animate-pulse' : ''}`} />}
                 <span>{tab.label}</span>
+                {isLiveNow && (
+                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse ml-0.5" />
+                )}
               </button>
             );
           })}
@@ -744,6 +780,41 @@ Status           : ACTIVE & VERIFIED
           {/* 1. Overview Tab: Re-Architected Command & Credential Deck */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
+
+              {/* LIVE CLASS ALERT (When a faculty member is live right now) */}
+              {liveClasses.some(c => c.status === 'Live' || c.status === 'live') && (
+                <div className="relative overflow-hidden rounded-2xl p-5 border border-rose-500/40 bg-gradient-to-r from-rose-950/40 via-[#180a10] to-[#0c0812] shadow-[0_0_30px_rgba(244,63,94,0.25)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 shrink-0">
+                      <Radio className="w-6 h-6 animate-pulse" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold font-space uppercase bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                          <span>LIVE CLASSROOM IN PROGRESS</span>
+                        </span>
+                        <span className="text-xs text-zinc-400 font-mono">
+                          {liveClasses.find(c => c.status === 'Live' || c.status === 'live')?.subject}
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-black font-outfit text-white mt-0.5">
+                        {liveClasses.find(c => c.status === 'Live' || c.status === 'live')?.title}
+                      </h3>
+                      <p className="text-xs text-zinc-300 font-jakarta">
+                        Faculty Host: <span className="text-[#ffaa40] font-bold">{liveClasses.find(c => c.status === 'Live' || c.status === 'live')?.teacherName || 'Raven Senior Faculty'}</span> • Class {liveClasses.find(c => c.status === 'Live' || c.status === 'live')?.class}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => window.open(`/live-class/${liveClasses.find(c => c.status === 'Live' || c.status === 'live')?.classId}`, '_blank')}
+                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(232,96,46,0.4)] cursor-pointer shrink-0"
+                  >
+                    <Video className="w-4 h-4" />
+                    <span>Join Class Now</span>
+                  </button>
+                </div>
+              )}
 
               {/* SECTION A: FAST ACTION DECK (3 Bento Interactive Cards) */}
               <div>
@@ -973,6 +1044,187 @@ Status           : ACTIVE & VERIFIED
                 </div>
               </div>
 
+            </div>
+          )}
+
+          {/* 1.5. LIVE CLASSES TAB */}
+          {activeTab === 'live' && (
+            <div className="space-y-6">
+              {/* Header Banner */}
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2">
+                    <Radio className="w-3.5 h-3.5 animate-pulse text-[#ff7a45]" />
+                    <span>Virtual Classroom Hub</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black font-outfit text-white">
+                    Interactive Live Lectures & Sessions
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 font-jakarta mt-1">
+                    Join real-time lessons conducted by Raven faculty with interactive audio, video, whiteboard, and live Q&A.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono font-bold text-zinc-300">
+                    Standard: Class {student.standard}
+                  </span>
+                </div>
+              </div>
+
+              {/* SESSIONS IN PROGRESS (LIVE NOW) */}
+              {liveClasses.filter(c => c.status === 'Live' || c.status === 'live').length > 0 && (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse" />
+                    <h4 className="text-sm font-black font-space uppercase tracking-wider text-rose-400">
+                      Live Broadcast In Progress (Join Now)
+                    </h4>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {liveClasses
+                      .filter(c => c.status === 'Live' || c.status === 'live')
+                      .map((liveClass) => (
+                        <div
+                          key={liveClass._id}
+                          className="p-5 rounded-2xl border-2 border-rose-500/50 bg-[#0e0a14] shadow-[0_0_25px_rgba(244,63,94,0.2)] flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-space uppercase bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                                <span>ON AIR</span>
+                              </span>
+                              <span className="text-xs font-space font-bold uppercase text-[#ffaa40] bg-[#ff7a45]/10 border border-[#ff7a45]/30 px-2 py-0.5 rounded-md">
+                                {liveClass.subject}
+                              </span>
+                            </div>
+
+                            <h4 className="text-lg font-black font-outfit text-white mb-1.5">
+                              {liveClass.title}
+                            </h4>
+                            {liveClass.description && (
+                              <p className="text-xs text-zinc-400 font-jakarta line-clamp-2 mb-3">
+                                {liveClass.description}
+                              </p>
+                            )}
+
+                            <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-jakarta space-y-1 mb-4">
+                              <div className="flex justify-between">
+                                <span className="text-zinc-400">Faculty Host:</span>
+                                <span className="font-bold text-white">{liveClass.teacherName || 'Raven Faculty'}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-zinc-400">Target Standard:</span>
+                                <span className="font-bold text-white">Class {liveClass.class}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-zinc-400">Timing:</span>
+                                <span className="font-mono text-zinc-200">{liveClass.startTime} - {liveClass.endTime}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={() => window.open(`/live-class/${liveClass.classId}`, '_blank')}
+                            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(232,96,46,0.4)] cursor-pointer transition-all active:scale-95"
+                          >
+                            <Video className="w-4 h-4" />
+                            <span>Enter Classroom</span>
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* UPCOMING SCHEDULED CLASSES */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-black font-space uppercase tracking-wider text-zinc-300">
+                    Scheduled Online Lectures
+                  </h4>
+                  <span className="text-xs text-zinc-500 font-mono">
+                    {liveClasses.filter(c => c.status === 'Scheduled' || c.status === 'scheduled').length} upcoming
+                  </span>
+                </div>
+
+                {liveClasses.filter(c => c.status === 'Scheduled' || c.status === 'scheduled').length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {liveClasses
+                      .filter(c => c.status === 'Scheduled' || c.status === 'scheduled')
+                      .map((liveClass) => (
+                        <div
+                          key={liveClass._id}
+                          className="p-5 rounded-2xl border border-white/10 hover:border-white/20 bg-[#0c0f1a] shadow-lg flex flex-col justify-between transition-all"
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-amber-500/10 border border-amber-500/30 text-amber-300">
+                                UPCOMING
+                              </span>
+                              <span className="text-xs font-bold text-[#ffaa40] font-space uppercase">
+                                {liveClass.subject}
+                              </span>
+                            </div>
+
+                            <h5 className="text-base font-bold font-outfit text-white mb-2 line-clamp-1">
+                              {liveClass.title}
+                            </h5>
+
+                            <div className="p-3 rounded-xl bg-[#070914] border border-white/10 text-xs space-y-1 mb-4">
+                              <div className="flex justify-between text-zinc-300">
+                                <span className="text-zinc-500">Faculty:</span>
+                                <span className="font-semibold">{liveClass.teacherName || 'Faculty'}</span>
+                              </div>
+                              <div className="flex justify-between text-zinc-300">
+                                <span className="text-zinc-500">Date:</span>
+                                <span className="font-mono">{liveClass.scheduledDate ? new Date(liveClass.scheduledDate).toLocaleDateString('en-IN') : 'Scheduled'}</span>
+                              </div>
+                              <div className="flex justify-between text-zinc-300">
+                                <span className="text-zinc-500">Time:</span>
+                                <span className="font-mono">{liveClass.startTime} - {liveClass.endTime}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={() => window.open(`/live-class/${liveClass.classId}`, '_blank')}
+                            className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-200 hover:text-white font-bold font-outfit text-xs flex items-center justify-center gap-1.5 transition cursor-pointer"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5 text-[#ff7a45]" />
+                            <span>Classroom Link</span>
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12 bg-[#0c0f1a] rounded-2xl border border-white/10 space-y-2">
+                    <Radio className="w-10 h-10 text-zinc-600 mx-auto" />
+                    <p className="text-sm font-bold text-white font-outfit">No Upcoming Classes Scheduled</p>
+                    <p className="text-xs text-zinc-400 font-jakarta max-w-sm mx-auto">
+                      All caught up! Check back later or follow notices for new lecture schedules.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* CLASSROOM PROTOCOL & PREPARATION CARD */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#0c0f1a] border border-white/10 text-xs font-jakarta text-zinc-400 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 shrink-0">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-white font-outfit">Automated Attendance Logging</p>
+                    <p className="text-[11px] text-zinc-400">Joining virtual lectures automatically marks attendance for your academic records.</p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono text-[#ffaa40] bg-[#ff7a45]/10 border border-[#ff7a45]/30 px-3 py-1 rounded-lg shrink-0">
+                  Interactive Audio & Whiteboard Ready
+                </span>
+              </div>
             </div>
           )}
 

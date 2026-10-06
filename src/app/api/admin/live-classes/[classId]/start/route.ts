@@ -1,10 +1,18 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import connectDB from '@/lib/database';
 import LiveClass from '@/models/LiveClass';
 import { verifyAdminToken } from '@/lib/auth';
 import { cookies } from 'next/headers';
+
+function buildQuery(classId: string) {
+  const isObjectId = mongoose.isValidObjectId(classId);
+  return isObjectId
+    ? { $or: [{ classId }, { _id: classId }, { roomName: classId }] }
+    : { $or: [{ classId }, { roomName: classId }] };
+}
 
 export async function PATCH(
   request: NextRequest,
@@ -33,7 +41,7 @@ export async function PATCH(
     const { classId } = await params;
 
     const liveClass = await LiveClass.findOneAndUpdate(
-      { classId },
+      buildQuery(classId),
       { 
         status: 'Live',
         actualStartTime: new Date()

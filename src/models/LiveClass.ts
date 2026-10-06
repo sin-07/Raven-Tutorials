@@ -1,21 +1,32 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
 export interface IParticipant {
-  participantId: mongoose.Types.ObjectId;
+  participantId?: mongoose.Types.ObjectId;
+  studentName?: string;
+  studentEmail?: string;
   joinedAt: Date;
   leftAt?: Date;
 }
 
 export interface ILiveClass extends Document {
+  classId: string;
   title: string;
   description?: string;
   roomName: string;
   class: string;
   subject: string;
-  scheduledAt: Date;
+  teacherName?: string;
+  teacherEmail?: string;
+  scheduledDate?: Date;
+  scheduledAt?: Date;
+  startTime?: string;
+  endTime?: string;
   duration: number;
-  status: 'scheduled' | 'live' | 'ended';
+  maxParticipants?: number;
+  status: 'Scheduled' | 'Live' | 'Completed' | 'Cancelled' | string;
   isRecordingEnabled?: boolean;
+  actualStartTime?: Date;
+  actualEndTime?: Date;
   createdBy?: mongoose.Types.ObjectId;
   participants?: IParticipant[];
   createdAt: Date;
@@ -23,44 +34,77 @@ export interface ILiveClass extends Document {
 }
 
 const liveClassSchema = new Schema<ILiveClass>({
+  classId: {
+    type: String,
+    index: true,
+    sparse: true
+  },
   title: {
     type: String,
     required: [true, 'Title is required'],
     trim: true
   },
   description: {
-    type: String
+    type: String,
+    default: ''
   },
   roomName: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   class: {
     type: String,
     required: [true, 'Class is required'],
-    enum: ['9th standard', '10th standard', '11th standard', '12th standard']
+    trim: true
   },
   subject: {
     type: String,
-    required: [true, 'Subject is required']
+    required: [true, 'Subject is required'],
+    trim: true
+  },
+  teacherName: {
+    type: String,
+    default: 'Raven Senior Faculty'
+  },
+  teacherEmail: {
+    type: String,
+    default: ''
+  },
+  scheduledDate: {
+    type: Date
   },
   scheduledAt: {
-    type: Date,
-    required: true
+    type: Date
+  },
+  startTime: {
+    type: String,
+    default: '10:00'
+  },
+  endTime: {
+    type: String,
+    default: '11:00'
   },
   duration: {
     type: Number,
-    required: true
+    default: 60
+  },
+  maxParticipants: {
+    type: Number,
+    default: 100
   },
   status: {
     type: String,
-    enum: ['scheduled', 'live', 'ended'],
-    default: 'scheduled'
+    default: 'Scheduled'
   },
   isRecordingEnabled: {
     type: Boolean,
     default: false
+  },
+  actualStartTime: {
+    type: Date
+  },
+  actualEndTime: {
+    type: Date
   },
   createdBy: {
     type: Schema.Types.ObjectId,
@@ -70,6 +114,12 @@ const liveClassSchema = new Schema<ILiveClass>({
     participantId: {
       type: Schema.Types.ObjectId,
       ref: 'Admission'
+    },
+    studentName: {
+      type: String
+    },
+    studentEmail: {
+      type: String
     },
     joinedAt: {
       type: Date,
@@ -83,10 +133,9 @@ const liveClassSchema = new Schema<ILiveClass>({
   timestamps: true
 });
 
-liveClassSchema.index({ class: 1, status: 1, scheduledAt: -1 });
-liveClassSchema.index({ status: 1, scheduledAt: 1 });
+liveClassSchema.index({ class: 1, status: 1 });
+liveClassSchema.index({ status: 1, scheduledDate: -1 });
 
 const LiveClass: Model<ILiveClass> = mongoose.models.LiveClass || mongoose.model<ILiveClass>('LiveClass', liveClassSchema);
 
 export default LiveClass;
-
