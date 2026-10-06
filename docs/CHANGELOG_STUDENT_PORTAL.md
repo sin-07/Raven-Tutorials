@@ -20,3 +20,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] feat(id-card): add lanyard slot guides to printable PVC card outline
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
