@@ -176,3 +176,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] perf(ui): promote static decorative icons to hoisted elements
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
