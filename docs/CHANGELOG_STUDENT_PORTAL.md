@@ -300,3 +300,7 @@
 - Applied refinement to student portal subsystem.
 - Verified compilation and design consistency.
 
+### [2026-10-06] fix(leaderboard): resolve tie-break edge cases on identical test marks
+- Applied refinement to student portal subsystem.
+- Verified compilation and design consistency.
+
