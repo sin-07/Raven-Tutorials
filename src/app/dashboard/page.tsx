@@ -384,10 +384,6 @@ Status           : ACTIVE & VERIFIED
           <div
             className="lg:col-span-4 rounded-3xl p-6 text-white flex flex-col justify-between border relative overflow-hidden backdrop-blur-2xl transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-gradient-to-b from-[#111425]/95 via-[#0b0e1b]/95 to-[#070912]/95 border-white/[0.12]"
           >
-            {/* Top highlight laser sheen */}
-            <div className="absolute top-0 left-6 right-6 h-[1.5px] bg-gradient-to-r from-transparent via-orange-400/60 to-transparent pointer-events-none" />
-            <div className="absolute -top-20 -left-20 w-60 h-60 rounded-full blur-3xl pointer-events-none opacity-20 bg-orange-500" />
-
             <div>
               {/* Header inside pass */}
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
@@ -522,10 +518,8 @@ Status           : ACTIVE & VERIFIED
               {/* Tile 1: Attendance with Circular Gauge */}
               <div
                 onClick={() => setActiveTab('attendance')}
-                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#121527]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#0c0f19]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
               >
-                <div className={`absolute top-0 left-0 right-0 h-[2px] ${overallAttendance >= 75 ? 'bg-gradient-to-r from-emerald-400 to-teal-400' : 'bg-gradient-to-r from-rose-500 to-orange-500'}`} />
-                
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-zinc-400 text-xs font-bold uppercase font-space">Overall Attendance</span>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
@@ -587,10 +581,8 @@ Status           : ACTIVE & VERIFIED
               {/* Tile 2: Tests Evaluated */}
               <div
                 onClick={() => setActiveTab('marks')}
-                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#151227]/90 to-[#080a13]/95 border-white/10 hover:border-amber-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#0c0f19]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
               >
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400 to-orange-500" />
-                
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-zinc-400 text-xs font-bold uppercase font-space">Evaluated Tests</span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-amber-500/10 border-amber-500/30 text-amber-300">
@@ -623,10 +615,8 @@ Status           : ACTIVE & VERIFIED
               {/* Tile 3: Scheduled Tests */}
               <div
                 onClick={() => setActiveTab('tests')}
-                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#101927]/90 to-[#080a13]/95 border-white/10 hover:border-cyan-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#0c0f19]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
               >
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500" />
-                
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-zinc-400 text-xs font-bold uppercase font-space">Scheduled Mocks</span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-cyan-500/10 border-cyan-500/30 text-cyan-300 inline-flex items-center gap-1">
@@ -659,10 +649,8 @@ Status           : ACTIVE & VERIFIED
               {/* Tile 4: Study Notes Vault */}
               <div
                 onClick={() => setActiveTab('materials')}
-                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#10221e]/90 to-[#080a13]/95 border-white/10 hover:border-emerald-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#0c0f19]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
               >
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-400 to-green-500" />
-                
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-zinc-400 text-xs font-bold uppercase font-space">Academic Vault</span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-emerald-500/10 border-emerald-500/30 text-emerald-300">
