@@ -6,10 +6,11 @@ import {
   BookOpen, BarChart3, Calendar, FileText,
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
   Download, Printer, Sparkles, LogOut, ArrowRight, ShieldCheck,
-  CreditCard, Trophy, Zap, Crown, X, Check, Medal, Target, Flame, Shield, AlertTriangle
+  CreditCard, Trophy, Zap, Crown, X, Check, Medal, Target, Flame, Shield, AlertTriangle,
+  GraduationCap, MapPin, ChevronRight
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { StudentProtectedRoute } from '@/components';
+import { StudentProtectedRoute, StudentIDCardModal } from '@/components';
 import Loader from '@/components/Loader';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
 
@@ -127,6 +128,7 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [downloading, setDownloading] = useState(false);
+  const [showIDCardModal, setShowIDCardModal] = useState(false);
 
   // Data states
   const [attendance, setAttendance] = useState<AttendanceData[]>([]);
@@ -349,7 +351,7 @@ Status           : ACTIVE & VERIFIED
   };
 
   const handlePrintIDCard = () => {
-    window.print();
+    setShowIDCardModal(true);
   };
 
   if (loading) {
@@ -375,217 +377,350 @@ Status           : ACTIVE & VERIFIED
     <div className="min-h-screen bg-transparent relative overflow-hidden pt-24 pb-16 selection:bg-[#e8602e] selection:text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         
-        {/* Luxury Cyber Command Header */}
-        <div className="relative bg-[#090b12]/90 border border-white/10 hover:border-white/20 rounded-3xl p-6 sm:p-8 text-white mb-8 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_50px_rgba(232,96,46,0.12)] overflow-hidden backdrop-blur-2xl transition-all duration-300">
-          {/* Top highlight line */}
-          <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+        {/* ── NEW SKELETON: BENTO COMMAND CENTER ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-stretch">
+          
+          {/* ══ LEFT BENTO TILE (4 Cols): OFFICIAL STUDENT IDENTITY PASS ══ */}
+          <div
+            className="lg:col-span-4 rounded-3xl p-6 text-white flex flex-col justify-between border relative overflow-hidden backdrop-blur-2xl transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-gradient-to-b from-[#111425]/95 via-[#0b0e1b]/95 to-[#070912]/95 border-white/[0.12]"
+          >
+            {/* Top highlight laser sheen */}
+            <div className="absolute top-0 left-6 right-6 h-[1.5px] bg-gradient-to-r from-transparent via-orange-400/60 to-transparent pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-60 h-60 rounded-full blur-3xl pointer-events-none opacity-20 bg-orange-500" />
 
-          {/* Ambient subtle aura */}
-          <div 
-            className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-25"
-            style={{ background: 'radial-gradient(circle, #e8602e 0%, transparent 70%)' }}
-            aria-hidden="true"
-          />
-
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            {/* Left: Avatar + Details */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-              {/* Student Profile Picture Card */}
-              <div className="relative flex-shrink-0 group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl bg-[#121522] border-2 border-[#e8602e]/40 shadow-[0_0_25px_rgba(232,96,46,0.3)] overflow-hidden flex items-center justify-center relative transition-transform duration-200 group-hover:scale-105">
-                  {student.photo ? (
-                    <img
-                      src={student.photo}
-                      alt={student.studentName}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#121522] flex flex-col items-center justify-center font-black font-outfit text-3xl sm:text-4xl text-[#ffaa40]">
-                      <span>{student.studentName.charAt(0)}</span>
-                    </div>
-                  )}
+            <div>
+              {/* Header inside pass */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-white/10 border border-white/15">
+                    <img src="/logo.png" alt="Raven Logo" className="w-4 h-4 object-contain" />
+                  </div>
+                  <div>
+                    <span className="font-black font-outfit text-xs text-white tracking-wider uppercase block leading-none">
+                      RAVEN TUTORIALS
+                    </span>
+                    <span className="text-[9px] font-space text-zinc-400 font-bold tracking-widest uppercase">
+                      Official Student Pass
+                    </span>
+                  </div>
                 </div>
-                {/* Verified Active Badge */}
-                <div
-                  className="absolute -bottom-1 -right-1 p-1.5 bg-[#e8602e] border-2 border-[#090b12] rounded-xl shadow-[0_0_12px_rgba(232,96,46,0.6)]"
-                  title="Verified Enrolled Student"
-                >
-                  <ShieldCheck className="w-4 h-4 text-white" />
+
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[10px] font-bold font-space uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>2026-27</span>
                 </div>
               </div>
 
-              {/* Student Identification & Salutation */}
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121522] border border-[#e8602e]/40 text-[#ffaa40] text-[10px] sm:text-[11px] font-bold font-space uppercase tracking-wider shadow-[0_0_12px_rgba(232,96,46,0.25)]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#e8602e]" />
-                    <span>Student Academic Portal</span>
+              {/* Student Photo & Identity Frame */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative group mb-3">
+                  <div className="p-1 rounded-2xl bg-gradient-to-tr from-[#ff6a3d] via-[#f59e0b] to-[#ec4899] shadow-[0_0_25px_rgba(232,96,46,0.35)] transition-transform group-hover:scale-105">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-[14px] bg-[#0c0e18] overflow-hidden flex items-center justify-center">
+                      {student.photo ? (
+                        <img
+                          src={student.photo}
+                          alt={student.studentName}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#181c2e] to-[#0c0e18] flex items-center justify-center font-black font-outfit text-4xl text-[#ffaa40]">
+                          <span>{student.studentName.charAt(0)}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold font-space uppercase text-zinc-300">
-                    Active Session 2026-27
-                  </span>
+                  
+                  {/* Verified badge */}
+                  <div
+                    className="absolute -bottom-1 -right-1 px-2 py-0.5 bg-[#090b14] border border-emerald-500/40 rounded-full shadow-md flex items-center gap-1 text-[10px] text-emerald-400 font-bold"
+                    title="Verified & Active"
+                  >
+                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                    <span>VERIFIED</span>
+                  </div>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit tracking-tight text-white flex items-center gap-2 flex-wrap">
-                  <span>Welcome, {student.studentName}!</span>
-                  <span className="text-[#e8602e]">✨</span>
-                </h1>
+                <h2 className="text-xl sm:text-2xl font-black font-outfit tracking-tight text-white uppercase mt-1">
+                  {student.studentName}
+                </h2>
+                <div className="inline-flex items-center gap-2 mt-1.5 px-3 py-1 rounded-lg bg-[#141829] border border-[#ffaa40]/25 text-[#ffaa40] font-mono text-xs font-bold">
+                  <span>Class {student.standard}</span>
+                  <span className="text-zinc-500">•</span>
+                  <span>ID: {student.registrationId}</span>
+                </div>
 
-                <div className="flex flex-wrap items-center gap-2 text-xs font-jakarta pt-0.5">
-                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-zinc-200 font-space font-bold uppercase text-[11px]">
-                    Class {student.standard}
-                  </span>
-                  <span className="font-mono bg-[#121522] text-[#ffaa40] px-3 py-1 rounded-lg border border-[#e8602e]/30 text-xs font-bold shadow-sm">
-                    Reg ID: {student.registrationId}
-                  </span>
-                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold font-space uppercase text-zinc-400 hidden sm:inline">
-                    Patna Campus
-                  </span>
+                {/* Info List */}
+                <div className="w-full mt-4 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.08] text-xs text-left space-y-2">
+                  <div className="flex justify-between items-center text-zinc-300">
+                    <span className="text-[10px] font-space uppercase text-zinc-400 font-bold">Campus</span>
+                    <span className="font-bold flex items-center gap-1 text-emerald-400">
+                      <MapPin className="w-3 h-3" /> Patna Campus
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center text-zinc-300 border-t border-white/[0.06] pt-1.5">
+                    <span className="text-[10px] font-space uppercase text-zinc-400 font-bold">Father&apos;s Name</span>
+                    <span className="font-bold truncate max-w-[150px]">{student.fatherName || 'Guardian'}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-zinc-300 border-t border-white/[0.06] pt-1.5">
+                    <span className="text-[10px] font-space uppercase text-zinc-400 font-bold">Roll / Reg ID</span>
+                    <span className="font-mono text-[#ffaa40] font-bold">{student.registrationId}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: Actions */}
-            <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
-              <button
-                onClick={handleDownloadReceipt}
-                className="px-4 py-3 bg-[#121522] hover:bg-[#1a1f33] text-zinc-200 hover:text-white rounded-xl border border-white/10 hover:border-white/20 font-black font-outfit text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md cursor-pointer"
-              >
-                <Download className="w-4 h-4 text-[#ffaa40]" />
-                <span>Admission Receipt</span>
-              </button>
-
+            {/* Action Buttons docked at bottom of pass */}
+            <div className="mt-5 pt-4 border-t border-white/[0.08] space-y-2.5">
               <button
                 onClick={handlePrintIDCard}
-                className="btn-sheryians px-5 py-3 text-white rounded-xl font-black font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#ff6a3d] via-[#e8501e] to-[#ff5722] hover:from-[#ff7a4f] hover:to-[#ff5216] text-white font-black font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(232,96,46,0.4)] hover:shadow-[0_0_35px_rgba(232,96,46,0.65)] hover:-translate-y-0.5 active:translate-y-0 border border-white/20 cursor-pointer"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Student Card</span>
               </button>
+
+              <button
+                onClick={handleDownloadReceipt}
+                disabled={downloading}
+                className="w-full py-2.5 px-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-zinc-300 hover:text-white font-bold font-outfit text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 transition cursor-pointer disabled:opacity-50"
+              >
+                <Download className="w-4 h-4 text-[#ffaa40]" />
+                <span>Admission Receipt (.txt)</span>
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-          {/* Card 1: Attendance */}
-          <div
-            onClick={() => setActiveTab('attendance')}
-            className="bg-[#090b12]/90 hover:border-[#e8602e]/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(232,96,46,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
+          {/* ══ RIGHT BENTO SECTION (8 Cols): ACADEMIC PERFORMANCE & DISPATCH ══ */}
+          <div className="lg:col-span-8 flex flex-col gap-5">
+            
+            {/* Top Welcome Bar */}
+            <div className="rounded-2xl p-4 sm:p-5 text-white flex flex-wrap items-center justify-between gap-3 border backdrop-blur-2xl bg-gradient-to-r from-[#111425]/90 via-[#0c0f1c]/90 to-[#080a13]/90 border-white/[0.1]">
               <div>
-                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Overall Attendance</p>
-                <p className="text-3xl font-black text-white font-mono mt-1">{overallAttendance}%</p>
+                <div className="flex items-center gap-2 text-xs text-zinc-400 font-space mb-1">
+                  <Sparkles className="w-3.5 h-3.5 text-[#ffaa40]" />
+                  <span>ACADEMIC CONTROL CENTER</span>
+                  <span>•</span>
+                  <span className="text-emerald-400 font-bold">SESSION 2026-27</span>
+                </div>
+                <h1 className="text-xl sm:text-2xl font-black font-outfit text-white">
+                  Welcome back, <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffb86c] bg-clip-text text-transparent">{student.studentName}</span>! 👋
+                </h1>
               </div>
-              <div className="p-3 bg-[#e8602e]/10 border border-[#e8602e]/30 rounded-xl shadow-[0_0_15px_rgba(232,96,46,0.2)]">
-                <Calendar className="w-6 h-6 text-[#ff7a45]" />
+
+              {/* Status Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs font-bold text-emerald-300 font-space uppercase tracking-wider">
+                  Verified Student
+                </span>
               </div>
             </div>
-            <div className="mt-4 w-full bg-white/10 rounded-full h-2.5 overflow-hidden shadow-inner">
+
+            {/* 2x2 Bento Matrix */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 flex-1">
+              
+              {/* Tile 1: Attendance with Circular Gauge */}
               <div
-                className={`h-full transition-all duration-500 ${
-                  overallAttendance >= 75 ? 'bg-gradient-to-r from-emerald-500 to-[#10b981]' : 'bg-gradient-to-r from-rose-500 to-rose-600'
-                }`}
-                style={{ width: `${overallAttendance}%` }}
-              />
+                onClick={() => setActiveTab('attendance')}
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#121527]/90 to-[#080a13]/95 border-white/10 hover:border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+              >
+                <div className={`absolute top-0 left-0 right-0 h-[2px] ${overallAttendance >= 75 ? 'bg-gradient-to-r from-emerald-400 to-teal-400' : 'bg-gradient-to-r from-rose-500 to-orange-500'}`} />
+                
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-zinc-400 text-xs font-bold uppercase font-space">Overall Attendance</span>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
+                    overallAttendance >= 75
+                      ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+                      : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+                  }`}>
+                    {overallAttendance >= 75 ? 'Regular' : 'Below 75%'}
+                  </span>
+                </div>
+
+                {/* Circular Gauge Display */}
+                <div className="flex items-center gap-4 my-2">
+                  <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
+                    <svg className="w-20 h-20 transform -rotate-90">
+                      <circle
+                        cx="40"
+                        cy="40"
+                        r="32"
+                        stroke="rgba(255,255,255,0.08)"
+                        strokeWidth="7"
+                        fill="transparent"
+                      />
+                      <circle
+                        cx="40"
+                        cy="40"
+                        r="32"
+                        stroke={overallAttendance >= 75 ? "#10b981" : "#f43f5e"}
+                        strokeWidth="7"
+                        strokeDasharray={2 * Math.PI * 32}
+                        strokeDashoffset={(2 * Math.PI * 32) - (overallAttendance / 100) * (2 * Math.PI * 32)}
+                        strokeLinecap="round"
+                        fill="transparent"
+                        className="transition-all duration-1000 ease-out"
+                      />
+                    </svg>
+                    <span className="absolute font-mono font-black text-lg text-white">
+                      {overallAttendance}%
+                    </span>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-bold text-white font-jakarta">Academic Requirement</p>
+                    <p className="text-[11px] text-zinc-400 font-jakarta mt-0.5">
+                      75% mandatory for Board & Exam eligibility.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta mt-auto">
+                  <span className="text-[11px] text-zinc-400">Classes Attended</span>
+                  <span className={`text-[11px] font-space font-bold uppercase inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform ${overallAttendance >= 75 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    <span>Logs</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+
+              {/* Tile 2: Tests Evaluated */}
+              <div
+                onClick={() => setActiveTab('marks')}
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#151227]/90 to-[#080a13]/95 border-white/10 hover:border-amber-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400 to-orange-500" />
+                
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-zinc-400 text-xs font-bold uppercase font-space">Evaluated Tests</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-amber-500/10 border-amber-500/30 text-amber-300">
+                    Graded
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between my-2">
+                  <div>
+                    <span className="text-4xl font-black text-white font-mono tracking-tight">
+                      {testResults.length}
+                    </span>
+                    <p className="text-xs text-zinc-300 font-bold font-jakarta mt-1">Tests Evaluated</p>
+                    <p className="text-[11px] text-zinc-400 font-jakarta">Scorecards & Percentile</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.2)] group-hover:scale-110 transition-transform">
+                    <Award className="w-6 h-6" />
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta mt-auto">
+                  <span className="text-[11px] text-zinc-400">Score Analytics</span>
+                  <span className="text-[#ffaa40] font-space font-bold uppercase text-[11px] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Marks</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+
+              {/* Tile 3: Scheduled Tests */}
+              <div
+                onClick={() => setActiveTab('tests')}
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#101927]/90 to-[#080a13]/95 border-white/10 hover:border-cyan-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500" />
+                
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-zinc-400 text-xs font-bold uppercase font-space">Scheduled Mocks</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-cyan-500/10 border-cyan-500/30 text-cyan-300 inline-flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" /> Live
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between my-2">
+                  <div>
+                    <span className="text-4xl font-black text-white font-mono tracking-tight">
+                      {upcomingTests.length}
+                    </span>
+                    <p className="text-xs text-zinc-300 font-bold font-jakarta mt-1">Available Mock Tests</p>
+                    <p className="text-[11px] text-zinc-400 font-jakarta">Practice papers & timers</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.2)] group-hover:scale-110 transition-transform">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta mt-auto">
+                  <span className="text-[11px] text-zinc-400">Timed Exam Series</span>
+                  <span className="text-cyan-400 font-space font-bold uppercase text-[11px] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Take Test</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+
+              {/* Tile 4: Study Notes Vault */}
+              <div
+                onClick={() => setActiveTab('materials')}
+                className="group rounded-2xl p-5 border backdrop-blur-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative bg-gradient-to-b from-[#10221e]/90 to-[#080a13]/95 border-white/10 hover:border-emerald-500/40 shadow-[0_15px_35px_rgba(0,0,0,0.7)] flex flex-col justify-between"
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-400 to-green-500" />
+                
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-zinc-400 text-xs font-bold uppercase font-space">Academic Vault</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border bg-emerald-500/10 border-emerald-500/30 text-emerald-300">
+                    Vault
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between my-2">
+                  <div>
+                    <span className="text-4xl font-black text-white font-mono tracking-tight">
+                      {studyMaterials.length}
+                    </span>
+                    <p className="text-xs text-zinc-300 font-bold font-jakarta mt-1">Study Notes & DPPs</p>
+                    <p className="text-[11px] text-zinc-400 font-jakarta">PDFs & Formula Sheets</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] group-hover:scale-110 transition-transform">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-xs font-jakarta mt-auto">
+                  <span className="text-[11px] text-zinc-400">Handouts & Exercises</span>
+                  <span className="text-emerald-400 font-space font-bold uppercase text-[11px] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Notes</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+
             </div>
-            <p className="text-[11px] font-bold text-zinc-400 mt-2 flex items-center justify-between font-jakarta">
-              <span>Req: 75%</span>
-              <span className={overallAttendance >= 75 ? 'text-emerald-400 font-bold inline-flex items-center gap-1' : 'text-rose-400 font-black inline-flex items-center gap-1'}>
-                {overallAttendance >= 75 ? (
-                  <>Regular <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" /></>
-                ) : (
-                  <>Below 75% <AlertTriangle className="w-3.5 h-3.5 text-rose-400" /></>
-                )}
-              </span>
-            </p>
+
+            {/* Integrated Attendance Advisory Alert (Compact Docked Strip) */}
+            {hasLowAttendance && (
+              <div className="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center gap-3 shadow-lg backdrop-blur-xl">
+                <div className="p-2 rounded-xl bg-rose-500/20 text-rose-400 flex-shrink-0">
+                  <AlertCircle className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-bold text-white font-outfit">Attendance Advisory Notice</p>
+                  <p className="text-[11px] text-zinc-300 font-medium truncate font-jakarta">
+                    Your attendance in some subjects is below 75%. Please ensure regular attendance to maintain test eligibility.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveTab('attendance')}
+                  className="px-3 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 text-xs font-bold font-space uppercase flex-shrink-0 transition cursor-pointer"
+                >
+                  View Details
+                </button>
+              </div>
+            )}
+
           </div>
 
-          {/* Card 2: Tests Completed */}
-          <div
-            onClick={() => setActiveTab('marks')}
-            className="bg-[#090b12]/90 hover:border-amber-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(245,158,11,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Tests Evaluated</p>
-                <p className="text-3xl font-black text-white font-mono mt-1">{testResults.length}</p>
-              </div>
-              <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                <Award className="w-6 h-6 text-amber-400" />
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold">
-              <span className="text-[11px] text-zinc-400">Completed tests</span>
-              <span className="text-[#ffaa40] font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
-                Marks →
-              </span>
-            </div>
-          </div>
-
-          {/* Card 3: Upcoming Tests */}
-          <div
-            onClick={() => setActiveTab('tests')}
-            className="bg-[#090b12]/90 hover:border-cyan-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(6,182,212,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Available Tests</p>
-                <p className="text-3xl font-black text-white font-mono mt-1">{upcomingTests.length}</p>
-              </div>
-              <div className="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                <Clock className="w-6 h-6 text-cyan-400" />
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold">
-              <span className="text-[11px] text-zinc-400">Active mock tests</span>
-              <span className="text-cyan-400 font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
-                Take Test →
-              </span>
-            </div>
-          </div>
-
-          {/* Card 4: Study Materials */}
-          <div
-            onClick={() => setActiveTab('materials')}
-            className="bg-[#090b12]/90 hover:border-emerald-500/40 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(16,185,129,0.12)] transition-all cursor-pointer backdrop-blur-xl group hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Study Notes</p>
-                <p className="text-3xl font-black text-white font-mono mt-1">{studyMaterials.length}</p>
-              </div>
-              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                <BookOpen className="w-6 h-6 text-emerald-400" />
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between text-xs font-bold">
-              <span className="text-[11px] text-zinc-400">Class notes & DPPs</span>
-              <span className="text-emerald-400 font-space font-bold uppercase text-[10px] group-hover:translate-x-0.5 transition-transform">
-                Notes →
-              </span>
-            </div>
-          </div>
         </div>
 
-        {/* Low Attendance Warning */}
-        {hasLowAttendance && (
-          <div className="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-5 mb-8 flex items-center gap-4 shadow-[0_10px_30px_rgba(244,63,94,0.15)] backdrop-blur-xl">
-            <div className="p-2.5 bg-rose-500/20 rounded-xl border border-rose-500/30 flex-shrink-0 shadow-sm text-rose-400">
-              <AlertCircle className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="font-black text-white text-base font-outfit">Attendance Advisory</p>
-              <p className="text-xs sm:text-sm text-zinc-300 font-medium font-jakarta mt-0.5 leading-relaxed">
-                Your attendance in some subjects is currently below 75%. Please ensure regular attendance to maintain test eligibility.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Cyber Tab Navigation */}
-        <div className="bg-[#090b12]/90 rounded-2xl p-1.5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] mb-8 overflow-x-auto flex gap-2 backdrop-blur-xl">
+        {/* Tab Navigation */}
+        <div className="rounded-2xl p-1.5 border backdrop-blur-2xl mb-8 overflow-x-auto flex gap-2 transition-all bg-[#0d101d]/90 border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
           {[
             { id: 'overview', label: 'OVERVIEW', icon: null },
             { id: 'leaderboard', label: 'LEADERBOARD & BADGES', icon: Trophy },
@@ -604,7 +739,7 @@ Status           : ACTIVE & VERIFIED
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex-shrink-0 px-4 sm:px-5 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer ${
                   isActive
-                    ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]'
+                    ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-[0_0_20px_rgba(232,96,46,0.4)] border border-white/15'
                     : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent font-bold'
                 }`}
               >
@@ -616,7 +751,7 @@ Status           : ACTIVE & VERIFIED
         </div>
 
         {/* Tab Content Panels */}
-        <div className="bg-[#090b12]/90 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.08)] p-6 sm:p-8 border border-white/10 backdrop-blur-2xl text-white">
+        <div className="rounded-3xl p-6 sm:p-8 border backdrop-blur-2xl text-white transition-all bg-[#0a0d18]/90 border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.06)]">
           
           {/* 1. Overview Tab */}
           {activeTab === 'overview' && (
@@ -638,6 +773,14 @@ Status           : ACTIVE & VERIFIED
                   >
                     <Download className="w-4 h-4 text-white" />
                     <span>Download Admission Receipt (.txt)</span>
+                  </button>
+
+                  <button
+                    onClick={handlePrintIDCard}
+                    className="px-5 py-3 bg-[#15192c] hover:bg-[#1d223a] text-zinc-100 hover:text-white font-black font-outfit uppercase tracking-wider rounded-xl border border-white/10 hover:border-white/20 flex items-center gap-2 text-xs sm:text-sm transition-all cursor-pointer shadow-md"
+                  >
+                    <Printer className="w-4 h-4 text-[#ff7a45]" />
+                    <span>Print Student ID Card</span>
                   </button>
 
                   <button
@@ -1410,6 +1553,15 @@ Status           : ACTIVE & VERIFIED
 
         </div>
       </main>
+
+      {/* Official Student ID Card Modal */}
+      {student && (
+        <StudentIDCardModal
+          isOpen={showIDCardModal}
+          onClose={() => setShowIDCardModal(false)}
+          student={student}
+        />
+      )}
     </div>
   );
 };
