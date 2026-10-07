@@ -231,11 +231,11 @@ const AdminAttendance: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <CheckSquare className="w-3.5 h-3.5" />
                 <span>Attendance Registry</span>
               </div>
@@ -303,7 +303,7 @@ const AdminAttendance: React.FC = () => {
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
               />
             </div>
 
@@ -311,7 +311,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={markAllPresent}
                 disabled={!selectedClass || !selectedSubject || students.length === 0}
-                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer"
+                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer"
               >
                 <Check size={16} />
                 <span>Mark All Present</span>
@@ -390,7 +390,7 @@ const AdminAttendance: React.FC = () => {
                         <span className="text-[11px] text-zinc-500 font-mono sm:hidden">{student.registrationId}</span>
                       </td>
                       <td className="px-5 py-3.5 hidden md:table-cell">
-                        <span className="px-2.5 py-0.5 rounded-md bg-[#ff7a45]/15 border border-[#ff7a45]/30 font-mono font-bold text-xs text-[#ffaa40]">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#34d399]/15 border border-[#34d399]/30 font-mono font-bold text-xs text-[#6ee7b7]">
                           {student.registrationId}
                         </span>
                       </td>
@@ -415,7 +415,7 @@ const AdminAttendance: React.FC = () => {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="px-8 py-3 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm sm:text-base disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="px-8 py-3 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm sm:text-base disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <CheckSquare size={18} />
                 <span>{loading ? 'Saving...' : isMarked ? 'Update Attendance' : 'Save Attendance'}</span>
@@ -434,7 +434,7 @@ const AdminAttendance: React.FC = () => {
 
         {(!selectedClass || !selectedSubject) && (
           <div className="text-center py-16 bg-[#0b0e1a]/90 rounded-2xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] p-8">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 text-[#ffaa40]">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 text-[#6ee7b7]">
               <Calendar className="w-8 h-8" />
             </div>
             <p className="text-white font-bold text-lg font-outfit">Select Class & Subject</p>

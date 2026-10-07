@@ -96,19 +96,19 @@ const AdminDashboard: React.FC = () => {
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
           {/* Top subtle orange laser beam */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
           
           {/* Ambient background glow */}
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2.5 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-[#ff7a45]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2.5 shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-[#34d399]" />
                 <span>Executive Command Center</span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
-                Academic Dashboard <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Overview</span>
+                Academic Dashboard <span className="bg-gradient-to-r from-white via-zinc-200 to-[#6ee7b7] bg-clip-text text-transparent">Overview</span>
               </h1>
               <p className="text-zinc-400 font-normal font-jakarta text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
                 Real-time student admissions, teacher applications, and active assessment stats across Raven Tutorials Patna.
@@ -129,29 +129,29 @@ const AdminDashboard: React.FC = () => {
         {/* 3 Core Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* Card 1: Total Students */}
-          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#ff7a45]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] transition-all duration-300 overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/30 to-transparent group-hover:via-[#ff7a45]/80 transition-all" />
+          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#34d399]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] transition-all duration-300 overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/30 to-transparent group-hover:via-[#34d399]/80 transition-all" />
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Total Enrolled</p>
-                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#ffaa40] transition-colors">
+                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#6ee7b7] transition-colors">
                   {stats?.stats?.totalStudents || 0}
                 </p>
                 <p className="text-xs text-zinc-500 mt-1 font-jakarta font-medium">Verified student profiles</p>
               </div>
-              <div className="w-13 h-13 p-3.5 bg-[#e8602e]/15 border border-[#e8602e]/30 rounded-2xl text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+              <div className="w-13 h-13 p-3.5 bg-[#10b981]/15 border border-[#10b981]/30 rounded-2xl text-[#34d399] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                 <Users size={24} />
               </div>
             </div>
           </div>
 
           {/* Card 2: Total Tests */}
-          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#ff7a45]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] transition-all duration-300 overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/30 to-transparent group-hover:via-[#ff7a45]/80 transition-all" />
+          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#34d399]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] transition-all duration-300 overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/30 to-transparent group-hover:via-[#34d399]/80 transition-all" />
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Total Tests</p>
-                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#ffaa40] transition-colors">
+                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#6ee7b7] transition-colors">
                   {stats?.stats?.totalTests || 0}
                 </p>
                 <p className="text-xs text-zinc-500 mt-1 font-jakarta font-medium">Active assessments & mock papers</p>
@@ -163,12 +163,12 @@ const AdminDashboard: React.FC = () => {
           </div>
 
           {/* Card 3: Recent Admissions */}
-          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#ff7a45]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] transition-all duration-300 sm:col-span-2 lg:col-span-1 overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/30 to-transparent group-hover:via-[#ff7a45]/80 transition-all" />
+          <div className="group relative bg-[#0b0e1a]/90 hover:bg-[#111526] rounded-2xl p-6 border border-white/10 hover:border-[#34d399]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] transition-all duration-300 sm:col-span-2 lg:col-span-1 overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/30 to-transparent group-hover:via-[#34d399]/80 transition-all" />
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-zinc-400 text-xs font-bold uppercase font-space tracking-wider">Recent Admissions</p>
-                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#ffaa40] transition-colors">
+                <p className="text-3xl sm:text-4xl font-black text-white font-mono mt-1 group-hover:text-[#6ee7b7] transition-colors">
                   {stats?.stats?.recentAdmissions || 0}
                 </p>
                 <p className="text-xs text-zinc-500 mt-1 font-jakarta font-medium">Enrolled in the last 7 days</p>
@@ -184,7 +184,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-[#0b0e1a]/90 rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden">
           <div className="px-5 sm:px-6 py-4.5 bg-[#0e1222] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-[#ff7a45]/15 border border-[#ff7a45]/30 rounded-xl text-[#ff7b47] shadow-sm">
+              <div className="p-2.5 bg-[#34d399]/15 border border-[#34d399]/30 rounded-xl text-[#34d399] shadow-sm">
                 <GraduationCap size={20} />
               </div>
               <div>
@@ -194,7 +194,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <button
               onClick={() => router.push('/admin/teacher-applications')}
-              className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-transparent text-zinc-200 hover:text-white text-xs font-bold font-outfit transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-[#10b981] border border-white/10 hover:border-transparent text-zinc-200 hover:text-white text-xs font-bold font-outfit transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <span>View All</span>
               <ArrowRight size={14} />
@@ -301,7 +301,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <button
               onClick={() => router.push('/admin/tests')}
-              className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-[#e8602e] border border-white/10 hover:border-transparent text-zinc-200 hover:text-white text-xs font-bold font-outfit transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-[#10b981] border border-white/10 hover:border-transparent text-zinc-200 hover:text-white text-xs font-bold font-outfit transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <span>Manage Tests</span>
               <ArrowRight size={14} />
@@ -325,7 +325,7 @@ const AdminDashboard: React.FC = () => {
                     {stats.upcomingTests.map((t) => (
                       <tr key={t._id} className="hover:bg-white/[0.02] transition-colors">
                         <td className="px-4 py-3.5 font-bold text-white">{t.title}</td>
-                        <td className="px-4 py-3.5 font-bold text-[#ffaa40] font-mono">{t.class}</td>
+                        <td className="px-4 py-3.5 font-bold text-[#6ee7b7] font-mono">{t.class}</td>
                         <td className="px-4 py-3.5 text-zinc-300 hidden sm:table-cell">{t.subject}</td>
                         <td className="px-4 py-3.5 text-zinc-400 font-mono">
                           {new Date(t.testDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}

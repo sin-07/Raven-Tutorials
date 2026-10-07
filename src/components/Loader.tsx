@@ -48,7 +48,7 @@ export const Loader: React.FC<LoaderProps> = ({
       <div 
         className="absolute w-32 h-32 rounded-full blur-2xl pointer-events-none opacity-40 animate-pulse"
         style={{
-          background: 'radial-gradient(circle, rgba(232, 96, 46, 0.6) 0%, rgba(255, 122, 69, 0.2) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16,185,129, 0.6) 0%, rgba(52, 211, 153, 0.2) 50%, transparent 70%)',
         }}
         aria-hidden="true"
       />
@@ -60,17 +60,17 @@ export const Loader: React.FC<LoaderProps> = ({
 
         {/* Outer Fast Spin Ring (Electric Orange Neon Gradient) */}
         <div 
-          className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#e8602e] border-r-[#ff7a45] animate-spin"
-          style={{ animationDuration: '0.9s', filter: 'drop-shadow(0 0 8px rgba(232,96,46,0.6))' }}
+          className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#10b981] border-r-[#34d399] animate-spin"
+          style={{ animationDuration: '0.9s', filter: 'drop-shadow(0 0 8px rgba(16,185,129,0.6))' }}
         />
 
         {/* Inner Counter-Rotating Ring (Amber Gold Glow) */}
         {size !== 'xs' && (
           <div 
-            className="absolute inset-1.5 sm:inset-2 rounded-full border-2 border-transparent border-b-[#ffaa40] border-l-[#ff7a45] animate-spin-reverse"
+            className="absolute inset-1.5 sm:inset-2 rounded-full border-2 border-transparent border-b-[#6ee7b7] border-l-[#34d399] animate-spin-reverse"
             style={{ 
               animation: 'raven-spin-reverse 1.2s linear infinite',
-              filter: 'drop-shadow(0 0 8px rgba(255,170,64,0.6))' 
+              filter: 'drop-shadow(0 0 8px rgba(110,231,183,0.6))' 
             }}
           />
         )}
@@ -81,7 +81,7 @@ export const Loader: React.FC<LoaderProps> = ({
             <img
               src="/logo.png"
               alt="Raven Core"
-              className={`${logoSize} object-contain drop-shadow-[0_0_12px_rgba(232,96,46,0.8)]`}
+              className={`${logoSize} object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]`}
               onError={(e) => {
                 // Fallback to stylized dot if logo isn't rendered
                 (e.target as HTMLElement).style.display = 'none';
@@ -92,7 +92,7 @@ export const Loader: React.FC<LoaderProps> = ({
 
         {/* Tiny Center Energy Spark (for xs size) */}
         {size === 'xs' && (
-          <div className="w-1.5 h-1.5 rounded-full bg-[#e8602e] shadow-[0_0_8px_#e8602e] animate-ping" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981] animate-ping" />
         )}
       </div>
 
@@ -101,7 +101,7 @@ export const Loader: React.FC<LoaderProps> = ({
         <div className="mt-4 flex flex-col items-center text-center space-y-1 z-10">
           {text && (
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#e8602e] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
               <p className={`font-outfit font-extrabold uppercase tracking-widest text-white ${textSize} drop-shadow-sm`}>
                 {text}
               </p>
@@ -117,7 +117,7 @@ export const Loader: React.FC<LoaderProps> = ({
           {size !== 'xs' && size !== 'sm' && (
             <div className="w-20 h-0.5 bg-white/10 rounded-full overflow-hidden mt-1.5">
               <div 
-                className="h-full bg-gradient-to-r from-transparent via-[#e8602e] to-transparent w-full animate-loader-beam"
+                className="h-full bg-gradient-to-r from-transparent via-[#10b981] to-transparent w-full animate-loader-beam"
                 style={{ animation: 'raven-beam 1.4s ease-in-out infinite' }}
               />
             </div>
@@ -164,7 +164,7 @@ export const Loader: React.FC<LoaderProps> = ({
         />
 
         {/* Floating Card Wrapper */}
-        <div className="relative z-10 px-8 py-10 rounded-3xl bg-[#0a0c14]/90 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.18)] flex flex-col items-center max-w-sm w-full">
+        <div className="relative z-10 px-8 py-10 rounded-3xl bg-[#0a0c14]/90 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(16,185,129,0.18)] flex flex-col items-center max-w-sm w-full">
           {content}
         </div>
       </div>
@@ -194,7 +194,7 @@ export const ButtonLoader: React.FC<{ className?: string; size?: number }> = ({
       className="absolute inset-0 rounded-full border border-white/20"
     />
     <div 
-      className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#ffffff] border-r-[#e8602e] animate-spin"
+      className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#ffffff] border-r-[#10b981] animate-spin"
       style={{ animationDuration: '0.7s' }}
     />
   </div>

@@ -270,11 +270,11 @@ export default function CoursesPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>Curriculum Management</span>
               </div>
@@ -287,7 +287,7 @@ export default function CoursesPage() {
             </div>
             <button
               onClick={openCreateModal}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm transition-all cursor-pointer"
             >
               <Plus size={18} />
               <span>Add New Course</span>
@@ -303,7 +303,7 @@ export default function CoursesPage() {
             placeholder="Search courses by title, instructor, category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-[#0b0e1a]/90 border border-white/10 rounded-2xl text-white placeholder-zinc-500 font-medium font-jakarta focus:outline-none focus:border-[#ff7a45] shadow-[0_15px_35px_rgba(0,0,0,0.6)] text-sm"
+            className="w-full pl-12 pr-4 py-3 bg-[#0b0e1a]/90 border border-white/10 rounded-2xl text-white placeholder-zinc-500 font-medium font-jakarta focus:outline-none focus:border-[#34d399] shadow-[0_15px_35px_rgba(0,0,0,0.6)] text-sm"
           />
         </div>
 
@@ -314,14 +314,14 @@ export default function CoursesPage() {
           </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-16 bg-[#0b0e1a]/90 border border-white/10 rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] p-8">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 text-[#ffaa40]">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 text-[#6ee7b7]">
               <BookOpen className="w-8 h-8" />
             </div>
             <p className="text-white font-bold text-xl font-outfit">No courses found</p>
             <p className="text-zinc-400 text-sm font-jakarta mt-1 mb-4">Start by creating your first academic course</p>
             <button
               onClick={openCreateModal}
-              className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] inline-flex items-center gap-2 text-sm cursor-pointer transition-all"
+              className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] inline-flex items-center gap-2 text-sm cursor-pointer transition-all"
             >
               <Plus size={16} />
               <span>Create Your First Course</span>
@@ -359,7 +359,7 @@ export default function CoursesPage() {
                   {/* Content */}
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-0.5 rounded-md bg-[#ff7a45]/15 border border-[#ff7a45]/30 text-[10px] font-bold uppercase font-space text-[#ffaa40]">
+                      <span className="px-2 py-0.5 rounded-md bg-[#34d399]/15 border border-[#34d399]/30 text-[10px] font-bold uppercase font-space text-[#6ee7b7]">
                         {course.category}
                       </span>
                       <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-medium uppercase font-space text-zinc-300">
@@ -378,7 +378,7 @@ export default function CoursesPage() {
                           className="w-7 h-7 rounded-full object-cover border border-white/10"
                         />
                       ) : (
-                        <div className="w-7 h-7 rounded-full bg-[#ff7a45]/20 border border-[#ff7a45]/30 text-[#ffaa40] flex items-center justify-center text-xs font-bold">
+                        <div className="w-7 h-7 rounded-full bg-[#34d399]/20 border border-[#34d399]/30 text-[#6ee7b7] flex items-center justify-center text-xs font-bold">
                           {course.instructor.charAt(0)}
                         </div>
                       )}
@@ -392,11 +392,11 @@ export default function CoursesPage() {
 
                     <div className="flex items-center justify-between text-xs font-space font-medium text-zinc-400 mb-3">
                       <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#ffaa40]" />
+                        <Clock className="w-3.5 h-3.5 text-[#6ee7b7]" />
                         {course.duration}
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-[#ffaa40]" />
+                        <Users className="w-3.5 h-3.5 text-[#6ee7b7]" />
                         {course.enrolledStudents} Enrolled
                       </span>
                     </div>
@@ -451,7 +451,7 @@ export default function CoursesPage() {
             <div className="bg-[#0c0f1c] border border-white/15 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain my-auto text-white">
               <div className="sticky top-0 bg-[#0f1222] p-5 border-b border-white/10 flex justify-between items-center z-10">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 bg-[#ff7a45]/15 rounded-xl border border-[#ff7a45]/30 text-[#ffaa40]">
+                  <div className="p-2 bg-[#34d399]/15 rounded-xl border border-[#34d399]/30 text-[#6ee7b7]">
                     <BookOpen size={18} />
                   </div>
                   <h2 className="text-xl font-bold font-outfit text-white">
@@ -476,7 +476,7 @@ export default function CoursesPage() {
                     value={formData.title}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                     placeholder="e.g. Class 10 Foundation Physics"
                   />
                 </div>
@@ -490,7 +490,7 @@ export default function CoursesPage() {
                     onChange={handleInputChange}
                     required
                     rows={3}
-                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                     placeholder="Detailed overview of syllabus, targets, and objectives..."
                   />
                 </div>
@@ -505,7 +505,7 @@ export default function CoursesPage() {
                       value={formData.instructor}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="e.g., Er. Aniket Singh"
                     />
                   </div>
@@ -516,7 +516,7 @@ export default function CoursesPage() {
                       name="instructorQualification"
                       value={formData.instructorQualification}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="e.g., B.Tech, 8+ Yrs Exp"
                     />
                   </div>
@@ -569,7 +569,7 @@ export default function CoursesPage() {
                       value={formData.duration}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="e.g., 6 Months"
                     />
                   </div>
@@ -593,7 +593,7 @@ export default function CoursesPage() {
                       value={formData.category}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="e.g., Class 10 Foundation"
                     />
                   </div>
@@ -610,7 +610,7 @@ export default function CoursesPage() {
                       onChange={handleInputChange}
                       required
                       min="0"
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="0"
                     />
                   </div>
@@ -622,7 +622,7 @@ export default function CoursesPage() {
                       value={formData.originalPrice}
                       onChange={handleInputChange}
                       min="0"
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                       placeholder="0"
                     />
                   </div>
@@ -636,7 +636,7 @@ export default function CoursesPage() {
                     name="thumbnail"
                     value={formData.thumbnail}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
@@ -650,7 +650,7 @@ export default function CoursesPage() {
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('syllabus', index, e.target.value)}
-                        className="flex-1 px-3.5 py-2 bg-[#070914] border border-white/10 rounded-xl text-white font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="flex-1 px-3.5 py-2 bg-[#070914] border border-white/10 rounded-xl text-white font-medium focus:outline-none focus:border-[#34d399] text-sm"
                         placeholder={`Module ${index + 1} Title`}
                       />
                       {formData.syllabus.length > 1 && (
@@ -667,7 +667,7 @@ export default function CoursesPage() {
                   <button
                     type="button"
                     onClick={() => addArrayItem('syllabus')}
-                    className="text-xs font-bold font-outfit text-[#ffaa40] hover:underline inline-flex items-center gap-1 mt-1 cursor-pointer"
+                    className="text-xs font-bold font-outfit text-[#6ee7b7] hover:underline inline-flex items-center gap-1 mt-1 cursor-pointer"
                   >
                     + Add Another Module
                   </button>
@@ -682,7 +682,7 @@ export default function CoursesPage() {
                         type="text"
                         value={item}
                         onChange={(e) => handleArrayChange('features', index, e.target.value)}
-                        className="flex-1 px-3.5 py-2 bg-[#070914] border border-white/10 rounded-xl text-white font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="flex-1 px-3.5 py-2 bg-[#070914] border border-white/10 rounded-xl text-white font-medium focus:outline-none focus:border-[#34d399] text-sm"
                         placeholder={`Highlight ${index + 1}`}
                       />
                       {formData.features.length > 1 && (
@@ -699,7 +699,7 @@ export default function CoursesPage() {
                   <button
                     type="button"
                     onClick={() => addArrayItem('features')}
-                    className="text-xs font-bold font-outfit text-[#ffaa40] hover:underline inline-flex items-center gap-1 mt-1 cursor-pointer"
+                    className="text-xs font-bold font-outfit text-[#6ee7b7] hover:underline inline-flex items-center gap-1 mt-1 cursor-pointer"
                   >
                     + Add Another Feature
                   </button>
@@ -717,7 +717,7 @@ export default function CoursesPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-2.5 px-4 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] disabled:opacity-50 transition-all cursor-pointer"
+                    className="flex-1 py-2.5 px-4 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] disabled:opacity-50 transition-all cursor-pointer"
                   >
                     {submitting ? 'Saving...' : editingCourse ? 'Update Course' : 'Create Course'}
                   </button>

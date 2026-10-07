@@ -136,7 +136,7 @@ export const AnimatedEyeToggle: React.FC<AnimatedEyeToggleProps> = ({
       title={isVisible ? 'Hide password' : 'Show password'}
       className={`group relative flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-300 cursor-pointer focus:outline-none select-none ${
         isVisible
-          ? 'bg-[#121524]/90 border border-white/20 shadow-[0_0_20px_rgba(232,96,46,0.25)]'
+          ? 'bg-[#121524]/90 border border-white/20 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
           : 'bg-[#0e111d]/85 hover:bg-[#161a2b] border border-white/10 hover:border-white/20 shadow-md'
       } ${className}`}
     >
@@ -466,7 +466,7 @@ export const AnimatedEyeToggle: React.FC<AnimatedEyeToggleProps> = ({
       {/* Subtle Warm Ambient Glow Aura when Eye is Open */}
       {isEyeOpen && (
         <motion.div
-          className="absolute inset-0 rounded-xl pointer-events-none bg-[#ff7a45]/20 blur-md -z-10"
+          className="absolute inset-0 rounded-xl pointer-events-none bg-[#34d399]/20 blur-md -z-10"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1.25 }}
           exit={{ opacity: 0, scale: 0.8 }}

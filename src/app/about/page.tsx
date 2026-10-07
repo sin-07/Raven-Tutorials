@@ -188,12 +188,12 @@ const AboutUs: React.FC = () => {
 
   return (
     <>
-      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
         <div className="relative z-10">
           {/* Header Section */}
           <section className="pt-36 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
-              <Sparkles className="w-4 h-4 text-[#e8602e]" />
+            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#10b981]/30 text-[#34d399] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)] mx-auto">
+              <Sparkles className="w-4 h-4 text-[#10b981]" />
               <span>About RAVEN Tutorials</span>
             </div>
 
@@ -219,9 +219,9 @@ const AboutUs: React.FC = () => {
               {pillars.map((pillar, index) => (
                 <div
                   key={index}
-                  className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 p-8 rounded-3xl transition-all duration-300 group hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(232,96,46,0.2)] cursor-pointer"
+                  className="bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/50 p-8 rounded-3xl transition-all duration-300 group hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] cursor-pointer"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#e8602e] mb-6 shadow-[0_0_15px_rgba(232,96,46,0.2)] group-hover:scale-105 transition-transform">
+                  <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#10b981] mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-105 transition-transform">
                     <pillar.icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-2xl font-black text-white font-outfit mb-3">
@@ -254,14 +254,14 @@ const AboutUs: React.FC = () => {
               {faculty.map((member, index) => (
                 <div
                   key={index}
-                  className="bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 p-6 rounded-3xl shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                  className="bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/50 p-6 rounded-3xl shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
                 >
                   <div>
-                    <div className="w-20 h-20 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 mx-auto font-black text-2xl font-outfit shadow-[0_0_20px_rgba(232,96,46,0.2)]">
+                    <div className="w-20 h-20 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-5 mx-auto font-black text-2xl font-outfit shadow-[0_0_20px_rgba(16,185,129,0.2)]">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div className="text-center">
-                      <span className="text-xs font-space font-bold uppercase text-[#ffaa40] bg-[#14120e] px-3 py-1 rounded-full border border-[#ffaa40]/30 shadow-sm">
+                      <span className="text-xs font-space font-bold uppercase text-[#6ee7b7] bg-[#14120e] px-3 py-1 rounded-full border border-[#6ee7b7]/30 shadow-sm">
                         {member.dept}
                       </span>
                       <h3 className="text-xl font-black text-white font-outfit mt-3 mb-1">
@@ -296,26 +296,26 @@ const AboutUs: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
-              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl text-center transition-colors">
-                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#ff7b47]">94%</p>
+              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl text-center transition-colors">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#34d399]">94%</p>
                 <p className="font-black text-white font-outfit text-sm sm:text-base mt-2">Selection Rate</p>
                 <p className="text-xs text-neutral-400 font-medium font-jakarta mt-1">In competitive entrance tests</p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl text-center transition-colors">
+              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl text-center transition-colors">
                 <p className="text-4xl sm:text-5xl font-black font-outfit text-white">150+</p>
                 <p className="font-black text-white font-outfit text-sm sm:text-base mt-2">IIT & NIT Selections</p>
                 <p className="text-xs text-neutral-400 font-medium font-jakarta mt-1">Top Engineering branches</p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl text-center transition-colors">
-                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#ffaa40]">85+</p>
+              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl text-center transition-colors">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#6ee7b7]">85+</p>
                 <p className="font-black text-white font-outfit text-sm sm:text-base mt-2">AIIMS & Govt MBBS</p>
                 <p className="text-xs text-neutral-400 font-medium font-jakarta mt-1">Medical entrance ranks</p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl text-center transition-colors">
-                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#ff7b47]">500+</p>
+              <div className="p-6 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl text-center transition-colors">
+                <p className="text-4xl sm:text-5xl font-black font-outfit text-[#34d399]">500+</p>
                 <p className="font-black text-white font-outfit text-sm sm:text-base mt-2">90%+ in Boards</p>
                 <p className="text-xs text-neutral-400 font-medium font-jakarta mt-1">CBSE Class 10th & 12th</p>
               </div>
@@ -345,7 +345,7 @@ const AboutUs: React.FC = () => {
                   className="p-8 sm:p-10 rounded-3xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)] text-center space-y-6 transition-all"
                 >
                   <div 
-                    className="relative w-36 h-36 mx-auto rounded-3xl overflow-hidden border-2 border-[#e8602e]/40 shadow-[0_0_25px_rgba(232,96,46,0.3)] group cursor-pointer"
+                    className="relative w-36 h-36 mx-auto rounded-3xl overflow-hidden border-2 border-[#10b981]/40 shadow-[0_0_25px_rgba(16,185,129,0.3)] group cursor-pointer"
                     onClick={() => setShowImageModal(true)}
                   >
                     <Image
@@ -357,13 +357,13 @@ const AboutUs: React.FC = () => {
                       className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-outfit font-black">
-                      <ZoomIn className="w-4 h-4 text-[#ff7b47]" />
+                      <ZoomIn className="w-4 h-4 text-[#34d399]" />
                       <span>View Photo</span>
                     </div>
                   </div>
 
                   <div>
-                    <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase bg-[#1a1412] text-[#ff7b47] border border-[#e8602e]/40 shadow-sm font-space tracking-wider">
+                    <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase bg-[#1a1412] text-[#34d399] border border-[#10b981]/40 shadow-sm font-space tracking-wider">
                       {dev.role}
                     </span>
                     <h3 className="text-3xl font-black text-white font-outfit mt-3">
@@ -391,7 +391,7 @@ const AboutUs: React.FC = () => {
 
                   <button
                     onClick={() => setShowModal(true)}
-                    className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider shadow-[0_0_25px_rgba(232,96,46,0.35)]"
+                    className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider shadow-[0_0_25px_rgba(16,185,129,0.35)]"
                   >
                     View Full Profile & Tech Stack
                   </button>
@@ -416,11 +416,11 @@ const AboutUs: React.FC = () => {
             <div className="bg-gradient-to-b from-[#1a1412] to-[#0f111a] border-b border-white/10 p-8 relative text-white">
               <button 
                 onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 bg-[#161922] text-white border border-white/15 shadow-lg hover:text-[#e8602e] rounded-full p-2 transition-colors"
+                className="absolute top-4 right-4 bg-[#161922] text-white border border-white/15 shadow-lg hover:text-[#10b981] rounded-full p-2 transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
-              <div className="w-24 h-24 mx-auto mb-3 rounded-full border-2 border-[#e8602e]/50 overflow-hidden shadow-[0_0_20px_rgba(232,96,46,0.3)] relative">
+              <div className="w-24 h-24 mx-auto mb-3 rounded-full border-2 border-[#10b981]/50 overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.3)] relative">
                 <Image
                   src={devTeam[0].image || "/AniketSingh.jpg"}
                   alt={devTeam[0].name}
@@ -433,7 +433,7 @@ const AboutUs: React.FC = () => {
               <h2 className="text-3xl font-black text-center font-outfit">
                 {devTeam[0].name}
               </h2>
-              <p className="text-[#ff7b47] text-center font-space text-sm font-bold tracking-wider uppercase mt-1">
+              <p className="text-[#34d399] text-center font-space text-sm font-bold tracking-wider uppercase mt-1">
                 {devTeam[0].role}
               </p>
             </div>
@@ -453,7 +453,7 @@ const AboutUs: React.FC = () => {
                   {devTeam[0].fullProfile.skills.map((skill, skillIndex) => (
                     <div 
                       key={skillIndex}
-                      className="bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] px-3 py-2 rounded-xl text-center text-xs font-bold font-space shadow-sm"
+                      className="bg-[#161922] border border-[#10b981]/30 text-[#34d399] px-3 py-2 rounded-xl text-center text-xs font-bold font-space shadow-sm"
                     >
                       {skill}
                     </div>
@@ -485,7 +485,7 @@ const AboutUs: React.FC = () => {
         >
           <button 
             onClick={() => setShowImageModal(false)}
-            className="absolute top-6 right-6 text-white bg-[#161922] border border-[#e8602e]/40 shadow-xl hover:text-[#e8602e] rounded-full p-3 transition z-[1000000]"
+            className="absolute top-6 right-6 text-white bg-[#161922] border border-[#10b981]/40 shadow-xl hover:text-[#10b981] rounded-full p-3 transition z-[1000000]"
           >
             <X className="w-6 h-6" />
           </button>

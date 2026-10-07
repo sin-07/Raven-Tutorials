@@ -394,7 +394,7 @@ export default function LiveClassPage() {
           <div className="space-y-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="w-full py-3 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] text-white font-bold font-outfit text-sm rounded-xl shadow-[0_4px_16px_rgba(232,96,46,0.35)] cursor-pointer"
+              className="w-full py-3 bg-gradient-to-r from-[#10b981] to-[#34d399] text-white font-bold font-outfit text-sm rounded-xl shadow-[0_4px_16px_rgba(16,185,129,0.35)] cursor-pointer"
             >
               Go to Student Dashboard
             </button>
@@ -415,12 +415,12 @@ export default function LiveClassPage() {
     return (
       <div className="min-h-screen bg-[#06080f] flex items-center justify-center p-4">
         <div className="relative bg-gradient-to-b from-[#0c0f1c] to-[#070914] border border-white/15 rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-white overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399] to-transparent" />
 
           {/* Classroom Header */}
           <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-3">
-              <Radio className="w-3.5 h-3.5 animate-pulse text-[#ff7a45]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-3">
+              <Radio className="w-3.5 h-3.5 animate-pulse text-[#34d399]" />
               <span>Virtual Live Classroom</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black font-outfit text-white tracking-tight mb-2">
@@ -430,7 +430,7 @@ export default function LiveClassPage() {
               Subject: <span className="text-white font-bold">{liveClass.subject}</span> • Class: <span className="text-white font-bold">{liveClass.class}</span>
             </p>
             <p className="text-xs font-jakarta text-zinc-400 font-medium mt-1">
-              Faculty Host: <span className="text-[#ffaa40] font-bold">{liveClass.teacherName || 'Raven Senior Faculty'}</span>
+              Faculty Host: <span className="text-[#6ee7b7] font-bold">{liveClass.teacherName || 'Raven Senior Faculty'}</span>
             </p>
           </div>
 
@@ -446,13 +446,13 @@ export default function LiveClassPage() {
                 placeholder="e.g. Rahul Kumar"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
-                className="w-full px-4 py-3 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                className="w-full px-4 py-3 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-sm uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(232,96,46,0.4)] cursor-pointer transition-all active:scale-[0.98]"
+              className="w-full py-3.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-sm uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(16,185,129,0.4)] cursor-pointer transition-all active:scale-[0.98]"
             >
               Enter Classroom Now
             </button>
@@ -470,7 +470,7 @@ export default function LiveClassPage() {
               </Link>
               <Link
                 href="/login"
-                className="py-2.5 px-3 rounded-xl bg-[#ff7a45]/10 hover:bg-[#ff7a45]/20 border border-[#ff7a45]/30 text-xs font-bold font-outfit text-[#ffaa40] transition text-center"
+                className="py-2.5 px-3 rounded-xl bg-[#34d399]/10 hover:bg-[#34d399]/20 border border-[#34d399]/30 text-xs font-bold font-outfit text-[#6ee7b7] transition text-center"
               >
                 Teacher / Host Login
               </Link>
@@ -486,8 +486,8 @@ export default function LiveClassPage() {
       {/* ── TOP EXECUTIVE HUD / CONTROL BAR ── */}
       <header className="h-16 bg-[#0c0f1c]/95 border-b border-white/10 backdrop-blur-xl px-4 sm:px-6 flex items-center justify-between z-20 shrink-0">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center shrink-0">
-            <Video className="w-5 h-5 text-[#ff7a45]" />
+          <div className="w-10 h-10 rounded-xl bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center shrink-0">
+            <Video className="w-5 h-5 text-[#34d399]" />
           </div>
 
           <div className="min-w-0">
@@ -501,7 +501,7 @@ export default function LiveClassPage() {
               </h1>
             </div>
             <p className="text-[11px] font-space text-zinc-400 truncate">
-              {liveClass.subject} • Class {liveClass.class} • <span className="text-[#ffaa40] font-semibold">Faculty: {liveClass.teacherName || 'Faculty'}</span>
+              {liveClass.subject} • Class {liveClass.class} • <span className="text-[#6ee7b7] font-semibold">Faculty: {liveClass.teacherName || 'Faculty'}</span>
             </p>
           </div>
         </div>
@@ -510,13 +510,13 @@ export default function LiveClassPage() {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Moderator / Teacher Badge */}
           {isModerator ? (
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#ff7a45]/20 border border-[#ff7a45]/40 text-[#ffaa40] text-xs font-bold font-space uppercase">
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#34d399]/20 border border-[#34d399]/40 text-[#6ee7b7] text-xs font-bold font-space uppercase">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Host / Moderator</span>
             </span>
           ) : (
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-xs font-bold font-space uppercase">
-              <GraduationCap className="w-3.5 h-3.5 text-[#ff7a45]" />
+              <GraduationCap className="w-3.5 h-3.5 text-[#34d399]" />
               <span>Attendee</span>
             </span>
           )}
@@ -527,7 +527,7 @@ export default function LiveClassPage() {
             className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white text-xs font-jakarta flex items-center gap-1.5 transition cursor-pointer"
             title="Copy classroom link to invite students"
           >
-            {copiedLink ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-[#ff7a45]" />}
+            {copiedLink ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-[#34d399]" />}
             <span className="hidden md:inline">{copiedLink ? 'Link Copied!' : 'Invite Link'}</span>
           </button>
 

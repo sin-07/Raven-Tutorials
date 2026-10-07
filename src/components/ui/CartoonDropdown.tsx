@@ -230,7 +230,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
         onClick={toggleDropdown}
         className={`w-full ${
           size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2.5 text-sm sm:text-base'
-        } bg-[#121522] border border-white/15 text-left rounded-xl font-jakarta font-medium flex items-center justify-between hover:border-[#e8602e]/60 focus:outline-none focus:ring-2 focus:ring-[#e8602e] transition-all ${
+        } bg-[#121522] border border-white/15 text-left rounded-xl font-jakarta font-medium flex items-center justify-between hover:border-[#10b981]/60 focus:outline-none focus:ring-2 focus:ring-[#10b981] transition-all ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         } ${
           error
@@ -261,7 +261,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
             transformOrigin: 'top center',
             willChange: 'transform, opacity',
           }}
-          className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#0c0e17] border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.15)] overflow-hidden p-2 backdrop-blur-xl"
+          className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#0c0e17] border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(16,185,129,0.15)] overflow-hidden p-2 backdrop-blur-xl"
         >
           <div
             ref={listRef}
@@ -278,7 +278,7 @@ export const CartoonDropdown: React.FC<CartoonDropdownProps> = ({
                   onClick={() => handleSelect(opt.value)}
                   className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-outfit font-semibold flex items-center justify-between cursor-pointer border transition-colors ${
                     isSelected
-                      ? 'bg-[#e8602e] text-white border-transparent shadow-[0_0_15px_rgba(232,96,46,0.5)]'
+                      ? 'bg-[#10b981] text-white border-transparent shadow-[0_0_15px_rgba(16,185,129,0.5)]'
                       : 'bg-transparent text-zinc-300 border-transparent hover:bg-white/10 hover:text-white'
                   }`}
                 >

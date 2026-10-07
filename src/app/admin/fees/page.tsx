@@ -180,11 +180,11 @@ export default function AdminFeesPage() {
         <div className="space-y-8 max-w-7xl mx-auto">
           {/* Executive Header Banner */}
           <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-            <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+            <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                   <CreditCard className="w-3.5 h-3.5" />
                   <span>Accounts & Billing Desk</span>
                 </div>
@@ -199,7 +199,7 @@ export default function AdminFeesPage() {
               <div className="flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => setShowBatchModal(true)}
-                  className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] flex items-center gap-2 cursor-pointer transition-all active:scale-[0.98]"
+                  className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] flex items-center gap-2 cursor-pointer transition-all active:scale-[0.98]"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Generate Monthly Class Dues</span>
@@ -255,10 +255,10 @@ export default function AdminFeesPage() {
               </p>
             </div>
 
-            <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] relative overflow-hidden group hover:border-[#ff7a45]/40 transition-all">
+            <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] relative overflow-hidden group hover:border-[#34d399]/40 transition-all">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-bold font-space uppercase text-zinc-400">Total Invoices</p>
-                <div className="w-8 h-8 rounded-lg bg-[#ff7a45]/10 border border-[#ff7a45]/20 flex items-center justify-center text-[#ffaa40]">
+                <div className="w-8 h-8 rounded-lg bg-[#34d399]/10 border border-[#34d399]/20 flex items-center justify-center text-[#6ee7b7]">
                   <Users className="w-4 h-4" />
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function AdminFeesPage() {
                 {metrics.totalRecords}
               </p>
               <p className="text-xs font-semibold text-zinc-500 mt-2 flex items-center gap-1.5">
-                <Receipt className="w-3.5 h-3.5 text-[#ff7a45]" /> Issued fee demands
+                <Receipt className="w-3.5 h-3.5 text-[#34d399]" /> Issued fee demands
               </p>
             </div>
           </div>
@@ -281,12 +281,12 @@ export default function AdminFeesPage() {
                   placeholder="Search by student name, Reg ID, or Receipt #..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-xs sm:text-sm focus:outline-none focus:border-[#ff7a45] transition-colors"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-xs sm:text-sm focus:outline-none focus:border-[#34d399] transition-colors"
                 />
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(232,96,46,0.35)] cursor-pointer transition-all"
+                className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(16,185,129,0.35)] cursor-pointer transition-all"
               >
                 Search
               </button>
@@ -297,7 +297,7 @@ export default function AdminFeesPage() {
                 <select
                   value={standardFilter}
                   onChange={(e) => setStandardFilter(e.target.value)}
-                  className="w-full bg-[#070914] border border-white/10 rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-jakarta focus:outline-none focus:border-[#ff7a45] cursor-pointer"
+                  className="w-full bg-[#070914] border border-white/10 rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-jakarta focus:outline-none focus:border-[#34d399] cursor-pointer"
                 >
                   <option value="All">All Classes</option>
                   {['6th', '7th', '8th', '9th', '10th', '11th', '12th'].map((std) => (
@@ -312,7 +312,7 @@ export default function AdminFeesPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full bg-[#070914] border border-white/10 rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-jakarta focus:outline-none focus:border-[#ff7a45] cursor-pointer"
+                  className="w-full bg-[#070914] border border-white/10 rounded-xl text-white px-3.5 py-2.5 text-xs sm:text-sm font-jakarta focus:outline-none focus:border-[#34d399] cursor-pointer"
                 >
                   <option value="All">All Statuses</option>
                   <option value="paid">Paid Only</option>
@@ -361,7 +361,7 @@ export default function AdminFeesPage() {
                         </td>
                         <td className="p-4 font-medium text-sm text-zinc-300">Class {fee.standard}</td>
                         <td className="p-4 font-medium text-sm text-zinc-300">{fee.month}</td>
-                        <td className="p-4 font-bold font-mono text-base text-[#ffaa40]">₹{fee.totalAmount}</td>
+                        <td className="p-4 font-bold font-mono text-base text-[#6ee7b7]">₹{fee.totalAmount}</td>
                         <td className="p-4 font-medium text-xs text-zinc-400">
                           {new Date(fee.dueDate).toLocaleDateString()}
                         </td>
@@ -390,7 +390,7 @@ export default function AdminFeesPage() {
                               onClick={() => setReceiptModalFee(fee)}
                               className="px-3.5 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-white shadow-sm inline-flex items-center gap-1.5 cursor-pointer transition-all"
                             >
-                              <Printer className="w-3.5 h-3.5 text-[#ff7a45]" />
+                              <Printer className="w-3.5 h-3.5 text-[#34d399]" />
                               <span>Receipt</span>
                             </button>
                           ) : (
@@ -399,7 +399,7 @@ export default function AdminFeesPage() {
                                 setSelectedFee(fee);
                                 setShowPayModal(true);
                               }}
-                              className="px-3.5 py-1.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(232,96,46,0.35)] cursor-pointer transition-all"
+                              className="px-3.5 py-1.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(16,185,129,0.35)] cursor-pointer transition-all"
                             >
                               Record Pay
                             </button>
@@ -419,7 +419,7 @@ export default function AdminFeesPage() {
               <div className="bg-[#0c0f1c] border border-white/15 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-[0_25px_60px_rgba(0,0,0,0.9)] my-auto text-white">
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-[#ff7a45]" />
+                    <Sparkles className="w-5 h-5 text-[#34d399]" />
                     <h3 className="text-xl font-bold font-outfit text-white">Generate Class Monthly Dues</h3>
                   </div>
                   <button
@@ -438,7 +438,7 @@ export default function AdminFeesPage() {
                     <select
                       value={batchForm.standard}
                       onChange={(e) => setBatchForm({ ...batchForm, standard: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     >
                       {['6th', '7th', '8th', '9th', '10th', '11th', '12th'].map((std) => (
                         <option key={std} value={std}>
@@ -458,7 +458,7 @@ export default function AdminFeesPage() {
                       placeholder="e.g. May 2026"
                       value={batchForm.month}
                       onChange={(e) => setBatchForm({ ...batchForm, month: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -473,7 +473,7 @@ export default function AdminFeesPage() {
                         min={0}
                         value={batchForm.tuitionFee}
                         onChange={(e) => setBatchForm({ ...batchForm, tuitionFee: Number(e.target.value) })}
-                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
                     <div>
@@ -485,7 +485,7 @@ export default function AdminFeesPage() {
                         min={0}
                         value={batchForm.examFee}
                         onChange={(e) => setBatchForm({ ...batchForm, examFee: Number(e.target.value) })}
-                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
                     <div>
@@ -497,7 +497,7 @@ export default function AdminFeesPage() {
                         min={0}
                         value={batchForm.labFee}
                         onChange={(e) => setBatchForm({ ...batchForm, labFee: Number(e.target.value) })}
-                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
                   </div>
@@ -511,7 +511,7 @@ export default function AdminFeesPage() {
                       required
                       value={batchForm.dueDate}
                       onChange={(e) => setBatchForm({ ...batchForm, dueDate: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -526,7 +526,7 @@ export default function AdminFeesPage() {
                     <button
                       type="submit"
                       disabled={creatingBatch}
-                      className="flex-1 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(232,96,46,0.4)] cursor-pointer"
+                      className="flex-1 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(16,185,129,0.4)] cursor-pointer"
                     >
                       {creatingBatch ? 'Generating...' : 'Generate Invoices'}
                     </button>
@@ -542,7 +542,7 @@ export default function AdminFeesPage() {
               <div className="bg-[#0c0f1c] border border-white/15 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] my-auto text-white">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-2">
-                    <CreditCard className="w-5 h-5 text-[#ff7a45]" />
+                    <CreditCard className="w-5 h-5 text-[#34d399]" />
                     <h3 className="font-bold font-outfit text-lg text-white">Collect Student Fee</h3>
                   </div>
                   <button
@@ -561,7 +561,7 @@ export default function AdminFeesPage() {
                     <select
                       value={paymentForm.paymentMode}
                       onChange={(e) => setPaymentForm({ ...paymentForm, paymentMode: e.target.value as any })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     >
                       <option value="Cash">Cash (Campus Desk)</option>
                       <option value="UPI">UPI (Google Pay / PhonePe)</option>
@@ -579,7 +579,7 @@ export default function AdminFeesPage() {
                       placeholder="e.g. UPI-984920231 or Cash Slip #21"
                       value={paymentForm.transactionId}
                       onChange={(e) => setPaymentForm({ ...paymentForm, transactionId: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -591,7 +591,7 @@ export default function AdminFeesPage() {
                       type="text"
                       value={paymentForm.remarks}
                       onChange={(e) => setPaymentForm({ ...paymentForm, remarks: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -605,7 +605,7 @@ export default function AdminFeesPage() {
                     </button>
                     <button
                       type="submit"
-                      className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(232,96,46,0.4)] cursor-pointer"
+                      className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(16,185,129,0.4)] cursor-pointer"
                     >
                       Confirm & Generate Receipt
                     </button>
@@ -632,7 +632,7 @@ export default function AdminFeesPage() {
                   <div className="text-center pb-4 border-b border-dashed border-white/20">
                     <div className="flex items-center justify-center gap-2 mb-1">
                       <span className="text-2xl font-black font-outfit text-white tracking-wide">RAVEN TUTORIALS</span>
-                      <span className="px-2 py-0.5 rounded-md bg-[#ff7a45]/20 border border-[#ff7a45]/40 text-[#ffaa40] text-[10px] font-bold uppercase font-space">
+                      <span className="px-2 py-0.5 rounded-md bg-[#34d399]/20 border border-[#34d399]/40 text-[#6ee7b7] text-[10px] font-bold uppercase font-space">
                         Patna Campus
                       </span>
                     </div>
@@ -648,7 +648,7 @@ export default function AdminFeesPage() {
                   <div className="grid grid-cols-2 gap-4 text-xs font-jakarta bg-[#070914] p-4 rounded-2xl border border-white/10">
                     <div>
                       <p className="text-zinc-500 font-bold uppercase font-space text-[10px]">Receipt Number</p>
-                      <p className="font-mono font-bold text-[#ffaa40] text-sm">{receiptModalFee.receiptNumber}</p>
+                      <p className="font-mono font-bold text-[#6ee7b7] text-sm">{receiptModalFee.receiptNumber}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-zinc-500 font-bold uppercase font-space text-[10px]">Payment Date</p>
@@ -705,7 +705,7 @@ export default function AdminFeesPage() {
                         )}
                         <tr className="bg-white/[0.02] border-t border-white/10 font-bold">
                           <td className="p-3.5 font-outfit text-sm text-white">TOTAL AMOUNT PAID</td>
-                          <td className="p-3.5 text-right font-mono text-base text-[#ffaa40]">₹{receiptModalFee.totalAmount}</td>
+                          <td className="p-3.5 text-right font-mono text-base text-[#6ee7b7]">₹{receiptModalFee.totalAmount}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -728,7 +728,7 @@ export default function AdminFeesPage() {
                   <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/10">
                     <button
                       onClick={() => window.print()}
-                      className="px-6 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(232,96,46,0.35)] flex items-center gap-2 cursor-pointer"
+                      className="px-6 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_6px_20px_rgba(16,185,129,0.35)] flex items-center gap-2 cursor-pointer"
                     >
                       <Printer className="w-4 h-4" />
                       <span>Print Official Receipt</span>

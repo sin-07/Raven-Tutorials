@@ -114,7 +114,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
   return (
     <div className="bg-[#0f111a] rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-9 h-9 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47]">
+        <div className="w-9 h-9 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center text-[#34d399]">
           <Send className="w-4 h-4" />
         </div>
         <h3 className="text-xl font-outfit font-bold text-white">
@@ -174,7 +174,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
             onChange={handleChange}
             disabled={!isAuthenticated}
             placeholder="Brief topic of your feedback"
-            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] placeholder-zinc-500 text-sm disabled:opacity-50 transition"
+            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] placeholder-zinc-500 text-sm disabled:opacity-50 transition"
             maxLength={100}
           />
           <p className="text-[10px] font-mono font-medium text-zinc-500 mt-1">{formData.subject.length}/100</p>
@@ -212,7 +212,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
             disabled={!isAuthenticated}
             placeholder="Share your detailed thoughts, suggestions, or concerns..."
             rows={4}
-            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] resize-none placeholder-zinc-500 text-sm disabled:opacity-50 transition"
+            className="w-full px-4 py-2.5 bg-[#121522] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] resize-none placeholder-zinc-500 text-sm disabled:opacity-50 transition"
             maxLength={1000}
           />
           <p className="text-[10px] font-mono font-medium text-zinc-500 mt-1">{formData.message.length}/1000</p>
@@ -222,7 +222,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
         <button
           type="submit"
           disabled={loading || !isAuthenticated}
-          className="btn-sheryians w-full py-3 text-white rounded-xl font-outfit font-bold text-sm shadow-[0_0_20px_rgba(232,96,46,0.35)] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer transition"
+          className="btn-sheryians w-full py-3 text-white rounded-xl font-outfit font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.35)] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer transition"
         >
           <Send className="w-4 h-4" />
           <span>{loading ? 'Submitting...' : 'Submit Feedback'}</span>

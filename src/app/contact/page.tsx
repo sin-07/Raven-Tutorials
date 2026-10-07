@@ -112,11 +112,11 @@ export default function ContactPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
-            <Sparkles className="w-4 h-4 text-[#e8602e]" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#10b981]/30 text-[#34d399] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)] mx-auto">
+            <Sparkles className="w-4 h-4 text-[#10b981]" />
             <span>Connect with our Patna Faculty</span>
           </div>
 
@@ -139,9 +139,9 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="p-6 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] hover:-translate-y-1.5 text-center flex flex-col items-center justify-center transition-all duration-300 group cursor-pointer"
+                className="p-6 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/50 shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-1.5 text-center flex flex-col items-center justify-center transition-all duration-300 group cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-4 shadow-[0_0_15px_rgba(232,96,46,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
+                <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-4 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
                   <info.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-lg font-black text-white mb-2 font-outfit">{info.title}</h3>
@@ -157,7 +157,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div ref={formRef} className="p-8 sm:p-10 rounded-3xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] shadow-[0_0_15px_rgba(232,96,46,0.2)]">
+                <div className="w-12 h-12 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] shadow-[0_0_15px_rgba(16,185,129,0.2)]">
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
 
               {isSubmitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-16 h-16 bg-[#161922] border border-[#e8602e]/40 rounded-full flex items-center justify-center mx-auto text-[#e8602e] shadow-[0_0_20px_rgba(232,96,46,0.3)]">
+                  <div className="w-16 h-16 bg-[#161922] border border-[#10b981]/40 rounded-full flex items-center justify-center mx-auto text-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.3)]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-black text-white font-outfit">Inquiry Received!</h3>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Aniket Singh"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm"
                         required
                       />
                     </div>
@@ -209,7 +209,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="example@gmail.com"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm"
                         required
                       />
                     </div>
@@ -226,7 +226,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 8618281816"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm"
                         required
                       />
                     </div>
@@ -260,7 +260,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Share details about current academic standard or specific questions..."
                       rows={4}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm resize-none"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#08090d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm resize-none"
                       required
                     />
                   </div>
@@ -268,7 +268,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(232,96,46,0.35)]"
+                    className="btn-sheryians w-full py-4 text-sm font-outfit uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(16,185,129,0.35)]"
                   >
                     {isSubmitting ? (
                       <ButtonLoader size={20} />

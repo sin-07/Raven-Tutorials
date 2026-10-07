@@ -325,11 +325,11 @@ const AdminTests: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <FileText className="w-3.5 h-3.5" />
                 <span>Examinations & Assessments</span>
               </div>
@@ -342,7 +342,7 @@ const AdminTests: React.FC = () => {
             </div>
             <button
               onClick={() => setShowModal(true)}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm transition-all cursor-pointer"
             >
               <Plus size={18} />
               <span>Create New Test</span>
@@ -391,7 +391,7 @@ const AdminTests: React.FC = () => {
                   <td className="px-5 py-3.5 text-xs text-zinc-400 font-mono font-bold">{test.testId}</td>
                   <td className="px-5 py-3.5 font-bold text-white">{test.title}</td>
                   <td className="px-5 py-3.5">
-                    <span className="px-2 py-0.5 rounded-md bg-[#ff7a45]/15 border border-[#ff7a45]/30 text-xs font-bold font-space text-[#ffaa40]">
+                    <span className="px-2 py-0.5 rounded-md bg-[#34d399]/15 border border-[#34d399]/30 text-xs font-bold font-space text-[#6ee7b7]">
                       Class {test.standard}
                     </span>
                   </td>
@@ -400,7 +400,7 @@ const AdminTests: React.FC = () => {
                     {formatDateRange(test.startDate, test.endDate)}
                   </td>
                   <td className="px-5 py-3.5 text-center font-mono font-bold text-zinc-300">{test.questions?.length || 0}</td>
-                  <td className="px-5 py-3.5 text-center font-mono font-bold text-[#ffaa40]">{test.totalMarks}</td>
+                  <td className="px-5 py-3.5 text-center font-mono font-bold text-[#6ee7b7]">{test.totalMarks}</td>
                   <td className="px-5 py-3.5 text-center">
                     <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-bold font-space uppercase shadow-sm ${getStatusBadge(test.status)}`}>
                       {test.status}
@@ -475,13 +475,13 @@ const AdminTests: React.FC = () => {
               </div>
 
               <div className="flex flex-wrap gap-2 text-xs mb-3">
-                <span className="px-2 py-0.5 rounded-md bg-[#ff7a45]/15 border border-[#ff7a45]/30 text-[#ffaa40] font-space font-bold">
+                <span className="px-2 py-0.5 rounded-md bg-[#34d399]/15 border border-[#34d399]/30 text-[#6ee7b7] font-space font-bold">
                   Class {test.standard}
                 </span>
                 <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-zinc-300 font-medium">
                   {test.subject}
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[#ffaa40] font-mono font-bold">
+                <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[#6ee7b7] font-mono font-bold">
                   {test.totalMarks} Marks
                 </span>
               </div>
@@ -536,7 +536,7 @@ const AdminTests: React.FC = () => {
             <div className="bg-[#0c0f1c] border border-white/15 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] p-6 sm:p-8 max-w-3xl w-full my-auto max-h-[90vh] overflow-y-auto overscroll-contain text-white">
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-[#ff7a45]/15 rounded-xl border border-[#ff7a45]/30 text-[#ffaa40]">
+                  <div className="p-2.5 bg-[#34d399]/15 rounded-xl border border-[#34d399]/30 text-[#6ee7b7]">
                     <FileText size={20} />
                   </div>
                   <div>
@@ -574,7 +574,7 @@ const AdminTests: React.FC = () => {
                         type="text"
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                         placeholder="e.g. Unit Test 2 - Electrostatics"
                         required
                       />
@@ -599,7 +599,7 @@ const AdminTests: React.FC = () => {
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                         placeholder="e.g. Physics"
                         required
                       />
@@ -611,7 +611,7 @@ const AdminTests: React.FC = () => {
                         type="date"
                         value={formData.startDate}
                         onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                         required
                       />
                     </div>
@@ -623,7 +623,7 @@ const AdminTests: React.FC = () => {
                         value={formData.endDate}
                         onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                         min={formData.startDate}
-                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                         required
                       />
                     </div>
@@ -634,7 +634,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={formData.duration}
                         onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                         placeholder="60"
                         required
                       />
@@ -646,7 +646,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={formData.passingMarks}
                         onChange={(e) => setFormData({ ...formData, passingMarks: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                         placeholder="40"
                         required
                       />
@@ -657,7 +657,7 @@ const AdminTests: React.FC = () => {
                       <textarea
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta text-sm focus:outline-none focus:border-[#34d399]"
                         rows={3}
                         placeholder="Instructions for students taking this test..."
                       />
@@ -667,7 +667,7 @@ const AdminTests: React.FC = () => {
                   <div className="flex gap-3 pt-4 border-t border-white/10">
                     <button
                       type="submit"
-                      className="flex-1 py-3 px-6 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm flex items-center justify-center gap-2 cursor-pointer transition-all"
+                      className="flex-1 py-3 px-6 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm flex items-center justify-center gap-2 cursor-pointer transition-all"
                     >
                       <span>Next: Add Questions</span>
                       <ArrowRight size={16} />
@@ -693,7 +693,7 @@ const AdminTests: React.FC = () => {
                         {formData.questions.map((q, index) => (
                           <div key={index} className="flex justify-between items-center bg-[#0d101e] p-3 rounded-xl border border-white/10">
                             <div className="flex-1 text-zinc-200 text-xs font-jakarta">
-                              <span className="font-bold text-[#ffaa40]">Q{index + 1}:</span> {q.questionText.substring(0, 60)}...
+                              <span className="font-bold text-[#6ee7b7]">Q{index + 1}:</span> {q.questionText.substring(0, 60)}...
                               <span className="ml-2 font-space font-bold uppercase text-[10px] text-emerald-400">
                                 ({q.questionType} • {q.marks} pts)
                               </span>
@@ -733,7 +733,7 @@ const AdminTests: React.FC = () => {
                       <textarea
                         value={currentQuestion.questionText}
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, questionText: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#0b0e1a] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-4 py-2.5 bg-[#0b0e1a] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium focus:outline-none focus:border-[#34d399] text-sm"
                         rows={3}
                         placeholder="Type question content here..."
                       />
@@ -753,16 +753,16 @@ const AdminTests: React.FC = () => {
                                 newOptions[idx] = e.target.value;
                                 setCurrentQuestion({ ...currentQuestion, options: newOptions });
                               }}
-                              className="flex-1 px-3.5 py-2 bg-[#0b0e1a] border border-white/10 rounded-xl text-white font-medium text-xs focus:outline-none focus:border-[#ff7a45]"
+                              className="flex-1 px-3.5 py-2 bg-[#0b0e1a] border border-white/10 rounded-xl text-white font-medium text-xs focus:outline-none focus:border-[#34d399]"
                               placeholder={`Option ${String.fromCharCode(65 + idx)}`}
                             />
-                            <label className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-white/10 bg-[#0d101e] hover:border-[#ff7a45]/50 cursor-pointer transition-colors">
+                            <label className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-white/10 bg-[#0d101e] hover:border-[#34d399]/50 cursor-pointer transition-colors">
                               <input
                                 type="radio"
                                 name="correctAnswer"
                                 checked={currentQuestion.correctAnswer === option && option !== ''}
                                 onChange={() => setCurrentQuestion({ ...currentQuestion, correctAnswer: option })}
-                                className="accent-[#ff7a45]"
+                                className="accent-[#34d399]"
                                 disabled={option === ''}
                               />
                               <span className="text-[10px] font-bold font-space uppercase text-zinc-300">Correct</span>
@@ -776,25 +776,25 @@ const AdminTests: React.FC = () => {
                       <div>
                         <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">Correct Answer *</label>
                         <div className="flex gap-4">
-                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0b0e1a] border border-white/10 cursor-pointer hover:border-[#ff7a45]/50 transition-colors">
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0b0e1a] border border-white/10 cursor-pointer hover:border-[#34d399]/50 transition-colors">
                             <input
                               type="radio"
                               name="trueFalse"
                               value="True"
                               checked={currentQuestion.correctAnswer === 'True'}
                               onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                              className="accent-[#ff7a45]"
+                              className="accent-[#34d399]"
                             />
                             <span className="font-bold font-outfit text-sm text-white">True</span>
                           </label>
-                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0b0e1a] border border-white/10 cursor-pointer hover:border-[#ff7a45]/50 transition-colors">
+                          <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0b0e1a] border border-white/10 cursor-pointer hover:border-[#34d399]/50 transition-colors">
                             <input
                               type="radio"
                               name="trueFalse"
                               value="False"
                               checked={currentQuestion.correctAnswer === 'False'}
                               onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })}
-                              className="accent-[#ff7a45]"
+                              className="accent-[#34d399]"
                             />
                             <span className="font-bold font-outfit text-sm text-white">False</span>
                           </label>
@@ -808,7 +808,7 @@ const AdminTests: React.FC = () => {
                         type="number"
                         value={currentQuestion.marks}
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: e.target.value })}
-                        className="w-full px-4 py-2 bg-[#0b0e1a] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#ff7a45] text-sm"
+                        className="w-full px-4 py-2 bg-[#0b0e1a] border border-white/10 rounded-xl text-white font-mono font-bold focus:outline-none focus:border-[#34d399] text-sm"
                         placeholder="e.g. 5"
                         min="1"
                       />
@@ -819,7 +819,7 @@ const AdminTests: React.FC = () => {
                       onClick={handleAddQuestion}
                       className="w-full py-2.5 bg-white/5 hover:bg-white/10 text-white font-bold font-outfit rounded-xl border border-white/10 text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
-                      <Plus size={16} className="text-[#ff7a45]" />
+                      <Plus size={16} className="text-[#34d399]" />
                       <span>Add This Question</span>
                     </button>
                   </div>
@@ -838,7 +838,7 @@ const AdminTests: React.FC = () => {
                       type="button"
                       onClick={handleSubmit}
                       disabled={formData.questions.length === 0}
-                      className="flex-1 py-3 px-5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm disabled:opacity-50 cursor-pointer transition-all"
+                      className="flex-1 py-3 px-5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm disabled:opacity-50 cursor-pointer transition-all"
                     >
                       {editingTestId ? 'Update Test' : 'Save as Draft'} ({formData.questions.length} Questions, {calculateTotalMarks()} Marks)
                     </button>

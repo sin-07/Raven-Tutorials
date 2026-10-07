@@ -88,12 +88,12 @@ export default function ArticlesDirectoryPage() {
   });
 
   return (
-    <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white pt-28 pb-16">
+    <div className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white pt-28 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161922] border border-[#e8602e]/30 text-xs font-space font-bold uppercase text-[#ff7b47] mb-3 shadow-[0_0_15px_rgba(232,96,46,0.2)]">
-            <Newspaper className="w-3.5 h-3.5 text-[#e8602e]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#161922] border border-[#10b981]/30 text-xs font-space font-bold uppercase text-[#34d399] mb-3 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+            <Newspaper className="w-3.5 h-3.5 text-[#10b981]" />
             <span>Stories, Wildlife & Educational Insights</span>
           </div>
           <WavyHeading
@@ -116,7 +116,7 @@ export default function ArticlesDirectoryPage() {
               placeholder="Search articles by title, subject, or author..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 bg-[#08090d] border border-white/10 rounded-xl text-sm font-medium font-jakarta text-white placeholder-neutral-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e]"
+              className="w-full pl-9 pr-4 py-2.5 bg-[#08090d] border border-white/10 rounded-xl text-sm font-medium font-jakarta text-white placeholder-neutral-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]"
             />
           </div>
 
@@ -128,7 +128,7 @@ export default function ArticlesDirectoryPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-black font-outfit transition-all cursor-pointer border shrink-0 whitespace-nowrap ${
                   selectedCategory === cat
-                    ? 'btn-sheryians shadow-[0_0_15px_rgba(232,96,46,0.35)]'
+                    ? 'btn-sheryians shadow-[0_0_15px_rgba(16,185,129,0.35)]'
                     : 'bg-[#08090d] text-neutral-300 border-white/10 hover:border-white/30 hover:text-white'
                 }`}
               >
@@ -157,7 +157,7 @@ export default function ArticlesDirectoryPage() {
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#0f111a]/85 hover:bg-[#131622] border border-white/10 hover:border-[#e8602e]/50 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-[#0f111a]/85 hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Thumbnail */}
@@ -168,7 +168,7 @@ export default function ArticlesDirectoryPage() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#ff7b47] border border-[#e8602e]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
+                      <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
                         {art.category}
                       </span>
                     </div>
@@ -177,13 +177,13 @@ export default function ArticlesDirectoryPage() {
                   {/* Body */}
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-400 mb-2">
-                      <Clock className="w-3.5 h-3.5 text-[#ff7b47]" />
+                      <Clock className="w-3.5 h-3.5 text-[#34d399]" />
                       <span>{art.readTime}</span>
                       <span>•</span>
                       <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
 
-                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#ff7b47] transition-colors">
+                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#34d399] transition-colors">
                       {art.title}
                     </h3>
                     <p className="font-jakarta text-xs sm:text-sm text-neutral-400 line-clamp-3 font-medium leading-relaxed mb-4">
@@ -197,10 +197,10 @@ export default function ArticlesDirectoryPage() {
                   <div className="border-t border-white/10 pt-3 flex items-center justify-between">
                     <div>
                       <p className="font-black text-white font-outfit text-xs">{art.author}</p>
-                      <p className="text-[10px] text-[#ff7b47] font-bold font-jakarta">{art.authorRole}</p>
+                      <p className="text-[10px] text-[#34d399] font-bold font-jakarta">{art.authorRole}</p>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-[#ffaa40] group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-[#6ee7b7] group-hover:translate-x-1 transition-transform">
                       <span>Read</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>

@@ -56,7 +56,7 @@ export default function LMSFooter() {
           <div className="bg-gradient-to-r from-[#10121c] via-[#14121a] to-[#10121c] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left space-y-1">
               <div className="flex items-center justify-center md:justify-start gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#e8602e] shadow-[0_0_12px_rgba(232,96,46,0.8)] animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_12px_rgba(16,185,129,0.8)] animate-pulse" />
                 <h3 className="text-2xl sm:text-3xl font-black text-white font-outfit">Stay Ahead with RAVEN</h3>
               </div>
               <p className="text-zinc-400 text-sm font-jakarta font-medium">Get instant notifications, exam circulars, and test series updates.</p>
@@ -65,9 +65,9 @@ export default function LMSFooter() {
               <input
                 type="email"
                 placeholder="Enter student / parent email"
-                className="w-full sm:w-80 px-5 py-3.5 rounded-full bg-black/60 border border-white/15 text-white placeholder-zinc-500 focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm font-jakarta font-medium shadow-inner"
+                className="w-full sm:w-80 px-5 py-3.5 rounded-full bg-black/60 border border-white/15 text-white placeholder-zinc-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm font-jakarta font-medium shadow-inner"
               />
-              <button className="btn-sheryians px-7 py-3.5 bg-[#e8602e] hover:bg-[#ff733d] text-white font-extrabold rounded-full flex items-center justify-center gap-2 text-sm font-outfit shadow-[0_0_25px_rgba(232,96,46,0.4)] cursor-pointer">
+              <button className="btn-sheryians px-7 py-3.5 bg-[#10b981] hover:bg-[#059669] text-white font-extrabold rounded-full flex items-center justify-center gap-2 text-sm font-outfit shadow-[0_0_25px_rgba(16,185,129,0.4)] cursor-pointer">
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
@@ -82,7 +82,7 @@ export default function LMSFooter() {
           {/* Brand & Address */}
           <div className="lg:col-span-2 space-y-5">
             <Link href="/" className="flex items-center gap-3 group inline-block">
-              <div className="p-2.5 rounded-2xl bg-[#121420] border border-white/15 shadow-sm group-hover:border-[#e8602e]/50 transition-colors">
+              <div className="p-2.5 rounded-2xl bg-[#121420] border border-white/15 shadow-sm group-hover:border-[#10b981]/50 transition-colors">
                 <img 
                   src="/logo.png" 
                   alt="RAVEN Logo" 
@@ -91,7 +91,7 @@ export default function LMSFooter() {
               </div>
               <div className="flex items-baseline gap-2 font-outfit">
                 <span className="text-white font-black text-2xl tracking-tight">RAVEN</span>
-                <span className="bg-[#e8602e]/20 text-[#ff7b47] border border-[#e8602e]/30 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Tutorials</span>
+                <span className="bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/30 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Tutorials</span>
               </div>
             </Link>
 
@@ -101,19 +101,19 @@ export default function LMSFooter() {
 
             <div className="space-y-3 font-jakarta text-xs text-zinc-300 pt-2 font-medium">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#ff7b47]">
+                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#34d399]">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span>Bajrangpuri, Patna - 800007, Bihar</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#ffaa40]">
+                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#6ee7b7]">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span>+91 8618281816</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#ff7b47]">
+                <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-[#34d399]">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span>raventutorials@gmail.com</span>
@@ -123,7 +123,7 @@ export default function LMSFooter() {
 
           {/* Quick Links */}
           <div>
-            <div className="text-xs font-black uppercase tracking-wider text-[#ff7b47] font-space mb-4 bg-[#e8602e]/10 border border-[#e8602e]/20 px-3.5 py-1 rounded-full inline-block">
+            <div className="text-xs font-black uppercase tracking-wider text-[#34d399] font-space mb-4 bg-[#10b981]/10 border border-[#10b981]/20 px-3.5 py-1 rounded-full inline-block">
               Quick Links
             </div>
             <ul className="space-y-2.5 font-jakarta text-sm font-medium">
@@ -142,7 +142,7 @@ export default function LMSFooter() {
 
           {/* Academic Programs */}
           <div>
-            <div className="text-xs font-black uppercase tracking-wider text-[#ff7b47] font-space mb-4 bg-[#e8602e]/10 border border-[#e8602e]/20 px-3.5 py-1 rounded-full inline-block">
+            <div className="text-xs font-black uppercase tracking-wider text-[#34d399] font-space mb-4 bg-[#10b981]/10 border border-[#10b981]/20 px-3.5 py-1 rounded-full inline-block">
               Academic Programs
             </div>
             <ul className="space-y-2.5 font-jakarta text-sm font-medium">
@@ -161,7 +161,7 @@ export default function LMSFooter() {
 
           {/* Student Support */}
           <div>
-            <div className="text-xs font-black uppercase tracking-wider text-[#ff7b47] font-space mb-4 bg-[#e8602e]/10 border border-[#e8602e]/20 px-3.5 py-1 rounded-full inline-block">
+            <div className="text-xs font-black uppercase tracking-wider text-[#34d399] font-space mb-4 bg-[#10b981]/10 border border-[#10b981]/20 px-3.5 py-1 rounded-full inline-block">
               Student Portal
             </div>
             <ul className="space-y-2.5 font-jakarta text-sm font-medium">
@@ -177,8 +177,8 @@ export default function LMSFooter() {
               ))}
             </ul>
             <div className="mt-6 p-4 rounded-2xl bg-[#090b10] border border-white/10 shadow-inner">
-              <div className="flex items-center gap-2 text-[#ff7b47] text-xs font-extrabold font-space">
-                <ShieldCheck className="w-4 h-4 text-[#e8602e]" />
+              <div className="flex items-center gap-2 text-[#34d399] text-xs font-extrabold font-space">
+                <ShieldCheck className="w-4 h-4 text-[#10b981]" />
                 <span>Verified Admissions Open</span>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function LMSFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-[#e8602e] hover:border-[#e8602e] hover:shadow-[0_0_15px_rgba(232,96,46,0.6)] hover:scale-110 shadow-sm transition-all cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-[#10b981] hover:border-[#10b981] hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] hover:scale-110 shadow-sm transition-all cursor-pointer"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />

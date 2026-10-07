@@ -70,17 +70,17 @@ export default function PublicLiveClassesPage() {
         
         {/* ── HERO BANNER ── */}
         <div className="relative rounded-3xl p-8 sm:p-12 overflow-hidden bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/60 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-25 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/60 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-25 bg-[#10b981]" />
           
           <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff7a45]/15 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-4 shadow-sm">
-              <Radio className="w-3.5 h-3.5 animate-pulse text-[#ff7a45]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#34d399]/15 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-4 shadow-sm">
+              <Radio className="w-3.5 h-3.5 animate-pulse text-[#34d399]" />
               <span>Real-Time Virtual Learning Hub</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-outfit text-white tracking-tight leading-tight">
-              Interactive <span className="bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40] bg-clip-text text-transparent">Live Classrooms</span>
+              Interactive <span className="bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7] bg-clip-text text-transparent">Live Classrooms</span>
             </h1>
 
             <p className="mt-3 text-sm sm:text-base font-jakarta text-zinc-300 font-medium leading-relaxed">
@@ -90,7 +90,7 @@ export default function PublicLiveClassesPage() {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link
                 href="/dashboard"
-                className="px-6 py-3 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] flex items-center gap-2 transition-all active:scale-95"
+                className="px-6 py-3 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] flex items-center gap-2 transition-all active:scale-95"
               >
                 <span>Go to Student Portal</span>
                 <ChevronRight className="w-4 h-4" />
@@ -119,7 +119,7 @@ export default function PublicLiveClassesPage() {
                 onClick={() => setSelectedStandard(std)}
                 className={`px-4 py-1.5 rounded-xl text-xs font-bold font-outfit transition-all cursor-pointer border ${
                   selectedStandard === std
-                    ? 'bg-gradient-to-r from-[#e8602e] to-[#ff7a45] text-white border-transparent shadow-[0_4px_12px_rgba(232,96,46,0.35)]'
+                    ? 'bg-gradient-to-r from-[#10b981] to-[#34d399] text-white border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.35)]'
                     : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white'
                 }`}
               >
@@ -154,7 +154,7 @@ export default function PublicLiveClassesPage() {
                         <span>LIVE NOW</span>
                       </span>
 
-                      <span className="px-3 py-1 rounded-full text-xs font-bold font-space uppercase text-[#ffaa40] bg-[#ff7a45]/10 border border-[#ff7a45]/30">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold font-space uppercase text-[#6ee7b7] bg-[#34d399]/10 border border-[#34d399]/30">
                         {liveClass.subject}
                       </span>
                     </div>
@@ -172,7 +172,7 @@ export default function PublicLiveClassesPage() {
                     <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs font-jakarta space-y-1.5 mb-6">
                       <div className="flex justify-between items-center">
                         <span className="text-zinc-400">Faculty Host:</span>
-                        <span className="font-bold text-[#ffaa40]">{liveClass.teacherName || 'Raven Senior Faculty'}</span>
+                        <span className="font-bold text-[#6ee7b7]">{liveClass.teacherName || 'Raven Senior Faculty'}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-zinc-400">Standard:</span>
@@ -188,7 +188,7 @@ export default function PublicLiveClassesPage() {
                   <Link
                     href={`/live-class/${liveClass.classId}`}
                     target="_blank"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(232,96,46,0.4)] transition-all cursor-pointer active:scale-95 text-center"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(16,185,129,0.4)] transition-all cursor-pointer active:scale-95 text-center"
                   >
                     <Video className="w-4 h-4" />
                     <span>Enter Live Classroom</span>
@@ -203,7 +203,7 @@ export default function PublicLiveClassesPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-[#ff7a45]" />
+              <Calendar className="w-5 h-5 text-[#34d399]" />
               <h2 className="text-xl sm:text-2xl font-black font-outfit text-white tracking-tight">
                 Scheduled Lecture Timetable
               </h2>
@@ -231,19 +231,19 @@ export default function PublicLiveClassesPage() {
               {upcomingClasses.map((item) => (
                 <div
                   key={item._id}
-                  className="p-6 rounded-3xl border border-white/10 hover:border-[#ff7a45]/40 bg-[#0b0e1a]/90 shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all group"
+                  className="p-6 rounded-3xl border border-white/10 hover:border-[#34d399]/40 bg-[#0b0e1a]/90 shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-amber-500/10 border border-amber-500/30 text-amber-300">
                         SCHEDULED
                       </span>
-                      <span className="text-xs font-bold text-[#ffaa40] font-space uppercase">
+                      <span className="text-xs font-bold text-[#6ee7b7] font-space uppercase">
                         {item.subject}
                       </span>
                     </div>
 
-                    <h4 className="text-lg font-bold font-outfit text-white group-hover:text-[#ffaa40] transition-colors mb-2 line-clamp-2">
+                    <h4 className="text-lg font-bold font-outfit text-white group-hover:text-[#6ee7b7] transition-colors mb-2 line-clamp-2">
                       {item.title}
                     </h4>
 
@@ -281,7 +281,7 @@ export default function PublicLiveClassesPage() {
                     className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-200 hover:text-white font-bold font-outfit text-xs flex items-center justify-center gap-2 transition text-center"
                   >
                     <span>Open Classroom Link</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#ff7a45]" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#34d399]" />
                   </Link>
                 </div>
               ))}
@@ -302,7 +302,7 @@ export default function PublicLiveClassesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="p-5 rounded-2xl bg-[#0b0e1a]/90 border border-white/10 shadow-lg">
-              <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40] mb-3">
+              <div className="w-10 h-10 rounded-xl bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center text-[#6ee7b7] mb-3">
                 <Video className="w-5 h-5" />
               </div>
               <h4 className="font-bold font-outfit text-white text-base mb-1">HD Video & Audio</h4>

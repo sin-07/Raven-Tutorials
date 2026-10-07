@@ -13,7 +13,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
   hasError?: boolean;
 }
 
-const baseStyles = 'w-full px-4 py-3 bg-[#0d0f18] border text-white placeholder-zinc-500 font-jakarta rounded-xl focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] outline-none transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.4)]';
+const baseStyles = 'w-full px-4 py-3 bg-[#0d0f18] border text-white placeholder-zinc-500 font-jakarta rounded-xl focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] outline-none transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.4)]';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ hasError, className = '', ...props }, ref) => (

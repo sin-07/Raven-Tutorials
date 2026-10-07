@@ -157,11 +157,11 @@ const StudyMaterials: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                 <BookOpen size={14} />
                 <span>Resources & Notes</span>
               </div>
@@ -174,7 +174,7 @@ const StudyMaterials: React.FC = () => {
             </div>
             <button
               onClick={() => setShowUploadForm(!showUploadForm)}
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit px-5 py-3 rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm transition-all cursor-pointer"
             >
               {showUploadForm ? <X size={18} /> : <Upload size={18} />}
               {showUploadForm ? 'Close Form' : 'Upload Material'}
@@ -187,7 +187,7 @@ const StudyMaterials: React.FC = () => {
           <div className="bg-[#0c0f1c] rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] p-6 md:p-8 border border-white/15 text-white">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center shadow-sm text-[#ffaa40]">
+                <div className="w-10 h-10 rounded-xl bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center shadow-sm text-[#6ee7b7]">
                   <Upload size={20} />
                 </div>
                 <div>
@@ -208,14 +208,14 @@ const StudyMaterials: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-2">
-                    Title <span className="text-[#ff7a45]">*</span>
+                    Title <span className="text-[#34d399]">*</span>
                   </label>
                   <input
                     type="text"
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                    className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
                     placeholder="e.g., Chapter 5 - Quadratic Equations"
                     required
                   />
@@ -223,7 +223,7 @@ const StudyMaterials: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-2">
-                    Class / Standard <span className="text-[#ff7a45]">*</span>
+                    Class / Standard <span className="text-[#34d399]">*</span>
                   </label>
                   <CartoonDropdown
                     value={formData.class}
@@ -238,7 +238,7 @@ const StudyMaterials: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-2">
-                    Subject <span className="text-[#ff7a45]">*</span>
+                    Subject <span className="text-[#34d399]">*</span>
                   </label>
                   <CartoonDropdown
                     value={formData.subject}
@@ -253,13 +253,13 @@ const StudyMaterials: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-2">
-                    PDF File <span className="text-[#ffaa40]">* (Max 10MB)</span>
+                    PDF File <span className="text-[#6ee7b7]">* (Max 10MB)</span>
                   </label>
                   <input
                     type="file"
                     accept=".pdf"
                     onChange={handleFileChange}
-                    className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border file:border-white/10 file:text-xs file:font-outfit file:font-bold file:bg-[#ff7a45]/20 file:text-[#ffaa40] file:cursor-pointer text-sm"
+                    className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border file:border-white/10 file:text-xs file:font-outfit file:font-bold file:bg-[#34d399]/20 file:text-[#6ee7b7] file:cursor-pointer text-sm"
                     required
                   />
                   {formData.file && (
@@ -280,7 +280,7 @@ const StudyMaterials: React.FC = () => {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                  className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
                   placeholder="Brief description of the material, key topics covered, or instructions for students..."
                 />
               </div>
@@ -289,7 +289,7 @@ const StudyMaterials: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-6 py-3 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] disabled:opacity-50 transition-all cursor-pointer"
+                  className="bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white border border-white/10 px-6 py-3 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(16,185,129,0.35)] disabled:opacity-50 transition-all cursor-pointer"
                 >
                   {loading ? 'Uploading PDF...' : 'Upload Material'}
                 </button>
@@ -308,7 +308,7 @@ const StudyMaterials: React.FC = () => {
         {/* Filter Controls Card */}
         <div className="bg-[#0b0e1a]/90 rounded-2xl p-5 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
           <div className="flex items-center gap-2.5 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40]">
+            <div className="w-8 h-8 rounded-lg bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center text-[#6ee7b7]">
               <Filter size={16} />
             </div>
             <h3 className="font-outfit font-bold text-lg text-white">Filter Study Materials</h3>
@@ -346,7 +346,7 @@ const StudyMaterials: React.FC = () => {
         <div className="bg-[#0b0e1a]/90 rounded-2xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] overflow-hidden">
           <div className="p-4 md:p-5 bg-[#0f1222] border-b border-white/10 flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Sparkles size={18} className="text-[#ffaa40]" />
+              <Sparkles size={18} className="text-[#6ee7b7]" />
               <h3 className="font-outfit font-bold text-lg text-white">
                 Uploaded Materials ({materials.length})
               </h3>
@@ -368,7 +368,7 @@ const StudyMaterials: React.FC = () => {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                        <span className="bg-[#ff7a45]/15 border border-[#ff7a45]/30 text-[#ffaa40] px-2.5 py-0.5 rounded-lg text-xs font-space font-bold uppercase">
+                        <span className="bg-[#34d399]/15 border border-[#34d399]/30 text-[#6ee7b7] px-2.5 py-0.5 rounded-lg text-xs font-space font-bold uppercase">
                           {material.class}
                         </span>
                         <span className="bg-white/5 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded-lg text-xs font-space font-medium uppercase">
@@ -396,7 +396,7 @@ const StudyMaterials: React.FC = () => {
                         href={material.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-4 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer"
+                        className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white border border-white/10 px-4 py-2 rounded-xl font-outfit font-bold text-sm shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all cursor-pointer"
                         title="Download PDF"
                       >
                         <Download size={15} />

@@ -91,17 +91,17 @@ const AdminStudents: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
-                <Users className="w-3.5 h-3.5 text-[#ff7a45]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <Users className="w-3.5 h-3.5 text-[#34d399]" />
                 <span>Student Records</span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
-                Students <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Directory</span>
+                Students <span className="bg-gradient-to-r from-white via-zinc-200 to-[#6ee7b7] bg-clip-text text-transparent">Directory</span>
               </h1>
               <p className="text-zinc-400 font-jakarta text-xs sm:text-sm mt-1 max-w-xl">
                 Manage verified admissions, view registration profiles, and filter by enrolled class standard.
@@ -131,7 +131,7 @@ const AdminStudents: React.FC = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && fetchStudents()}
                   placeholder="Search by name, email, or registration ID..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta focus:outline-none focus:border-[#ff7a45] text-sm transition-colors"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 font-medium font-jakarta focus:outline-none focus:border-[#34d399] text-sm transition-colors"
                 />
               </div>
             </div>
@@ -143,7 +143,7 @@ const AdminStudents: React.FC = () => {
               <select
                 value={filterClass}
                 onChange={(e) => setFilterClass(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] transition-colors cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#34d399] transition-colors cursor-pointer"
               >
                 <option value="" className="bg-[#070914] text-white">All Classes</option>
                 {STANDARDS.map((std) => (
@@ -157,7 +157,7 @@ const AdminStudents: React.FC = () => {
             <div className="flex items-end">
               <button
                 onClick={fetchStudents}
-                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98]"
+                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98]"
               >
                 <Filter size={16} />
                 <span>Apply Filter</span>
@@ -192,7 +192,7 @@ const AdminStudents: React.FC = () => {
                           className="h-10 w-10 rounded-xl object-cover border border-white/10 shadow-sm"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center text-[#ffaa40] font-bold text-sm shadow-sm">
+                        <div className="h-10 w-10 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center text-[#6ee7b7] font-bold text-sm shadow-sm">
                           {student.studentName?.charAt(0)}
                         </div>
                       )}
@@ -201,7 +201,7 @@ const AdminStudents: React.FC = () => {
                       {student.studentName}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2.5 py-1 rounded-lg bg-[#ff7a45]/10 border border-[#ff7a45]/25 font-mono font-bold text-xs text-[#ffaa40]">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#34d399]/10 border border-[#34d399]/25 font-mono font-bold text-xs text-[#6ee7b7]">
                         {student.registrationId}
                       </span>
                     </td>

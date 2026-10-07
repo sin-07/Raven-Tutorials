@@ -97,8 +97,8 @@ function FeedbackPage() {
     const colors: Record<string, string> = {
       general: 'bg-[#161922] text-[#93c5fd] border-blue-500/30',
       course_content: 'bg-[#14120e] text-[#fde047] border-yellow-500/30',
-      teaching_method: 'bg-[#14120e] text-[#ff7b47] border-[#e8602e]/30',
-      study_materials: 'bg-[#14120e] text-[#ffaa40] border-[#ffaa40]/30',
+      teaching_method: 'bg-[#14120e] text-[#34d399] border-[#10b981]/30',
+      study_materials: 'bg-[#14120e] text-[#6ee7b7] border-[#6ee7b7]/30',
       online_classes: 'bg-[#191524] text-[#c084fc] border-purple-500/30',
       test_system: 'bg-[#121c24] text-[#67e8f9] border-cyan-500/30',
       complaint: 'bg-[#201216] text-[#fda4af] border-rose-500/30'
@@ -108,9 +108,9 @@ function FeedbackPage() {
 
   const getStatusColor = (status: string): string => {
     const colors: Record<string, string> = {
-      new: 'bg-[#14120e] text-[#ffaa40] border-[#ffaa40]/30',
+      new: 'bg-[#14120e] text-[#6ee7b7] border-[#6ee7b7]/30',
       reviewed: 'bg-[#161922] text-[#93c5fd] border-blue-500/30',
-      resolved: 'bg-[#14120e] text-[#ff7b47] border-[#e8602e]/30'
+      resolved: 'bg-[#14120e] text-[#34d399] border-[#10b981]/30'
     };
     return colors[status] || colors.new;
   };
@@ -127,12 +127,12 @@ function FeedbackPage() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white flex flex-col pt-24 pb-16">
+    <div className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white flex flex-col pt-24 pb-16">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-8">
         {/* Header Banner */}
-        <div className="bg-gradient-to-r from-[#e8602e]/20 via-[#ff733d]/20 to-[#ffaa40]/20 border border-[#e8602e]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(232,96,46,0.2)]">
-          <div className="inline-flex items-center gap-2 bg-[#161922] px-3 py-1 rounded-full border border-[#e8602e]/30 text-xs font-space font-bold uppercase text-[#ff7b47] mb-2 shadow-sm">
-            <MessageSquare size={14} className="text-[#e8602e]" />
+        <div className="bg-gradient-to-r from-[#10b981]/20 via-[#10b981]/20 to-[#6ee7b7]/20 border border-[#10b981]/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(16,185,129,0.2)]">
+          <div className="inline-flex items-center gap-2 bg-[#161922] px-3 py-1 rounded-full border border-[#10b981]/30 text-xs font-space font-bold uppercase text-[#34d399] mb-2 shadow-sm">
+            <MessageSquare size={14} className="text-[#10b981]" />
             <span>Student Support</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-outfit font-black text-white tracking-tight">
@@ -183,7 +183,7 @@ function FeedbackPage() {
                         <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => setSelectedFeedback(selectedFeedback?._id === feedback._id ? null : feedback)}
-                            className="p-2 bg-[#161922] border border-white/10 rounded-xl hover:border-[#e8602e]/50 hover:text-[#ff7b47] transition-colors cursor-pointer text-neutral-300"
+                            className="p-2 bg-[#161922] border border-white/10 rounded-xl hover:border-[#10b981]/50 hover:text-[#34d399] transition-colors cursor-pointer text-neutral-300"
                             title="View details"
                           >
                             <Eye className="w-4 h-4" />
@@ -205,7 +205,7 @@ function FeedbackPage() {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${i < feedback.rating! ? 'text-[#ffaa40] fill-[#ffaa40]' : 'text-neutral-700'}`}
+                              className={`w-4 h-4 ${i < feedback.rating! ? 'text-[#6ee7b7] fill-[#6ee7b7]' : 'text-neutral-700'}`}
                             />
                           ))}
                         </div>
@@ -231,7 +231,7 @@ function FeedbackPage() {
                           </div>
                           {feedback.adminResponse && (
                             <div className="pt-3 border-t border-white/10">
-                              <h4 className="font-outfit font-bold text-xs uppercase text-[#ff7b47] mb-1 flex items-center gap-1.5">
+                              <h4 className="font-outfit font-bold text-xs uppercase text-[#34d399] mb-1 flex items-center gap-1.5">
                                 <CheckCircle className="w-3.5 h-3.5" />
                                 Official Admin Response:
                               </h4>
@@ -257,9 +257,9 @@ function FeedbackPage() {
         </div>
 
         {/* Info Card */}
-        <div className="p-6 bg-[#14120e] border border-[#ffaa40]/30 rounded-3xl shadow-xl">
+        <div className="p-6 bg-[#14120e] border border-[#6ee7b7]/30 rounded-3xl shadow-xl">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center shrink-0 shadow-sm text-[#ff7b47]">
+            <div className="w-10 h-10 rounded-xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center shrink-0 shadow-sm text-[#34d399]">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>

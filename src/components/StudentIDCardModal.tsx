@@ -175,13 +175,13 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
       {/* Modal Backdrop (Screen only) */}
       <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 no-print animate-fade-in">
         <div
-          className="relative w-full max-w-4xl bg-[#090b14] border border-white/15 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(232,96,46,0.15)] overflow-hidden text-white my-auto"
+          className="relative w-full max-w-4xl bg-[#090b14] border border-white/15 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.15)] overflow-hidden text-white my-auto"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header Bar */}
           <div className="px-5 sm:px-7 py-4 border-b border-white/10 flex items-center justify-between bg-[#0e1220]/90 backdrop-blur-xl">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-gradient-to-tr from-[#ff6a3d] to-[#e8602e] text-white shadow-[0_0_15px_rgba(232,96,46,0.4)]">
+              <div className="p-2 rounded-xl bg-gradient-to-tr from-[#059669] to-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
@@ -204,7 +204,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                 <button
                   onClick={() => setViewSide('both')}
                   className={`px-3 py-1 rounded-lg transition-all ${
-                    viewSide === 'both' ? 'bg-[#e8602e] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                    viewSide === 'both' ? 'bg-[#10b981] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   Both Sides
@@ -212,7 +212,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                 <button
                   onClick={() => setViewSide('front')}
                   className={`px-3 py-1 rounded-lg transition-all ${
-                    viewSide === 'front' ? 'bg-[#e8602e] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                    viewSide === 'front' ? 'bg-[#10b981] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   Front
@@ -220,7 +220,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                 <button
                   onClick={() => setViewSide('back')}
                   className={`px-3 py-1 rounded-lg transition-all ${
-                    viewSide === 'back' ? 'bg-[#e8602e] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                    viewSide === 'back' ? 'bg-[#10b981] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   Back
@@ -243,7 +243,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
             {/* Instructional banner */}
             <div className="w-full max-w-2xl mb-6 p-3 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-xs text-zinc-300 font-jakarta no-print">
               <span className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#ffaa40] flex-shrink-0" />
+                <Sparkles className="w-4 h-4 text-[#6ee7b7] flex-shrink-0" />
                 <span>Ready for PVC Print or laminated badge output (300 DPI Standard CR80 Size).</span>
               </span>
               <span className="font-mono text-zinc-400 hidden md:inline">ID: {student.registrationId}</span>
@@ -266,9 +266,9 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                   </div>
 
                   {/* Top Institute Header Banner */}
-                  <div className="pt-6 pb-3 px-4 bg-gradient-to-r from-[#111625] via-[#1a2035] to-[#111625] text-white text-center relative border-b-2 border-[#e8602e]">
+                  <div className="pt-6 pb-3 px-4 bg-gradient-to-r from-[#111625] via-[#1a2035] to-[#111625] text-white text-center relative border-b-2 border-[#10b981]">
                     {/* Glowing highlight line */}
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#ff6a3d] via-[#f59e0b] to-[#e8602e]" />
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#059669] via-[#f59e0b] to-[#10b981]" />
                     
                     <div className="flex items-center justify-center gap-2 mb-1">
                       <div className="p-1 rounded-lg bg-white/10 border border-white/20">
@@ -280,7 +280,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                       </div>
                       <div className="text-left">
                         <h3 className="font-black font-outfit text-base tracking-wider text-white uppercase leading-none">
-                          RAVEN <span className="text-[#ff7a45]">TUTORIALS</span>
+                          RAVEN <span className="text-[#34d399]">TUTORIALS</span>
                         </h3>
                         <p className="text-[9px] font-space text-zinc-300 tracking-wider uppercase font-bold">
                           Patna Campus • Academy of Sciences
@@ -288,7 +288,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                       </div>
                     </div>
 
-                    <div className="mt-2 py-0.5 px-3 rounded-full bg-[#e8602e] text-white inline-block shadow-sm">
+                    <div className="mt-2 py-0.5 px-3 rounded-full bg-[#10b981] text-white inline-block shadow-sm">
                       <span className="font-extrabold font-space uppercase text-[10px] tracking-widest">
                         STUDENT IDENTITY CARD
                       </span>
@@ -300,7 +300,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                     
                     {/* Student Photo */}
                     <div className="relative mt-1 mb-2">
-                      <div className="w-24 h-28 sm:w-28 sm:h-32 rounded-xl border-2 border-[#e8602e] p-1 bg-white shadow-md overflow-hidden flex items-center justify-center">
+                      <div className="w-24 h-28 sm:w-28 sm:h-32 rounded-xl border-2 border-[#10b981] p-1 bg-white shadow-md overflow-hidden flex items-center justify-center">
                         {student.photo ? (
                           <img
                             src={student.photo}
@@ -308,7 +308,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                             className="w-full h-full object-cover object-top rounded-lg"
                           />
                         ) : (
-                          <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-[#ffaa40] font-black text-3xl font-outfit rounded-lg">
+                          <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-[#6ee7b7] font-black text-3xl font-outfit rounded-lg">
                             <span>{student.studentName.charAt(0)}</span>
                           </div>
                         )}
@@ -326,7 +326,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                       <h4 className="font-black font-outfit text-base sm:text-lg text-zinc-900 uppercase tracking-tight leading-tight">
                         {student.studentName}
                       </h4>
-                      <div className="inline-block px-3 py-0.5 rounded-md bg-[#111625] text-[#ffaa40] font-mono text-[11px] font-extrabold mt-1">
+                      <div className="inline-block px-3 py-0.5 rounded-md bg-[#111625] text-[#6ee7b7] font-mono text-[11px] font-extrabold mt-1">
                         CLASS {student.standard} • REG: {student.registrationId}
                       </div>
                     </div>
@@ -413,7 +413,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                   </div>
 
                   {/* Header */}
-                  <div className="pt-6 pb-2 px-4 bg-[#111625] text-white text-center border-b-2 border-[#e8602e]">
+                  <div className="pt-6 pb-2 px-4 bg-[#111625] text-white text-center border-b-2 border-[#10b981]">
                     <h4 className="font-black font-outfit text-sm tracking-wider uppercase text-white">
                       STUDENT CARD REGULATIONS
                     </h4>
@@ -427,19 +427,19 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                     
                     <div className="space-y-1.5 font-jakarta">
                       <div className="flex gap-2 items-start">
-                        <span className="font-black text-[#e8602e]">1.</span>
+                        <span className="font-black text-[#10b981]">1.</span>
                         <span>This card is the property of <strong>Raven Tutorials</strong> and must be worn or produced upon request within campus premises.</span>
                       </div>
                       <div className="flex gap-2 items-start">
-                        <span className="font-black text-[#e8602e]">2.</span>
+                        <span className="font-black text-[#10b981]">2.</span>
                         <span>Mandatory for entering lecture halls, library, computer centers, and competitive mock test series.</span>
                       </div>
                       <div className="flex gap-2 items-start">
-                        <span className="font-black text-[#e8602e]">3.</span>
+                        <span className="font-black text-[#10b981]">3.</span>
                         <span>This identity card is <strong>strictly non-transferable</strong>. Misuse will lead to immediate disciplinary action.</span>
                       </div>
                       <div className="flex gap-2 items-start">
-                        <span className="font-black text-[#e8602e]">4.</span>
+                        <span className="font-black text-[#10b981]">4.</span>
                         <span>In case of damage or loss, notify the campus office immediately. Duplicate card issuance charge is ₹150.</span>
                       </div>
                     </div>
@@ -519,7 +519,7 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
 
               <button
                 onClick={handlePrint}
-                className="px-6 py-2.5 bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] hover:from-[#ff7a4f] hover:to-[#ff5216] text-white font-black font-outfit text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(232,96,46,0.45)] hover:shadow-[0_0_35px_rgba(232,96,46,0.7)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2 cursor-pointer border border-white/20"
+                className="px-6 py-2.5 bg-gradient-to-r from-[#059669] to-[#10b981] hover:from-[#ff7a4f] hover:to-[#059669] text-white font-black font-outfit text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(16,185,129,0.45)] hover:shadow-[0_0_35px_rgba(16,185,129,0.7)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2 cursor-pointer border border-white/20"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Student ID Card</span>

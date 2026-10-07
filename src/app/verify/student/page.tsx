@@ -46,7 +46,7 @@ function VerifyStudentContent() {
 
           <div className="flex justify-between items-center py-1 border-b border-white/[0.06] text-xs">
             <span className="text-zinc-400 font-space uppercase">Registration ID</span>
-            <span className="font-mono font-bold text-[#ffaa40] text-sm">{regId}</span>
+            <span className="font-mono font-bold text-[#6ee7b7] text-sm">{regId}</span>
           </div>
 
           <div className="flex justify-between items-center py-1 border-b border-white/[0.06] text-xs">

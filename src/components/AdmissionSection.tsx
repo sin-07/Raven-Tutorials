@@ -362,11 +362,11 @@ export default function AdmissionSection() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#e8602e]/10 text-[#ff7b47] rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border border-[#e8602e]/30 shadow-[0_0_20px_rgba(232,96,46,0.15)]">
+            <span className="inline-block px-4 py-1.5 bg-[#10b981]/10 text-[#34d399] rounded-full text-xs font-space uppercase tracking-wider font-extrabold mb-4 border border-[#10b981]/30 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
               Start Your Journey
             </span>
             <h2 className="text-3xl md:text-5xl font-black text-white font-outfit tracking-tight">
-              I Want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Learn</span>
+              I Want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Learn</span>
             </h2>
             <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal">
               Take the first step towards your academic success. Join Raven Tutorials and unlock your potential with expert guidance.
@@ -381,8 +381,8 @@ export default function AdmissionSection() {
               viewport={{ once: true }}
               className="space-y-5 font-jakarta"
             >
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#10b981]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
@@ -391,8 +391,8 @@ export default function AdmissionSection() {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#10b981]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
@@ -401,8 +401,8 @@ export default function AdmissionSection() {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
-                <div className="w-12 h-12 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#0f111a] border border-white/10 hover:border-[#10b981]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                   <Shield className="w-6 h-6" />
                 </div>
                 <div>
@@ -413,7 +413,7 @@ export default function AdmissionSection() {
 
               <div className="pt-2 font-outfit flex items-center gap-3">
                 <span className="text-xl font-bold text-zinc-300">Admission Fee:</span>
-                <span className="text-white bg-[#e8602e] font-extrabold px-3.5 py-1 rounded-full text-lg shadow-[0_0_20px_rgba(232,96,46,0.5)]">₹1,000</span>
+                <span className="text-white bg-[#10b981] font-extrabold px-3.5 py-1 rounded-full text-lg shadow-[0_0_20px_rgba(16,185,129,0.5)]">₹1,000</span>
                 <span className="text-zinc-500 text-xs font-jakarta font-medium">(One-time registration)</span>
               </div>
             </motion.div>
@@ -423,10 +423,10 @@ export default function AdmissionSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-b from-[#121422] to-[#08090f] rounded-3xl border border-[#e8602e]/30 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(232,96,46,0.12)] p-8 sm:p-10 font-jakarta relative overflow-hidden"
+              className="bg-gradient-to-b from-[#121422] to-[#08090f] rounded-3xl border border-[#10b981]/30 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.12)] p-8 sm:p-10 font-jakarta relative overflow-hidden"
             >
               <div className="text-center relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(232,96,46,0.3)]">
+                <div className="w-16 h-16 rounded-2xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(16,185,129,0.3)]">
                   <GraduationCap className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-black text-white mb-2 font-outfit">Ready to Join?</h3>
@@ -436,26 +436,26 @@ export default function AdmissionSection() {
                 
                 <div className="space-y-3 text-left mb-8 max-w-sm mx-auto">
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#34d399] flex-shrink-0" />
                     <span>Fill the admission form</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#34d399] flex-shrink-0" />
                     <span>Verify your email with OTP</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#34d399] flex-shrink-0" />
                     <span>Complete payment</span>
                   </div>
                   <div className="flex items-center gap-3 text-zinc-300 text-sm">
-                    <CheckCircle className="w-4 h-4 text-[#ff7b47] flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#34d399] flex-shrink-0" />
                     <span>Get your login credentials</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn-sheryians w-full py-4 text-white font-extrabold text-sm rounded-full shadow-[0_0_30px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
+                  className="btn-sheryians w-full py-4 text-white font-extrabold text-sm rounded-full shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 font-outfit uppercase tracking-wider cursor-pointer"
                 >
                   <GraduationCap className="w-5 h-5" />
                   <span>Take Admission Now</span>
@@ -481,7 +481,7 @@ export default function AdmissionSection() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#0b0d14] border border-white/15 text-white relative w-full max-w-2xl rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.95),0_0_50px_rgba(232,96,46,0.2)] my-8 max-h-[90vh] overflow-y-auto overscroll-contain"
+              className="bg-[#0b0d14] border border-white/15 text-white relative w-full max-w-2xl rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.95),0_0_50px_rgba(16,185,129,0.2)] my-8 max-h-[90vh] overflow-y-auto overscroll-contain"
             >
               {/* Close Button */}
               {step !== 4 && (
@@ -499,14 +499,14 @@ export default function AdmissionSection() {
                   {['Form', 'OTP', 'Payment', 'Success'].map((label, index) => (
                     <div key={label} className="flex items-center">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black font-space ${
-                        step >= index + 1 ? 'bg-[#e8602e] text-white shadow-[0_0_15px_rgba(232,96,46,0.5)]' :
+                        step >= index + 1 ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.5)]' :
                         'bg-white/10 text-zinc-500 border border-white/10'
                       }`}>
                         {step > index + 1 ? <CheckCircle className="w-4 h-4" /> : index + 1}
                       </div>
                       {index < 3 && (
                         <div className={`w-12 sm:w-16 h-1 mx-1 rounded-full ${
-                          step > index + 1 ? 'bg-[#e8602e]' : 'bg-white/10'
+                          step > index + 1 ? 'bg-[#10b981]' : 'bg-white/10'
                         }`} />
                       )}
                     </div>
@@ -523,7 +523,7 @@ export default function AdmissionSection() {
                     {/* Photo Upload */}
                     <div className="flex justify-center mb-6">
                       <label className="cursor-pointer">
-                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-[#e8602e]' : 'border-white/20'} flex items-center justify-center overflow-hidden bg-[#121522] hover:bg-[#181c2e] transition-colors`}>
+                        <div className={`w-24 h-24 rounded-full border-2 border-dashed ${photoPreview ? 'border-[#10b981]' : 'border-white/20'} flex items-center justify-center overflow-hidden bg-[#121522] hover:bg-[#181c2e] transition-colors`}>
                           {photoPreview ? (
                             <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
                           ) : (
@@ -544,7 +544,7 @@ export default function AdmissionSection() {
                           name="studentName"
                           value={formData.studentName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -555,7 +555,7 @@ export default function AdmissionSection() {
                           name="fatherName"
                           value={formData.fatherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -566,7 +566,7 @@ export default function AdmissionSection() {
                           name="motherName"
                           value={formData.motherName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -635,7 +635,7 @@ export default function AdmissionSection() {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -646,7 +646,7 @@ export default function AdmissionSection() {
                           name="phoneNumber"
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -657,7 +657,7 @@ export default function AdmissionSection() {
                           name="alternatePhoneNumber"
                           value={formData.alternatePhoneNumber}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                         />
                       </div>
                     </div>
@@ -670,7 +670,7 @@ export default function AdmissionSection() {
                         value={formData.address}
                         onChange={handleInputChange}
                         rows={2}
-                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                         required
                       />
                     </div>
@@ -683,7 +683,7 @@ export default function AdmissionSection() {
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -694,7 +694,7 @@ export default function AdmissionSection() {
                           name="state"
                           value={formData.state}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -705,7 +705,7 @@ export default function AdmissionSection() {
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                          className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                           required
                         />
                       </div>
@@ -718,7 +718,7 @@ export default function AdmissionSection() {
                         name="previousSchool"
                         value={formData.previousSchool}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#e8602e] focus:border-[#e8602e] focus:outline-none"
+                        className="w-full px-4 py-2.5 bg-[#121522] border border-white/15 rounded-xl text-white font-medium focus:ring-2 focus:ring-[#10b981] focus:border-[#10b981] focus:outline-none"
                         required
                       />
                     </div>
@@ -730,7 +730,7 @@ export default function AdmissionSection() {
                         id="terms"
                         checked={acceptedTerms}
                         onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-[#e8602e] bg-[#121522] border border-white/20 rounded focus:ring-[#e8602e]"
+                        className="mt-1 w-4 h-4 text-[#10b981] bg-[#121522] border border-white/20 rounded focus:ring-[#10b981]"
                       />
                       <label htmlFor="terms" className="text-xs text-zinc-400 font-medium leading-relaxed">
                         I agree to the terms and conditions and understand that my data will be stored securely.
@@ -740,7 +740,7 @@ export default function AdmissionSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="btn-sheryians w-full py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      className="btn-sheryians w-full py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -760,13 +760,13 @@ export default function AdmissionSection() {
                 {/* Step 2: OTP Verification */}
                 {step === 2 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(232,96,46,0.3)]">
-                      <Mail className="w-10 h-10 text-[#ff7b47]" />
+                    <div className="w-20 h-20 rounded-2xl bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+                      <Mail className="w-10 h-10 text-[#34d399]" />
                     </div>
                     <div>
                       <h3 className="text-xl font-black text-white mb-2 font-outfit">Verify Your Email</h3>
                       <p className="text-zinc-400 font-medium text-sm">
-                        We&apos;ve sent a 6-digit OTP to <span className="font-black text-[#ffaa40] underline">{formData.email}</span>
+                        We&apos;ve sent a 6-digit OTP to <span className="font-black text-[#6ee7b7] underline">{formData.email}</span>
                       </p>
                     </div>
 
@@ -776,7 +776,7 @@ export default function AdmissionSection() {
                         value={otp}
                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                         placeholder="000000"
-                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-[#121522] border border-white/20 rounded-xl text-white font-mono font-bold focus:ring-2 focus:ring-[#e8602e] focus:outline-none"
+                        className="w-full px-4 py-3 text-center text-2xl tracking-widest bg-[#121522] border border-white/20 rounded-xl text-white font-mono font-bold focus:ring-2 focus:ring-[#10b981] focus:outline-none"
                         maxLength={6}
                       />
                     </div>
@@ -784,7 +784,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handleVerifyOTP}
                       disabled={loading || otp.length !== 6}
-                      className="btn-sheryians w-full max-w-xs mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      className="btn-sheryians w-full max-w-xs mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -812,8 +812,8 @@ export default function AdmissionSection() {
                 {/* Step 3: Payment */}
                 {step === 3 && (
                   <div className="text-center space-y-6">
-                    <div className="w-20 h-20 rounded-2xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(232,96,46,0.3)]">
-                      <CreditCard className="w-10 h-10 text-[#ff7b47]" />
+                    <div className="w-20 h-20 rounded-2xl bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+                      <CreditCard className="w-10 h-10 text-[#34d399]" />
                     </div>
                     <div>
                       <h3 className="text-xl font-black text-white mb-2 font-outfit">Complete Payment</h3>
@@ -825,7 +825,7 @@ export default function AdmissionSection() {
                     <div className="bg-[#121522] rounded-2xl p-6 max-w-sm mx-auto border border-white/10 shadow-lg">
                       <div className="flex justify-between items-center mb-4">
                         <span className="text-zinc-300 font-bold">Admission Fee</span>
-                        <span className="text-2xl font-black text-[#ffaa40] font-outfit">₹{paymentAmount}</span>
+                        <span className="text-2xl font-black text-[#6ee7b7] font-outfit">₹{paymentAmount}</span>
                       </div>
                       <div className="text-left text-xs text-zinc-400 font-medium space-y-1">
                         <p>• Secure payment via Razorpay</p>
@@ -837,7 +837,7 @@ export default function AdmissionSection() {
                     <button
                       onClick={handlePayment}
                       disabled={loading}
-                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {loading ? (
                         <>
@@ -860,9 +860,9 @@ export default function AdmissionSection() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-24 h-24 rounded-2xl bg-[#e8602e]/20 border border-[#e8602e]/40 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(232,96,46,0.4)]"
+                      className="w-24 h-24 rounded-2xl bg-[#10b981]/20 border border-[#10b981]/40 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(16,185,129,0.4)]"
                     >
-                      <CheckCircle className="w-12 h-12 text-[#ff7b47]" />
+                      <CheckCircle className="w-12 h-12 text-[#34d399]" />
                     </motion.div>
                     
                     <div>
@@ -877,7 +877,7 @@ export default function AdmissionSection() {
                       
                       <div className="space-y-3">
                         <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
-                          <Key className="w-5 h-5 text-[#ff7b47]" />
+                          <Key className="w-5 h-5 text-[#34d399]" />
                           <div>
                             <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Registration ID</p>
                             <p className="font-mono font-black text-white">{credentials.registrationId}</p>
@@ -885,7 +885,7 @@ export default function AdmissionSection() {
                         </div>
                         
                         <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
-                          <Mail className="w-5 h-5 text-[#ff7b47]" />
+                          <Mail className="w-5 h-5 text-[#34d399]" />
                           <div>
                             <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Email</p>
                             <p className="font-bold text-white text-sm">{credentials.email}</p>
@@ -893,7 +893,7 @@ export default function AdmissionSection() {
                         </div>
                         
                         <div className="flex items-center gap-3 p-3 bg-[#0b0d14] rounded-xl border border-white/10">
-                          <Shield className="w-5 h-5 text-[#ff7b47]" />
+                          <Shield className="w-5 h-5 text-[#34d399]" />
                           <div>
                             <p className="text-[10px] uppercase font-bold text-zinc-500 font-space">Password</p>
                             <p className="font-mono font-black text-white">{credentials.password}</p>
@@ -913,7 +913,7 @@ export default function AdmissionSection() {
                         setShowModal(false);
                         window.location.href = '/login';
                       }}
-                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(232,96,46,0.4)] flex items-center justify-center gap-2 cursor-pointer"
+                      className="btn-sheryians w-full max-w-sm mx-auto py-3.5 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 cursor-pointer"
                     >
                       Go to Login
                       <ArrowRight className="w-5 h-5" />

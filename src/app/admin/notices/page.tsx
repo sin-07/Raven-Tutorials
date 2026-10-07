@@ -113,10 +113,10 @@ function AdminNoticesPage() {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
               <Megaphone size={14} />
               <span>Official Announcements</span>
             </div>
@@ -132,7 +132,7 @@ function AdminNoticesPage() {
         {/* Post Notice Card */}
         <div className="bg-[#0c0f1c] rounded-3xl border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] p-6 md:p-8 text-white">
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-            <div className="w-10 h-10 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center text-[#ffaa40] shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center text-[#6ee7b7] shadow-sm">
               <Sparkles size={20} />
             </div>
             <div>
@@ -144,7 +144,7 @@ function AdminNoticesPage() {
           <form onSubmit={handlePost} className="space-y-4" encType="multipart/form-data">
             <div>
               <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
-                Notice Title <span className="text-[#ff7a45]">*</span>
+                Notice Title <span className="text-[#34d399]">*</span>
               </label>
               <input
                 type="text"
@@ -152,21 +152,21 @@ function AdminNoticesPage() {
                 value={form.title}
                 onChange={handleChange}
                 placeholder="e.g., Mid-Term Examination Schedule Announcement"
-                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
                 required
               />
             </div>
 
             <div>
               <label className="block text-xs font-bold uppercase font-space text-zinc-300 mb-1.5">
-                Notice Message <span className="text-[#ff7a45]">*</span>
+                Notice Message <span className="text-[#34d399]">*</span>
               </label>
               <textarea
                 name="message"
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Write full announcement details, instructions, or exam timings..."
-                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
                 rows={4}
                 required
               />
@@ -182,7 +182,7 @@ function AdminNoticesPage() {
                   name="document"
                   accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border file:border-white/10 file:text-xs file:font-outfit file:font-bold file:bg-[#ff7a45]/20 file:text-[#ffaa40] file:cursor-pointer text-sm"
+                  className="w-full px-4 py-2 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border file:border-white/10 file:text-xs file:font-outfit file:font-bold file:bg-[#34d399]/20 file:text-[#6ee7b7] file:cursor-pointer text-sm"
                 />
               </div>
 
@@ -208,7 +208,7 @@ function AdminNoticesPage() {
               <button
                 type="submit"
                 disabled={posting}
-                className="bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 px-6 py-3 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                className="bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white border border-white/10 px-6 py-3 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(16,185,129,0.35)] transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2"
               >
                 <Send size={16} />
                 <span>{posting ? 'Broadcasting Notice...' : 'Broadcast Notice'}</span>
@@ -244,10 +244,10 @@ function AdminNoticesPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10 mb-3">
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs font-space font-medium uppercase text-zinc-300">
-                      <User size={12} className="text-[#ffaa40]" />
+                      <User size={12} className="text-[#6ee7b7]" />
                       <span>{notice.postedBy}</span>
                     </div>
-                    <span className="bg-[#ff7a45]/15 border border-[#ff7a45]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase text-[#ffaa40] inline-flex items-center gap-1">
+                    <span className="bg-[#34d399]/15 border border-[#34d399]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase text-[#6ee7b7] inline-flex items-center gap-1">
                       <Megaphone size={12} />
                       <span>{notice.class === 'All' ? 'All Classes' : `Class ${notice.class}`}</span>
                     </span>
@@ -275,7 +275,7 @@ function AdminNoticesPage() {
                       href={notice.documentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 rounded-xl font-outfit font-bold text-xs shadow-[0_4px_12px_rgba(232,96,46,0.3)] transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white border border-white/10 rounded-xl font-outfit font-bold text-xs shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all cursor-pointer"
                     >
                       <FileText size={14} />
                       <span>{notice.documentName || 'Download Attachment Document'}</span>

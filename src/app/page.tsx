@@ -107,7 +107,7 @@ const heroSubjects = [
     desc: 'Calculus, Algebra & Vectors',
     topics: ['Calculus', 'Algebra', 'Trigonometry'],
     icon: Calculator,
-    accentColor: '#ffaa40',
+    accentColor: '#6ee7b7',
     href: '/courses?search=Mathematics',
     badge: 'Flagship Faculty',
   },
@@ -120,7 +120,7 @@ const heroSubjects = [
     desc: 'Mechanics, Optics & Electromagnetism',
     topics: ['Mechanics', 'Electrodynamics', 'Optics'],
     icon: Atom,
-    accentColor: '#e8602e',
+    accentColor: '#10b981',
     href: '/courses?search=Physics',
     badge: 'Concept & Numericals',
   },
@@ -133,7 +133,7 @@ const heroSubjects = [
     desc: 'Structure, Reactions & Periodic Trends',
     topics: ['Organic Synthesis', 'Physical Chem', 'Inorganic'],
     icon: FlaskConical,
-    accentColor: '#ff7a45',
+    accentColor: '#34d399',
     href: '/courses?search=Chemistry',
     badge: 'Reaction Mechanisms',
   },
@@ -295,12 +295,12 @@ export default function Home() {
   });
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
       {/* ── HERO SECTION (SHERYIANS LUXURY OBSIDIAN & ORANGE THEME) ────────────────── */}
       <section className="relative px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-40 pb-16 max-w-7xl mx-auto">
         {/* Ambient Radial Background Glows */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[450px] bg-gradient-to-b from-[#e8602e]/20 via-[#ff733d]/8 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
-        <div className="absolute top-60 left-1/4 w-[350px] h-[350px] bg-[#e8602e]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[450px] bg-gradient-to-b from-[#10b981]/20 via-[#10b981]/8 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
+        <div className="absolute top-60 left-1/4 w-[350px] h-[350px] bg-[#10b981]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
 
         {/* Hero Top Content: Centered editorial headline & actions */}
         <div className="text-center max-w-5xl mx-auto pt-4 sm:pt-6">
@@ -311,7 +311,7 @@ export default function Home() {
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06]"
           >
             Personalized Home Tuition with <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40] drop-shadow-[0_0_35px_rgba(232,96,46,0.35)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7] drop-shadow-[0_0_35px_rgba(16,185,129,0.35)]">
               Exceptional Teaching &amp; Results.
             </span>
           </h1>
@@ -331,7 +331,7 @@ export default function Home() {
           >
             <Link
               href="/courses"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#e8602e] hover:bg-[#ff733d] text-white font-black text-sm font-outfit uppercase tracking-wider shadow-[0_0_30px_rgba(232,96,46,0.45)] hover:shadow-[0_0_40px_rgba(232,96,46,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#10b981] hover:bg-[#10b981] text-white font-black text-sm font-outfit uppercase tracking-wider shadow-[0_0_30px_rgba(16,185,129,0.45)] hover:shadow-[0_0_40px_rgba(16,185,129,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
             >
               <span>Explore All Batches</span>
               <ArrowRight className="w-4 h-4 text-white" />
@@ -339,9 +339,9 @@ export default function Home() {
 
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#121420]/90 hover:bg-[#1a1d2e] text-white border border-white/15 hover:border-[#e8602e]/60 font-bold text-sm font-outfit transition-all duration-200 shadow-lg hover:shadow-[0_0_20px_rgba(232,96,46,0.2)] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#121420]/90 hover:bg-[#1a1d2e] text-white border border-white/15 hover:border-[#10b981]/60 font-bold text-sm font-outfit transition-all duration-200 shadow-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] cursor-pointer"
             >
-              <Phone className="w-4 h-4 text-[#ff7b47]" />
+              <Phone className="w-4 h-4 text-[#34d399]" />
               <span>Book Free Demo Class</span>
             </Link>
           </div>
@@ -352,13 +352,13 @@ export default function Home() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 px-1">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-[#e8602e] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
                   <span className="text-[11px] font-space font-extrabold uppercase tracking-widest text-zinc-400">
                     ACADEMIC SPECIALIZATIONS &bull; DEDICATED MASTER BATCHES
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-black font-outfit text-white">
-                  Select Your <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Subject Focus</span>
+                  Select Your <span className="bg-gradient-to-r from-white via-zinc-200 to-[#6ee7b7] bg-clip-text text-transparent">Subject Focus</span>
                 </h3>
               </div>
 
@@ -369,7 +369,7 @@ export default function Home() {
                     onClick={() => setSubjectFilter('all')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
                       subjectFilter === 'all'
-                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
                         : 'text-zinc-400 hover:text-white'
                     }`}
                   >
@@ -379,7 +379,7 @@ export default function Home() {
                     onClick={() => setSubjectFilter('stem')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
                       subjectFilter === 'stem'
-                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
                         : 'text-zinc-400 hover:text-white'
                     }`}
                   >
@@ -389,7 +389,7 @@ export default function Home() {
                     onClick={() => setSubjectFilter('language')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
                       subjectFilter === 'language'
-                        ? 'bg-gradient-to-r from-[#ff6a3d] to-[#e8602e] text-white shadow-md'
+                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
                         : 'text-zinc-400 hover:text-white'
                     }`}
                   >
@@ -402,7 +402,7 @@ export default function Home() {
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-space font-bold uppercase tracking-wider text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition group"
                 >
                   <span>All Courses</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#ff7b47] group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#34d399] group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>
             </div>
@@ -417,13 +417,13 @@ export default function Home() {
                     <Link
                       key={sub.name}
                       href={sub.href}
-                      className="group relative rounded-3xl p-6 bg-gradient-to-b from-[#111422] to-[#090b14] hover:from-[#151a2e] hover:to-[#0c0f1c] border border-white/10 hover:border-[#ff7a45]/45 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.18)] text-left"
+                      className="group relative rounded-3xl p-6 bg-gradient-to-b from-[#111422] to-[#090b14] hover:from-[#151a2e] hover:to-[#0c0f1c] border border-white/10 hover:border-[#34d399]/45 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] text-left"
                     >
                       {/* Top ambient orange laser accent */}
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
                       
                       {/* Top subtle radial orange glow reflection */}
-                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
 
                       {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
                       <div className="relative z-10">
@@ -440,7 +440,7 @@ export default function Home() {
                               <IconComponent className="w-5 h-5" />
                             </div>
                             <div>
-                              <span className="font-mono text-[10px] font-bold text-zinc-500 group-hover:text-[#ffaa40]/80 transition-colors block leading-none mb-1">
+                              <span className="font-mono text-[10px] font-bold text-zinc-500 group-hover:text-[#6ee7b7]/80 transition-colors block leading-none mb-1">
                                 {`${sub.num} // DISCIPLINE`}
                               </span>
                               <span 
@@ -457,13 +457,13 @@ export default function Home() {
                           </div>
 
                           {/* Recessed Corner Action Button (↗) */}
-                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#ff7a45]/40 text-zinc-400 group-hover:text-[#ff7a45] flex items-center justify-center transition-all group-hover:scale-105 shadow-sm">
+                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#34d399]/40 text-zinc-400 group-hover:text-[#34d399] flex items-center justify-center transition-all group-hover:scale-105 shadow-sm">
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           </div>
                         </div>
 
                         {/* Subject Name & Description */}
-                        <h4 className="text-xl font-black font-outfit text-white group-hover:text-[#ffaa40] transition-colors">
+                        <h4 className="text-xl font-black font-outfit text-white group-hover:text-[#6ee7b7] transition-colors">
                           {sub.fullName}
                         </h4>
                         <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
@@ -475,7 +475,7 @@ export default function Home() {
                           {sub.topics.map((topic, i) => (
                             <span 
                               key={i}
-                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] group-hover:border-[#ff7a45]/20 transition-colors"
+                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] group-hover:border-[#34d399]/20 transition-colors"
                             >
                               {topic}
                             </span>
@@ -484,11 +484,11 @@ export default function Home() {
                       </div>
 
                       {/* Footer Micro-Bar */}
-                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] group-hover:border-[#ff7a45]/20 flex items-center justify-between text-xs font-jakarta relative z-10 transition-colors">
+                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] group-hover:border-[#34d399]/20 flex items-center justify-between text-xs font-jakarta relative z-10 transition-colors">
                         <span className="text-[11px] text-zinc-400 font-medium">
                           {sub.badge}
                         </span>
-                        <span className="text-[11px] font-space font-bold uppercase text-[#ff7b47] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                        <span className="text-[11px] font-space font-bold uppercase text-[#34d399] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                           <span>View Batches</span>
                           <ArrowRight className="w-3 h-3" />
                         </span>
@@ -505,12 +505,12 @@ export default function Home() {
       {/* ── ADVANCED LEADERSHIP & METHODOLOGY CARDS (IMAGE 2 & 3) ────────────── */}
       <section ref={featuresSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
+          <div ref={featuresTitleRef} className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white font-outfit tracking-tight">
-            Advanced Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Strategies</span>
+            Advanced Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Strategies</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal">
             Explore case studies and real-world examples that illustrate the application of advanced learning strategies. Enhance your decision-making and problem-solving skills.
@@ -520,12 +520,12 @@ export default function Home() {
         {/* 3 Dark Notched Cards with Recessed Corner Arrow Buttons */}
         <div ref={featuresGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {/* Card 1 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#10b981]/10 border border-[#10b981]/20 text-[#34d399] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -533,25 +533,25 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#34d399] transition-colors">
                 Adaptive Learning Framework
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Learn to navigate and lead through complex and rapidly changing competitive exam patterns with deep concept retention.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#34d399] font-semibold relative z-10">
               <span>Class 8 - 12 & Droppers</span>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#10b981]/10 border border-[#10b981]/20 text-[#34d399] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <Zap className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -559,25 +559,25 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#34d399] transition-colors">
                 Transformational Coaching Techniques
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Discover powerful problem-solving strategies to inspire and drive positive academic change and top percentile ranks.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#34d399] font-semibold relative z-10">
               <span>AIR Rank Acceleration</span>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(232,96,46,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="feature-card group p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#10121a] to-[#08090f] border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.18)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8602e]/10 border border-[#e8602e]/20 text-[#ff7b47] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#10b981]/10 border border-[#10b981]/20 text-[#34d399] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <Target className="w-6 h-6" />
                 </div>
                 {/* Signature Circle Corner Action Button (↗) */}
@@ -585,14 +585,14 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 -rotate-45" />
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#ff7b47] transition-colors">
+              <h3 className="text-xl font-black text-white mb-2 font-outfit group-hover:text-[#34d399] transition-colors">
                 Influential Problem-Solving Mastery
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed font-jakarta">
                 Develop advanced speed, mental calculation, and precision to effectively solve multi-concept questions in JEE & NEET.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#ff7b47] font-semibold relative z-10">
+            <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-space text-[#34d399] font-semibold relative z-10">
               <span>National Benchmarking</span>
             </div>
           </div>
@@ -602,14 +602,14 @@ export default function Home() {
         <div className="bg-[#090b10] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
             <div>
-              <span className="text-xs font-space uppercase text-[#ff7b47] font-extrabold tracking-wider">Curriculum Roadmap</span>
+              <span className="text-xs font-space uppercase text-[#34d399] font-extrabold tracking-wider">Curriculum Roadmap</span>
               <h3 className="text-2xl sm:text-3xl font-black text-white font-outfit mt-1">
                 Foundational Courses: Transformational Learning Techniques
               </h3>
             </div>
             <Link
               href="/courses"
-              className="btn-sheryians px-5 py-2.5 rounded-full text-white font-extrabold text-xs inline-flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-[0_0_20px_rgba(232,96,46,0.4)]"
+              className="btn-sheryians px-5 py-2.5 rounded-full text-white font-extrabold text-xs inline-flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.4)]"
             >
               <span>Show All</span>
               <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
@@ -640,14 +640,14 @@ export default function Home() {
             ].map((module, mIdx) => (
               <div
                 key={mIdx}
-                className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#e8602e]/40 transition-all hover:bg-white/[0.06] group"
+                className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#10b981]/40 transition-all hover:bg-white/[0.06] group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center shrink-0 mt-0.5">
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-outfit font-black text-lg text-white group-hover:text-[#ff7b47] transition-colors">
+                    <h4 className="font-outfit font-black text-lg text-white group-hover:text-[#34d399] transition-colors">
                       {module.title}
                     </h4>
                     <p className="text-xs sm:text-sm text-zinc-400 font-jakarta mt-0.5">
@@ -667,7 +667,7 @@ export default function Home() {
                   <span className="text-xs font-mono text-zinc-500 hidden sm:inline-block">{module.date}</span>
                   <Link
                     href="/courses"
-                    className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-[#e8602e] hover:text-white text-white text-xs font-extrabold font-outfit transition-all flex items-center gap-1 hover:shadow-[0_0_15px_rgba(232,96,46,0.4)]"
+                    className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-[#10b981] hover:text-white text-white text-xs font-extrabold font-outfit transition-all flex items-center gap-1 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)]"
                   >
                     <span>Explore</span>
                     <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
@@ -682,12 +682,12 @@ export default function Home() {
       {/* ── 4-STEP LEARNING METHODOLOGY ────────────────────────── */}
       <section ref={methodologySectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Target className="w-3.5 h-3.5" />
             <span>Structured Pedagogy</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white font-outfit tracking-tight">
-            The 4-Step Road to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Rank 1</span>
+            The 4-Step Road to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Rank 1</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-jakarta">
             A scientifically proven preparation model that leaves zero knowledge gaps.
@@ -695,60 +695,60 @@ export default function Home() {
         </div>
 
         <div ref={methodologyGridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(16,185,129,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
-              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">01</span>
-              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+              <span className="w-10 h-10 bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">01</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-5 transition-colors shadow-sm">
                 <BookOpen className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Concept Mastery</h3>
+              <h3 className="text-lg font-black text-white group-hover:text-[#34d399] mb-2 font-outfit transition-colors">Concept Mastery</h3>
               <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
                 Deep theoretical breakdown with visualization, live demonstrations, and intuitive understanding.
               </p>
             </div>
           </div>
 
-          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(16,185,129,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
-              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">02</span>
-              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+              <span className="w-10 h-10 bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">02</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-5 transition-colors shadow-sm">
                 <Zap className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Targeted Practice</h3>
+              <h3 className="text-lg font-black text-white group-hover:text-[#34d399] mb-2 font-outfit transition-colors">Targeted Practice</h3>
               <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
                 Graded Daily Practice Papers (DPPs) ranging from foundational boards to high-difficulty competitive questions.
               </p>
             </div>
           </div>
 
-          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(16,185,129,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
-              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">03</span>
-              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+              <span className="w-10 h-10 bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">03</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-5 transition-colors shadow-sm">
                 <MessageCircle className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">1-on-1 Doubt Relief</h3>
+              <h3 className="text-lg font-black text-white group-hover:text-[#34d399] mb-2 font-outfit transition-colors">1-on-1 Doubt Relief</h3>
               <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
                 Dedicated daily doubt clearing clinics ensuring no student leaves the classroom with unresolved questions.
               </p>
             </div>
           </div>
 
-          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/35 to-transparent group-hover:via-[#ff7a45]/85 transition-all duration-500" />
-            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#e8602e]/10 group-hover:bg-[#e8602e]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+          <div className="methodology-step group bg-[#0f111a] hover:bg-[#131622] p-7 rounded-3xl border border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(16,185,129,0.18)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/20 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
             <div className="relative z-10">
-              <span className="w-10 h-10 bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">04</span>
-              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#e8602e]/15 border border-white/10 group-hover:border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-5 transition-colors shadow-sm">
+              <span className="w-10 h-10 bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30 rounded-xl flex items-center justify-center font-black font-space text-base absolute top-0 right-0">04</span>
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-5 transition-colors shadow-sm">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-white group-hover:text-[#ff7b47] mb-2 font-outfit transition-colors">Real-Time Testing</h3>
+              <h3 className="text-lg font-black text-white group-hover:text-[#34d399] mb-2 font-outfit transition-colors">Real-Time Testing</h3>
               <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-jakarta">
                 National level mock tests with instant graphical AI analysis, speed benchmarking, and rank prediction.
               </p>
@@ -761,12 +761,12 @@ export default function Home() {
       <section ref={coursesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={coursesTitleRef} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
+            <div className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
               <BookOpen className="w-3.5 h-3.5" />
               <span>Academic Catalog</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight !text-left">
-              Featured Programs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Batches</span>
+              Featured Programs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Batches</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-xl font-jakarta">
               Choose the specialized batch aligned with your academic year and competitive target.
@@ -778,7 +778,7 @@ export default function Home() {
               onClick={() => setActiveTab('all')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'all'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -788,7 +788,7 @@ export default function Home() {
               onClick={() => setActiveTab('foundation')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'foundation'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -798,7 +798,7 @@ export default function Home() {
               onClick={() => setActiveTab('science')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'science'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -808,7 +808,7 @@ export default function Home() {
               onClick={() => setActiveTab('competitive')}
               className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
                 activeTab === 'competitive'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                   : 'btn-dark-pill text-zinc-300'
               }`}
             >
@@ -903,7 +903,7 @@ export default function Home() {
             ].map((lesson, idx) => (
               <div
                 key={idx}
-                className="group bg-[#0f111a] hover:bg-[#131622] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e8602e]/50 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                className="group bg-[#0f111a] hover:bg-[#131622] rounded-2xl overflow-hidden border border-white/10 hover:border-[#10b981]/50 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   {/* Thumbnail with Play Icon */}
@@ -914,14 +914,14 @@ export default function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                      <div className="w-12 h-12 rounded-full bg-[#e8602e] text-white flex items-center justify-center shadow-[0_0_20px_rgba(232,96,46,0.6)] group-hover:scale-110 transition-transform">
-                        <PlayCircle className="w-7 h-7 fill-white text-[#e8602e] ml-0.5" />
+                      <div className="w-12 h-12 rounded-full bg-[#10b981] text-white flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform">
+                        <PlayCircle className="w-7 h-7 fill-white text-[#10b981] ml-0.5" />
                       </div>
                     </div>
                   </div>
 
                   <div className="p-5">
-                    <h3 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-[#ff7b47] transition-colors line-clamp-2">
+                    <h3 className="font-outfit font-black text-base sm:text-lg text-white group-hover:text-[#34d399] transition-colors line-clamp-2">
                       {lesson.title}
                     </h3>
                     <p className="font-jakarta text-xs text-zinc-400 mt-2 line-clamp-2 leading-relaxed">
@@ -932,7 +932,7 @@ export default function Home() {
 
                 <div className="p-5 pt-0">
                   <div className="pt-3 border-t border-white/5 flex items-center gap-3 text-[11px] font-mono font-medium text-zinc-400">
-                    <span className="flex items-center gap-1 text-[#ff7b47]">
+                    <span className="flex items-center gap-1 text-[#34d399]">
                       <Clock className="w-3.5 h-3.5" />
                       {lesson.duration}
                     </span>
@@ -949,12 +949,12 @@ export default function Home() {
       {/* ── BROWSE BY SUBJECT / CATEGORY ────────────────────────── */}
       <section ref={categoriesSectionRef} className="py-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
             <Microscope className="w-3.5 h-3.5" />
             <span>Curriculum Disciplines</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-            Browse by Subject <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Focus</span>
+            Browse by Subject <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Focus</span>
           </h2>
         </div>
 
@@ -966,12 +966,12 @@ export default function Home() {
               <div key={category.name} className="cat-card">
                 <Link
                   href={`/courses?category=${category.name.toLowerCase()}`}
-                  className="block p-6 rounded-3xl bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#e8602e]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group transition-all duration-300 text-center hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(232,96,46,0.2)]"
+                  className="block p-6 rounded-3xl bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group transition-all duration-300 text-center hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)]"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ff7b47] group-hover:scale-110 group-hover:bg-[#e8602e]/15 transition-transform">
+                  <div className="w-12 h-12 mx-auto mb-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#34d399] group-hover:scale-110 group-hover:bg-[#10b981]/15 transition-transform">
                     <CategoryIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-black text-white font-outfit text-sm sm:text-base group-hover:text-[#ff7b47] transition-colors">
+                  <h3 className="font-black text-white font-outfit text-sm sm:text-base group-hover:text-[#34d399] transition-colors">
                     {category.name}
                   </h3>
                   <p className="text-xs text-zinc-400 font-semibold mt-1 font-jakarta">
@@ -995,19 +995,19 @@ export default function Home() {
           {/* Section Header: Image 4 Title & Action */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-              <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
+              <div className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Real Voices & Authentic Experiences</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
                 What our students are <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">saying about us:</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">saying about us:</span>
               </h2>
             </div>
 
             <Link
               href="/admission"
-              className="btn-sheryians px-6 py-2.5 rounded-full text-white font-extrabold text-sm self-start md:self-auto inline-flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.35)] cursor-pointer"
+              className="btn-sheryians px-6 py-2.5 rounded-full text-white font-extrabold text-sm self-start md:self-auto inline-flex items-center gap-2 shadow-[0_0_25px_rgba(16,185,129,0.35)] cursor-pointer"
             >
               <span>Leave Feedback</span>
               <ArrowRight className="w-4 h-4 -rotate-45" />
@@ -1016,7 +1016,7 @@ export default function Home() {
 
           {/* Trust & Satisfaction Metrics Ribbon */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-10">
-            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#10b981]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
               <div className="flex items-center justify-center gap-0.5 text-amber-400 mb-1.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
@@ -1024,34 +1024,34 @@ export default function Home() {
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">4.9 / 5.0</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Average Review Rating</p>
-              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">1,400+ Verified Reviews</span>
+              <span className="text-[10px] font-mono font-bold text-[#34d399] bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-0.5 rounded-full mt-1.5">1,400+ Verified Reviews</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#10b981]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center mb-1.5 text-[#34d399]">
                 <GraduationCap className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">98.4%</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Target Score Growth</p>
-              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Board & Competitive</span>
+              <span className="text-[10px] font-mono font-bold text-[#34d399] bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-0.5 rounded-full mt-1.5">Board & Competitive</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#10b981]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center mb-1.5 text-[#34d399]">
                 <HeartHandshake className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">99.1%</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Parent Recommendation</p>
-              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Transparent Mentorship</span>
+              <span className="text-[10px] font-mono font-bold text-[#34d399] bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-0.5 rounded-full mt-1.5">Transparent Mentorship</span>
             </div>
 
-            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#e8602e]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#e8602e]/10 border border-[#e8602e]/20 flex items-center justify-center mb-1.5 text-[#ff7b47]">
+            <div className="testimonial-stat-card bg-[#0f111a] border border-white/10 hover:border-[#10b981]/40 rounded-2xl p-4 sm:p-5 text-center shadow-lg flex flex-col justify-center items-center transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 flex items-center justify-center mb-1.5 text-[#34d399]">
                 <Users className="w-4 h-4" />
               </div>
               <p className="text-2xl sm:text-3xl font-black text-white font-outfit">1 : 15</p>
               <p className="text-xs font-bold text-zinc-400 font-jakarta mt-0.5">Optimal Batch Ratio</p>
-              <span className="text-[10px] font-mono font-bold text-[#ff7b47] bg-[#e8602e]/10 border border-[#e8602e]/20 px-2 py-0.5 rounded-full mt-1.5">Personal Attention</span>
+              <span className="text-[10px] font-mono font-bold text-[#34d399] bg-[#10b981]/10 border border-[#10b981]/20 px-2 py-0.5 rounded-full mt-1.5">Personal Attention</span>
             </div>
           </div>
 
@@ -1070,7 +1070,7 @@ export default function Home() {
                   onClick={() => setTestimonialFilter(tab.key as 'all' | 'students' | 'parents')}
                   className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold font-outfit transition-all flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                      ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                       : 'btn-dark-pill text-zinc-400'
                   }`}
                 >
@@ -1078,7 +1078,7 @@ export default function Home() {
                   <span>{tab.label}</span>
                   <span
                     className={`ml-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-black ${
-                      isActive ? 'bg-black/60 text-[#ffaa40]' : 'bg-white/10 text-white'
+                      isActive ? 'bg-black/60 text-[#6ee7b7]' : 'bg-white/10 text-white'
                     }`}
                   >
                     {tab.count}
@@ -1276,8 +1276,8 @@ export default function Home() {
                 data-active={isSelected ? "true" : "false"}
                 className={`marquee-card w-[320px] sm:w-[360px] md:w-[380px] shrink-0 bg-[#0f111a] rounded-3xl p-6 border text-white select-none relative overflow-hidden group transition-all ${
                   isSelected 
-                    ? 'border-[#e8602e] bg-[#141724] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(232,96,46,0.3)]' 
-                    : 'border-white/10 hover:border-[#e8602e]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(232,96,46,0.12)]'
+                    ? 'border-[#10b981] bg-[#141724] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(16,185,129,0.3)]' 
+                    : 'border-white/10 hover:border-[#10b981]/50 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_40px_rgba(16,185,129,0.12)]'
                 }`}
               >
                 {/* Decorative Subtle Watermark Quote */}
@@ -1287,8 +1287,8 @@ export default function Home() {
                   {/* Top Row: Role Badge & Highlight Tag */}
                   <div className="flex items-center justify-between gap-2 mb-3 relative z-10">
                     {item.type === 'student' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase">
-                        <GraduationCap className="w-3.5 h-3.5 text-[#ff7b47]" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] rounded-full text-xs font-extrabold font-space uppercase">
+                        <GraduationCap className="w-3.5 h-3.5 text-[#34d399]" />
                         <span>Student Story</span>
                       </span>
                     ) : (
@@ -1297,7 +1297,7 @@ export default function Home() {
                         <span>Parent Review</span>
                       </span>
                     )}
-                    <span className="font-mono font-bold text-xs text-[#ffaa40] bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">
+                    <span className="font-mono font-bold text-xs text-[#6ee7b7] bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">
                       {item.highlightBadge}
                     </span>
                   </div>
@@ -1333,11 +1333,11 @@ export default function Home() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5">
                       <p className="font-extrabold text-white font-outfit text-sm truncate">{item.name}</p>
-                      <span className="inline-flex items-center text-[#e8602e]" title={item.verifiedLabel}>
-                        <CheckCircle2 className="w-3.5 h-3.5 fill-black text-[#e8602e]" />
+                      <span className="inline-flex items-center text-[#10b981]" title={item.verifiedLabel}>
+                        <CheckCircle2 className="w-3.5 h-3.5 fill-black text-[#10b981]" />
                       </span>
                     </div>
-                    <p className="text-xs text-[#ff814e] font-medium font-jakarta truncate">{item.relationOrCollege}</p>
+                    <p className="text-xs text-[#34d399] font-medium font-jakarta truncate">{item.relationOrCollege}</p>
                     <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium font-jakarta mt-0.5">
                       <MapPin className="w-3 h-3 text-zinc-500 shrink-0" />
                       <span className="truncate">{item.location}</span>
@@ -1379,7 +1379,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mt-12 bg-gradient-to-r from-[#0d0f18] to-[#141726] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] rounded-full text-xs font-extrabold font-space uppercase mb-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] rounded-full text-xs font-extrabold font-space uppercase mb-2">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Join Our Growing Family</span>
               </span>
@@ -1393,7 +1393,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 shrink-0 font-outfit w-full sm:w-auto">
               <Link
                 href="/admission"
-                className="btn-sheryians inline-flex items-center justify-center gap-2 px-6 py-3.5 text-white font-extrabold rounded-full text-sm shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer"
+                className="btn-sheryians inline-flex items-center justify-center gap-2 px-6 py-3.5 text-white font-extrabold rounded-full text-sm shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer"
               >
                 <span>Apply for Admission</span>
                 <ArrowRight className="w-4 h-4 text-white" />
@@ -1414,14 +1414,14 @@ export default function Home() {
 
       {/* ── CONVERSION CTA BANNER ────────────────────────── */}
       <section ref={ctaSectionRef} className="py-24 relative overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative bg-gradient-to-b from-[#121422] to-[#08090f] border border-[#e8602e]/30 rounded-3xl p-8 sm:p-14 text-center space-y-6 shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(232,96,46,0.15)]">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#ff7b47] text-xs uppercase tracking-wider font-space font-extrabold border border-white/10 shadow-sm">
+        <div className="relative bg-gradient-to-b from-[#121422] to-[#08090f] border border-[#10b981]/30 rounded-3xl p-8 sm:p-14 text-center space-y-6 shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.15)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#34d399] text-xs uppercase tracking-wider font-space font-extrabold border border-white/10 shadow-sm">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>Admissions for 2026-27 Academic Session Now Open</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-outfit tracking-tight">
-            Ready to Accelerate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Learning?</span>
+            Ready to Accelerate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Learning?</span>
           </h2>
 
           <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-jakarta font-normal leading-relaxed">
@@ -1431,7 +1431,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2 font-outfit">
             <Link
               href="/admission"
-              className="btn-sheryians inline-flex items-center justify-center gap-2 px-9 py-4 text-white font-extrabold rounded-full text-base shadow-[0_0_30px_rgba(232,96,46,0.5)] cursor-pointer"
+              className="btn-sheryians inline-flex items-center justify-center gap-2 px-9 py-4 text-white font-extrabold rounded-full text-base shadow-[0_0_30px_rgba(16,185,129,0.5)] cursor-pointer"
             >
               <span>Apply Online Now</span>
               <ArrowRight className="w-5 h-5 text-white" />

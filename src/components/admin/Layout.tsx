@@ -90,18 +90,18 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           {/* Sidebar Brand Header */}
           <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-[#0e111e]">
             <Link href="/admin/dashboard" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/15 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:border-[#ff7a45]/40 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/15 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:border-[#34d399]/40 transition-colors">
                 <img 
                   src="/logo.png" 
                   alt="RAVEN Logo" 
-                  className="h-full w-full object-contain drop-shadow-[0_0_8px_rgba(232,96,46,0.6)]"
+                  className="h-full w-full object-contain drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]"
                 />
               </div>
               <div>
                 <div className="text-base font-black text-white font-outfit leading-tight tracking-tight">
                   RAVEN
                 </div>
-                <span className="text-[10px] font-bold uppercase font-space px-2 py-0.5 bg-[#e8602e]/20 border border-[#e8602e]/40 rounded-full text-[#ff7b47]">
+                <span className="text-[10px] font-bold uppercase font-space px-2 py-0.5 bg-[#10b981]/20 border border-[#10b981]/40 rounded-full text-[#34d399]">
                   ADMIN
                 </span>
               </div>
@@ -130,7 +130,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                   onClick={() => !isDesktop && setSidebarOpen(false)}
                   className={`flex items-center px-3.5 py-2.5 rounded-xl font-outfit text-sm transition-all duration-150 gap-3 ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#e8602e] to-[#ff7a45] text-white font-bold shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                      ? 'bg-gradient-to-r from-[#10b981] to-[#34d399] text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/5 font-medium'
                   }`}
                 >
@@ -145,7 +145,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               <Link
                 href="/admin/notices"
                 onClick={() => !isDesktop && setSidebarOpen(false)}
-                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold font-outfit transition-all text-white bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] shadow-[0_4px_16px_rgba(232,96,46,0.35)] active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold font-outfit transition-all text-white bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#6ee7b7] shadow-[0_4px_16px_rgba(16,185,129,0.35)] active:scale-[0.98]"
               >
                 <Megaphone size={16} />
                 <span>Post Notice</span>
@@ -165,7 +165,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             <span>{loggingOut ? 'Logging out...' : 'Log Out Admin'}</span>
           </button>
           <div className="text-center pt-1">
-            <p className="text-[10px] font-space font-bold text-[#ff814e] uppercase">
+            <p className="text-[10px] font-space font-bold text-[#34d399] uppercase">
               Academic Control Console
             </p>
             <p className="text-[9px] text-zinc-500 font-medium font-jakarta">

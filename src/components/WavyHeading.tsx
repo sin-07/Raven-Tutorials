@@ -27,7 +27,7 @@ export default function WavyHeading({
         <span 
           className={
             gradientClassName || 
-            `inline-block bg-gradient-to-r from-[#ff6b3d] to-[#e8602e] text-white px-3.5 py-0.5 rounded-2xl border border-white/20 shadow-[0_0_25px_rgba(232,96,46,0.5)] - hover: hover:scale-105 transition-all duration-300 cursor-default mx-1.5 align-middle font-black will-change-transform relative group`
+            `inline-block bg-gradient-to-r from-[#34d399] to-[#10b981] text-white px-3.5 py-0.5 rounded-2xl border border-white/20 shadow-[0_0_25px_rgba(16,185,129,0.5)] - hover: hover:scale-105 transition-all duration-300 cursor-default mx-1.5 align-middle font-black will-change-transform relative group`
           }
         >
           {gradientText}

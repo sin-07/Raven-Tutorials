@@ -90,7 +90,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 overscroll-contain">
-      <div ref={modalRef} className="bg-[#0c0e17] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-white/10 text-white shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.15)] overflow-hidden overscroll-contain">
+      <div ref={modalRef} className="bg-[#0c0e17] rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-white/10 text-white shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(16,185,129,0.15)] overflow-hidden overscroll-contain">
         {/* Header */}
         <div ref={headerRef} className="bg-gradient-to-r from-[#121422] to-[#181c2e] p-6 sm:p-7 relative border-b border-white/10 text-white">
           <button 
@@ -101,7 +101,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             <X className="w-5 h-5" />
           </button>
           <div className="text-center">
-            <div className="inline-block bg-[#e8602e]/15 text-[#ff7b47] border border-[#e8602e]/30 px-4 py-1 rounded-full mb-2">
+            <div className="inline-block bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30 px-4 py-1 rounded-full mb-2">
               <span className="text-xs font-bold tracking-wider font-space uppercase">OFFICIAL ACADEMIC CODE</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight font-outfit">
@@ -121,10 +121,10 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
           {/* Preamble inside scrollable area */}
           <div ref={preambleRef} className="bg-[#121422] rounded-2xl p-5 border border-white/10 text-zinc-300">
             <div className="flex items-start gap-3">
-              <div className="w-1.5 h-full bg-[#e8602e] rounded-full flex-shrink-0 self-stretch"></div>
+              <div className="w-1.5 h-full bg-[#10b981] rounded-full flex-shrink-0 self-stretch"></div>
               <div>
                 <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2 font-outfit">
-                  <FileText className="w-5 h-5 text-[#e8602e]" />
+                  <FileText className="w-5 h-5 text-[#10b981]" />
                   <span>Preamble</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed text-justify font-medium">
@@ -143,10 +143,10 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
             {codeOfConductPoints.map((point, index) => (
               <div 
                 key={index}
-                className="bg-[#121422] flex gap-3.5 p-4 rounded-xl border border-white/10 hover:border-[#e8602e]/40 transition"
+                className="bg-[#121422] flex gap-3.5 p-4 rounded-xl border border-white/10 hover:border-[#10b981]/40 transition"
               >
                 <div className="flex-shrink-0">
-                  <div className="w-7 h-7 bg-[#e8602e]/15 text-[#ff7b47] rounded-lg flex items-center justify-center font-bold text-xs font-space border border-[#e8602e]/30">
+                  <div className="w-7 h-7 bg-[#10b981]/15 text-[#34d399] rounded-lg flex items-center justify-center font-bold text-xs font-space border border-[#10b981]/30">
                     {index + 1}
                   </div>
                 </div>
@@ -159,8 +159,8 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
 
           {/* Scroll indicator */}
           {!hasScrolledToBottom && (
-            <div className="sticky bottom-0 left-0 right-0 bg-[#121422]/95 backdrop-blur-md border border-[#e8602e]/30 rounded-xl py-2 px-4 text-center">
-              <p className="text-xs text-[#ff814e] font-semibold font-space">
+            <div className="sticky bottom-0 left-0 right-0 bg-[#121422]/95 backdrop-blur-md border border-[#10b981]/30 rounded-xl py-2 px-4 text-center">
+              <p className="text-xs text-[#34d399] font-semibold font-space">
                 ↓ Please scroll down to read all points to enable acceptance ↓
               </p>
             </div>
@@ -177,7 +177,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
                 disabled={!hasScrolledToBottom}
-                className="mt-1 w-4 h-4 text-[#e8602e] border-white/20 rounded focus:ring-[#e8602e] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="mt-1 w-4 h-4 text-[#10b981] border-white/20 rounded focus:ring-[#10b981] disabled:opacity-40 disabled:cursor-not-allowed"
               />
               <span className={`text-xs sm:text-sm font-medium leading-relaxed ${!hasScrolledToBottom ? 'text-zinc-500' : 'text-zinc-300'}`}>
                 I have read and understood the <strong className="text-white underline">RAVEN Code of Conduct</strong>. 
@@ -197,7 +197,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
           )}
 
           {!agreedToTerms && hasScrolledToBottom && (
-            <div className="mb-4 p-3 bg-[#e8602e]/10 border border-[#e8602e]/30 rounded-xl flex items-start gap-2 text-[#ff814e]">
+            <div className="mb-4 p-3 bg-[#10b981]/10 border border-[#10b981]/30 rounded-xl flex items-start gap-2 text-[#34d399]">
               <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               <p className="text-xs font-medium">
                 <strong>Check the box above</strong> to proceed with enrollment.
@@ -212,7 +212,7 @@ const CodeOfConduct: React.FC<CodeOfConductProps> = ({ isOpen, onClose, onAccept
               disabled={!agreedToTerms}
               className={`flex-1 py-3 px-6 rounded-xl font-bold font-outfit text-sm transition-all flex items-center justify-center gap-2 ${
                 agreedToTerms
-                  ? 'btn-sheryians text-white cursor-pointer shadow-[0_0_20px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                   : 'bg-white/5 text-zinc-600 border border-white/10 cursor-not-allowed'
               }`}
             >

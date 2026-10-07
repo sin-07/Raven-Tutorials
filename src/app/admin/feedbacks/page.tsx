@@ -156,7 +156,7 @@ const Feedbacks: React.FC = () => {
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
       general: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
-      course_content: 'bg-[#ff7a45]/15 text-[#ffaa40] border-[#ff7a45]/30',
+      course_content: 'bg-[#34d399]/15 text-[#6ee7b7] border-[#34d399]/30',
       teaching_method: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
       study_materials: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
       online_classes: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
@@ -190,10 +190,10 @@ const Feedbacks: React.FC = () => {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
               <MessageSquare size={14} />
               <span>Community Voice</span>
             </div>
@@ -267,11 +267,11 @@ const Feedbacks: React.FC = () => {
                 placeholder="Search feedback by subject, name, or content..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-[#ff7a45]/15 border border-[#ff7a45]/30 flex items-center justify-center shrink-0 text-[#ffaa40]">
+              <div className="w-9 h-9 rounded-xl bg-[#34d399]/15 border border-[#34d399]/30 flex items-center justify-center shrink-0 text-[#6ee7b7]">
                 <Filter className="w-4 h-4" />
               </div>
               <CartoonDropdown
@@ -310,7 +310,7 @@ const Feedbacks: React.FC = () => {
                       onClick={() => handleViewFeedback(feedback)}
                       className={`p-4 cursor-pointer transition-colors ${
                         isSelected 
-                          ? 'bg-white/[0.04] border-l-4 border-l-[#ff7a45]' 
+                          ? 'bg-white/[0.04] border-l-4 border-l-[#34d399]' 
                           : 'hover:bg-white/[0.02]'
                       }`}
                     >
@@ -473,12 +473,12 @@ const Feedbacks: React.FC = () => {
                         onChange={(e) => setAdminResponse(e.target.value)}
                         placeholder="Type your official response to the student..."
                         rows={4}
-                        className="w-full px-4 py-3 bg-[#070914] border border-white/10 rounded-2xl font-jakarta font-medium text-white focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 text-sm"
+                        className="w-full px-4 py-3 bg-[#070914] border border-white/10 rounded-2xl font-jakarta font-medium text-white focus:outline-none focus:border-[#34d399] placeholder-zinc-500 text-sm"
                       />
                       <button
                         onClick={handleSubmitResponse}
                         disabled={submitting || !adminResponse.trim()}
-                        className="w-full px-6 py-3.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white border border-white/10 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(232,96,46,0.35)] disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full px-6 py-3.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white border border-white/10 rounded-xl font-outfit font-bold text-sm shadow-[0_8px_20px_rgba(16,185,129,0.35)] disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send className="w-4 h-4" />
                         <span>{submitting ? 'Sending Response...' : 'Send Official Response'}</span>
@@ -489,7 +489,7 @@ const Feedbacks: React.FC = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[450px] text-center p-8 bg-[#070914] border border-white/10 rounded-2xl">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-[#ffaa40]">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-[#6ee7b7]">
                   <Eye className="w-8 h-8" />
                 </div>
                 <h3 className="font-outfit font-bold text-xl text-white">No Feedback Selected</h3>

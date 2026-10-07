@@ -264,7 +264,7 @@ const Navbar: React.FC = React.memo(() => {
       >
         <div className="max-w-7xl mx-auto">
           {/* Sheryians Luxury Floating Dark Capsule */}
-          <div className="relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full border border-white/10 bg-[#090a10]/95 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(232,96,46,0.1)]">
+          <div className="relative flex items-center justify-between h-[64px] px-4 sm:px-6 rounded-full border border-white/10 bg-[#090a10]/95 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.1)]">
 
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
@@ -274,7 +274,7 @@ const Navbar: React.FC = React.memo(() => {
                   alt="RAVEN Logo"
                   className="h-6 w-6 object-contain"
                 />
-                <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#e8602e] shadow-[0_0_8px_#e8602e]" />
+                <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981]" />
               </div>
               
               <div className="flex flex-col flex-shrink-0">
@@ -282,7 +282,7 @@ const Navbar: React.FC = React.memo(() => {
                   <span className="text-white font-black text-xl tracking-tight font-outfit whitespace-nowrap">
                     RAVEN
                   </span>
-                  <span className="px-1.5 py-0.5 rounded-md bg-[#e8602e]/20 border border-[#e8602e]/40 text-[10px] font-space font-extrabold uppercase tracking-widest text-[#ff7b47] whitespace-nowrap">
+                  <span className="px-1.5 py-0.5 rounded-md bg-[#10b981]/20 border border-[#10b981]/40 text-[10px] font-space font-extrabold uppercase tracking-widest text-[#34d399] whitespace-nowrap">
                     Tutorials
                   </span>
                 </div>
@@ -302,7 +302,7 @@ const Navbar: React.FC = React.memo(() => {
                     href={link.path}
                     className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
                       active
-                        ? 'text-white bg-[#e8602e] shadow-[0_0_15px_rgba(232,96,46,0.5)]'
+                        ? 'text-white bg-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.5)]'
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                   >
@@ -321,7 +321,7 @@ const Navbar: React.FC = React.memo(() => {
                   onClick={() => setMoreOpen((prev) => !prev)}
                   className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${
                     isMoreActive || moreOpen
-                      ? 'text-white bg-[#e8602e] shadow-[0_0_15px_rgba(232,96,46,0.5)]'
+                      ? 'text-white bg-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.5)]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
                   aria-expanded={moreOpen}
@@ -352,16 +352,16 @@ const Navbar: React.FC = React.memo(() => {
                             onClick={() => setMoreOpen(false)}
                             className={`group flex items-center justify-between p-2.5 rounded-xl border transition-all duration-150 ${
                               active
-                                ? 'bg-[#e8602e] border-[#e8602e] text-white shadow-[0_0_15px_rgba(232,96,46,0.4)]'
-                                : 'bg-[#121420] hover:bg-[#181a28] border-white/5 hover:border-[#e8602e]/30 text-zinc-300 hover:text-white'
+                                ? 'bg-[#10b981] border-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]'
+                                : 'bg-[#121420] hover:bg-[#181a28] border-white/5 hover:border-[#10b981]/30 text-zinc-300 hover:text-white'
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
                               <div
                                 className={`p-1.5 rounded-lg border ${
                                   active
-                                    ? 'bg-black text-[#ff7b47] border-black'
-                                    : 'bg-[#191c2c] border-white/10 text-[#ff7b47] group-hover:bg-[#202438]'
+                                    ? 'bg-black text-[#34d399] border-black'
+                                    : 'bg-[#191c2c] border-white/10 text-[#34d399] group-hover:bg-[#202438]'
                                 } transition-colors`}
                               >
                                 <Icon className="w-3.5 h-3.5" />
@@ -376,7 +376,7 @@ const Navbar: React.FC = React.memo(() => {
                               </div>
                             </div>
                             {item.badge && (
-                              <span className="px-1.5 py-0.5 rounded-md bg-[#e8602e] text-white text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="px-1.5 py-0.5 rounded-md bg-[#10b981] text-white text-[9px] font-extrabold uppercase tracking-wider">
                                 {item.badge}
                               </span>
                             )}
@@ -395,7 +395,7 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/admin/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-[#161824] hover:bg-[#1f2233] text-[#ff7b47] border border-[#e8602e]/30 hover:border-[#e8602e]/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(232,96,46,0.2)] transition-all whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#161824] hover:bg-[#1f2233] text-[#34d399] border border-[#10b981]/30 hover:border-[#10b981]/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Admin Panel</span>
@@ -412,7 +412,7 @@ const Navbar: React.FC = React.memo(() => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/dashboard"
-                    className="flex items-center gap-2 px-4 py-2 bg-[#161824] hover:bg-[#1f2233] text-[#ff7b47] border border-[#e8602e]/30 hover:border-[#e8602e]/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(232,96,46,0.2)] transition-all whitespace-nowrap flex-shrink-0"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#161824] hover:bg-[#1f2233] text-[#34d399] border border-[#10b981]/30 hover:border-[#10b981]/60 font-black text-xs font-outfit uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all whitespace-nowrap flex-shrink-0"
                   >
                     <User className="w-3.5 h-3.5" />
                     <span>Student Portal</span>
@@ -428,7 +428,7 @@ const Navbar: React.FC = React.memo(() => {
               ) : (
                 <Link
                   href="/login"
-                  className="btn-sheryians group relative flex items-center gap-2 px-5 py-2.5 bg-[#e8602e] hover:bg-[#ff733d] text-white font-black text-xs font-outfit uppercase tracking-wider rounded-full transition-all whitespace-nowrap flex-shrink-0 shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer"
+                  className="btn-sheryians group relative flex items-center gap-2 px-5 py-2.5 bg-[#10b981] hover:bg-[#059669] text-white font-black text-xs font-outfit uppercase tracking-wider rounded-full transition-all whitespace-nowrap flex-shrink-0 shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Portal Login</span>
@@ -485,7 +485,7 @@ const Navbar: React.FC = React.memo(() => {
                       onClick={closeMenu}
                       className={`mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold border transition-all ${
                         active
-                          ? 'text-white bg-[#e8602e] border-[#e8602e] shadow-[0_0_15px_rgba(232,96,46,0.4)]'
+                          ? 'text-white bg-[#10b981] border-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                           : 'text-zinc-200 bg-[#141624] hover:bg-[#1a1d2e] border-white/5'
                       }`}
                     >
@@ -502,7 +502,7 @@ const Navbar: React.FC = React.memo(() => {
                     <Link
                       href="/admin/dashboard"
                       onClick={closeMenu}
-                      className="block w-full py-3 bg-[#e8602e] text-white text-center font-black text-sm rounded-xl font-outfit uppercase tracking-wider shadow-[0_0_20px_rgba(232,96,46,0.4)] transition"
+                      className="block w-full py-3 bg-[#10b981] text-white text-center font-black text-sm rounded-xl font-outfit uppercase tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.4)] transition"
                     >
                       Admin Dashboard
                     </Link>
@@ -521,7 +521,7 @@ const Navbar: React.FC = React.memo(() => {
                     <Link
                       href="/dashboard"
                       onClick={closeMenu}
-                      className="block w-full py-3 bg-[#e8602e] text-white text-center font-black text-sm rounded-xl font-outfit uppercase tracking-wider shadow-[0_0_20px_rgba(232,96,46,0.4)] transition"
+                      className="block w-full py-3 bg-[#10b981] text-white text-center font-black text-sm rounded-xl font-outfit uppercase tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.4)] transition"
                     >
                       Student Dashboard
                     </Link>
@@ -539,7 +539,7 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     href="/login"
                     onClick={closeMenu}
-                    className="btn-sheryians flex items-center justify-center gap-2 w-full py-3.5 bg-[#e8602e] hover:bg-[#ff733d] text-white text-center font-black text-sm rounded-full font-outfit uppercase tracking-wider transition shadow-[0_0_20px_rgba(232,96,46,0.35)]"
+                    className="btn-sheryians flex items-center justify-center gap-2 w-full py-3.5 bg-[#10b981] hover:bg-[#059669] text-white text-center font-black text-sm rounded-full font-outfit uppercase tracking-wider transition shadow-[0_0_20px_rgba(16,185,129,0.35)]"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>Portal Login</span>

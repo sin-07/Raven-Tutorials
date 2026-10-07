@@ -98,7 +98,7 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
 
               <div className="flex items-baseline gap-1 font-outfit">
                 <span className="text-base font-black text-white">RAVEN</span>
-                <span className="text-xs font-bold text-[#ff814e] uppercase tracking-wider">Tutorials</span>
+                <span className="text-xs font-bold text-[#34d399] uppercase tracking-wider">Tutorials</span>
               </div>
             </Link>
             <button 
@@ -121,7 +121,7 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
                       onClick={onClose}
                       className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold font-outfit transition-all ${
                         isActive 
-                          ? 'bg-[#e8602e] text-white shadow-[0_0_20px_rgba(232,96,46,0.35)]' 
+                          ? 'bg-[#10b981] text-white shadow-[0_0_20px_rgba(16,185,129,0.35)]' 
                           : 'text-zinc-400 hover:text-white hover:bg-white/5'
                       }`}
                     >

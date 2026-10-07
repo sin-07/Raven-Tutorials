@@ -123,17 +123,17 @@ export default function TeacherApplicationsPage() {
       <div className="space-y-6 max-w-7xl mx-auto">
         {/* Executive Header Banner */}
         <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
           
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
-                <UserCheck size={14} className="text-[#ff7a45]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <UserCheck size={14} className="text-[#34d399]" />
                 <span>Faculty Recruitment</span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-outfit text-white tracking-tight">
-                Teacher <span className="bg-gradient-to-r from-white via-zinc-200 to-[#ffaa40] bg-clip-text text-transparent">Applications</span>
+                Teacher <span className="bg-gradient-to-r from-white via-zinc-200 to-[#6ee7b7] bg-clip-text text-transparent">Applications</span>
               </h1>
               <p className="text-zinc-400 font-jakarta text-xs sm:text-sm mt-1 max-w-xl">
                 Review applicant qualifications, teaching credentials, and approve new educators for Raven Tutorials.
@@ -178,7 +178,7 @@ export default function TeacherApplicationsPage() {
                 placeholder="Search by teacher name, email or contact number..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta font-medium text-sm focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta font-medium text-sm focus:outline-none focus:border-[#34d399] placeholder-zinc-500 transition-colors"
               />
             </div>
 
@@ -189,7 +189,7 @@ export default function TeacherApplicationsPage() {
               <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value as typeof filter)}
-                className="px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] cursor-pointer"
+                className="px-3.5 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-medium font-jakarta text-sm focus:outline-none focus:border-[#34d399] cursor-pointer"
               >
                 <option value="all">All Applications</option>
                 <option value="pending">Pending</option>
@@ -264,7 +264,7 @@ export default function TeacherApplicationsPage() {
                             setSelectedApplication(app);
                             setAdminNotes(app.adminNotes || '');
                           }}
-                          className="p-2.5 bg-white/5 hover:bg-[#e8602e] text-zinc-300 hover:text-white border border-white/10 hover:border-transparent rounded-xl transition-all cursor-pointer"
+                          className="p-2.5 bg-white/5 hover:bg-[#10b981] text-zinc-300 hover:text-white border border-white/10 hover:border-transparent rounded-xl transition-all cursor-pointer"
                           title="View Application Details"
                         >
                           <Eye size={16} />
@@ -298,7 +298,7 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
-                  <div className="w-12 h-12 bg-[#ff7a45]/15 border border-[#ff7a45]/30 rounded-2xl flex items-center justify-center text-[#ffaa40] font-black text-xl">
+                  <div className="w-12 h-12 bg-[#34d399]/15 border border-[#34d399]/30 rounded-2xl flex items-center justify-center text-[#6ee7b7] font-black text-xl">
                     {selectedApplication.name.charAt(0)}
                   </div>
                   <div>
@@ -309,17 +309,17 @@ export default function TeacherApplicationsPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-3">
-                    <Mail size={16} className="text-[#ff7a45] shrink-0" />
+                    <Mail size={16} className="text-[#34d399] shrink-0" />
                     <span className="text-zinc-200 font-mono text-xs truncate">{selectedApplication.email}</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-3">
-                    <Phone size={16} className="text-[#ff7a45] shrink-0" />
+                    <Phone size={16} className="text-[#34d399] shrink-0" />
                     <span className="text-zinc-200 font-mono text-xs">{selectedApplication.phone}</span>
                   </div>
                 </div>
 
                 <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
-                  <GraduationCap size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
+                  <GraduationCap size={18} className="text-[#34d399] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-white font-jakarta font-medium text-sm">{selectedApplication.qualification}</p>
                     <p className="text-zinc-500 text-xs font-space uppercase">Qualification</p>
@@ -327,7 +327,7 @@ export default function TeacherApplicationsPage() {
                 </div>
 
                 <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
-                  <Briefcase size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
+                  <Briefcase size={18} className="text-[#34d399] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-white font-jakarta font-medium text-sm">{selectedApplication.experience}</p>
                     <p className="text-zinc-500 text-xs font-space uppercase">Experience</p>
@@ -336,7 +336,7 @@ export default function TeacherApplicationsPage() {
 
                 <div className="bg-white/5 border border-white/10 rounded-xl p-3.5">
                   <div className="flex items-start gap-2">
-                    <BookOpen size={18} className="text-[#ff7a45] mt-0.5 shrink-0" />
+                    <BookOpen size={18} className="text-[#34d399] mt-0.5 shrink-0" />
                     <div>
                       <div className="flex flex-wrap gap-1.5 mt-0.5">
                         {selectedApplication.subjects.map((subject, i) => (
@@ -359,7 +359,7 @@ export default function TeacherApplicationsPage() {
                       value={adminNotes}
                       onChange={(e) => setAdminNotes(e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#ff7a45] placeholder-zinc-500"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white font-jakarta text-sm focus:outline-none focus:border-[#34d399] placeholder-zinc-500"
                       placeholder="Add any internal assessment or interview remarks..."
                     />
                   </div>

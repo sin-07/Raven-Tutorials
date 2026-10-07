@@ -104,11 +104,11 @@ export default function CoursesPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+      <div className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
         {/* Hero Section */}
         <section className="relative z-10 pt-36 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto space-y-5 flex flex-col items-center justify-center">
-          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
-            <Sparkles className="w-4 h-4 text-[#e8602e]" />
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#10b981]/30 text-[#34d399] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)] mx-auto">
+            <Sparkles className="w-4 h-4 text-[#10b981]" />
             <span>Curated Academic Curricula</span>
           </div>
 
@@ -133,7 +133,7 @@ export default function CoursesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by subject (Physics, Math), standard (Class 10, 12), or topic..."
-                className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 text-white placeholder-neutral-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] focus:outline-none focus:border-[#e8602e] focus:ring-1 focus:ring-[#e8602e] text-sm sm:text-base font-jakarta transition"
+                className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#0f111a]/90 backdrop-blur-xl border border-white/10 text-white placeholder-neutral-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] text-sm sm:text-base font-jakarta transition"
               />
               {searchQuery && (
                 <button
@@ -157,8 +157,8 @@ export default function CoursesPage() {
                 onClick={() => setSelectedCategory('All')}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
                   selectedCategory === 'All'
-                    ? 'btn-sheryians shadow-[0_0_20px_rgba(232,96,46,0.35)]'
-                    : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#e8602e]/40'
+                    ? 'btn-sheryians shadow-[0_0_20px_rgba(16,185,129,0.35)]'
+                    : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#10b981]/40'
                 }`}
               >
                 All Courses
@@ -169,8 +169,8 @@ export default function CoursesPage() {
                   onClick={() => setSelectedCategory(cat.name)}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
                     selectedCategory.toLowerCase() === cat.name.toLowerCase()
-                      ? 'btn-sheryians shadow-[0_0_20px_rgba(232,96,46,0.35)]'
-                      : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#e8602e]/40'
+                      ? 'btn-sheryians shadow-[0_0_20px_rgba(16,185,129,0.35)]'
+                      : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#10b981]/40'
                   }`}
                 >
                   {cat.name}
@@ -193,7 +193,7 @@ export default function CoursesPage() {
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'grid' ? 'bg-[#e8602e] text-white font-black shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'text-neutral-400 hover:text-white'
+                    viewMode === 'grid' ? 'bg-[#10b981] text-white font-black shadow-[0_0_12px_rgba(16,185,129,0.5)]' : 'text-neutral-400 hover:text-white'
                   }`}
                   aria-label="Grid view"
                 >
@@ -202,7 +202,7 @@ export default function CoursesPage() {
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition ${
-                    viewMode === 'list' ? 'bg-[#e8602e] text-white font-black shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'text-neutral-400 hover:text-white'
+                    viewMode === 'list' ? 'bg-[#10b981] text-white font-black shadow-[0_0_12px_rgba(16,185,129,0.5)]' : 'text-neutral-400 hover:text-white'
                   }`}
                   aria-label="List view"
                 >
@@ -217,7 +217,7 @@ export default function CoursesPage() {
             <p className="text-xs sm:text-sm text-neutral-400 font-jakarta font-medium">
               Showing <span className="font-black text-white">{sortedCourses.length}</span> programs
               {selectedCategory !== 'All' && (
-                <span> in <span className="text-[#ff7b47] bg-[#161922] px-2.5 py-0.5 rounded-lg border border-[#e8602e]/30 font-bold">{selectedCategory}</span></span>
+                <span> in <span className="text-[#34d399] bg-[#161922] px-2.5 py-0.5 rounded-lg border border-[#10b981]/30 font-bold">{selectedCategory}</span></span>
               )}
             </p>
           </div>
@@ -239,7 +239,7 @@ export default function CoursesPage() {
             </div>
           ) : (
             <div className="text-center py-16 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] max-w-xl mx-auto p-8">
-              <div className="w-16 h-16 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center mx-auto mb-4 text-[#ff7b47] shadow-[0_0_20px_rgba(232,96,46,0.25)]">
+              <div className="w-16 h-16 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center mx-auto mb-4 text-[#34d399] shadow-[0_0_20px_rgba(16,185,129,0.25)]">
                 <Search className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-black text-white font-outfit mb-2">No matching courses found</h3>

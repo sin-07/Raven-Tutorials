@@ -109,7 +109,7 @@ function VideosPage() {
         {/* Header Banner */}
         <div className="bg-gradient-to-r from-[#121422] to-[#181c2e] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#e8602e]/15 border border-[#e8602e]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase mb-2 text-[#ff7b47]">
+            <div className="inline-flex items-center gap-2 bg-[#10b981]/15 border border-[#10b981]/30 px-3 py-1 rounded-full text-xs font-space font-bold uppercase mb-2 text-[#34d399]">
               <Video size={14} />
               <span>Video Library</span>
             </div>
@@ -132,7 +132,7 @@ function VideosPage() {
         {/* Filter Controls Card */}
         <div className="bg-[#0f111a] rounded-3xl p-5 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row gap-4 items-center justify-between">
           <div className="flex items-center gap-2 w-full sm:w-auto">
-            <div className="w-9 h-9 rounded-xl bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center text-[#34d399] shrink-0">
               <Filter size={16} />
             </div>
             <span className="font-outfit font-bold text-white text-base">Filter by Subject:</span>
@@ -143,7 +143,7 @@ function VideosPage() {
               onClick={() => setFilterSubject('')}
               className={`px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-all cursor-pointer ${
                 filterSubject === ''
-                  ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(232,96,46,0.4)]'
+                  ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                   : 'bg-[#121522] text-zinc-400 border border-white/10 hover:text-white hover:border-white/20'
               }`}
             >
@@ -155,7 +155,7 @@ function VideosPage() {
                 onClick={() => setFilterSubject(subject)}
                 className={`px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-all cursor-pointer ${
                   filterSubject === subject
-                    ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(232,96,46,0.4)]'
+                    ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                     : 'bg-[#121522] text-zinc-400 border border-white/10 hover:text-white hover:border-white/20'
                 }`}
               >
@@ -181,7 +181,7 @@ function VideosPage() {
             {Object.entries(groupedVideos).map(([subject, subjectVideos]) => (
               <div key={subject} className="space-y-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#e8602e] shadow-[0_0_8px_rgba(232,96,46,0.8)] inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.8)] inline-block" />
                   <h2 className="text-2xl font-outfit font-bold text-white">{subject}</h2>
                   <span className="text-xs font-space font-medium uppercase bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full text-zinc-400">
                     {subjectVideos.length} Lecture{subjectVideos.length !== 1 ? 's' : ''}
@@ -192,7 +192,7 @@ function VideosPage() {
                   {subjectVideos.map(video => (
                     <div
                       key={video._id}
-                      className="bg-[#0f111a] rounded-3xl border border-white/10 hover:border-[#e8602e]/50 hover:-translate-y-1 shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all overflow-hidden cursor-pointer flex flex-col justify-between group"
+                      className="bg-[#0f111a] rounded-3xl border border-white/10 hover:border-[#10b981]/50 hover:-translate-y-1 shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all overflow-hidden cursor-pointer flex flex-col justify-between group"
                       onClick={() => setSelectedVideo(video)}
                     >
                       {/* Video Thumbnail */}
@@ -209,7 +209,7 @@ function VideosPage() {
                           </div>
                         )}
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                          <div className="w-12 h-12 rounded-full bg-[#e8602e] flex items-center justify-center shadow-[0_0_25px_rgba(232,96,46,0.6)] group-hover:scale-110 transition-transform">
+                          <div className="w-12 h-12 rounded-full bg-[#10b981] flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform">
                             <Play size={20} className="text-white fill-white ml-0.5" />
                           </div>
                         </div>
@@ -219,14 +219,14 @@ function VideosPage() {
                       <div className="p-5 flex-1 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47] px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
+                            <span className="bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
                               {video.subject}
                             </span>
                             <span className="bg-white/5 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
                               Class {video.standard}
                             </span>
                           </div>
-                          <h3 className="font-outfit font-bold text-white text-lg line-clamp-2 mb-1.5 group-hover:text-[#ff814e] transition-colors">
+                          <h3 className="font-outfit font-bold text-white text-lg line-clamp-2 mb-1.5 group-hover:text-[#34d399] transition-colors">
                             {video.title}
                           </h3>
                           {video.description && (
@@ -262,11 +262,11 @@ function VideosPage() {
         {/* Video Player Modal */}
         {selectedVideo && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overscroll-contain">
-            <div className="bg-[#0c0e17] rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(232,96,46,0.15)] max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-white/10">
+            <div className="bg-[#0c0e17] rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(16,185,129,0.15)] max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain border border-white/10">
               {/* Header */}
               <div className="sticky top-0 bg-[#121422] p-5 border-b border-white/10 flex items-center justify-between z-10">
                 <div className="flex items-center gap-2.5 max-w-[85%]">
-                  <Video size={20} className="text-[#e8602e] shrink-0" />
+                  <Video size={20} className="text-[#10b981] shrink-0" />
                   <h2 className="text-xl font-outfit font-bold text-white truncate">{selectedVideo.title}</h2>
                 </div>
                 <button
@@ -324,7 +324,7 @@ function VideosPage() {
 
                 <button
                   onClick={() => setSelectedVideo(null)}
-                  className="btn-sheryians w-full py-3 text-white rounded-xl font-outfit font-bold text-sm shadow-[0_0_20px_rgba(232,96,46,0.35)] cursor-pointer transition"
+                  className="btn-sheryians w-full py-3 text-white rounded-xl font-outfit font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer transition"
                 >
                   Close Video
                 </button>

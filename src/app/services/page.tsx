@@ -141,12 +141,12 @@ const Services: React.FC = () => {
 
   return (
     <>
-      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#e8602e] selection:text-white relative overflow-hidden">
+      <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
         <div className="relative z-10">
           {/* Header Section */}
           <section className="pt-36 pb-14 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-4 flex flex-col items-center justify-center">
-            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#e8602e]/30 text-[#ff7b47] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(232,96,46,0.2)] mx-auto">
-              <Sparkles className="w-4 h-4 text-[#e8602e]" />
+            <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161922] border border-[#10b981]/30 text-[#34d399] text-xs sm:text-sm font-space font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)] mx-auto">
+              <Sparkles className="w-4 h-4 text-[#10b981]" />
               <span>Comprehensive Academic Offerings</span>
             </div>
 
@@ -172,10 +172,10 @@ const Services: React.FC = () => {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/50 shadow-xl hover:shadow-[0_0_25px_rgba(232,96,46,0.25)] p-7 sm:p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group cursor-pointer"
+                  className="bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/50 shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] p-7 sm:p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group cursor-pointer"
                 >
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] mb-6 shadow-[0_0_15px_rgba(232,96,46,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
+                    <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 transition-transform duration-300 ease-out">
                       <service.icon className="w-7 h-7" />
                     </div>
                     <h3 className="text-xl font-black text-white mb-3 font-outfit">
@@ -209,10 +209,10 @@ const Services: React.FC = () => {
               {/* Class Cards Grid */}
               <div ref={classCardsRef} className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {/* Class XII */}
-                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl hover:-translate-y-1 transition-all">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] font-black text-2xl font-outfit shadow-sm">
                         12
                       </div>
                       <div>
@@ -220,13 +220,13 @@ const Services: React.FC = () => {
                         <p className="text-xs text-neutral-400 font-space font-bold uppercase">Senior Secondary & Boards</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#6ee7b7]/30 text-[#6ee7b7] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
+                        <BookOpen className="w-4 h-4 text-[#34d399]" />
                         Annual Batch
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -237,7 +237,7 @@ const Services: React.FC = () => {
                     </div>
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
+                        <Rocket className="w-4 h-4 text-[#34d399]" />
                         Crash Course
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -250,10 +250,10 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class XI */}
-                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl hover:-translate-y-1 transition-all">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] font-black text-2xl font-outfit shadow-sm">
                         11
                       </div>
                       <div>
@@ -261,13 +261,13 @@ const Services: React.FC = () => {
                         <p className="text-xs text-neutral-400 font-space font-bold uppercase">Foundation for Competitive Exams</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#6ee7b7]/30 text-[#6ee7b7] rounded-full text-xs font-bold shadow-sm">Subject-wise</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
+                        <BookOpen className="w-4 h-4 text-[#34d399]" />
                         Annual Batch
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -278,7 +278,7 @@ const Services: React.FC = () => {
                     </div>
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
+                        <Rocket className="w-4 h-4 text-[#34d399]" />
                         Competitive Edge
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -291,10 +291,10 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class X */}
-                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl hover:-translate-y-1 transition-all">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] font-black text-2xl font-outfit shadow-sm">
                         10
                       </div>
                       <div>
@@ -302,13 +302,13 @@ const Services: React.FC = () => {
                         <p className="text-xs text-neutral-400 font-space font-bold uppercase">Board Target Batch</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#6ee7b7]/30 text-[#6ee7b7] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
+                        <BookOpen className="w-4 h-4 text-[#34d399]" />
                         Comprehensive Batch
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -319,7 +319,7 @@ const Services: React.FC = () => {
                     </div>
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
+                        <Rocket className="w-4 h-4 text-[#34d399]" />
                         Pre-Board Crash Batch
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -332,10 +332,10 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* Class IX */}
-                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#e8602e]/40 shadow-xl hover:-translate-y-1 transition-all">
+                <div className="class-card p-8 rounded-3xl bg-[#0f111a]/85 backdrop-blur-xl border border-white/10 hover:border-[#10b981]/40 shadow-xl hover:-translate-y-1 transition-all">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#e8602e]/30 flex items-center justify-center text-[#ff7b47] font-black text-2xl font-outfit shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center text-[#34d399] font-black text-2xl font-outfit shadow-sm">
                         09
                       </div>
                       <div>
@@ -343,13 +343,13 @@ const Services: React.FC = () => {
                         <p className="text-xs text-neutral-400 font-space font-bold uppercase">Foundation Building</p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 bg-[#1a1412] border border-[#ffaa40]/30 text-[#ffaa40] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
+                    <span className="px-3 py-1 bg-[#1a1412] border border-[#6ee7b7]/30 text-[#6ee7b7] rounded-full text-xs font-bold shadow-sm">Full Syllabus</span>
                   </div>
                   
                   <div className="grid sm:grid-cols-2 gap-4 font-jakarta text-sm">
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-[#ff7b47]" />
+                        <BookOpen className="w-4 h-4 text-[#34d399]" />
                         Annual Program
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -360,7 +360,7 @@ const Services: React.FC = () => {
                     </div>
                     <div className="p-4 rounded-2xl bg-[#08090d] border border-white/10 shadow-sm">
                       <p className="font-black text-white font-outfit mb-2 flex items-center gap-1.5">
-                        <Rocket className="w-4 h-4 text-[#ff7b47]" />
+                        <Rocket className="w-4 h-4 text-[#34d399]" />
                         Exam Revision
                       </p>
                       <ul className="space-y-1.5 text-neutral-400 text-xs font-medium">
@@ -377,7 +377,7 @@ const Services: React.FC = () => {
 
           {/* CTA Section */}
           <section ref={ctaRef} className="py-20 border-t border-white/10 px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="max-w-4xl mx-auto p-10 sm:p-14 bg-gradient-to-r from-[#e8602e]/20 via-[#ff733d]/20 to-[#ffaa40]/20 border border-[#e8602e]/40 rounded-3xl shadow-[0_0_40px_rgba(232,96,46,0.2)] space-y-6">
+            <div className="max-w-4xl mx-auto p-10 sm:p-14 bg-gradient-to-r from-[#10b981]/20 via-[#10b981]/20 to-[#6ee7b7]/20 border border-[#10b981]/40 rounded-3xl shadow-[0_0_40px_rgba(16,185,129,0.2)] space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit">
                 Ready to Join a Batch?
               </h2>
@@ -387,7 +387,7 @@ const Services: React.FC = () => {
               <div className="flex justify-center gap-4 pt-2">
                 <Link
                   href="/admission"
-                  className="btn-sheryians px-8 py-4 text-base font-outfit uppercase tracking-wider inline-flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.4)]"
+                  className="btn-sheryians px-8 py-4 text-base font-outfit uppercase tracking-wider inline-flex items-center gap-2 shadow-[0_0_25px_rgba(16,185,129,0.4)]"
                 >
                   <span>Apply for Admission</span>
                   <ArrowRight className="w-5 h-5" />

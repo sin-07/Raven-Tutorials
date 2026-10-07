@@ -315,7 +315,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
             openCalendar();
           }
         }}
-        className={`w-full px-4 py-3 bg-[#121522] border border-white/15 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between hover:border-[#e8602e]/60 focus:outline-none focus:ring-2 focus:ring-[#e8602e] transition-all ${
+        className={`w-full px-4 py-3 bg-[#121522] border border-white/15 text-left rounded-xl font-jakarta font-medium text-sm sm:text-base flex items-center justify-between hover:border-[#10b981]/60 focus:outline-none focus:ring-2 focus:ring-[#10b981] transition-all ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         } ${
           error
@@ -326,7 +326,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-3 truncate">
-          <div className="p-1 rounded-md bg-[#e8602e]/15 border border-[#e8602e]/30 flex items-center justify-center flex-shrink-0 text-[#ff7b47]">
+          <div className="p-1 rounded-md bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center flex-shrink-0 text-[#34d399]">
             <CalendarIcon className="w-4 h-4" />
           </div>
           <span className={value ? 'text-white font-medium font-outfit' : 'text-zinc-500 font-medium'}>
@@ -344,7 +344,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
               <X className="w-3.5 h-3.5" />
             </span>
           )}
-          <span className="text-[10px] font-space font-black px-1.5 py-0.5 rounded bg-[#e8602e]/15 border border-[#e8602e]/30 text-[#ff7b47]">
+          <span className="text-[10px] font-space font-black px-1.5 py-0.5 rounded bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399]">
             DATE
           </span>
         </div>
@@ -360,7 +360,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
             transformOrigin: 'top center',
             willChange: 'transform, opacity',
           }}
-          className="absolute left-0 right-0 sm:right-auto sm:w-80 top-full mt-2 z-[9999] bg-[#0c0e17] border border-white/15 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(232,96,46,0.15)] p-4 text-white backdrop-blur-xl"
+          className="absolute left-0 right-0 sm:right-auto sm:w-80 top-full mt-2 z-[9999] bg-[#0c0e17] border border-white/15 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(16,185,129,0.15)] p-4 text-white backdrop-blur-xl"
         >
           {/* Header Navigation */}
           <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-white/10">
@@ -379,7 +379,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                 type="button"
                 onClick={() => setMode(mode === 'months' ? 'days' : 'months')}
                 className={`px-2.5 py-1 rounded-lg border border-white/15 transition cursor-pointer ${
-                  mode === 'months' ? 'bg-[#e8602e] text-white shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'bg-[#121522] hover:bg-white/10 text-white'
+                  mode === 'months' ? 'bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.5)]' : 'bg-[#121522] hover:bg-white/10 text-white'
                 }`}
               >
                 {MONTH_NAMES[viewMonth]}
@@ -389,7 +389,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                 type="button"
                 onClick={() => setMode(mode === 'years' ? 'days' : 'years')}
                 className={`px-2.5 py-1 rounded-lg border border-white/15 transition cursor-pointer ${
-                  mode === 'years' ? 'bg-[#e8602e] text-white shadow-[0_0_12px_rgba(232,96,46,0.5)]' : 'bg-[#121522] hover:bg-white/10 text-white'
+                  mode === 'years' ? 'bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.5)]' : 'bg-[#121522] hover:bg-white/10 text-white'
                 }`}
               >
                 {viewYear}
@@ -419,7 +419,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                   }}
                   className={`py-2 px-1 rounded-xl text-xs font-bold font-outfit border border-white/10 transition cursor-pointer ${
                     viewMonth === idx
-                      ? 'bg-[#e8602e] text-white shadow-[0_0_12px_rgba(232,96,46,0.5)]'
+                      ? 'bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.5)]'
                       : 'bg-[#121522] text-zinc-300 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -442,7 +442,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                   }}
                   className={`py-1.5 px-1 rounded-xl text-xs font-bold font-space border border-white/10 transition cursor-pointer ${
                     viewYear === yr
-                      ? 'bg-[#e8602e] text-white font-black shadow-[0_0_12px_rgba(232,96,46,0.5)]'
+                      ? 'bg-[#10b981] text-white font-black shadow-[0_0_12px_rgba(16,185,129,0.5)]'
                       : 'bg-[#121522] text-zinc-300 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -489,7 +489,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                       onClick={() => handleDaySelect(dayNumber)}
                       className={`h-8 rounded-xl font-outfit text-xs font-semibold flex items-center justify-center border transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#e8602e] text-white border-transparent shadow-[0_0_15px_rgba(232,96,46,0.5)] font-bold scale-105 z-10'
+                          ? 'bg-[#10b981] text-white border-transparent shadow-[0_0_15px_rgba(16,185,129,0.5)] font-bold scale-105 z-10'
                           : 'bg-transparent text-zinc-300 border-transparent hover:bg-white/10 hover:text-white'
                       }`}
                     >
@@ -511,7 +511,7 @@ export const CartoonDatePicker: React.FC<CartoonDatePickerProps> = ({
                 <button
                   type="button"
                   onClick={closeCalendar}
-                  className="btn-sheryians px-3 py-1 text-white rounded-lg transition cursor-pointer shadow-[0_0_12px_rgba(232,96,46,0.4)]"
+                  className="btn-sheryians px-3 py-1 text-white rounded-lg transition cursor-pointer shadow-[0_0_12px_rgba(16,185,129,0.4)]"
                 >
                   Done
                 </button>

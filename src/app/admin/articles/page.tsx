@@ -236,11 +236,11 @@ export default function AdminArticlesPage() {
         <div className="space-y-8 max-w-7xl mx-auto">
           {/* Executive Header Banner */}
           <div className="relative bg-gradient-to-r from-[#12162a] via-[#0d101e] to-[#070914] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff7a45]/50 to-transparent" />
-            <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#e8602e]" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/50 to-transparent" />
+            <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#10b981]" />
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ff7a45]/10 border border-[#ff7a45]/30 text-[#ffaa40] text-xs font-bold font-space uppercase mb-2 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#34d399]/10 border border-[#34d399]/30 text-[#6ee7b7] text-xs font-bold font-space uppercase mb-2 shadow-sm">
                   <Newspaper className="w-3.5 h-3.5" />
                   <span>Knowledge Base & Insights</span>
                 </div>
@@ -254,7 +254,7 @@ export default function AdminArticlesPage() {
 
               <button
                 onClick={openCreateModal}
-                className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(232,96,46,0.35)] flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98] self-start sm:self-auto"
+                className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_8px_20px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98] self-start sm:self-auto"
               >
                 <Plus className="w-4 h-4" />
                 <span>Write New Article</span>
@@ -278,7 +278,7 @@ export default function AdminArticlesPage() {
             </div>
             <div className="bg-[#0b0e1a]/90 border border-white/10 rounded-2xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
               <p className="text-xs font-bold text-zinc-400 font-jakarta uppercase">Total Reads / Views</p>
-              <p className="text-2xl sm:text-3xl font-black text-[#ffaa40] font-outfit mt-1">{totalViews}</p>
+              <p className="text-2xl sm:text-3xl font-black text-[#6ee7b7] font-outfit mt-1">{totalViews}</p>
             </div>
           </div>
 
@@ -291,7 +291,7 @@ export default function AdminArticlesPage() {
                 placeholder="Search title, summary, author..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 text-xs sm:text-sm font-medium font-jakarta focus:outline-none focus:border-[#ff7a45] transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-white placeholder-zinc-500 text-xs sm:text-sm font-medium font-jakarta focus:outline-none focus:border-[#34d399] transition-colors"
               />
             </div>
 
@@ -303,7 +303,7 @@ export default function AdminArticlesPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-outfit transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
                     selectedCategory === cat
-                      ? 'bg-gradient-to-r from-[#e8602e] to-[#ff7a45] text-white border-transparent shadow-[0_4px_12px_rgba(232,96,46,0.35)]'
+                      ? 'bg-gradient-to-r from-[#10b981] to-[#34d399] text-white border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.35)]'
                       : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -320,14 +320,14 @@ export default function AdminArticlesPage() {
             </div>
           ) : filteredArticles.length === 0 ? (
             <div className="bg-[#0b0e1a]/90 border border-white/10 rounded-3xl p-10 text-center shadow-[0_20px_50px_rgba(0,0,0,0.7)] max-w-xl mx-auto space-y-4">
-              <BookOpen className="w-12 h-12 text-[#ff7a45] mx-auto opacity-80" />
+              <BookOpen className="w-12 h-12 text-[#34d399] mx-auto opacity-80" />
               <h3 className="font-outfit font-bold text-xl text-white">No Articles Found</h3>
               <p className="text-sm font-jakarta text-zinc-400 font-medium">
                 {search ? 'Try adjusting your search query or filter.' : 'Start sharing your knowledge! Write your first article today.'}
               </p>
               <button
                 onClick={openCreateModal}
-                className="px-5 py-2.5 bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(232,96,46,0.35)] text-sm cursor-pointer"
+                className="px-5 py-2.5 bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white font-bold font-outfit rounded-xl border border-white/10 shadow-[0_4px_12px_rgba(16,185,129,0.35)] text-sm cursor-pointer"
               >
                 Write First Article
               </button>
@@ -337,7 +337,7 @@ export default function AdminArticlesPage() {
               {filteredArticles.map((art) => (
                 <div
                   key={art._id}
-                  className="bg-[#0b0e1a]/90 hover:bg-[#0e1222] border border-white/10 hover:border-[#ff7a45]/40 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] transition-all flex flex-col justify-between group"
+                  className="bg-[#0b0e1a]/90 hover:bg-[#0e1222] border border-white/10 hover:border-[#34d399]/40 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] transition-all flex flex-col justify-between group"
                 >
                   {/* Article Card Top Cover */}
                   <div>
@@ -348,7 +348,7 @@ export default function AdminArticlesPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-3 left-3 flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md text-[#ffaa40] border border-[#ff7a45]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
+                        <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md text-[#6ee7b7] border border-[#34d399]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
                           {art.category}
                         </span>
                         {art.featured && (
@@ -382,7 +382,7 @@ export default function AdminArticlesPage() {
                         <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                       </div>
 
-                      <h3 className="font-outfit font-bold text-lg text-white group-hover:text-[#ffaa40] transition-colors line-clamp-2 leading-snug mb-2">
+                      <h3 className="font-outfit font-bold text-lg text-white group-hover:text-[#6ee7b7] transition-colors line-clamp-2 leading-snug mb-2">
                         {art.title}
                       </h3>
                       <p className="font-jakarta text-xs text-zinc-400 line-clamp-3 font-medium leading-relaxed">
@@ -467,7 +467,7 @@ export default function AdminArticlesPage() {
                       placeholder="e.g. Master NCERT Biology: Strategy from AIIMS Mentors"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -483,7 +483,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Wildlife, Nature, Ecology, Animals..."
                         value={formData.category}
                         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-bold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-bold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                       />
                       {/* Quick fill tags */}
                       <div className="flex flex-wrap items-center gap-1.5 mt-2">
@@ -495,7 +495,7 @@ export default function AdminArticlesPage() {
                             onClick={() => setFormData({ ...formData, category: tag })}
                             className={`text-[10px] font-bold px-2.5 py-1 rounded-md border cursor-pointer transition ${
                               formData.category === tag
-                                ? 'bg-[#ff7a45] text-white border-transparent'
+                                ? 'bg-[#34d399] text-white border-transparent'
                                 : 'bg-white/5 hover:bg-white/10 text-zinc-400 border-white/10 hover:text-white'
                             }`}
                           >
@@ -514,7 +514,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. 4 min read"
                         value={formData.readTime}
                         onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
                   </div>
@@ -530,7 +530,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Er. Sandeep Verma"
                         value={formData.author}
                         onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
 
@@ -543,7 +543,7 @@ export default function AdminArticlesPage() {
                         placeholder="e.g. Head of Physics (IIT Alumni)"
                         value={formData.authorRole}
                         onChange={(e) => setFormData({ ...formData, authorRole: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                        className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                       />
                     </div>
                   </div>
@@ -558,7 +558,7 @@ export default function AdminArticlesPage() {
                       placeholder="Paste image URL or pick one below"
                       value={formData.coverImage}
                       onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45] mb-2"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-semibold font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399] mb-2"
                     />
 
                     <div className="flex items-center gap-2 overflow-x-auto pb-1">
@@ -570,7 +570,7 @@ export default function AdminArticlesPage() {
                           onClick={() => setFormData({ ...formData, coverImage: cov.url })}
                           className={`text-xs px-2.5 py-1 rounded-lg border font-bold shrink-0 transition-all ${
                             formData.coverImage === cov.url
-                              ? 'bg-[#ff7a45]/20 border-[#ff7a45] text-[#ffaa40]'
+                              ? 'bg-[#34d399]/20 border-[#34d399] text-[#6ee7b7]'
                               : 'bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:bg-white/10'
                           }`}
                         >
@@ -591,7 +591,7 @@ export default function AdminArticlesPage() {
                       placeholder="Brief 1-2 sentence hook highlighting the main takeaway..."
                       value={formData.excerpt}
                       onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-medium font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-medium font-jakarta text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -609,7 +609,7 @@ export default function AdminArticlesPage() {
                       placeholder="Write your article body here. You can use ## for section headings and - for bullet points."
                       value={formData.content}
                       onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-medium font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#ff7a45]"
+                      className="w-full px-4 py-2.5 bg-[#070914] border border-white/10 rounded-xl text-sm font-medium font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#34d399]"
                     />
                   </div>
 
@@ -620,7 +620,7 @@ export default function AdminArticlesPage() {
                         type="checkbox"
                         checked={formData.isPublished}
                         onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
-                        className="w-4 h-4 accent-[#ff7a45] rounded"
+                        className="w-4 h-4 accent-[#34d399] rounded"
                       />
                       <span className="text-xs font-bold font-outfit text-white">Publish Live to Website</span>
                     </label>
@@ -648,7 +648,7 @@ export default function AdminArticlesPage() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="px-7 py-2.5 rounded-xl border border-white/10 font-bold text-sm bg-gradient-to-r from-[#e8602e] to-[#ff7a45] hover:from-[#ff7a45] hover:to-[#ffa066] text-white shadow-[0_6px_20px_rgba(232,96,46,0.4)] cursor-pointer flex items-center gap-2"
+                      className="px-7 py-2.5 rounded-xl border border-white/10 font-bold text-sm bg-gradient-to-r from-[#10b981] to-[#34d399] hover:from-[#34d399] hover:to-[#ffa066] text-white shadow-[0_6px_20px_rgba(16,185,129,0.4)] cursor-pointer flex items-center gap-2"
                     >
                       {submitting ? (
                         <>

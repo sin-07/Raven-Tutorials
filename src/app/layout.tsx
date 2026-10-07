@@ -115,7 +115,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${plusJakarta.className} font-sans antialiased selection:bg-[#e8602e] selection:text-white bg-[#050507] text-[#e2e8f0]`}>
+      <body className={`${plusJakarta.className} font-sans antialiased selection:bg-[#10b981] selection:text-white bg-[#050507] text-[#e2e8f0]`}>
         <AdminProvider>
           <ClientLayout>
             {children}

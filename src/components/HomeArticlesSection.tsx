@@ -53,12 +53,12 @@ export default function HomeArticlesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-[#ff7b47] text-xs font-space font-extrabold uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 text-[#34d399] text-xs font-space font-extrabold uppercase tracking-widest mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Knowledge Base, Nature & Stories</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight">
-            Latest Articles & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff814e] via-[#e8602e] to-[#ffaa40]">Stories</span>
+            Latest Articles & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">Stories</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-400 font-medium max-w-2xl mx-auto font-jakarta">
             Fascinating reads on wildlife, nature, science, student strategies, and educational insights.
@@ -76,7 +76,7 @@ export default function HomeArticlesSection() {
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#e8602e]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(232,96,46,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Card Cover Thumbnail */}
@@ -87,7 +87,7 @@ export default function HomeArticlesSection() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-[#ff7b47] border border-[#e8602e]/30 rounded-full text-xs font-extrabold font-space uppercase">
+                      <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-full text-xs font-extrabold font-space uppercase">
                         {art.category}
                       </span>
                     </div>
@@ -96,13 +96,13 @@ export default function HomeArticlesSection() {
                   {/* Card Body */}
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-zinc-500 mb-2.5">
-                      <Clock className="w-3.5 h-3.5 text-[#ff7b47]" />
+                      <Clock className="w-3.5 h-3.5 text-[#34d399]" />
                       <span>{art.readTime || '4 min read'}</span>
                       <span>•</span>
                       <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
 
-                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#ff7b47] transition-colors">
+                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#34d399] transition-colors">
                       {art.title}
                     </h3>
                     <p className="font-jakarta text-xs sm:text-sm text-zinc-400 line-clamp-3 font-normal leading-relaxed">
@@ -116,10 +116,10 @@ export default function HomeArticlesSection() {
                   <div className="border-t border-white/10 pt-4 flex items-center justify-between">
                     <div>
                       <p className="font-extrabold text-white font-outfit text-xs">{art.author}</p>
-                      <p className="text-[10px] text-[#ff814e] font-semibold font-jakarta">{art.authorRole}</p>
+                      <p className="text-[10px] text-[#34d399] font-semibold font-jakarta">{art.authorRole}</p>
                     </div>
 
-                    <span className="inline-flex items-center gap-1.5 text-xs font-black font-outfit text-[#ff7b47] group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-black font-outfit text-[#34d399] group-hover:translate-x-1 transition-transform">
                       <span>Read Guide</span>
                       <ArrowRight className="w-4 h-4" />
                     </span>
@@ -134,7 +134,7 @@ export default function HomeArticlesSection() {
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/articles"
-            className="btn-sheryians px-8 py-3.5 text-white font-extrabold font-outfit rounded-full text-sm flex items-center gap-2 shadow-[0_0_25px_rgba(232,96,46,0.35)] cursor-pointer"
+            className="btn-sheryians px-8 py-3.5 text-white font-extrabold font-outfit rounded-full text-sm flex items-center gap-2 shadow-[0_0_25px_rgba(16,185,129,0.35)] cursor-pointer"
           >
             <span>Explore All Educational Articles</span>
             <ArrowRight className="w-4 h-4 text-white" />
@@ -142,9 +142,9 @@ export default function HomeArticlesSection() {
 
           <Link
             href="/admin/articles"
-            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-extrabold font-outfit text-zinc-400 hover:text-[#ff7b47] transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 text-xs font-extrabold font-outfit text-zinc-400 hover:text-[#34d399] transition-colors"
           >
-            <PenTool className="w-3.5 h-3.5 text-[#ff7b47]" />
+            <PenTool className="w-3.5 h-3.5 text-[#34d399]" />
             <span>Admin: Write an Article</span>
           </Link>
         </div>

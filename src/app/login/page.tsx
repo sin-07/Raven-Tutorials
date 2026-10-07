@@ -89,12 +89,12 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-transparent relative overflow-hidden pt-28 pb-16 selection:bg-[#e8602e] selection:text-white">
+      <div className="min-h-screen bg-transparent relative overflow-hidden pt-28 pb-16 selection:bg-[#10b981] selection:text-white">
         {/* Ambient background glows */}
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full blur-3xl pointer-events-none opacity-25"
           style={{
-            background: 'radial-gradient(circle, rgba(232, 96, 46, 0.45) 0%, rgba(255, 122, 69, 0.15) 50%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(16,185,129, 0.45) 0%, rgba(52, 211, 153, 0.15) 50%, transparent 70%)',
           }}
           aria-hidden="true"
         />
@@ -113,7 +113,7 @@ const LoginPage: React.FC = () => {
                   animationDuration: `${16 + (i % 8)}s`,
                 }}
               >
-                <div className="w-1.5 h-1.5 bg-[#e8602e] rounded-full opacity-25 shadow-[0_0_6px_rgba(232,96,46,0.6)]" />
+                <div className="w-1.5 h-1.5 bg-[#10b981] rounded-full opacity-25 shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
               </div>
             ))}
           </div>
@@ -128,7 +128,7 @@ const LoginPage: React.FC = () => {
             {/* Card Container */}
             <div 
               ref={cardRef} 
-              className="relative bg-[#090b14]/90 backdrop-blur-2xl border border-white/10 hover:border-white/20 rounded-3xl p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_50px_rgba(232,96,46,0.12)] text-white transition-all duration-300"
+              className="relative bg-[#090b14]/90 backdrop-blur-2xl border border-white/10 hover:border-white/20 rounded-3xl p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.12)] text-white transition-all duration-300"
             >
               {/* Top subtle highlight rim */}
               <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
@@ -136,18 +136,18 @@ const LoginPage: React.FC = () => {
               {/* Form Header */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="p-3.5 rounded-2xl bg-[#121522] border border-[#e8602e]/40 shadow-[0_0_25px_rgba(232,96,46,0.35)] flex items-center justify-center">
+                  <div className="p-3.5 rounded-2xl bg-[#121522] border border-[#10b981]/40 shadow-[0_0_25px_rgba(16,185,129,0.35)] flex items-center justify-center">
                     <img
                       src="/logo.png"
                       alt="Raven Tutorials Logo"
-                      className="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(232,96,46,0.8)]"
+                      className="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]"
                     />
                   </div>
                 </div>
 
                 <div className="flex items-baseline justify-center gap-2 font-outfit mb-2">
                   <span className="text-white font-black text-3xl tracking-tight">RAVEN</span>
-                  <span className="text-[#e8602e] font-black text-xl uppercase tracking-wider drop-shadow-[0_0_10px_rgba(232,96,46,0.4)]">
+                  <span className="text-[#10b981] font-black text-xl uppercase tracking-wider drop-shadow-[0_0_10px_rgba(16,185,129,0.4)]">
                     Tutorials
                   </span>
                 </div>
@@ -168,7 +168,7 @@ const LoginPage: React.FC = () => {
                     Email Address
                   </label>
                   <div className="relative group">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-[#e8602e] transition-colors" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-[#10b981] transition-colors" />
                     <input
                       type="email"
                       id="email"
@@ -178,7 +178,7 @@ const LoginPage: React.FC = () => {
                       placeholder="name@example.com"
                       required
                       autoComplete="email"
-                      className="w-full pl-12 pr-4 py-3.5 bg-[#0e111a] border border-white/10 hover:border-white/20 focus:border-[#e8602e] focus:ring-2 focus:ring-[#e8602e]/30 rounded-xl text-white placeholder-zinc-500 text-sm font-jakarta font-medium shadow-inner outline-none transition-all"
+                      className="w-full pl-12 pr-4 py-3.5 bg-[#0e111a] border border-white/10 hover:border-white/20 focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/30 rounded-xl text-white placeholder-zinc-500 text-sm font-jakarta font-medium shadow-inner outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -192,7 +192,7 @@ const LoginPage: React.FC = () => {
                     Password
                   </label>
                   <div className="relative group">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-[#e8602e] transition-colors" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 group-focus-within:text-[#10b981] transition-colors" />
                     <input
                       type={showPassword ? 'text' : 'password'}
                       id="password"
@@ -202,7 +202,7 @@ const LoginPage: React.FC = () => {
                       placeholder="Enter your password"
                       required
                       autoComplete="current-password"
-                      className="w-full pl-12 pr-12 py-3.5 bg-[#0e111a] border border-white/10 hover:border-white/20 focus:border-[#e8602e] focus:ring-2 focus:ring-[#e8602e]/30 rounded-xl text-white placeholder-zinc-500 text-sm font-jakarta font-medium shadow-inner outline-none transition-all"
+                      className="w-full pl-12 pr-12 py-3.5 bg-[#0e111a] border border-white/10 hover:border-white/20 focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/30 rounded-xl text-white placeholder-zinc-500 text-sm font-jakarta font-medium shadow-inner outline-none transition-all"
                     />
                     <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
                       <AnimatedEyeToggle
@@ -221,7 +221,7 @@ const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-sheryians w-full mt-2 py-4 px-6 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(232,96,46,0.4)] hover:shadow-[0_0_35px_rgba(232,96,46,0.65)] hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-sm"
+                  className="btn-sheryians w-full mt-2 py-4 px-6 text-white font-black font-outfit uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:shadow-[0_0_35px_rgba(16,185,129,0.65)] hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-sm"
                 >
                   {loading ? (
                     <>
@@ -243,7 +243,7 @@ const LoginPage: React.FC = () => {
                   New student to RAVEN?{' '}
                   <Link
                     href="/admission"
-                    className="text-[#ff7a45] hover:text-[#ffaa40] font-bold hover:underline transition-colors ml-1"
+                    className="text-[#34d399] hover:text-[#6ee7b7] font-bold hover:underline transition-colors ml-1"
                   >
                     Apply for Admission
                   </Link>
