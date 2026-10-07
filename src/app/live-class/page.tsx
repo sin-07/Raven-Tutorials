@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Radio,
   Video,
@@ -117,13 +118,20 @@ export default function PublicLiveClassesPage() {
               <button
                 key={std}
                 onClick={() => setSelectedStandard(std)}
-                className={`px-4 py-1.5 rounded-xl text-xs font-bold font-outfit transition-all cursor-pointer border ${
+                className={`relative px-4 py-1.5 rounded-xl text-xs font-bold font-outfit transition-all cursor-pointer border ${
                   selectedStandard === std
-                    ? 'bg-gradient-to-r from-[#10b981] to-[#34d399] text-white border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.35)]'
+                    ? 'text-white border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.35)]'
                     : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white'
                 }`}
               >
-                {std === 'All' ? 'All Classes' : `Class ${std}`}
+                {selectedStandard === std && (
+                  <motion.div
+                    layoutId="liveClassStandardFilterIndicator"
+                    className="absolute inset-0 bg-gradient-to-r from-[#10b981] to-[#34d399] rounded-xl z-0"
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10">{std === 'All' ? 'All Classes' : `Class ${std}`}</span>
               </button>
             ))}
           </div>
@@ -227,65 +235,72 @@ export default function PublicLiveClassesPage() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {upcomingClasses.map((item) => (
-                <div
-                  key={item._id}
-                  className="p-6 rounded-3xl border border-white/10 hover:border-[#34d399]/40 bg-[#0b0e1a]/90 shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-amber-500/10 border border-amber-500/30 text-amber-300">
-                        SCHEDULED
-                      </span>
-                      <span className="text-xs font-bold text-[#6ee7b7] font-space uppercase">
-                        {item.subject}
-                      </span>
-                    </div>
-
-                    <h4 className="text-lg font-bold font-outfit text-white group-hover:text-[#6ee7b7] transition-colors mb-2 line-clamp-2">
-                      {item.title}
-                    </h4>
-
-                    {item.description && (
-                      <p className="text-xs text-zinc-400 font-jakarta line-clamp-2 mb-4 leading-relaxed">
-                        {item.description}
-                      </p>
-                    )}
-
-                    <div className="p-3.5 rounded-2xl bg-[#070914] border border-white/10 text-xs space-y-1.5 mb-5 font-jakarta">
-                      <div className="flex justify-between text-zinc-300">
-                        <span className="text-zinc-500">Faculty:</span>
-                        <span className="font-semibold">{item.teacherName || 'Faculty Host'}</span>
-                      </div>
-                      <div className="flex justify-between text-zinc-300">
-                        <span className="text-zinc-500">Class:</span>
-                        <span className="font-mono">Class {item.class}</span>
-                      </div>
-                      <div className="flex justify-between text-zinc-300">
-                        <span className="text-zinc-500">Date:</span>
-                        <span className="font-mono">
-                          {item.scheduledDate ? new Date(item.scheduledDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Scheduled'}
+            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence mode="popLayout">
+                {upcomingClasses.map((item) => (
+                  <motion.div
+                    key={item._id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, y: 15 }}
+                    transition={{ duration: 0.25 }}
+                    className="p-6 rounded-3xl border border-white/10 hover:border-[#34d399]/40 bg-[#0b0e1a]/90 shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold font-space uppercase bg-amber-500/10 border border-amber-500/30 text-amber-300">
+                          SCHEDULED
+                        </span>
+                        <span className="text-xs font-bold text-[#6ee7b7] font-space uppercase">
+                          {item.subject}
                         </span>
                       </div>
-                      <div className="flex justify-between text-zinc-300">
-                        <span className="text-zinc-500">Timing:</span>
-                        <span className="font-mono">{item.startTime} - {item.endTime}</span>
+
+                      <h4 className="text-lg font-bold font-outfit text-white group-hover:text-[#6ee7b7] transition-colors mb-2 line-clamp-2">
+                        {item.title}
+                      </h4>
+
+                      {item.description && (
+                        <p className="text-xs text-zinc-400 font-jakarta line-clamp-2 mb-4 leading-relaxed">
+                          {item.description}
+                        </p>
+                      )}
+
+                      <div className="p-3.5 rounded-2xl bg-[#070914] border border-white/10 text-xs space-y-1.5 mb-5 font-jakarta">
+                        <div className="flex justify-between text-zinc-300">
+                          <span className="text-zinc-500">Faculty:</span>
+                          <span className="font-semibold">{item.teacherName || 'Faculty Host'}</span>
+                        </div>
+                        <div className="flex justify-between text-zinc-300">
+                          <span className="text-zinc-500">Class:</span>
+                          <span className="font-mono">Class {item.class}</span>
+                        </div>
+                        <div className="flex justify-between text-zinc-300">
+                          <span className="text-zinc-500">Date:</span>
+                          <span className="font-mono">
+                            {item.scheduledDate ? new Date(item.scheduledDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Scheduled'}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-zinc-300">
+                          <span className="text-zinc-500">Timing:</span>
+                          <span className="font-mono">{item.startTime} - {item.endTime}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <Link
-                    href={`/live-class/${item.classId}`}
-                    target="_blank"
-                    className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-200 hover:text-white font-bold font-outfit text-xs flex items-center justify-center gap-2 transition text-center"
-                  >
-                    <span>Open Classroom Link</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#34d399]" />
-                  </Link>
-                </div>
-              ))}
-            </div>
+                    <Link
+                      href={`/live-class/${item.classId}`}
+                      target="_blank"
+                      className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-200 hover:text-white font-bold font-outfit text-xs flex items-center justify-center gap-2 transition text-center"
+                    >
+                      <span>Open Classroom Link</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#34d399]" />
+                    </Link>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           )}
         </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { 
@@ -186,6 +187,28 @@ export default function Home() {
   const [testimonialFilter, setTestimonialFilter] = useState<'all' | 'students' | 'parents'>('all');
   const [activeMarqueeCard, setActiveMarqueeCard] = useState<string | null>(null);
   const [activeHeroCard, setActiveHeroCard] = useState<number | null>(null);
+  const lessonSliderRef = useRef<HTMLDivElement>(null);
+  const [activeLessonSlide, setActiveLessonSlide] = useState(0);
+
+  const scrollLessonSlider = useCallback((direction: 'prev' | 'next') => {
+    if (!lessonSliderRef.current) return;
+    const container = lessonSliderRef.current;
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstChild ? firstChild.offsetWidth + 24 : 360;
+    const scrollAmount = direction === 'next' ? cardWidth : -cardWidth;
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }, []);
+
+  const handleLessonScroll = useCallback(() => {
+    if (!lessonSliderRef.current) return;
+    const container = lessonSliderRef.current;
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstChild ? firstChild.offsetWidth + 24 : 360;
+    const newIndex = Math.round(container.scrollLeft / cardWidth);
+    if (newIndex >= 0 && newIndex <= 5) {
+      setActiveLessonSlide(newIndex);
+    }
+  }, []);
 
   // GSAP animation refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -364,37 +387,32 @@ export default function Home() {
 
               {/* Segmented Filter Pills & All Subjects Link */}
               <div className="flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center p-1 rounded-xl bg-[#0b0e18] border border-white/10">
-                  <button
-                    onClick={() => setSubjectFilter('all')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
-                      subjectFilter === 'all'
-                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    All Batches (6)
-                  </button>
-                  <button
-                    onClick={() => setSubjectFilter('stem')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
-                      subjectFilter === 'stem'
-                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    🔬 STEM & NEET (4)
-                  </button>
-                  <button
-                    onClick={() => setSubjectFilter('language')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer ${
-                      subjectFilter === 'language'
-                        ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-md'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    📖 Languages (2)
-                  </button>
+                <div className="inline-flex items-center p-1 rounded-xl bg-[#0b0e18] border border-white/10 relative">
+                  {[
+                    { key: 'all', label: 'All Batches (6)' },
+                    { key: 'stem', label: '🔬 STEM & NEET (4)' },
+                    { key: 'language', label: '📖 Languages (2)' },
+                  ].map((tab) => {
+                    const isActive = subjectFilter === tab.key;
+                    return (
+                      <button
+                        key={tab.key}
+                        onClick={() => setSubjectFilter(tab.key as 'all' | 'stem' | 'language')}
+                        className={`relative px-3.5 py-1.5 rounded-lg text-xs font-bold font-outfit transition-colors duration-200 cursor-pointer z-10 ${
+                          isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                        }`}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="heroSubjectTabSlider"
+                            className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.5)] z-[-1]"
+                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                          />
+                        )}
+                        <span>{tab.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 <Link 
@@ -408,95 +426,109 @@ export default function Home() {
             </div>
 
             {/* 3-Column Bento Deck with Generous Spacing */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
-              {heroSubjects
-                .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
-                .map((sub) => {
-                  const IconComponent = sub.icon;
-                  return (
-                    <Link
-                      key={sub.name}
-                      href={sub.href}
-                      className="group relative rounded-3xl p-6 bg-gradient-to-b from-[#111422] to-[#090b14] hover:from-[#151a2e] hover:to-[#0c0f1c] border border-white/10 hover:border-[#34d399]/45 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] text-left"
-                    >
-                      {/* Top ambient orange laser accent */}
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
-                      
-                      {/* Top subtle radial orange glow reflection */}
-                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
+            <motion.div 
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 min-h-[340px]"
+            >
+              <AnimatePresence mode="popLayout">
+                {heroSubjects
+                  .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
+                  .map((sub) => {
+                    const IconComponent = sub.icon;
+                    return (
+                      <motion.div
+                        layout
+                        key={sub.name}
+                        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        className="h-full flex flex-col"
+                      >
+                        <Link
+                          href={sub.href}
+                          className="h-full group relative rounded-3xl p-6 bg-gradient-to-b from-[#111422] to-[#090b14] hover:from-[#151a2e] hover:to-[#0c0f1c] border border-white/10 hover:border-[#34d399]/45 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] text-left"
+                        >
+                          {/* Top ambient green laser accent */}
+                          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500" />
+                          
+                          {/* Top subtle radial green glow reflection */}
+                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
 
-                      {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
-                      <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <div 
-                              className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105 shadow-md"
-                              style={{
-                                backgroundColor: `${sub.accentColor}18`,
-                                borderColor: `${sub.accentColor}40`,
-                                color: sub.accentColor,
-                              }}
-                            >
-                              <IconComponent className="w-5 h-5" />
+                          {/* Top Row: Monospace Index + Glowing Icon + Stream Tag + Action Arrow */}
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-center gap-3">
+                                <div 
+                                  className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-105 shadow-md"
+                                  style={{
+                                    backgroundColor: `${sub.accentColor}18`,
+                                    borderColor: `${sub.accentColor}40`,
+                                    color: sub.accentColor,
+                                  }}
+                                >
+                                  <IconComponent className="w-5 h-5" />
+                                </div>
+                                <div>
+                                  <span className="font-mono text-[10px] font-bold text-zinc-500 group-hover:text-[#6ee7b7]/80 transition-colors block leading-none mb-1">
+                                    {`${sub.num} // DISCIPLINE`}
+                                  </span>
+                                  <span 
+                                    className="text-[10px] font-space font-extrabold uppercase px-2 py-0.5 rounded-md border"
+                                    style={{
+                                      backgroundColor: `${sub.accentColor}14`,
+                                      borderColor: `${sub.accentColor}35`,
+                                      color: sub.accentColor,
+                                    }}
+                                  >
+                                    {sub.tag}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Recessed Corner Action Button (↗) */}
+                              <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#34d399]/40 text-zinc-400 group-hover:text-[#34d399] flex items-center justify-center transition-all group-hover:scale-105 shadow-sm">
+                                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                              </div>
                             </div>
-                            <div>
-                              <span className="font-mono text-[10px] font-bold text-zinc-500 group-hover:text-[#6ee7b7]/80 transition-colors block leading-none mb-1">
-                                {`${sub.num} // DISCIPLINE`}
-                              </span>
-                              <span 
-                                className="text-[10px] font-space font-extrabold uppercase px-2 py-0.5 rounded-md border"
-                                style={{
-                                  backgroundColor: `${sub.accentColor}14`,
-                                  borderColor: `${sub.accentColor}35`,
-                                  color: sub.accentColor,
-                                }}
-                              >
-                                {sub.tag}
-                              </span>
+
+                            {/* Subject Name & Description */}
+                            <h4 className="text-xl font-black font-outfit text-white group-hover:text-[#6ee7b7] transition-colors">
+                              {sub.fullName}
+                            </h4>
+                            <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
+                              {sub.desc}
+                            </p>
+
+                            {/* Curriculum Focus Tag Chips */}
+                            <div className="flex flex-wrap gap-1.5 mt-3.5">
+                              {sub.topics.map((topic, i) => (
+                                <span 
+                                  key={i}
+                                  className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] group-hover:border-[#34d399]/20 transition-colors"
+                                >
+                                  {topic}
+                                </span>
+                              ))}
                             </div>
                           </div>
 
-                          {/* Recessed Corner Action Button (↗) */}
-                          <div className="w-8 h-8 rounded-xl bg-white/5 group-hover:bg-[#10b981]/15 border border-white/10 group-hover:border-[#34d399]/40 text-zinc-400 group-hover:text-[#34d399] flex items-center justify-center transition-all group-hover:scale-105 shadow-sm">
-                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                          </div>
-                        </div>
-
-                        {/* Subject Name & Description */}
-                        <h4 className="text-xl font-black font-outfit text-white group-hover:text-[#6ee7b7] transition-colors">
-                          {sub.fullName}
-                        </h4>
-                        <p className="text-xs text-zinc-400 font-jakarta mt-1 leading-relaxed">
-                          {sub.desc}
-                        </p>
-
-                        {/* Curriculum Focus Tag Chips */}
-                        <div className="flex flex-wrap gap-1.5 mt-3.5">
-                          {sub.topics.map((topic, i) => (
-                            <span 
-                              key={i}
-                              className="px-2 py-0.5 rounded-md text-[10px] font-space font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] group-hover:border-[#34d399]/20 transition-colors"
-                            >
-                              {topic}
+                          {/* Footer Micro-Bar */}
+                          <div className="pt-3.5 mt-4 border-t border-white/[0.06] group-hover:border-[#34d399]/20 flex items-center justify-between text-xs font-jakarta relative z-10 transition-colors">
+                            <span className="text-[11px] text-zinc-400 font-medium">
+                              {sub.badge}
                             </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Footer Micro-Bar */}
-                      <div className="pt-3.5 mt-4 border-t border-white/[0.06] group-hover:border-[#34d399]/20 flex items-center justify-between text-xs font-jakarta relative z-10 transition-colors">
-                        <span className="text-[11px] text-zinc-400 font-medium">
-                          {sub.badge}
-                        </span>
-                        <span className="text-[11px] font-space font-bold uppercase text-[#34d399] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                          <span>View Batches</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
-            </div>
+                            <span className="text-[11px] font-space font-bold uppercase text-[#34d399] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                              <span>View Batches</span>
+                              <ArrowRight className="w-3 dot h-3" />
+                            </span>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
 
@@ -773,66 +805,78 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap font-jakarta text-xs sm:text-sm">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
-                activeTab === 'all'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-                  : 'btn-dark-pill text-zinc-300'
-              }`}
-            >
-              All Courses
-            </button>
-            <button
-              onClick={() => setActiveTab('foundation')}
-              className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
-                activeTab === 'foundation'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-                  : 'btn-dark-pill text-zinc-300'
-              }`}
-            >
-              Class 8 - 10
-            </button>
-            <button
-              onClick={() => setActiveTab('science')}
-              className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
-                activeTab === 'science'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-                  : 'btn-dark-pill text-zinc-300'
-              }`}
-            >
-              Class 11 - 12
-            </button>
-            <button
-              onClick={() => setActiveTab('competitive')}
-              className={`px-4 py-2.5 rounded-full font-extrabold transition-all cursor-pointer ${
-                activeTab === 'competitive'
-                  ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-                  : 'btn-dark-pill text-zinc-300'
-              }`}
-            >
-              JEE & NEET
-            </button>
+          <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-[#0b0e18] border border-white/10 font-jakarta text-xs sm:text-sm relative overflow-hidden sm:overflow-visible flex-wrap">
+            {[
+              { key: 'all', label: 'All Courses' },
+              { key: 'foundation', label: 'Class 8 - 10' },
+              { key: 'science', label: 'Class 11 - 12' },
+              { key: 'competitive', label: 'JEE & NEET' },
+            ].map((tab) => {
+              const isActive = activeTab === tab.key;
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`relative px-4 py-2 rounded-full font-extrabold transition-colors duration-200 cursor-pointer z-10 ${
+                    isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="featuredCoursesTabSlider"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.45)] z-[-1]"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Grid of Courses */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            <div className="col-span-full flex justify-center items-center py-16">
-              <Loader size="lg" text="Loading Courses..." subtitle="Retrieving curriculum" />
-            </div>
-          ) : filteredCourses.length === 0 ? (
-            <div className="col-span-full text-center py-16 bg-[#0f111a] border border-white/10 rounded-3xl p-8">
-              <p className="text-zinc-400 font-jakarta">No courses currently found in this category.</p>
-            </div>
-          ) : (
-            filteredCourses.map((course, index) => (
-              <CourseCard key={course.id} course={course} index={index} />
-            ))
-          )}
-        </div>
+        <motion.div 
+          layout
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]"
+        >
+          <AnimatePresence mode="popLayout">
+            {loading ? (
+              <motion.div
+                key="loader"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="col-span-full flex justify-center items-center py-16"
+              >
+                <Loader size="lg" text="Loading Courses..." subtitle="Retrieving curriculum" />
+              </motion.div>
+            ) : filteredCourses.length === 0 ? (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="col-span-full text-center py-16 bg-[#0f111a] border border-white/10 rounded-3xl p-8"
+              >
+                <p className="text-zinc-400 font-jakarta">No courses currently found in this category.</p>
+              </motion.div>
+            ) : (
+              filteredCourses.map((course, index) => (
+                <motion.div
+                  layout
+                  key={course.id}
+                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: -10 }}
+                  transition={{ duration: 0.25, ease: 'easeOut', delay: index * 0.03 }}
+                >
+                  <CourseCard course={course} index={index} />
+                </motion.div>
+              ))
+            )}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* ── WATCH THE FREE LESSONS (IMAGE 4) ────────────────────────── */}
@@ -861,14 +905,16 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <button
+                  onClick={() => scrollLessonSlider('prev')}
                   aria-label="Previous lesson"
-                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#10b981] hover:text-white border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] active:scale-95"
                 >
                   <ArrowRight className="w-4 h-4 rotate-180" />
                 </button>
                 <button
+                  onClick={() => scrollLessonSlider('next')}
                   aria-label="Next lesson"
-                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#10b981] hover:text-white border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] active:scale-95"
                 >
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -876,8 +922,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 3 Video Lesson Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          {/* Smooth Scrollable Video Lesson Cards Track */}
+          <div 
+            ref={lessonSliderRef}
+            onScroll={handleLessonScroll}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-4 relative z-10"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             {[
               {
                 title: 'Innovative Problem Solving for Mechanics & Rotational Motion',
@@ -900,10 +951,31 @@ export default function Home() {
                 views: '980 views',
                 thumbnail: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80',
               },
+              {
+                title: 'Organic Reaction Mechanisms & Electrophilic Additions',
+                desc: 'Predict organic reaction pathways with bulletproof electron displacement reasoning.',
+                duration: '50 min',
+                views: '1.6k views',
+                thumbnail: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=600&auto=format&fit=crop&q=80',
+              },
+              {
+                title: 'Electrostatics & Gauss Law: Symmetry Short-Cuts',
+                desc: 'Solve multi-layer spherical charge & capacitor networks in 3 conceptual steps.',
+                duration: '40 min',
+                views: '1.4k views',
+                thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80',
+              },
+              {
+                title: 'Human Physiology & Endocrinology: High-Retention Mindmaps',
+                desc: 'Fast visual recall of hormones, negative feedback loops, and renal mechanisms.',
+                duration: '55 min',
+                views: '2.4k views',
+                thumbnail: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=80',
+              },
             ].map((lesson, idx) => (
               <div
                 key={idx}
-                className="group bg-[#0f111a] hover:bg-[#131622] rounded-2xl overflow-hidden border border-white/10 hover:border-[#10b981]/50 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                className="w-[85vw] sm:w-[340px] md:w-[380px] shrink-0 snap-start group bg-[#0f111a] hover:bg-[#131622] rounded-2xl overflow-hidden border border-white/10 hover:border-[#10b981]/50 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   {/* Thumbnail with Play Icon */}
@@ -942,6 +1014,34 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Slider Pagination Dots & Status */}
+          <div className="flex items-center justify-between mt-8 pt-4 border-t border-white/10 relative z-10">
+            <div className="text-xs font-mono text-zinc-400">
+              Slide <span className="text-[#34d399] font-bold">{activeLessonSlide + 1}</span> of 6
+            </div>
+            <div className="flex items-center gap-1.5">
+              {[0, 1, 2, 3, 4, 5].map((dotIdx) => (
+                <button
+                  key={dotIdx}
+                  onClick={() => {
+                    if (!lessonSliderRef.current) return;
+                    const container = lessonSliderRef.current;
+                    const firstChild = container.firstElementChild as HTMLElement | null;
+                    const cardWidth = firstChild ? firstChild.offsetWidth + 24 : 360;
+                    container.scrollTo({ left: dotIdx * cardWidth, behavior: 'smooth' });
+                    setActiveLessonSlide(dotIdx);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeLessonSlide === dotIdx
+                      ? 'w-8 bg-[#10b981] shadow-[0_0_10px_#10b981]'
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to lesson slide ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1055,37 +1155,44 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Perspective Filter Tabs */}
-          <div className="flex items-center justify-center gap-2.5 mb-8 overflow-x-auto pb-2">
-            {[
-              { key: 'all', label: 'All Testimonials', count: 12, icon: Star },
-              { key: 'students', label: 'Student Stories', count: 6, icon: GraduationCap },
-              { key: 'parents', label: 'Parent Reviews', count: 6, icon: HeartHandshake },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = testimonialFilter === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() => setTestimonialFilter(tab.key as 'all' | 'students' | 'parents')}
-                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold font-outfit transition-all flex items-center gap-2 cursor-pointer ${
-                    isActive
-                      ? 'btn-sheryians text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-                      : 'btn-dark-pill text-zinc-400'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{tab.label}</span>
-                  <span
-                    className={`ml-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-black ${
-                      isActive ? 'bg-black/60 text-[#6ee7b7]' : 'bg-white/10 text-white'
+          {/* Perspective Filter Tabs with Smooth Sliding Pill */}
+          <div className="flex items-center justify-center gap-2 mb-8 overflow-x-auto pb-2">
+            <div className="inline-flex items-center p-1 rounded-full bg-[#0b0e18] border border-white/10 relative">
+              {[
+                { key: 'all', label: 'All Testimonials', count: 12, icon: Star },
+                { key: 'students', label: 'Student Stories', count: 6, icon: GraduationCap },
+                { key: 'parents', label: 'Parent Reviews', count: 6, icon: HeartHandshake },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = testimonialFilter === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setTestimonialFilter(tab.key as 'all' | 'students' | 'parents')}
+                    className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold font-outfit transition-colors duration-200 flex items-center gap-2 cursor-pointer z-10 ${
+                      isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
                     }`}
                   >
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
+                    {isActive && (
+                      <motion.div
+                        layoutId="testimonialTabSlider"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.45)] z-[-1]"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
+                    )}
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                    <span
+                      className={`ml-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-black transition-colors ${
+                        isActive ? 'bg-black/60 text-[#6ee7b7]' : 'bg-white/10 text-white'
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 

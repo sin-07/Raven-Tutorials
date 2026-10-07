@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   BookOpen, BarChart3, Calendar, FileText,
   User, Mail, Phone, AlertCircle, CheckCircle, Clock, Award,
@@ -758,24 +759,41 @@ Status           : ACTIVE & VERIFIED
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 px-4 sm:px-5 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer ${
+                className={`relative flex-shrink-0 px-4 sm:px-5 py-2.5 rounded-xl font-black font-outfit text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#059669] to-[#10b981] text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] border border-white/15'
+                    ? 'text-white border-transparent shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                     : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent font-bold'
                 }`}
               >
-                {Icon && <Icon className={`w-4 h-4 ${isLiveNow ? 'text-rose-400 animate-pulse' : ''}`} />}
-                <span>{tab.label}</span>
-                {isLiveNow && (
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse ml-0.5" />
+                {isActive && (
+                  <motion.div
+                    layoutId="studentDashboardTabIndicator"
+                    className="absolute inset-0 bg-gradient-to-r from-[#059669] to-[#10b981] rounded-xl z-0 border border-white/15"
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                  />
                 )}
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  {Icon && <Icon className={`w-4 h-4 ${isLiveNow ? 'text-rose-400 animate-pulse' : ''}`} />}
+                  <span>{tab.label}</span>
+                  {isLiveNow && (
+                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse ml-0.5" />
+                  )}
+                </span>
               </button>
             );
           })}
         </div>
 
         {/* Tab Content Panels */}
-        <div className="rounded-3xl p-6 sm:p-8 border backdrop-blur-2xl text-white transition-all bg-[#0a0d18]/90 border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(16,185,129,0.06)]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="rounded-3xl p-6 sm:p-8 border backdrop-blur-2xl text-white transition-all bg-[#0a0d18]/90 border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(16,185,129,0.06)]"
+          >
           
           {/* 1. Overview Tab: Re-Architected Command & Credential Deck */}
           {activeTab === 'overview' && (
@@ -1966,7 +1984,8 @@ Status           : ACTIVE & VERIFIED
             </div>
           )}
 
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Official Student ID Card Modal */}

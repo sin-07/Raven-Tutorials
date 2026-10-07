@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   Filter, 
@@ -152,30 +153,47 @@ export default function CoursesPage() {
           {/* Controls Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="inline-flex items-center gap-1.5 p-1 rounded-2xl bg-[#0b0e18] border border-white/10 overflow-x-auto max-w-full relative scrollbar-hide">
               <button
                 onClick={() => setSelectedCategory('All')}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
+                className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-colors duration-200 cursor-pointer z-10 ${
                   selectedCategory === 'All'
-                    ? 'btn-sheryians shadow-[0_0_20px_rgba(16,185,129,0.35)]'
-                    : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#10b981]/40'
+                    ? 'text-white'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                All Courses
+                {selectedCategory === 'All' && (
+                  <motion.div
+                    layoutId="courseCategorySlider"
+                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.45)] z-[-1]"
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span>All Courses</span>
               </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat.name}
-                  onClick={() => setSelectedCategory(cat.name)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all border ${
-                    selectedCategory.toLowerCase() === cat.name.toLowerCase()
-                      ? 'btn-sheryians shadow-[0_0_20px_rgba(16,185,129,0.35)]'
-                      : 'bg-[#0f111a]/80 text-white/70 hover:text-white border-white/10 hover:border-[#10b981]/40'
-                  }`}
-                >
-                  {cat.name}
-                </button>
-              ))}
+              {categories.map((cat) => {
+                const isActive = selectedCategory.toLowerCase() === cat.name.toLowerCase();
+                return (
+                  <button
+                    key={cat.name}
+                    onClick={() => setSelectedCategory(cat.name)}
+                    className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-colors duration-200 cursor-pointer z-10 ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="courseCategorySlider"
+                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_20px_rgba(16,185,129,0.45)] z-[-1]"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
+                    )}
+                    <span>{cat.name}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Sort Dropdown */}
@@ -228,15 +246,29 @@ export default function CoursesPage() {
               <Loader size="lg" text="Loading Courses..." subtitle="Retrieving academic programs" />
             </div>
           ) : sortedCourses.length > 0 ? (
-            <div className={`grid gap-6 sm:gap-8 ${
-              viewMode === 'grid' 
-                ? 'sm:grid-cols-2 lg:grid-cols-3' 
-                : 'grid-cols-1'
-            }`}>
-              {sortedCourses.map((course, index) => (
-                <CourseCard key={course.id} course={course} index={index} />
-              ))}
-            </div>
+            <motion.div 
+              layout
+              className={`grid gap-6 sm:gap-8 ${
+                viewMode === 'grid' 
+                  ? 'sm:grid-cols-2 lg:grid-cols-3' 
+                  : 'grid-cols-1'
+              }`}
+            >
+              <AnimatePresence mode="popLayout">
+                {sortedCourses.map((course, index) => (
+                  <motion.div
+                    key={course.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, y: 15 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                  >
+                    <CourseCard course={course} index={index} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           ) : (
             <div className="text-center py-16 rounded-3xl bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] max-w-xl mx-auto p-8">
               <div className="w-16 h-16 rounded-2xl bg-[#161922] border border-[#10b981]/30 flex items-center justify-center mx-auto mb-4 text-[#34d399] shadow-[0_0_20px_rgba(16,185,129,0.25)]">

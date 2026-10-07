@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Video, Clock, Eye, Filter, Play, X } from 'lucide-react';
 import StudentProtectedRoute from '@/components/StudentProtectedRoute';
 import Loader from '@/components/Loader';
@@ -138,126 +139,159 @@ function VideosPage() {
             <span className="font-outfit font-bold text-white text-base">Filter by Subject:</span>
           </div>
 
-          <div className="flex gap-2 flex-wrap w-full sm:w-auto">
+          <div className="inline-flex gap-1.5 p-1 rounded-full bg-[#0b0e18] border border-white/10 flex-wrap w-full sm:w-auto relative">
             <button
               onClick={() => setFilterSubject('')}
-              className={`px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-all cursor-pointer ${
+              className={`relative px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-colors duration-200 cursor-pointer z-10 ${
                 filterSubject === ''
-                  ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]'
-                  : 'bg-[#121522] text-zinc-400 border border-white/10 hover:text-white hover:border-white/20'
+                  ? 'text-white'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
-              All Subjects
+              {filterSubject === '' && (
+                <motion.div
+                  layoutId="videoSubjectTabSlider"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.45)] z-[-1]"
+                  transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                />
+              )}
+              <span>All Subjects</span>
             </button>
-            {subjects.map(subject => (
-              <button
-                key={subject}
-                onClick={() => setFilterSubject(subject)}
-                className={`px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-all cursor-pointer ${
-                  filterSubject === subject
-                    ? 'btn-sheryians text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]'
-                    : 'bg-[#121522] text-zinc-400 border border-white/10 hover:text-white hover:border-white/20'
-                }`}
-              >
-                {subject}
-              </button>
-            ))}
+            {subjects.map(subject => {
+              const isActive = filterSubject === subject;
+              return (
+                <button
+                  key={subject}
+                  onClick={() => setFilterSubject(subject)}
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-outfit font-bold transition-colors duration-200 cursor-pointer z-10 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="videoSubjectTabSlider"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#059669] to-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.45)] z-[-1]"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                  <span>{subject}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Video Catalog */}
-        {filteredVideos.length === 0 ? (
-          <div className="bg-[#0f111a] rounded-3xl p-12 border border-white/10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] max-w-xl mx-auto">
-            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-zinc-500">
-              <Video size={28} />
-            </div>
-            <h3 className="font-outfit font-bold text-xl text-white">No Videos Available</h3>
-            <p className="text-sm font-jakarta font-medium text-zinc-400 mt-1">
-              Check back soon for new lecture recordings or choose a different subject filter.
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-10">
-            {Object.entries(groupedVideos).map(([subject, subjectVideos]) => (
-              <div key={subject} className="space-y-4">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.8)] inline-block" />
-                  <h2 className="text-2xl font-outfit font-bold text-white">{subject}</h2>
-                  <span className="text-xs font-space font-medium uppercase bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full text-zinc-400">
-                    {subjectVideos.length} Lecture{subjectVideos.length !== 1 ? 's' : ''}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {subjectVideos.map(video => (
-                    <div
-                      key={video._id}
-                      className="bg-[#0f111a] rounded-3xl border border-white/10 hover:border-[#10b981]/50 hover:-translate-y-1 shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all overflow-hidden cursor-pointer flex flex-col justify-between group"
-                      onClick={() => setSelectedVideo(video)}
-                    >
-                      {/* Video Thumbnail */}
-                      <div className="relative w-full h-44 bg-[#141622] border-b border-white/10 overflow-hidden">
-                        {video.thumbnail ? (
-                          <img
-                            src={video.thumbnail}
-                            alt={video.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#121422] to-[#1a1e30]">
-                            <Video size={44} className="text-zinc-600" />
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                          <div className="w-12 h-12 rounded-full bg-[#10b981] flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform">
-                            <Play size={20} className="text-white fill-white ml-0.5" />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Video Content Info */}
-                      <div className="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
-                              {video.subject}
-                            </span>
-                            <span className="bg-white/5 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
-                              Class {video.standard}
-                            </span>
-                          </div>
-                          <h3 className="font-outfit font-bold text-white text-lg line-clamp-2 mb-1.5 group-hover:text-[#34d399] transition-colors">
-                            {video.title}
-                          </h3>
-                          {video.description && (
-                            <p className="text-xs font-jakarta font-medium text-zinc-400 line-clamp-2 mb-4">
-                              {video.description}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono font-medium text-zinc-500">
-                          {video.duration ? (
-                            <span className="flex items-center gap-1">
-                              <Clock size={13} className="text-zinc-400" />
-                              {formatDuration(video.duration)}
-                            </span>
-                          ) : (
-                            <span>Lecture</span>
-                          )}
-                          <span className="flex items-center gap-1">
-                            <Eye size={13} className="text-zinc-400" />
-                            {video.viewCount || 0} views
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <AnimatePresence mode="popLayout">
+          {filteredVideos.length === 0 ? (
+            <motion.div
+              key="empty"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-[#0f111a] rounded-3xl p-12 border border-white/10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] max-w-xl mx-auto"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-zinc-500">
+                <Video size={28} />
               </div>
-            ))}
-          </div>
-        )}
+              <h3 className="font-outfit font-bold text-xl text-white">No Videos Available</h3>
+              <p className="text-sm font-jakarta font-medium text-zinc-400 mt-1">
+                Check back soon for new lecture recordings or choose a different subject filter.
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div 
+              layout
+              key={filterSubject || 'all'}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="space-y-10"
+            >
+              {Object.entries(groupedVideos).map(([subject, subjectVideos]) => (
+                <div key={subject} className="space-y-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.8)] inline-block" />
+                    <h2 className="text-2xl font-outfit font-bold text-white">{subject}</h2>
+                    <span className="text-xs font-space font-medium uppercase bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full text-zinc-400">
+                      {subjectVideos.length} Lecture{subjectVideos.length !== 1 ? 's' : ''}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {subjectVideos.map(video => (
+                      <div
+                        key={video._id}
+                        className="bg-[#0f111a] rounded-3xl border border-white/10 hover:border-[#10b981]/50 hover:-translate-y-1 shadow-[0_15px_40px_rgba(0,0,0,0.7)] transition-all overflow-hidden cursor-pointer flex flex-col justify-between group"
+                        onClick={() => setSelectedVideo(video)}
+                      >
+                        {/* Video Thumbnail */}
+                        <div className="relative w-full h-44 bg-[#141622] border-b border-white/10 overflow-hidden">
+                          {video.thumbnail ? (
+                            <img
+                              src={video.thumbnail}
+                              alt={video.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#121422] to-[#1a1e30]">
+                              <Video size={44} className="text-zinc-600" />
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                            <div className="w-12 h-12 rounded-full bg-[#10b981] flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform">
+                              <Play size={20} className="text-white fill-white ml-0.5" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Video Content Info */}
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
+                                {video.subject}
+                              </span>
+                              <span className="bg-white/5 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded-full text-[10px] font-space font-bold uppercase">
+                                Class {video.standard}
+                              </span>
+                            </div>
+                            <h3 className="font-outfit font-bold text-white text-lg line-clamp-2 mb-1.5 group-hover:text-[#34d399] transition-colors">
+                              {video.title}
+                            </h3>
+                            {video.description && (
+                              <p className="text-xs font-jakarta font-medium text-zinc-400 line-clamp-2 mb-4">
+                                {video.description}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono font-medium text-zinc-500">
+                            {video.duration ? (
+                              <span className="flex items-center gap-1">
+                                <Clock size={13} className="text-zinc-400" />
+                                {formatDuration(video.duration)}
+                              </span>
+                            ) : (
+                              <span>Lecture</span>
+                            )}
+                            <span className="flex items-center gap-1">
+                              <Eye size={13} className="text-zinc-400" />
+                              {video.viewCount || 0} views
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Video Player Modal */}
         {selectedVideo && (

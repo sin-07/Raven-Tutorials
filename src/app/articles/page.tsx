@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Newspaper, 
   Search, 
@@ -122,19 +123,29 @@ export default function ArticlesDirectoryPage() {
 
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
             <Filter className="w-4 h-4 text-neutral-400 shrink-0 hidden sm:block" />
-            {availableCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-black font-outfit transition-all cursor-pointer border shrink-0 whitespace-nowrap ${
-                  selectedCategory === cat
-                    ? 'btn-sheryians shadow-[0_0_15px_rgba(16,185,129,0.35)]'
-                    : 'bg-[#08090d] text-neutral-300 border-white/10 hover:border-white/30 hover:text-white'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {availableCategories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`relative px-3.5 py-1.5 rounded-xl text-xs font-black font-outfit transition-all cursor-pointer border shrink-0 whitespace-nowrap ${
+                    isSelected
+                      ? 'text-white border-[#10b981]/50 shadow-[0_0_15px_rgba(16,185,129,0.35)]'
+                      : 'bg-[#08090d] text-neutral-300 border-white/10 hover:border-white/30 hover:text-white'
+                  }`}
+                >
+                  {isSelected && (
+                    <motion.div
+                      layoutId="articleCategoryTabIndicator"
+                      className="absolute inset-0 bg-gradient-to-r from-[#10b981] to-[#34d399] rounded-xl z-0"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -152,63 +163,74 @@ export default function ArticlesDirectoryPage() {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((art) => (
-              <Link
-                key={art._id}
-                href={`/articles/${art.slug}`}
-                className="group bg-[#0f111a]/85 hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Thumbnail */}
-                  <div className="relative h-48 w-full bg-[#161922] border-b border-white/10 overflow-hidden">
-                    <img
-                      src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
-                      alt={art.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
-                        {art.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Body */}
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-400 mb-2">
-                      <Clock className="w-3.5 h-3.5 text-[#34d399]" />
-                      <span>{art.readTime}</span>
-                      <span>•</span>
-                      <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    </div>
-
-                    <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#34d399] transition-colors">
-                      {art.title}
-                    </h3>
-                    <p className="font-jakarta text-xs sm:text-sm text-neutral-400 line-clamp-3 font-medium leading-relaxed mb-4">
-                      {art.excerpt}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Footer */}
-                <div className="p-6 pt-0">
-                  <div className="border-t border-white/10 pt-3 flex items-center justify-between">
+          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filtered.map((art) => (
+                <motion.div
+                  key={art._id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.94, y: 15 }}
+                  transition={{ duration: 0.25 }}
+                  className="h-full"
+                >
+                  <Link
+                    href={`/articles/${art.slug}`}
+                    className="group bg-[#0f111a]/85 hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full"
+                  >
                     <div>
-                      <p className="font-black text-white font-outfit text-xs">{art.author}</p>
-                      <p className="text-[10px] text-[#34d399] font-bold font-jakarta">{art.authorRole}</p>
+                      {/* Thumbnail */}
+                      <div className="relative h-48 w-full bg-[#161922] border-b border-white/10 overflow-hidden">
+                        <img
+                          src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
+                          alt={art.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
+                            {art.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Body */}
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-neutral-400 mb-2">
+                          <Clock className="w-3.5 h-3.5 text-[#34d399]" />
+                          <span>{art.readTime}</span>
+                          <span>•</span>
+                          <span>{new Date(art.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        </div>
+
+                        <h3 className="font-outfit font-black text-xl text-white line-clamp-2 leading-snug mb-3 group-hover:text-[#34d399] transition-colors">
+                          {art.title}
+                        </h3>
+                        <p className="font-jakarta text-xs sm:text-sm text-neutral-400 line-clamp-3 font-medium leading-relaxed mb-4">
+                          {art.excerpt}
+                        </p>
+                      </div>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-[#6ee7b7] group-hover:translate-x-1 transition-transform">
-                      <span>Read</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                    {/* Footer */}
+                    <div className="p-6 pt-0">
+                      <div className="border-t border-white/10 pt-3 flex items-center justify-between">
+                        <div>
+                          <p className="font-black text-white font-outfit text-xs">{art.author}</p>
+                          <p className="text-[10px] text-[#34d399] font-bold font-jakarta">{art.authorRole}</p>
+                        </div>
+
+                        <span className="inline-flex items-center gap-1 text-xs font-black font-outfit text-[#6ee7b7] group-hover:translate-x-1 transition-transform">
+                          <span>Read</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         )}
       </div>
 

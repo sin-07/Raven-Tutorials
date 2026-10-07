@@ -3,6 +3,7 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import {
   LogIn,
   User,
@@ -300,16 +301,23 @@ const Navbar: React.FC = React.memo(() => {
                   <Link
                     key={link.path}
                     href={link.path}
-                    className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-colors duration-200 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 z-10 ${
                       active
-                        ? 'text-white bg-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.5)]'
+                        ? 'text-white'
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     {active && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                      <motion.div
+                        layoutId="navActivePill"
+                        className="absolute inset-0 bg-[#10b981] rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)] z-[-1]"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
                     )}
-                    <span>{link.label}</span>
+                    {active && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-white relative z-10" />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
                   </Link>
                 );
               })}
