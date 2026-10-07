@@ -25,8 +25,8 @@ export const binomial_theorem: CurriculumTopic_binomial_theorem = {
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-20',
-  revisionNumber: 221,
+  lastReviewed: '2026-10-07',
+  revisionNumber: 361,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Binomial Theorem for Positive Integral Indices',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
