@@ -5,8 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/admin/', '/api/admin/', '/dashboard/'],
+        disallow: ['/admin/', '/api/', '/dashboard/', '/test/', '/live-class/'],
       },
     ],
     sitemap: 'https://raventutorials.com/sitemap.xml',

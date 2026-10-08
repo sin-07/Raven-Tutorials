@@ -10,10 +10,15 @@ import {
   CreditCard, Trophy, Zap, Crown, X, Check, Medal, Target, Flame, Shield, AlertTriangle,
   GraduationCap, MapPin, ChevronRight, Copy, Radio, Video, ExternalLink
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-import { StudentProtectedRoute, StudentIDCardModal } from '@/components';
+import { StudentProtectedRoute } from '@/components';
 import Loader from '@/components/Loader';
 import CartoonDropdown from '@/components/ui/CartoonDropdown';
+
+const StudentIDCardModal = dynamic(() => import('@/components/StudentIDCardModal'), {
+  ssr: false,
+});
 
 interface StudentData {
   _id: string;
@@ -1989,7 +1994,7 @@ Status           : ACTIVE & VERIFIED
       </main>
 
       {/* Official Student ID Card Modal */}
-      {student && (
+      {student && showIDCardModal && (
         <StudentIDCardModal
           isOpen={showIDCardModal}
           onClose={() => setShowIDCardModal(false)}

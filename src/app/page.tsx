@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { 
   GraduationCap, 
@@ -40,8 +41,7 @@ import {
   Stethoscope,
   HeartHandshake,
   Quote,
-  MapPin,
-  Phone
+  MapPin
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
 import { testimonials, features, categories } from '@/constants/lmsData';
@@ -342,30 +342,22 @@ export default function Home() {
           {/* Subheading */}
           <p 
             ref={heroSubRef}
-            className="mt-6 text-sm sm:text-base md:text-lg text-zinc-300 font-jakarta max-w-3xl mx-auto leading-relaxed font-normal"
+            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-jakarta max-w-2xl mx-auto leading-relaxed font-normal"
           >
-            Raven Tutorials is Patna&apos;s premier home-based tuition academy where passionate educators teach with unmatched dedication. We turn complex subjects into crystal-clear concepts through dedicated 1-on-1 attention, daily doubt solving, and structured practice sheets—helping students from Classes 8th to 12th excel in CBSE, ICSE, JEE, and NEET with confidence.
+            Dedicated 1-on-1 home tuition in Patna for Classes 8th to 12th, CBSE, ICSE, JEE &amp; NEET.
           </p>
 
-          {/* Sheryians Dual CTA Buttons */}
+          {/* CTA Button */}
           <div 
             ref={heroCTARef}
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-8 sm:mt-10 flex items-center justify-center"
           >
             <Link
               href="/courses"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#10b981] hover:bg-[#10b981] text-white font-black text-sm font-outfit uppercase tracking-wider shadow-[0_0_30px_rgba(16,185,129,0.45)] hover:shadow-[0_0_40px_rgba(16,185,129,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#10b981] hover:bg-[#059669] text-white font-black text-sm font-outfit uppercase tracking-wider shadow-[0_0_30px_rgba(16,185,129,0.45)] hover:shadow-[0_0_40px_rgba(16,185,129,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
             >
               <span>Explore All Batches</span>
               <ArrowRight className="w-4 h-4 text-white" />
-            </Link>
-
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#121420]/90 hover:bg-[#1a1d2e] text-white border border-white/15 hover:border-[#10b981]/60 font-bold text-sm font-outfit transition-all duration-200 shadow-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] cursor-pointer"
-            >
-              <Phone className="w-4 h-4 text-[#34d399]" />
-              <span>Book Free Demo Class</span>
             </Link>
           </div>
 
@@ -896,11 +888,14 @@ export default function Home() {
 
             {/* Right: Iridescent Chrome Glass Prism Asset & Slider Arrows */}
             <div className="flex items-center gap-5 self-end lg:self-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border border-white/15 shadow-xl hidden sm:block">
-                <img
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border border-white/15 shadow-xl hidden sm:block relative">
+                <Image
                   src="/images/chrome-prism-torus.jpg"
                   alt="Chrome Prism"
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover animate-levitate"
+                  loading="lazy"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -1435,6 +1430,8 @@ export default function Home() {
                   <img
                     src={item.avatar}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-11 h-11 rounded-full object-cover border border-white/20 shadow-sm shrink-0"
                   />
                   <div className="flex-1 min-w-0">

@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -61,10 +62,19 @@ const Navbar: React.FC = React.memo(() => {
     };
   }, []);
 
-  // Check if student session is active
+  const lastAuthCheck = useRef<number>(0);
+
+  // Check if student session is active (throttled across route changes)
   useEffect(() => {
+    const isAuthRoute = pathname === '/login' || pathname === '/signup' || pathname === '/admin/login';
+    const now = Date.now();
+    if (!isAuthRoute && lastAuthCheck.current !== 0 && now - lastAuthCheck.current < 25000) {
+      return;
+    }
+
     const checkAuth = async () => {
       try {
+        lastAuthCheck.current = Date.now();
         const res = await fetch('/api/auth/verify', {
           credentials: 'include',
         });
@@ -270,9 +280,12 @@ const Navbar: React.FC = React.memo(() => {
             {/* Brand Logo & Identifier */}
             <Link ref={logoRef} href="/" className="flex items-center gap-3 group flex-shrink-0">
               <div className="relative p-2 rounded-xl bg-[#121420] border border-white/15 shadow-inner group-hover:-translate-y-0.5 transition-transform flex-shrink-0">
-                <img
+                <Image
                   src="/logo.png"
                   alt="RAVEN Logo"
+                  width={24}
+                  height={24}
+                  priority
                   className="h-6 w-6 object-contain"
                 />
                 <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981]" />

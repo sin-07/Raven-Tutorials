@@ -22,6 +22,8 @@ export default function CourseCard({ course }: CourseCardProps) {
             <img
               src={course.thumbnail}
               alt={course.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform opacity-90 group-hover:opacity-100"
             />
 
@@ -93,6 +95,8 @@ export default function CourseCard({ course }: CourseCardProps) {
                 <img
                   src={course.instructor.avatar}
                   alt={course.instructor.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-8 h-8 rounded-full object-cover border border-white/20 shadow-sm"
                 />
                 <div className="flex flex-col">

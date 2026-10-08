@@ -352,8 +352,7 @@ const AboutUs: React.FC = () => {
                       src={dev.image || "/AniketSingh.jpg"}
                       alt={dev.name}
                       fill
-                      unoptimized
-                      priority
+                      loading="lazy"
                       className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-outfit font-black">
@@ -425,8 +424,6 @@ const AboutUs: React.FC = () => {
                   src={devTeam[0].image || "/AniketSingh.jpg"}
                   alt={devTeam[0].name}
                   fill
-                  unoptimized
-                  priority
                   className="object-cover object-top"
                 />
               </div>

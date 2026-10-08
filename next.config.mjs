@@ -24,13 +24,10 @@ const nextConfig = {
       'mongoose',
       'bcryptjs',
       'jsonwebtoken',
-      'pdfkit',
       'nodemailer',
     ],
     optimizePackageImports: [
       'lucide-react',
-      'react-icons',
-      '@heroicons/react',
       'framer-motion',
       'gsap',
     ],
@@ -47,6 +44,35 @@ const nextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/live-classes',
+        destination: '/live-class',
+        permanent: true,
+      },
+      {
+        source: '/rsat',
+        destination: '/courses',
+        permanent: true,
+      },
+      {
+        source: '/teacher-admission',
+        destination: '/admission/tutor',
+        permanent: true,
+      },
+      {
+        source: '/teacher-admission/status',
+        destination: '/admission/tutor/status',
+        permanent: true,
+      },
+      {
+        source: '/admin',
+        destination: '/admin/dashboard',
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {
@@ -71,7 +97,25 @@ const nextConfig = {
         ],
       },
       {
-        source: '/logo.png',
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(logo.png|AniketSingh.jpg|icon.svg|manifest.json)',
         headers: [
           {
             key: 'Cache-Control',

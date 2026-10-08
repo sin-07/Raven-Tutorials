@@ -5,21 +5,13 @@
  */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { TextPlugin } from 'gsap/TextPlugin';
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
-// Observer and Draggable use ts-ignore due to known GSAP Windows casing issue
-// @ts-ignore
-import { Observer } from 'gsap/Observer';
-// @ts-ignore
-import { Draggable } from 'gsap/Draggable';
-
-// Register plugins on client side
+// Register core plugins on client side
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, Draggable, MotionPathPlugin);
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-export { gsap, ScrollTrigger, TextPlugin, Observer, Draggable, MotionPathPlugin };
+export { gsap, ScrollTrigger };
 
 // ─── 1. CORE DIRECTIONAL ENTRANCE ANIMATIONS ────────────────────────────────
 
@@ -490,15 +482,11 @@ export const revealNavOnScroll = (navEl: HTMLElement | null) => {
 };
 
 export const makeDraggable = (
-  el: string | Element,
-  type: 'x' | 'y' = 'x',
-  bounds?: Element | string
+  _el: string | Element,
+  _type: 'x' | 'y' = 'x',
+  _bounds?: Element | string
 ) => {
-  return Draggable.create(el, {
-    type,
-    bounds,
-    inertia: false,
-  });
+  return null;
 };
 
 // ─── 4. CARTOON ANIMATION ENGINE (SPRING, POP, WOBBLE) ─────────────────────

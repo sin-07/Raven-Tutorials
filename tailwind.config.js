@@ -29,7 +29,7 @@ module.exports = {
         machina: ['var(--font-space)', 'sans-serif'],
         juana: ['var(--font-outfit)', 'sans-serif'],
         helvetica: ['var(--font-jakarta)', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
         sans: ['var(--font-jakarta)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {

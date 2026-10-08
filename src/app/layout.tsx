@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
 import './globals.css';
@@ -7,29 +7,19 @@ import ClientLayout from '@/components/ClientLayout';
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-outfit',
   display: 'swap',
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-jakarta',
   display: 'swap',
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   variable: '--font-space',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -107,7 +97,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable}`}
     >
       <head>
         <script

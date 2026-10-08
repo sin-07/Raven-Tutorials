@@ -124,26 +124,6 @@ export const Loader: React.FC<LoaderProps> = ({
           )}
         </div>
       )}
-
-      {/* Fallback inline keyframes for universal browser compatibility */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @keyframes raven-spin-reverse {
-              0% { transform: rotate(360deg); }
-              100% { transform: rotate(0deg); }
-            }
-            @keyframes spin-reverse {
-              0% { transform: rotate(360deg); }
-              100% { transform: rotate(0deg); }
-            }
-            @keyframes raven-beam {
-              0% { transform: translateX(-100%); }
-              100% { transform: translateX(100%); }
-            }
-          `,
-        }}
-      />
     </div>
   );
 

@@ -34,19 +34,21 @@ function VideosPage() {
   const fetchStudentProfileAndVideos = async () => {
     try {
       setLoading(true);
-      const profileRes = await fetch('/api/auth/verify');
-      const profileData = await profileRes.json();
+      const [profileRes, videoRes] = await Promise.all([
+        fetch('/api/auth/verify'),
+        fetch('/api/admin/videos/student/standard')
+      ]);
 
-      let currentStandard = '';
-      if (profileData.success && profileData.user?.standard) {
-        currentStandard = profileData.user.standard;
-        setStudentStandard(currentStandard);
+      const [profileData, videoData] = await Promise.all([
+        profileRes.json().catch(() => ({})),
+        videoRes.json().catch(() => ({}))
+      ]);
+
+      if (profileData?.success && profileData?.user?.standard) {
+        setStudentStandard(profileData.user.standard);
       }
 
-      const videoRes = await fetch('/api/admin/videos/student/standard');
-      const videoData = await videoRes.json();
-
-      if (videoData.success) {
+      if (videoData?.success) {
         setVideos(videoData.videos || []);
       }
     } catch (err) {
@@ -234,6 +236,8 @@ function VideosPage() {
                             <img
                               src={video.thumbnail}
                               alt={video.title}
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (

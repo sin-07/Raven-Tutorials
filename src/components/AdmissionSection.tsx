@@ -93,8 +93,11 @@ export default function AdmissionSection() {
 
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
 
-  // Load Razorpay script
+  // Lazily load Razorpay script only when modal is open and on payment step
   useEffect(() => {
+    if (!showModal || step < 3) return;
+    if (typeof window !== 'undefined' && window.Razorpay) return;
+
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
@@ -104,7 +107,7 @@ export default function AdmissionSection() {
         document.body.removeChild(script);
       }
     };
-  }, []);
+  }, [showModal, step]);
 
   const resetForm = () => {
     setStep(1);
