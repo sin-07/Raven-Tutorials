@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import GlobalBackground from '@/components/GlobalBackground';
+import SheryiansSplash from '@/components/SheryiansSplash';
 import { 
   initDirectionalAnimations, 
   animatePageEnter, 
@@ -38,8 +39,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
 
-    // 1. Top Route Progress Bar Animation
-    if (progressBarRef.current) {
+    // 1. Top Route Progress Bar Animation (only on route changes, not first mount)
+    if (!isFirstRender.current && progressBarRef.current) {
       gsap.killTweensOf(progressBarRef.current);
       gsap.set(progressBarRef.current, { width: '0%', opacity: 1 });
 
@@ -69,8 +70,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       });
     }
 
-    // 2. Smooth GSAP Page Entrance Transition
-    if (pageRef.current) {
+    // 2. Smooth GSAP Page Entrance Transition (only on client navigations)
+    if (!isFirstRender.current && pageRef.current) {
       animatePageEnter(pageRef.current, () => {
         initDirectionalAnimations(pageRef.current);
       });
@@ -83,6 +84,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   return (
     <>
+      {/* Luxury Brand Splash Screen Loader */}
+      <SheryiansSplash />
+
       {/* Top Route Progress Bar (Cyber Emerald Laser accent) */}
       <div
         ref={progressBarRef}

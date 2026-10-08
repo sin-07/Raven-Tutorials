@@ -260,8 +260,7 @@ export default function Home() {
       if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.4, 35, 0.65);
       if (heroCTARef.current) {
         const buttons = Array.from(heroCTARef.current.children);
-        if (buttons[0]) animateFromLeft(buttons[0], 0.5, 40, 0.6);
-        if (buttons[1]) animateFromRight(buttons[1], 0.5, 40, 0.6);
+        if (buttons[0]) animateFromDown(buttons[0], 0.5, 25, 0.65);
       }
 
       // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
@@ -418,23 +417,19 @@ export default function Home() {
             </div>
 
             {/* 3-Column Bento Deck with Generous Spacing */}
-            <motion.div 
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 min-h-[340px]"
-            >
-              <AnimatePresence mode="popLayout">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 min-h-[340px]">
+              <AnimatePresence initial={false}>
                 {heroSubjects
                   .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
                   .map((sub) => {
                     const IconComponent = sub.icon;
                     return (
                       <motion.div
-                        layout
                         key={sub.name}
-                        initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
                         className="h-full flex flex-col"
                       >
                         <Link
@@ -520,7 +515,7 @@ export default function Home() {
                     );
                   })}
               </AnimatePresence>
-            </motion.div>
+            </div>
           </div>
         </div>
 
