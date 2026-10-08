@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
 
-export default function SheryiansSplash() {
+export default function RavenSplash() {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 

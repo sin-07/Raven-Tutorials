@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import GlobalBackground from '@/components/GlobalBackground';
-import SheryiansSplash from '@/components/SheryiansSplash';
+import RavenSplash from '@/components/RavenSplash';
 import { 
   initDirectionalAnimations, 
   animatePageEnter, 
@@ -84,8 +84,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   return (
     <>
-      {/* Luxury Brand Splash Screen Loader */}
-      <SheryiansSplash />
+      {/* Raven Tutorials Luxury Splash Screen Loader */}
+      <RavenSplash />
 
       {/* Top Route Progress Bar (Cyber Emerald Laser accent) */}
       <div
