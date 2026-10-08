@@ -25,8 +25,8 @@ export const wave_optics: CurriculumTopic_wave_optics = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-05',
-  revisionNumber: 267,
+  lastReviewed: '2026-10-08',
+  revisionNumber: 362,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Huygens Principle and Double Slit Interference',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
