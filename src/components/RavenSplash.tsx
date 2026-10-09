@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
 
 export default function RavenSplash() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const fadeTimer = setTimeout(() => {
       setFading(true);
     }, 650);
@@ -22,7 +24,7 @@ export default function RavenSplash() {
     };
   }, []);
 
-  if (!visible) return null;
+  if (!mounted || !visible) return null;
 
   return (
     <div 

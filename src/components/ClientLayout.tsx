@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import GlobalBackground from '@/components/GlobalBackground';
-import RavenSplash from '@/components/RavenSplash';
 import { 
   initDirectionalAnimations, 
   animatePageEnter, 
@@ -12,6 +12,11 @@ import {
   gsap 
 } from '@/lib/gsap';
 import { resetScrollLock } from '@/lib/scrollLock';
+
+// Dynamically import client-only splash loader to eliminate SSR hydration mismatches
+const RavenSplash = dynamic(() => import('@/components/RavenSplash'), {
+  ssr: false,
+});
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -83,7 +88,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   }, [pathname]);
 
   return (
-    <>
+    <div className="relative min-h-screen">
       {/* Raven Tutorials Luxury Splash Screen Loader */}
       <RavenSplash />
 
@@ -102,6 +107,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <div ref={pageRef} className="page-transition-wrapper min-h-screen">
         {children}
       </div>
-    </>
+    </div>
   );
 }
