@@ -1,26 +1,36 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { AdminProvider } from '@/context/AdminContext';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 
+export const viewport: Viewport = {
+  themeColor: '#050507',
+  colorScheme: 'dark',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
   display: 'swap',
+  preload: true,
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-jakarta',
   display: 'swap',
+  preload: true,
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space',
   display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -100,6 +110,10 @@ export default function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

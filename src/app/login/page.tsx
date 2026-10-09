@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LMSFooter } from '@/components/lms';
@@ -137,9 +138,12 @@ const LoginPage: React.FC = () => {
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center mb-4">
                   <div className="p-3.5 rounded-2xl bg-[#121522] border border-[#10b981]/40 shadow-[0_0_25px_rgba(16,185,129,0.35)] flex items-center justify-center">
-                    <img
+                    <Image
                       src="/logo.png"
                       alt="Raven Tutorials Logo"
+                      width={48}
+                      height={48}
+                      priority
                       className="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]"
                     />
                   </div>

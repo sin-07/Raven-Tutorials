@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Newspaper, 
@@ -182,14 +183,14 @@ export default function ArticlesDirectoryPage() {
                     <div>
                       {/* Thumbnail */}
                       <div className="relative h-48 w-full bg-[#161922] border-b border-white/10 overflow-hidden">
-                        <img
+                        <Image
                           src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
                           alt={art.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute top-3 left-3">
+                        <div className="absolute top-3 left-3 z-10">
                           <span className="px-2.5 py-0.5 bg-[#08090d]/90 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-md text-xs font-bold font-space uppercase shadow-sm">
                             {art.category}
                           </span>

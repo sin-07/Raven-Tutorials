@@ -51,6 +51,9 @@ const feedbackSchema = new Schema<IFeedback>({
   timestamps: true
 });
 
+feedbackSchema.index({ status: 1, createdAt: -1 });
+feedbackSchema.index({ studentId: 1, createdAt: -1 });
+
 const Feedback: Model<IFeedback> = mongoose.models.Feedback || mongoose.model<IFeedback>('Feedback', feedbackSchema);
 
 export default Feedback;

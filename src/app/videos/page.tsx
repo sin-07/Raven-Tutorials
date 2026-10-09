@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Video, Clock, Eye, Filter, Play, X } from 'lucide-react';
 import StudentProtectedRoute from '@/components/StudentProtectedRoute';
@@ -233,12 +234,12 @@ function VideosPage() {
                         {/* Video Thumbnail */}
                         <div className="relative w-full h-44 bg-[#141622] border-b border-white/10 overflow-hidden">
                           {video.thumbnail ? (
-                            <img
+                            <Image
                               src={video.thumbnail}
                               alt={video.title}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#121422] to-[#1a1e30]">

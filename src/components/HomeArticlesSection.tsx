@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   BookOpen, 
   Clock, 
@@ -81,14 +82,14 @@ export default function HomeArticlesSection() {
                 <div>
                   {/* Card Cover Thumbnail */}
                   <div className="relative h-48 w-full bg-black/40 border-b border-white/10 overflow-hidden">
-                    <img
+                    <Image
                       src={art.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'}
                       alt={art.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
-                    <div className="absolute top-3 left-3">
+                    <div className="absolute top-3 left-3 z-10">
                       <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-[#34d399] border border-[#10b981]/30 rounded-full text-xs font-extrabold font-space uppercase">
                         {art.category}
                       </span>

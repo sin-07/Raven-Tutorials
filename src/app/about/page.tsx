@@ -490,9 +490,11 @@ const AboutUs: React.FC = () => {
             className="relative max-w-2xl max-h-[85vh] rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.9)] bg-[#08090d] my-auto" 
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <Image
               src={devTeam[0].image || "/AniketSingh.jpg"}
               alt="Aniket Singh"
+              width={600}
+              height={600}
               className="w-full h-auto max-h-[80vh] object-contain"
             />
           </div>

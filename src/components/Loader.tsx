@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 export interface LoaderProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -78,14 +79,13 @@ export const Loader: React.FC<LoaderProps> = ({
         {/* Center Logo or Pulsing Core */}
         {size !== 'xs' && (
           <div className="relative z-10 flex items-center justify-center animate-pulse">
-            <img
+            <Image
               src="/logo.png"
               alt="Raven Core"
+              width={56}
+              height={56}
+              priority
               className={`${logoSize} object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]`}
-              onError={(e) => {
-                // Fallback to stylized dot if logo isn't rendered
-                (e.target as HTMLElement).style.display = 'none';
-              }}
             />
           </div>
         )}

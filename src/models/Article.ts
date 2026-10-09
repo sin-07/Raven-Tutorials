@@ -92,7 +92,8 @@ const articleSchema = new Schema<IArticle>(
 );
 
 articleSchema.index({ isPublished: 1, createdAt: -1 });
-articleSchema.index({ category: 1 });
+articleSchema.index({ isPublished: 1, featured: -1, createdAt: -1 });
+articleSchema.index({ category: 1, isPublished: 1 });
 
 const Article: Model<IArticle> = mongoose.models.Article || mongoose.model<IArticle>('Article', articleSchema);
 

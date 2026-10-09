@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { 
@@ -185,9 +186,11 @@ export default function CourseDetailPage() {
 
               {/* Instructor */}
               <div className="flex items-center gap-4 bg-[#dcfce7] p-4 rounded-2xl border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] inline-flex">
-                <img
+                <Image
                   src={course.instructor.avatar}
                   alt={course.instructor.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                 />
                 <div>
@@ -205,13 +208,16 @@ export default function CourseDetailPage() {
                 className="sticky top-28 bg-[#f0fdf4] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden border border-white/10"
               >
                 {/* Video Preview */}
-                <div className="relative aspect-video bg-neutral-100 border-b border-white/10">
-                  <img
+                <div className="relative aspect-video bg-neutral-100 border-b border-white/10 overflow-hidden">
+                  <Image
                     src={course.thumbnail}
                     alt={course.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
                     <button className="w-16 h-16 rounded-full bg-emerald-300 border border-white/10 flex items-center justify-center shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform">
                       <PlayCircle className="w-8 h-8 text-black ml-0.5" />
                     </button>
@@ -384,9 +390,11 @@ export default function CourseDetailPage() {
               <h2 className="text-2xl font-black text-black font-outfit mb-6">Your Instructor</h2>
               <div className="bg-[#f0fdf4] rounded-3xl p-6 sm:p-8 border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.7)]">
                 <div className="flex items-start gap-4 flex-col sm:flex-row">
-                  <img
+                  <Image
                     src={course.instructor.avatar}
                     alt={course.instructor.name}
+                    width={80}
+                    height={80}
                     className="w-20 h-20 rounded-full object-cover border border-white/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
                   />
                   <div>

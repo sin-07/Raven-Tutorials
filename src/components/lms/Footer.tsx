@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Mail, 
   Phone, 
@@ -83,9 +84,11 @@ export default function LMSFooter() {
           <div className="lg:col-span-2 space-y-5">
             <Link href="/" className="flex items-center gap-3 group inline-block">
               <div className="p-2.5 rounded-2xl bg-[#121420] border border-white/15 shadow-sm group-hover:border-[#10b981]/50 transition-colors">
-                <img 
+                <Image 
                   src="/logo.png" 
                   alt="RAVEN Logo" 
+                  width={32}
+                  height={32}
                   className="h-8 w-8 object-contain"
                 />
               </div>

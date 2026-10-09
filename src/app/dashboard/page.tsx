@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -426,7 +427,7 @@ Status           : ACTIVE & VERIFIED
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
                 <div className="flex items-center gap-2">
                   <div className="p-1.5 rounded-lg bg-white/10 border border-white/15">
-                    <img src="/logo.png" alt="Raven Logo" className="w-4 h-4 object-contain" />
+                    <Image src="/logo.png" alt="Raven Logo" width={16} height={16} className="w-4 h-4 object-contain" />
                   </div>
                   <div>
                     <span className="font-black font-outfit text-xs text-white tracking-wider uppercase block leading-none">

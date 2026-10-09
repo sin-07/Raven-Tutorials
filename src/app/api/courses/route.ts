@@ -8,8 +8,9 @@ export async function GET() {
   try {
     await connectDB();
 
-    // Fetch published courses with lean query
+    // Fetch published courses with lean query and selective projection
     const courses = await Course.find({ isPublished: true })
+      .select('title description thumbnail instructor instructorQualification instructorAvatar category level duration syllabus enrolledStudents rating price originalPrice features createdAt')
       .sort({ createdAt: -1 })
       .lean();
 

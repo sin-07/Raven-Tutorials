@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { 
   ArrowLeft, 
@@ -193,9 +194,11 @@ export default function ArticleDetailPage() {
 
           {/* Author Badge */}
           <div className="flex items-center gap-3 pt-6 border-t border-white/10/10">
-            <img
+            <Image
               src={article.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'}
               alt={article.author}
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full object-cover border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
             />
             <div>
@@ -210,11 +213,14 @@ export default function ArticleDetailPage() {
 
         {/* Cover Image */}
         {article.coverImage && (
-          <div className="rounded-3xl border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 h-72 sm:h-96 w-full bg-slate-100">
-            <img
+          <div className="relative rounded-3xl border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 h-72 sm:h-96 w-full bg-slate-100">
+            <Image
               src={article.coverImage}
               alt={article.title}
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 896px"
+              className="object-cover"
             />
           </div>
         )}

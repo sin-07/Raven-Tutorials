@@ -592,6 +592,8 @@ body.popup-frozen {
   width: max-content;
   animation: marquee-left 38s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee-right {
@@ -599,6 +601,8 @@ body.popup-frozen {
   width: max-content;
   animation: marquee-right 38s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .marquee-track:hover .animate-marquee-left,

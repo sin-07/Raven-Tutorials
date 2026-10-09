@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   Printer, X, Download, ShieldCheck, Sparkles,
   Phone, Mail, MapPin, RotateCw, CheckCircle, Award
@@ -272,9 +273,11 @@ const StudentIDCardModal: React.FC<StudentIDCardModalProps> = ({
                     
                     <div className="flex items-center justify-center gap-2 mb-1">
                       <div className="p-1 rounded-lg bg-white/10 border border-white/20">
-                        <img
+                        <Image
                           src="/logo.png"
                           alt="Raven Logo"
+                          width={20}
+                          height={20}
                           className="w-5 h-5 object-contain"
                         />
                       </div>

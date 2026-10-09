@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Star, Clock, BookOpen, PlayCircle } from 'lucide-react';
 import { Course } from '@/types/lms';
 
@@ -10,7 +11,7 @@ interface CourseCardProps {
   index?: number;
 }
 
-export default function CourseCard({ course }: CourseCardProps) {
+function CourseCardComponent({ course }: CourseCardProps) {
   return (
     <div className="h-full">
       <Link href={`/courses/${course.id}`}>
@@ -19,23 +20,23 @@ export default function CourseCard({ course }: CourseCardProps) {
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500 z-20" />
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden border-b border-white/10 bg-black/40">
-            <img
+            <Image
               src={course.thumbnail}
               alt={course.title}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform opacity-90 group-hover:opacity-100"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform opacity-90 group-hover:opacity-100"
             />
 
             {/* Play Button Icon */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px] z-10">
               <div className="w-14 h-14 rounded-full bg-[#10b981] text-white flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
                 <PlayCircle className="w-8 h-8 fill-white text-[#10b981] ml-0.5" />
               </div>
             </div>
 
             {/* Badges */}
-            <div className="absolute top-3 left-3 flex gap-1.5">
+            <div className="absolute top-3 left-3 flex gap-1.5 z-10">
               {course.isPopular && (
                 <span className="px-2.5 py-0.5 bg-[#10b981] text-white text-xs font-black font-space rounded-full shadow-[0_0_15px_rgba(16,185,129,0.4)]">
                   HOT
@@ -49,7 +50,7 @@ export default function CourseCard({ course }: CourseCardProps) {
             </div>
 
             {/* Level Badge */}
-            <div className="absolute top-3 right-3">
+            <div className="absolute top-3 right-3 z-10">
               <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md text-[#6ee7b7] border border-white/10 text-xs font-bold font-space rounded-full">
                 {course.level}
               </span>
@@ -92,11 +93,11 @@ export default function CourseCard({ course }: CourseCardProps) {
             <div className="flex items-center justify-between">
               {/* Instructor */}
               <div className="flex items-center gap-2.5">
-                <img
+                <Image
                   src={course.instructor.avatar}
                   alt={course.instructor.name}
-                  loading="lazy"
-                  decoding="async"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full object-cover border border-white/20 shadow-sm"
                 />
                 <div className="flex flex-col">
@@ -143,3 +144,5 @@ export default function CourseCard({ course }: CourseCardProps) {
     </div>
   );
 }
+
+export default React.memo(CourseCardComponent);

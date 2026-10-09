@@ -123,8 +123,10 @@ export async function GET(request: Request) {
     }
 
     let articles = await Article.find(filter)
+      .select('-content')
       .sort({ featured: -1, createdAt: -1 })
-      .limit(limit);
+      .limit(limit)
+      .lean();
 
     // Auto-seed starter articles if database has none
     if (articles.length === 0 && (!category || category === 'All')) {
@@ -132,16 +134,25 @@ export async function GET(request: Request) {
       if (count === 0) {
         await Article.insertMany(SAMPLE_ARTICLES);
         articles = await Article.find(filter)
+          .select('-content')
           .sort({ featured: -1, createdAt: -1 })
-          .limit(limit);
+          .limit(limit)
+          .lean();
       }
     }
 
-    return NextResponse.json({
-      success: true,
-      articles,
-      count: articles.length,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        articles,
+        count: articles.length,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      }
+    );
   } catch (error) {
     console.error('Error fetching articles:', error);
     return NextResponse.json(

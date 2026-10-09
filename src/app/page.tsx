@@ -8,43 +8,34 @@ import dynamic from 'next/dynamic';
 import { 
   GraduationCap, 
   Video, 
-  PlayCircle,
-  Clock,
+  PlayCircle, 
+  Clock, 
   MessageCircle, 
-  FileText, 
-  BarChart, 
-  Award,
-  ArrowRight,
-  ArrowUpRight,
-  Star,
-  Users,
-  BookOpen,
-  CheckCircle2,
-  ChevronRight,
-  Sparkles,
-  Microscope,
-  Calculator,
-  Atom,
-  FlaskConical,
-  Dna,
-  Languages,
-  Monitor,
-  BookMarked,
-  TrendingUp,
-  Palette,
-  ShieldCheck,
-  Zap,
-  Target,
-  Trophy,
-  Crown,
-  Medal,
-  Stethoscope,
-  HeartHandshake,
-  Quote,
-  MapPin
+  ArrowRight, 
+  ArrowUpRight, 
+  Star, 
+  Users, 
+  BookOpen, 
+  CheckCircle2, 
+  Sparkles, 
+  Microscope, 
+  Calculator, 
+  Atom, 
+  FlaskConical, 
+  Dna, 
+  Languages, 
+  Monitor, 
+  BookMarked, 
+  TrendingUp, 
+  Palette, 
+  Zap, 
+  Target, 
+  HeartHandshake, 
+  Quote, 
+  MapPin 
 } from 'lucide-react';
 import { LMSFooter, CourseCard } from '@/components/lms';
-import { testimonials, features, categories } from '@/constants/lmsData';
+import { testimonials, features, categories, dummyCourses } from '@/constants/lmsData';
 import { Course } from '@/types/lms';
 import WavyHeading from '@/components/WavyHeading';
 import Loader from '@/components/Loader';
@@ -80,14 +71,7 @@ const HomeArticlesSection = dynamic(() => import('@/components/HomeArticlesSecti
   ),
 });
 
-const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-  GraduationCap,
-  Video,
-  MessageCircle,
-  FileText,
-  BarChart,
-  Award,
-};
+
 
 const categoryIconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
   Microscope,
@@ -180,8 +164,8 @@ const heroSubjects = [
 ];
 
 export default function Home() {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState<Course[]>(() => dummyCourses.slice(0, 6));
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [subjectFilter, setSubjectFilter] = useState<'all' | 'stem' | 'language'>('all');
   const [testimonialFilter, setTestimonialFilter] = useState<'all' | 'students' | 'parents'>('all');
@@ -230,19 +214,16 @@ export default function Home() {
   const testimonialsSectionRef = useRef<HTMLElement>(null);
   const ctaSectionRef = useRef<HTMLElement>(null);
 
-  // Fetch courses from API
+  // Fetch courses from API in background without blocking initial render
   const fetchCourses = useCallback(async () => {
     try {
-      setLoading(true);
       const response = await fetch('/api/courses');
       const data = await response.json();
-      if (data.success && Array.isArray(data.courses)) {
+      if (data.success && Array.isArray(data.courses) && data.courses.length > 0) {
         setCourses(data.courses.slice(0, 6));
       }
     } catch (error) {
       console.error('Error fetching courses:', error);
-    } finally {
-      setLoading(false);
     }
   }, []);
 
@@ -970,12 +951,14 @@ export default function Home() {
                 <div>
                   {/* Thumbnail with Play Icon */}
                   <div className="relative aspect-video overflow-hidden bg-black/60">
-                    <img
+                    <Image
                       src={lesson.thumbnail}
                       alt={lesson.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                      fill
+                      sizes="(max-width: 640px) 85vw, 380px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors z-10">
                       <div className="w-12 h-12 rounded-full bg-[#10b981] text-white flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform">
                         <PlayCircle className="w-7 h-7 fill-white text-[#10b981] ml-0.5" />
                       </div>
@@ -1422,11 +1405,11 @@ export default function Home() {
 
                 {/* Card Footer: Avatar, Name, Relationship & Location */}
                 <div className="flex items-center gap-3 pt-3 border-t border-white/10 relative z-10 mt-1">
-                  <img
+                  <Image
                     src={item.avatar}
                     alt={item.name}
-                    loading="lazy"
-                    decoding="async"
+                    width={44}
+                    height={44}
                     className="w-11 h-11 rounded-full object-cover border border-white/20 shadow-sm shrink-0"
                   />
                   <div className="flex-1 min-w-0">
@@ -1450,6 +1433,7 @@ export default function Home() {
           return (
             <div 
               className="marquee-container relative w-full overflow-hidden py-3 space-y-6"
+              style={{ contain: 'paint' }}
               data-has-active={activeMarqueeCard !== null ? "true" : "false"}
               onClick={() => setActiveMarqueeCard(null)}
             >
