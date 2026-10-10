@@ -14,3 +14,8 @@ export * from './enquiryFilterSchema';
 export * from './tutorReviewSchema';
 export * from './studyMaterialSchema';
 export * from './liveClassSchema';
+export * from './userSettingsSchema';
+export * from './classScheduleSchema';
+export * from './tutorApplicationSchema';
+export * from './paymentReceiptSchema';
+export * from './supportTicketSchema';
