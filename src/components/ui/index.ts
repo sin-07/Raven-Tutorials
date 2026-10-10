@@ -41,3 +41,7 @@ export * from './Drawer';
 export * from './Popover';
 export * from './AccordionGroup';
 export * from './TabsList';
+export * from './BadgeGroup';
+export * from './DividerWithText';
+export * from './IconButton';
+export * from './LoadingOverlay';
