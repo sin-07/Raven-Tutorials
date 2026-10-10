@@ -706,3 +706,11 @@ body.popup-frozen {
 
 
 
+
+/* Micro-interaction & Neon Glow Utilities */
+.emerald-glow-sm {
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+.emerald-glow-lg {
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.45);
+}
