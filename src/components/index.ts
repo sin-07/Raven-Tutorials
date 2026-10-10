@@ -12,3 +12,5 @@ export { default as AdminProtectedRoute } from './admin/ProtectedRoute';
 
 // UI components
 export { default as AnimatedEyeToggle } from './ui/AnimatedEyeToggle';
+
+export * from './ui';
