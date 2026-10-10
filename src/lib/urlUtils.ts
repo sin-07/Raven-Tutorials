@@ -10,5 +10,11 @@ export function isExternalUrl(url: string): boolean {
 }
 
 export function cleanUrl(url: string): string {
-  return url.replace(/([^:]/)/+/g, '$1');
+  try {
+    const parsed = new URL(url);
+    parsed.pathname = parsed.pathname.replace(/\/+/g, '/');
+    return parsed.toString();
+  } catch {
+    return url;
+  }
 }
