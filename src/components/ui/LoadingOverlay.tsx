@@ -13,7 +13,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ isLoading, text 
       {children}
       {isLoading && (
         <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex flex-col items-center justify-center z-30 rounded-2xl animate-fade-in">
-          <Spinner size="md" color="emerald" />
+          <Spinner size={24} />
           <span className="text-xs font-jakarta text-zinc-200 mt-2 font-medium">{text}</span>
         </div>
       )}
