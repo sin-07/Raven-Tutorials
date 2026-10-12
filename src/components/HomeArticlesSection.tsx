@@ -77,8 +77,11 @@ export default function HomeArticlesSection() {
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                className="group relative bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
+                {/* Top ambient green laser accent */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500 z-20" />
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#10b981]/10 group-hover:bg-[#10b981]/22 rounded-full blur-2xl pointer-events-none transition-all duration-500" />
                 <div>
                   {/* Card Cover Thumbnail */}
                   <div className="relative h-48 w-full bg-black/40 border-b border-white/10 overflow-hidden">
