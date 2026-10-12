@@ -59,19 +59,19 @@ export const Loader: React.FC<LoaderProps> = ({
         {/* Track Ring (Subtle Translucent Base) */}
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
-        {/* Outer Fast Spin Ring (Electric Orange Neon Gradient) */}
+        {/* Outer Fast Spin Ring (Electric Emerald Neon Gradient) */}
         <div 
           className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#10b981] border-r-[#34d399] animate-spin"
-          style={{ animationDuration: '0.9s', filter: 'drop-shadow(0 0 8px rgba(16,185,129,0.6))' }}
+          style={{ animationDuration: '0.9s', boxShadow: '0 0 10px rgba(16,185,129,0.35)' }}
         />
 
-        {/* Inner Counter-Rotating Ring (Amber Gold Glow) */}
+        {/* Inner Counter-Rotating Ring (Mint Glow) */}
         {size !== 'xs' && (
           <div 
             className="absolute inset-1.5 sm:inset-2 rounded-full border-2 border-transparent border-b-[#6ee7b7] border-l-[#34d399] animate-spin-reverse"
             style={{ 
               animation: 'raven-spin-reverse 1.2s linear infinite',
-              filter: 'drop-shadow(0 0 8px rgba(110,231,183,0.6))' 
+              boxShadow: '0 0 8px rgba(110,231,183,0.35)' 
             }}
           />
         )}
@@ -85,7 +85,7 @@ export const Loader: React.FC<LoaderProps> = ({
               width={56}
               height={56}
               priority
-              className={`${logoSize} object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]`}
+              className={`${logoSize} object-contain`}
             />
           </div>
         )}

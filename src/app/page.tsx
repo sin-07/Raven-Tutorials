@@ -236,50 +236,50 @@ export default function Home() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero: Title & Subtitle from Down, Buttons from Left & Right
-      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.15, 45, 0.7);
-      if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.4, 35, 0.65);
+      // 1. Hero: Title & Subtitle from Down, Buttons from Left & Right (Instant snappy 120 FPS entrance)
+      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.05, 30, 0.55);
+      if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.15, 25, 0.5);
       if (heroCTARef.current) {
         const buttons = Array.from(heroCTARef.current.children);
-        if (buttons[0]) animateFromDown(buttons[0], 0.5, 25, 0.65);
+        if (buttons[0]) animateFromDown(buttons[0], 0.25, 20, 0.45);
       }
 
       // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
-      if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 40 });
+      if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 35 });
       if (featuresGridRef.current) {
         const cards = featuresGridRef.current.querySelectorAll('.feature-card');
-        scrollStaggerDirectional(cards, 'cross', 0.1, { distance: 45 });
+        scrollStaggerDirectional(cards, 'cross', 0.08, { distance: 35 });
       }
 
       // 3. 4-Step Methodology: 01 from Left, 02 from Up, 03 from Down, 04 from Right
       if (methodologyGridRef.current) {
         const steps = methodologyGridRef.current.querySelectorAll('.methodology-step');
-        if (steps[0]) scrollFromLeft(steps[0], { distance: 50 });
-        if (steps[1]) scrollFromUp(steps[1], { distance: 45 });
-        if (steps[2]) scrollFromDown(steps[2], { distance: 45 });
-        if (steps[3]) scrollFromRight(steps[3], { distance: 50 });
+        if (steps[0]) scrollFromLeft(steps[0], { distance: 40 });
+        if (steps[1]) scrollFromUp(steps[1], { distance: 35 });
+        if (steps[2]) scrollFromDown(steps[2], { distance: 35 });
+        if (steps[3]) scrollFromRight(steps[3], { distance: 40 });
       }
 
       // 4. Featured Courses: Catalog title from Left
-      if (coursesTitleRef.current) scrollFromLeft(coursesTitleRef.current, { distance: 45 });
+      if (coursesTitleRef.current) scrollFromLeft(coursesTitleRef.current, { distance: 35 });
 
       // 5. Subject Focus Categories: Stagger alternating from Left & Right
       if (categoriesGridRef.current) {
         const catCards = categoriesGridRef.current.querySelectorAll('.cat-card');
-        scrollStaggerDirectional(catCards, 'cross', 0.07, { distance: 35 });
+        scrollStaggerDirectional(catCards, 'cross', 0.06, { distance: 30 });
       }
 
       // 6. Testimonials: Stats entrance animation
       if (testimonialsSectionRef.current) {
         const statCards = testimonialsSectionRef.current.querySelectorAll('.testimonial-stat-card');
         if (statCards.length > 0) {
-          scrollStaggerDirectional(statCards, 'cross', 0.08, { distance: 30 });
+          scrollStaggerDirectional(statCards, 'cross', 0.06, { distance: 25 });
         }
       }
 
       // 7. CTA Banner: Reveal from Down
       if (ctaSectionRef.current) {
-        scrollFromDown(ctaSectionRef.current, { distance: 45 });
+        scrollFromDown(ctaSectionRef.current, { distance: 35 });
       }
     }, containerRef);
 
@@ -301,9 +301,21 @@ export default function Home() {
     <div ref={containerRef} className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white relative overflow-hidden">
       {/* ── HERO SECTION (SHERYIANS LUXURY OBSIDIAN & ORANGE THEME) ────────────────── */}
       <section className="relative px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-40 pb-16 max-w-7xl mx-auto">
-        {/* Ambient Radial Background Glows */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[450px] bg-gradient-to-b from-[#10b981]/20 via-[#10b981]/8 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
-        <div className="absolute top-60 left-1/4 w-[350px] h-[350px] bg-[#10b981]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
+        {/* Ambient Radial Background Glows (Hardware-Accelerated) */}
+        <div 
+          className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[450px] rounded-full pointer-events-none -z-10"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.16) 0%, rgba(16, 185, 129, 0.04) 50%, transparent 70%)',
+            transform: 'translate3d(0, 0, 0)',
+          }}
+        />
+        <div 
+          className="absolute top-60 left-1/4 w-[350px] h-[350px] rounded-full pointer-events-none -z-10"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
+            transform: 'translate3d(0, 0, 0)',
+          }}
+        />
 
         {/* Hero Top Content: Centered editorial headline & actions */}
         <div className="text-center max-w-5xl mx-auto pt-4 sm:pt-6">
@@ -314,7 +326,7 @@ export default function Home() {
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06]"
           >
             Personalized Home Tuition with <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7] drop-shadow-[0_0_35px_rgba(16,185,129,0.35)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">
               Exceptional Teaching &amp; Results.
             </span>
           </h1>
@@ -804,10 +816,7 @@ export default function Home() {
         </div>
 
         {/* Grid of Courses */}
-        <motion.div 
-          layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]">
           <AnimatePresence mode="popLayout">
             {loading ? (
               <motion.div
@@ -832,19 +841,18 @@ export default function Home() {
             ) : (
               filteredCourses.map((course, index) => (
                 <motion.div
-                  layout
                   key={course.id}
-                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96, y: -10 }}
-                  transition={{ duration: 0.25, ease: 'easeOut', delay: index * 0.03 }}
+                  exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                  transition={{ duration: 0.2, ease: 'easeOut', delay: index * 0.02 }}
                 >
                   <CourseCard course={course} index={index} />
                 </motion.div>
               ))
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </section>
 
       {/* ── WATCH THE FREE LESSONS (IMAGE 4) ────────────────────────── */}

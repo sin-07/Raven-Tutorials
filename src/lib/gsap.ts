@@ -23,8 +23,8 @@ export interface DirectionalAnimOptions {
 
 const parseAnimParams = (
   optionsOrDelay: number | DirectionalAnimOptions = 0,
-  defaultDistance = 50,
-  defaultDuration = 0.75,
+  defaultDistance = 35,
+  defaultDuration = 0.55,
   posDistance?: number,
   posDuration?: number
 ) => {
@@ -46,15 +46,15 @@ const parseAnimParams = (
 export const animateFromLeft = (
   el: Element | string | null,
   optionsOrDelay: number | DirectionalAnimOptions = 0,
-  distance = 50,
-  duration = 0.75
+  distance = 35,
+  duration = 0.55
 ) => {
   if (!el || typeof window === 'undefined') return;
-  const p = parseAnimParams(optionsOrDelay, 50, 0.75, distance, duration);
+  const p = parseAnimParams(optionsOrDelay, 35, 0.55, distance, duration);
   return gsap.fromTo(
     el,
     { opacity: 0, x: -p.distance },
-    { opacity: 1, x: 0, duration: p.duration, delay: p.delay, ease: 'power3.out', clearProps: 'transform,opacity' }
+    { opacity: 1, x: 0, duration: p.duration, delay: p.delay, ease: 'power2.out', force3D: true, clearProps: 'transform,opacity' }
   );
 };
 
@@ -62,15 +62,15 @@ export const animateFromLeft = (
 export const animateFromRight = (
   el: Element | string | null,
   optionsOrDelay: number | DirectionalAnimOptions = 0,
-  distance = 50,
-  duration = 0.75
+  distance = 35,
+  duration = 0.55
 ) => {
   if (!el || typeof window === 'undefined') return;
-  const p = parseAnimParams(optionsOrDelay, 50, 0.75, distance, duration);
+  const p = parseAnimParams(optionsOrDelay, 35, 0.55, distance, duration);
   return gsap.fromTo(
     el,
     { opacity: 0, x: p.distance },
-    { opacity: 1, x: 0, duration: p.duration, delay: p.delay, ease: 'power3.out', clearProps: 'transform,opacity' }
+    { opacity: 1, x: 0, duration: p.duration, delay: p.delay, ease: 'power2.out', force3D: true, clearProps: 'transform,opacity' }
   );
 };
 
@@ -78,15 +78,15 @@ export const animateFromRight = (
 export const animateFromUp = (
   el: Element | string | null,
   optionsOrDelay: number | DirectionalAnimOptions = 0,
-  distance = 45,
-  duration = 0.75
+  distance = 30,
+  duration = 0.55
 ) => {
   if (!el || typeof window === 'undefined') return;
-  const p = parseAnimParams(optionsOrDelay, 45, 0.75, distance, duration);
+  const p = parseAnimParams(optionsOrDelay, 30, 0.55, distance, duration);
   return gsap.fromTo(
     el,
     { opacity: 0, y: -p.distance },
-    { opacity: 1, y: 0, duration: p.duration, delay: p.delay, ease: 'power3.out', clearProps: 'transform,opacity' }
+    { opacity: 1, y: 0, duration: p.duration, delay: p.delay, ease: 'power2.out', force3D: true, clearProps: 'transform,opacity' }
   );
 };
 
@@ -94,15 +94,15 @@ export const animateFromUp = (
 export const animateFromDown = (
   el: Element | string | null,
   optionsOrDelay: number | DirectionalAnimOptions = 0,
-  distance = 45,
-  duration = 0.75
+  distance = 30,
+  duration = 0.55
 ) => {
   if (!el || typeof window === 'undefined') return;
-  const p = parseAnimParams(optionsOrDelay, 45, 0.75, distance, duration);
+  const p = parseAnimParams(optionsOrDelay, 30, 0.55, distance, duration);
   return gsap.fromTo(
     el,
     { opacity: 0, y: p.distance },
-    { opacity: 1, y: 0, duration: p.duration, delay: p.delay, ease: 'power3.out', clearProps: 'transform,opacity' }
+    { opacity: 1, y: 0, duration: p.duration, delay: p.delay, ease: 'power2.out', force3D: true, clearProps: 'transform,opacity' }
   );
 };
 
@@ -174,7 +174,7 @@ export interface DirectionalScrollOptions extends Partial<gsap.TweenVars> {
 /** Scroll triggered reveal from the LEFT */
 export const scrollFromLeft = (el: Element | null, options: DirectionalScrollOptions = {}) => {
   if (!el || typeof window === 'undefined') return;
-  const { distance = 55, start = 'top 88%', delay = 0, duration = 0.8, ...rest } = options;
+  const { distance = 40, start = 'top 90%', delay = 0, duration = 0.55, ...rest } = options;
   return gsap.fromTo(
     el,
     { opacity: 0, x: -distance },
@@ -183,7 +183,8 @@ export const scrollFromLeft = (el: Element | null, options: DirectionalScrollOpt
       x: 0,
       duration,
       delay,
-      ease: 'power3.out',
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: el,
@@ -198,7 +199,7 @@ export const scrollFromLeft = (el: Element | null, options: DirectionalScrollOpt
 /** Scroll triggered reveal from the RIGHT */
 export const scrollFromRight = (el: Element | null, options: DirectionalScrollOptions = {}) => {
   if (!el || typeof window === 'undefined') return;
-  const { distance = 55, start = 'top 88%', delay = 0, duration = 0.8, ...rest } = options;
+  const { distance = 40, start = 'top 90%', delay = 0, duration = 0.55, ...rest } = options;
   return gsap.fromTo(
     el,
     { opacity: 0, x: distance },
@@ -207,7 +208,8 @@ export const scrollFromRight = (el: Element | null, options: DirectionalScrollOp
       x: 0,
       duration,
       delay,
-      ease: 'power3.out',
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: el,
@@ -222,7 +224,7 @@ export const scrollFromRight = (el: Element | null, options: DirectionalScrollOp
 /** Scroll triggered reveal from the TOP (UP -> DOWN) */
 export const scrollFromUp = (el: Element | null, options: DirectionalScrollOptions = {}) => {
   if (!el || typeof window === 'undefined') return;
-  const { distance = 45, start = 'top 88%', delay = 0, duration = 0.8, ...rest } = options;
+  const { distance = 35, start = 'top 90%', delay = 0, duration = 0.55, ...rest } = options;
   return gsap.fromTo(
     el,
     { opacity: 0, y: -distance },
@@ -231,7 +233,8 @@ export const scrollFromUp = (el: Element | null, options: DirectionalScrollOptio
       y: 0,
       duration,
       delay,
-      ease: 'power3.out',
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: el,
@@ -246,7 +249,7 @@ export const scrollFromUp = (el: Element | null, options: DirectionalScrollOptio
 /** Scroll triggered reveal from the BOTTOM (DOWN -> UP) */
 export const scrollFromDown = (el: Element | null, options: DirectionalScrollOptions = {}) => {
   if (!el || typeof window === 'undefined') return;
-  const { distance = 45, start = 'top 88%', delay = 0, duration = 0.8, ...rest } = options;
+  const { distance = 35, start = 'top 90%', delay = 0, duration = 0.55, ...rest } = options;
   return gsap.fromTo(
     el,
     { opacity: 0, y: distance },
@@ -255,7 +258,8 @@ export const scrollFromDown = (el: Element | null, options: DirectionalScrollOpt
       y: 0,
       duration,
       delay,
-      ease: 'power3.out',
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: el,
@@ -275,61 +279,75 @@ export const scrollFadeUp = (el: Element | null, options: DirectionalScrollOptio
 export const scrollStaggerDirectional = (
   els: NodeListOf<Element> | HTMLCollection | HTMLCollectionOf<Element> | Element[],
   direction: 'left' | 'right' | 'up' | 'down' | 'alternating' | 'cross' = 'down',
-  stagger = 0.1,
+  stagger = 0.08,
   options: DirectionalScrollOptions = {}
 ) => {
   if (!els || !els.length || typeof window === 'undefined') return;
   const arr = Array.from(els as ArrayLike<Element>);
   const trigger = arr[0];
-  const { start = 'top 88%', delay = 0, duration = 0.75, distance = 45, ...rest } = options;
+  const { start = 'top 90%', delay = 0, duration = 0.5, distance = 35, ...rest } = options;
 
   if (direction === 'alternating') {
-    // Odd from left, Even from right
-    arr.forEach((el, i) => {
-      const fromLeft = i % 2 === 0;
-      gsap.fromTo(
-        el,
-        { opacity: 0, x: fromLeft ? -distance : distance },
-        {
-          opacity: 1,
-          x: 0,
-          duration,
-          delay: delay + i * stagger,
-          ease: 'power3.out',
-          clearProps: 'transform,opacity',
-          scrollTrigger: { trigger, start, once: true },
-          ...rest,
-        }
-      );
+    // Single consolidated ScrollTrigger instance for all alternating items
+    ScrollTrigger.create({
+      trigger,
+      start,
+      once: true,
+      onEnter: () => {
+        arr.forEach((el, i) => {
+          const fromLeft = i % 2 === 0;
+          gsap.fromTo(
+            el,
+            { opacity: 0, x: fromLeft ? -distance : distance },
+            {
+              opacity: 1,
+              x: 0,
+              duration,
+              delay: delay + i * stagger,
+              ease: 'power2.out',
+              force3D: true,
+              clearProps: 'transform,opacity',
+              ...rest,
+            }
+          );
+        });
+      },
     });
     return;
   }
 
   if (direction === 'cross') {
-    // 0: Left, 1: Up, 2: Down, 3: Right
+    // Single consolidated ScrollTrigger instance for all cross items
     const dirs = [
       { x: -distance, y: 0 },
       { x: 0, y: -distance },
       { x: 0, y: distance },
       { x: distance, y: 0 },
     ];
-    arr.forEach((el, i) => {
-      const d = dirs[i % 4];
-      gsap.fromTo(
-        el,
-        { opacity: 0, x: d.x, y: d.y },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration,
-          delay: delay + i * stagger,
-          ease: 'power3.out',
-          clearProps: 'transform,opacity',
-          scrollTrigger: { trigger, start, once: true },
-          ...rest,
-        }
-      );
+    ScrollTrigger.create({
+      trigger,
+      start,
+      once: true,
+      onEnter: () => {
+        arr.forEach((el, i) => {
+          const d = dirs[i % 4];
+          gsap.fromTo(
+            el,
+            { opacity: 0, x: d.x, y: d.y },
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration,
+              delay: delay + i * stagger,
+              ease: 'power2.out',
+              force3D: true,
+              clearProps: 'transform,opacity',
+              ...rest,
+            }
+          );
+        });
+      },
     });
     return;
   }
@@ -582,15 +600,14 @@ export const animatePageEnter = (
     el,
     {
       opacity: 0,
-      y: 14,
-      scale: 0.996,
+      y: 8,
     },
     {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 0.38,
-      ease: 'power3.out',
+      duration: 0.25,
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       onComplete,
     }
