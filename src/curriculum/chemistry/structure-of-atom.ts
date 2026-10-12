@@ -12,6 +12,9 @@ export interface CurriculumTopic_structure_of_atom {
   subject: string;
   standard: number;
   weightagePercent: number;
+  academicCycle?: string;
+  lastReviewed?: string;
+  revisionNumber?: number;
   learningObjectives: string[];
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;

@@ -12,6 +12,9 @@ export interface CurriculumTopic_ray_optics {
   subject: string;
   standard: number;
   weightagePercent: number;
+  academicCycle?: string;
+  lastReviewed?: string;
+  revisionNumber?: number;
   learningObjectives: string[];
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;

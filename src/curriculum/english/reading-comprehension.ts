@@ -12,6 +12,9 @@ export interface CurriculumTopic_reading_comprehension {
   subject: string;
   standard: number;
   weightagePercent: number;
+  academicCycle?: string;
+  lastReviewed?: string;
+  revisionNumber?: number;
   learningObjectives: string[];
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;

@@ -12,6 +12,9 @@ export interface CurriculumTopic_coordinate_geometry {
   subject: string;
   standard: number;
   weightagePercent: number;
+  academicCycle?: string;
+  lastReviewed?: string;
+  revisionNumber?: number;
   learningObjectives: string[];
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
