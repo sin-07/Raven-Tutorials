@@ -19,11 +19,32 @@ export interface CurriculumTopic_arithmetic_progressions {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -34,8 +55,8 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
   standard: 10,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-08',
-  revisionNumber: 301,
+  lastReviewed: '2026-06-02',
+  revisionNumber: 302,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Arithmetic Progressions & Nth Term Summation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -47,15 +68,7 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 11,
-  sampleProblemCount: 35
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Arithmetic Progressions & Nth Term Summation',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-03-08',
-  revisionNumber: 302
+  sampleProblemCount: 35,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Arithmetic Progressions & Nth Term Summation',
@@ -68,8 +81,12 @@ export const arithmetic_progressions: CurriculumTopic_arithmetic_progressions = 
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-06-02',
-  revisionNumber: 302
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Arithmetic Progressions & Nth Term Summation',
+    'Premature approximation prior to final algebraic simplification'
+  ]
 };
 
 export default arithmetic_progressions;

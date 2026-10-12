@@ -26,6 +26,26 @@ export interface CurriculumTopic_linear_inequalities {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const linear_inequalities: CurriculumTopic_linear_inequalities = {
@@ -35,8 +55,8 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
   standard: 11,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-27',
-  revisionNumber: 351,
+  lastReviewed: '2026-03-23',
+  revisionNumber: 352,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Linear Inequalities in One and Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 9,
-  sampleProblemCount: 30
+  sampleProblemCount: 30,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const linear_inequalities: CurriculumTopic_linear_inequalities = {
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-03-23',
-  revisionNumber: 352
+  ]
 };
 
 export default linear_inequalities;

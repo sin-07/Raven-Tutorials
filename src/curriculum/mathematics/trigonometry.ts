@@ -19,10 +19,32 @@ export interface CurriculumTopic_trigonometry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const trigonometry: CurriculumTopic_trigonometry = {
   standard: 10,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-23',
-  revisionNumber: 316,
+  lastReviewed: '2026-06-27',
+  revisionNumber: 317,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Introduction to Trigonometry & Trigonometric Ratios',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const trigonometry: CurriculumTopic_trigonometry = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
+  sampleProblemCount: 60,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Introduction to Trigonometry & Trigonometric Ratios',
@@ -58,9 +80,7 @@ export const trigonometry: CurriculumTopic_trigonometry = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-06-27',
-  revisionNumber: 317
+  ]
 };
 
 export default trigonometry;

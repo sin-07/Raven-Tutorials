@@ -25,8 +25,27 @@ export interface CurriculumTopic_determinants {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const determinants: CurriculumTopic_determinants = {
@@ -36,8 +55,8 @@ export const determinants: CurriculumTopic_determinants = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-14',
-  revisionNumber: 246,
+  lastReviewed: '2026-06-07',
+  revisionNumber: 247,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Determinants: Minors, Cofactors, and Inverses',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const determinants: CurriculumTopic_determinants = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const determinants: CurriculumTopic_determinants = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-03-18',
-  revisionNumber: 247
   recommendedResources: [
     'NCERT Exemplar Class 12 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-06-07',
-  revisionNumber: 247
+  ]
 };
 
 export default determinants;

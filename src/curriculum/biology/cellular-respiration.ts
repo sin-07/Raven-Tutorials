@@ -19,10 +19,32 @@ export interface CurriculumTopic_cellular_respiration {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-26',
-  revisionNumber: 319,
+  lastReviewed: '2026-07-20',
+  revisionNumber: 320,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Glycolysis, Krebs Cycle, and ATP Synthesis',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 17,
-  sampleProblemCount: 55
+  sampleProblemCount: 55,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Glycolysis, Krebs Cycle, and ATP Synthesis',
@@ -58,9 +80,7 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-07-20',
-  revisionNumber: 320
+  ]
 };
 
 export default cellular_respiration;

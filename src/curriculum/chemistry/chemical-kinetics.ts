@@ -19,17 +19,33 @@ export interface CurriculumTopic_chemical_kinetics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
@@ -39,8 +55,8 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-10',
-  revisionNumber: 303,
+  lastReviewed: '2026-05-12',
+  revisionNumber: 304,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Reaction Rates, Order, and Arrhenius Equation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,7 +68,13 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Reaction Rates, Order, and Arrhenius Equation',
@@ -64,17 +86,7 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-02-17',
-  revisionNumber: 304
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-05-12',
-  revisionNumber: 304
+  ]
 };
 
 export default chemical_kinetics;

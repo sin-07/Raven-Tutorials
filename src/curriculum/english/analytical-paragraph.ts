@@ -25,8 +25,27 @@ export interface CurriculumTopic_analytical_paragraph {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
@@ -36,8 +55,8 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-16',
-  revisionNumber: 340,
+  lastReviewed: '2026-05-22',
+  revisionNumber: 341,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Data Interpretation and Analytical Composition',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const analytical_paragraph: CurriculumTopic_analytical_paragraph = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-03-03',
-  revisionNumber: 341
   recommendedResources: [
     'NCERT Exemplar Class 10 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-05-22',
-  revisionNumber: 341
+  ]
 };
 
 export default analytical_paragraph;

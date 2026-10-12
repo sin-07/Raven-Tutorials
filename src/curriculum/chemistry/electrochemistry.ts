@@ -19,13 +19,6 @@ export interface CurriculumTopic_electrochemistry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  revisionChecklist?: string[];
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    realWorldApplications?: string[];
   practiceQuestions?: Array<{
     id: string;
     question: string;
@@ -33,7 +26,26 @@ export interface CurriculumTopic_electrochemistry {
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const electrochemistry: CurriculumTopic_electrochemistry = {
@@ -43,8 +55,8 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-05',
-  revisionNumber: 298,
+  lastReviewed: '2026-05-17',
+  revisionNumber: 299,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nernst Equation and Kohlrausch Conductivity Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -56,31 +68,7 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
-  revisionChecklist: [
-    'Memorize core definitions, formulas, and SI units',
-    'Complete NCERT in-text exercises and chapter summaries',
-    'Solve at least 15 timed mock examination problems',
-    'Review mistake notebook and re-derive weak concepts'
-  ],
-  lastReviewed: '2026-02-17',
-  revisionNumber: 299
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-02-21',
-  revisionNumber: 299
-  realWorldApplications: [
-    'Industrial automation and precision measurement sensors',
-    'Biomedical diagnostics and pharmacological formulation analysis',
-    'Computational simulations and algorithmic optimization in aerospace',
-    'Modern renewable energy grid stabilization techniques'
-  ],
-  lastReviewed: '2026-05-12',
-  revisionNumber: 299
+  sampleProblemCount: 60,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -104,8 +92,24 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-05-17',
-  revisionNumber: 299
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ],
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ]
 };
 
 export default electrochemistry;

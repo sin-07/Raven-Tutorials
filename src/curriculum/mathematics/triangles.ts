@@ -19,19 +19,33 @@ export interface CurriculumTopic_triangles {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const triangles: CurriculumTopic_triangles = {
@@ -41,8 +55,8 @@ export const triangles: CurriculumTopic_triangles = {
   standard: 10,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-13',
-  revisionNumber: 306,
+  lastReviewed: '2026-06-27',
+  revisionNumber: 307,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Triangles & Similarity Criteria',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -54,15 +68,7 @@ export const triangles: CurriculumTopic_triangles = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-02',
-  revisionNumber: 307
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -86,8 +92,12 @@ export const triangles: CurriculumTopic_triangles = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-06-27',
-  revisionNumber: 307
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  }
 };
 
 export default triangles;

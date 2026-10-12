@@ -26,6 +26,26 @@ export interface CurriculumTopic_redox_reactions {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const redox_reactions: CurriculumTopic_redox_reactions = {
@@ -35,8 +55,8 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
   standard: 11,
   weightagePercent: 7,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-21',
-  revisionNumber: 283,
+  lastReviewed: '2026-02-26',
+  revisionNumber: 284,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Oxidation Number Balancing and Electrochemical Potential',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 11,
-  sampleProblemCount: 35
+  sampleProblemCount: 35,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const redox_reactions: CurriculumTopic_redox_reactions = {
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-02-26',
-  revisionNumber: 284
+  ]
 };
 
 export default redox_reactions;

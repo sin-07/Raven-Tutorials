@@ -19,10 +19,32 @@ export interface CurriculumTopic_continuity_differentiability {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-19',
-  revisionNumber: 251,
+  lastReviewed: '2026-06-07',
+  revisionNumber: 252,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Continuity, Differentiability, and Chain Rule',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 21,
-  sampleProblemCount: 70
+  sampleProblemCount: 70,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Continuity, Differentiability, and Chain Rule',
@@ -58,9 +80,7 @@ export const continuity_differentiability: CurriculumTopic_continuity_differenti
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-06-07',
-  revisionNumber: 252
+  ]
 };
 
 export default continuity_differentiability;

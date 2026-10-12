@@ -26,6 +26,26 @@ export interface CurriculumTopic_biomolecules {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const biomolecules: CurriculumTopic_biomolecules = {
@@ -35,8 +55,8 @@ export const biomolecules: CurriculumTopic_biomolecules = {
   standard: 12,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-14',
-  revisionNumber: 338,
+  lastReviewed: '2026-02-17',
+  revisionNumber: 339,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Carbohydrates, Amino Acids, and Peptide Structures',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const biomolecules: CurriculumTopic_biomolecules = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const biomolecules: CurriculumTopic_biomolecules = {
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-02-17',
-  revisionNumber: 339
+  ]
 };
 
 export default biomolecules;

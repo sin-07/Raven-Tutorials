@@ -19,17 +19,33 @@ export interface CurriculumTopic_formal_letter_writing {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
@@ -39,8 +55,8 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-11',
-  revisionNumber: 335,
+  lastReviewed: '2026-05-27',
+  revisionNumber: 336,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Professional Correspondence and Formal Letter Formats',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,7 +68,13 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Professional Correspondence and Formal Letter Formats',
@@ -64,17 +86,7 @@ export const formal_letter_writing: CurriculumTopic_formal_letter_writing = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-03-03',
-  revisionNumber: 336
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-05-27',
-  revisionNumber: 336
+  ]
 };
 
 export default formal_letter_writing;

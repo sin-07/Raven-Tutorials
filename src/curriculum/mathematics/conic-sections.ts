@@ -19,22 +19,33 @@ export interface CurriculumTopic_conic_sections {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  laboratoryExperiments?: Array<{
-    title: string;
-    apparatus: string[];
-    objective: string;
-    conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const conic_sections: CurriculumTopic_conic_sections = {
@@ -44,8 +55,8 @@ export const conic_sections: CurriculumTopic_conic_sections = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-30',
-  revisionNumber: 231,
+  lastReviewed: '2026-06-07',
+  revisionNumber: 232,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Conic Sections: Parabola, Ellipse, and Hyperbola',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -57,16 +68,13 @@ export const conic_sections: CurriculumTopic_conic_sections = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
-  laboratoryExperiments: [
-    {
-      title: 'Experimental Verification for Conic Sections: Parabola, Ellipse, and Hyperbola',
-      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
-      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
-    }
-  ],
-  lastReviewed: '2026-03-08',
-  revisionNumber: 232
+  sampleProblemCount: 60,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Conic Sections: Parabola, Ellipse, and Hyperbola',
@@ -79,16 +87,13 @@ export const conic_sections: CurriculumTopic_conic_sections = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-03-13',
-  revisionNumber: 232
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-06-07',
-  revisionNumber: 232
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Conic Sections: Parabola, Ellipse, and Hyperbola',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ]
 };
 
 export default conic_sections;

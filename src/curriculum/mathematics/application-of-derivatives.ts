@@ -19,17 +19,33 @@ export interface CurriculumTopic_application_of_derivatives {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const application_of_derivatives: CurriculumTopic_application_of_derivatives = {
@@ -39,8 +55,8 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
   standard: 12,
   weightagePercent: 15,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-24',
-  revisionNumber: 256,
+  lastReviewed: '2026-06-02',
+  revisionNumber: 257,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Application of Derivatives: Tangents & Maxima-Minima',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,7 +68,13 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 23,
-  sampleProblemCount: 75
+  sampleProblemCount: 75,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Application of Derivatives: Tangents & Maxima-Minima',
@@ -64,17 +86,7 @@ export const application_of_derivatives: CurriculumTopic_application_of_derivati
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-03-08',
-  revisionNumber: 257
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-06-02',
-  revisionNumber: 257
+  ]
 };
 
 export default application_of_derivatives;

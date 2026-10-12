@@ -19,10 +19,32 @@ export interface CurriculumTopic_aldehydes_ketones {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const aldehydes_ketones: CurriculumTopic_aldehydes_ketones = {
   standard: 12,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-04',
-  revisionNumber: 328,
+  lastReviewed: '2026-05-07',
+  revisionNumber: 329,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Carbonyl Compounds, Aldol, and Cannizzaro Reactions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const aldehydes_ketones: CurriculumTopic_aldehydes_ketones = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 20,
-  sampleProblemCount: 65
+  sampleProblemCount: 65,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Carbonyl Compounds, Aldol, and Cannizzaro Reactions',
@@ -58,9 +80,7 @@ export const aldehydes_ketones: CurriculumTopic_aldehydes_ketones = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-05-07',
-  revisionNumber: 329
+  ]
 };
 
 export default aldehydes_ketones;

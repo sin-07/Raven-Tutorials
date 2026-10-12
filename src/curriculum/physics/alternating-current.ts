@@ -25,8 +25,27 @@ export interface CurriculumTopic_alternating_current {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const alternating_current: CurriculumTopic_alternating_current = {
@@ -36,8 +55,8 @@ export const alternating_current: CurriculumTopic_alternating_current = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-28',
-  revisionNumber: 352,
+  lastReviewed: '2026-06-27',
+  revisionNumber: 353,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for LCR Circuits, Resonance, and Power Factor',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const alternating_current: CurriculumTopic_alternating_current = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const alternating_current: CurriculumTopic_alternating_current = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-04-07',
-  revisionNumber: 353
   recommendedResources: [
     'NCERT Exemplar Class 12 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-06-27',
-  revisionNumber: 353
+  ]
 };
 
 export default alternating_current;

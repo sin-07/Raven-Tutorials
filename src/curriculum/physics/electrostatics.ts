@@ -19,19 +19,33 @@ export interface CurriculumTopic_electrostatics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const electrostatics: CurriculumTopic_electrostatics = {
@@ -41,8 +55,8 @@ export const electrostatics: CurriculumTopic_electrostatics = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-03',
-  revisionNumber: 327,
+  lastReviewed: '2026-07-06',
+  revisionNumber: 328,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -54,15 +68,7 @@ export const electrostatics: CurriculumTopic_electrostatics = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-12',
-  revisionNumber: 328
+  sampleProblemCount: 60,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -86,8 +92,12 @@ export const electrostatics: CurriculumTopic_electrostatics = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-06',
-  revisionNumber: 328
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  }
 };
 
 export default electrostatics;

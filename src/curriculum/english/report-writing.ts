@@ -26,6 +26,26 @@ export interface CurriculumTopic_report_writing {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const report_writing: CurriculumTopic_report_writing = {
@@ -35,8 +55,8 @@ export const report_writing: CurriculumTopic_report_writing = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-10-01',
-  revisionNumber: 355,
+  lastReviewed: '2026-03-08',
+  revisionNumber: 356,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Journalistic and Institutional Event Reporting',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const report_writing: CurriculumTopic_report_writing = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const report_writing: CurriculumTopic_report_writing = {
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-03-08',
-  revisionNumber: 356
+  ]
 };
 
 export default report_writing;

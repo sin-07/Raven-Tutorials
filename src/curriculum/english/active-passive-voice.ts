@@ -19,8 +19,33 @@ export interface CurriculumTopic_active_passive_voice {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  recommendedResources?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
   commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const active_passive_voice: CurriculumTopic_active_passive_voice = {
@@ -30,8 +55,8 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-01',
-  revisionNumber: 325,
+  lastReviewed: '2026-05-22',
+  revisionNumber: 326,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Active and Passive Voice Syntactic Rules',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -43,23 +68,19 @@ export const active_passive_voice: CurriculumTopic_active_passive_voice = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 9,
-  sampleProblemCount: 30
-  recommendedResources: [
-    'NCERT Exemplar Class 10 - Chapter Core Problems',
-    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
-    'National Board Previous 10 Years Solved Question Papers',
-    'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-02-26',
-  revisionNumber: 326
+  sampleProblemCount: 30,
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Active and Passive Voice Syntactic Rules',
     'Premature approximation prior to final algebraic simplification'
   ],
-  lastReviewed: '2026-05-22',
-  revisionNumber: 326
+  recommendedResources: [
+    'NCERT Exemplar Class 10 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ]
 };
 
 export default active_passive_voice;

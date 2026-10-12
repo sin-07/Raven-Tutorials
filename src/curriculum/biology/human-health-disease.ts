@@ -19,24 +19,33 @@ export interface CurriculumTopic_human_health_disease {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
-}>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const human_health_disease: CurriculumTopic_human_health_disease = {
@@ -46,8 +55,8 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-30',
-  revisionNumber: 354,
+  lastReviewed: '2026-07-25',
+  revisionNumber: 355,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Immunology, Pathogens, and Disease Prevention',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -59,29 +68,7 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
-  conceptDerivations: [
-    {
-      topic: 'Core Derivation for Immunology, Pathogens, and Disease Prevention',
-      steps: [
-        'State primary postulates and initial state constraints',
-        'Establish differential equilibrium equation',
-        'Integrate over standard boundary limits',
-        'Formulate definitive solution form'
-      ],
-      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
-    }
-  ],
-  lastReviewed: '2026-02-08',
-  revisionNumber: 355
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-05-02',
-  revisionNumber: 355
+  sampleProblemCount: 60,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -105,8 +92,24 @@ export const human_health_disease: CurriculumTopic_human_health_disease = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-25',
-  revisionNumber: 355
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Immunology, Pathogens, and Disease Prevention',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ]
 };
 
 export default human_health_disease;

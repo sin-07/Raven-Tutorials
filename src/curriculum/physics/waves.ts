@@ -19,18 +19,33 @@ export interface CurriculumTopic_waves {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    revisionChecklist?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
   examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const waves: CurriculumTopic_waves = {
@@ -40,8 +55,8 @@ export const waves: CurriculumTopic_waves = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-29',
-  revisionNumber: 322,
+  lastReviewed: '2026-07-15',
+  revisionNumber: 323,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transverse Waves, Standing Waves, and Resonance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -53,7 +68,13 @@ export const waves: CurriculumTopic_waves = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Transverse Waves, Standing Waves, and Resonance',
@@ -66,24 +87,12 @@ export const waves: CurriculumTopic_waves = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-04-22',
-  revisionNumber: 323
   revisionChecklist: [
     'Memorize core definitions, formulas, and SI units',
     'Complete NCERT in-text exercises and chapter summaries',
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts'
-  ],
-  lastReviewed: '2026-07-10',
-  revisionNumber: 323
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-07-15',
-  revisionNumber: 323
+  ]
 };
 
 export default waves;

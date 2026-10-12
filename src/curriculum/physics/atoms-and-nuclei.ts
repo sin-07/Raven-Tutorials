@@ -19,19 +19,33 @@ export interface CurriculumTopic_atoms_and_nuclei {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
@@ -41,8 +55,8 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-15',
-  revisionNumber: 277,
+  lastReviewed: '2026-07-02',
+  revisionNumber: 278,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model, Rydberg Formula, and Nuclear Binding Energy',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -54,15 +68,7 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-07',
-  revisionNumber: 278
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -86,8 +92,12 @@ export const atoms_and_nuclei: CurriculumTopic_atoms_and_nuclei = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-02',
-  revisionNumber: 278
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  }
 };
 
 export default atoms_and_nuclei;

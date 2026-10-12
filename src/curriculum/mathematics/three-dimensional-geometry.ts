@@ -26,6 +26,26 @@ export interface CurriculumTopic_three_dimensional_geometry {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geometry = {
@@ -35,8 +55,8 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
   standard: 12,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-14',
-  revisionNumber: 276,
+  lastReviewed: '2026-04-02',
+  revisionNumber: 277,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Three-Dimensional Geometry: Direction Ratios & Planes',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
+  sampleProblemCount: 60,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const three_dimensional_geometry: CurriculumTopic_three_dimensional_geome
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-04-02',
-  revisionNumber: 277
+  ]
 };
 
 export default three_dimensional_geometry;

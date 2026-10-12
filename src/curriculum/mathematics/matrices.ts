@@ -19,19 +19,33 @@ export interface CurriculumTopic_matrices {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const matrices: CurriculumTopic_matrices = {
@@ -41,8 +55,8 @@ export const matrices: CurriculumTopic_matrices = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-09',
-  revisionNumber: 241,
+  lastReviewed: '2026-06-17',
+  revisionNumber: 242,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Matrices: Operations and Symmetric Matrices',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -54,15 +68,7 @@ export const matrices: CurriculumTopic_matrices = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-03-23',
-  revisionNumber: 242
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -86,8 +92,12 @@ export const matrices: CurriculumTopic_matrices = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-06-17',
-  revisionNumber: 242
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  }
 };
 
 export default matrices;

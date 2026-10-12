@@ -19,15 +19,33 @@ export interface CurriculumTopic_motion_in_straight_line {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  realWorldApplications?: string[];
   practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = {
@@ -37,8 +55,8 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-25',
-  revisionNumber: 287,
+  lastReviewed: '2026-07-06',
+  revisionNumber: 288,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Kinematics: Velocity, Acceleration, and Motion',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -50,15 +68,7 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
-  realWorldApplications: [
-    'Industrial automation and precision measurement sensors',
-    'Biomedical diagnostics and pharmacological formulation analysis',
-    'Computational simulations and algorithmic optimization in aerospace',
-    'Modern renewable energy grid stabilization techniques'
-  ],
-  lastReviewed: '2026-04-12',
-  revisionNumber: 288
+  sampleProblemCount: 40,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -82,16 +92,18 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-04-17',
-  revisionNumber: 288
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
   ],
-  lastReviewed: '2026-07-06',
-  revisionNumber: 288
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ]
 };
 
 export default motion_in_straight_line;

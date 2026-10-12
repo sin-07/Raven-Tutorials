@@ -19,8 +19,33 @@ export interface CurriculumTopic_magnetic_effects {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  recommendedResources?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
   commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const magnetic_effects: CurriculumTopic_magnetic_effects = {
@@ -30,8 +55,8 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
   standard: 12,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-18',
-  revisionNumber: 342,
+  lastReviewed: '2026-07-06',
+  revisionNumber: 343,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Biot-Savart Law and Ampere Circuital Law',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -43,23 +68,19 @@ export const magnetic_effects: CurriculumTopic_magnetic_effects = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 20,
-  sampleProblemCount: 65
-  recommendedResources: [
-    'NCERT Exemplar Class 12 - Chapter Core Problems',
-    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
-    'National Board Previous 10 Years Solved Question Papers',
-    'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-04-12',
-  revisionNumber: 343
+  sampleProblemCount: 65,
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Biot-Savart Law and Ampere Circuital Law',
     'Premature approximation prior to final algebraic simplification'
   ],
-  lastReviewed: '2026-07-06',
-  revisionNumber: 343
+  recommendedResources: [
+    'NCERT Exemplar Class 12 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ]
 };
 
 export default magnetic_effects;

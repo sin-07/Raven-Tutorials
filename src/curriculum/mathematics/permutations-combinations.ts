@@ -19,17 +19,33 @@ export interface CurriculumTopic_permutations_combinations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const permutations_combinations: CurriculumTopic_permutations_combinations = {
@@ -39,8 +55,8 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-10-02',
-  revisionNumber: 356,
+  lastReviewed: '2026-06-17',
+  revisionNumber: 357,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Permutations and Combinations Protocols',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,7 +68,13 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Permutations and Combinations Protocols',
@@ -64,17 +86,7 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-03-23',
-  revisionNumber: 357
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-06-17',
-  revisionNumber: 357
+  ]
 };
 
 export default permutations_combinations;

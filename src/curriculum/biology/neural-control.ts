@@ -19,12 +19,32 @@ export interface CurriculumTopic_neural_control {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  recommendedResources?: string[];
-  commonPitfalls?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -35,8 +55,8 @@ export const neural_control: CurriculumTopic_neural_control = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-31',
-  revisionNumber: 324,
+  lastReviewed: '2026-07-25',
+  revisionNumber: 325,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nerve Impulse Propagation and Synaptic Action',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,23 +68,7 @@ export const neural_control: CurriculumTopic_neural_control = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  recommendedResources: [
-    'NCERT Exemplar Class 11 - Chapter Core Problems',
-    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
-    'National Board Previous 10 Years Solved Question Papers',
-    'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-02-08',
-  revisionNumber: 325
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Nerve Impulse Propagation and Synaptic Action',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-05-02',
-  revisionNumber: 325
+  sampleProblemCount: 50,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Nerve Impulse Propagation and Synaptic Action',
@@ -77,8 +81,18 @@ export const neural_control: CurriculumTopic_neural_control = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-07-25',
-  revisionNumber: 325
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Nerve Impulse Propagation and Synaptic Action',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  recommendedResources: [
+    'NCERT Exemplar Class 11 - Chapter Core Problems',
+    'Raven Tutorials Advanced Lecture Notes & Problem Vault',
+    'National Board Previous 10 Years Solved Question Papers',
+    'Interactive 3D Visual Concept Simulation Modules'
+  ]
 };
 
 export default neural_control;

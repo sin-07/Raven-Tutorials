@@ -25,8 +25,27 @@ export interface CurriculumTopic_thermodynamics {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const thermodynamics: CurriculumTopic_thermodynamics = {
@@ -36,8 +55,8 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
   standard: 11,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-19',
-  revisionNumber: 312,
+  lastReviewed: '2026-07-10',
+  revisionNumber: 313,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Laws of Thermodynamics and Carnot Engine',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 17,
-  sampleProblemCount: 55
+  sampleProblemCount: 55,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const thermodynamics: CurriculumTopic_thermodynamics = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-04-22',
-  revisionNumber: 313
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-07-10',
-  revisionNumber: 313
+  ]
 };
 
 export default thermodynamics;

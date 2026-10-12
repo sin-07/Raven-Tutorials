@@ -19,18 +19,33 @@ export interface CurriculumTopic_integrals {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    revisionChecklist?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
   examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const integrals: CurriculumTopic_integrals = {
@@ -40,8 +55,8 @@ export const integrals: CurriculumTopic_integrals = {
   standard: 12,
   weightagePercent: 18,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-29',
-  revisionNumber: 261,
+  lastReviewed: '2026-06-12',
+  revisionNumber: 262,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Indefinite and Definite Integrals Evaluation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -53,7 +68,13 @@ export const integrals: CurriculumTopic_integrals = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 27,
-  sampleProblemCount: 90
+  sampleProblemCount: 90,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Indefinite and Definite Integrals Evaluation',
@@ -66,24 +87,12 @@ export const integrals: CurriculumTopic_integrals = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-03-18',
-  revisionNumber: 262
   revisionChecklist: [
     'Memorize core definitions, formulas, and SI units',
     'Complete NCERT in-text exercises and chapter summaries',
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts'
-  ],
-  lastReviewed: '2026-06-07',
-  revisionNumber: 262
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-06-12',
-  revisionNumber: 262
+  ]
 };
 
 export default integrals;

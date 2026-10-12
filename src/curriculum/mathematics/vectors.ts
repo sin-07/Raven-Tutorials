@@ -19,7 +19,33 @@ export interface CurriculumTopic_vectors {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
   commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const vectors: CurriculumTopic_vectors = {
@@ -29,8 +55,8 @@ export const vectors: CurriculumTopic_vectors = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-09',
-  revisionNumber: 271,
+  lastReviewed: '2026-06-27',
+  revisionNumber: 272,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Vectors: Dot Product and Cross Product Operations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -42,15 +68,13 @@ export const vectors: CurriculumTopic_vectors = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Vectors: Dot Product and Cross Product Operations',
     'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-06-27',
-  revisionNumber: 272
+  ]
 };
 
 export default vectors;

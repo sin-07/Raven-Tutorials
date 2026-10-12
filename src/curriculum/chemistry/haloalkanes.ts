@@ -19,16 +19,33 @@ export interface CurriculumTopic_haloalkanes {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  laboratoryExperiments?: Array<{
-    title: string;
-    apparatus: string[];
-    objective: string;
-    conceptDerivations?: Array<{
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
   }>;
-}>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const haloalkanes: CurriculumTopic_haloalkanes = {
@@ -38,8 +55,8 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
   standard: 12,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-25',
-  revisionNumber: 318,
+  lastReviewed: '2026-05-17',
+  revisionNumber: 319,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Nucleophilic Substitution SN1 and SN2 Pathways',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -51,16 +68,7 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  laboratoryExperiments: [
-    {
-      title: 'Experimental Verification for Nucleophilic Substitution SN1 and SN2 Pathways',
-      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
-      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
-    }
-  ],
-  lastReviewed: '2026-05-12',
-  revisionNumber: 319
+  sampleProblemCount: 50,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Nucleophilic Substitution SN1 and SN2 Pathways',
@@ -73,8 +81,13 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-05-17',
-  revisionNumber: 319
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Nucleophilic Substitution SN1 and SN2 Pathways',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ]
 };
 
 export default haloalkanes;

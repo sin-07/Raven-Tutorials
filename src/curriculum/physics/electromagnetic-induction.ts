@@ -26,6 +26,26 @@ export interface CurriculumTopic_electromagnetic_induction {
     marks: number;
     hint?: string;
   }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const electromagnetic_induction: CurriculumTopic_electromagnetic_induction = {
@@ -35,8 +55,8 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-23',
-  revisionNumber: 347,
+  lastReviewed: '2026-04-12',
+  revisionNumber: 348,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Faraday Law, Lenz Law, and Inductance',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -48,7 +68,7 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 17,
-  sampleProblemCount: 55
+  sampleProblemCount: 55,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -71,9 +91,7 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
       marks: 5,
       hint: 'Check conservation laws and symmetry properties.'
     }
-  ],
-  lastReviewed: '2026-04-12',
-  revisionNumber: 348
+  ]
 };
 
 export default electromagnetic_induction;

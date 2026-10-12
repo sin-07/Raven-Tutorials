@@ -19,7 +19,33 @@ export interface CurriculumTopic_coordinate_geometry {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
   commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
@@ -29,8 +55,8 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-18',
-  revisionNumber: 311,
+  lastReviewed: '2026-06-07',
+  revisionNumber: 312,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Coordinate Geometry & Distance Formulae',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -42,15 +68,13 @@ export const coordinate_geometry: CurriculumTopic_coordinate_geometry = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Coordinate Geometry & Distance Formulae',
     'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-06-07',
-  revisionNumber: 312
+  ]
 };
 
 export default coordinate_geometry;

@@ -19,15 +19,33 @@ export interface CurriculumTopic_d_and_f_block {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  realWorldApplications?: string[];
   practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const d_and_f_block: CurriculumTopic_d_and_f_block = {
@@ -37,8 +55,8 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
   standard: 12,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-15',
-  revisionNumber: 308,
+  lastReviewed: '2026-05-12',
+  revisionNumber: 309,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Transition Metals and Lanthanoid Contraction',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -50,15 +68,7 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
-  realWorldApplications: [
-    'Industrial automation and precision measurement sensors',
-    'Biomedical diagnostics and pharmacological formulation analysis',
-    'Computational simulations and algorithmic optimization in aerospace',
-    'Modern renewable energy grid stabilization techniques'
-  ],
-  lastReviewed: '2026-02-17',
-  revisionNumber: 309
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -82,16 +92,18 @@ export const d_and_f_block: CurriculumTopic_d_and_f_block = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-02-21',
-  revisionNumber: 309
   recommendedResources: [
     'NCERT Exemplar Class 12 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
   ],
-  lastReviewed: '2026-05-12',
-  revisionNumber: 309
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ]
 };
 
 export default d_and_f_block;

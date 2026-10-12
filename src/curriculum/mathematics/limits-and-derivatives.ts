@@ -19,17 +19,33 @@ export interface CurriculumTopic_limits_and_derivatives {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
-  laboratoryExperiments?: Array<{
-    title: string;
-    apparatus: string[];
-    objective: string;
-    conceptDerivations?: Array<{
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
   }>;
-}>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
@@ -39,8 +55,8 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
   standard: 11,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-06-04',
-  revisionNumber: 236,
+  lastReviewed: '2026-06-12',
+  revisionNumber: 237,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Limits, Continuity, and Derivatives',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,24 +68,7 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 21,
-  sampleProblemCount: 70
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Limits, Continuity, and Derivatives',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-03-18',
-  revisionNumber: 237
-  laboratoryExperiments: [
-    {
-      title: 'Experimental Verification for Limits, Continuity, and Derivatives',
-      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
-      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
-    }
-  ],
-  lastReviewed: '2026-06-07',
-  revisionNumber: 237
+  sampleProblemCount: 70,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Limits, Continuity, and Derivatives',
@@ -82,8 +81,19 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-06-12',
-  revisionNumber: 237
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Limits, Continuity, and Derivatives',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Limits, Continuity, and Derivatives',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ]
 };
 
 export default limits_and_derivatives;

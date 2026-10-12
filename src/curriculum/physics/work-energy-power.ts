@@ -19,17 +19,33 @@ export interface CurriculumTopic_work_energy_power {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
-  laboratoryExperiments?: Array<{
-    title: string;
-    apparatus: string[];
-    objective: string;
-    conceptDerivations?: Array<{
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
   }>;
-}>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const work_energy_power: CurriculumTopic_work_energy_power = {
@@ -39,8 +55,8 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-04',
-  revisionNumber: 297,
+  lastReviewed: '2026-07-15',
+  revisionNumber: 298,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Work-Energy Theorem and Elastic Collisions',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,24 +68,7 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Work-Energy Theorem and Elastic Collisions',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-04-22',
-  revisionNumber: 298
-  laboratoryExperiments: [
-    {
-      title: 'Experimental Verification for Work-Energy Theorem and Elastic Collisions',
-      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
-      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
-    }
-  ],
-  lastReviewed: '2026-07-10',
-  revisionNumber: 298
+  sampleProblemCount: 50,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Work-Energy Theorem and Elastic Collisions',
@@ -82,8 +81,19 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-07-15',
-  revisionNumber: 298
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Work-Energy Theorem and Elastic Collisions',
+    'Premature approximation prior to final algebraic simplification'
+  ],
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Work-Energy Theorem and Elastic Collisions',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ]
 };
 
 export default work_energy_power;

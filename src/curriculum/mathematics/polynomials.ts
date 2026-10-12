@@ -19,10 +19,32 @@ export interface CurriculumTopic_polynomials {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const polynomials: CurriculumTopic_polynomials = {
   standard: 10,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-24',
-  revisionNumber: 286,
+  lastReviewed: '2026-06-17',
+  revisionNumber: 287,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Polynomials & Geometric Meaning of Zeroes',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const polynomials: CurriculumTopic_polynomials = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Polynomials & Geometric Meaning of Zeroes',
@@ -58,9 +80,7 @@ export const polynomials: CurriculumTopic_polynomials = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-06-17',
-  revisionNumber: 287
+  ]
 };
 
 export default polynomials;

@@ -19,7 +19,33 @@ export interface CurriculumTopic_straight_lines {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
   recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const straight_lines: CurriculumTopic_straight_lines = {
@@ -29,8 +55,8 @@ export const straight_lines: CurriculumTopic_straight_lines = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-05-25',
-  revisionNumber: 226,
+  lastReviewed: '2026-03-28',
+  revisionNumber: 227,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Straight Lines: Slope, Intercept, and Normal Forms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -42,15 +68,13 @@ export const straight_lines: CurriculumTopic_straight_lines = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-03-28',
-  revisionNumber: 227
+  ]
 };
 
 export default straight_lines;

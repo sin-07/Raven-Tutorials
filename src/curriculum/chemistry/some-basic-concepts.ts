@@ -19,17 +19,33 @@ export interface CurriculumTopic_some_basic_concepts {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
@@ -39,8 +55,8 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
   standard: 11,
   weightagePercent: 8,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-19',
-  revisionNumber: 343,
+  lastReviewed: '2026-05-22',
+  revisionNumber: 344,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Mole Concept and Stoichiometric Calculations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -52,7 +68,13 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 12,
-  sampleProblemCount: 40
+  sampleProblemCount: 40,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Mole Concept and Stoichiometric Calculations',
@@ -64,17 +86,7 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-02-26',
-  revisionNumber: 344
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-05-22',
-  revisionNumber: 344
+  ]
 };
 
 export default some_basic_concepts;

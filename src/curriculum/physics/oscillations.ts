@@ -19,20 +19,33 @@ export interface CurriculumTopic_oscillations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  revisionChecklist?: string[];
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const oscillations: CurriculumTopic_oscillations = {
@@ -42,8 +55,8 @@ export const oscillations: CurriculumTopic_oscillations = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-24',
-  revisionNumber: 317,
+  lastReviewed: '2026-07-10',
+  revisionNumber: 318,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Simple Harmonic Motion and Spring Pendulum',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -55,23 +68,7 @@ export const oscillations: CurriculumTopic_oscillations = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  revisionChecklist: [
-    'Memorize core definitions, formulas, and SI units',
-    'Complete NCERT in-text exercises and chapter summaries',
-    'Solve at least 15 timed mock examination problems',
-    'Review mistake notebook and re-derive weak concepts'
-  ],
-  lastReviewed: '2026-04-12',
-  revisionNumber: 318
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-17',
-  revisionNumber: 318
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -95,8 +92,18 @@ export const oscillations: CurriculumTopic_oscillations = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-10',
-  revisionNumber: 318
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  revisionChecklist: [
+    'Memorize core definitions, formulas, and SI units',
+    'Complete NCERT in-text exercises and chapter summaries',
+    'Solve at least 15 timed mock examination problems',
+    'Review mistake notebook and re-derive weak concepts'
+  ]
 };
 
 export default oscillations;

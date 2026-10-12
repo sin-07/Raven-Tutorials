@@ -25,8 +25,27 @@ export interface CurriculumTopic_chemical_coordination {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    commonPitfalls?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const chemical_coordination: CurriculumTopic_chemical_coordination = {
@@ -36,8 +55,8 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-05',
-  revisionNumber: 329,
+  lastReviewed: '2026-07-20',
+  revisionNumber: 330,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Endocrine System and Hormonal Regulation',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-02-08',
-  revisionNumber: 330
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Endocrine System and Hormonal Regulation',
     'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-07-20',
-  revisionNumber: 330
+  ]
 };
 
 export default chemical_coordination;

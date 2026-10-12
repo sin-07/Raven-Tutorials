@@ -19,23 +19,33 @@ export interface CurriculumTopic_equilibrium {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  laboratoryExperiments?: Array<{
-    title: string;
-    apparatus: string[];
-    objective: string;
-    conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    revisionChecklist?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
   examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const equilibrium: CurriculumTopic_equilibrium = {
@@ -45,8 +55,8 @@ export const equilibrium: CurriculumTopic_equilibrium = {
   standard: 11,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-10-09',
-  revisionNumber: 363,
+  lastReviewed: '2026-05-17',
+  revisionNumber: 364,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Le Chatelier Principle and Buffer Equilibrium',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -58,16 +68,13 @@ export const equilibrium: CurriculumTopic_equilibrium = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 21,
-  sampleProblemCount: 70
-  laboratoryExperiments: [
-    {
-      title: 'Experimental Verification for Le Chatelier Principle and Buffer Equilibrium',
-      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
-      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
-    }
-  ],
-  lastReviewed: '2026-02-17',
-  revisionNumber: 364
+  sampleProblemCount: 70,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for Le Chatelier Principle and Buffer Equilibrium',
@@ -80,24 +87,19 @@ export const equilibrium: CurriculumTopic_equilibrium = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-02-21',
-  revisionNumber: 364
   revisionChecklist: [
     'Memorize core definitions, formulas, and SI units',
     'Complete NCERT in-text exercises and chapter summaries',
     'Solve at least 15 timed mock examination problems',
     'Review mistake notebook and re-derive weak concepts'
   ],
-  lastReviewed: '2026-05-12',
-  revisionNumber: 364
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-05-17',
-  revisionNumber: 364
+  laboratoryExperiments: [
+    {
+      title: 'Experimental Verification for Le Chatelier Principle and Buffer Equilibrium',
+      apparatus: ['Standard test bench', 'Precision multimeter / sensor kit', 'Calibration weights'],
+      objective: 'Empirically verify theoretical predictions and quantify experimental error percentage'
+    }
+  ]
 };
 
 export default equilibrium;

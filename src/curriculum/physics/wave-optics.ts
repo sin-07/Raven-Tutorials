@@ -19,12 +19,6 @@ export interface CurriculumTopic_wave_optics {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    realWorldApplications?: string[];
   practiceQuestions?: Array<{
     id: string;
     question: string;
@@ -32,7 +26,26 @@ export interface CurriculumTopic_wave_optics {
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const wave_optics: CurriculumTopic_wave_optics = {
@@ -42,8 +55,8 @@ export const wave_optics: CurriculumTopic_wave_optics = {
   standard: 12,
   weightagePercent: 11,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-10-08',
-  revisionNumber: 362,
+  lastReviewed: '2026-07-15',
+  revisionNumber: 363,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Huygens Principle and Double Slit Interference',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -55,23 +68,7 @@ export const wave_optics: CurriculumTopic_wave_optics = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 17,
-  sampleProblemCount: 55
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-22',
-  revisionNumber: 363
-  realWorldApplications: [
-    'Industrial automation and precision measurement sensors',
-    'Biomedical diagnostics and pharmacological formulation analysis',
-    'Computational simulations and algorithmic optimization in aerospace',
-    'Modern renewable energy grid stabilization techniques'
-  ],
-  lastReviewed: '2026-07-10',
-  revisionNumber: 363
+  sampleProblemCount: 55,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -95,8 +92,18 @@ export const wave_optics: CurriculumTopic_wave_optics = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-15',
-  revisionNumber: 363
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ]
 };
 
 export default wave_optics;

@@ -19,19 +19,33 @@ export interface CurriculumTopic_chemical_bonding {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const chemical_bonding: CurriculumTopic_chemical_bonding = {
@@ -41,8 +55,8 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
   standard: 11,
   weightagePercent: 13,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-29',
-  revisionNumber: 353,
+  lastReviewed: '2026-05-12',
+  revisionNumber: 354,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for VSEPR Theory and Molecular Orbital Theory',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -54,15 +68,7 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 20,
-  sampleProblemCount: 65
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-02-17',
-  revisionNumber: 354
+  sampleProblemCount: 65,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -86,8 +92,12 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-05-12',
-  revisionNumber: 354
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  }
 };
 
 export default chemical_bonding;

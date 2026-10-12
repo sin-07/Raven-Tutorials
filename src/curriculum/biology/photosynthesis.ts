@@ -25,8 +25,27 @@ export interface CurriculumTopic_photosynthesis {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const photosynthesis: CurriculumTopic_photosynthesis = {
@@ -36,8 +55,8 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
   standard: 11,
   weightagePercent: 12,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-21',
-  revisionNumber: 314,
+  lastReviewed: '2026-05-02',
+  revisionNumber: 315,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Light Reactions and Carbon Fixation Mechanisms',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 18,
-  sampleProblemCount: 60
+  sampleProblemCount: 60,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-02-12',
-  revisionNumber: 315
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-05-02',
-  revisionNumber: 315
+  ]
 };
 
 export default photosynthesis;

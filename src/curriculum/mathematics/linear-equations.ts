@@ -19,7 +19,33 @@ export interface CurriculumTopic_linear_equations {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
   recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const linear_equations: CurriculumTopic_linear_equations = {
@@ -29,8 +55,8 @@ export const linear_equations: CurriculumTopic_linear_equations = {
   standard: 10,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-07-29',
-  revisionNumber: 291,
+  lastReviewed: '2026-03-18',
+  revisionNumber: 292,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Pair of Linear Equations in Two Variables',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -42,15 +68,13 @@ export const linear_equations: CurriculumTopic_linear_equations = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
+  sampleProblemCount: 45,
   recommendedResources: [
     'NCERT Exemplar Class 10 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-03-18',
-  revisionNumber: 292
+  ]
 };
 
 export default linear_equations;

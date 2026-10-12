@@ -19,24 +19,33 @@ export interface CurriculumTopic_cell_cycle {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
-    shortAnswerMarks: number;
-    longAnswerMarks: number;
-    numericalMarks: number;
-    practicalMarks: number;
-    practiceQuestions?: Array<{
+  practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
   }>;
-};
-}>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const cell_cycle: CurriculumTopic_cell_cycle = {
@@ -46,8 +55,8 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
   standard: 11,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-16',
-  revisionNumber: 309,
+  lastReviewed: '2026-07-20',
+  revisionNumber: 310,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Cell Division: Mitosis and Meiosis Checkpoints',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -59,29 +68,7 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
-  conceptDerivations: [
-    {
-      topic: 'Core Derivation for Cell Division: Mitosis and Meiosis Checkpoints',
-      steps: [
-        'State primary postulates and initial state constraints',
-        'Establish differential equilibrium equation',
-        'Integrate over standard boundary limits',
-        'Formulate definitive solution form'
-      ],
-      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
-    }
-  ],
-  lastReviewed: '2026-02-03',
-  revisionNumber: 310
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-04-27',
-  revisionNumber: 310
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -105,8 +92,24 @@ export const cell_cycle: CurriculumTopic_cell_cycle = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-07-20',
-  revisionNumber: 310
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
+  conceptDerivations: [
+    {
+      topic: 'Core Derivation for Cell Division: Mitosis and Meiosis Checkpoints',
+      steps: [
+        'State primary postulates and initial state constraints',
+        'Establish differential equilibrium equation',
+        'Integrate over standard boundary limits',
+        'Formulate definitive solution form'
+      ],
+      concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
+    }
+  ]
 };
 
 export default cell_cycle;

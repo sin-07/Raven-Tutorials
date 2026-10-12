@@ -19,13 +19,32 @@ export interface CurriculumTopic_circles {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  realWorldApplications?: string[];
   practiceQuestions?: Array<{
     id: string;
     question: string;
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -36,8 +55,8 @@ export const circles: CurriculumTopic_circles = {
   standard: 10,
   weightagePercent: 9,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-28',
-  revisionNumber: 321,
+  lastReviewed: '2026-03-13',
+  revisionNumber: 322,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Circles & Tangents from External Points',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,15 +68,7 @@ export const circles: CurriculumTopic_circles = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 14,
-  sampleProblemCount: 45
-  realWorldApplications: [
-    'Industrial automation and precision measurement sensors',
-    'Biomedical diagnostics and pharmacological formulation analysis',
-    'Computational simulations and algorithmic optimization in aerospace',
-    'Modern renewable energy grid stabilization techniques'
-  ],
-  lastReviewed: '2026-03-08',
-  revisionNumber: 322
+  sampleProblemCount: 45,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -81,8 +92,12 @@ export const circles: CurriculumTopic_circles = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-03-13',
-  revisionNumber: 322
+  realWorldApplications: [
+    'Industrial automation and precision measurement sensors',
+    'Biomedical diagnostics and pharmacological formulation analysis',
+    'Computational simulations and algorithmic optimization in aerospace',
+    'Modern renewable energy grid stabilization techniques'
+  ]
 };
 
 export default circles;

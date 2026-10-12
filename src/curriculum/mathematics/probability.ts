@@ -19,7 +19,33 @@ export interface CurriculumTopic_probability {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
   commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const probability: CurriculumTopic_probability = {
@@ -29,8 +55,8 @@ export const probability: CurriculumTopic_probability = {
   standard: 10,
   weightagePercent: 6,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-07',
-  revisionNumber: 331,
+  lastReviewed: '2026-06-17',
+  revisionNumber: 332,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Classical Definition of Probability & Event Spaces',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -42,15 +68,13 @@ export const probability: CurriculumTopic_probability = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 9,
-  sampleProblemCount: 30
+  sampleProblemCount: 30,
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',
     'Neglecting edge-case boundary restrictions in Classical Definition of Probability & Event Spaces',
     'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-06-17',
-  revisionNumber: 332
+  ]
 };
 
 export default probability;

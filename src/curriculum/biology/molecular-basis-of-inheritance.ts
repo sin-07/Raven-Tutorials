@@ -19,18 +19,33 @@ export interface CurriculumTopic_molecular_basis_of_inheritance {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
-  conceptDerivations?: Array<{
-    topic: string;
-    steps: string[];
-    concludingEquation: string;
-    examWeightageBreakdown?: {
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
     shortAnswerMarks: number;
     longAnswerMarks: number;
     numericalMarks: number;
     practicalMarks: number;
   };
-}>;
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_inheritance = {
@@ -40,8 +55,8 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
   standard: 12,
   weightagePercent: 16,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-10',
-  revisionNumber: 334,
+  lastReviewed: '2026-07-25',
+  revisionNumber: 335,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for DNA Structure, Replication, and Gene Expression',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -53,15 +68,13 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 24,
-  sampleProblemCount: 80
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in DNA Structure, Replication, and Gene Expression',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-02-08',
-  revisionNumber: 335
+  sampleProblemCount: 80,
+  examWeightageBreakdown: {
+    shortAnswerMarks: 4,
+    longAnswerMarks: 6,
+    numericalMarks: 5,
+    practicalMarks: 3
+  },
   conceptDerivations: [
     {
       topic: 'Core Derivation for DNA Structure, Replication, and Gene Expression',
@@ -74,16 +87,12 @@ export const molecular_basis_of_inheritance: CurriculumTopic_molecular_basis_of_
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-05-02',
-  revisionNumber: 335
-  examWeightageBreakdown: {
-    shortAnswerMarks: 4,
-    longAnswerMarks: 6,
-    numericalMarks: 5,
-    practicalMarks: 3
-  },
-  lastReviewed: '2026-07-25',
-  revisionNumber: 335
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in DNA Structure, Replication, and Gene Expression',
+    'Premature approximation prior to final algebraic simplification'
+  ]
 };
 
 export default molecular_basis_of_inheritance;

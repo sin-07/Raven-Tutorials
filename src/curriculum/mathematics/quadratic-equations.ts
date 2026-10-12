@@ -25,8 +25,27 @@ export interface CurriculumTopic_quadratic_equations {
     difficulty: 'easy' | 'medium' | 'hard';
     marks: number;
     hint?: string;
-    recommendedResources?: string[];
-}>;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
+  conceptDerivations?: Array<{
+    topic: string;
+    steps: string[];
+    concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
+  }>;
 }
 
 export const quadratic_equations: CurriculumTopic_quadratic_equations = {
@@ -36,8 +55,8 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
   standard: 10,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-08-03',
-  revisionNumber: 296,
+  lastReviewed: '2026-06-17',
+  revisionNumber: 297,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Quadratic Equations & Nature of Roots',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -49,7 +68,7 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   practiceQuestions: [
     {
       id: 'pq-1',
@@ -73,16 +92,12 @@ export const quadratic_equations: CurriculumTopic_quadratic_equations = {
       hint: 'Check conservation laws and symmetry properties.'
     }
   ],
-  lastReviewed: '2026-03-28',
-  revisionNumber: 297
   recommendedResources: [
     'NCERT Exemplar Class 10 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',
     'National Board Previous 10 Years Solved Question Papers',
     'Interactive 3D Visual Concept Simulation Modules'
-  ],
-  lastReviewed: '2026-06-17',
-  revisionNumber: 297
+  ]
 };
 
 export default quadratic_equations;

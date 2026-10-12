@@ -19,10 +19,32 @@ export interface CurriculumTopic_note_making_summarizing {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -33,8 +55,8 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-26',
-  revisionNumber: 350,
+  lastReviewed: '2026-05-27',
+  revisionNumber: 351,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Structured Note-Making and Abbreviation Syntax',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -46,7 +68,7 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
+  sampleProblemCount: 50,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Structured Note-Making and Abbreviation Syntax',
@@ -58,9 +80,7 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
       ],
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
-  ],
-  lastReviewed: '2026-05-27',
-  revisionNumber: 351
+  ]
 };
 
 export default note_making_summarizing;

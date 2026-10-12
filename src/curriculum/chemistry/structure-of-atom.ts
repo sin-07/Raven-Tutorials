@@ -19,11 +19,32 @@ export interface CurriculumTopic_structure_of_atom {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -34,8 +55,8 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
   standard: 11,
   weightagePercent: 10,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-24',
-  revisionNumber: 348,
+  lastReviewed: '2026-05-22',
+  revisionNumber: 349,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Bohr Model and Quantum Electronic Configurations',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -47,15 +68,7 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 15,
-  sampleProblemCount: 50
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Bohr Model and Quantum Electronic Configurations',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-02-26',
-  revisionNumber: 349
+  sampleProblemCount: 50,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Bohr Model and Quantum Electronic Configurations',
@@ -68,8 +81,12 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-05-22',
-  revisionNumber: 349
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Bohr Model and Quantum Electronic Configurations',
+    'Premature approximation prior to final algebraic simplification'
+  ]
 };
 
 export default structure_of_atom;

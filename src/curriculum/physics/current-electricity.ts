@@ -19,11 +19,32 @@ export interface CurriculumTopic_current_electricity {
   keyFormulaeOrConcepts: string[];
   recommendedHours: number;
   sampleProblemCount: number;
-  commonPitfalls?: string[];
+  practiceQuestions?: Array<{
+    id: string;
+    question: string;
+    difficulty: 'easy' | 'medium' | 'hard';
+    marks: number;
+    hint?: string;
+  }>;
+  examWeightageBreakdown?: {
+    shortAnswerMarks: number;
+    longAnswerMarks: number;
+    numericalMarks: number;
+    practicalMarks: number;
+  };
   conceptDerivations?: Array<{
     topic: string;
     steps: string[];
     concludingEquation: string;
+  }>;
+  commonPitfalls?: string[];
+  recommendedResources?: string[];
+  realWorldApplications?: string[];
+  revisionChecklist?: string[];
+  laboratoryExperiments?: Array<{
+    title: string;
+    apparatus: string[];
+    objective: string;
   }>;
 }
 
@@ -34,8 +55,8 @@ export const current_electricity: CurriculumTopic_current_electricity = {
   standard: 12,
   weightagePercent: 14,
   academicCycle: '2025-2026',
-  lastReviewed: '2026-09-13',
-  revisionNumber: 337,
+  lastReviewed: '2026-07-02',
+  revisionNumber: 338,
   learningObjectives: [
     'Master foundational principles and analytical reasoning for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
     'Solve NCERT Exemplar and past 10 years institutional board examination problems',
@@ -47,15 +68,7 @@ export const current_electricity: CurriculumTopic_current_electricity = {
     'Concept 3: Standard error analysis and edge case resolutions'
   ],
   recommendedHours: 21,
-  sampleProblemCount: 70
-  commonPitfalls: [
-    'Confusing sign conventions during scalar and vector decompositions',
-    'Overlooking dimensional consistency in intermediate equations',
-    'Neglecting edge-case boundary restrictions in Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
-    'Premature approximation prior to final algebraic simplification'
-  ],
-  lastReviewed: '2026-04-07',
-  revisionNumber: 338
+  sampleProblemCount: 70,
   conceptDerivations: [
     {
       topic: 'Core Derivation for Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
@@ -68,8 +81,12 @@ export const current_electricity: CurriculumTopic_current_electricity = {
       concludingEquation: 'Q(t) = Q_0 * exp(-lambda * t) + C'
     }
   ],
-  lastReviewed: '2026-07-02',
-  revisionNumber: 338
+  commonPitfalls: [
+    'Confusing sign conventions during scalar and vector decompositions',
+    'Overlooking dimensional consistency in intermediate equations',
+    'Neglecting edge-case boundary restrictions in Ohm Law, Kirchhoff Rules, and Wheatstone Bridge',
+    'Premature approximation prior to final algebraic simplification'
+  ]
 };
 
 export default current_electricity;
