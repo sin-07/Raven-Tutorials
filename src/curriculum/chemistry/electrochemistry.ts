@@ -79,7 +79,7 @@ export const electrochemistry: CurriculumTopic_electrochemistry = {
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #22',
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #10',
     'Misapplying intermediate boundary approximation during Nernst Equation and Kohlrausch Conductivity Law step #22'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

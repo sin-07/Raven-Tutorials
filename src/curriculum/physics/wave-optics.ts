@@ -79,7 +79,7 @@ export const wave_optics: CurriculumTopic_wave_optics = {
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #10',
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #22',
     'Misapplying intermediate boundary approximation during Huygens Principle and Double Slit Interference step #10'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

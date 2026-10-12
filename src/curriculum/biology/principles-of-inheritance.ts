@@ -80,7 +80,7 @@ export const principles_of_inheritance: CurriculumTopic_principles_of_inheritanc
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Mendelian Genetics and Linkage Analysis',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Mendelian Genetics and Linkage Analysis',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Mendelian Genetics and Linkage Analysis'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

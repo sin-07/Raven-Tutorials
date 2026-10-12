@@ -79,7 +79,7 @@ export const complex_numbers: CurriculumTopic_complex_numbers = {
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Complex Numbers & Argand Plane',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Complex Numbers & Argand Plane',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Complex Numbers & Argand Plane'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

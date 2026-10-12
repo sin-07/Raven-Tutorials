@@ -79,7 +79,7 @@ export const chemical_bonding: CurriculumTopic_chemical_bonding = {
     'Verify complete mastery of VSEPR Theory and Molecular Orbital Theory conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of VSEPR Theory and Molecular Orbital Theory conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of VSEPR Theory and Molecular Orbital Theory conceptual derivations and NCERT practice set #17'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

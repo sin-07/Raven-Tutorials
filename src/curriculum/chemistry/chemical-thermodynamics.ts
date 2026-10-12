@@ -133,7 +133,7 @@ export const chemical_thermodynamics: CurriculumTopic_chemical_thermodynamics = 
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Enthalpy, Entropy, and Gibbs Free Energy',

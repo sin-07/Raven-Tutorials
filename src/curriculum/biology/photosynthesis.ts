@@ -80,7 +80,7 @@ export const photosynthesis: CurriculumTopic_photosynthesis = {
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Light Reactions and Carbon Fixation Mechanisms conceptual derivations and NCERT practice set #23'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

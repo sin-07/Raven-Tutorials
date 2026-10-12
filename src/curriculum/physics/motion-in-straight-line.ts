@@ -79,7 +79,7 @@ export const motion_in_straight_line: CurriculumTopic_motion_in_straight_line = 
     'Misapplying intermediate boundary approximation during Kinematics: Velocity, Acceleration, and Motion step #4',
     'Misapplying intermediate boundary approximation during Kinematics: Velocity, Acceleration, and Motion step #16',
     'Misapplying intermediate boundary approximation during Kinematics: Velocity, Acceleration, and Motion step #4'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

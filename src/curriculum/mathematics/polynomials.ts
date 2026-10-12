@@ -79,7 +79,7 @@ export const polynomials: CurriculumTopic_polynomials = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Polynomials & Geometric Meaning of Zeroes',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Polynomials & Geometric Meaning of Zeroes',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Polynomials & Geometric Meaning of Zeroes'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Polynomials & Geometric Meaning of Zeroes',

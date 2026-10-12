@@ -80,7 +80,7 @@ export const chemical_coordination: CurriculumTopic_chemical_coordination = {
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Endocrine System and Hormonal Regulation',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Endocrine System and Hormonal Regulation',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Endocrine System and Hormonal Regulation'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

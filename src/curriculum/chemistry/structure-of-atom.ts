@@ -79,7 +79,7 @@ export const structure_of_atom: CurriculumTopic_structure_of_atom = {
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Bohr Model and Quantum Electronic Configurations conceptual derivations and NCERT practice set #5'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Bohr Model and Quantum Electronic Configurations',

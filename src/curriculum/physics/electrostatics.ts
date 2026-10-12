@@ -79,7 +79,7 @@ export const electrostatics: CurriculumTopic_electrostatics = {
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Coulomb Law, Electric Field Lines, and Gauss Law',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Coulomb Law, Electric Field Lines, and Gauss Law'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

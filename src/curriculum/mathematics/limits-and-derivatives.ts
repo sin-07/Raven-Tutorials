@@ -133,7 +133,7 @@ export const limits_and_derivatives: CurriculumTopic_limits_and_derivatives = {
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Limits, Continuity, and Derivatives',

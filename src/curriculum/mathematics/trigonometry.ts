@@ -79,7 +79,7 @@ export const trigonometry: CurriculumTopic_trigonometry = {
     'Misapplying intermediate boundary approximation during Introduction to Trigonometry & Trigonometric Ratios step #16',
     'Misapplying intermediate boundary approximation during Introduction to Trigonometry & Trigonometric Ratios step #4',
     'Misapplying intermediate boundary approximation during Introduction to Trigonometry & Trigonometric Ratios step #16'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Introduction to Trigonometry & Trigonometric Ratios',

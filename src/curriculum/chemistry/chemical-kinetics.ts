@@ -79,7 +79,7 @@ export const chemical_kinetics: CurriculumTopic_chemical_kinetics = {
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Reaction Rates, Order, and Arrhenius Equation',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Reaction Rates, Order, and Arrhenius Equation',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Reaction Rates, Order, and Arrhenius Equation'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

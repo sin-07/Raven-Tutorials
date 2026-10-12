@@ -79,7 +79,7 @@ export const note_making_summarizing: CurriculumTopic_note_making_summarizing = 
     'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #10',
     'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #22',
     'Misapplying intermediate boundary approximation during Structured Note-Making and Abbreviation Syntax step #10'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Structured Note-Making and Abbreviation Syntax',

@@ -80,7 +80,7 @@ export const cellular_respiration: CurriculumTopic_cellular_respiration = {
     'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Glycolysis, Krebs Cycle, and ATP Synthesis conceptual derivations and NCERT practice set #17'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Glycolysis, Krebs Cycle, and ATP Synthesis',

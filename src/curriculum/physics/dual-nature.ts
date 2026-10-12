@@ -79,7 +79,7 @@ export const dual_nature: CurriculumTopic_dual_nature = {
     'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #22',
     'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #10',
     'Misapplying intermediate boundary approximation during Photoelectric Effect and De Broglie Hypothesis step #22'
-  ]
+  ],
   recommendedResources: [
     'NCERT Exemplar Class 12 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',

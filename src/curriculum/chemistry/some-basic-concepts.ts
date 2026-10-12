@@ -79,7 +79,7 @@ export const some_basic_concepts: CurriculumTopic_some_basic_concepts = {
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #4',
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #16',
     'Misapplying intermediate boundary approximation during Mole Concept and Stoichiometric Calculations step #4'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

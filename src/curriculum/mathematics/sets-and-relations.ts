@@ -79,7 +79,7 @@ export const sets_and_relations: CurriculumTopic_sets_and_relations = {
     'Misapplying intermediate boundary approximation during Sets, Subsets, Power Sets & Cartesian Products step #10',
     'Misapplying intermediate boundary approximation during Sets, Subsets, Power Sets & Cartesian Products step #22',
     'Misapplying intermediate boundary approximation during Sets, Subsets, Power Sets & Cartesian Products step #10'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

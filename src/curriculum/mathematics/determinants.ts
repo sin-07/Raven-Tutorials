@@ -79,7 +79,7 @@ export const determinants: CurriculumTopic_determinants = {
     'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #22',
     'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #10',
     'Misapplying intermediate boundary approximation during Determinants: Minors, Cofactors, and Inverses step #22'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

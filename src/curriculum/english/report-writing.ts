@@ -79,7 +79,7 @@ export const report_writing: CurriculumTopic_report_writing = {
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Journalistic and Institutional Event Reporting',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Journalistic and Institutional Event Reporting',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Journalistic and Institutional Event Reporting'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

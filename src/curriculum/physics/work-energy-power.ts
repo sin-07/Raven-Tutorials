@@ -79,7 +79,7 @@ export const work_energy_power: CurriculumTopic_work_energy_power = {
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Work-Energy Theorem and Elastic Collisions',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Work-Energy Theorem and Elastic Collisions',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Work-Energy Theorem and Elastic Collisions'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Work-Energy Theorem and Elastic Collisions',

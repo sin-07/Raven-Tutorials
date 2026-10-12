@@ -79,7 +79,7 @@ export const ray_optics: CurriculumTopic_ray_optics = {
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Reflection, Refraction, and Lens Maker Formula',
     'Raven Tutorials Advanced Problem Vault - Volume 18 for Reflection, Refraction, and Lens Maker Formula',
     'Raven Tutorials Advanced Problem Vault - Volume 6 for Reflection, Refraction, and Lens Maker Formula'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

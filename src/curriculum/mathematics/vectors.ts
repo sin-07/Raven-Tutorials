@@ -79,7 +79,7 @@ export const vectors: CurriculumTopic_vectors = {
     'Verify complete mastery of Vectors: Dot Product and Cross Product Operations conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Vectors: Dot Product and Cross Product Operations conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Vectors: Dot Product and Cross Product Operations conceptual derivations and NCERT practice set #17'
-  ]
+  ],
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',

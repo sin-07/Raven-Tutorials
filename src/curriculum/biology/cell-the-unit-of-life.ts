@@ -80,7 +80,7 @@ export const cell_the_unit_of_life: CurriculumTopic_cell_the_unit_of_life = {
     'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #16',
     'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #4',
     'Misapplying intermediate boundary approximation during Cell Architecture and Membrane Structure step #16'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

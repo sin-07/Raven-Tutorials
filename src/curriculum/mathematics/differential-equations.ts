@@ -79,7 +79,7 @@ export const differential_equations: CurriculumTopic_differential_equations = {
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Differential Equations & Separation of Variables conceptual derivations and NCERT practice set #23'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

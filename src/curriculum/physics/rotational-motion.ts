@@ -133,7 +133,7 @@ export const rotational_motion: CurriculumTopic_rotational_motion = {
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Center of Mass and Moment of Inertia Theorems',

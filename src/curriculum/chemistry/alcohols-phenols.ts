@@ -133,7 +133,7 @@ export const alcohols_phenols: CurriculumTopic_alcohols_phenols = {
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

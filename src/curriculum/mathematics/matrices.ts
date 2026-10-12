@@ -79,7 +79,7 @@ export const matrices: CurriculumTopic_matrices = {
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #4',
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #16',
     'Misapplying intermediate boundary approximation during Matrices: Operations and Symmetric Matrices step #4'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

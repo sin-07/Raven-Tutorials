@@ -79,7 +79,7 @@ export const electromagnetic_induction: CurriculumTopic_electromagnetic_inductio
     'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Faraday Law, Lenz Law, and Inductance conceptual derivations and NCERT practice set #23'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

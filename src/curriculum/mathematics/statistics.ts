@@ -79,7 +79,7 @@ export const statistics: CurriculumTopic_statistics = {
     'Verify complete mastery of Statistics: Mean, Median, and Mode of Grouped Data conceptual derivations and NCERT practice set #11',
     'Verify complete mastery of Statistics: Mean, Median, and Mode of Grouped Data conceptual derivations and NCERT practice set #23',
     'Verify complete mastery of Statistics: Mean, Median, and Mode of Grouped Data conceptual derivations and NCERT practice set #11'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Statistics: Mean, Median, and Mode of Grouped Data',

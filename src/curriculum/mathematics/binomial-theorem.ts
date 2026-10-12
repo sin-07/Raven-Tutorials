@@ -79,7 +79,7 @@ export const binomial_theorem: CurriculumTopic_binomial_theorem = {
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #16',
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #4',
     'Misapplying intermediate boundary approximation during Binomial Theorem for Positive Integral Indices step #16'
-  ]
+  ],
   recommendedResources: [
     'NCERT Exemplar Class 11 - Chapter Core Problems',
     'Raven Tutorials Advanced Lecture Notes & Problem Vault',

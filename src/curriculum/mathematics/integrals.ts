@@ -79,7 +79,7 @@ export const integrals: CurriculumTopic_integrals = {
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Indefinite and Definite Integrals Evaluation',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Indefinite and Definite Integrals Evaluation',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Indefinite and Definite Integrals Evaluation'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

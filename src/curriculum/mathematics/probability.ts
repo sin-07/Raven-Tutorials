@@ -133,7 +133,7 @@ export const probability: CurriculumTopic_probability = {
       marks: 2,
       hint: 'Apply core definitions, boundary restrictions, and systematic simplification.'
     }
-  ]
+  ],
   commonPitfalls: [
     'Confusing sign conventions during scalar and vector decompositions',
     'Overlooking dimensional consistency in intermediate equations',

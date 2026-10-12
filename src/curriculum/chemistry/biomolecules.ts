@@ -79,7 +79,7 @@ export const biomolecules: CurriculumTopic_biomolecules = {
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #16',
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #4',
     'Misapplying intermediate boundary approximation during Carbohydrates, Amino Acids, and Peptide Structures step #16'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

@@ -79,7 +79,7 @@ export const permutations_combinations: CurriculumTopic_permutations_combination
     'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Permutations and Combinations Protocols conceptual derivations and NCERT practice set #5'
-  ]
+  ],
   examWeightageBreakdown: {
     shortAnswerMarks: 4,
     longAnswerMarks: 6,

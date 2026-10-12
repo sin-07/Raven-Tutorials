@@ -79,7 +79,7 @@ export const circles: CurriculumTopic_circles = {
     'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #17',
     'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #5',
     'Verify complete mastery of Circles & Tangents from External Points conceptual derivations and NCERT practice set #17'
-  ]
+  ],
   practiceQuestions: [
     {
       id: 'pq-1',

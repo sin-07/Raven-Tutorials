@@ -79,7 +79,7 @@ export const haloalkanes: CurriculumTopic_haloalkanes = {
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Nucleophilic Substitution SN1 and SN2 Pathways',
     'Raven Tutorials Advanced Problem Vault - Volume 12 for Nucleophilic Substitution SN1 and SN2 Pathways',
     'Raven Tutorials Advanced Problem Vault - Volume 24 for Nucleophilic Substitution SN1 and SN2 Pathways'
-  ]
+  ],
   conceptDerivations: [
     {
       topic: 'Core Derivation for Nucleophilic Substitution SN1 and SN2 Pathways',
