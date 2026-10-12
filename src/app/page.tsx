@@ -46,6 +46,7 @@ import {
   scrollFromUp,
   scrollFromDown,
   scrollStaggerDirectional,
+  scrollCardOpacity,
   animateFromUp,
   animateFromDown,
   animateFromLeft,
@@ -199,16 +200,19 @@ export default function Home() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLParagraphElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
+  const bentoDeckRef = useRef<HTMLDivElement>(null);
 
   const featuresSectionRef = useRef<HTMLElement>(null);
   const featuresTitleRef = useRef<HTMLHeadingElement>(null);
   const featuresGridRef = useRef<HTMLDivElement>(null);
 
+  const curriculumGridRef = useRef<HTMLDivElement>(null);
   const methodologySectionRef = useRef<HTMLElement>(null);
   const methodologyGridRef = useRef<HTMLDivElement>(null);
 
   const coursesSectionRef = useRef<HTMLElement>(null);
   const coursesTitleRef = useRef<HTMLDivElement>(null);
+  const coursesGridRef = useRef<HTMLDivElement>(null);
   const categoriesSectionRef = useRef<HTMLElement>(null);
   const categoriesGridRef = useRef<HTMLDivElement>(null);
   const testimonialsSectionRef = useRef<HTMLElement>(null);
@@ -231,55 +235,67 @@ export default function Home() {
     fetchCourses();
   }, [fetchCourses]);
 
-  // GSAP Directional Animations (Left, Right, Up, Down)
+  // GSAP Directional & Card Opacity Animations on Scroll
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
       // 1. Hero entrance is driven by hardware-accelerated GPU CSS (.hero-anim-title, etc.)
-      // preventing any post-hydration flicker or layout stutter.
+      
+      // 2. Academic Specialization Bento Cards: Opacity & lift on scroll
+      if (bentoDeckRef.current) {
+        const bentoCards = bentoDeckRef.current.querySelectorAll('.hero-bento-card');
+        scrollCardOpacity(bentoCards, 0.07, { distance: 22, duration: 0.55 });
+      }
 
-      // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
-      if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 35 });
+      // 3. Features Section: Title from Up, Cards with opacity animation on scroll
+      if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 30 });
       if (featuresGridRef.current) {
         const cards = featuresGridRef.current.querySelectorAll('.feature-card');
-        scrollStaggerDirectional(cards, 'cross', 0.08, { distance: 35 });
+        scrollCardOpacity(cards, 0.08, { distance: 25, duration: 0.55 });
       }
 
-      // 3. 4-Step Methodology: 01 from Left, 02 from Up, 03 from Down, 04 from Right
+      // 4. Foundational Curriculum Rows: Opacity cascade on scroll
+      if (curriculumGridRef.current) {
+        const rows = curriculumGridRef.current.querySelectorAll('.curriculum-row');
+        scrollCardOpacity(rows, 0.08, { distance: 20, duration: 0.5 });
+      }
+
+      // 5. 4-Step Methodology: Cards with opacity cascade on scroll
       if (methodologyGridRef.current) {
         const steps = methodologyGridRef.current.querySelectorAll('.methodology-step');
-        if (steps[0]) scrollFromLeft(steps[0], { distance: 40 });
-        if (steps[1]) scrollFromUp(steps[1], { distance: 35 });
-        if (steps[2]) scrollFromDown(steps[2], { distance: 35 });
-        if (steps[3]) scrollFromRight(steps[3], { distance: 40 });
+        scrollCardOpacity(steps, 0.08, { distance: 24, duration: 0.55 });
       }
 
-      // 4. Featured Courses: Catalog title from Left
-      if (coursesTitleRef.current) scrollFromLeft(coursesTitleRef.current, { distance: 35 });
+      // 6. Featured Courses: Catalog title & Cards with opacity animation on scroll
+      if (coursesTitleRef.current) scrollFromLeft(coursesTitleRef.current, { distance: 30 });
+      if (coursesGridRef.current) {
+        const courseCards = coursesGridRef.current.querySelectorAll('.course-card-wrapper');
+        scrollCardOpacity(courseCards, 0.07, { distance: 24, duration: 0.55 });
+      }
 
-      // 5. Subject Focus Categories: Stagger alternating from Left & Right
+      // 7. Subject Focus Categories: Stagger with opacity on scroll
       if (categoriesGridRef.current) {
         const catCards = categoriesGridRef.current.querySelectorAll('.cat-card');
-        scrollStaggerDirectional(catCards, 'cross', 0.06, { distance: 30 });
+        scrollCardOpacity(catCards, 0.06, { distance: 22, duration: 0.5 });
       }
 
-      // 6. Testimonials: Stats entrance animation
+      // 8. Testimonials: Stats entrance animation with opacity
       if (testimonialsSectionRef.current) {
         const statCards = testimonialsSectionRef.current.querySelectorAll('.testimonial-stat-card');
         if (statCards.length > 0) {
-          scrollStaggerDirectional(statCards, 'cross', 0.06, { distance: 25 });
+          scrollCardOpacity(statCards, 0.06, { distance: 20, duration: 0.5 });
         }
       }
 
-      // 7. CTA Banner: Reveal from Down
+      // 9. CTA Banner: Reveal from Down
       if (ctaSectionRef.current) {
-        scrollFromDown(ctaSectionRef.current, { distance: 35 });
+        scrollFromDown(ctaSectionRef.current, { distance: 30 });
       }
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [courses]);
 
 
 
@@ -405,7 +421,7 @@ export default function Home() {
             </div>
 
             {/* 3-Column Bento Deck with Generous Spacing */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 min-h-[340px]">
+            <div ref={bentoDeckRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 min-h-[340px]">
               <AnimatePresence initial={false}>
                 {heroSubjects
                   .filter(sub => subjectFilter === 'all' || sub.category === subjectFilter)
@@ -418,7 +434,7 @@ export default function Home() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.98 }}
                         transition={{ duration: 0.2, ease: 'easeOut' }}
-                        className="h-full flex flex-col"
+                        className="hero-bento-card h-full flex flex-col"
                       >
                         <Link
                           href={sub.href}
@@ -624,7 +640,7 @@ export default function Home() {
           </div>
 
           {/* Module List Rows */}
-          <div className="space-y-4">
+          <div ref={curriculumGridRef} className="space-y-4">
             {[
               {
                 title: 'Physics & Mechanics Fundamentals',
@@ -647,7 +663,7 @@ export default function Home() {
             ].map((module, mIdx) => (
               <div
                 key={mIdx}
-                className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#10b981]/40 transition-all hover:bg-white/[0.06] group"
+                className="curriculum-row flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#10b981]/40 transition-all hover:bg-white/[0.06] group"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 border border-[#10b981]/30 text-[#34d399] flex items-center justify-center shrink-0 mt-0.5">
@@ -811,7 +827,7 @@ export default function Home() {
         </div>
 
         {/* Grid of Courses */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]">
+        <div ref={coursesGridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[300px]">
           <AnimatePresence mode="popLayout">
             {loading ? (
               <motion.div
@@ -835,15 +851,12 @@ export default function Home() {
               </motion.div>
             ) : (
               filteredCourses.map((course, index) => (
-                <motion.div
+                <div
                   key={course.id}
-                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, y: -8 }}
-                  transition={{ duration: 0.2, ease: 'easeOut', delay: index * 0.02 }}
+                  className="course-card-wrapper h-full"
                 >
                   <CourseCard course={course} index={index} />
-                </motion.div>
+                </div>
               ))
             )}
           </AnimatePresence>

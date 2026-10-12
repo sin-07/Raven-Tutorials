@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -11,8 +11,8 @@ import {
   Calendar,
   PenTool
 } from 'lucide-react';
-import WavyHeading from '@/components/WavyHeading';
 import Loader from '@/components/Loader';
+import { scrollCardOpacity } from '@/lib/gsap';
 
 interface ArticleItem {
   _id: string;
@@ -30,6 +30,7 @@ interface ArticleItem {
 export default function HomeArticlesSection() {
   const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchRecentArticles = async () => {
@@ -48,6 +49,16 @@ export default function HomeArticlesSection() {
 
     fetchRecentArticles();
   }, []);
+
+  // Trigger smooth hardware-accelerated opacity entrance on scroll
+  useEffect(() => {
+    if (!loading && gridRef.current) {
+      const cards = gridRef.current.querySelectorAll('.home-article-card');
+      if (cards.length > 0) {
+        scrollCardOpacity(cards, 0.08, { distance: 22, duration: 0.55 });
+      }
+    }
+  }, [loading, articles]);
 
   return (
     <section className="py-24 bg-transparent border-t border-white/10 relative z-10 content-auto">
@@ -72,12 +83,12 @@ export default function HomeArticlesSection() {
             <Loader size="md" text="Loading Latest Insights..." subtitle="Curating expert articles" />
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((art) => (
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group relative bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                className="home-article-card group relative bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Top ambient green laser accent */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500 z-20" />

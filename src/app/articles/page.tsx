@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { LMSFooter } from '@/components/lms';
 import Loader from '@/components/Loader';
+import { scrollCardOpacity } from '@/lib/gsap';
 
 interface ArticleItem {
   _id: string;
@@ -38,6 +39,7 @@ export default function ArticlesDirectoryPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [search, setSearch] = useState('');
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const availableCategories = React.useMemo(() => {
     const set = new Set<string>();
@@ -77,6 +79,16 @@ export default function ArticlesDirectoryPage() {
       a.author.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });
+
+  // Smooth hardware-accelerated opacity entrance on scroll
+  useEffect(() => {
+    if (!loading && gridRef.current) {
+      const cards = gridRef.current.querySelectorAll('.article-card-item');
+      if (cards.length > 0) {
+        scrollCardOpacity(cards, 0.07, { distance: 22, duration: 0.55 });
+      }
+    }
+  }, [loading, filtered]);
 
   return (
     <div className="min-h-screen bg-transparent text-white selection:bg-[#10b981] selection:text-white pt-28 pb-16 relative overflow-hidden">
@@ -154,12 +166,12 @@ export default function ArticlesDirectoryPage() {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((art) => (
               <Link
                 key={art._id}
                 href={`/articles/${art.slug}`}
-                className="group bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full relative"
+                className="article-card-item group bg-[#0f111a] hover:bg-[#131622] border border-white/10 hover:border-[#10b981]/50 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full relative"
               >
                 {/* Top ambient green laser accent */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#34d399]/35 to-transparent group-hover:via-[#34d399]/85 transition-all duration-500 z-20" />

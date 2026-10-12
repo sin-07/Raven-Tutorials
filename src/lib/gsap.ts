@@ -275,6 +275,41 @@ export const scrollFromDown = (el: Element | null, options: DirectionalScrollOpt
 export const scrollFadeUp = (el: Element | null, options: DirectionalScrollOptions = {}) =>
   scrollFromDown(el, options);
 
+/**
+ * Smooth, hardware-accelerated opacity entrance animation for cards on scroll.
+ * Animates opacity from 0 -> 1 and subtle y elevation from distance -> 0.
+ */
+export const scrollCardOpacity = (
+  els: NodeListOf<Element> | HTMLCollection | HTMLCollectionOf<Element> | Element[],
+  stagger = 0.08,
+  options: { distance?: number; duration?: number; start?: string; delay?: number } = {}
+) => {
+  if (!els || !els.length || typeof window === 'undefined') return;
+  const arr = Array.from(els as ArrayLike<Element>);
+  const trigger = arr[0];
+  const { distance = 20, duration = 0.55, start = 'top 88%', delay = 0 } = options;
+
+  return gsap.fromTo(
+    arr,
+    { opacity: 0, y: distance },
+    {
+      opacity: 1,
+      y: 0,
+      duration,
+      stagger,
+      delay,
+      ease: 'power2.out',
+      force3D: true,
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger,
+        start,
+        once: true,
+      },
+    }
+  );
+};
+
 /** Scroll-triggered stagger with directional control */
 export const scrollStaggerDirectional = (
   els: NodeListOf<Element> | HTMLCollection | HTMLCollectionOf<Element> | Element[],
