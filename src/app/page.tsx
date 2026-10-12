@@ -236,13 +236,8 @@ export default function Home() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero: Title & Subtitle from Down, Buttons from Left & Right (Instant snappy 120 FPS entrance)
-      if (heroTitleRef.current) animateFromDown(heroTitleRef.current, 0.05, 30, 0.55);
-      if (heroSubRef.current) animateFromDown(heroSubRef.current, 0.15, 25, 0.5);
-      if (heroCTARef.current) {
-        const buttons = Array.from(heroCTARef.current.children);
-        if (buttons[0]) animateFromDown(buttons[0], 0.25, 20, 0.45);
-      }
+      // 1. Hero entrance is driven by hardware-accelerated GPU CSS (.hero-anim-title, etc.)
+      // preventing any post-hydration flicker or layout stutter.
 
       // 2. Features Section: Title from Up, Cards in cross pattern (Left, Up, Down, Right)
       if (featuresTitleRef.current) scrollFromUp(featuresTitleRef.current, { distance: 35 });
@@ -323,7 +318,7 @@ export default function Home() {
           {/* Majestic Sheryians Headline */}
           <h1 
             ref={heroTitleRef}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06]"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-outfit tracking-tight leading-[1.06] hero-anim-title"
           >
             Personalized Home Tuition with <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#6ee7b7]">
@@ -334,7 +329,7 @@ export default function Home() {
           {/* Subheading */}
           <p 
             ref={heroSubRef}
-            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-jakarta max-w-2xl mx-auto leading-relaxed font-normal"
+            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-jakarta max-w-2xl mx-auto leading-relaxed font-normal hero-anim-sub"
           >
             Dedicated 1-on-1 home tuition in Patna for Classes 8th to 12th, CBSE, ICSE, JEE &amp; NEET.
           </p>
@@ -342,7 +337,7 @@ export default function Home() {
           {/* CTA Button */}
           <div 
             ref={heroCTARef}
-            className="mt-8 sm:mt-10 flex items-center justify-center"
+            className="mt-8 sm:mt-10 flex items-center justify-center hero-anim-cta"
           >
             <Link
               href="/courses"
@@ -419,7 +414,7 @@ export default function Home() {
                     return (
                       <motion.div
                         key={sub.name}
-                        initial={{ opacity: 0, scale: 0.98 }}
+                        initial={false}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.98 }}
                         transition={{ duration: 0.2, ease: 'easeOut' }}

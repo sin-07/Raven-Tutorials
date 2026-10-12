@@ -285,69 +285,55 @@ export const scrollStaggerDirectional = (
   if (!els || !els.length || typeof window === 'undefined') return;
   const arr = Array.from(els as ArrayLike<Element>);
   const trigger = arr[0];
-  const { start = 'top 90%', delay = 0, duration = 0.5, distance = 35, ...rest } = options;
+  const { start = 'top 88%', delay = 0, duration = 0.5, distance = 30, ...rest } = options;
 
   if (direction === 'alternating') {
-    // Single consolidated ScrollTrigger instance for all alternating items
-    ScrollTrigger.create({
-      trigger,
-      start,
-      once: true,
-      onEnter: () => {
-        arr.forEach((el, i) => {
-          const fromLeft = i % 2 === 0;
-          gsap.fromTo(
-            el,
-            { opacity: 0, x: fromLeft ? -distance : distance },
-            {
-              opacity: 1,
-              x: 0,
-              duration,
-              delay: delay + i * stagger,
-              ease: 'power2.out',
-              force3D: true,
-              clearProps: 'transform,opacity',
-              ...rest,
-            }
-          );
-        });
-      },
+    arr.forEach((el, i) => {
+      const fromLeft = i % 2 === 0;
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: fromLeft ? -distance : distance },
+        {
+          opacity: 1,
+          x: 0,
+          duration,
+          delay: delay + i * stagger,
+          ease: 'power2.out',
+          force3D: true,
+          clearProps: 'transform,opacity',
+          scrollTrigger: { trigger, start, once: true },
+          ...rest,
+        }
+      );
     });
     return;
   }
 
   if (direction === 'cross') {
-    // Single consolidated ScrollTrigger instance for all cross items
     const dirs = [
       { x: -distance, y: 0 },
       { x: 0, y: -distance },
       { x: 0, y: distance },
       { x: distance, y: 0 },
     ];
-    ScrollTrigger.create({
-      trigger,
-      start,
-      once: true,
-      onEnter: () => {
-        arr.forEach((el, i) => {
-          const d = dirs[i % 4];
-          gsap.fromTo(
-            el,
-            { opacity: 0, x: d.x, y: d.y },
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              duration,
-              delay: delay + i * stagger,
-              ease: 'power2.out',
-              force3D: true,
-              clearProps: 'transform,opacity',
-              ...rest,
-            }
-          );
-        });
-      },
+    arr.forEach((el, i) => {
+      const d = dirs[i % 4];
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: d.x, y: d.y },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration,
+          delay: delay + i * stagger,
+          ease: 'power2.out',
+          force3D: true,
+          clearProps: 'transform,opacity',
+          scrollTrigger: { trigger, start, once: true },
+          ...rest,
+        }
+      );
     });
     return;
   }
@@ -368,7 +354,8 @@ export const scrollStaggerDirectional = (
       duration,
       stagger,
       delay,
-      ease: 'power3.out',
+      ease: 'power2.out',
+      force3D: true,
       clearProps: 'transform,opacity',
       scrollTrigger: { trigger, start, once: true },
       ...rest,

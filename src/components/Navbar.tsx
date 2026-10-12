@@ -175,15 +175,8 @@ const Navbar: React.FC = React.memo(() => {
     router.push('/login');
   };
 
-  // Entrance animation for Navbar
+  // Clean up navbar animations on unmount
   useEffect(() => {
-    if (navRef.current) {
-      gsap.fromTo(
-        navRef.current,
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', clearProps: 'transform,opacity' }
-      );
-    }
     return () => {
       if (drawerRef.current) gsap.killTweensOf(drawerRef.current);
       if (navRef.current) gsap.killTweensOf(navRef.current);
